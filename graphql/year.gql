@@ -1,5 +1,5 @@
 query AllYears {
-	years: allYears {
+	years: allYears(first: 100) {
 		id
 		title
 		paticipantName

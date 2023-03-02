@@ -12,9 +12,7 @@ export default function Menu({ items }: MenuProps) {
 	const menuRef = useRef<HTMLDivElement | null>(null);
 	const menuBarRef = useRef<HTMLUListElement | null>(null);
 	const [selected, setSelected] = useState<string | undefined>()
-
 	const router = useRouter()
-	console.log(items)
 
 	return (
 		<nav id="menu" ref={menuRef} className={cn(s.menu)}>

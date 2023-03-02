@@ -7,9 +7,13 @@ import { Image } from 'react-datocms'
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 import { useWindowSize } from 'rooks';
 
-export type ImageGalleryBlockProps = { id: string, images: FileField[], onClick?: Function, editable?: boolean }
+export type ImageGalleryBlockProps = {
+	id: string,
+	data: ImageGalleryRecord
+	onClick?: Function
+}
 
-export default function ImageGallery({ id, images, onClick, editable = false }: ImageGalleryBlockProps) {
+export default function ImageGallery({ id, data: { images }, onClick }: ImageGalleryBlockProps) {
 
 	const swiperRef = useRef<Swiper | null>(null)
 	const containerRef = useRef<HTMLDivElement | null>(null)
@@ -40,7 +44,7 @@ export default function ImageGallery({ id, images, onClick, editable = false }: 
 	}, [innerHeight, innerWidth, calculatePositions])
 
 	return (
-		<div className={s.gallery} data-editable={editable} ref={containerRef}>
+		<div className={s.gallery} ref={containerRef}>
 			<div className={s.fade}></div>
 			<SwiperReact
 				id={`${id}-swiper-wrap`}

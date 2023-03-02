@@ -22,7 +22,7 @@ type Scalars = {
   UploadId: any;
 };
 
-type AboutModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+type AboutModelContentBlocksField = ButtonRecord | ImageGalleryRecord | ImageRecord | VideoRecord;
 
 type AboutModelContentField = {
   __typename?: 'AboutModelContentField';
@@ -108,30 +108,6 @@ type AboutRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
-/** Block of type Bilder (bilder) */
-type BilderRecord = RecordInterface & {
-  __typename?: 'BilderRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  /** SEO meta tags */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
-  _updatedAt: Scalars['DateTime'];
-  id: Scalars['ItemId'];
-  images: Array<FileField>;
-};
-
-
-/** Block of type Bilder (bilder) */
-type BilderRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
 /** Specifies how to filter Boolean fields */
 type BooleanFilter = {
   /** Search for records with an exact match */
@@ -198,7 +174,7 @@ type ColorFilter = {
   exists?: InputMaybe<Scalars['BooleanType']>;
 };
 
-type ContactModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+type ContactModelContentBlocksField = ButtonRecord | ImageGalleryRecord | ImageRecord | VideoRecord;
 
 type ContactModelContentField = {
   __typename?: 'ContactModelContentField';
@@ -277,7 +253,7 @@ type DateFilter = {
   neq?: InputMaybe<Scalars['Date']>;
 };
 
-type ExhibitionModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+type ExhibitionModelContentBlocksField = ButtonRecord | ImageGalleryRecord | ImageRecord | VideoRecord;
 
 type ExhibitionModelContentField = {
   __typename?: 'ExhibitionModelContentField';
@@ -594,6 +570,30 @@ type GlobalSeoField = {
   twitterAccount?: Maybe<Scalars['String']>;
 };
 
+/** Block of type Bilder (image_gallery) */
+type ImageGalleryRecord = RecordInterface & {
+  __typename?: 'ImageGalleryRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  images: Array<FileField>;
+};
+
+
+/** Block of type Bilder (image_gallery) */
+type ImageGalleryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Block of type Bild (image) */
 type ImageRecord = RecordInterface & {
   __typename?: 'ImageRecord';
@@ -609,8 +609,8 @@ type ImageRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
-  image?: Maybe<FileField>;
-  layout?: Maybe<Scalars['String']>;
+  image: FileField;
+  layout: Scalars['String'];
 };
 
 
@@ -2035,7 +2035,7 @@ type LinksFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
 };
 
-type LocationModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+type LocationModelContentBlocksField = ButtonRecord | ImageGalleryRecord | ImageRecord | VideoRecord;
 
 type LocationModelContentField = {
   __typename?: 'LocationModelContentField';
@@ -2139,7 +2139,7 @@ enum MuxThumbnailFormatType {
   png = 'png'
 }
 
-type NewsModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+type NewsModelContentBlocksField = ButtonRecord | ImageGalleryRecord | ImageRecord | VideoRecord;
 
 type NewsModelContentField = {
   __typename?: 'NewsModelContentField';
@@ -2231,7 +2231,7 @@ type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>;
 };
 
-type ParticipantModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+type ParticipantModelContentBlocksField = ButtonRecord | ImageGalleryRecord | ImageRecord | VideoRecord;
 
 type ParticipantModelContentField = {
   __typename?: 'ParticipantModelContentField';
@@ -2378,7 +2378,7 @@ type ProgramCategoryRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-type ProgramModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+type ProgramModelContentBlocksField = ButtonRecord | ImageGalleryRecord | ImageRecord | VideoRecord;
 
 type ProgramModelContentField = {
   __typename?: 'ProgramModelContentField';
@@ -3529,21 +3529,21 @@ type AllAboutsQueryVariables = Exact<{
 }>;
 
 
-type AllAboutsQuery = { __typename?: 'Query', abouts: Array<{ __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'BilderRecord', id: any } | { __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
+type AllAboutsQuery = { __typename?: 'Query', abouts: Array<{ __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
 
 type AboutQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-type AboutQuery = { __typename?: 'Query', about?: { __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'BilderRecord', id: any } | { __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> } | null };
+type AboutQuery = { __typename?: 'Query', about?: { __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> } | null };
 
 type AllAboutsMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type AllAboutsMenuQuery = { __typename?: 'Query', abouts: Array<{ __typename?: 'AboutRecord', title?: string | null, slug?: string | null }> };
 
-type AboutFragment = { __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'BilderRecord', id: any } | { __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> };
+type AboutFragment = { __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> };
 
 type ImageFragment = { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null };
 
