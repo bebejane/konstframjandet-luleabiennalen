@@ -10,6 +10,7 @@
   ul {
     list-style: none;
     font-weight: bold;
+    margin-right: var(--outer-margin);
 
     > li {
       cursor: pointer;

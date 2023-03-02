@@ -3,11 +3,13 @@
   margin-bottom: var(--space);
 
   &.small {
-    padding-left: var(--grid-unit);
-    padding-right: var(--grid-unit);
+    padding-left: calc(2 * var(--grid-unit));
+    padding-right: calc(2 * var(--grid-unit));
   }
 
   &.medium {
+    padding-left: var(--grid-unit);
+    padding-right: var(--grid-unit);
   }
 
   &.large {

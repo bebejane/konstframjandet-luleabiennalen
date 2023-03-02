@@ -35,6 +35,7 @@ export default function Article({
   return (
 
     <div className={cn(s.article, 'article')}>
+      <header>LB22 — Om</header>
       <h1>{title}</h1>
       <section className="intro">{intro}</section>
       {content &&
