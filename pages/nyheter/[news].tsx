@@ -24,8 +24,8 @@ export default function News({ news: { id, image, title, intro, content, _seoMet
 }
 
 export async function getStaticPaths() {
-  const { newss } = await apiQueryAll(AllNewsDocument)
-  const paths = newss.map(({ slug }) => ({ params: { news: slug } }))
+  const { news } = await apiQueryAll(AllNewsDocument)
+  const paths = news.map(({ slug }) => ({ params: { news: slug } }))
 
   return {
     paths,
@@ -45,7 +45,7 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
     props: {
       ...props,
       news,
-      pageTitle: news.title
+      pageTitle: news?.title
     },
     revalidate
   };
