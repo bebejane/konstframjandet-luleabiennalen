@@ -1,7 +1,7 @@
 import s from './NewsCard.module.scss'
 import React from 'react'
 import Link from 'next/link'
-import { KCImage as Image } from '/components'
+import { Image } from 'react-datocms'
 import { Card, ReadMore, RegionLink } from '/components'
 import BalanceText from 'react-balance-text'
 import { truncateParagraph } from '/lib/utils'
