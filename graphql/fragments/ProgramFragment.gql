@@ -19,7 +19,10 @@ fragment ProgramFragment on ProgramRecord {
 	partipants {
 		...ParticipantFragment
 	}
-
+	programCategory {
+		id
+		title
+	}
 	slug
 	externalLink
 	content {
