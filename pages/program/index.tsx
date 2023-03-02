@@ -11,6 +11,7 @@ export default function Program({ programs }: Props) {
   return (
     <>
       <SectionHeader>LB22 — Om</SectionHeader>
+      <div className={s.line}></div>
 
       <CardContainer>
         {programs.map(({ id, image, title, slug }) =>

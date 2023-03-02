@@ -9,9 +9,10 @@
 	--full-margin: calc(-1 * (2 * var(--grid-unit)));
 	--small-space: 1rem;
 	--space: 2rem;
+	--big-space: 3rem;
 	--line-height: 1.4em;
 	--gutter: 4vw;
-	--header-height: calc((var(--outer-margin)) + 0.75rem); //snygga upp sen
+	--header-height: calc((var(--outer-margin) * 2) + 0.75rem); //snygga upp sen
 
 	--background: var(--white);
 	--foreground: var(--black);

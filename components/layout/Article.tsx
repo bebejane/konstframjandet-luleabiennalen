@@ -25,7 +25,7 @@ export default function Article(props: ArticleProps) {
       <div className={cn(s.article, 'article')}>
         <h1>{title}</h1>
         {image &&
-          <figure>
+          <figure className={s.mainImage}>
             <Image data={image.responsiveImage} />
             <figcaption>{image.title}</figcaption>
           </figure>
