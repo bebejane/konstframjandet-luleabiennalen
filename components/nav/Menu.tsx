@@ -18,26 +18,28 @@ export default function Menu({ items }: MenuProps) {
 
 	return (
 		<nav id="menu" ref={menuRef} className={cn(s.menu)}>
-			<ul className={s.nav} ref={menuBarRef}>
-				{items.map(({ label, slug, sub }, idx) =>
-					<li key={idx} onClick={() => setSelected(label === selected ? undefined : label)}>
-						{!slug ? label : <Link href={slug}>{label}</Link>}
-						{sub &&
-							<ul
-								className={cn(s.sub, selected === label && s.selected)}
-								onClick={(e) => e.stopPropagation()}
-							>
-								{sub.map(({ label, slug }) =>
-									<li>
-										<Link href={slug}>{label}</Link>
-									</li>
-								)}
-							</ul>
-						}
-					</li>
-				)}
-				<li>Sök</li>
-			</ul>
+			<div className={s.wrapper}>
+				<ul className={s.nav} ref={menuBarRef}>
+					{items.map(({ label, slug, sub }, idx) =>
+						<li key={idx} onClick={() => setSelected(label === selected ? undefined : label)}>
+							{!slug ? label : <Link href={slug}>{label}</Link>}
+							{sub &&
+								<ul
+									className={cn(s.sub, selected === label && s.selected)}
+									onClick={(e) => e.stopPropagation()}
+								>
+									{sub.map(({ label, slug }) =>
+										<li>
+											<Link href={slug}>{label}</Link>
+										</li>
+									)}
+								</ul>
+							}
+						</li>
+					)}
+					<li>Sök</li>
+				</ul>
+			</div>
 		</nav>
 	)
 }
