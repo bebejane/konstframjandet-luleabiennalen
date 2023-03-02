@@ -14,7 +14,7 @@ fragment ExhibitionFragment on ExhibitionRecord {
 	thumb: image {
 		...ImageThumbnailFragment
 	}
-	intro(markdown: true)
+	intro(markdown: false)
 	misc
 	partipants {
 		...ParticipantFragment
