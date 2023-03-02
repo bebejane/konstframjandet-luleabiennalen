@@ -1,24 +1,35 @@
 .menu {
+  border-left: 1px solid var(--black);
+  padding: var(--outer-margin);
   flex: 0 0 20%;
 
+  .wrapper {
+    position: fixed;
+  }
 
   ul {
     list-style: none;
+    font-weight: bold;
 
-    >li {
+    > li {
       cursor: pointer;
+      padding-bottom: 0.5em;
 
-      >ul.sub {
+      > ul.sub {
         display: none;
+        font-weight: normal;
         margin-left: 0.5rem;
 
         &.selected {
           display: block;
         }
 
-        li {}
+        li {
+          &:first-of-type {
+            padding-top: 0.5em;
+          }
+        }
       }
-
     }
   }
 }
