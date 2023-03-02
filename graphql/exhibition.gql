@@ -1,0 +1,14 @@
+query AllExhibitions {
+	exhibitions: allExhibitions {
+		...ExhibitionFragment
+	}
+	pagination: _allExhibitionsMeta {
+		count
+	}
+}
+
+query Exhibition($slug: String!) {
+	exhibition(filter: { slug: { eq: $slug } }) {
+		...ExhibitionFragment
+	}
+}

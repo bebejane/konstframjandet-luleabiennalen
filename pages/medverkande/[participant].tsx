@@ -1,14 +1,14 @@
 import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
-import { NewsDocument, AllNewsDocument } from "/graphql";
+import { ParticipantDocument, AllParticipantsDocument } from "/graphql";
 import { Article } from '/components';
 
 export type Props = {
-  news: NewsRecord
+  participant: ParticipantRecord
 }
 
-export default function News({ news: { id, image, title, intro, content, _seoMetaTags } }: Props) {
+export default function Participant({ participant: { id, image, title, intro, content, _seoMetaTags } }: Props) {
 
   return (
     <Article
@@ -24,8 +24,8 @@ export default function News({ news: { id, image, title, intro, content, _seoMet
 }
 
 export async function getStaticPaths() {
-  const { newss } = await apiQueryAll(AllNewsDocument)
-  const paths = newss.map(({ slug }) => ({ params: { news: slug } }))
+  const { participants } = await apiQueryAll(AllParticipantsDocument)
+  const paths = participants.map(({ slug }) => ({ params: { participant: slug } }))
 
   return {
     paths,
@@ -35,17 +35,17 @@ export async function getStaticPaths() {
 
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
-  const slug = context.params.news;
-  const { news } = await apiQuery(NewsDocument, { variables: { slug }, preview: context.preview })
+  const slug = context.params.participant;
+  const { participant } = await apiQuery(ParticipantDocument, { variables: { slug }, preview: context.preview })
 
-  if (!news)
+  if (!participant)
     return { notFound: true }
 
   return {
     props: {
       ...props,
-      news,
-      pageTitle: news.title
+      participant,
+      pageTitle: participant.title
     },
     revalidate
   };

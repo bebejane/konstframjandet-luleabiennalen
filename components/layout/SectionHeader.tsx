@@ -4,17 +4,14 @@ import Link from 'next/link'
 import cn from 'classnames'
 
 export type SectionHeaderProps = {
-  title: string,
-  slug?: string,
-  margin?: boolean;
-  regional?: boolean
+  children: React.ReactNode
 }
 
-export default function SectionHeader({ title, slug, margin, regional = true }: SectionHeaderProps) {
+export default function SectionHeader({ children }: SectionHeaderProps) {
 
   return (
-    <header className={cn(s.header)}>
-      <h2><span>LB22 — Om</span></h2>
+    <header className={s.header}>
+      <h2><span>{children}</span></h2>
     </header>
   )
 }

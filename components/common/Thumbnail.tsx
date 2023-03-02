@@ -15,10 +15,7 @@ export default function Thumbnail({ image, slug, title, subtitle }: Props) {
 
   const [hover, setHover] = useState<undefined | boolean>(false);
   const [ratio, setRatio] = useState<number>(0)
-  const horizontal = title.split('').slice((title.length * ratio))
-  const vertical = title.split('').slice(0, Math.round(title.length * ratio))
   const readMore = subtitle || 'Visa'
-  const more = readMore.split('').slice(readMore.length - (readMore.length * ratio))
 
   return (
     <Link

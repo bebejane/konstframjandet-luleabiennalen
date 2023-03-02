@@ -10,10 +10,29 @@ export const AllAboutsMenu: DocumentNode;
 }
     
 
+declare module '*/exhibition.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllExhibitions: DocumentNode;
+export const Exhibition: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/AboutFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const AboutFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/ExhibitionFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ExhibitionFragment: DocumentNode;
 
   export default defaultDocument;
 }
@@ -109,6 +128,16 @@ declare module '*/YearFragment.gql' {
 }
     
 
+declare module '*/location.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllLocations: DocumentNode;
+export const Location: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/news.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -119,10 +148,21 @@ export const News: DocumentNode;
 }
     
 
+declare module '*/participant.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllParticipants: DocumentNode;
+export const Participant: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/program.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const AllPrograms: DocumentNode;
+export const Program: DocumentNode;
 
   export default defaultDocument;
 }
