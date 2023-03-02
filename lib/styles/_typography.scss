@@ -95,9 +95,8 @@ nav,
 button,
 .mid input,
 .mid select {
-  @include mq($from: tablet) {
-    font-size: 0.9rem;
-  }
+  font-family: $headline-font;
+  font-size: 0.75rem;
 }
 
 strong,
@@ -119,6 +118,12 @@ article {
       margin-bottom: 1em;
     }
   }
+
+  p {
+    padding-left: var(--grid-unit);
+    padding-right: var(--grid-unit);
+  }
+
   p + h3,
   ul + h3,
   ul + h2,
