@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
 import type { Menu, MenuItem } from '/lib/menu'
 import { Hamburger } from '/components'
-
+import format from 'date-fns/format'
 import Link from 'next/link'
 
 export type MenuProps = { items: Menu }
@@ -20,10 +20,8 @@ export default function Menu({ items }: MenuProps) {
 		<>
 			<Hamburger />
 			<nav id="menu" ref={menuRef} className={cn(s.menu)}>
-
 				<div className={s.wrapper}>
-					<span>23 juni, -4°C</span>
-
+					<TodaysInfo />
 					<ul className={s.nav} ref={menuBarRef}>
 						{items.map(({ label, slug, sub }, idx) => {
 							const isActive = label === selected || router.asPath.startsWith(slug)
@@ -58,5 +56,34 @@ export default function Menu({ items }: MenuProps) {
 				</div>
 			</nav>
 		</>
+	)
+}
+
+export function TodaysInfo() {
+
+	const [temp, setTemp] = useState<number | undefined>()
+
+	const refreshWeather = async () => {
+
+		try {
+			const url = 'https://api.open-meteo.com/v1/forecast?latitude=65.58&longitude=22.15&hourly=temperature_2m&current_weather=true'
+			const res = await fetch(url)
+			const { current_weather: { temperature } } = await res.json()
+			setTemp(temperature)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+	useEffect(() => {
+		refreshWeather()
+		const i = setInterval(refreshWeather, 60 * 1000)
+		return () => clearInterval(i)
+	}, [])
+
+	return (
+		<span style={{ textTransform: 'capitalize' }}>
+			{format(new Date(), 'dd MMM')}, {temp > 0 ? '+' : '-'}{temp}°C
+		</span>
 	)
 }
