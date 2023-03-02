@@ -3,16 +3,25 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { AboutDocument, AllAboutsDocument } from "/graphql";
+import { Article } from '/components';
 
 export type Props = {
   about: AboutRecord
 }
 
-export default function AboutItem({ about: { id, _createdAt, title, slug, _seoMetaTags } }: Props) {
+export default function AboutItem({ about: { id, image, title, intro, content, _seoMetaTags } }: Props) {
 
   return (
     <>
-      {title}
+      <Article
+        id={id}
+        key={id}
+        title={title}
+        image={image}
+        text={intro}
+        content={content}
+      //onClick={(imageId) => setImageId(imageId)}
+      />
     </>
   );
 }

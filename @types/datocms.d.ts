@@ -43,9 +43,9 @@ type AboutModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
   intro?: InputMaybe<TextFilter>;
   slug?: InputMaybe<SlugFilter>;
-  thumb?: InputMaybe<FileFilter>;
   title?: InputMaybe<StringFilter>;
   year?: InputMaybe<LinkFilter>;
 };
@@ -89,9 +89,9 @@ type AboutRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime'];
   content?: Maybe<AboutModelContentField>;
   id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
   intro?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
-  thumb?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
   year?: Maybe<YearRecord>;
 };
@@ -154,6 +154,7 @@ type ButtonRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
   text?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
 };
 
 
@@ -222,9 +223,9 @@ type ContactRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime'];
   content?: Maybe<ContactModelContentField>;
   id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
   intro?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
-  thumb?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -2061,9 +2062,9 @@ type NewsModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
   intro?: InputMaybe<TextFilter>;
   slug?: InputMaybe<SlugFilter>;
-  thumb?: InputMaybe<FileFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
@@ -2106,9 +2107,9 @@ type NewsRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime'];
   content?: Maybe<NewsModelContentField>;
   id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
   intro?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
-  thumb?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -2153,9 +2154,9 @@ type ParticipantModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
   intro?: InputMaybe<TextFilter>;
   slug?: InputMaybe<SlugFilter>;
-  thumb?: InputMaybe<FileFilter>;
   title?: InputMaybe<StringFilter>;
   year?: InputMaybe<LinkFilter>;
 };
@@ -2199,9 +2200,9 @@ type ParticipantRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime'];
   content?: Maybe<ParticipantModelContentField>;
   id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
   intro?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
-  thumb?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
   year: YearRecord;
 };
@@ -2241,9 +2242,9 @@ type PlaceModelFilter = {
   city?: InputMaybe<StringFilter>;
   content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
   intro?: InputMaybe<TextFilter>;
   slug?: InputMaybe<SlugFilter>;
-  thumb?: InputMaybe<FileFilter>;
   title?: InputMaybe<StringFilter>;
   webpage?: InputMaybe<StringFilter>;
   year?: InputMaybe<LinkFilter>;
@@ -2296,9 +2297,9 @@ type PlaceRecord = RecordInterface & {
   city?: Maybe<Scalars['String']>;
   content?: Maybe<PlaceModelContentField>;
   id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
   intro?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
-  thumb?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
   webpage?: Maybe<Scalars['String']>;
   year: YearRecord;
@@ -2400,13 +2401,13 @@ type ProgramModelFilter = {
   endDate?: InputMaybe<DateFilter>;
   externalLink?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
   intro?: InputMaybe<TextFilter>;
   misc?: InputMaybe<StringFilter>;
   partipants?: InputMaybe<LinksFilter>;
   place?: InputMaybe<LinkFilter>;
   slug?: InputMaybe<SlugFilter>;
   startDate?: InputMaybe<DateFilter>;
-  thumb?: InputMaybe<FileFilter>;
   time?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   typ?: InputMaybe<LinkFilter>;
@@ -2464,13 +2465,13 @@ type ProgramRecord = RecordInterface & {
   endDate?: Maybe<Scalars['Date']>;
   externalLink?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
   intro?: Maybe<Scalars['String']>;
   misc?: Maybe<Scalars['String']>;
   partipants: Array<ParticipantRecord>;
   place?: Maybe<PlaceRecord>;
   slug?: Maybe<Scalars['String']>;
   startDate?: Maybe<Scalars['Date']>;
-  thumb?: Maybe<FileField>;
   time?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   typ?: Maybe<ProgramCategoryRecord>;
@@ -3438,9 +3439,9 @@ type VideoRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  bildtext?: Maybe<Scalars['String']>;
-  film?: Maybe<VideoField>;
   id: Scalars['ItemId'];
+  title?: Maybe<Scalars['String']>;
+  video?: Maybe<VideoField>;
 };
 
 
@@ -3528,16 +3529,16 @@ type AllAboutsQueryVariables = Exact<{
 }>;
 
 
-type AllAboutsQuery = { __typename?: 'Query', abouts: Array<{ __typename?: 'AboutRecord', id: any, title?: string | null, slug?: string | null, _createdAt: any }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
+type AllAboutsQuery = { __typename?: 'Query', abouts: Array<{ __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'BilderRecord', id: any } | { __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
 
 type AboutQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title?: string | null, slug?: string | null, _createdAt: any } | null };
+type AboutQuery = { __typename?: 'Query', about?: { __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'BilderRecord', id: any } | { __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> } | null };
 
-type AboutFragment = { __typename?: 'AboutRecord', id: any, title?: string | null, slug?: string | null, _createdAt: any };
+type AboutFragment = { __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'BilderRecord', id: any } | { __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> };
 
 type ImageFragment = { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null };
 
