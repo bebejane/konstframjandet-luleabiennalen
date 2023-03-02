@@ -1,0 +1,30 @@
+.hamburger {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  right: 0;
+  margin: var(--outer-margin);
+  width: 48px;
+  height: 48px;
+  padding: 20px 10px 20px 10px;
+
+  cursor: pointer;
+  --line-height: 2px;
+
+  >div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background-color: var(--black);
+  }
+
+  div:nth-child(2) {
+    top: calc(50% - calc(var(--line-height) / 2));
+  }
+
+  div:nth-child(3) {
+    top: calc(100% - calc(var(--line-height) / 2));
+  }
+}

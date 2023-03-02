@@ -18,6 +18,7 @@ fragment AboutFragment on AboutRecord {
 			... on ImageRecord {
 				__typename
 				id
+				layout
 				image {
 					...ImageFragment
 				}
