@@ -4,11 +4,10 @@
   flex-direction: column;
   flex: 1 1 auto;
 
-
   article {
     padding-bottom: var(--space);
     margin: 0;
-    background-color: pink;
+    //background-color: pink;
 
     @include mq($from: tablet) {
       margin-left: calc(var(--total-outer-margin));

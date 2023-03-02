@@ -12,7 +12,7 @@ export type ArticleProps = {
   title?: string,
   subtitle?: string,
   blackHeadline?: boolean,
-  text?: string,
+  intro?: string,
   image?: FileField
   showImage?: boolean,
   content?: any
@@ -26,6 +26,7 @@ export default function Article({
   children,
   title,
   content,
+  intro,
   onClick,
 }, record: ArticleProps) {
 
@@ -34,6 +35,8 @@ export default function Article({
   return (
 
     <div className={cn(s.article, 'article')}>
+      <h1>{title}</h1>
+      <section className="intro">{intro}</section>
       {content &&
         <StructuredContent
           id={id}

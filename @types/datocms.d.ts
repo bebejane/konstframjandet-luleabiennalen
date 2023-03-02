@@ -366,7 +366,7 @@ type ExhibitionRecord = RecordInterface & {
   intro?: Maybe<Scalars['String']>;
   misc?: Maybe<Scalars['String']>;
   partipants: Array<ParticipantRecord>;
-  place?: Maybe<PlaceRecord>;
+  place?: Maybe<LocationRecord>;
   slug?: Maybe<Scalars['String']>;
   startDate?: Maybe<Scalars['Date']>;
   thumb?: Maybe<FileField>;
@@ -2035,6 +2035,104 @@ type LinksFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
 };
 
+type LocationModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+
+type LocationModelContentField = {
+  __typename?: 'LocationModelContentField';
+  blocks: Array<LocationModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+type LocationModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<LocationModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  address?: InputMaybe<StringFilter>;
+  city?: InputMaybe<StringFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  intro?: InputMaybe<TextFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  title?: InputMaybe<StringFilter>;
+  webpage?: InputMaybe<StringFilter>;
+  year?: InputMaybe<LinkFilter>;
+};
+
+enum LocationModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  address_ASC = 'address_ASC',
+  address_DESC = 'address_DESC',
+  city_ASC = 'city_ASC',
+  city_DESC = 'city_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC',
+  webpage_ASC = 'webpage_ASC',
+  webpage_DESC = 'webpage_DESC'
+}
+
+/** Record of type Plats (location) */
+type LocationRecord = RecordInterface & {
+  __typename?: 'LocationRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  content?: Maybe<LocationModelContentField>;
+  id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
+  intro?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  webpage?: Maybe<Scalars['String']>;
+  year: YearRecord;
+};
+
+
+/** Record of type Plats (location) */
+type LocationRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Plats (location) */
+type LocationRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 enum MuxThumbnailFormatType {
   gif = 'gif',
   jpg = 'jpg',
@@ -2219,104 +2317,6 @@ type ParticipantRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
-type PlaceModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
-
-type PlaceModelContentField = {
-  __typename?: 'PlaceModelContentField';
-  blocks: Array<PlaceModelContentBlocksField>;
-  links: Array<Scalars['String']>;
-  value: Scalars['JsonField'];
-};
-
-type PlaceModelFilter = {
-  OR?: InputMaybe<Array<InputMaybe<PlaceModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  address?: InputMaybe<StringFilter>;
-  city?: InputMaybe<StringFilter>;
-  content?: InputMaybe<StructuredTextFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  image?: InputMaybe<FileFilter>;
-  intro?: InputMaybe<TextFilter>;
-  slug?: InputMaybe<SlugFilter>;
-  title?: InputMaybe<StringFilter>;
-  webpage?: InputMaybe<StringFilter>;
-  year?: InputMaybe<LinkFilter>;
-};
-
-enum PlaceModelOrderBy {
-  _createdAt_ASC = '_createdAt_ASC',
-  _createdAt_DESC = '_createdAt_DESC',
-  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
-  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
-  _isValid_ASC = '_isValid_ASC',
-  _isValid_DESC = '_isValid_DESC',
-  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
-  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
-  _publishedAt_ASC = '_publishedAt_ASC',
-  _publishedAt_DESC = '_publishedAt_DESC',
-  _status_ASC = '_status_ASC',
-  _status_DESC = '_status_DESC',
-  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
-  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
-  _updatedAt_ASC = '_updatedAt_ASC',
-  _updatedAt_DESC = '_updatedAt_DESC',
-  address_ASC = 'address_ASC',
-  address_DESC = 'address_DESC',
-  city_ASC = 'city_ASC',
-  city_DESC = 'city_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  title_ASC = 'title_ASC',
-  title_DESC = 'title_DESC',
-  webpage_ASC = 'webpage_ASC',
-  webpage_DESC = 'webpage_DESC'
-}
-
-/** Record of type Plats (place) */
-type PlaceRecord = RecordInterface & {
-  __typename?: 'PlaceRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  /** SEO meta tags */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
-  _updatedAt: Scalars['DateTime'];
-  address?: Maybe<Scalars['String']>;
-  city?: Maybe<Scalars['String']>;
-  content?: Maybe<PlaceModelContentField>;
-  id: Scalars['ItemId'];
-  image?: Maybe<FileField>;
-  intro?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  webpage?: Maybe<Scalars['String']>;
-  year: YearRecord;
-};
-
-
-/** Record of type Plats (place) */
-type PlaceRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** Record of type Plats (place) */
-type PlaceRecordintroArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>;
-};
-
 type ProgramCategoryModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<ProgramCategoryModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
@@ -2469,7 +2469,7 @@ type ProgramRecord = RecordInterface & {
   intro?: Maybe<Scalars['String']>;
   misc?: Maybe<Scalars['String']>;
   partipants: Array<ParticipantRecord>;
-  place?: Maybe<PlaceRecord>;
+  place?: Maybe<LocationRecord>;
   slug?: Maybe<Scalars['String']>;
   startDate?: Maybe<Scalars['Date']>;
   time?: Maybe<Scalars['String']>;
@@ -2516,11 +2516,11 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allExhibitionsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allLocationsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allNewsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allParticipantsMeta: CollectionMetadata;
-  /** Returns meta information regarding a record collection */
-  _allPlacesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allProgramCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -2538,11 +2538,11 @@ type Query = {
   /** Returns a collection of records */
   allExhibitions: Array<ExhibitionRecord>;
   /** Returns a collection of records */
+  allLocations: Array<LocationRecord>;
+  /** Returns a collection of records */
   allNews: Array<NewsRecord>;
   /** Returns a collection of records */
   allParticipants: Array<ParticipantRecord>;
-  /** Returns a collection of records */
-  allPlaces: Array<PlaceRecord>;
   /** Returns a collection of records */
   allProgramCategories: Array<ProgramCategoryRecord>;
   /** Returns a collection of records */
@@ -2558,11 +2558,11 @@ type Query = {
   /** Returns the single instance record */
   generellt?: Maybe<GenerelltRecord>;
   /** Returns a specific record */
+  location?: Maybe<LocationRecord>;
+  /** Returns a specific record */
   news?: Maybe<NewsRecord>;
   /** Returns a specific record */
   participant?: Maybe<ParticipantRecord>;
-  /** Returns a specific record */
-  place?: Maybe<PlaceRecord>;
   /** Returns a specific record */
   program?: Maybe<ProgramRecord>;
   /** Returns a specific record */
@@ -2593,6 +2593,14 @@ type Query_allExhibitionsMetaArgs = {
 
 
 /** The query root for this schema */
+type Query_allLocationsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<LocationModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
 type Query_allNewsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<NewsModelFilter>;
@@ -2604,14 +2612,6 @@ type Query_allNewsMetaArgs = {
 type Query_allParticipantsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ParticipantModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** The query root for this schema */
-type Query_allPlacesMetaArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<PlaceModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2686,6 +2686,17 @@ type QueryallExhibitionsArgs = {
 
 
 /** The query root for this schema */
+type QueryallLocationsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<LocationModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<LocationModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
 type QueryallNewsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<NewsModelFilter>;
@@ -2703,17 +2714,6 @@ type QueryallParticipantsArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ParticipantModelOrderBy>>>;
-  skip?: InputMaybe<Scalars['IntType']>;
-};
-
-
-/** The query root for this schema */
-type QueryallPlacesArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<PlaceModelFilter>;
-  first?: InputMaybe<Scalars['IntType']>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<PlaceModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -2786,6 +2786,15 @@ type QuerygenerelltArgs = {
 
 
 /** The query root for this schema */
+type QuerylocationArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<LocationModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<LocationModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
 type QuerynewsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<NewsModelFilter>;
@@ -2800,15 +2809,6 @@ type QueryparticipantArgs = {
   filter?: InputMaybe<ParticipantModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ParticipantModelOrderBy>>>;
-};
-
-
-/** The query root for this schema */
-type QueryplaceArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<PlaceModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<PlaceModelOrderBy>>>;
 };
 
 

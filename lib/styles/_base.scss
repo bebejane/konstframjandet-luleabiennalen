@@ -7,14 +7,14 @@
 	--beige-light-solid: #eceae5;
 	--beige-very-light: #e1dcd216;
 	--red: #bf0000;
-	--outer-margin: 6vw;
+	--outer-margin: 3vw;
 	--logo-size: 2rem;
-	--logo-size-optical: 1.7rem;
+	--logo-size-optical: 3rem;
 	--total-outer-margin: calc((var(--outer-margin) * 2) + var(--logo-size-optical));
 	--grid-unit: calc(((100vw - (2 * var(--total-outer-margin))) / 12));
 	--full-margin: calc(-1 * (2 * var(--grid-unit)));
-	--small-space: 2rem;
-	--space: 2.5rem;
+	--small-space: 1rem;
+	--space: 2rem;
 	--line-height: 1.4em;
 	--line-height-nav: 1.6em;
 	--gutter: 4vw;
@@ -24,8 +24,8 @@
 	--foreground: var(--black);
 
 	@include mq($from: tablet) {
-		--space: 4rem;
-		--outer-margin: 3.333vw;
+		--space: 2rem;
+		--outer-margin: 2vw;
 		--gutter: 2.5vw;
 	}
 
@@ -46,7 +46,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
 	overflow-x: hidden;
-
 }
 
 html {
@@ -215,7 +214,6 @@ select {
 	img {
 		user-select: none !important;
 		pointer-events: none;
-
 	}
 
 	div:nth-child(2) {
