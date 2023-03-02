@@ -24,6 +24,7 @@ export type ArticleProps = {
 export default function Article({
   id,
   children,
+  title,
   content,
   onClick,
 }, record: ArticleProps) {
@@ -33,7 +34,6 @@ export default function Article({
   return (
 
     <div className={cn(s.article, 'article')}>
-
       {content &&
         <StructuredContent
           id={id}
@@ -44,6 +44,5 @@ export default function Article({
       }
       {children}
     </div>
-
   )
 }
