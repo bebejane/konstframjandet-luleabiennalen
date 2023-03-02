@@ -2,7 +2,7 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ExhibitionDocument, AllExhibitionsDocument } from "/graphql";
-import { Article } from '/components';
+import { Article, SectionHeader } from '/components';
 
 export type Props = {
   exhibition: ExhibitionRecord

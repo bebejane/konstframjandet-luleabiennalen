@@ -11,14 +11,14 @@ export type MenuItem = {
 }
 
 const base: Menu = [
-  { type: 'about', label: 'Om', sub: [] },
+  { type: 'about', label: 'Om', slug: '/om', sub: [] },
   { type: 'program', label: 'Program', slug: '/program' },
   { type: 'exhibition', label: 'Utställningar', slug: '/utstallningar' },
   { type: 'participant', label: 'Medverkande', slug: '/medverkande' },
   { type: 'location', label: 'Platser', slug: '/platser' },
   { type: 'news', label: 'Nyheter', slug: '/nyheter' },
   { type: 'contact', label: 'Kontakt', slug: '/kontakt' },
-  { type: 'year', label: 'Arkiv', sub: [] }
+  { type: 'year', label: 'Arkiv', slug: '/[year]', sub: [] }
 ]
 
 export const buildMenu = async () => {

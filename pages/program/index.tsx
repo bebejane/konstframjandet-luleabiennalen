@@ -10,21 +10,19 @@ export type Props = {
 export default function Program({ programs }: Props) {
 
   return (
-    <>
-      <SectionHeader>LB22 — Om</SectionHeader>
-      <CardContainer>
-        {programs.map(({ id, image, title, slug, intro }) =>
-          <Card key={id}>
-            <Thumbnail
-              title={title}
-              image={image}
-              intro={intro}
-              slug={`/program/${slug}`}
-            />
-          </Card>
-        )}
-      </CardContainer>
-    </>
+
+    <CardContainer>
+      {programs.map(({ id, image, title, slug }) =>
+        <Card key={id}>
+          <Thumbnail
+            title={title}
+            image={image}
+            slug={`/program/${slug}`}
+          />
+        </Card>
+      )}
+    </CardContainer>
+
   );
 }
 

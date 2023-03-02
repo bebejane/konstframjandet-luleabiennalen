@@ -2,6 +2,7 @@ import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllExhibitionsDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail } from "/components";
+
 export type Props = {
   exhibitions: ExhibitionRecord[]
 }
@@ -9,6 +10,7 @@ export type Props = {
 export default function Exhibition({ exhibitions }: Props) {
 
   return (
+
     <CardContainer>
       {exhibitions.map(({ id, image, title, slug }) =>
         <Card key={id}>
