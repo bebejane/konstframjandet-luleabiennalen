@@ -2,9 +2,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: calc(-1 * var(--outer-margin));
-  margin-right: calc(-1 * var(--outer-margin));
-  width: calc(100% + (2 * var(--outer-margin)));
+  width: 100%;
 
   @include mq($from: tablet) {
     margin-left: calc(-1 * var(--gutter));
@@ -14,11 +12,6 @@
 
   padding: 0;
   list-style: none;
-
-  @include mq($from: tablet) {
-    width: calc(100% + (2 * var(--grid-unit)) + (2 * var(--gutter)));
-    margin-left: calc((-1 * var(--grid-unit)) - var(--gutter));
-  }
 
   li a:hover {
     color: var(--black) !important;

@@ -25,6 +25,7 @@ export default function Thumbnail({ image, slug, title, subtitle }: Props) {
       className={s.thumbnail}
       href={slug}
     >
+      <h3>{title}</h3>
       {image &&
         <Image
           data={image.responsiveImage}
@@ -32,9 +33,7 @@ export default function Thumbnail({ image, slug, title, subtitle }: Props) {
           pictureClassName={cn(s.picture, hover && s.hover)}
         />
       }
-      <span className={cn('mid', s.title)}>
-        {title}
-      </span>
+
     </Link>
   )
 }

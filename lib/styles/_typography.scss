@@ -32,14 +32,10 @@ h2 {
 }
 
 h3 {
-  font-size: 1.3rem;
-  @include mq($from: tablet) {
-    font-size: 1.5rem;
-  }
-  font-weight: normal;
-  letter-spacing: -0.015em;
+  font-size: 0.85rem;
+  font-family: $headline-font;
+  text-align: center;
   padding-bottom: 1em;
-  line-height: 1.25;
 }
 
 h4 {

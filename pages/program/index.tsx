@@ -1,7 +1,7 @@
 import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllProgramsDocument } from "/graphql";
-import { CardContainer, Card, Thumbnail } from "/components";
+import { CardContainer, Card, Thumbnail, SectionHeader } from "/components";
 export type Props = {
   programs: ProgramRecord[]
 }
@@ -9,17 +9,21 @@ export type Props = {
 export default function Program({ programs }: Props) {
 
   return (
-    <CardContainer>
-      {programs.map(({ id, image, title, slug }) =>
-        <Card key={id}>
-          <Thumbnail
-            title={title}
-            image={image}
-            slug={`/program/${slug}`}
-          />
-        </Card>
-      )}
-    </CardContainer>
+    <>
+      <SectionHeader>LB22 — Om</SectionHeader>
+
+      <CardContainer>
+        {programs.map(({ id, image, title, slug }) =>
+          <Card key={id}>
+            <Thumbnail
+              title={title}
+              image={image}
+              slug={`/program/${slug}`}
+            />
+          </Card>
+        )}
+      </CardContainer>
+    </>
   );
 }
 
