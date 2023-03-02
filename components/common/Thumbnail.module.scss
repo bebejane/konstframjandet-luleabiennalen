@@ -6,8 +6,28 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
+  &:hover {
+    img {
+      padding: 0 !important;
+    }
+  }
+
+  h3 {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+  }
+
   .image {
     margin-bottom: 0.8em;
+    aspect-ratio: 7 / 4;
+    transition: padding 1s ease-in;
+
+    img {
+      object-fit: cover;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 
   .picture {
@@ -63,7 +83,6 @@
         //max-height: var(--max-height);
         white-space: nowrap;
         //text-overflow: ellipsis;
-
       }
     }
   }

@@ -30,7 +30,6 @@ export default function CardContainer({ children, columns = 3, className, whiteB
         return (
           <React.Fragment key={idx}>
             {row.map(el => el)}
-            <hr key={idx} />
           </React.Fragment>
         )
       })}

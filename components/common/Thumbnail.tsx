@@ -8,10 +8,11 @@ export type Props = {
   image: FileField,
   slug: string,
   title: string,
+  intro: string,
   subtitle?: string,
 }
 
-export default function Thumbnail({ image, slug, title, subtitle }: Props) {
+export default function Thumbnail({ image, slug, intro, title, subtitle }: Props) {
 
   const [hover, setHover] = useState<undefined | boolean>(false);
   const [ratio, setRatio] = useState<number>(0)
@@ -30,6 +31,8 @@ export default function Thumbnail({ image, slug, title, subtitle }: Props) {
           pictureClassName={cn(s.picture, hover && s.hover)}
         />
       }
+      <div className="thumb-intro">{intro}</div>
+
 
     </Link>
   )

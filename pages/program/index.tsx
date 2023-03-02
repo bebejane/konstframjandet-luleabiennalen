@@ -13,11 +13,12 @@ export default function Program({ programs }: Props) {
     <>
       <SectionHeader>LB22 — Om</SectionHeader>
       <CardContainer>
-        {programs.map(({ id, image, title, slug }) =>
+        {programs.map(({ id, image, title, slug, intro }) =>
           <Card key={id}>
             <Thumbnail
               title={title}
               image={image}
+              intro={intro}
               slug={`/program/${slug}`}
             />
           </Card>
