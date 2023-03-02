@@ -1,4 +1,5 @@
 import s from './ImageGallery.module.scss'
+import "swiper/css";
 import cn from 'classnames'
 import React, { useCallback, useState, useRef, useEffect } from 'react'
 import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
