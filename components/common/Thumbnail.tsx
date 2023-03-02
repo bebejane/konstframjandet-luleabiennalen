@@ -8,7 +8,7 @@ export type Props = {
   image: FileField,
   slug: string,
   title: string,
-  intro: string,
+  intro?: string,
   subtitle?: string,
 }
 

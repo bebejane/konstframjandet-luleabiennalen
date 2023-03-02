@@ -4,7 +4,7 @@ import { AllExhibitionsDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail } from "/components";
 
 export type Props = {
-  exhibitions: ExhibitionRecord[]
+  exhibitions: (ExhibitionRecord & ThumbnailImage)[]
 }
 
 export default function Exhibition({ exhibitions }: Props) {

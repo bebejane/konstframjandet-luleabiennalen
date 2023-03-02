@@ -5,6 +5,9 @@ fragment ParticipantFragment on ParticipantRecord {
 	image {
 		...ImageFragment
 	}
+	thumb: image {
+		...ImageThumbnailFragment
+	}
 	year {
 		...YearFragment
 	}

@@ -2,19 +2,20 @@ import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllParticipantsDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail } from "/components";
+
 export type Props = {
-  participants: ParticipantRecord[]
+  participants: (ParticipantRecord & ThumbnailImage)[]
 }
 
 export default function Participant({ participants }: Props) {
 
   return (
     <CardContainer>
-      {participants.map(({ id, image, title, slug }) =>
+      {participants.map(({ id, image, thumb, title, slug }) =>
         <Card key={id}>
           <Thumbnail
             title={title}
-            image={image}
+            image={thumb}
             slug={`/medverkande/${slug}`}
           />
         </Card>

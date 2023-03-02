@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export type Props = {
-  abouts: AboutRecord[]
+  abouts: (AboutRecord & ThumbnailImage)[]
 }
 
 export default function About({ abouts }: Props) {

@@ -11,6 +11,9 @@ fragment ProgramFragment on ProgramRecord {
 	image {
 		...ImageFragment
 	}
+	thumb: image {
+		...ImageThumbnailFragment
+	}
 	intro(markdown: false)
 	misc
 	location {

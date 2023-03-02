@@ -11,6 +11,9 @@ fragment AboutFragment on AboutRecord {
 	image {
 		...ImageFragment
 	}
+	thumb: image {
+		...ImageThumbnailFragment
+	}
 	content {
 		value
 		blocks {
