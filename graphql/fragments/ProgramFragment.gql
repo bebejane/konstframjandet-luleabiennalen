@@ -11,7 +11,7 @@ fragment ProgramFragment on ProgramRecord {
 	image {
 		...ImageFragment
 	}
-	intro(markdown: true)
+	intro(markdown: false)
 	misc
 	location {
 		...LocationFragment

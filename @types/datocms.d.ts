@@ -2354,7 +2354,7 @@ enum ProgramCategoryModelOrderBy {
   title_DESC = 'title_DESC'
 }
 
-/** Record of type Typ av aktivitet i program (program_category) */
+/** Record of type Program kategori (program_category) */
 type ProgramCategoryRecord = RecordInterface & {
   __typename?: 'ProgramCategoryRecord';
   _createdAt: Scalars['DateTime'];
@@ -2373,7 +2373,7 @@ type ProgramCategoryRecord = RecordInterface & {
 };
 
 
-/** Record of type Typ av aktivitet i program (program_category) */
+/** Record of type Program kategori (program_category) */
 type ProgramCategoryRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
@@ -2406,11 +2406,11 @@ type ProgramModelFilter = {
   location?: InputMaybe<LinkFilter>;
   misc?: InputMaybe<StringFilter>;
   partipants?: InputMaybe<LinksFilter>;
+  programCategory?: InputMaybe<LinkFilter>;
   slug?: InputMaybe<SlugFilter>;
   startDate?: InputMaybe<DateFilter>;
   time?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
-  typ?: InputMaybe<LinkFilter>;
   year?: InputMaybe<LinkFilter>;
 };
 
@@ -2470,11 +2470,11 @@ type ProgramRecord = RecordInterface & {
   location?: Maybe<LocationRecord>;
   misc?: Maybe<Scalars['String']>;
   partipants: Array<ParticipantRecord>;
+  programCategory?: Maybe<ProgramCategoryRecord>;
   slug?: Maybe<Scalars['String']>;
   startDate?: Maybe<Scalars['Date']>;
   time?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  typ?: Maybe<ProgramCategoryRecord>;
   year: YearRecord;
 };
 
