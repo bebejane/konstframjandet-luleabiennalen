@@ -14,7 +14,8 @@ export default function Video({ data, editable }) {
 
 	if (!data || !data.video) return null
 
-	const { provider, providerUid, title } = data.video
+	const { provider, providerUid } = data.video
+	const { title } = data;
 	const style = { height: `${height}px`, width: '100%' }
 
 	return (
@@ -37,11 +38,12 @@ export default function Video({ data, editable }) {
 					:
 					null
 			}
-			{title && <div className={s.caption}>
-				<figcaption>
-					<Markdown allowedElements={['em', 'p']}>{title}</Markdown>
-				</figcaption>
-			</div>}
+			{title &&
+				<div className={s.caption}>
+					<figcaption>
+						<Markdown allowedElements={['em', 'p']}>{title}</Markdown>
+					</figcaption>
+				</div>}
 		</section>
 	)
 }
