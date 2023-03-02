@@ -22,9 +22,6 @@ const nextOptions = {
 	experimental: {
 		scrollRestoration: true,
 	},
-	publicRuntimeConfig: {
-		sites,
-	},
 	webpack: (config, ctx) => {
 		config.module.rules.push({
 			test: /\.(graphql|gql)$/,
