@@ -1,0 +1,19 @@
+query AllAbouts($first: IntType = 100, $skip: IntType = 0, $districtId: ItemId) {
+	abouts: allAbouts(
+		filter: { district: { eq: $districtId } }
+		first: $first
+		skip: $skip
+		orderBy: [_createdAt_DESC]
+	) {
+		...AboutFragment
+	}
+	pagination: _allAboutsMeta {
+		count
+	}
+}
+
+query About($slug: String!, $districtId: ItemId) {
+	about(filter: { slug: { eq: $slug }, district: { eq: $districtId } }) {
+		...AboutFragment
+	}
+}
