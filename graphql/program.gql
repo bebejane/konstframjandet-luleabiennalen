@@ -1,0 +1,5 @@
+query AllPrograms {
+	programs: allPrograms {
+		...ProgramFragment
+	}
+}

@@ -1,0 +1,8 @@
+fragment YearFragment on YearRecord {
+	id
+	title
+	paticipantName
+	backgroundColor {
+		hex
+	}
+}

@@ -1,10 +1,5 @@
 query AllYears {
 	years: allYears(first: 100) {
-		id
-		title
-		paticipantName
-		backgroundColor {
-			hex
-		}
+		...YearFragment
 	}
 }

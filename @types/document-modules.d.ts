@@ -46,10 +46,37 @@ declare module '*/ImageThumbnailFragment.gql' {
 }
     
 
+declare module '*/LocationFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const LocationFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/NewsFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const NewsFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/ParticipantFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ParticipantFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/ProgramFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ProgramFragment: DocumentNode;
 
   export default defaultDocument;
 }
@@ -73,11 +100,29 @@ declare module '*/VideoFragment.gql' {
 }
     
 
+declare module '*/YearFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const YearFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/news.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const AllNews: DocumentNode;
 export const News: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/program.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllPrograms: DocumentNode;
 
   export default defaultDocument;
 }
