@@ -10,8 +10,11 @@ export type SectionHeaderProps = {
 export default function SectionHeader({ children }: SectionHeaderProps) {
 
   return (
-    <header className={s.header}>
-      <h2><span>{children}</span></h2>
-    </header>
+    <>
+      <header className={s.header}>
+        <h2><span>{children}</span></h2>
+      </header>
+      <div className={s.line}></div>
+    </>
   )
 }
