@@ -15,8 +15,7 @@ export default function Menu({ items }: MenuProps) {
 	const menuBarRef = useRef<HTMLUListElement | null>(null);
 	const [selected, setSelected] = useState<string | undefined>()
 	const router = useRouter()
-	console.log(router.asPath)
-	console.log(items)
+
 	return (
 		<>
 			<Hamburger />
