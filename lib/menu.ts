@@ -1,6 +1,5 @@
-import { regions } from '/lib/region';
 import { apiQuery } from 'dato-nextjs-utils/api';
-import { LatestNewsDocument, AllAboutsMenuDocument, AllConsultsDocument, LatestProjectsDocument, AllForArtistDocument } from "/graphql";
+//import { LatestNewsDocument, AllAboutsMenuDocument, AllConsultsDocument, LatestProjectsDocument, AllForArtistDocument } from "/graphql";
 
 export type Menu = MenuItem[]
 

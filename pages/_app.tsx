@@ -11,11 +11,6 @@ function App({ Component, pageProps }) {
   const router = useRouter()
   const { district } = pageProps
 
-  useEffect(() => {
-    const { red, green, blue } = district.color
-    document.body.style.backgroundColor = `rgb(${red},${green},${blue})`
-  }, [])
-
   return (
     <>
       <Component {...pageProps} />

@@ -8,7 +8,7 @@ export type Props = {
   about: AboutRecord
 }
 
-export default function AboutItem({ about: { id, _createdAt, title, district, slug, _seoMetaTags } }: Props) {
+export default function AboutItem({ about: { id, _createdAt, title, slug, _seoMetaTags } }: Props) {
 
   return (
     <>

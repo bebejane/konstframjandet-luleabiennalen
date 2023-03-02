@@ -12,12 +12,23 @@ type Scalars = {
   Float: number;
   BooleanType: any;
   CustomData: any;
+  Date: any;
   DateTime: any;
   FloatType: any;
   IntType: any;
   ItemId: any;
+  JsonField: any;
   MetaTagAttributes: any;
   UploadId: any;
+};
+
+type AboutModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+
+type AboutModelContentField = {
+  __typename?: 'AboutModelContentField';
+  blocks: Array<AboutModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
 };
 
 type AboutModelFilter = {
@@ -30,10 +41,13 @@ type AboutModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  district?: InputMaybe<LinkFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  intro?: InputMaybe<TextFilter>;
   slug?: InputMaybe<SlugFilter>;
+  thumb?: InputMaybe<FileFilter>;
   title?: InputMaybe<StringFilter>;
+  year?: InputMaybe<LinkFilter>;
 };
 
 enum AboutModelOrderBy {
@@ -73,10 +87,13 @@ type AboutRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  district: DistrictRecord;
+  content?: Maybe<AboutModelContentField>;
   id: Scalars['ItemId'];
+  intro?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
+  thumb?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
+  year?: Maybe<YearRecord>;
 };
 
 
@@ -85,10 +102,64 @@ type AboutRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+
+/** Record of type Om (about) */
+type AboutRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Block of type Bilder (bilder) */
+type BilderRecord = RecordInterface & {
+  __typename?: 'BilderRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  images: Array<FileField>;
+};
+
+
+/** Block of type Bilder (bilder) */
+type BilderRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Boolean fields */
 type BooleanFilter = {
   /** Search for records with an exact match */
   eq?: InputMaybe<Scalars['BooleanType']>;
+};
+
+/** Block of type Knapp (button) */
+type ButtonRecord = RecordInterface & {
+  __typename?: 'ButtonRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  text?: Maybe<Scalars['String']>;
+};
+
+
+/** Block of type Knapp (button) */
+type ButtonRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 type CollectionMetadata = {
@@ -126,6 +197,49 @@ type ColorFilter = {
   exists?: InputMaybe<Scalars['BooleanType']>;
 };
 
+type ContactModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+
+type ContactModelContentField = {
+  __typename?: 'ContactModelContentField';
+  blocks: Array<ContactModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+/** Record of type Kontakt (contact) */
+type ContactRecord = RecordInterface & {
+  __typename?: 'ContactRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  content?: Maybe<ContactModelContentField>;
+  id: Scalars['ItemId'];
+  intro?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  thumb?: Maybe<FileField>;
+  title?: Maybe<Scalars['String']>;
+};
+
+
+/** Record of type Kontakt (contact) */
+type ContactRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Kontakt (contact) */
+type ContactRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Specifies how to filter by creation datetime */
 type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -144,8 +258,35 @@ type CreatedAtFilter = {
   neq?: InputMaybe<Scalars['DateTime']>;
 };
 
-type DistrictModelFilter = {
-  OR?: InputMaybe<Array<InputMaybe<DistrictModelFilter>>>;
+/** Specifies how to filter Date fields */
+type DateFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['Date']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['Date']>;
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['Date']>;
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['Date']>;
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['Date']>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['Date']>;
+};
+
+type ExhibitionModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+
+type ExhibitionModelContentField = {
+  __typename?: 'ExhibitionModelContentField';
+  blocks: Array<ExhibitionModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+type ExhibitionModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<ExhibitionModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
   _isValid?: InputMaybe<BooleanFilter>;
@@ -154,14 +295,23 @@ type DistrictModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  color?: InputMaybe<ColorFilter>;
-  email?: InputMaybe<StringFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  endDate?: InputMaybe<DateFilter>;
+  externalLink?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  name?: InputMaybe<StringFilter>;
-  subdomain?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<TextFilter>;
+  misc?: InputMaybe<StringFilter>;
+  partipants?: InputMaybe<LinksFilter>;
+  place?: InputMaybe<LinkFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  startDate?: InputMaybe<DateFilter>;
+  thumb?: InputMaybe<FileFilter>;
+  time?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  year?: InputMaybe<LinkFilter>;
 };
 
-enum DistrictModelOrderBy {
+enum ExhibitionModelOrderBy {
   _createdAt_ASC = '_createdAt_ASC',
   _createdAt_DESC = '_createdAt_DESC',
   _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
@@ -178,19 +328,25 @@ enum DistrictModelOrderBy {
   _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
   _updatedAt_ASC = '_updatedAt_ASC',
   _updatedAt_DESC = '_updatedAt_DESC',
-  email_ASC = 'email_ASC',
-  email_DESC = 'email_DESC',
+  endDate_ASC = 'endDate_ASC',
+  endDate_DESC = 'endDate_DESC',
+  externalLink_ASC = 'externalLink_ASC',
+  externalLink_DESC = 'externalLink_DESC',
   id_ASC = 'id_ASC',
   id_DESC = 'id_DESC',
-  name_ASC = 'name_ASC',
-  name_DESC = 'name_DESC',
-  subdomain_ASC = 'subdomain_ASC',
-  subdomain_DESC = 'subdomain_DESC'
+  misc_ASC = 'misc_ASC',
+  misc_DESC = 'misc_DESC',
+  startDate_ASC = 'startDate_ASC',
+  startDate_DESC = 'startDate_DESC',
+  time_ASC = 'time_ASC',
+  time_DESC = 'time_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
 }
 
-/** Record of type Distrikt (district) */
-type DistrictRecord = RecordInterface & {
-  __typename?: 'DistrictRecord';
+/** Record of type Utställning (exhibition) */
+type ExhibitionRecord = RecordInterface & {
+  __typename?: 'ExhibitionRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -202,17 +358,32 @@ type DistrictRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  color?: Maybe<ColorField>;
-  email?: Maybe<Scalars['String']>;
+  content?: Maybe<ExhibitionModelContentField>;
+  endDate?: Maybe<Scalars['Date']>;
+  externalLink?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
-  name?: Maybe<Scalars['String']>;
-  subdomain?: Maybe<Scalars['String']>;
+  intro?: Maybe<Scalars['String']>;
+  misc?: Maybe<Scalars['String']>;
+  partipants: Array<ParticipantRecord>;
+  place?: Maybe<PlaceRecord>;
+  slug?: Maybe<Scalars['String']>;
+  startDate?: Maybe<Scalars['Date']>;
+  thumb?: Maybe<FileField>;
+  time?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  year: YearRecord;
 };
 
 
-/** Record of type Distrikt (district) */
-type DistrictRecord_seoMetaTagsArgs = {
+/** Record of type Utställning (exhibition) */
+type ExhibitionRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Utställning (exhibition) */
+type ExhibitionRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
 enum FaviconType {
@@ -372,6 +543,47 @@ type FileFieldInterfaceurlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
 };
 
+/** Specifies how to filter Single-file/image fields */
+type FileFilter = {
+  /** Search for records with an exact match. The specified value must be an Upload ID */
+  eq?: InputMaybe<Scalars['UploadId']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records that have one of the specified uploads */
+  in?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
+  /** Exclude records with an exact match. The specified value must be an Upload ID */
+  neq?: InputMaybe<Scalars['UploadId']>;
+  /** Filter records that do not have one of the specified uploads */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
+};
+
+/** Record of type Generellt (generellt) */
+type GenerelltRecord = RecordInterface & {
+  __typename?: 'GenerelltRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  email?: Maybe<Scalars['String']>;
+  facebook?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  instagram?: Maybe<Scalars['String']>;
+  konstframjandet?: Maybe<Scalars['String']>;
+};
+
+
+/** Record of type Generellt (generellt) */
+type GenerelltRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 type GlobalSeoField = {
   __typename?: 'GlobalSeoField';
   facebookPageUrl?: Maybe<Scalars['String']>;
@@ -379,6 +591,31 @@ type GlobalSeoField = {
   siteName?: Maybe<Scalars['String']>;
   titleSuffix?: Maybe<Scalars['String']>;
   twitterAccount?: Maybe<Scalars['String']>;
+};
+
+/** Block of type Bild (image) */
+type ImageRecord = RecordInterface & {
+  __typename?: 'ImageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
+  layout?: Maybe<Scalars['String']>;
+};
+
+
+/** Block of type Bild (image) */
+type ImageRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 type ImgixParams = {
@@ -1783,11 +2020,34 @@ type LinkFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
 };
 
+/** Specifies how to filter Multiple-links fields */
+type LinksFilter = {
+  /** Filter records linked to all of the specified records. The specified values must be Record IDs */
+  allIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+  /** Filter records linked to at least one of the specified records. The specified values must be Record IDs */
+  anyIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+  /** Search for records with an exact match. The specified values must be Record IDs */
+  eq?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records not linked to any of the specified records. The specified values must be Record IDs */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+};
+
 enum MuxThumbnailFormatType {
   gif = 'gif',
   jpg = 'jpg',
   png = 'png'
 }
+
+type NewsModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+
+type NewsModelContentField = {
+  __typename?: 'NewsModelContentField';
+  blocks: Array<NewsModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
 
 type NewsModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<NewsModelFilter>>>;
@@ -1799,10 +2059,11 @@ type NewsModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  district?: InputMaybe<LinkFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
   intro?: InputMaybe<TextFilter>;
   slug?: InputMaybe<SlugFilter>;
+  thumb?: InputMaybe<FileFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
@@ -1843,10 +2104,11 @@ type NewsRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  district: DistrictRecord;
+  content?: Maybe<NewsModelContentField>;
   id: Scalars['ItemId'];
   intro?: Maybe<Scalars['String']>;
-  slug: Scalars['String'];
+  slug?: Maybe<Scalars['String']>;
+  thumb?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -1870,32 +2132,17 @@ type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>;
 };
 
-/** Specifies how to filter by parent (tree-like collections only) */
-type ParentFilter = {
-  /** Filter records children of the specified record. Value must be a Record ID */
-  eq?: InputMaybe<Scalars['ItemId']>;
-  /** Filter records with a parent record or not */
-  exists?: InputMaybe<Scalars['BooleanType']>;
+type ParticipantModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+
+type ParticipantModelContentField = {
+  __typename?: 'ParticipantModelContentField';
+  blocks: Array<ParticipantModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
 };
 
-/** Specifies how to filter by position (sorted and tree-like collections) */
-type PositionFilter = {
-  /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['IntType']>;
-  /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['IntType']>;
-  /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['IntType']>;
-  /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['IntType']>;
-  /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['IntType']>;
-  /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['IntType']>;
-};
-
-type ProjectModelFilter = {
-  OR?: InputMaybe<Array<InputMaybe<ProjectModelFilter>>>;
+type ParticipantModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<ParticipantModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
   _isValid?: InputMaybe<BooleanFilter>;
@@ -1904,16 +2151,16 @@ type ProjectModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  color?: InputMaybe<ColorFilter>;
-  district?: InputMaybe<LinkFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  parent?: InputMaybe<ParentFilter>;
-  position?: InputMaybe<PositionFilter>;
+  intro?: InputMaybe<TextFilter>;
   slug?: InputMaybe<SlugFilter>;
+  thumb?: InputMaybe<FileFilter>;
   title?: InputMaybe<StringFilter>;
+  year?: InputMaybe<LinkFilter>;
 };
 
-enum ProjectModelOrderBy {
+enum ParticipantModelOrderBy {
   _createdAt_ASC = '_createdAt_ASC',
   _createdAt_DESC = '_createdAt_DESC',
   _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
@@ -1932,15 +2179,13 @@ enum ProjectModelOrderBy {
   _updatedAt_DESC = '_updatedAt_DESC',
   id_ASC = 'id_ASC',
   id_DESC = 'id_DESC',
-  position_ASC = 'position_ASC',
-  position_DESC = 'position_DESC',
   title_ASC = 'title_ASC',
   title_DESC = 'title_DESC'
 }
 
-/** Record of type Projekt (project) */
-type ProjectRecord = RecordInterface & {
-  __typename?: 'ProjectRecord';
+/** Record of type Medverkande (participant) */
+type ParticipantRecord = RecordInterface & {
+  __typename?: 'ParticipantRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -1952,20 +2197,296 @@ type ProjectRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  children?: Maybe<Array<Maybe<ProjectRecord>>>;
-  color?: Maybe<ColorField>;
-  district: DistrictRecord;
+  content?: Maybe<ParticipantModelContentField>;
   id: Scalars['ItemId'];
-  parent?: Maybe<ProjectRecord>;
-  position?: Maybe<Scalars['IntType']>;
-  slug: Scalars['String'];
+  intro?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  thumb?: Maybe<FileField>;
+  title?: Maybe<Scalars['String']>;
+  year: YearRecord;
+};
+
+
+/** Record of type Medverkande (participant) */
+type ParticipantRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Medverkande (participant) */
+type ParticipantRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+type PlaceModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+
+type PlaceModelContentField = {
+  __typename?: 'PlaceModelContentField';
+  blocks: Array<PlaceModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+type PlaceModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<PlaceModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  address?: InputMaybe<StringFilter>;
+  city?: InputMaybe<StringFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  intro?: InputMaybe<TextFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  thumb?: InputMaybe<FileFilter>;
+  title?: InputMaybe<StringFilter>;
+  webpage?: InputMaybe<StringFilter>;
+  year?: InputMaybe<LinkFilter>;
+};
+
+enum PlaceModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  address_ASC = 'address_ASC',
+  address_DESC = 'address_DESC',
+  city_ASC = 'city_ASC',
+  city_DESC = 'city_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC',
+  webpage_ASC = 'webpage_ASC',
+  webpage_DESC = 'webpage_DESC'
+}
+
+/** Record of type Plats (place) */
+type PlaceRecord = RecordInterface & {
+  __typename?: 'PlaceRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  content?: Maybe<PlaceModelContentField>;
+  id: Scalars['ItemId'];
+  intro?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  thumb?: Maybe<FileField>;
+  title?: Maybe<Scalars['String']>;
+  webpage?: Maybe<Scalars['String']>;
+  year: YearRecord;
+};
+
+
+/** Record of type Plats (place) */
+type PlaceRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Plats (place) */
+type PlaceRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+type ProgramCategoryModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<ProgramCategoryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum ProgramCategoryModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Typ av aktivitet i program (program_category) */
+type ProgramCategoryRecord = RecordInterface & {
+  __typename?: 'ProgramCategoryRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
   title?: Maybe<Scalars['String']>;
 };
 
 
-/** Record of type Projekt (project) */
-type ProjectRecord_seoMetaTagsArgs = {
+/** Record of type Typ av aktivitet i program (program_category) */
+type ProgramCategoryRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+type ProgramModelContentBlocksField = BilderRecord | ButtonRecord | ImageRecord | VideoRecord;
+
+type ProgramModelContentField = {
+  __typename?: 'ProgramModelContentField';
+  blocks: Array<ProgramModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+type ProgramModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<ProgramModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  endDate?: InputMaybe<DateFilter>;
+  externalLink?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  intro?: InputMaybe<TextFilter>;
+  misc?: InputMaybe<StringFilter>;
+  partipants?: InputMaybe<LinksFilter>;
+  place?: InputMaybe<LinkFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  startDate?: InputMaybe<DateFilter>;
+  thumb?: InputMaybe<FileFilter>;
+  time?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  typ?: InputMaybe<LinkFilter>;
+  year?: InputMaybe<LinkFilter>;
+};
+
+enum ProgramModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  endDate_ASC = 'endDate_ASC',
+  endDate_DESC = 'endDate_DESC',
+  externalLink_ASC = 'externalLink_ASC',
+  externalLink_DESC = 'externalLink_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  misc_ASC = 'misc_ASC',
+  misc_DESC = 'misc_DESC',
+  startDate_ASC = 'startDate_ASC',
+  startDate_DESC = 'startDate_DESC',
+  time_ASC = 'time_ASC',
+  time_DESC = 'time_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Program (program) */
+type ProgramRecord = RecordInterface & {
+  __typename?: 'ProgramRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  content?: Maybe<ProgramModelContentField>;
+  endDate?: Maybe<Scalars['Date']>;
+  externalLink?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  intro?: Maybe<Scalars['String']>;
+  misc?: Maybe<Scalars['String']>;
+  partipants: Array<ParticipantRecord>;
+  place?: Maybe<PlaceRecord>;
+  slug?: Maybe<Scalars['String']>;
+  startDate?: Maybe<Scalars['Date']>;
+  thumb?: Maybe<FileField>;
+  time?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  typ?: Maybe<ProgramCategoryRecord>;
+  year: YearRecord;
+};
+
+
+/** Record of type Program (program) */
+type ProgramRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program (program) */
+type ProgramRecordintroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** Specifies how to filter by publication datetime */
@@ -1992,13 +2513,21 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allAboutsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allDistrictsMeta: CollectionMetadata;
+  _allExhibitionsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allNewsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allProjectsMeta: CollectionMetadata;
+  _allParticipantsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allPlacesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allProgramCategoriesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allProgramsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta?: Maybe<CollectionMetadata>;
+  /** Returns meta information regarding a record collection */
+  _allYearsMeta: CollectionMetadata;
   /** Returns the single instance record */
   _site: Site;
   /** Returns a specific record */
@@ -2006,21 +2535,43 @@ type Query = {
   /** Returns a collection of records */
   allAbouts: Array<AboutRecord>;
   /** Returns a collection of records */
-  allDistricts: Array<DistrictRecord>;
+  allExhibitions: Array<ExhibitionRecord>;
   /** Returns a collection of records */
   allNews: Array<NewsRecord>;
   /** Returns a collection of records */
-  allProjects: Array<ProjectRecord>;
+  allParticipants: Array<ParticipantRecord>;
+  /** Returns a collection of records */
+  allPlaces: Array<PlaceRecord>;
+  /** Returns a collection of records */
+  allProgramCategories: Array<ProgramCategoryRecord>;
+  /** Returns a collection of records */
+  allPrograms: Array<ProgramRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
+  /** Returns a collection of records */
+  allYears: Array<YearRecord>;
+  /** Returns the single instance record */
+  contact?: Maybe<ContactRecord>;
   /** Returns a specific record */
-  district?: Maybe<DistrictRecord>;
+  exhibition?: Maybe<ExhibitionRecord>;
+  /** Returns the single instance record */
+  generellt?: Maybe<GenerelltRecord>;
   /** Returns a specific record */
   news?: Maybe<NewsRecord>;
   /** Returns a specific record */
-  project?: Maybe<ProjectRecord>;
+  participant?: Maybe<ParticipantRecord>;
+  /** Returns a specific record */
+  place?: Maybe<PlaceRecord>;
+  /** Returns a specific record */
+  program?: Maybe<ProgramRecord>;
+  /** Returns a specific record */
+  programCategory?: Maybe<ProgramCategoryRecord>;
+  /** Returns the single instance record */
+  start?: Maybe<StartRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
+  /** Returns a specific record */
+  year?: Maybe<YearRecord>;
 };
 
 
@@ -2033,9 +2584,9 @@ type Query_allAboutsMetaArgs = {
 
 
 /** The query root for this schema */
-type Query_allDistrictsMetaArgs = {
+type Query_allExhibitionsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<DistrictModelFilter>;
+  filter?: InputMaybe<ExhibitionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2049,9 +2600,33 @@ type Query_allNewsMetaArgs = {
 
 
 /** The query root for this schema */
-type Query_allProjectsMetaArgs = {
+type Query_allParticipantsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProjectModelFilter>;
+  filter?: InputMaybe<ParticipantModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allPlacesMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PlaceModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allProgramCategoriesMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProgramCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allProgramsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProgramModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2059,6 +2634,14 @@ type Query_allProjectsMetaArgs = {
 /** The query root for this schema */
 type Query_allUploadsMetaArgs = {
   filter?: InputMaybe<UploadFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allYearsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<YearModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2091,12 +2674,12 @@ type QueryallAboutsArgs = {
 
 
 /** The query root for this schema */
-type QueryallDistrictsArgs = {
+type QueryallExhibitionsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<DistrictModelFilter>;
+  filter?: InputMaybe<ExhibitionModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<DistrictModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<ExhibitionModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -2113,12 +2696,45 @@ type QueryallNewsArgs = {
 
 
 /** The query root for this schema */
-type QueryallProjectsArgs = {
+type QueryallParticipantsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProjectModelFilter>;
+  filter?: InputMaybe<ParticipantModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProjectModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<ParticipantModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+type QueryallPlacesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PlaceModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PlaceModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+type QueryallProgramCategoriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProgramCategoryModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProgramCategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+type QueryallProgramsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProgramModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProgramModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -2135,11 +2751,36 @@ type QueryallUploadsArgs = {
 
 
 /** The query root for this schema */
-type QuerydistrictArgs = {
+type QueryallYearsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<DistrictModelFilter>;
+  filter?: InputMaybe<YearModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<DistrictModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<YearModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+type QuerycontactArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QueryexhibitionArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExhibitionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ExhibitionModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerygenerelltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -2153,11 +2794,45 @@ type QuerynewsArgs = {
 
 
 /** The query root for this schema */
-type QueryprojectArgs = {
+type QueryparticipantArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProjectModelFilter>;
+  filter?: InputMaybe<ParticipantModelFilter>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProjectModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<ParticipantModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryplaceArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PlaceModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PlaceModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryprogramArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProgramModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProgramModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryprogramCategoryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProgramCategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProgramCategoryModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerystartArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -2167,6 +2842,15 @@ type QueryuploadArgs = {
   filter?: InputMaybe<UploadFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryyearArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<YearModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<YearModelOrderBy>>>;
 };
 
 type RecordInterface = {
@@ -2266,6 +2950,29 @@ type SlugFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+/** Record of type Startsida (start) */
+type StartRecord = RecordInterface & {
+  __typename?: 'StartRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+};
+
+
+/** Record of type Startsida (start) */
+type StartRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by status */
 type StatusFilter = {
   /** Search the record with the specified status */
@@ -2282,12 +2989,14 @@ type StatusFilter = {
 type StringFilter = {
   /** Search for records with an exact match */
   eq?: InputMaybe<Scalars['String']>;
-  /** Filter records with the specified field defined (i.e. with any value) or not */
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
   exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records that equal one of the specified values */
   in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Filter records with the specified field set as blank (null or empty string) */
   isBlank?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records based on a regular expression */
   matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude records with an exact match */
@@ -2304,6 +3013,20 @@ type StringMatchesFilter = {
   regexp?: InputMaybe<Scalars['BooleanType']>;
 };
 
+/** Specifies how to filter Structured Text fields */
+type StructuredTextFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with the specified field set as blank (null or single empty paragraph) */
+  isBlank?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records based on a regular expression */
+  matches?: InputMaybe<StringMatchesFilter>;
+  /** Exclude records based on a regular expression */
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
+
 type Tag = {
   __typename?: 'Tag';
   attributes?: Maybe<Scalars['MetaTagAttributes']>;
@@ -2313,10 +3036,12 @@ type Tag = {
 
 /** Specifies how to filter text fields */
 type TextFilter = {
-  /** Filter records with the specified field defined (i.e. with any value) or not */
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
   exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with the specified field set as blank (null or empty string) */
   isBlank?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records based on a regular expression */
   matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude records based on a regular expression */
@@ -2682,11 +3407,114 @@ type UploadWidthFilter = {
   neq?: InputMaybe<Scalars['IntType']>;
 };
 
+type VideoField = {
+  __typename?: 'VideoField';
+  height: Scalars['IntType'];
+  provider: Scalars['String'];
+  providerUid: Scalars['String'];
+  thumbnailUrl: Scalars['String'];
+  title: Scalars['String'];
+  url: Scalars['String'];
+  width: Scalars['IntType'];
+};
+
 enum VideoMp4Res {
   high = 'high',
   low = 'low',
   medium = 'medium'
 }
+
+/** Block of type Video (video) */
+type VideoRecord = RecordInterface & {
+  __typename?: 'VideoRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  bildtext?: Maybe<Scalars['String']>;
+  film?: Maybe<VideoField>;
+  id: Scalars['ItemId'];
+};
+
+
+/** Block of type Video (video) */
+type VideoRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type YearModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<YearModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  backgroundColor?: InputMaybe<ColorFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  paticipantName?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum YearModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  paticipantName_ASC = 'paticipantName_ASC',
+  paticipantName_DESC = 'paticipantName_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type År (year) */
+type YearRecord = RecordInterface & {
+  __typename?: 'YearRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  backgroundColor?: Maybe<ColorField>;
+  id: Scalars['ItemId'];
+  paticipantName?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+
+/** Record of type År (year) */
+type YearRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
 
 type focalPoint = {
   __typename?: 'focalPoint';
@@ -2697,7 +3525,6 @@ type focalPoint = {
 type AllAboutsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']>;
   skip?: InputMaybe<Scalars['IntType']>;
-  districtId?: InputMaybe<Scalars['ItemId']>;
 }>;
 
 
@@ -2705,27 +3532,12 @@ type AllAboutsQuery = { __typename?: 'Query', abouts: Array<{ __typename?: 'Abou
 
 type AboutQueryVariables = Exact<{
   slug: Scalars['String'];
-  districtId?: InputMaybe<Scalars['ItemId']>;
 }>;
 
 
 type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title?: string | null, slug?: string | null, _createdAt: any } | null };
 
-type AllDistricsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AllDistricsQuery = { __typename?: 'Query', districts: Array<{ __typename?: 'DistrictRecord', id: any, name?: string | null, email?: string | null, subdomain?: string | null, color?: { __typename?: 'ColorField', hex: string } | null }> };
-
-type DistrictQueryVariables = Exact<{
-  subdomain: Scalars['String'];
-}>;
-
-
-type DistrictQuery = { __typename?: 'Query', district?: { __typename?: 'DistrictRecord', id: any, name?: string | null, email?: string | null, subdomain?: string | null, color?: { __typename?: 'ColorField', hex: string } | null } | null };
-
 type AboutFragment = { __typename?: 'AboutRecord', id: any, title?: string | null, slug?: string | null, _createdAt: any };
-
-type DistrictFragment = { __typename?: 'DistrictRecord', id: any, name?: string | null, email?: string | null, subdomain?: string | null, color?: { __typename?: 'ColorField', hex: string } | null };
 
 type ImageFragment = { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null };
 
@@ -2733,9 +3545,7 @@ type ImageMediumFragment = { __typename?: 'FileField', id: any, mimeType: string
 
 type ImageThumbnailFragment = { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null };
 
-type NewsFragment = { __typename?: 'NewsRecord', id: any, title?: string | null, intro?: string | null, slug: string, _createdAt: any };
-
-type ProjectFragment = { __typename?: 'ProjectRecord', id: any, title?: string | null, slug: string, _createdAt: any, color?: { __typename?: 'ColorField', hex: string } | null };
+type NewsFragment = { __typename?: 'NewsRecord', id: any, title?: string | null, intro?: string | null, slug?: string | null, _createdAt: any };
 
 type SiteFragment = { __typename?: 'Site', favicon: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string | null, siteName?: string | null, titleSuffix?: string | null, twitterAccount?: string | null, fallbackSeo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null } | null } | null };
 
@@ -2744,42 +3554,14 @@ type VideoFragment = { __typename?: 'FileField', id: any, alt?: string | null, b
 type AllNewsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']>;
   skip?: InputMaybe<Scalars['IntType']>;
-  districtId?: InputMaybe<Scalars['ItemId']>;
 }>;
 
 
-type AllNewsQuery = { __typename?: 'Query', news: Array<{ __typename?: 'NewsRecord', id: any, title?: string | null, intro?: string | null, slug: string, _createdAt: any }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
+type AllNewsQuery = { __typename?: 'Query', news: Array<{ __typename?: 'NewsRecord', id: any, title?: string | null, intro?: string | null, slug?: string | null, _createdAt: any }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
 
 type NewsQueryVariables = Exact<{
   slug: Scalars['String'];
-  districtId?: InputMaybe<Scalars['ItemId']>;
 }>;
 
 
-type NewsQuery = { __typename?: 'Query', news?: { __typename?: 'NewsRecord', id: any, title?: string | null, intro?: string | null, slug: string, _createdAt: any } | null };
-
-type AllProjectsQueryVariables = Exact<{
-  first?: InputMaybe<Scalars['IntType']>;
-  skip?: InputMaybe<Scalars['IntType']>;
-  districtId?: InputMaybe<Scalars['ItemId']>;
-}>;
-
-
-type AllProjectsQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'ProjectRecord', id: any, title?: string | null, slug: string, _createdAt: any, color?: { __typename?: 'ColorField', hex: string } | null }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
-
-type AllProjectsTreeQueryVariables = Exact<{
-  first?: InputMaybe<Scalars['IntType']>;
-  skip?: InputMaybe<Scalars['IntType']>;
-  districtId?: InputMaybe<Scalars['ItemId']>;
-}>;
-
-
-type AllProjectsTreeQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'ProjectRecord', id: any, title?: string | null, slug: string, _createdAt: any, children?: Array<{ __typename?: 'ProjectRecord', id: any, title?: string | null, slug: string, _createdAt: any, color?: { __typename?: 'ColorField', hex: string } | null } | null> | null, color?: { __typename?: 'ColorField', hex: string } | null }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
-
-type ProjectQueryVariables = Exact<{
-  slug: Scalars['String'];
-  districtId?: InputMaybe<Scalars['ItemId']>;
-}>;
-
-
-type ProjectQuery = { __typename?: 'Query', project?: { __typename?: 'ProjectRecord', id: any, title?: string | null, slug: string, _createdAt: any, children?: Array<{ __typename?: 'ProjectRecord', id: any, title?: string | null, slug: string, _createdAt: any, color?: { __typename?: 'ColorField', hex: string } | null } | null> | null, color?: { __typename?: 'ColorField', hex: string } | null } | null };
+type NewsQuery = { __typename?: 'Query', news?: { __typename?: 'NewsRecord', id: any, title?: string | null, intro?: string | null, slug?: string | null, _createdAt: any } | null };

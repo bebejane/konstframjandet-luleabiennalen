@@ -1,6 +1,6 @@
-query AllAbouts($first: IntType = 100, $skip: IntType = 0, $districtId: ItemId) {
+query AllAbouts($first: IntType = 100, $skip: IntType = 0) {
 	abouts: allAbouts(
-		filter: { district: { eq: $districtId } }
+		#filter: { district: { eq: $districtId } }
 		first: $first
 		skip: $skip
 		orderBy: [_createdAt_DESC]
@@ -12,8 +12,8 @@ query AllAbouts($first: IntType = 100, $skip: IntType = 0, $districtId: ItemId) 
 	}
 }
 
-query About($slug: String!, $districtId: ItemId) {
-	about(filter: { slug: { eq: $slug }, district: { eq: $districtId } }) {
+query About($slug: String!) {
+	about(filter: { slug: { eq: $slug } }) {
 		...AboutFragment
 	}
 }
