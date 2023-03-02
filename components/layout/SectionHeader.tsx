@@ -14,7 +14,7 @@ export default function SectionHeader({ title, slug, margin, regional = true }: 
 
   return (
     <header className={cn(s.header)}>
-      <h2>{title}</h2>
+      <h2><span>LB22 — Om</span></h2>
     </header>
   )
 }

@@ -2,7 +2,7 @@ import s from './Article.module.scss'
 import cn from 'classnames'
 import React from 'react'
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
-import { StructuredContent } from "/components";
+import { SectionHeader, StructuredContent } from "/components";
 import { useScrollInfo } from 'dato-nextjs-utils/hooks';
 import { Image } from 'react-datocms/image';
 
@@ -33,20 +33,22 @@ export default function Article({
   const { scrolledPosition } = useScrollInfo()
 
   return (
+    <>
+      <SectionHeader>LB22 — Om</SectionHeader>
 
-    <div className={cn(s.article, 'article')}>
-      <header>LB22 — Om</header>
-      <h1>{title}</h1>
-      <section className="intro">{intro}</section>
-      {content &&
-        <StructuredContent
-          id={id}
-          record={record}
-          content={content}
-          onClick={(imageId) => onClick?.(imageId)}
-        />
-      }
-      {children}
-    </div>
+      <div className={cn(s.article, 'article')}>
+        <h1>{title}</h1>
+        <section className="intro">{intro}</section>
+        {content &&
+          <StructuredContent
+            id={id}
+            record={record}
+            content={content}
+            onClick={(imageId) => onClick?.(imageId)}
+          />
+        }
+        {children}
+      </div>
+    </>
   )
 }

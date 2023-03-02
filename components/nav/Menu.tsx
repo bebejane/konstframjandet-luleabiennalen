@@ -20,7 +20,10 @@ export default function Menu({ items }: MenuProps) {
 		<>
 			<Hamburger />
 			<nav id="menu" ref={menuRef} className={cn(s.menu)}>
+
 				<div className={s.wrapper}>
+					<span>23 juni, -4°C</span>
+
 					<ul className={s.nav} ref={menuBarRef}>
 						{items.map(({ label, slug, sub }, idx) =>
 							<li key={idx} onClick={() => setSelected(label === selected ? undefined : label)}>

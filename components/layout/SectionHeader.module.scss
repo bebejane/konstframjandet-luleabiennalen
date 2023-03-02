@@ -1,18 +1,30 @@
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 1rem;
+  margin-top: var(--outer-margin);
+  //Detta måste fixas till när menyn är stängd
+  width: calc(80% - var(--total-outer-margin));
+  padding-right: var(--total-outer-margin);
+  position: fixed;
+  z-index: 1000;
 
   h2 {
     line-height: 1;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
   }
 
-  &.minusMargin {
-    @include mq($from: tablet) {
-      width: calc(100% + (2 * var(--grid-unit)));
-      margin-left: calc((-1 * var(--grid-unit)));
-      margin-right: calc((-1 * var(--grid-unit)));
+  span {
+    &:hover {
+      padding-left: 1em;
+      padding-right: 1em;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      border-radius: 1.5em;
+      cursor: pointer;
+      background-color: var(--background);
     }
   }
 }

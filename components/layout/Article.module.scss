@@ -1,5 +1,6 @@
 .article {
   position: relative;
+  padding-top: var(--header-height);
 
   &.noBottom {
     padding-bottom: 0;

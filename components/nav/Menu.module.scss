@@ -7,6 +7,11 @@
     position: fixed;
   }
 
+  span {
+    display: block;
+    padding-bottom: var(--header-height);
+  }
+
   ul {
     list-style: none;
     font-weight: bold;

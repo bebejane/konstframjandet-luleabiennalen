@@ -4,15 +4,15 @@
   top: 0;
   right: 0;
   margin: var(--outer-margin);
-  width: 48px;
-  max-width: 48px;
+  width: 44px;
+  max-width: 44px;
   max-height: 28px;
   padding: 20px 10px 20px 10px;
 
   cursor: pointer;
-  --line-height: 2px;
+  --line-height: 4px;
 
-  >div {
+  > div {
     position: absolute;
     top: 0;
     left: 0;

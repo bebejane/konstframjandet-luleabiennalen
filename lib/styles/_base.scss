@@ -1,14 +1,8 @@
 :root {
 	--black: #121212;
 	--white: #fcfcfc;
-	--beige-dark: #807a6e;
-	--beige-light: #e1dcd230;
-	--beige-mid: #ddd6c891;
-	--beige-light-solid: #eceae5;
-	--beige-very-light: #e1dcd216;
 	--red: #bf0000;
 	--outer-margin: 3vw;
-	--logo-size: 2rem;
 	--logo-size-optical: 3rem;
 	--total-outer-margin: calc((var(--outer-margin) * 2) + var(--logo-size-optical));
 	--grid-unit: calc(((100vw - (2 * var(--total-outer-margin))) / 12));
@@ -16,9 +10,8 @@
 	--small-space: 1rem;
 	--space: 2rem;
 	--line-height: 1.4em;
-	--line-height-nav: 1.6em;
 	--gutter: 4vw;
-	--navbar-height: 4.5rem;
+	--header-height: calc((var(--outer-margin)) + 0.75rem); //snygga upp sen
 
 	--background: var(--white);
 	--foreground: var(--black);
@@ -42,7 +35,6 @@ body {
 	color: var(--foreground);
 	background-color: var(--background);
 	font-family: $body-font;
-	letter-spacing: -0.01em;
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
 	overflow-x: hidden;
