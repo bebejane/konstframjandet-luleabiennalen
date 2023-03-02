@@ -172,6 +172,7 @@ export const apiQueryAll = async (doc: TypedDocumentNode, opt: ApiQueryOptions =
   }
   return results
 }
+
 export const randomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);

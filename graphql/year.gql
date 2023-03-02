@@ -1,5 +1,5 @@
-query AllYears {
-	years: allYears(first: 100) {
+query AllYears($year: String) {
+	years: allYears(filter: { title: { neq: $year } }, first: 100, orderBy: title_DESC) {
 		...YearFragment
 	}
 }

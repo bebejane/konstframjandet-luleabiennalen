@@ -6,15 +6,15 @@
 		"dev": "npm run dev:watch",
 		"dev:watch": "LOG_GRAPHQL=false next dev & npm run barrel:watch & graphql-codegen --watch",
 		"dev:emails": "npx mailing",
-		"build": "next build",
+		"build": "npm run prebuild && next build",
+		"prebuild": "node prebuild.js",
 		"codegen": "graphql-codegen",
 		"start": "next start",
 		"lint": "next lint",
 		"preview": "npm run build && npm run start",
 		"barrel": "node ./lib/scripts/barrel",
 		"barrel:watch": "watch 'node ./lib/scripts/barrel' ./components",
-		"postbuild": "next-sitemap",
-		"prebuild": "node prebuild"
+		"postbuild": "next-sitemap"
 	},
 	"exports": {
 		"lib/*": "/lib",

@@ -22,7 +22,7 @@ const base: Menu = [
 ]
 
 export const buildMenu = async () => {
-
+  const year = process.env.NEXT_PUBLIC_CURRENT_YEAR;
   const {
     abouts,
     years,
@@ -32,7 +32,7 @@ export const buildMenu = async () => {
   } = await apiQuery([
     AllAboutsMenuDocument,
     AllYearsDocument,
-  ], { variables: [{ year: process.env.NEXT_PUBLIC_CURRENT_YEAR }] });
+  ], { variables: [{ year }, { year }] });
 
   const menu = base.map(item => {
     let sub: MenuItem[];

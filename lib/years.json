@@ -1,0 +1,65 @@
+[
+  {
+    "id": "65893327",
+    "type": "item",
+    "title": "2022",
+    "background_color": {
+      "red": 255,
+      "blue": 0,
+      "alpha": 255,
+      "green": 0
+    },
+    "paticipant_name": "",
+    "item_type": {
+      "id": "981178",
+      "type": "item_type"
+    },
+    "creator": {
+      "id": "43587",
+      "type": "account"
+    },
+    "meta": {
+      "created_at": "2023-03-01T14:47:14.406+00:00",
+      "updated_at": "2023-03-01T14:47:14.410+00:00",
+      "published_at": "2023-03-01T14:47:14.429+00:00",
+      "publication_scheduled_at": null,
+      "unpublishing_scheduled_at": null,
+      "first_published_at": "2023-03-01T14:47:14.429+00:00",
+      "is_valid": true,
+      "is_current_version_valid": true,
+      "is_published_version_valid": true,
+      "status": "published",
+      "current_version": "135735844",
+      "stage": null
+    }
+  },
+  {
+    "id": "66074832",
+    "type": "item",
+    "title": "2020",
+    "background_color": null,
+    "paticipant_name": "",
+    "item_type": {
+      "id": "981178",
+      "type": "item_type"
+    },
+    "creator": {
+      "id": "43587",
+      "type": "account"
+    },
+    "meta": {
+      "created_at": "2023-03-01T16:23:11.220+00:00",
+      "updated_at": "2023-03-02T09:19:32.388+00:00",
+      "published_at": "2023-03-02T09:19:32.412+00:00",
+      "publication_scheduled_at": null,
+      "unpublishing_scheduled_at": null,
+      "first_published_at": "2023-03-01T16:23:11.248+00:00",
+      "is_valid": true,
+      "is_current_version_valid": true,
+      "is_published_version_valid": true,
+      "status": "published",
+      "current_version": "137111413",
+      "stage": null
+    }
+  }
+]
