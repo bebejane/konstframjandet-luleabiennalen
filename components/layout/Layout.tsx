@@ -5,7 +5,6 @@ import { Content, Footer, Logo, Grid, Menu, FullscreenGallery } from '/component
 import type { MenuItem } from '/lib/menu'
 import { buildMenu } from '/lib/menu'
 import { useRouter } from 'next/router'
-import { useStore, shallow } from '/lib/store'
 
 export type LayoutProps = {
 	children: React.ReactNode,

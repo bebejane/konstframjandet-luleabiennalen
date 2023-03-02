@@ -1,0 +1,10 @@
+query AllYears {
+	years: allYears {
+		id
+		title
+		paticipantName
+		backgroundColor {
+			hex
+		}
+	}
+}

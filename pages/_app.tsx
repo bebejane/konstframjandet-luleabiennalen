@@ -10,15 +10,14 @@ setDefaultOptions({ locale: sv })
 function App({ Component, pageProps }) {
 
   const router = useRouter()
-  const { district } = pageProps
+  const { menu } = pageProps
   const pageTitle = 'Luleåbiennalen'
 
   return (
     <>
-      <Layout title={pageTitle} menu={[]} footer={[]}>
+      <Layout title={pageTitle} menu={menu} footer={[]}>
         <Component {...pageProps} />
       </Layout>
-
     </>
   );
 }

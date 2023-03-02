@@ -3538,6 +3538,11 @@ type AboutQueryVariables = Exact<{
 
 type AboutQuery = { __typename?: 'Query', about?: { __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'BilderRecord', id: any } | { __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> } | null };
 
+type AllAboutsMenuQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AllAboutsMenuQuery = { __typename?: 'Query', abouts: Array<{ __typename?: 'AboutRecord', title?: string | null, slug?: string | null }> };
+
 type AboutFragment = { __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'BilderRecord', id: any } | { __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> };
 
 type ImageFragment = { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null };
@@ -3566,3 +3571,8 @@ type NewsQueryVariables = Exact<{
 
 
 type NewsQuery = { __typename?: 'Query', news?: { __typename?: 'NewsRecord', id: any, title?: string | null, intro?: string | null, slug?: string | null, _createdAt: any } | null };
+
+type AllYearsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AllYearsQuery = { __typename?: 'Query', years: Array<{ __typename?: 'YearRecord', id: any, title?: string | null, paticipantName?: string | null, backgroundColor?: { __typename?: 'ColorField', hex: string } | null }> };
