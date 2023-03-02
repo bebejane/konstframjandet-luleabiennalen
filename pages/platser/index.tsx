@@ -1,25 +1,32 @@
 import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
-
+import { AllLocationsDocument } from "/graphql";
+import { CardContainer, Card, Thumbnail } from "/components";
 export type Props = {
-
+  locations: LocationRecord[]
 }
 
-export default function Program({ }: Props) {
+export default function Location({ locations }: Props) {
 
   return (
-    <>
-      Platser
-    </>
+    <CardContainer>
+      {locations.map(({ id, image, title, slug }) =>
+        <Card key={id}>
+          <Thumbnail
+            title={title}
+            image={image}
+            slug={`/platser/${slug}`}
+          />
+        </Card>
+      )}
+    </CardContainer>
   );
 }
 
-export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate }: any) => {
+export const getStaticProps = withGlobalProps({ queries: [AllLocationsDocument] }, async ({ props, revalidate }: any) => {
 
   return {
-    props: {
-      ...props
-    },
+    props,
     revalidate
   };
 });

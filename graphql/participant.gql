@@ -1,0 +1,14 @@
+query AllParticipants {
+	participants: allParticipants {
+		...ParticipantFragment
+	}
+	pagination: _allParticipantsMeta {
+		count
+	}
+}
+
+query Participant($slug: String!) {
+	participant(filter: { slug: { eq: $slug } }) {
+		...ParticipantFragment
+	}
+}

@@ -1,21 +1,21 @@
 import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
-import { AllParticipantsDocument } from "/graphql";
+import { AllExhibitionsDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail } from "/components";
 export type Props = {
-  participants: ParticipantRecord[]
+  exhibitions: ExhibitionRecord[]
 }
 
-export default function Participant({ participants }: Props) {
+export default function Exhibition({ exhibitions }: Props) {
 
   return (
     <CardContainer>
-      {participants.map(({ id, image, title, slug }) =>
+      {exhibitions.map(({ id, image, title, slug }) =>
         <Card key={id}>
           <Thumbnail
             title={title}
             image={image}
-            slug={`/medverkande/${slug}`}
+            slug={`/utstallningar/${slug}`}
           />
         </Card>
       )}
@@ -23,7 +23,7 @@ export default function Participant({ participants }: Props) {
   );
 }
 
-export const getStaticProps = withGlobalProps({ queries: [AllParticipantsDocument] }, async ({ props, revalidate }: any) => {
+export const getStaticProps = withGlobalProps({ queries: [AllExhibitionsDocument] }, async ({ props, revalidate }: any) => {
 
   return {
     props: {

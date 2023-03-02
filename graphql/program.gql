@@ -2,4 +2,13 @@ query AllPrograms {
 	programs: allPrograms {
 		...ProgramFragment
 	}
+	pagination: _allProgramsMeta {
+		count
+	}
+}
+
+query Program($slug: String!) {
+	program(filter: { slug: { eq: $slug } }) {
+		...ProgramFragment
+	}
 }

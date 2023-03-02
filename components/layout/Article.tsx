@@ -1,43 +1,35 @@
 import s from './Article.module.scss'
 import cn from 'classnames'
 import React from 'react'
-import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
 import { SectionHeader, StructuredContent } from "/components";
-import { useScrollInfo } from 'dato-nextjs-utils/hooks';
 import { Image } from 'react-datocms/image';
 
 export type ArticleProps = {
   id: string,
-  children?: React.ReactNode | React.ReactNode[]
+  children?: React.ReactNode | React.ReactNode[] | undefined
   title?: string,
   subtitle?: string,
-  blackHeadline?: boolean,
   intro?: string,
   image?: FileField
-  showImage?: boolean,
   content?: any
-  editable?: any
-  noBottom?: boolean
-  onClick?: (id: string) => void
+  onClick?: (id: string) => void,
+  record?: any
 }
 
-export default function Article({
-  id,
-  children,
-  title,
-  content,
-  intro,
-  onClick,
-}, record: ArticleProps) {
-
-  const { scrolledPosition } = useScrollInfo()
+export default function Article(props: ArticleProps) {
+  const { id, children, title, content, image, intro, onClick, record } = props
 
   return (
     <>
       <SectionHeader>LB22 — Om</SectionHeader>
-
       <div className={cn(s.article, 'article')}>
         <h1>{title}</h1>
+        {image &&
+          <figure>
+            <Image data={image.responsiveImage} />
+            <figcaption>{image.title}</figcaption>
+          </figure>
+        }
         <section className="intro">{intro}</section>
         {content &&
           <StructuredContent

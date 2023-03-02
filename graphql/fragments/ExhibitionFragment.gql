@@ -1,14 +1,23 @@
-fragment LocationFragment on LocationRecord {
+#import "./ImageFragment.gql"
+#import "./VideoFragment.gql"
+
+fragment ExhibitionFragment on ExhibitionRecord {
+	__typename
+	_modelApiKey
 	id
 	title
-	city
-	address
+	startDate
+	endDate
 	image {
 		...ImageFragment
 	}
-	intro(markdown: false)
-	webpage
+	intro(markdown: true)
+	misc
+	partipants {
+		...ParticipantFragment
+	}
 	slug
+	externalLink
 	content {
 		value
 		blocks {
@@ -53,5 +62,10 @@ fragment LocationFragment on LocationRecord {
 				id
 			}
 		}
+	}
+	_seoMetaTags {
+		attributes
+		content
+		tag
 	}
 }
