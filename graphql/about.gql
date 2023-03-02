@@ -17,3 +17,10 @@ query About($slug: String!) {
 		...AboutFragment
 	}
 }
+
+query AllAboutsMenu {
+	abouts: allAbouts(first: 100) {
+		title
+		slug
+	}
+}

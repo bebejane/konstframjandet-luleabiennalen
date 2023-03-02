@@ -4,6 +4,7 @@ declare module '*/about.gql' {
   const defaultDocument: DocumentNode;
   export const AllAbouts: DocumentNode;
 export const About: DocumentNode;
+export const AllAboutsMenu: DocumentNode;
 
   export default defaultDocument;
 }
@@ -77,6 +78,15 @@ declare module '*/news.gql' {
   const defaultDocument: DocumentNode;
   export const AllNews: DocumentNode;
 export const News: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/year.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllYears: DocumentNode;
 
   export default defaultDocument;
 }
