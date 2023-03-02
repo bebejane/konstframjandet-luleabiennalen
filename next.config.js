@@ -1,8 +1,4 @@
-const districts = require("./lib/districts.json");
 const webpack = require("webpack");
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-	enabled: process.env.ANALYZE === "true",
-});
 
 const sassOptions = {
 	includePaths: ["./components", "./pages"],
@@ -12,15 +8,6 @@ const sassOptions = {
     @import "./lib/styles/fonts";
   `,
 };
-
-const baseDomain = "konstframjandet.se";
-const sites = {};
-
-districts
-	.filter(({ subdomain }) => subdomain)
-	.map(({ subdomain }) => (sites[subdomain] = { domain: `${subdomain}.${baseDomain}` }));
-
-const siteKeys = Object.keys(sites);
 
 const nextOptions = {
 	typescript: {
@@ -37,14 +24,6 @@ const nextOptions = {
 	},
 	publicRuntimeConfig: {
 		sites,
-	},
-	i18n: {
-		locales: siteKeys,
-		defaultLocale: siteKeys[0],
-		domains: siteKeys.map((siteKey) => ({
-			domain: sites[siteKey].domain,
-			defaultLocale: siteKey,
-		})),
 	},
 	webpack: (config, ctx) => {
 		config.module.rules.push({

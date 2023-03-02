@@ -5,11 +5,12 @@ import { NewsDocument, AllNewsDocument } from "/graphql";
 import { format } from "date-fns";
 import { apiQueryAll } from '/lib/utils';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
+
 export type Props = {
   news: NewsRecord
 }
 
-export default function NewsItem({ news: { id, _createdAt, title, intro, district, slug, _seoMetaTags } }: Props) {
+export default function NewsItem({ news: { id, _createdAt, title, intro, slug, _seoMetaTags } }: Props) {
 
   return (
     <>
@@ -31,7 +32,7 @@ export async function getStaticPaths() {
 
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
   const slug = context.params.news;
-  const { news } = await apiQuery(NewsDocument, { variables: { slug, districtId: props.district.id }, preview: context.preview })
+  const { news } = await apiQuery(NewsDocument, { variables: { slug }, preview: context.preview })
   return {
     props: {
       ...props,
