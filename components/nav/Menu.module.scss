@@ -12,16 +12,24 @@
     padding-bottom: var(--header-height);
   }
 
+  .active {
+    color: gray;
+
+    a {
+      color: gray;
+    }
+  }
+
   ul {
     list-style: none;
     font-weight: bold;
     margin-right: var(--outer-margin);
 
-    > li {
+    >li {
       cursor: pointer;
       padding-bottom: 0.5em;
 
-      > ul.sub {
+      >ul.sub {
         display: none;
         font-weight: normal;
         margin-left: 0.5rem;
