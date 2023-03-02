@@ -10,7 +10,7 @@ export type Props = {
 export default function Home({ }: Props) {
 	return (
 		<div className={s.container}>
-			hem
+			Hem
 		</div>
 	);
 }

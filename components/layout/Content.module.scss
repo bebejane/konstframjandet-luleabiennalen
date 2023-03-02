@@ -1,0 +1,43 @@
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+
+  article {
+    padding-bottom: var(--space);
+    margin: 0;
+    background-color: pink;
+
+    @include mq($from: tablet) {
+      margin-left: calc(var(--total-outer-margin));
+      margin-right: calc(var(--total-outer-margin));
+    }
+
+    @include mq($until: tablet) {
+      padding-top: var(--navbar-height);
+    }
+  }
+
+  &.noMargins {
+    article {
+      margin: 0;
+      padding-left: 0;
+      padding-right: 0;
+
+      @include mq($from: tablet) {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+  &.noBottom {
+    article {
+      padding-bottom: 0;
+    }
+  }
+}

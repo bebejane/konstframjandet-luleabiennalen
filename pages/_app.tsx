@@ -1,4 +1,5 @@
 import '/lib/styles/index.scss'
+import { Layout } from '/components';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { sv } from 'date-fns/locale'
@@ -10,10 +11,14 @@ function App({ Component, pageProps }) {
 
   const router = useRouter()
   const { district } = pageProps
+  const pageTitle = 'Luleåbiennalen'
 
   return (
     <>
-      <Component {...pageProps} />
+      <Layout title={pageTitle} menu={[]} footer={[]}>
+        <Component {...pageProps} />
+      </Layout>
+
     </>
   );
 }

@@ -1,8 +1,8 @@
 import s from './ImageShortcut.module.scss'
 import cn from 'classnames'
 import React from 'react'
-import { KCImage as Image } from '/components'
-import ReadMore from '../common/ReadMore'
+import { Image } from 'react-datocms'
+import { ReadMore } from '/components'
 
 export type ImageShortcutBlockProps = {
   data: ImageShortcutRecord
@@ -26,7 +26,7 @@ export default function ImageShortcut({ data: { headline, image, link, text, bla
             {headline}
           </h2>
           <p className={cn(blackHeadline && s.black, "intro")}>{text}</p><br />
-          <ReadMore link={link} message='Läs mer' external={true} regional={false} invert={blackHeadline ? false : true} />
+          <ReadMore link={link} message='Läs mer' external={true} regional={false} />
         </figcaption>
       </figure>
     </section >

@@ -23,6 +23,7 @@ specifiers:
   '@types/mjml-react': ^2.0.6
   '@types/node': ^18.11.9
   '@types/react': ^18.0.23
+  '@u-wave/react-vimeo': ^0.9.10
   apollo: ^2.34.0
   classnames: ^2.3.2
   date-fns: ^2.29.3
@@ -50,9 +51,11 @@ specifiers:
   nodemailer: ^6.9.1
   nodemailer-postmark-transport: ^5.2.1
   react: ^18.2.0
+  react-balance-text: ^2.0.1
   react-datocms: ^4.0.8
   react-dom: ^18.2.0
   react-intersection-observer: ^9.4.0
+  react-youtube: ^10.1.0
   remark-breaks: ^3.0.2
   remark-gfm: ^3.0.1
   rooks: ^7.4.1
@@ -75,6 +78,7 @@ dependencies:
   '@types/mjml': 4.7.0
   '@types/mjml-react': 2.0.6
   '@types/node': 18.13.0
+  '@u-wave/react-vimeo': 0.9.10_react@18.2.0
   classnames: 2.3.2
   date-fns: 2.29.3
   dato-nextjs-utils: github.com/bebejane/dato-nextjs-utils/1bdb15a8c55807d7fd1b739011f582cc4d4c5189_wlw4hlk3aokl6kbnoyhqpwjn4e
@@ -98,9 +102,11 @@ dependencies:
   nodemailer: 6.9.1
   nodemailer-postmark-transport: 5.2.1_nodemailer@6.9.1
   react: 18.2.0
+  react-balance-text: 2.0.1_react@18.2.0
   react-datocms: 4.0.8_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 9.4.2_react@18.2.0
+  react-youtube: 10.1.0_react@18.2.0
   remark-breaks: 3.0.2
   remark-gfm: 3.0.1
   rooks: 7.4.3_biqbaboplfbrettd7655fr4n2y
@@ -3534,6 +3540,10 @@ packages:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: false
 
+  /@types/vimeo__player/2.16.3:
+    resolution: {integrity: sha512-hsOe6CZFTNyfjRjQUrNHBF4LDmjvjcU2yQIPWp5AglKeGxt11JYGToQhKUPM876gBXggqR6rMQ0/sNI06ec2Rg==}
+    dev: false
+
   /@types/ws/8.5.4:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
     dependencies:
@@ -3611,6 +3621,25 @@ packages:
       '@typescript-eslint/types': 5.52.0
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /@u-wave/react-vimeo/0.9.10_react@18.2.0:
+    resolution: {integrity: sha512-fNpRZHPTDvz3J/6aFC7C4aB4rD3WjJ7h0f1VO7OC/GtGwXUsKSqDbEG2J8TdT5gQVtLGwupZMGzfbD5f0dZs1w==}
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@types/react': 18.0.28
+      '@types/vimeo__player': 2.16.3
+      '@vimeo/player': 2.18.0
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
+  /@vimeo/player/2.18.0:
+    resolution: {integrity: sha512-AJ8LQJ0WQXoPO6GBiMRmcBpdpUMnNm12blG/H80BgKD75w/+pLw0t1vzDHCE915O2OlFau6u1Q0QVw2HS1eRvg==}
+    dependencies:
+      native-promise-only: 0.8.1
+      weakmap-polyfill: 2.0.4
+    dev: false
 
   /@whatwg-node/events/0.0.2:
     resolution: {integrity: sha512-WKj/lI4QjnLuPrim0cfO7i+HsDSXHxNv1y0CrJhdntuO3hxWZmnXCwNDnwOvry11OjRin6cgWNF+j/9Pn8TN4w==}
@@ -4439,6 +4468,10 @@ packages:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
     dev: false
 
+  /balance-text/3.3.1:
+    resolution: {integrity: sha512-tpnHvo1w0rJ5rbu+jZKf7NLKKg6XZ6eAwREP/9jEDJ+ZTBi6jQFqn/UGARL3/oqD8SgQbyTwBXBjhKDdTgoPRw==}
+    dev: false
+
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
@@ -5223,6 +5256,17 @@ packages:
   /debounce/1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
     dev: true
+
+  /debug/2.6.9:
+    resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.0.0
+    dev: false
 
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -6322,7 +6366,6 @@ packages:
 
   /fast-deep-equal/3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
-    dev: true
 
   /fast-folder-size/1.6.1:
     resolution: {integrity: sha512-F3tRpfkAzb7TT2JNKaJUglyuRjRa+jelQD94s9OSqkfEeytLmupCqQiD+H2KoIXGtp4pB5m4zNmv5m2Ktcr+LA==}
@@ -7891,6 +7934,10 @@ packages:
       type-fest: 0.3.1
     dev: true
 
+  /load-script/1.0.0:
+    resolution: {integrity: sha512-kPEjMFtZvwL9TaZo0uZ2ml+Ye9HUMmPwbYRJ324qF9tqMejwykJ5ggTyvzmrbBeapCAbk98BSbTeovHEEP1uCA==}
+    dev: false
+
   /locate-path/5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
     engines: {node: '>=8'}
@@ -9014,6 +9061,10 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /ms/2.0.0:
+    resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
+    dev: false
+
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
@@ -9029,6 +9080,10 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: false
+
+  /native-promise-only/0.8.1:
+    resolution: {integrity: sha512-zkVhZUA3y8mbz652WrL5x0fB0ehrBkulWT3TomAQ9iDtyXZvzKeEA6GPxAItBYeNYl5yngKRX612qHOhvMkDeg==}
     dev: false
 
   /natural-compare/1.4.0:
@@ -9878,6 +9933,16 @@ packages:
       performance-now: 2.1.0
     dev: false
 
+  /react-balance-text/2.0.1_react@18.2.0:
+    resolution: {integrity: sha512-AyhX0GchhK6xcPEzvsLPAgbM8dcUA6xkrWEYJtyg3voDRYW/QLPlCFgHU3r3sdTaZu0UztsOdJa8BemScd8llQ==}
+    engines: {npm: ^3.0.0}
+    peerDependencies:
+      react: ^0.14.7 || ^15.0.0 || ^16.0.0-0
+    dependencies:
+      balance-text: 3.3.1
+      react: 18.2.0
+    dev: false
+
   /react-datocms/4.0.8_react@18.2.0:
     resolution: {integrity: sha512-YuS3mz3WP3/oeMi1pWuQFgMr9kWzbX6VCdsMbOC4MLfc3ZwnmzG5KITSmflibyh2wnY6+pJ/y1q+qAMYghMcxQ==}
     peerDependencies:
@@ -9976,6 +10041,20 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /react-youtube/10.1.0_react@18.2.0:
+    resolution: {integrity: sha512-ZfGtcVpk0SSZtWCSTYOQKhfx5/1cfyEW1JN/mugGNfAxT3rmVJeMbGpA9+e78yG21ls5nc/5uZJETE3cm3knBg==}
+    engines: {node: '>= 14.x'}
+    peerDependencies:
+      react: '>=0.14.1'
+    dependencies:
+      fast-deep-equal: 3.1.3
+      prop-types: 15.8.1
+      react: 18.2.0
+      youtube-player: 5.5.2
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /react/18.2.0:
@@ -10464,6 +10543,10 @@ packages:
       '@polka/url': 1.0.0-next.21
       mrmime: 1.0.1
       totalist: 1.1.0
+    dev: false
+
+  /sister/3.0.2:
+    resolution: {integrity: sha512-p19rtTs+NksBRKW9qn0UhZ8/TUI9BPw9lmtHny+Y3TinWlOa9jWh9xB0AtPSdmOy49NJJJSSe0Ey4C7h0TrcYA==}
     dev: false
 
   /sisteransi/1.0.5:
@@ -11430,6 +11513,11 @@ packages:
       defaults: 1.0.4
     dev: true
 
+  /weakmap-polyfill/2.0.4:
+    resolution: {integrity: sha512-ZzxBf288iALJseijWelmECm/1x7ZwQn3sMYIkDr2VvZp7r6SEKuT8D0O9Wiq6L9Nl5mazrOMcmiZE/2NCenaxw==}
+    engines: {node: '>=8.10.0'}
+    dev: false
+
   /web-resource-inliner/5.0.0:
     resolution: {integrity: sha512-AIihwH+ZmdHfkJm7BjSXiEClVt4zUFqX4YlFAzjL13wLtDuUneSaFvDBTbdYRecs35SiU7iNKbMnN+++wVfb6A==}
     engines: {node: '>=10.0.0'}
@@ -11736,6 +11824,16 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /youtube-player/5.5.2:
+    resolution: {integrity: sha512-ZGtsemSpXnDky2AUYWgxjaopgB+shFHgXVpiJFeNB5nWEugpW1KWYDaHKuLqh2b67r24GtP6HoSW5swvf0fFIQ==}
+    dependencies:
+      debug: 2.6.9
+      load-script: 1.0.0
+      sister: 3.0.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /zen-observable-ts/0.8.21:
     resolution: {integrity: sha512-Yj3yXweRc8LdRMrCC8nIc4kkjWecPAUVh0TI0OUrWXx6aX790vLcDlWca6I4vsyCGH3LpWxq0dJRcMOFoVqmeg==}
     dependencies:
@@ -11791,7 +11889,7 @@ packages:
     dependencies:
       '@apollo/client': 3.7.7_gdcq4dv6opitr3wbfwyjmanyra
       '@datocms/cma-client': 1.2.8
-      '@next/env': 13.1.6
+      '@next/env': 13.2.3
       '@types/node': 18.13.0
       '@types/react': 18.0.28
       markdown-truncate: 1.0.4
