@@ -15,7 +15,8 @@ export default function Menu({ items }: MenuProps) {
 	const menuBarRef = useRef<HTMLUListElement | null>(null);
 	const [selected, setSelected] = useState<string | undefined>()
 	const router = useRouter()
-
+	console.log(router.asPath)
+	console.log(items)
 	return (
 		<>
 			<Hamburger />
@@ -25,23 +26,34 @@ export default function Menu({ items }: MenuProps) {
 					<span>23 juni, -4°C</span>
 
 					<ul className={s.nav} ref={menuBarRef}>
-						{items.map(({ label, slug, sub }, idx) =>
-							<li key={idx} onClick={() => setSelected(label === selected ? undefined : label)}>
-								{!slug ? label : <Link href={slug}>{label}</Link>}
-								{sub &&
-									<ul
-										className={cn(s.sub, selected === label && s.selected)}
-										onClick={(e) => e.stopPropagation()}
-									>
-										{sub.map(({ label, slug }) =>
-											<li>
-												<Link href={slug}>{label}</Link>
-											</li>
-										)}
-									</ul>
-								}
-							</li>
-						)}
+						{items.map(({ label, slug, sub }, idx) => {
+							const isActive = label === selected || router.asPath.startsWith(slug)
+							return (
+								<li
+									key={idx}
+									onClick={() => setSelected(label === selected ? undefined : label)}
+									className={cn(isActive && s.active)}
+								>
+									{!slug ? label : <Link href={slug}>{label}</Link>}
+									{sub &&
+										<ul
+											className={cn(s.sub, selected === label && s.selected)}
+											onClick={(e) => e.stopPropagation()}
+										>
+											{sub.map(({ label, slug }) => {
+												const isActiveSub = router.asPath === slug
+												return (
+													<li>
+														<Link className={cn(isActiveSub && s.active)} href={slug}>{label}</Link>
+													</li>
+												)
+											})}
+										</ul>
+									}
+								</li>
+							)
+						})}
+
 						<li>Sök</li>
 					</ul>
 				</div>
