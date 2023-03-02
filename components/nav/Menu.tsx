@@ -33,7 +33,7 @@ export default function Menu({ items }: MenuProps) {
 									onClick={() => setSelected(label === selected ? undefined : label)}
 									className={cn(isActive && s.active)}
 								>
-									{!slug ? label : <Link href={slug}>{label}</Link>}
+									{sub ? label : <Link href={slug}>{label}</Link>}
 									{sub &&
 										<ul
 											className={cn(s.sub, selected === label && s.selected)}

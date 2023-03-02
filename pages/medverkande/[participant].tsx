@@ -11,6 +11,7 @@ export type Props = {
 export default function Participant({ participant: { id, image, title, intro, content, _seoMetaTags } }: Props) {
 
   return (
+
     <Article
       id={id}
       key={id}
