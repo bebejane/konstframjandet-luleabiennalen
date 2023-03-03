@@ -30,7 +30,11 @@ export default function Article(props: ArticleProps) {
           <figcaption>{image.title}</figcaption>
         </figure>
       }
-      <section className="intro">{intro}</section>
+      <section className="intro">
+        <div className={s.date}><span className="small">April</span><span>12</span></div>
+
+        {intro}
+      </section>
       {content &&
         <StructuredContent
           id={id}
