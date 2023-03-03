@@ -28,7 +28,7 @@ export default function Article({ id, children, title, content, image, imageSize
   const ratio = Math.min(1, scrolledPosition / viewportHeight);
   const padding = `${ratio * 100}px`;
   const opacity = Math.max(0, 1 - (ratio * 4));
-  const isPortrait = image.height > image.width
+  const isPortrait = image?.height > image?.width
   const portraitStyle = {}
 
   return (
