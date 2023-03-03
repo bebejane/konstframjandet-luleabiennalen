@@ -3,13 +3,13 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ProgramDocument, AllProgramsDocument } from "/graphql";
-import { Article } from '/components';
+import { Article, Related } from '/components';
 
 export type Props = {
   program: ProgramRecord
 }
 
-export default function Program({ program: { id, image, title, intro, content, _seoMetaTags } }: Props) {
+export default function Program({ program: { id, image, title, intro, content, partipants, _seoMetaTags } }: Props) {
 
   return (
     <>
@@ -22,19 +22,7 @@ export default function Program({ program: { id, image, title, intro, content, _
         content={content}
         onClick={(imageId) => { }}
       />
-      <section className={s.related}>
-        <h2>Medverkande</h2>
-        <ul>
-          <li>
-            <img src="https://www.datocms-assets.com/95303/1677686597-orakel-2-olof-marsja.jpeg?auto=format&dpr=2"></img>
-            <figcaption>Namn på konstnär</figcaption>
-          </li>
-          <li>
-            <img src="https://www.datocms-assets.com/95303/1677682748-galleri-syster-wood-wall-alva-hoggren.jpeg?auto=format&dpr=2"></img>
-            <figcaption>Namn på konstnär</figcaption>
-          </li>
-        </ul>
-      </section>
+      <Related header={'Medvärkande'} items={partipants} />
       <button className="back">Visa alla utställningar</button>
     </>
   );

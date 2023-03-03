@@ -83,7 +83,7 @@ export function TodaysInfo() {
 
 	return (
 		<span style={{ textTransform: 'capitalize' }}>
-			{format(new Date(), 'dd MMM')}, {temp > 0 ? '+' : '-'}{temp}°C
+			{format(new Date(), 'dd MMM')}, {temp > 0 ? '+' : ''}{temp}°C
 		</span>
 	)
 }

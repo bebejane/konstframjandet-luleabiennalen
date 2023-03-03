@@ -16,7 +16,7 @@ fragment ExhibitionFragment on ExhibitionRecord {
 	}
 	intro(markdown: false)
 	misc
-	partipants {
+	participants {
 		...ParticipantFragment
 	}
 	slug
