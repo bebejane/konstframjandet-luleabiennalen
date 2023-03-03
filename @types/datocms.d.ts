@@ -263,6 +263,11 @@ type ExhibitionModelContentField = {
 };
 
 /** Linking fields */
+enum ExhibitionModelFieldsReferencingLocationModel {
+  exhibition_place = 'exhibition_place'
+}
+
+/** Linking fields */
 enum ExhibitionModelFieldsReferencingParticipantModel {
   exhibition_participants = 'exhibition_participants'
 }
@@ -1995,11 +2000,27 @@ type InUseFilter = {
 };
 
 /** Specifies how to filter by linking fields */
+type InverseRelationshipFieldFilterBetweenExhibitionAndLocation = {
+  /** Filter linking records that reference current record in at least one of the specified fields */
+  anyIn?: InputMaybe<Array<ExhibitionModelFieldsReferencingLocationModel>>;
+  /** Filter linking records that do not reference current record in any of the specified fields */
+  notIn?: InputMaybe<Array<ExhibitionModelFieldsReferencingLocationModel>>;
+};
+
+/** Specifies how to filter by linking fields */
 type InverseRelationshipFieldFilterBetweenExhibitionAndParticipant = {
   /** Filter linking records that reference current record in at least one of the specified fields */
   anyIn?: InputMaybe<Array<ExhibitionModelFieldsReferencingParticipantModel>>;
   /** Filter linking records that do not reference current record in any of the specified fields */
   notIn?: InputMaybe<Array<ExhibitionModelFieldsReferencingParticipantModel>>;
+};
+
+/** Specifies how to filter by linking fields */
+type InverseRelationshipFieldFilterBetweenProgramAndLocation = {
+  /** Filter linking records that reference current record in at least one of the specified fields */
+  anyIn?: InputMaybe<Array<ProgramModelFieldsReferencingLocationModel>>;
+  /** Filter linking records that do not reference current record in any of the specified fields */
+  notIn?: InputMaybe<Array<ProgramModelFieldsReferencingLocationModel>>;
 };
 
 /** Specifies how to filter by linking fields */
@@ -2011,9 +2032,25 @@ type InverseRelationshipFieldFilterBetweenProgramAndParticipant = {
 };
 
 /** Specifies how to filter linking records */
+type InverseRelationshipFilterBetweenExhibitionAndLocation = {
+  /** Specifies how to filter by linking fields */
+  fields?: InputMaybe<InverseRelationshipFieldFilterBetweenExhibitionAndLocation>;
+  /** Specifies how to filter by linking locales */
+  locales?: InputMaybe<LinkingLocalesFilter>;
+};
+
+/** Specifies how to filter linking records */
 type InverseRelationshipFilterBetweenExhibitionAndParticipant = {
   /** Specifies how to filter by linking fields */
   fields?: InputMaybe<InverseRelationshipFieldFilterBetweenExhibitionAndParticipant>;
+  /** Specifies how to filter by linking locales */
+  locales?: InputMaybe<LinkingLocalesFilter>;
+};
+
+/** Specifies how to filter linking records */
+type InverseRelationshipFilterBetweenProgramAndLocation = {
+  /** Specifies how to filter by linking fields */
+  fields?: InputMaybe<InverseRelationshipFieldFilterBetweenProgramAndLocation>;
   /** Specifies how to filter by linking locales */
   locales?: InputMaybe<LinkingLocalesFilter>;
 };
@@ -2149,6 +2186,12 @@ enum LocationModelOrderBy {
 /** Record of type Plats (location) */
 type LocationRecord = RecordInterface & {
   __typename?: 'LocationRecord';
+  _allReferencingExhibitions: Array<ExhibitionRecord>;
+  /** Returns meta information regarding a record collection */
+  _allReferencingExhibitionsMeta: CollectionMetadata;
+  _allReferencingPrograms: Array<ProgramRecord>;
+  /** Returns meta information regarding a record collection */
+  _allReferencingProgramsMeta: CollectionMetadata;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -2170,6 +2213,40 @@ type LocationRecord = RecordInterface & {
   title?: Maybe<Scalars['String']>;
   webpage?: Maybe<Scalars['String']>;
   year: YearRecord;
+};
+
+
+/** Record of type Plats (location) */
+type LocationRecord_allReferencingExhibitionsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ExhibitionModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenExhibitionAndLocation>;
+};
+
+
+/** Record of type Plats (location) */
+type LocationRecord_allReferencingExhibitionsMetaArgs = {
+  through?: InputMaybe<InverseRelationshipFilterBetweenExhibitionAndLocation>;
+};
+
+
+/** Record of type Plats (location) */
+type LocationRecord_allReferencingProgramsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProgramModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenProgramAndLocation>;
+};
+
+
+/** Record of type Plats (location) */
+type LocationRecord_allReferencingProgramsMetaArgs = {
+  through?: InputMaybe<InverseRelationshipFilterBetweenProgramAndLocation>;
 };
 
 
@@ -2477,6 +2554,11 @@ type ProgramModelContentField = {
   links: Array<Scalars['String']>;
   value: Scalars['JsonField'];
 };
+
+/** Linking fields */
+enum ProgramModelFieldsReferencingLocationModel {
+  program_location = 'program_location'
+}
 
 /** Linking fields */
 enum ProgramModelFieldsReferencingParticipantModel {
