@@ -18,7 +18,10 @@ export default function Menu({ items }: MenuProps) {
 	const [path, setPath] = useState(router.asPath)
 
 	useEffect(() => {
-		const handleRouteChangeStart = (path: string) => setPath(path)
+		const handleRouteChangeStart = (path: string) => {
+			setSelected(undefined)
+			setPath(path)
+		}
 		router.events.on('routeChangeStart', handleRouteChangeStart)
 		return () => router.events.off('routeChangeStart', handleRouteChangeStart)
 	}, [])
