@@ -2,7 +2,7 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { LocationDocument, AllLocationsDocument } from "/graphql";
-import { Article, Related } from '/components';
+import { Article, Related, BackButton } from '/components';
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]
@@ -28,7 +28,7 @@ export default function Location({ location: { id, image, title, intro, content,
         onClick={(imageId) => { }}
       />
       <Related header={'Relaterat'} items={[...exhibitions, ...programs]} />
-      <button className="back">Visa alla platser</button>
+      <BackButton>Visa alla platser</BackButton>
     </>
   );
 }

@@ -3,25 +3,25 @@ import cn from 'classnames'
 import React from 'react'
 import { SectionHeader, StructuredContent } from "/components";
 import { Image } from 'react-datocms/image';
+import format from 'date-fns/format';
 
 export type ArticleProps = {
-  id: string,
+  id: string
   children?: React.ReactNode | React.ReactNode[] | undefined
-  title?: string,
-  subtitle?: string,
-  intro?: string,
+  title?: string
+  subtitle?: string
+  intro?: string
   image?: FileField
   imageSize?: 'small' | 'medium' | 'large'
   content?: any
-  onClick?: (id: string) => void,
+  onClick?: (id: string) => void
   record?: any
+  date?: string
 }
 
-export default function Article(props: ArticleProps) {
-  const { id, children, title, content, image, imageSize, intro, onClick, record } = props
+export default function Article({ id, children, title, content, image, imageSize, intro, date, onClick, record }: ArticleProps) {
 
   return (
-
     <div className={cn(s.article, 'article')}>
       <h1>{title}</h1>
       {image &&
@@ -31,8 +31,12 @@ export default function Article(props: ArticleProps) {
         </figure>
       }
       <section className="intro">
-        <div className={s.date}><span className="small">April</span><span>12</span></div>
-
+        {date &&
+          <div className={s.date}>
+            <span className="small">{format(new Date(date), 'MMM').replace('.', '')}</span>
+            <span>{format(new Date(date), 'dd').replace('.', '')}</span>
+          </div>
+        }
         {intro}
       </section>
       {content &&

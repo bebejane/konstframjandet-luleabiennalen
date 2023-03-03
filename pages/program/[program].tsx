@@ -3,13 +3,13 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ProgramDocument, AllProgramsDocument } from "/graphql";
-import { Article, Related } from '/components';
+import { Article, Related, BackButton } from '/components';
 
 export type Props = {
   program: ProgramRecord
 }
 
-export default function Program({ program: { id, image, title, imageSize, intro, content, partipants, _seoMetaTags } }: Props) {
+export default function Program({ program: { id, image, title, intro, startDate, content, partipants, _seoMetaTags } }: Props) {
 
   return (
     <>
@@ -21,10 +21,11 @@ export default function Program({ program: { id, image, title, imageSize, intro,
         imageSize="small"
         intro={intro}
         content={content}
+        date={startDate}
         onClick={(imageId) => { }}
       />
       <Related header={'Medvärkande'} items={partipants} />
-      <button className="back">Visa hela programmet</button>
+      <BackButton>Visa hela programmet</BackButton>
     </>
   );
 }
