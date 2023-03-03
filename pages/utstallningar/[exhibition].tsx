@@ -2,13 +2,26 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ExhibitionDocument, AllExhibitionsDocument } from "/graphql";
-import { Article, Related, BackButton } from '/components';
+import { Article, Related, BackButton, MetaSection } from '/components';
+import { formatDate } from "/lib/utils";
 
 export type Props = {
   exhibition: ExhibitionRecord
 }
 
-export default function Exhibition({ exhibition: { id, image, title, intro, content, participants, _seoMetaTags } }: Props) {
+export default function Exhibition({ exhibition: {
+  id,
+  image,
+  title,
+  intro,
+  externalLink,
+  location,
+  content,
+  participants,
+  startDate,
+  time,
+  _seoMetaTags
+} }: Props) {
 
   return (
     <>
@@ -20,6 +33,15 @@ export default function Exhibition({ exhibition: { id, image, title, intro, cont
         intro={intro}
         content={content}
         onClick={(imageId) => { }}
+      />
+      <MetaSection
+        key={`${id}-meta`}
+        items={[
+          { title: 'När', value: formatDate(startDate) },
+          { title: 'Tider', value: time },
+          { title: 'Länk', value: 'Hemsida', link: externalLink },
+          { title: 'Var', value: location.title, link: `/platser/${location.slug}` }
+        ]}
       />
       <Related header={'Medvärkande'} items={participants} />
       <BackButton>Visa alla utställningar</BackButton>

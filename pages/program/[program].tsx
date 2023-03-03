@@ -23,7 +23,7 @@ export default function Program({ program: {
   content,
   partipants,
   programCategory,
-
+  slug,
   _seoMetaTags
 } }: Props) {
 
@@ -46,8 +46,8 @@ export default function Program({ program: {
           { title: 'Vad', value: programCategory?.title },
           { title: 'När', value: formatDate(startDate) },
           { title: 'Tider', value: time },
-          { title: 'Länk', value: externalLink },
-          { title: 'Var', value: location?.address }
+          { title: 'Länk', value: 'Hemsida', link: externalLink },
+          { title: 'Var', value: location.title, link: `/platser/${location.slug}` }
         ]}
       />
       <Related header={'Medvärkande'} items={partipants} />
