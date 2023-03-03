@@ -70,8 +70,8 @@ export const recordToSlug = (record: any): string => {
       case 'ProgramRecord':
         url = `/program/${slug}`
         break;
-      case 'ExhibitonRecord':
-        url = `/utställningar/${slug}`
+      case 'ExhibitionRecord':
+        url = `/utstallningar/${slug}`
         break;
       case 'NewsRecord':
         url = `/nyheter/${slug}`

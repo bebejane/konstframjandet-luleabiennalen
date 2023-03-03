@@ -38,6 +38,15 @@ declare module '*/ExhibitionFragment.gql' {
 }
     
 
+declare module '*/ExhibitionFragmentLight.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ExhibitionFragmentLight: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ImageFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -96,6 +105,15 @@ declare module '*/ProgramFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const ProgramFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/ProgramFragmentLight.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ProgramFragmentLight: DocumentNode;
 
   export default defaultDocument;
 }

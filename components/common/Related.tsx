@@ -7,7 +7,7 @@ import { recordToSlug } from '/lib/utils'
 
 export type Props = {
   header: string
-  items: (ParticipantRecord | LocationRecord)[]
+  items: (ParticipantRecord | LocationRecord | ProgramRecord | ExhibitionRecord)[]
 }
 
 export default function Related({ header, items }: Props) {
