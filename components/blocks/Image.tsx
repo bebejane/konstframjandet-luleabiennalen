@@ -12,7 +12,7 @@ export type ImageBlockProps = {
 }
 
 export default function Image({ id, data: { image, layout }, onClick }: ImageBlockProps) {
-	console.log(layout)
+
 	return (
 		<figure className={cn(s.figure, s[layout])} onClick={() => onClick?.(image.id)}>
 			<DatoImage
