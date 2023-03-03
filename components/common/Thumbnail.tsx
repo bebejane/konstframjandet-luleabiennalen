@@ -6,17 +6,16 @@ import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
 import Link from 'next/link'
 
 export type Props = {
-  image: FileField,
-  slug: string,
-  title: string,
-  intro?: string,
-  subtitle?: string,
+  image: FileField
+  slug: string
+  title: string
+  intro: string
+  meta?: string
 }
 
-export default function Thumbnail({ image, slug, intro, title, subtitle }: Props) {
+export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
 
-  const [hover, setHover] = useState<undefined | boolean>(false);
-  const readMore = subtitle || 'Visa'
+  const content = `${meta ? `**${meta}** ` : ''}${intro}`;
 
   return (
     <Link
@@ -28,11 +27,11 @@ export default function Thumbnail({ image, slug, intro, title, subtitle }: Props
         <Image
           data={image.responsiveImage}
           className={s.image}
-          pictureClassName={cn(s.picture, hover && s.hover)}
+          pictureClassName={s.picture}
         />
       }
       <Markdown className="thumb-intro" truncate={280}>
-        {intro}
+        {content}
       </Markdown>
     </Link>
   )
