@@ -44,11 +44,11 @@ export default function Program({ program: {
         key={`${id}-meta`}
         items={[
           { title: 'Vad', value: programCategory?.title },
+          { title: 'Var', value: location.title, link: `/platser/${location.slug}` },
           { title: 'När', value: formatDate(startDate) },
           { title: 'Tider', value: time },
           { title: 'Var', value: location?.address },
-          { title: 'Länk', value: 'Hemsida', link: externalLink },
-          { title: 'Var', value: location.title, link: `/platser/${location.slug}` }
+          { title: 'Länk', value: 'Hemsida', link: externalLink }
         ]}
       />
       <Related header={'Medvärkande'} items={partipants} />

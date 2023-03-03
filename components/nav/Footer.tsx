@@ -15,12 +15,11 @@ export default function Footer({ menu, footer: { email, facebook, instagram, abo
 			<section>
 				<div>
 					Copyright Luleåbiennalen, 2023 <br />
-					<a href={`mailto:${email}`}>{email}</a><br />
-					Cookies & GDPR
+					<a href={`mailto:${email}`}>{email}</a> · Cookies & GDPR
 				</div>
 				<div>
 					Prenumerera på vårt nyhetsbrev <br />
-					Följ oss på: <a href={facebook}>Facebook</a> <a href={instagram}>Instagram</a>
+					Följ oss på <a href={facebook}>Facebook</a> och <a href={instagram}>Instagram</a>
 				</div>
 				<div>
 					{about}
