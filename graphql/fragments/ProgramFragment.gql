@@ -8,6 +8,7 @@ fragment ProgramFragment on ProgramRecord {
 	title
 	startDate
 	endDate
+	time
 	image {
 		...ImageFragment
 	}
