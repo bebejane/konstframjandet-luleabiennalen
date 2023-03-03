@@ -1,5 +1,5 @@
 query AllPrograms {
-	programs: allPrograms {
+	programs: allPrograms(orderBy: startDate_DESC) {
 		...ProgramFragment
 	}
 	pagination: _allProgramsMeta {

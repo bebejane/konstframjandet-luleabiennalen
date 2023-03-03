@@ -1,6 +1,7 @@
 import { TypedDocumentNode } from "@apollo/client/core";
 import { apiQuery } from "dato-nextjs-utils/api";
 import type { ApiQueryOptions } from "dato-nextjs-utils/api";
+import format from "date-fns/format";
 import React from "react";
 
 export const isServer = typeof window === 'undefined';
@@ -115,6 +116,13 @@ export const isEmptyObject = (obj: any) => Object.keys(obj).filter(k => obj[k] !
 
 export const capitalize = (str: string, lower: boolean = false) => {
   return (lower ? str.toLowerCase() : str).replace(/(?:^|\s|["'([{])+\S/g, match => match.toUpperCase());
+}
+
+export const formatDate = (date: string, endDate?: string) => {
+  if (!date) return ''
+  const s = capitalize(format(new Date(date), 'dd MMM')).replace('.', '');
+  const e = endDate ? capitalize(format(new Date(endDate), 'dd MMM')).replace('.', '') : undefined;
+  return `${s}${e ? ` - ${e}` : ''}`
 }
 
 export const sleep = (ms: number) => new Promise((resolve, refject) => setTimeout(resolve, ms))

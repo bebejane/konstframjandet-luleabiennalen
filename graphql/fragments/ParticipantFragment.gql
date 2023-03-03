@@ -11,10 +11,10 @@ fragment ParticipantFragment on ParticipantRecord {
 	year {
 		...YearFragment
 	}
-	exhibitions: _allReferencingExhibitions {
+	exhibitions: _allReferencingExhibitions(first: 100) {
 		...ExhibitionFragmentLight
 	}
-	programs: _allReferencingPrograms {
+	programs: _allReferencingPrograms(first: 100) {
 		...ProgramFragmentLight
 	}
 	content {
