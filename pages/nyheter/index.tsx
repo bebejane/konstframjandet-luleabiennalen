@@ -16,7 +16,7 @@ export default function News({ news }: Props) {
           <Thumbnail
             title={title}
             image={thumb}
-            slug={`/nyehter/${slug}`}
+            slug={`/nyheter/${slug}`}
           />
         </Card>
       )}
