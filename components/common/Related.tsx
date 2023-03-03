@@ -19,7 +19,7 @@ export default function Related({ header, items }: Props) {
       <h2>{header}</h2>
       <ul>
         {items.map((item, idx) =>
-          <li key={id}>
+          <li key={item.id}>
             <Link href={recordToSlug(items[idx])}>
               <figure>
                 <Image data={item.image.responsiveImage} />
