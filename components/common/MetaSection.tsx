@@ -15,7 +15,7 @@ export default function MetaSection({ items = [] }: Props) {
       <ul className="small">
         {items.filter(({ value, title }) => value && title).map(({ title, value }, idx) =>
           <li key={idx}>
-            {title}: {isEmail(value) ? <a href={`mailto:${value}`}>E-post</a> : <>{value}</>}
+            {title}: <strong>{value}</strong>
           </li>
         )}
       </ul>
