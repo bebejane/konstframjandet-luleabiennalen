@@ -2,23 +2,31 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ParticipantDocument, AllParticipantsDocument } from "/graphql";
-import { Article } from '/components';
+import { Article, Related } from '/components';
 
-export type Props = {
-  participant: ParticipantRecord
+export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
+  exhibitions: ExhibitionRecord[]
+  programs: ProgramRecord[]
 }
 
-export default function Participant({ participant: { id, image, title, intro, content, _seoMetaTags } }: Props) {
+export type Props = {
+  participant: ParticipantExtendedRecord
+}
+
+export default function Participant({ participant: { id, image, title, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
   return (
-    <Article
-      id={id}
-      key={id}
-      title={title}
-      image={image}
-      intro={intro}
-      content={content}
-      onClick={(imageId) => { }}
-    />
+    <>
+      <Article
+        id={id}
+        key={id}
+        title={title}
+        image={image}
+        intro={intro}
+        content={content}
+        onClick={(imageId) => { }}
+      />
+      <Related header={'Deltar i'} items={[...exhibitions, ...programs]} />
+    </>
   );
 }
 
