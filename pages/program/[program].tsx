@@ -3,13 +3,29 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ProgramDocument, AllProgramsDocument } from "/graphql";
-import { Article, Related, BackButton } from '/components';
+import { Article, Related, BackButton, MetaSection } from '/components';
+import { formatDate } from "/lib/utils";
 
 export type Props = {
   program: ProgramRecord
 }
 
-export default function Program({ program: { id, image, title, intro, startDate, content, partipants, _seoMetaTags } }: Props) {
+export default function Program({ program: {
+  id,
+  image,
+  title,
+  intro,
+  startDate,
+  endDate,
+  time,
+  externalLink,
+  location,
+  content,
+  partipants,
+  programCategory,
+
+  _seoMetaTags
+} }: Props) {
 
   return (
     <>
@@ -23,6 +39,16 @@ export default function Program({ program: { id, image, title, intro, startDate,
         content={content}
         date={startDate}
         onClick={(imageId) => { }}
+      />
+      <MetaSection
+        key={`${id}-meta`}
+        items={[
+          { title: 'Vad', value: programCategory?.title },
+          { title: 'När', value: formatDate(startDate) },
+          { title: 'Tider', value: time },
+          { title: 'Länk', value: externalLink },
+          { title: 'Var', value: location?.address }
+        ]}
       />
       <Related header={'Medvärkande'} items={partipants} />
       <BackButton>Visa hela programmet</BackButton>
