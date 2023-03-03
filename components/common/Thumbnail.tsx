@@ -30,7 +30,7 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
           pictureClassName={s.picture}
         />
       }
-      <Markdown className="thumb-intro" truncate={280}>
+      <Markdown className="thumb-intro" truncate={200}>
         {content}
       </Markdown>
     </Link>

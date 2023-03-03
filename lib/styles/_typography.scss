@@ -66,9 +66,16 @@ p.intro,
 }
 
 .thumb-intro {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
 
-  >p {
+  strong {
+    font-family: $headline-font;
+    font-weight: bold !important;
+    font-size: 0.65rem;
+    padding-right: 0.5em;
+  }
+
+  > p {
     padding: 0;
   }
 }
@@ -119,10 +126,10 @@ article {
     padding-right: var(--grid-unit);
   }
 
-  p+h3,
-  ul+h3,
-  ul+h2,
-  p+h2 {
+  p + h3,
+  ul + h3,
+  ul + h2,
+  p + h2 {
     padding-top: 1rem;
   }
 
