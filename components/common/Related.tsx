@@ -10,15 +10,17 @@ export type Props = {
 
 export default function Related({ header, items }: Props) {
 
+  if (!items?.length) return null
+
   return (
     <section className={s.related}>
       <h2>{header}</h2>
       <ul>
-        {items.map(({ id, image }) =>
+        {items.map(({ id, image, title }) =>
           <li key={id}>
             <figure>
               <Image data={image.responsiveImage} />
-              <figcaption>{image.title}</figcaption>
+              <figcaption>{title}</figcaption>
             </figure>
           </li>
         )}
