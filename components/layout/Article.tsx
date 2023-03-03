@@ -11,20 +11,21 @@ export type ArticleProps = {
   subtitle?: string,
   intro?: string,
   image?: FileField
+  imageSize?: 'small' | 'medium' | 'large'
   content?: any
   onClick?: (id: string) => void,
   record?: any
 }
 
 export default function Article(props: ArticleProps) {
-  const { id, children, title, content, image, intro, onClick, record } = props
+  const { id, children, title, content, image, imageSize, intro, onClick, record } = props
 
   return (
 
     <div className={cn(s.article, 'article')}>
       <h1>{title}</h1>
       {image &&
-        <figure className={s.mainImage}>
+        <figure className={cn(s.mainImage, imageSize && s[imageSize])}>
           <Image data={image.responsiveImage} />
           <figcaption>{image.title}</figcaption>
         </figure>
