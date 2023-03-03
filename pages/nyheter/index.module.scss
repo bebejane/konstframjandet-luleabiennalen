@@ -1,3 +1,27 @@
-strong {
-  padding-right: 1em;
+.news {
+
+  strong {
+    padding-right: 1em;
+  }
+
+  >ul {
+    list-style: none;
+
+    li {
+      .intro {
+        p {
+          padding: 0;
+
+          >strong {
+            font-family: $headline-font;
+            font-size: 0.75rem;
+            font-weight: bold !important;
+          }
+        }
+      }
+
+      button {}
+    }
+  }
+
 }

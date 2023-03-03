@@ -1,7 +1,10 @@
 import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllNewsDocument } from "/graphql";
-import { CardContainer, Card, Thumbnail } from "/components";
+import Link from 'next/link'
+import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
+import format from "date-fns/format";
+import { capitalize } from "/lib/utils";
 
 export type Props = {
   news: (NewsRecord & ThumbnailImage)[]
@@ -10,33 +13,23 @@ export type Props = {
 export default function News({ news }: Props) {
 
   return (
-    <section>
-      {
-        news.map(({ id, image, thumb, title, intro, slug }) =>
-          <>
+    <section className={s.news}>
+      <ul>
+        {news.map(({ id, image, thumb, title, intro, _createdAt, slug }) =>
+          <li>
             <h1>{title}</h1>
-            <div className="intro"><strong className="small">12 jun, 2023</strong>{intro}</div>
-            <button>Läs mer</button>
-          </>
+            <div className="intro">
+              <Markdown className={s.intro}>
+                {`**${capitalize(format(new Date(_createdAt), 'dd MMM, yyyy'))}**${intro}`}
+              </Markdown>
+            </div>
+            <Link href={`/nyheter/${slug}`}><button>Läs mer</button></Link>
+          </li>
         )
-      }
+        }
+      </ul>
     </section>
-    /*
-    <CardContainer>
-      {news.map(({ id, image, thumb, title, intro, slug }) =>
-        <Card key={id}>
-          <Thumbnail
-            title={title}
-            image={thumb}
-            intro={intro}
-            meta="23 jun"
-            slug={`/nyheter/${slug}`}
-          />
-        </Card>
-      )}
-    </CardContainer>
-    */
-  );
+  )
 }
 
 export const getStaticProps = withGlobalProps({ queries: [AllNewsDocument] }, async ({ props, revalidate }: any) => {
