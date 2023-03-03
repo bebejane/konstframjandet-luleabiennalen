@@ -17,6 +17,8 @@ export default function News({ news }: Props) {
       <ul>
         {news.map(({ id, image, thumb, title, intro, _createdAt, slug }) =>
           <li>
+            <h3 class="small">{format(new Date(_createdAt), 'dd MMM, yyyy')}</h3>
+
             <h1>{title}</h1>
             <div className="intro">
               <Markdown className={s.intro}>

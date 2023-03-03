@@ -90,8 +90,9 @@ a {
 }
 
 article p a {
-	text-decoration: underline !important;
-	text-underline-offset: 0.1em;
+	text-decoration: underline 1px !important;
+	text-underline-offset: 0.15em;
+	text-decoration-thickness: 1px;
 
 	&:hover {
 		color: var(--beige-dark);
