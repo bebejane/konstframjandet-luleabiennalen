@@ -2,7 +2,7 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { NewsDocument, AllNewsDocument } from "/graphql";
-import { Article } from '/components';
+import { Article, BackButton } from '/components';
 
 export type Props = {
   news: NewsRecord
@@ -11,15 +11,18 @@ export type Props = {
 export default function News({ news: { id, image, title, intro, content, _seoMetaTags } }: Props) {
 
   return (
-    <Article
-      id={id}
-      key={id}
-      title={title}
-      image={image}
-      intro={intro}
-      content={content}
-      onClick={(imageId) => { }}
-    />
+    <>
+      <Article
+        id={id}
+        key={id}
+        title={title}
+        image={image}
+        intro={intro}
+        content={content}
+        onClick={(imageId) => { }}
+      />
+      <BackButton>Visa alla nyheter</BackButton>
+    </>
   );
 }
 
