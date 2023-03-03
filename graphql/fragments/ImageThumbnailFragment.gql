@@ -15,6 +15,6 @@ fragment ImageThumbnailFragment on FileField {
 		height
 		alt
 		title
-		bgColor
+		base64
 	}
 }

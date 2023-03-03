@@ -12,8 +12,7 @@ fragment ImageFragment on FileField {
 		height
 		alt
 		title
-		#base64
-		bgColor
+		base64
 		sizes
 	}
 }

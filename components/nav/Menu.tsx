@@ -13,9 +13,10 @@ export default function Menu({ items }: MenuProps) {
 
 	const menuRef = useRef<HTMLDivElement | null>(null);
 	const menuBarRef = useRef<HTMLUListElement | null>(null);
-	const [selected, setSelected] = useState<string | undefined>()
+	const [selected, setSelected] = useState<number | undefined>()
 	const router = useRouter()
 	const [path, setPath] = useState(router.asPath)
+	const [maxHeight, setMaxHeight] = useState<number | undefined>()
 
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => setPath(path)
@@ -23,39 +24,42 @@ export default function Menu({ items }: MenuProps) {
 		return () => router.events.off('routeChangeStart', handleRouteChangeStart)
 	}, [])
 
+	useEffect(() => {
+		const el = document.getElementById(`menu-${selected}`)
+		setMaxHeight(el ? el.scrollHeight : undefined)
+	}, [selected])
 
 	return (
 		<>
 			<Hamburger />
-			<nav id="menu" ref={menuRef} className={cn(s.menu)}>
+			<nav id="menu" ref={menuRef} className={s.menu}>
 				<div className={s.wrapper}>
 					<TodaysInfo />
 					<ul className={s.nav} ref={menuBarRef}>
 						{items.map(({ label, slug, sub }, idx) => {
-							const isActive = label === selected || path.startsWith(slug)
+							const isActive = idx === selected || path.startsWith(slug)
 							return (
 								<li
 									key={idx}
+									id={`menu-${idx}`}
+									className={cn(isActive && s.active)}
 									onClick={() => {
-										setSelected(label === selected ? undefined : label)
+										setSelected(idx === selected ? undefined : idx)
 										setPath(slug)
 									}}
-									className={cn(isActive && s.active)}
 								>
 									{sub ? label : <Link href={slug}>{label}</Link>}
 									{sub &&
 										<ul
-											className={cn(s.sub, selected === label && s.selected)}
+											className={cn(s.sub, selected === idx && s.selected)}
+											style={{ maxHeight: maxHeight && selected === idx ? `${maxHeight}px` : 0 }}
 											onClick={(e) => e.stopPropagation()}
 										>
-											{sub.map(({ label, slug }) => {
-												const isActiveSub = path === slug
-												return (
-													<li>
-														<Link className={cn(isActiveSub && s.active)} href={slug}>{label}</Link>
-													</li>
-												)
-											})}
+											{sub.map(({ label, slug }) =>
+												<li>
+													<Link className={cn(path === slug && s.active)} href={slug}>{label}</Link>
+												</li>
+											)}
 										</ul>
 									}
 								</li>
