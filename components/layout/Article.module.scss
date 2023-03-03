@@ -1,6 +1,6 @@
 .article {
   position: relative;
-  padding-top: var(--header-height);
+  //padding-top: var(--header-height);
 
   &.noBottom {
     padding-bottom: 0;
@@ -10,7 +10,11 @@
     color: var(--beige-dark) !important;
   }
 
-  .mainImage {
+  figure {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     padding-bottom: var(--space);
   }
 }

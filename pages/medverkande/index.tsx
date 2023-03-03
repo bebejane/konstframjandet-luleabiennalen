@@ -11,11 +11,12 @@ export default function Participant({ participants }: Props) {
 
   return (
     <CardContainer>
-      {participants.map(({ id, image, thumb, title, slug }) =>
+      {participants.map(({ id, image, thumb, title, intro, slug }) =>
         <Card key={id}>
           <Thumbnail
             title={title}
             image={thumb}
+            intro={intro}
             slug={`/medverkande/${slug}`}
           />
         </Card>

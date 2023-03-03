@@ -12,11 +12,12 @@ export default function Exhibition({ exhibitions }: Props) {
   return (
 
     <CardContainer>
-      {exhibitions.map(({ id, image, title, slug }) =>
+      {exhibitions.map(({ id, image, title, slug, intro }) =>
         <Card key={id}>
           <Thumbnail
             title={title}
             image={image}
+            intro={intro}
             slug={`/utstallningar/${slug}`}
           />
         </Card>

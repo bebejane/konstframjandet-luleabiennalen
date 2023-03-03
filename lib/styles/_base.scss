@@ -6,6 +6,7 @@
 	--logo-size-optical: 2.8rem;
 	--total-outer-margin: calc((var(--outer-margin) * 2) + var(--logo-size-optical));
 	--grid-unit: calc(((100vw - (2 * var(--total-outer-margin))) / 12));
+	--body-width: calc(100% - (2 * var(--grid-unit)));
 	--full-margin: calc(-1 * (2 * var(--grid-unit)));
 	--small-space: 1rem;
 	--space: 2rem;
@@ -101,33 +102,33 @@ article p a {
 }
 
 button {
+	margin-top: var(--big-space);
+	margin-bottom: var(--space);
+	margin-left: var(--grid-unit);
+	margin-right: var(--grid-unit);
 	padding-left: 1.5em;
 	padding-right: 1.5em;
 	padding-bottom: 1em;
 	padding-top: 1em;
 	background-color: var(--background);
 	color: var(--foreground);
-	border: 1px solid var(--foreground);
+	border: 0;
+	border-top: 1px solid var(--foreground);
+	border-bottom: 1px solid var(--foreground);
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
+	font-weight: bold;
 	cursor: pointer;
 
-	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	transition: color 0.2s ease-in-out, background-color 0.3s ease-in-out;
+
+	&.back {
+		width: calc(100% - (2 * var(--grid-unit)));
+	}
 
 	&:hover {
 		background-color: var(--foreground);
 		color: var(--white);
-	}
-
-	&.wide {
-		margin-top: 2rem;
-		width: 100%;
-	}
-
-	&[disabled] {
-		opacity: 0.5;
-		pointer-events: none;
-		border-color: var(--beige-dark);
 	}
 }
 

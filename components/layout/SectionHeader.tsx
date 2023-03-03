@@ -24,7 +24,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
         <Link href={url}>
           <h2>
             <span>
-              LB{year}{menuItem ? ` - ${menuItem.label}` : ''}
+              LB°{year}{menuItem ? ` — ${menuItem.label}` : ''}
             </span>
           </h2>
         </Link>
