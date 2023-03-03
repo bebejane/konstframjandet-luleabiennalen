@@ -8,18 +8,22 @@ export type Props = {
   location: LocationRecord
 }
 
-export default function Location({ location: { id, image, title, intro, content, _seoMetaTags } }: Props) {
+export default function Location({ location: { id, image, title, intro, imageSize, content, _seoMetaTags } }: Props) {
 
   return (
-    <Article
-      id={id}
-      key={id}
-      title={title}
-      image={image}
-      intro={intro}
-      content={content}
-      onClick={(imageId) => { }}
-    />
+    <>
+      <Article
+        id={id}
+        key={id}
+        title={title}
+        image={image}
+        intro={intro}
+        imageSize="small"
+        content={content}
+        onClick={(imageId) => { }}
+      />
+      <button className="back">Visa alla platser</button>
+    </>
   );
 }
 

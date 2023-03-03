@@ -9,7 +9,7 @@ export type Props = {
   program: ProgramRecord
 }
 
-export default function Program({ program: { id, image, title, intro, content, partipants, _seoMetaTags } }: Props) {
+export default function Program({ program: { id, image, title, imageSize, intro, content, partipants, _seoMetaTags } }: Props) {
 
   return (
     <>
@@ -18,6 +18,7 @@ export default function Program({ program: { id, image, title, intro, content, p
         key={id}
         title={title}
         image={image}
+        imageSize="small"
         intro={intro}
         content={content}
         onClick={(imageId) => { }}

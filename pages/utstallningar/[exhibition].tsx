@@ -22,6 +22,7 @@ export default function Exhibition({ exhibition: { id, image, title, intro, cont
         onClick={(imageId) => { }}
       />
       <Related header={'Medvärkande'} items={participants} />
+      <button className="back">Visa alla utställningar</button>
     </>
   )
 }

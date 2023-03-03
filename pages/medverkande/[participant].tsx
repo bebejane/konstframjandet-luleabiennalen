@@ -26,6 +26,8 @@ export default function Participant({ participant: { id, image, title, intro, co
         onClick={(imageId) => { }}
       />
       <Related header={'Deltar i'} items={[...exhibitions, ...programs]} />
+      <button className="back">Visa alla medverkande</button>
+
     </>
   );
 }
