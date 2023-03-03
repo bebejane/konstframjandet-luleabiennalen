@@ -1,11 +1,12 @@
 import s from './Article.module.scss'
 import cn from 'classnames'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { StructuredContent } from "/components";
 import { Image } from 'react-datocms/image';
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
 import useStore from '/lib/store';
 import format from 'date-fns/format';
+import { useInView } from 'react-intersection-observer';
 
 export type ArticleProps = {
   id: string
@@ -27,10 +28,12 @@ export default function Article({ id, children, title, content, image, imageSize
 
   const [setImageId, setImages, imageId] = useStore((state) => [state.setImageId, state.setImages, state.imageId])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
-  const ratio = Math.min(1, scrolledPosition / viewportHeight);
+  const captionRef = useRef<HTMLElement | null>(null)
+
+  const offset = captionRef.current?.offsetTop
+  const ratio = offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight : 0)) / viewportHeight))) : 0
   const padding = `${ratio * 100}px`;
   const opacity = Math.max(0, 1 - (ratio * 4));
-  const isPortrait = image?.height > image?.width
   const portraitStyle = {}
 
   useEffect(() => {
@@ -52,7 +55,7 @@ export default function Article({ id, children, title, content, image, imageSize
             pictureClassName={s.picture}
             pictureStyle={{ padding, ...portraitStyle }}
           />
-          <figcaption style={{ opacity }}>{image.title}</figcaption>
+          <figcaption ref={captionRef} style={{ opacity }}>{image.title}</figcaption>
         </figure>
       }
       <section className="intro">
