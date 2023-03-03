@@ -46,7 +46,6 @@ export default function Program({ program: {
           { title: 'Vad', value: programCategory?.title },
           { title: 'När', value: formatDate(startDate) },
           { title: 'Tider', value: time },
-          { title: 'Länk', value: externalLink },
           { title: 'Var', value: location?.address }
         ]}
       />

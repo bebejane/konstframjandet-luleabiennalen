@@ -29,7 +29,7 @@
     width: calc(100% - 2em) !important;
     margin-bottom: 0.8em;
     aspect-ratio: 8 / 5;
-    transition: all 0.1s ease;
+    transition: all 0.2s ease-in-out;
 
     img {
       object-fit: cover;

@@ -14,12 +14,11 @@ export default function Footer({ menu }: FooterProps) {
 			<section>
 				<div>
 					Copyright Luleåbiennalen, 2023 <br />
-					info@luleabiennalen.se
-					Cookies & GDPR
+					info@luleabiennalen.se · Cookies & GDPR
 				</div>
 				<div>
 					Prenumerera på vårt nyhetsbrev <br />
-					Följ oss på:     Facebook     Instagram
+					Följ oss på Facebook och Instagram
 				</div>
 				<div>
 					Luleåbiennalen är ett projekt inom organisationen Konstfrämjandet Norrbotten sedan 2021.

@@ -10,6 +10,18 @@ export type Props = {
 export default function News({ news }: Props) {
 
   return (
+    <section>
+      {
+        news.map(({ id, image, thumb, title, intro, slug }) =>
+          <>
+            <h1>{title}</h1>
+            <div className="intro"><strong className="small">12 jun, 2023</strong>{intro}</div>
+            <button>Läs mer</button>
+          </>
+        )
+      }
+    </section>
+    /*
     <CardContainer>
       {news.map(({ id, image, thumb, title, intro, slug }) =>
         <Card key={id}>
@@ -23,6 +35,7 @@ export default function News({ news }: Props) {
         </Card>
       )}
     </CardContainer>
+    */
   );
 }
 
