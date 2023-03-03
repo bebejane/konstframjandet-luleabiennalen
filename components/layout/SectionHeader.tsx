@@ -15,13 +15,14 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
 
   const router = useRouter()
   const menuItem = menu.find(el => el.slug === router.asPath || router.asPath.startsWith(el.slug))
+  const haveOverview = menuItem?.slug && !menuItem.sub
   const url = menuItem?.slug || menuItem?.sub?.find(({ slug }) => slug === router.asPath)?.slug || '/'
   const year = '22' // TODO useYear hook
 
   return (
     <>
       <header className={s.header}>
-        <Link href={url}>
+        <Link href={haveOverview ? url : '#'}>
           <h2>
             <span>
               LB°{year}{menuItem ? ` — ${menuItem.label}` : ''}
