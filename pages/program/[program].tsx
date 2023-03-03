@@ -23,7 +23,7 @@ export default function Program({ program: { id, image, title, intro, content, p
         onClick={(imageId) => { }}
       />
       <Related header={'Medvärkande'} items={partipants} />
-      <button className="back">Visa alla utställningar</button>
+      <button className="back">Visa hela programmet</button>
     </>
   );
 }
