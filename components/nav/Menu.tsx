@@ -36,7 +36,10 @@ export default function Menu({ items }: MenuProps) {
 							return (
 								<li
 									key={idx}
-									onClick={() => setSelected(label === selected ? undefined : label)}
+									onClick={() => {
+										setSelected(label === selected ? undefined : label)
+										setPath(slug)
+									}}
 									className={cn(isActive && s.active)}
 								>
 									{sub ? label : <Link href={slug}>{label}</Link>}
