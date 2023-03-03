@@ -17,19 +17,27 @@
   align-items: center;
 
   ul {
+    padding-left: 0;
     display: flex;
     list-style: none;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
     width: 100%;
 
     li {
-      flex: 1;
-      max-width: calc(33% - var(--gutter));
-      padding-right: var(--gutter);
+      flex: 0 0 33%.33;
+      padding-right: var(--gutter-half);
+      padding-left: var(--gutter-half);
+      padding-bottom: var(--small-space);
+
+      &:nth-child(3n) {
+        padding-right: 0;
+      }
 
       img {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 5 / 4;
         width: 100%;
         height: auto;
         object-fit: contain;
