@@ -1,10 +1,11 @@
 import s from './Layout.module.scss'
 import cn from 'classnames'
 import React, { useEffect, useState } from 'react'
-import { Content, Footer, Logo, Grid, Menu, Language } from '/components'
+import { Content, Footer, Logo, Grid, Menu, Language, FullscreenGallery } from '/components'
 import type { MenuItem } from '/lib/menu'
 import { buildMenu } from '/lib/menu'
 import { useRouter } from 'next/router'
+import { useStore } from '/lib/store'
 
 export type LayoutProps = {
 	children: React.ReactNode,
@@ -15,8 +16,8 @@ export type LayoutProps = {
 
 export default function Layout({ children, menu: menuFromProps, footer, title }: LayoutProps) {
 
-	const router = useRouter()
 	const [menu, setMenu] = useState(menuFromProps)
+	const [images, imageId, setImageId] = useStore((state) => [state.images, state.imageId, state.setImageId, state.showMenu])
 
 	useEffect(() => { // Refresh menu on load.
 		buildMenu().then(res => setMenu(res)).catch(err => console.error(err))
@@ -33,6 +34,12 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 			<Language />
 			<Logo />
 			<Footer menu={menu} footer={footer} />
+			<FullscreenGallery
+				index={images?.findIndex((image) => image?.id === imageId)}
+				images={images}
+				show={imageId !== undefined}
+				onClose={() => setImageId(undefined)}
+			/>
 			<Grid />
 		</>
 	)
