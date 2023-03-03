@@ -12,6 +12,12 @@ fragment LocationFragment on LocationRecord {
 	intro(markdown: false)
 	webpage
 	slug
+	exhibitions: _allReferencingExhibitions(first: 100) {
+		...ExhibitionFragmentLight
+	}
+	programs: _allReferencingPrograms(first: 100) {
+		...ProgramFragmentLight
+	}
 	content {
 		value
 		blocks {
