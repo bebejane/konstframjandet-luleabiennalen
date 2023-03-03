@@ -16,5 +16,11 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: var(--space);
+
+    &.small {}
+
+    &.medium {}
+
+    &.large {}
   }
 }
