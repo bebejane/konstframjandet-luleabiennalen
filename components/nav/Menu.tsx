@@ -18,7 +18,10 @@ export default function Menu({ items }: MenuProps) {
 	const [path, setPath] = useState(router.asPath)
 
 	useEffect(() => {
-		const handleRouteChangeStart = (path: string) => setPath(path)
+		const handleRouteChangeStart = (path: string) => {
+			setSelected(undefined)
+			setPath(path)
+		}
 		router.events.on('routeChangeStart', handleRouteChangeStart)
 		return () => router.events.off('routeChangeStart', handleRouteChangeStart)
 	}, [])
@@ -36,7 +39,10 @@ export default function Menu({ items }: MenuProps) {
 							return (
 								<li
 									key={idx}
-									onClick={() => setSelected(label === selected ? undefined : label)}
+									onClick={() => {
+										setSelected(label === selected ? undefined : label)
+										setPath(slug)
+									}}
 									className={cn(isActive && s.active)}
 								>
 									{sub ? label : <Link href={slug}>{label}</Link>}

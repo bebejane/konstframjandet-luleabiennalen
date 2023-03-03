@@ -19,11 +19,8 @@
       top: 0.2em;
       margin-left: -0.65em;
     }
-    //color: gray;
 
-    > a {
-      //color: gray;
-    }
+    >a {}
   }
 
   ul {
@@ -31,17 +28,21 @@
     font-weight: bold;
     margin-right: var(--outer-margin);
 
-    > li {
+    >li {
       cursor: pointer;
       padding-bottom: 0.5em;
 
-      > ul.sub {
-        display: none;
+      >ul.sub {
+        display: block;
         font-weight: normal;
         margin-left: 0.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
 
         &.selected {
-          display: block;
+          max-height: 1000px;
+          overflow: visible;
         }
 
         li {
