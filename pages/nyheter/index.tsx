@@ -11,11 +11,13 @@ export default function News({ news }: Props) {
 
   return (
     <CardContainer>
-      {news.map(({ id, image, thumb, title, slug }) =>
+      {news.map(({ id, image, thumb, title, intro, slug }) =>
         <Card key={id}>
           <Thumbnail
             title={title}
             image={thumb}
+            intro={intro}
+            meta="23 jun"
             slug={`/nyheter/${slug}`}
           />
         </Card>

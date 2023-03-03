@@ -15,7 +15,10 @@
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    padding-bottom: var(--space);
+
+    &.mainImage {
+      padding-bottom: var(--space);
+    }
 
     &.small {
       padding-left: calc(2 * var(--grid-unit));
