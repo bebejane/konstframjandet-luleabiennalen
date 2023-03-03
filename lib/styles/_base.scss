@@ -171,3 +171,17 @@ select {
 	background-position-y: center;
 	color: var(--black);
 }
+
+.page-error {
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 100vw;
+	min-height: 100vh;
+	z-index: 100000;
+	background-color: var(--white);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

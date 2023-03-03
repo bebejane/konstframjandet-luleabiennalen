@@ -1,6 +1,6 @@
 import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
-import { AllYearsDocument } from "/graphql";
+import { YearDocument, AllYearsDocument } from "/graphql";
 import { apiQuery } from "dato-nextjs-utils/api";
 
 export type Props = {
@@ -29,7 +29,10 @@ export async function getStaticPaths(context) {
 
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
-	const year = context.params.year;
+	const slug = context.params.year;
+	const { year } = await apiQuery(YearDocument, { variables: { title: slug } })
+
+	if (!year) return { notFound: true }
 
 	return {
 		props: {

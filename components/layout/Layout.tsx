@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 export type LayoutProps = {
 	children: React.ReactNode,
 	menu: MenuItem[],
-	footer: any[]
+	footer: GeneralRecord
 	title: string
 }
 
@@ -24,17 +24,15 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 
 	return (
 		<>
-			<Language />
-
 			<div className={s.layout}>
 				<Content menu={menu}>
 					{children}
 				</Content>
 				<Menu items={menu} />
 			</div>
-
+			<Language />
 			<Logo />
-			<Footer menu={menu} />
+			<Footer menu={menu} footer={footer} />
 			<Grid />
 		</>
 	)

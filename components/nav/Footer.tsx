@@ -5,29 +5,28 @@ import KFLogo from '/public/images/kf-logo.svg'
 
 
 export type FooterProps = {
-	menu: MenuItem[],
+	menu: MenuItem[]
+	footer: GeneralRecord
 }
 
-export default function Footer({ menu }: FooterProps) {
+export default function Footer({ menu, footer: { email, facebook, instagram, about } }: FooterProps) {
 	return (
 		<footer className={cn(s.footer)} id="footer">
 			<section>
 				<div>
 					Copyright Luleåbiennalen, 2023 <br />
-					info@luleabiennalen.se
+					<a href={`mailto:${email}`}>{email}</a><br />
 					Cookies & GDPR
 				</div>
 				<div>
 					Prenumerera på vårt nyhetsbrev <br />
-					Följ oss på:     Facebook     Instagram
+					Följ oss på: <a href={facebook}>Facebook</a> <a href={instagram}>Instagram</a>
 				</div>
 				<div>
-					Luleåbiennalen är ett projekt inom organisationen Konstfrämjandet Norrbotten sedan 2021.
+					{about}
 				</div>
 				<KFLogo className={s.kf} />
-
 			</section>
-
 		</footer>
 	)
 }

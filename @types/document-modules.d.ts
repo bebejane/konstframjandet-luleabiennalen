@@ -20,6 +20,15 @@ export const Exhibition: DocumentNode;
 }
     
 
+declare module '*/footer.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Footer: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/AboutFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -190,6 +199,7 @@ declare module '*/year.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const AllYears: DocumentNode;
+export const Year: DocumentNode;
 
   export default defaultDocument;
 }
