@@ -23,6 +23,8 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 		buildMenu().then(res => setMenu(res)).catch(err => console.error(err))
 	}, [])
 
+	if (!menuFromProps || !footer) return null
+
 	return (
 		<>
 			<div className={s.layout}>
