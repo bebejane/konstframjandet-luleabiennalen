@@ -3,3 +3,9 @@ query AllYears($year: String) {
 		...YearFragment
 	}
 }
+
+query Year($title: String!) {
+	year(filter: { title: { eq: $title } }) {
+		...YearFragment
+	}
+}

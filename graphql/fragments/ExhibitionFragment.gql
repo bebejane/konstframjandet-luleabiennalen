@@ -19,6 +19,9 @@ fragment ExhibitionFragment on ExhibitionRecord {
 	participants {
 		...ParticipantFragment
 	}
+	location {
+		...LocationFragment
+	}
 	slug
 	externalLink
 	content {

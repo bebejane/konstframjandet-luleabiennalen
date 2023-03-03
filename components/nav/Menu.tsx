@@ -15,6 +15,14 @@ export default function Menu({ items }: MenuProps) {
 	const menuBarRef = useRef<HTMLUListElement | null>(null);
 	const [selected, setSelected] = useState<string | undefined>()
 	const router = useRouter()
+	const [path, setPath] = useState(router.asPath)
+
+	useEffect(() => {
+		const handleRouteChangeStart = (path: string) => setPath(path)
+		router.events.on('routeChangeStart', handleRouteChangeStart)
+		return () => router.events.off('routeChangeStart', handleRouteChangeStart)
+	}, [])
+
 
 	return (
 		<>
@@ -24,7 +32,7 @@ export default function Menu({ items }: MenuProps) {
 					<TodaysInfo />
 					<ul className={s.nav} ref={menuBarRef}>
 						{items.map(({ label, slug, sub }, idx) => {
-							const isActive = label === selected || router.asPath.startsWith(slug)
+							const isActive = label === selected || path.startsWith(slug)
 							return (
 								<li
 									key={idx}
@@ -38,7 +46,7 @@ export default function Menu({ items }: MenuProps) {
 											onClick={(e) => e.stopPropagation()}
 										>
 											{sub.map(({ label, slug }) => {
-												const isActiveSub = router.asPath === slug
+												const isActiveSub = path === slug
 												return (
 													<li>
 														<Link className={cn(isActiveSub && s.active)} href={slug}>{label}</Link>

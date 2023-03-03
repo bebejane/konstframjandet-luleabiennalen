@@ -31,6 +31,12 @@ type AboutModelContentField = {
   value: Scalars['JsonField'];
 };
 
+type AboutModelContentFieldMultiLocaleField = {
+  __typename?: 'AboutModelContentFieldMultiLocaleField';
+  locale?: Maybe<SiteLocale>;
+  value?: Maybe<AboutModelContentField>;
+};
+
 type AboutModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<AboutModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
@@ -76,6 +82,9 @@ enum AboutModelOrderBy {
 /** Record of type Om (about) */
 type AboutRecord = RecordInterface & {
   __typename?: 'AboutRecord';
+  _allContentLocales?: Maybe<Array<AboutModelContentFieldMultiLocaleField>>;
+  _allIntroLocales?: Maybe<Array<StringMultiLocaleField>>;
+  _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -98,14 +107,50 @@ type AboutRecord = RecordInterface & {
 
 
 /** Record of type Om (about) */
+type AboutRecord_allContentLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Om (about) */
+type AboutRecord_allIntroLocalesArgs = {
+  locale?: InputMaybe<SiteLocale>;
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Om (about) */
+type AboutRecord_allTitleLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Om (about) */
 type AboutRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
 
 /** Record of type Om (about) */
+type AboutRecordcontentArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Om (about) */
 type AboutRecordintroArgs = {
+  locale?: InputMaybe<SiteLocale>;
   markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Om (about) */
+type AboutRecordtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter Boolean fields */
@@ -262,9 +307,15 @@ type ExhibitionModelContentField = {
   value: Scalars['JsonField'];
 };
 
+type ExhibitionModelContentFieldMultiLocaleField = {
+  __typename?: 'ExhibitionModelContentFieldMultiLocaleField';
+  locale?: Maybe<SiteLocale>;
+  value?: Maybe<ExhibitionModelContentField>;
+};
+
 /** Linking fields */
 enum ExhibitionModelFieldsReferencingLocationModel {
-  exhibition_place = 'exhibition_place'
+  exhibition_location = 'exhibition_location'
 }
 
 /** Linking fields */
@@ -288,9 +339,9 @@ type ExhibitionModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
   intro?: InputMaybe<TextFilter>;
+  location?: InputMaybe<LinkFilter>;
   misc?: InputMaybe<StringFilter>;
   participants?: InputMaybe<LinksFilter>;
-  place?: InputMaybe<LinkFilter>;
   slug?: InputMaybe<SlugFilter>;
   startDate?: InputMaybe<DateFilter>;
   time?: InputMaybe<StringFilter>;
@@ -334,6 +385,10 @@ enum ExhibitionModelOrderBy {
 /** Record of type Utställning (exhibition) */
 type ExhibitionRecord = RecordInterface & {
   __typename?: 'ExhibitionRecord';
+  _allContentLocales?: Maybe<Array<ExhibitionModelContentFieldMultiLocaleField>>;
+  _allIntroLocales?: Maybe<Array<StringMultiLocaleField>>;
+  _allMiscLocales?: Maybe<Array<StringMultiLocaleField>>;
+  _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -351,14 +406,42 @@ type ExhibitionRecord = RecordInterface & {
   id: Scalars['ItemId'];
   image?: Maybe<FileField>;
   intro?: Maybe<Scalars['String']>;
+  location?: Maybe<LocationRecord>;
   misc?: Maybe<Scalars['String']>;
   participants: Array<ParticipantRecord>;
-  place?: Maybe<LocationRecord>;
   slug?: Maybe<Scalars['String']>;
   startDate?: Maybe<Scalars['Date']>;
   time?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   year: YearRecord;
+};
+
+
+/** Record of type Utställning (exhibition) */
+type ExhibitionRecord_allContentLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Utställning (exhibition) */
+type ExhibitionRecord_allIntroLocalesArgs = {
+  locale?: InputMaybe<SiteLocale>;
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Utställning (exhibition) */
+type ExhibitionRecord_allMiscLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Utställning (exhibition) */
+type ExhibitionRecord_allTitleLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -369,8 +452,30 @@ type ExhibitionRecord_seoMetaTagsArgs = {
 
 
 /** Record of type Utställning (exhibition) */
+type ExhibitionRecordcontentArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Utställning (exhibition) */
 type ExhibitionRecordintroArgs = {
+  locale?: InputMaybe<SiteLocale>;
   markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Utställning (exhibition) */
+type ExhibitionRecordmiscArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Utställning (exhibition) */
+type ExhibitionRecordtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 enum FaviconType {
@@ -544,9 +649,9 @@ type FileFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
 };
 
-/** Record of type Generellt (generellt) */
-type GenerelltRecord = RecordInterface & {
-  __typename?: 'GenerelltRecord';
+/** Record of type Generellt (general) */
+type GeneralRecord = RecordInterface & {
+  __typename?: 'GeneralRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -558,16 +663,16 @@ type GenerelltRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  about?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
   instagram?: Maybe<Scalars['String']>;
-  konstframjandet?: Maybe<Scalars['String']>;
 };
 
 
-/** Record of type Generellt (generellt) */
-type GenerelltRecord_seoMetaTagsArgs = {
+/** Record of type Generellt (general) */
+type GeneralRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2098,7 +2203,8 @@ type LinkFilter = {
 /** Linking locales */
 enum LinkingLocale {
   _nonLocalized = '_nonLocalized',
-  en = 'en'
+  en = 'en',
+  sv = 'sv'
 }
 
 /** Specifies how to filter by linking locales */
@@ -2130,6 +2236,12 @@ type LocationModelContentField = {
   blocks: Array<LocationModelContentBlocksField>;
   links: Array<Scalars['String']>;
   value: Scalars['JsonField'];
+};
+
+type LocationModelContentFieldMultiLocaleField = {
+  __typename?: 'LocationModelContentFieldMultiLocaleField';
+  locale?: Maybe<SiteLocale>;
+  value?: Maybe<LocationModelContentField>;
 };
 
 type LocationModelFilter = {
@@ -2186,6 +2298,8 @@ enum LocationModelOrderBy {
 /** Record of type Plats (location) */
 type LocationRecord = RecordInterface & {
   __typename?: 'LocationRecord';
+  _allContentLocales?: Maybe<Array<LocationModelContentFieldMultiLocaleField>>;
+  _allIntroLocales?: Maybe<Array<StringMultiLocaleField>>;
   _allReferencingExhibitions: Array<ExhibitionRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingExhibitionsMeta: CollectionMetadata;
@@ -2213,6 +2327,20 @@ type LocationRecord = RecordInterface & {
   title?: Maybe<Scalars['String']>;
   webpage?: Maybe<Scalars['String']>;
   year: YearRecord;
+};
+
+
+/** Record of type Plats (location) */
+type LocationRecord_allContentLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Plats (location) */
+type LocationRecord_allIntroLocalesArgs = {
+  locale?: InputMaybe<SiteLocale>;
+  markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -2257,7 +2385,15 @@ type LocationRecord_seoMetaTagsArgs = {
 
 
 /** Record of type Plats (location) */
+type LocationRecordcontentArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Plats (location) */
 type LocationRecordintroArgs = {
+  locale?: InputMaybe<SiteLocale>;
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -2274,6 +2410,12 @@ type NewsModelContentField = {
   blocks: Array<NewsModelContentBlocksField>;
   links: Array<Scalars['String']>;
   value: Scalars['JsonField'];
+};
+
+type NewsModelContentFieldMultiLocaleField = {
+  __typename?: 'NewsModelContentFieldMultiLocaleField';
+  locale?: Maybe<SiteLocale>;
+  value?: Maybe<NewsModelContentField>;
 };
 
 type NewsModelFilter = {
@@ -2320,6 +2462,9 @@ enum NewsModelOrderBy {
 /** Record of type Nyheter (news) */
 type NewsRecord = RecordInterface & {
   __typename?: 'NewsRecord';
+  _allContentLocales?: Maybe<Array<NewsModelContentFieldMultiLocaleField>>;
+  _allIntroLocales?: Maybe<Array<StringMultiLocaleField>>;
+  _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -2341,14 +2486,50 @@ type NewsRecord = RecordInterface & {
 
 
 /** Record of type Nyheter (news) */
+type NewsRecord_allContentLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Nyheter (news) */
+type NewsRecord_allIntroLocalesArgs = {
+  locale?: InputMaybe<SiteLocale>;
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Nyheter (news) */
+type NewsRecord_allTitleLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Nyheter (news) */
 type NewsRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
 
 /** Record of type Nyheter (news) */
+type NewsRecordcontentArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Nyheter (news) */
 type NewsRecordintroArgs = {
+  locale?: InputMaybe<SiteLocale>;
   markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Nyheter (news) */
+type NewsRecordtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by image orientation */
@@ -2366,6 +2547,12 @@ type ParticipantModelContentField = {
   blocks: Array<ParticipantModelContentBlocksField>;
   links: Array<Scalars['String']>;
   value: Scalars['JsonField'];
+};
+
+type ParticipantModelContentFieldMultiLocaleField = {
+  __typename?: 'ParticipantModelContentFieldMultiLocaleField';
+  locale?: Maybe<SiteLocale>;
+  value?: Maybe<ParticipantModelContentField>;
 };
 
 type ParticipantModelFilter = {
@@ -2413,6 +2600,8 @@ enum ParticipantModelOrderBy {
 /** Record of type Medverkande (participant) */
 type ParticipantRecord = RecordInterface & {
   __typename?: 'ParticipantRecord';
+  _allContentLocales?: Maybe<Array<ParticipantModelContentFieldMultiLocaleField>>;
+  _allIntroLocales?: Maybe<Array<StringMultiLocaleField>>;
   _allReferencingExhibitions: Array<ExhibitionRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingExhibitionsMeta: CollectionMetadata;
@@ -2437,6 +2626,20 @@ type ParticipantRecord = RecordInterface & {
   name?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   year: YearRecord;
+};
+
+
+/** Record of type Medverkande (participant) */
+type ParticipantRecord_allContentLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Medverkande (participant) */
+type ParticipantRecord_allIntroLocalesArgs = {
+  locale?: InputMaybe<SiteLocale>;
+  markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -2481,7 +2684,15 @@ type ParticipantRecord_seoMetaTagsArgs = {
 
 
 /** Record of type Medverkande (participant) */
+type ParticipantRecordcontentArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Medverkande (participant) */
 type ParticipantRecordintroArgs = {
+  locale?: InputMaybe<SiteLocale>;
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -2525,6 +2736,7 @@ enum ProgramCategoryModelOrderBy {
 /** Record of type Program kategori (program_category) */
 type ProgramCategoryRecord = RecordInterface & {
   __typename?: 'ProgramCategoryRecord';
+  _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -2542,7 +2754,21 @@ type ProgramCategoryRecord = RecordInterface & {
 
 
 /** Record of type Program kategori (program_category) */
+type ProgramCategoryRecord_allTitleLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program kategori (program_category) */
 type ProgramCategoryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program kategori (program_category) */
+type ProgramCategoryRecordtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2553,6 +2779,12 @@ type ProgramModelContentField = {
   blocks: Array<ProgramModelContentBlocksField>;
   links: Array<Scalars['String']>;
   value: Scalars['JsonField'];
+};
+
+type ProgramModelContentFieldMultiLocaleField = {
+  __typename?: 'ProgramModelContentFieldMultiLocaleField';
+  locale?: Maybe<SiteLocale>;
+  value?: Maybe<ProgramModelContentField>;
 };
 
 /** Linking fields */
@@ -2628,6 +2860,10 @@ enum ProgramModelOrderBy {
 /** Record of type Program (program) */
 type ProgramRecord = RecordInterface & {
   __typename?: 'ProgramRecord';
+  _allContentLocales?: Maybe<Array<ProgramModelContentFieldMultiLocaleField>>;
+  _allIntroLocales?: Maybe<Array<StringMultiLocaleField>>;
+  _allMiscLocales?: Maybe<Array<StringMultiLocaleField>>;
+  _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -2658,14 +2894,64 @@ type ProgramRecord = RecordInterface & {
 
 
 /** Record of type Program (program) */
+type ProgramRecord_allContentLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program (program) */
+type ProgramRecord_allIntroLocalesArgs = {
+  locale?: InputMaybe<SiteLocale>;
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Program (program) */
+type ProgramRecord_allMiscLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program (program) */
+type ProgramRecord_allTitleLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program (program) */
 type ProgramRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
 
 /** Record of type Program (program) */
+type ProgramRecordcontentArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program (program) */
 type ProgramRecordintroArgs = {
+  locale?: InputMaybe<SiteLocale>;
   markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Program (program) */
+type ProgramRecordmiscArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program (program) */
+type ProgramRecordtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by publication datetime */
@@ -2734,7 +3020,7 @@ type Query = {
   /** Returns a specific record */
   exhibition?: Maybe<ExhibitionRecord>;
   /** Returns the single instance record */
-  generellt?: Maybe<GenerelltRecord>;
+  general?: Maybe<GeneralRecord>;
   /** Returns a specific record */
   location?: Maybe<LocationRecord>;
   /** Returns a specific record */
@@ -2957,7 +3243,7 @@ type QueryexhibitionArgs = {
 
 
 /** The query root for this schema */
-type QuerygenerelltArgs = {
+type QuerygeneralArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -3114,7 +3400,8 @@ type SiteglobalSeoArgs = {
 };
 
 enum SiteLocale {
-  en = 'en'
+  en = 'en',
+  sv = 'sv'
 }
 
 /** Specifies how to filter Slug fields */
@@ -3190,6 +3477,12 @@ type StringMatchesFilter = {
   caseSensitive?: InputMaybe<Scalars['BooleanType']>;
   pattern: Scalars['String'];
   regexp?: InputMaybe<Scalars['BooleanType']>;
+};
+
+type StringMultiLocaleField = {
+  __typename?: 'StringMultiLocaleField';
+  locale?: Maybe<SiteLocale>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** Specifies how to filter Structured Text fields */
@@ -3672,6 +3965,7 @@ enum YearModelOrderBy {
 /** Record of type År (year) */
 type YearRecord = RecordInterface & {
   __typename?: 'YearRecord';
+  _allPaticipantNameLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -3691,7 +3985,21 @@ type YearRecord = RecordInterface & {
 
 
 /** Record of type År (year) */
+type YearRecord_allPaticipantNameLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type År (year) */
 type YearRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type År (year) */
+type YearRecordpaticipantNameArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3725,18 +4033,23 @@ type AllAboutsMenuQuery = { __typename?: 'Query', abouts: Array<{ __typename?: '
 type AllExhibitionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AllExhibitionsQuery = { __typename?: 'Query', exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, intro?: string | null, misc?: string | null, slug?: string | null, externalLink?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, participants: Array<{ __typename?: 'ParticipantRecord', id: any, name?: string | null, intro?: string | null, slug?: string | null, _createdAt: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null }, year: { __typename?: 'YearRecord', id: any, title?: string | null, paticipantName?: string | null, backgroundColor?: { __typename?: 'ColorField', hex: string } | null }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'ParticipantModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null }>, content?: { __typename?: 'ExhibitionModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
+type AllExhibitionsQuery = { __typename?: 'Query', exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, intro?: string | null, misc?: string | null, slug?: string | null, externalLink?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, participants: Array<{ __typename?: 'ParticipantRecord', id: any, name?: string | null, intro?: string | null, slug?: string | null, _createdAt: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null }, year: { __typename?: 'YearRecord', id: any, title?: string | null, paticipantName?: string | null, backgroundColor?: { __typename?: 'ColorField', hex: string } | null }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'ParticipantModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null }>, location?: { __typename?: 'LocationRecord', id: any, title?: string | null, city?: string | null, address?: string | null, intro?: string | null, webpage?: string | null, slug?: string | null, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'LocationModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null } | null, content?: { __typename?: 'ExhibitionModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> }>, pagination: { __typename?: 'CollectionMetadata', count: any } };
 
 type ExhibitionQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-type ExhibitionQuery = { __typename?: 'Query', exhibition?: { __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, intro?: string | null, misc?: string | null, slug?: string | null, externalLink?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, participants: Array<{ __typename?: 'ParticipantRecord', id: any, name?: string | null, intro?: string | null, slug?: string | null, _createdAt: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null }, year: { __typename?: 'YearRecord', id: any, title?: string | null, paticipantName?: string | null, backgroundColor?: { __typename?: 'ColorField', hex: string } | null }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'ParticipantModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null }>, content?: { __typename?: 'ExhibitionModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> } | null };
+type ExhibitionQuery = { __typename?: 'Query', exhibition?: { __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, intro?: string | null, misc?: string | null, slug?: string | null, externalLink?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, participants: Array<{ __typename?: 'ParticipantRecord', id: any, name?: string | null, intro?: string | null, slug?: string | null, _createdAt: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null }, year: { __typename?: 'YearRecord', id: any, title?: string | null, paticipantName?: string | null, backgroundColor?: { __typename?: 'ColorField', hex: string } | null }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'ParticipantModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null }>, location?: { __typename?: 'LocationRecord', id: any, title?: string | null, city?: string | null, address?: string | null, intro?: string | null, webpage?: string | null, slug?: string | null, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'LocationModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null } | null, content?: { __typename?: 'ExhibitionModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> } | null };
+
+type FooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type FooterQuery = { __typename?: 'Query', footer?: { __typename?: 'GeneralRecord', id: any, email?: string | null, facebook?: string | null, instagram?: string | null, about?: string | null } | null };
 
 type AboutFragment = { __typename: 'AboutRecord', _modelApiKey: string, id: any, title?: string | null, intro?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, content?: { __typename?: 'AboutModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> };
 
-type ExhibitionFragment = { __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, intro?: string | null, misc?: string | null, slug?: string | null, externalLink?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, participants: Array<{ __typename?: 'ParticipantRecord', id: any, name?: string | null, intro?: string | null, slug?: string | null, _createdAt: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null }, year: { __typename?: 'YearRecord', id: any, title?: string | null, paticipantName?: string | null, backgroundColor?: { __typename?: 'ColorField', hex: string } | null }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'ParticipantModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null }>, content?: { __typename?: 'ExhibitionModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> };
+type ExhibitionFragment = { __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, intro?: string | null, misc?: string | null, slug?: string | null, externalLink?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, participants: Array<{ __typename?: 'ParticipantRecord', id: any, name?: string | null, intro?: string | null, slug?: string | null, _createdAt: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null }, year: { __typename?: 'YearRecord', id: any, title?: string | null, paticipantName?: string | null, backgroundColor?: { __typename?: 'ColorField', hex: string } | null }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'ParticipantModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null }>, location?: { __typename?: 'LocationRecord', id: any, title?: string | null, city?: string | null, address?: string | null, intro?: string | null, webpage?: string | null, slug?: string | null, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'LocationModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null } | null, content?: { __typename?: 'ExhibitionModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null, _seoMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }> };
 
 type ExhibitionFragmentLightFragment = { __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, bgColor?: string | null } | null } | null };
 
@@ -3822,3 +4135,10 @@ type AllYearsQueryVariables = Exact<{
 
 
 type AllYearsQuery = { __typename?: 'Query', years: Array<{ __typename?: 'YearRecord', id: any, title?: string | null, paticipantName?: string | null, backgroundColor?: { __typename?: 'ColorField', hex: string } | null }> };
+
+type YearQueryVariables = Exact<{
+  title: Scalars['String'];
+}>;
+
+
+type YearQuery = { __typename?: 'Query', year?: { __typename?: 'YearRecord', id: any, title?: string | null, paticipantName?: string | null, backgroundColor?: { __typename?: 'ColorField', hex: string } | null } | null };

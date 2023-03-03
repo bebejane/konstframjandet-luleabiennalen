@@ -1,9 +1,10 @@
 import s from './Article.module.scss'
 import cn from 'classnames'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StructuredContent } from "/components";
 import { Image } from 'react-datocms/image';
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
+import useStore from '/lib/store';
 import format from 'date-fns/format';
 
 export type ArticleProps = {
@@ -24,6 +25,7 @@ const MAX_PORTRAIT_HEIGHT = 600;
 
 export default function Article({ id, children, title, content, image, imageSize, intro, date, onClick, record }: ArticleProps) {
 
+  const [setImageId, setImages, imageId] = useStore((state) => [state.setImageId, state.setImages, state.imageId])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const ratio = Math.min(1, scrolledPosition / viewportHeight);
   const padding = `${ratio * 100}px`;
@@ -31,11 +33,20 @@ export default function Article({ id, children, title, content, image, imageSize
   const isPortrait = image?.height > image?.width
   const portraitStyle = {}
 
+  useEffect(() => {
+    const images = [image]
+    content.blocks.forEach(el => {
+      el.__typename === 'ImageRecord' && images.push(el.image)
+      el.__typename === 'ImageGalleryRecord' && images.push.apply(images, el.images)
+    })
+    setImages(images.filter(el => el))
+  }, [])
+
   return (
     <div className={cn(s.article, 'article')}>
       <h1>{title}</h1>
       {image &&
-        <figure className={cn(s.mainImage, imageSize && s[imageSize])}>
+        <figure className={cn(s.mainImage, imageSize && s[imageSize])} onClick={() => setImageId(image?.id)}>
           <Image
             data={image.responsiveImage}
             pictureClassName={s.picture}
@@ -58,7 +69,7 @@ export default function Article({ id, children, title, content, image, imageSize
           id={id}
           record={record}
           content={content}
-          onClick={(imageId) => onClick?.(imageId)}
+          onClick={(imageId) => setImageId(imageId)}
         />
       }
       {children}
