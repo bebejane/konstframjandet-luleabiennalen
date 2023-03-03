@@ -2,7 +2,7 @@ import s from './Menu.module.scss'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
-import type { Menu, MenuItem } from '/lib/menu'
+import type { Menu } from '/lib/menu'
 import { Hamburger } from '/components'
 import format from 'date-fns/format'
 import Link from 'next/link'
@@ -18,10 +18,7 @@ export default function Menu({ items }: MenuProps) {
 	const [path, setPath] = useState(router.asPath)
 
 	useEffect(() => {
-		const handleRouteChangeStart = (path: string) => {
-			setSelected(undefined)
-			setPath(path)
-		}
+		const handleRouteChangeStart = (path: string) => setPath(path)
 		router.events.on('routeChangeStart', handleRouteChangeStart)
 		return () => router.events.off('routeChangeStart', handleRouteChangeStart)
 	}, [])
@@ -64,7 +61,6 @@ export default function Menu({ items }: MenuProps) {
 								</li>
 							)
 						})}
-
 						<li>Sök</li>
 					</ul>
 				</div>

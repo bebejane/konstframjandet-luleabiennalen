@@ -190,6 +190,7 @@ declare module '*/program.gql' {
   const defaultDocument: DocumentNode;
   export const AllPrograms: DocumentNode;
 export const Program: DocumentNode;
+export const AllProgramCategories: DocumentNode;
 
   export default defaultDocument;
 }

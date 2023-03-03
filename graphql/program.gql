@@ -12,3 +12,10 @@ query Program($slug: String!) {
 		...ProgramFragment
 	}
 }
+
+query AllProgramCategories {
+	programCategories: allProgramCategories(orderBy: title_DESC, first: 100) {
+		id
+		title
+	}
+}
