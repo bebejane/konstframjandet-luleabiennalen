@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 
 export interface StoreState {
   showMenu: boolean,
@@ -12,7 +12,6 @@ export interface StoreState {
   setImageId: (imageId: string | undefined) => void,
   setShowSearch: (showSearch: boolean) => void
 }
-
 
 const useStore = create<StoreState>((set) => ({
   showMenu: true,
