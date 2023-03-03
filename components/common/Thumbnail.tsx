@@ -2,6 +2,7 @@ import s from './Thumbnail.module.scss'
 import cn from 'classnames'
 import React, { useState } from 'react'
 import { Image } from 'react-datocms/image'
+import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
 import Link from 'next/link'
 
 export type Props = {
@@ -15,7 +16,6 @@ export type Props = {
 export default function Thumbnail({ image, slug, intro, title, subtitle }: Props) {
 
   const [hover, setHover] = useState<undefined | boolean>(false);
-  const [ratio, setRatio] = useState<number>(0)
   const readMore = subtitle || 'Visa'
 
   return (
@@ -31,9 +31,9 @@ export default function Thumbnail({ image, slug, intro, title, subtitle }: Props
           pictureClassName={cn(s.picture, hover && s.hover)}
         />
       }
-      <div className="thumb-intro">{intro}</div>
-
-
+      <Markdown className="thumb-intro" truncate={280}>
+        {intro}
+      </Markdown>
     </Link>
   )
 }
