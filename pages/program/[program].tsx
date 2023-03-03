@@ -9,7 +9,7 @@ export type Props = {
   program: ProgramRecord
 }
 
-export default function Program({ program: { id, image, title, intro, content, partipants, _seoMetaTags } }: Props) {
+export default function Program({ program: { id, image, title, intro, startDate, content, partipants, _seoMetaTags } }: Props) {
 
   return (
     <>
@@ -21,6 +21,7 @@ export default function Program({ program: { id, image, title, intro, content, p
         imageSize="small"
         intro={intro}
         content={content}
+        date={startDate}
         onClick={(imageId) => { }}
       />
       <Related header={'Medvärkande'} items={partipants} />
