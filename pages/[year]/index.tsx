@@ -4,13 +4,13 @@ import { YearDocument, AllYearsDocument } from "/graphql";
 import { apiQuery } from "dato-nextjs-utils/api";
 
 export type Props = {
-	year: string
+	year: YearRecord
 }
 
 export default function Year({ year }: Props) {
 	return (
 		<div className={s.container}>
-			Arkiv: {year}
+			Arkiv: {year.title}
 		</div>
 	);
 }
