@@ -13,13 +13,13 @@ export type Props = {
   participant: ParticipantExtendedRecord
 }
 
-export default function Participant({ participant: { id, image, title, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
+export default function Participant({ participant: { id, image, name, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
   return (
     <>
       <Article
         id={id}
         key={id}
-        title={title}
+        title={name}
         image={image}
         intro={intro}
         content={content}

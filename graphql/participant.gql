@@ -1,5 +1,5 @@
 query AllParticipants {
-	participants: allParticipants {
+	participants: allParticipants(orderBy: name_ASC) {
 		...ParticipantFragment
 	}
 	pagination: _allParticipantsMeta {

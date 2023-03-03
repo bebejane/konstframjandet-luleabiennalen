@@ -1,6 +1,6 @@
 import s from './Thumbnail.module.scss'
 import cn from 'classnames'
-import React, { useState } from 'react'
+import React from 'react'
 import { Image } from 'react-datocms/image'
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
 import Link from 'next/link'
@@ -9,13 +9,13 @@ export type Props = {
   image: FileField
   slug: string
   title: string
-  intro: string
+  intro?: string
   meta?: string
 }
 
 export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
 
-  const content = `${meta ? `**${meta}** ` : ''}${intro}`;
+  const content = intro ? `${meta ? `**${meta}** ` : ''}${intro}` : undefined
 
   return (
     <Link
@@ -30,9 +30,11 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
           pictureClassName={s.picture}
         />
       }
-      <Markdown className="thumb-intro" truncate={200}>
-        {content}
-      </Markdown>
+      {content &&
+        <Markdown className="thumb-intro" truncate={200}>
+          {content}
+        </Markdown>
+      }
     </Link>
   )
 }

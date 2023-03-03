@@ -11,10 +11,10 @@ export default function Participant({ participants }: Props) {
 
   return (
     <CardContainer>
-      {participants.map(({ id, image, thumb, title, intro, slug }) =>
+      {participants.map(({ id, image, thumb, name, intro, slug }) =>
         <Card key={id}>
           <Thumbnail
-            title={title}
+            title={name}
             image={thumb}
             intro={intro}
             slug={`/medverkande/${slug}`}

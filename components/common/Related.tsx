@@ -18,12 +18,12 @@ export default function Related({ header, items }: Props) {
     <section className={s.related}>
       <h2>{header}</h2>
       <ul>
-        {items.map(({ id, image, title }, idx) =>
+        {items.map(({ id, image, title, name }, idx) =>
           <li key={id}>
             <Link href={recordToSlug(items[idx])}>
               <figure>
                 <Image data={image.responsiveImage} />
-                <figcaption>{title}</figcaption>
+                <figcaption>{title || name}</figcaption>
               </figure>
             </Link>
           </li>

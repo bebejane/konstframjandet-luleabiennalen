@@ -1,6 +1,6 @@
 fragment ParticipantFragment on ParticipantRecord {
 	id
-	title
+	name
 	intro(markdown: false)
 	image {
 		...ImageFragment
