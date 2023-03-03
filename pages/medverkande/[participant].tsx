@@ -2,7 +2,7 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ParticipantDocument, AllParticipantsDocument } from "/graphql";
-import { Article, Related } from '/components';
+import { Article, Related, BackButton } from '/components';
 
 export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]
@@ -26,8 +26,7 @@ export default function Participant({ participant: { id, image, title, intro, co
         onClick={(imageId) => { }}
       />
       <Related header={'Deltar i'} items={[...exhibitions, ...programs]} />
-      <button className="back">Visa alla medverkande</button>
-
+      <BackButton>Visa alla medverkande</BackButton>
     </>
   );
 }

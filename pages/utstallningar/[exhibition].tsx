@@ -2,7 +2,7 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ExhibitionDocument, AllExhibitionsDocument } from "/graphql";
-import { Article, Related } from '/components';
+import { Article, Related, BackButton } from '/components';
 
 export type Props = {
   exhibition: ExhibitionRecord
@@ -22,7 +22,7 @@ export default function Exhibition({ exhibition: { id, image, title, intro, cont
         onClick={(imageId) => { }}
       />
       <Related header={'Medvärkande'} items={participants} />
-      <button className="back">Visa alla utställningar</button>
+      <BackButton>Visa alla utställningar</BackButton>
     </>
   )
 }
