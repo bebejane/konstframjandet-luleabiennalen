@@ -25,6 +25,7 @@ export default function Article({ id, children, title, content, image, imageSize
 
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const ratio = Math.min(1, scrolledPosition / viewportHeight);
+  const padding = `${ratio * 100}px`;
   //console.log(ratio)
 
   return (
@@ -32,7 +33,7 @@ export default function Article({ id, children, title, content, image, imageSize
       <h1>{title}</h1>
       {image &&
         <figure className={cn(s.mainImage, imageSize && s[imageSize])}>
-          <Image data={image.responsiveImage} pictureStyle={{ padding: `${ratio * 200}px` }} />
+          <Image data={image.responsiveImage} pictureStyle={{ padding }} />
           <figcaption>{image.title}</figcaption>
         </figure>
       }
