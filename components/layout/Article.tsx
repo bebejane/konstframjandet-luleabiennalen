@@ -1,8 +1,10 @@
 import s from './Article.module.scss'
 import cn from 'classnames'
 import React from 'react'
-import { SectionHeader, StructuredContent } from "/components";
+import { StructuredContent } from "/components";
 import { Image } from 'react-datocms/image';
+import { useScrollInfo } from 'dato-nextjs-utils/hooks'
+
 import format from 'date-fns/format';
 
 export type ArticleProps = {
@@ -21,12 +23,16 @@ export type ArticleProps = {
 
 export default function Article({ id, children, title, content, image, imageSize, intro, date, onClick, record }: ArticleProps) {
 
+  const { scrolledPosition, viewportHeight } = useScrollInfo()
+  const ratio = Math.min(1, scrolledPosition / viewportHeight);
+  //console.log(ratio)
+
   return (
     <div className={cn(s.article, 'article')}>
       <h1>{title}</h1>
       {image &&
         <figure className={cn(s.mainImage, imageSize && s[imageSize])}>
-          <Image data={image.responsiveImage} />
+          <Image data={image.responsiveImage} pictureStyle={{ padding: `${ratio * 200}px` }} />
           <figcaption>{image.title}</figcaption>
         </figure>
       }
