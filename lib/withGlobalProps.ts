@@ -20,6 +20,7 @@ export default function withGlobalProps(opt: any, callback: Function): GetStatic
     const variables = queries.map(el => ({ locale: context.locale }))
     const props = await apiQuery(queries, { preview: context.preview, variables });
     props.menu = await buildMenu(context.locale)
+    props.locale = context.locale
 
     if (callback)
       return await callback({ context, props: { ...props }, revalidate });

@@ -3,6 +3,7 @@ import cn from 'classnames'
 import { chunkArray } from '/lib/utils'
 import useDevice from '/lib/hooks/useDevice'
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 export type Props = {
   children?: React.ReactNode | React.ReactNode[],
@@ -19,10 +20,10 @@ export default function CardContainer({ children, columns = 3, className, whiteB
 
   const { isDesktop } = useDevice()
   const [cards, setCards] = useState(buildCards())
-
+  const { locale } = useRouter()
   useEffect(() => {
     setCards(buildCards())
-  }, [isDesktop])
+  }, [isDesktop, locale])
 
   return (
     <ul className={cn(s.container, columns === 2 && s.two, columns === 3 && s.three, className, whiteBorder && s.whiteBorder)}>
