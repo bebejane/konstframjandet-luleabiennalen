@@ -1,7 +1,6 @@
 import '/lib/styles/index.scss'
 import { Layout } from '/components';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { NextIntlProvider } from 'next-intl';
 import { sv } from 'date-fns/locale'
 
 import setDefaultOptions from 'date-fns/setDefaultOptions';
@@ -14,9 +13,11 @@ function App({ Component, pageProps }) {
 
   return (
     <>
-      <Layout title={pageTitle} menu={menu || []} footer={footer}>
-        <Component {...pageProps} />
-      </Layout>
+      <NextIntlProvider messages={pageProps.messages}>
+        <Layout title={pageTitle} menu={menu || []} footer={footer}>
+          <Component {...pageProps} />
+        </Layout>
+      </NextIntlProvider>
     </>
   );
 }

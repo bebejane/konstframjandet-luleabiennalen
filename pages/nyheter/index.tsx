@@ -5,12 +5,14 @@ import Link from 'next/link'
 import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import format from "date-fns/format";
 import { capitalize } from "/lib/utils";
+import { useTranslations } from "next-intl";
 
 export type Props = {
   news: (NewsRecord & ThumbnailImage)[]
 }
 
 export default function News({ news }: Props) {
+  const t = useTranslations('News')
 
   return (
     <section className={s.news}>
@@ -26,7 +28,7 @@ export default function News({ news }: Props) {
                 {`**${capitalize(format(new Date(_createdAt), 'dd MMM, yyyy'))}**${intro}`}
               </Markdown>
             </div>
-            <Link href={`/nyheter/${slug}`}><button>Läs mer</button></Link>
+            <Link href={`/nyheter/${slug}`}><button>{t('readMore')}</button></Link>
           </li>
         )
         }

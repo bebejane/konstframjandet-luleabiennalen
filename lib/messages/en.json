@@ -1,0 +1,39 @@
+{
+	"Menu": {
+		"about": "About",
+		"program": "Program",
+		"exhibitions": "Exhibitions",
+		"participants": "Participants",
+		"locations": "Locations",
+		"news": "News",
+		"contact": "Contact",
+		"archive": "Archive",
+		"search": "Search"
+	},
+	"FilterBar": {
+		"all": "All"
+	},
+	"MetaSection": {
+		"what": "What",
+		"where": "Where",
+		"when": "When",
+		"times": "Times",
+		"link": "Link",
+		"webpage": "Homepage"
+	},
+	"BackButton": {
+		"showAllPrograms": "Show complete program",
+		"showAllExhibitons": "Show all exhibitons",
+		"showAllParticipants": "Show all participants",
+		"showAllLocations": "Show all locations",
+		"showAllNews": "Show all news"
+	},
+	"News": {
+		"readMore": "Read more"
+	},
+	"Footer": {
+		"subscribe": "Subscribe to our newsletter",
+		"followUs": "Follow us on",
+		"and": "and"
+	}
+}

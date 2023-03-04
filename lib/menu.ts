@@ -4,21 +4,21 @@ import { AllAboutsMenuDocument, AllYearsDocument } from "/graphql";
 export type Menu = MenuItem[]
 
 export type MenuItem = {
-  type: string
+  id: 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive'
   label: string
   slug?: string
   sub?: MenuItem[]
 }
 
 const base: Menu = [
-  { type: 'about', label: 'Om', slug: '/om', sub: [] },
-  { type: 'program', label: 'Program', slug: '/program' },
-  { type: 'exhibition', label: 'Utställningar', slug: '/utstallningar' },
-  { type: 'participant', label: 'Medverkande', slug: '/medverkande' },
-  { type: 'location', label: 'Platser', slug: '/platser' },
-  { type: 'news', label: 'Nyheter', slug: '/nyheter' },
-  { type: 'contact', label: 'Kontakt', slug: '/kontakt' },
-  { type: 'year', label: 'Arkiv', slug: '/[year]', sub: [] }
+  { id: 'about', label: 'Om', slug: '/om', sub: [] },
+  { id: 'program', label: 'Program', slug: '/program' },
+  { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar' },
+  { id: 'participants', label: 'Medverkande', slug: '/medverkande' },
+  { id: 'locations', label: 'Platser', slug: '/platser' },
+  { id: 'news', label: 'Nyheter', slug: '/nyheter' },
+  { id: 'contact', label: 'Kontakt', slug: '/kontakt' },
+  { id: 'archive', label: 'Arkiv', slug: '/[year]', sub: [] }
 ]
 
 export const buildMenu = async (locale: string) => {
@@ -37,12 +37,12 @@ export const buildMenu = async (locale: string) => {
 
   const menu = base.map(item => {
     let sub: MenuItem[];
-    switch (item.type) {
+    switch (item.id) {
       case 'about':
-        sub = abouts.map(el => ({ type: 'about', label: el.title, slug: `/om/${el.slug}` }))
+        sub = abouts.map(el => ({ id: 'about', label: el.title, slug: `/om/${el.slug}` }))
         break;
-      case 'year':
-        sub = item.sub.concat(years.map(el => ({ type: 'year', label: el.title, slug: `/${el.title}` })))
+      case 'archive':
+        sub = item.sub.concat(years.map(el => ({ id: 'archive', label: el.title, slug: `/${el.title}` })))
         break;
       default:
         break;

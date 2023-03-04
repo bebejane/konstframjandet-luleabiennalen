@@ -4,6 +4,7 @@ import Link from 'next/link'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { MenuItem } from '/lib/menu'
+import { useTranslations } from 'next-intl'
 
 export type SectionHeaderProps = {
   menu: MenuItem[]
@@ -13,6 +14,7 @@ export type SectionHeaderProps = {
 
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
 
+  const t = useTranslations('Menu')
   const router = useRouter()
   const menuItem = menu.find(el => el.slug === router.asPath || router.asPath.startsWith(el.slug))
   const haveOverview = menuItem?.slug && !menuItem.sub
@@ -25,7 +27,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
         <Link href={haveOverview ? url : '#'}>
           <h2>
             <span>
-              LB°{year}{menuItem ? ` — ${menuItem.label}` : ''}
+              LB°{year}{menuItem ? ` — ${t(menuItem.id)}` : ''}
             </span>
           </h2>
         </Link>

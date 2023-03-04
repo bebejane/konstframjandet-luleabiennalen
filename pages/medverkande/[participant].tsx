@@ -3,6 +3,7 @@ import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ParticipantDocument, AllParticipantsDocument } from "/graphql";
 import { Article, Related, BackButton } from '/components';
+import { useTranslations } from "next-intl";
 
 export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]
@@ -14,6 +15,8 @@ export type Props = {
 }
 
 export default function Participant({ participant: { id, image, name, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
+  const t = useTranslations('BackButton')
+
   return (
     <>
       <Article
@@ -26,7 +29,7 @@ export default function Participant({ participant: { id, image, name, intro, con
         onClick={(imageId) => { }}
       />
       <Related header={'Deltar i'} items={[...exhibitions, ...programs]} />
-      <BackButton>Visa alla medverkande</BackButton>
+      <BackButton>{t('showAllParticipants')}</BackButton>
     </>
   );
 }

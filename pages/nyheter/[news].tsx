@@ -3,12 +3,14 @@ import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { NewsDocument, AllNewsDocument } from "/graphql";
 import { Article, BackButton } from '/components';
+import { useTranslations } from "next-intl";
 
 export type Props = {
   news: NewsRecord
 }
 
 export default function News({ news: { id, image, title, intro, content, _seoMetaTags } }: Props) {
+  const t = useTranslations('BackButton')
 
   return (
     <>
@@ -21,7 +23,7 @@ export default function News({ news: { id, image, title, intro, content, _seoMet
         content={content}
         onClick={(imageId) => { }}
       />
-      <BackButton>Visa alla nyheter</BackButton>
+      <BackButton>{t('showAllNews')}</BackButton>
     </>
   );
 }

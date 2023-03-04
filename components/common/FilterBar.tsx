@@ -1,6 +1,7 @@
 import s from './FilterBar.module.scss'
 import cn from 'classnames'
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 export type FilterOption = {
   id: string,
@@ -15,6 +16,7 @@ export type Props = {
 
 export default function FilterBar({ options = [], onChange, multi = false }: Props) {
 
+  const t = useTranslations('FilterBar')
   const [selected, setSelected] = useState<FilterOption[]>([])
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function FilterBar({ options = [], onChange, multi = false }: Pro
         <li
           onClick={() => setSelected([])}
           className={cn(!selected?.length && s.selected)}
-        >Alla</li>
+        >{t('all')}</li>
         {options.map((opt, idx) =>
           <li
             key={idx}

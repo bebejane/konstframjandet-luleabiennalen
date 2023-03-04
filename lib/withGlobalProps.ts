@@ -17,10 +17,13 @@ export default function withGlobalProps(opt: any, callback: Function): GetStatic
     queries.push(SEOQuery(opt.seo))
 
   return async (context: GetStaticPropsContext) => {
+
     const variables = queries.map(el => ({ locale: context.locale }))
     const props = await apiQuery(queries, { preview: context.preview, variables });
+
     props.menu = await buildMenu(context.locale)
     props.locale = context.locale
+    props.messages = (await import(`./messages/${context.locale}.json`)).default
 
     if (callback)
       return await callback({ context, props: { ...props }, revalidate });

@@ -6,14 +6,16 @@ import type { Menu } from '/lib/menu'
 import { Hamburger } from '/components'
 import format from 'date-fns/format'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export type MenuProps = { items: Menu }
 
 export default function Menu({ items }: MenuProps) {
 
+	const t = useTranslations('Menu')
 	const menuRef = useRef<HTMLDivElement | null>(null);
 	const menuBarRef = useRef<HTMLUListElement | null>(null);
-	const [selected, setSelected] = useState<number | undefined>()
+	const [selected, setSelected] = useState<string | undefined>()
 	const router = useRouter()
 	const [path, setPath] = useState(router.asPath)
 	const [maxHeight, setMaxHeight] = useState<number | undefined>()
@@ -36,28 +38,30 @@ export default function Menu({ items }: MenuProps) {
 				<div className={s.wrapper}>
 					<TodaysInfo />
 					<ul className={s.nav} ref={menuBarRef}>
-						{items.map(({ label, slug, sub }, idx) => {
-							const isActive = idx === selected || path.startsWith(slug)
+						{items.map(({ id, slug, sub }, idx) => {
+							const isActive = id === selected || path.startsWith(slug)
 							return (
 								<li
-									key={idx}
-									id={`menu-${idx}`}
+									key={id}
+									id={`menu-${id}`}
 									className={cn(isActive && s.active)}
 									onClick={() => {
-										setSelected(idx === selected ? undefined : idx)
+										setSelected(id === selected ? undefined : id)
 										setPath(slug)
 									}}
 								>
-									{sub ? label : <Link href={slug}>{label}</Link>}
+									{sub ? t(id) : <Link href={slug}>{t(id)}</Link>}
 									{sub &&
 										<ul
-											className={cn(s.sub, selected === idx && s.selected)}
-											style={{ maxHeight: maxHeight && selected === idx ? `${maxHeight}px` : 0 }}
+											className={cn(s.sub, selected === id && s.selected)}
+											style={{ maxHeight: maxHeight && selected === id ? `${maxHeight}px` : 0 }}
 											onClick={(e) => e.stopPropagation()}
 										>
-											{sub.map(({ label, slug }, idx) =>
-												<li key={`sub-${idx}`}>
-													<Link className={cn(path === slug && s.active)} href={slug}>{label}</Link>
+											{sub.map(({ id, label, slug }, idx) =>
+												<li key={`${id}-${idx}`}>
+													<Link className={cn(path === slug && s.active)} href={slug}>
+														{label}
+													</Link>
 												</li>
 											)}
 										</ul>
@@ -65,7 +69,7 @@ export default function Menu({ items }: MenuProps) {
 								</li>
 							)
 						})}
-						<li>Sök</li>
+						<li>{t('search')}</li>
 					</ul>
 				</div>
 			</nav>

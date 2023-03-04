@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-type Props = {
+export type Props = {
   children: React.ReactNode
 }
 

@@ -3,6 +3,7 @@ import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { LocationDocument, AllLocationsDocument } from "/graphql";
 import { Article, Related, BackButton } from '/components';
+import { useTranslations } from "next-intl";
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]
@@ -14,6 +15,7 @@ export type Props = {
 }
 
 export default function Location({ location: { id, image, title, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
+  const t = useTranslations('BackButton')
 
   return (
     <>
@@ -28,7 +30,7 @@ export default function Location({ location: { id, image, title, intro, content,
         onClick={(imageId) => { }}
       />
       <Related header={'Relaterat'} items={[...exhibitions, ...programs]} />
-      <BackButton>Visa alla platser</BackButton>
+      <BackButton>{t('showAllLocations')}</BackButton>
     </>
   );
 }
