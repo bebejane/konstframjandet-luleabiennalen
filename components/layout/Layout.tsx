@@ -16,12 +16,13 @@ export type LayoutProps = {
 
 export default function Layout({ children, menu: menuFromProps, footer, title }: LayoutProps) {
 
+	const router = useRouter()
 	const [menu, setMenu] = useState(menuFromProps)
 	const [images, imageId, setImageId] = useStore((state) => [state.images, state.imageId, state.setImageId, state.showMenu])
 
 	useEffect(() => { // Refresh menu on load.
-		buildMenu().then(res => setMenu(res)).catch(err => console.error(err))
-	}, [])
+		buildMenu(router.locale).then(res => setMenu(res)).catch(err => console.error(err))
+	}, [router.locale])
 
 	if (!menuFromProps || !footer) return null
 

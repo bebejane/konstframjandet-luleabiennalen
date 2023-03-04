@@ -28,7 +28,8 @@ export default function News({ news: { id, image, title, intro, content, _seoMet
 
 export async function getStaticPaths() {
   const { news } = await apiQueryAll(AllNewsDocument)
-  const paths = news.map(({ slug }) => ({ params: { news: slug } }))
+  const paths = news.map(({ slug }) => ({ params: { news: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -39,7 +40,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.news;
-  const { news } = await apiQuery(NewsDocument, { variables: { slug }, preview: context.preview })
+  const { news } = await apiQuery(NewsDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!news)
     return { notFound: true }

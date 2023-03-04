@@ -5,7 +5,10 @@
   z-index: 100;
   margin: var(--outer-margin);
 
+
   a {
+    margin-right: 0.1em;
+
     &.selected {
       font-weight: bold;
     }

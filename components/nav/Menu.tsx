@@ -55,8 +55,8 @@ export default function Menu({ items }: MenuProps) {
 											style={{ maxHeight: maxHeight && selected === idx ? `${maxHeight}px` : 0 }}
 											onClick={(e) => e.stopPropagation()}
 										>
-											{sub.map(({ label, slug }) =>
-												<li>
+											{sub.map(({ label, slug }, idx) =>
+												<li key={`sub-${idx}`}>
 													<Link className={cn(path === slug && s.active)} href={slug}>{label}</Link>
 												</li>
 											)}

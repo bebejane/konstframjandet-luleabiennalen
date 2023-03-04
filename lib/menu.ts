@@ -21,7 +21,8 @@ const base: Menu = [
   { type: 'year', label: 'Arkiv', slug: '/[year]', sub: [] }
 ]
 
-export const buildMenu = async () => {
+export const buildMenu = async (locale: string) => {
+
   const year = process.env.NEXT_PUBLIC_CURRENT_YEAR;
   const {
     abouts,
@@ -32,7 +33,7 @@ export const buildMenu = async () => {
   } = await apiQuery([
     AllAboutsMenuDocument,
     AllYearsDocument,
-  ], { variables: [{ year }, { year }] });
+  ], { variables: [{ year, locale }, { year, locale }] });
 
   const menu = base.map(item => {
     let sub: MenuItem[];

@@ -35,7 +35,8 @@ export default function Location({ location: { id, image, title, intro, content,
 
 export async function getStaticPaths() {
   const { locations } = await apiQueryAll(AllLocationsDocument)
-  const paths = locations.map(({ slug }) => ({ params: { location: slug } }))
+  const paths = locations.map(({ slug }) => ({ params: { location: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -46,7 +47,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.location;
-  const { location } = await apiQuery(LocationDocument, { variables: { slug }, preview: context.preview })
+  const { location } = await apiQuery(LocationDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!location)
     return { notFound: true }

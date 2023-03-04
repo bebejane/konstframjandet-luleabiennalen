@@ -33,7 +33,8 @@ export default function Participant({ participant: { id, image, name, intro, con
 
 export async function getStaticPaths() {
   const { participants } = await apiQueryAll(AllParticipantsDocument)
-  const paths = participants.map(({ slug }) => ({ params: { participant: slug } }))
+  const paths = participants.map(({ slug }) => ({ params: { participant: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -44,7 +45,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.participant;
-  const { participant } = await apiQuery(ParticipantDocument, { variables: { slug }, preview: context.preview })
+  const { participant } = await apiQuery(ParticipantDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!participant)
     return { notFound: true }

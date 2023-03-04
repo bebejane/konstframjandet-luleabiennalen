@@ -51,7 +51,8 @@ export default function Exhibition({ exhibition: {
 
 export async function getStaticPaths() {
   const { exhibitions } = await apiQueryAll(AllExhibitionsDocument)
-  const paths = exhibitions.map(({ slug }) => ({ params: { exhibition: slug } }))
+  const paths = exhibitions.map(({ slug }) => ({ params: { exhibition: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -62,7 +63,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.exhibition;
-  const { exhibition } = await apiQuery(ExhibitionDocument, { variables: { slug }, preview: context.preview })
+  const { exhibition } = await apiQuery(ExhibitionDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!exhibition)
     return { notFound: true }

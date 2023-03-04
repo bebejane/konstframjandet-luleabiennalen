@@ -59,7 +59,8 @@ export default function Program({ program: {
 
 export async function getStaticPaths() {
   const { programs } = await apiQueryAll(AllProgramsDocument)
-  const paths = programs.map(({ slug }) => ({ params: { program: slug } }))
+  const paths = programs.map(({ slug }) => ({ params: { program: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -70,7 +71,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.program;
-  const { program } = await apiQuery(ProgramDocument, { variables: { slug }, preview: context.preview })
+  const { program } = await apiQuery(ProgramDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!program)
     return { notFound: true }

@@ -1,6 +1,7 @@
-query AllAbouts($first: IntType = 100, $skip: IntType = 0, $year: ItemId) {
+query AllAbouts($first: IntType = 100, $skip: IntType = 0, $year: ItemId, $locale: SiteLocale) {
 	abouts: allAbouts(
 		filter: { year: { eq: $year } }
+		locale: $locale
 		first: $first
 		skip: $skip
 		orderBy: [_createdAt_DESC]
@@ -12,14 +13,14 @@ query AllAbouts($first: IntType = 100, $skip: IntType = 0, $year: ItemId) {
 	}
 }
 
-query About($slug: String!) {
-	about(filter: { slug: { eq: $slug } }) {
+query About($slug: String!, $locale: SiteLocale) {
+	about(filter: { slug: { eq: $slug } }, locale: $locale) {
 		...AboutFragment
 	}
 }
 
-query AllAboutsMenu {
-	abouts: allAbouts(first: 100) {
+query AllAboutsMenu($locale: SiteLocale) {
+	abouts: allAbouts(locale: $locale, first: 100) {
 		title
 		slug
 	}

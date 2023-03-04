@@ -1,9 +1,9 @@
-query AllLocations($first: IntType = 100, $skip: IntType = 0) {
-	locations: allLocations(first: $first, skip: $skip, orderBy: [_createdAt_DESC]) {
+query AllLocations($first: IntType = 100, $skip: IntType = 0, $locale: SiteLocale) {
+	locations: allLocations(first: $first, skip: $skip, orderBy: [_createdAt_DESC], locale: $locale) {
 		...LocationFragment
 	}
 
-	pagination: _allLocationsMeta {
+	pagination: _allLocationsMeta(locale: $locale) {
 		count
 	}
 }
