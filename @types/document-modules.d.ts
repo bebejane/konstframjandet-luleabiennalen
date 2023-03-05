@@ -165,6 +165,15 @@ export const Location: DocumentNode;
 }
     
 
+declare module '*/menu.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Menu: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/news.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

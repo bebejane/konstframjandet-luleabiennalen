@@ -56,6 +56,7 @@ specifiers:
   react-datocms: ^4.0.8
   react-dom: ^18.2.0
   react-intersection-observer: ^9.4.0
+  react-simple-tree-menu: ^1.1.18
   react-youtube: ^10.1.0
   remark-breaks: ^3.0.2
   remark-gfm: ^3.0.1
@@ -108,6 +109,7 @@ dependencies:
   react-datocms: 4.0.8_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 9.4.2_react@18.2.0
+  react-simple-tree-menu: 1.1.18_biqbaboplfbrettd7655fr4n2y
   react-youtube: 10.1.0_react@18.2.0
   remark-breaks: 3.0.2
   remark-gfm: 3.0.1
@@ -6452,6 +6454,10 @@ packages:
       fastest-levenshtein: 1.0.16
     dev: true
 
+  /fast-memoize/2.5.2:
+    resolution: {integrity: sha512-Ue0LwpDYErFbmNnZSF0UH6eImUwDmogUO1jyE+JbN2gsQz/jICm1Ve7t9QT0rNSsfJt+Hs4/S3GnsDVjL4HVrw==}
+    dev: false
+
   /fast-querystring/1.1.1:
     resolution: {integrity: sha512-qR2r+e3HvhEFmpdHMv//U8FnFlnYjaC6QKDuaXALDkw2kvHO8WDjxH+f/rHGR4Me4pnk8p9JAkRNTjYHAKRn2Q==}
     dependencies:
@@ -7454,6 +7460,10 @@ packages:
     resolution: {integrity: sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==}
     engines: {node: '>=8'}
     hasBin: true
+
+  /is-empty/1.2.0:
+    resolution: {integrity: sha512-F2FnH/otLNJv0J6wc73A5Xo7oHLNnqplYqZhUu01tD54DIPvxIRSTSLkrUB/M0nHO4vo1O9PDfN4KoTxCzLh/w==}
+    dev: false
 
   /is-extglob/2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
@@ -10103,6 +10113,20 @@ packages:
       react: 18.2.0
       scheduler: 0.20.2
 
+  /react-simple-tree-menu/1.1.18_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-sW33U4TF6J3CuhDXs40r8KXCZsyd9JKLVHRwCx0hxaWaXFD0p7LeeK1gJB+GLNErSGs1F1847E/kkTIyKi9E0w==}
+    peerDependencies:
+      react: '>=16.6.3'
+      react-dom: '>=16.6.3'
+    dependencies:
+      classnames: 2.3.2
+      fast-memoize: 2.5.2
+      is-empty: 1.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tiny-debounce: 0.1.1
+    dev: false
+
   /react-string-replace/1.1.0:
     resolution: {integrity: sha512-N6RalSDFGbOHs0IJi1H611WbZsvk3ZT47Jl2JEXFbiS3kTwsdCYij70Keo/tWtLy7sfhDsYm7CwNM/WmjXIaMw==}
     engines: {node: '>=0.12.0'}
@@ -11057,6 +11081,10 @@ packages:
   /through/2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
     dev: true
+
+  /tiny-debounce/0.1.1:
+    resolution: {integrity: sha512-kr27PvRJg+hryym7fIbXFPRhOFzyyRFaxBRnQcLXCCkqjbZoKwdCba6DYfPwYdje2Be9hHhFUDJOSAsFwf1b+g==}
+    dev: false
 
   /title-case/3.0.3:
     resolution: {integrity: sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA==}

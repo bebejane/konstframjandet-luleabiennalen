@@ -2,9 +2,13 @@
   border-left: 1px solid var(--black);
   padding: var(--outer-margin);
   flex: 0 0 20%;
+  overflow: hidden;
 
   .wrapper {
     position: fixed;
+    overflow-y: scroll;
+    max-height: 100vh;
+
   }
 
   span {
@@ -19,38 +23,32 @@
       top: 0.2em;
       margin-left: -0.65em;
     }
+  }
 
-    >a {}
+  a {
+    font-weight: normal;
+
+    &.bold {
+      //font-weight: bold;
+    }
   }
 
   ul {
     list-style: none;
     font-weight: bold;
     margin-right: var(--outer-margin);
+    margin-left: 0.5rem;
 
-    >li {
+    &[data-level="1"]>li>a {
+      font-weight: bold;
+    }
+
+    li {
       cursor: pointer;
       padding-bottom: 0.5em;
 
-      >ul.sub {
-        display: block;
-        font-weight: normal;
-        margin-left: 0.5rem;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 0.35s ease-out, opacity 0.5s ease-in-out;
-
-        &.selected {
-          overflow: visible;
-          opacity: 1;
-        }
-
-        li {
-          &:first-of-type {
-            padding-top: 0.5em;
-          }
-        }
+      &:first-of-type {
+        padding-top: 0.5em;
       }
     }
   }

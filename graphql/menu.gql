@@ -1,0 +1,26 @@
+query Menu($locale: SiteLocale, $yearId: ItemId) {
+	abouts: allAbouts(
+		filter: { OR: [{ year: { eq: $yearId } }, { year: { exists: false } }] }
+		locale: $locale
+		first: 100
+		orderBy: [_createdAt_DESC]
+	) {
+		id
+		title
+		slug
+		year {
+			title
+		}
+	}
+	years: allYears(
+		filter: { id: { neq: $yearId } }
+		locale: $locale
+		first: 100
+		orderBy: title_DESC
+	) {
+		...YearFragment
+	}
+	year(filter: { id: { eq: $yearId } }, locale: $locale, orderBy: title_DESC) {
+		title
+	}
+}

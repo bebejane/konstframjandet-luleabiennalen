@@ -2,11 +2,10 @@ import s from './Menu.module.scss'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
-import type { Menu } from '/lib/menu'
-import { Hamburger } from '/components'
-import format from 'date-fns/format'
+import type { Menu, MenuItem } from '/lib/menu'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+import { Hamburger, Temperature } from '/components'
 
 export type MenuProps = { items: Menu }
 
@@ -36,39 +35,9 @@ export default function Menu({ items }: MenuProps) {
 			<Hamburger />
 			<nav id="menu" ref={menuRef} className={s.menu}>
 				<div className={s.wrapper}>
-					<TodaysInfo />
-					<ul className={s.nav} ref={menuBarRef}>
-						{items.map(({ id, slug, sub }, idx) => {
-							const isActive = id === selected || path.startsWith(slug)
-							return (
-								<li
-									key={id}
-									id={`menu-${id}`}
-									className={cn(isActive && s.active)}
-									onClick={() => {
-										setSelected(id === selected ? undefined : id)
-										setPath(slug)
-									}}
-								>
-									{sub ? t(id) : <Link href={slug}>{t(id)}</Link>}
-									{sub &&
-										<ul
-											className={cn(s.sub, selected === id && s.selected)}
-											style={{ maxHeight: maxHeight && selected === id ? `${maxHeight}px` : 0 }}
-											onClick={(e) => e.stopPropagation()}
-										>
-											{sub.map(({ id, label, slug }, idx) =>
-												<li key={`${id}-${idx}`}>
-													<Link className={cn(path === slug && s.active)} href={slug}>
-														{label}
-													</Link>
-												</li>
-											)}
-										</ul>
-									}
-								</li>
-							)
-						})}
+					<Temperature />
+					<ul data-level={1}>
+						{items.map(item => <MenuTree item={item} level={2} />)}
 						<li>{t('search')}</li>
 					</ul>
 				</div>
@@ -77,31 +46,28 @@ export default function Menu({ items }: MenuProps) {
 	)
 }
 
-export function TodaysInfo() {
-
-	const [temp, setTemp] = useState<number | undefined>()
-
-	const refreshWeather = async () => {
-
-		try {
-			const url = 'https://api.open-meteo.com/v1/forecast?latitude=65.58&longitude=22.15&hourly=temperature_2m&current_weather=true'
-			const res = await fetch(url)
-			const { current_weather: { temperature } } = await res.json()
-			setTemp(temperature)
-		} catch (err) {
-			console.log(err)
-		}
-	}
-
-	useEffect(() => {
-		refreshWeather()
-		const i = setInterval(refreshWeather, 60 * 1000)
-		return () => clearInterval(i)
-	}, [])
+export function MenuTree({ item, level }: { item: MenuItem, level?: number }) {
+	const [isVisible, setIsVisible] = useState(false);
+	const expand = () => setIsVisible(!isVisible)
 
 	return (
-		<span style={{ textTransform: 'capitalize' }}>
-			{format(new Date(), 'dd MMM')}, {temp > 0 ? '+' : ''}{temp}°C
-		</span>
-	)
+		<>
+			<li onClick={expand}>
+				{item.slug && !item.sub ?
+					<Link href={item.slug}>
+						{item.label}
+					</Link>
+					:
+					<>{item.label}</>
+				}
+				{item?.sub && isVisible &&
+					<ul data-level={level} onClick={e => e.stopPropagation()}>
+						{item.sub.map(item =>
+							<MenuTree item={item} level={++level} />
+						)}
+					</ul>
+				}
+			</li>
+		</>
+	);
 }
