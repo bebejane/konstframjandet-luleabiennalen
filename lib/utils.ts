@@ -1,3 +1,4 @@
+import years from './years.json'
 import { TypedDocumentNode } from "@apollo/client/core";
 import { apiQuery } from "dato-nextjs-utils/api";
 import type { ApiQueryOptions } from "dato-nextjs-utils/api";
@@ -185,4 +186,21 @@ export const randomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string) {
+
+  const res: { participants: ParticipantRecord[] } = await apiQueryAll(doc)
+  const data = res[segment];
+  const paths = []
+
+  years.forEach(({ title }) => {
+    const items = data.filter(({ year }) => year?.title === title || !year)
+    paths.push.apply(paths, items.map(i => ({ params: { year: title, [segment]: i.slug } })))
+  })
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
 }
