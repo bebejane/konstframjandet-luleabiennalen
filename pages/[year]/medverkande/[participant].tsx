@@ -4,5 +4,5 @@ import { AllParticipantsDocument } from "/graphql";
 export { default, getStaticProps } from '/pages/medverkande/[participant]'
 
 export async function getStaticPaths() {
-  return getStaticYearPaths(AllParticipantsDocument, 'participants')
+  return getStaticYearPaths(AllParticipantsDocument, 'participant')
 }

@@ -3,5 +3,5 @@ import { AllLocationsDocument } from "/graphql";
 export { default, getStaticProps } from '/pages/platser/[location]'
 
 export async function getStaticPaths() {
-  return getStaticYearPaths(AllLocationsDocument, 'locations')
+  return getStaticYearPaths(AllLocationsDocument, 'location')
 }

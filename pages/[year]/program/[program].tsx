@@ -3,5 +3,5 @@ import { AllProgramsDocument } from "/graphql";
 export { default, getStaticProps } from '/pages/program/[program]'
 
 export async function getStaticPaths() {
-  return getStaticYearPaths(AllProgramsDocument, 'programs')
+  return getStaticYearPaths(AllProgramsDocument, 'program')
 }

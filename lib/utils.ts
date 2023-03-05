@@ -173,8 +173,10 @@ export const apiQueryAll = async (doc: TypedDocumentNode, opt: ApiQueryOptions =
       if (error)
         throw new Error(error)
 
-      for (let x = 0; x < data.length; x++)
+      for (let x = 0; x < data.length; x++) {
+        //@ts-ignore
         mergeProps(data[x].value);
+      }
       await sleep(100)
       reqs = []
     }
@@ -191,7 +193,7 @@ export const randomInt = (min, max) => {
 export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string) {
 
   const res: { participants: ParticipantRecord[] } = await apiQueryAll(doc)
-  const data = res[segment];
+  const data = res[Object.keys(res)[0]];
   const paths = []
 
   years.forEach(({ title }) => {
