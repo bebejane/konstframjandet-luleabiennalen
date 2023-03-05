@@ -1,5 +1,10 @@
-query AllPrograms($locale: SiteLocale) {
-	programs: allPrograms(locale: $locale, orderBy: startDate_DESC, first: 100) {
+query AllPrograms($locale: SiteLocale, $yearId: ItemId) {
+	programs: allPrograms(
+		filter: { year: { eq: $yearId } }
+		locale: $locale
+		orderBy: startDate_DESC
+		first: 100
+	) {
 		...ProgramFragment
 	}
 	pagination: _allProgramsMeta(locale: $locale) {

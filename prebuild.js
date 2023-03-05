@@ -8,7 +8,7 @@ const { buildClient } = require("@datocms/cma-client-node");
 		filter: { type: "year" },
 		order_by: "title_DESC",
 	});
-
+	years.forEach((y) => delete y.meta);
 	if (!years.length) throw new Error("No years found!");
 
 	fs.writeFileSync("./lib/years.json", JSON.stringify(years, null, 2));

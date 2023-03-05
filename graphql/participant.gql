@@ -1,5 +1,10 @@
-query AllParticipants($locale: SiteLocale) {
-	participants: allParticipants(locale: $locale, first: 100, orderBy: name_ASC) {
+query AllParticipants($locale: SiteLocale, $yearId: ItemId) {
+	participants: allParticipants(
+		filter: { year: { eq: $yearId } }
+		locale: $locale
+		first: 100
+		orderBy: name_ASC
+	) {
 		...ParticipantFragment
 	}
 	pagination: _allParticipantsMeta(locale: $locale) {

@@ -1,4 +1,4 @@
-query AllYears($year: String, $locale: SiteLocale) {
+query AllYears($locale: SiteLocale, $year: String) {
 	years: allYears(
 		filter: { title: { neq: $year } }
 		locale: $locale

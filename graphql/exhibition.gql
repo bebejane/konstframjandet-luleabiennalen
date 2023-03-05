@@ -1,5 +1,5 @@
-query AllExhibitions($locale: SiteLocale) {
-	exhibitions: allExhibitions(locale: $locale, first: 100) {
+query AllExhibitions($locale: SiteLocale, $yearId: ItemId) {
+	exhibitions: allExhibitions(filter: { year: { eq: $yearId } }, locale: $locale, first: 100) {
 		...ExhibitionFragment
 	}
 	pagination: _allExhibitionsMeta(locale: $locale) {
