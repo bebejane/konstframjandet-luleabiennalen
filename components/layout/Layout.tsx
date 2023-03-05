@@ -1,5 +1,4 @@
 import s from './Layout.module.scss'
-import cn from 'classnames'
 import React, { useEffect, useState } from 'react'
 import { Content, Footer, Logo, Grid, Menu, Language, FullscreenGallery } from '/components'
 import type { MenuItem } from '/lib/menu'

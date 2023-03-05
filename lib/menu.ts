@@ -5,7 +5,7 @@ import years from '/lib/years.json'
 export type Menu = MenuItem[]
 
 export type MenuItem = {
-  id: string | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive'
+  id: 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive'
   label: string
   slug?: string
   year?: string
@@ -31,6 +31,8 @@ export const buildMenu = async (locale: string) => {
   const archive: MenuQueryResponse[] = await Promise.all(years.filter(({ id }) => id !== year.id).map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale } })))
   const menu = buildYearMenu(res);
   const archiveIndex = menu.findIndex(el => el.id === 'archive')
+
+  //@ts-ignore
   menu[archiveIndex].sub = archive.map(el => {
     return {
       id: `archive-${el.year.title}`,

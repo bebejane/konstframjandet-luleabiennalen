@@ -20,8 +20,6 @@ export default function Program({ programs, programCategories }: Props) {
   const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => {
     return categories.length === 0 || categories.find((cId) => cId === id)
   }
-  console.log(categories)
-
   return (
     <>
       <FilterBar

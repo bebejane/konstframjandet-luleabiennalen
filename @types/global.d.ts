@@ -1,3 +1,8 @@
+type PageProps = {
+  year: YearRecord
+  title?: string
+}
+
 type ThumbnailImage = {
   thumb: FileField
 }

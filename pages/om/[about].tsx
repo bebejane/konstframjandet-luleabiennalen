@@ -40,7 +40,7 @@ export async function getStaticPaths() {
 //AboutItem.page = { crumbs: [{ slug: 'nyheter', title: 'Nyheter' }], regional: true } as PageProps
 
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
-  console.log(context.locale)
+
   const slug = context.params.about;
   const { about } = await apiQuery(AboutDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
   if (!about)
