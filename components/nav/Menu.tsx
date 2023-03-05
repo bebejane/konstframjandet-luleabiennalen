@@ -13,8 +13,7 @@ export default function Menu({ items }: MenuProps) {
 
 	const t = useTranslations('Menu')
 	const menuRef = useRef<HTMLDivElement | null>(null);
-	const menuBarRef = useRef<HTMLUListElement | null>(null);
-	const [selected, setSelected] = useState<string | undefined>()
+	const [selected, setSelected] = useState<MenuItem | undefined>()
 	const router = useRouter()
 	const [path, setPath] = useState(router.asPath)
 	const [maxHeight, setMaxHeight] = useState<number | undefined>()
@@ -27,7 +26,7 @@ export default function Menu({ items }: MenuProps) {
 
 	useEffect(() => {
 		const el = document.getElementById(`menu-${selected}`)
-		setMaxHeight(el ? el.scrollHeight : undefined)
+		//setMaxHeight(el ? el.scrollHeight : undefined)
 	}, [selected])
 
 	return (
@@ -37,8 +36,16 @@ export default function Menu({ items }: MenuProps) {
 				<div className={s.wrapper}>
 					<Temperature />
 					<ul data-level={1}>
-						{items.map(item => <MenuTree item={item} level={2} />)}
-						<li>{t('search')}</li>
+						{items.map(item =>
+							<MenuTree
+								item={item}
+								level={2}
+								selected={selected}
+								setSelected={setSelected}
+								path={path}
+							/>
+						)}
+						<li><Search /></li>
 					</ul>
 				</div>
 			</nav>
@@ -46,14 +53,29 @@ export default function Menu({ items }: MenuProps) {
 	)
 }
 
-export function MenuTree({ item, level }: { item: MenuItem, level?: number }) {
+export type MenuTreeProps = {
+	item: MenuItem
+	level?: number,
+	selected: MenuItem | undefined
+	setSelected: (item: MenuItem) => void
+	path: string
+}
+
+export function MenuTree({ item, level, selected, setSelected, path }: MenuTreeProps) {
 	const [isVisible, setIsVisible] = useState(false);
-	const expand = () => setIsVisible(!isVisible)
+
+	const expand = () => {
+		setIsVisible(!isVisible)
+		setSelected(item)
+	}
+
+	const isSelected = path === item.slug
+	const isLink = item.slug && !item.sub
 
 	return (
 		<>
-			<li onClick={expand}>
-				{item.slug && !item.sub ?
+			<li onClick={expand} className={cn(isSelected && s.active)}>
+				{isLink ?
 					<Link href={item.slug}>
 						{item.label}
 					</Link>
@@ -63,11 +85,24 @@ export function MenuTree({ item, level }: { item: MenuItem, level?: number }) {
 				{item?.sub && isVisible &&
 					<ul data-level={level} onClick={e => e.stopPropagation()}>
 						{item.sub.map(item =>
-							<MenuTree item={item} level={++level} />
+							<MenuTree
+								item={item}
+								level={++level}
+								selected={selected}
+								setSelected={setSelected}
+								path={path}
+							/>
 						)}
 					</ul>
 				}
 			</li>
 		</>
 	);
+}
+
+
+const Search = () => {
+	const t = useTranslations('Menu')
+	return <input className={s.search} placeholder={t('search')} />
+
 }

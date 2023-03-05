@@ -1,8 +1,9 @@
 import { apiQuery } from 'dato-nextjs-utils/api';
-import { AllAboutsMenuDocument, AllYearsDocument, MenuDocument } from "/graphql";
+import { MenuDocument } from "/graphql";
 import years from '/lib/years.json'
 
 export type Menu = MenuItem[]
+export type MenuQueryResponse = { abouts: AboutRecord[], years: YearRecord[], year: YearRecord }
 
 export type MenuItem = {
   id: 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive'
@@ -10,8 +11,8 @@ export type MenuItem = {
   slug?: string
   year?: string
   sub?: MenuItem[]
+  global?: boolean
 }
-export type MenuQueryResponse = { abouts: AboutRecord[], years: YearRecord[], year: YearRecord }
 
 const base: Menu = [
   { id: 'about', label: 'Om', slug: '/om', sub: [] },
@@ -19,8 +20,8 @@ const base: Menu = [
   { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar' },
   { id: 'participants', label: 'Medverkande', slug: '/medverkande' },
   { id: 'locations', label: 'Platser', slug: '/platser' },
-  { id: 'news', label: 'Nyheter', slug: '/nyheter' },
-  { id: 'contact', label: 'Kontakt', slug: '/kontakt' },
+  { id: 'news', label: 'Nyheter', slug: '/nyheter', global: true },
+  { id: 'contact', label: 'Kontakt', slug: '/kontakt', global: true },
   { id: 'archive', label: 'Arkiv', sub: [] }
 ]
 
@@ -36,9 +37,9 @@ export const buildMenu = async (locale: string) => {
   menu[archiveIndex].sub = archive.map(el => {
     return {
       id: `archive-${el.year.title}`,
-      label: el.year.title,
+      label: `LB°${el.year.title.substring(2)}`,
       slug: `/${el.year.title}`,
-      sub: buildYearMenu(el, true).map(e => ({
+      sub: buildYearMenu(el, true).filter(e => !e.global).map(e => ({
         ...e,
         slug: `/${el.year.title}${e.slug}`,
         sub: e.sub?.map(e2 => ({ ...e2, slug: `/${el.year.title}${e2.slug}` })) || null

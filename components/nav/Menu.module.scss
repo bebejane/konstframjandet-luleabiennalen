@@ -16,15 +16,6 @@
     padding-bottom: var(--header-height);
   }
 
-  .active {
-    &::before {
-      content: "°  ";
-      position: relative;
-      top: 0.2em;
-      margin-left: -0.65em;
-    }
-  }
-
   a {
     font-weight: normal;
 
@@ -47,9 +38,37 @@
       cursor: pointer;
       padding-bottom: 0.5em;
 
+      &.active {
+        &::before {
+          content: "°  ";
+          position: relative;
+          top: 0.2em;
+          margin-left: -0.65em;
+        }
+      }
+
       &:first-of-type {
         padding-top: 0.5em;
       }
+    }
+  }
+}
+
+.search {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+
+  &::placeholder {
+    color: var(--black);
+    font-weight: bold;
+  }
+
+  &:focus {
+    &::placeholder {
+      color: lightgray
     }
   }
 }
