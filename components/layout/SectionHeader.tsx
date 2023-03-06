@@ -18,7 +18,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const { year, year: { color: { red, green, blue } } } = usePage()
   const { asPath } = useRouter()
   const color = `rgb(${red},${green},${blue})`
-  const menuItem = menu.find(el => el.slug === asPath || asPath.startsWith(el.slug))
+  const menuItem = menu.find(el => el.id !== 'home' && (el.slug === asPath || asPath.startsWith(el.slug)))
   const haveOverview = menuItem?.slug && !menuItem.sub
   const url = menuItem?.slug || menuItem?.sub?.find(({ slug }) => slug === asPath)?.slug || '/'
 
