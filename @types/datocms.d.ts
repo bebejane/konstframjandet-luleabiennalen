@@ -3536,6 +3536,32 @@ type SlugFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+/** Block of type Slumpade medverkande (starrt_random_participant) */
+type StarrtRandomParticipantRecord = RecordInterface & {
+  __typename?: 'StarrtRandomParticipantRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  amount?: Maybe<Scalars['IntType']>;
+  id: Scalars['ItemId'];
+};
+
+
+/** Block of type Slumpade medverkande (starrt_random_participant) */
+type StarrtRandomParticipantRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type StartModelContentField = StarrtRandomParticipantRecord | StartNewsRecord | StartProgramRecord | StartTextRecord;
+
 /** Block of type Senaste nyheter (start_news) */
 type StartNewsRecord = RecordInterface & {
   __typename?: 'StartNewsRecord';
@@ -3598,6 +3624,7 @@ type StartRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  content: Array<StartModelContentField>;
   id: Scalars['ItemId'];
 };
 
@@ -4132,6 +4159,7 @@ type YearModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   backgroundColor?: InputMaybe<ColorFilter>;
+  color?: InputMaybe<ColorFilter>;
   id?: InputMaybe<ItemIdFilter>;
   participantName?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
@@ -4193,6 +4221,7 @@ type YearRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
   backgroundColor?: Maybe<ColorField>;
+  color?: Maybe<ColorField>;
   id: Scalars['ItemId'];
   participantName?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;

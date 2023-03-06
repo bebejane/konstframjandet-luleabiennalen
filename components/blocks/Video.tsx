@@ -1,22 +1,23 @@
 import s from "./Video.module.scss"
 import { useEffect, useRef, useState } from "react";
-import { useWindowSize } from "rooks"
+import { useWindowSize } from 'usehooks-ts'
 import Youtube from 'react-youtube'
 import Vimeo from '@u-wave/react-vimeo'
 import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
+
 export default function Video({ data, editable }) {
 
 	const ref = useRef()
-	const [height, setHeight] = useState(360);
-	const { innerWidth, innerHeight } = useWindowSize()
+	const [videoHeight, setVideoHeight] = useState(360);
+	const { width, height } = useWindowSize()
 
-	useEffect(() => setHeight((ref.current?.clientWidth / 16) * 9), [innerWidth, innerHeight, data, ref]) // Set to 16:9
+	useEffect(() => setVideoHeight((ref.current?.clientWidth / 16) * 9), [width, height, data, ref]) // Set to 16:9
 
 	if (!data || !data.video) return null
 
 	const { provider, providerUid } = data.video
 	const { title } = data;
-	const style = { height: `${height}px`, width: '100%' }
+	const style = { height: `${videoHeight}px`, width: '100%' }
 
 	return (
 		<section className={s.video} data-editable={editable} ref={ref} >

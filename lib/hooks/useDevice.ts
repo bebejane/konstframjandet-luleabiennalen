@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useMediaQuery } from 'usehooks-ts'
-import { useWindowSize } from 'rooks'
+import { useMediaQuery, useWindowSize } from 'usehooks-ts'
 import { breakpoints } from '/lib/utils'
 
 export default function useDevice() {
@@ -12,14 +11,14 @@ export default function useDevice() {
   const [isMobile, setIsMobile] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
   const [isTablet, setIsTablet] = useState(false)
-  const { innerHeight, innerWidth } = useWindowSize()
+  const { height, width } = useWindowSize()
 
 
   useEffect(() => {
     setIsMobile(mobile)
     setIsDesktop(!mobile && !tablet ? true : false)
     setIsTablet(desktop && !mobile ? true : false)
-  }, [mobile, desktop, tablet, innerHeight, innerWidth])
+  }, [mobile, desktop, tablet, height, width])
 
   return { isMobile, isDesktop, isTablet }
 }

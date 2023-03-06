@@ -60,7 +60,7 @@ specifiers:
   react-youtube: ^10.1.0
   remark-breaks: ^3.0.2
   remark-gfm: ^3.0.1
-  rooks: ^7.4.1
+  rooks: ^7.4.4
   sass: ^1.56.0
   swiper: ^8.4.4
   ts-node: ^10.9.1
@@ -113,7 +113,7 @@ dependencies:
   react-youtube: 10.1.0_react@18.2.0
   remark-breaks: 3.0.2
   remark-gfm: 3.0.1
-  rooks: 7.4.3_biqbaboplfbrettd7655fr4n2y
+  rooks: 7.4.4_biqbaboplfbrettd7655fr4n2y
   sass: 1.58.1
   swiper: 8.4.7
   usehooks-ts: 2.9.1_biqbaboplfbrettd7655fr4n2y
@@ -10440,8 +10440,8 @@ packages:
       sprintf-js: 1.1.2
     dev: true
 
-  /rooks/7.4.3_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-SdXdPbw8bSqpjke4mkqLocn7e46jUNRjQs6bOKUHlZmf7b5zoMOn7Xkr+FjT5ZH/0px4Zj2TJRRPzoPJTUt2lQ==}
+  /rooks/7.4.4_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-duwW4WIM1hz+OZeGuirqKai/2E5xLNhmU6j6xj+1/bCeauJL4j0jIoerkeCmWcekFNpX3uWYz/QFHtwuP5AfZQ==}
     engines: {node: '>=v10.24.1'}
     peerDependencies:
       react: ^16.8.0  || ^17.0.0 || ^18.0.0
