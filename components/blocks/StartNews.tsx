@@ -4,14 +4,16 @@ import Link from 'next/link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type Props = {
-  data: any
+  data: StartNewsRecord & {
+    news: NewsRecord[]
+  }
 }
 
-export default function StartNews({ data: { } }: Props) {
+export default function StartNews({ data: { news } }: Props) {
 
   return (
     <div className={s.container}>
-
+      news
     </div>
   )
 }

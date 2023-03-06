@@ -3651,7 +3651,7 @@ type StartRandomParticipantRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  antal?: Maybe<Scalars['String']>;
+  amount?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
 };
 

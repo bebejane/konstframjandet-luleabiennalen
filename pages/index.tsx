@@ -8,12 +8,9 @@ import { Block } from "/components";
 
 export type Props = {
 	start: StartRecord
-	news: NewsRecord[]
-	participants: ParticipantRecord[]
-	programs: ProgramRecord[]
 }
 
-export default function Home({ start, news, participants, programs }: Props) {
+export default function Home({ start }: Props) {
 
 	return (
 		<div className={s.container}>
@@ -31,8 +28,8 @@ export default function Home({ start, news, participants, programs }: Props) {
 
 export const getStaticProps = withGlobalProps({ queries: [StartDocument] }, async ({ props, revalidate, context }: any) => {
 
-	const { start }: { start: StartRecord } = props;
-	const date = '2022-01-01'//format(new Date(), 'yyyy-MM-dd')
+	let { start }: { start: StartRecord } = props;
+	const date = '2022-01-01' //format(new Date(), 'yyyy-MM-dd')
 	const participantCount = parseInt((start.content.find(el => el.__typename === 'StartRandomParticipantRecord') as StartRandomParticipantRecord).amount)
 	const variables = {
 		newsItems: parseInt((start.content.find(el => el.__typename === 'StartNewsRecord') as StartNewsRecord).amount),
@@ -48,13 +45,18 @@ export const getStaticProps = withGlobalProps({ queries: [StartDocument] }, asyn
 		participants: ParticipantRecord[]
 	} = await apiQuery(StartDataDocument, { variables })
 
-	//console.log(variables)
+
 	return {
 		props: {
 			...props,
-			news,
-			programs,
-			participants: participants.sort(() => Math.random() > 0.5 ? 1 : -1).slice(participantCount)
+			start: {
+				...start, content: start.content.map(block => ({
+					...block,
+					news: block.__typename === 'StartNewsRecord' ? news : null,
+					programs: block.__typename === 'StartProgramRecord' ? programs : null,
+					participants: block.__typename === 'StartRandomParticipantRecord' ? participants.sort(() => Math.random() > 0.5 ? 1 : -1).slice(participantCount) : null,
+				}))
+			}
 		},
 		revalidate
 	}

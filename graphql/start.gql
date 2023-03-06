@@ -45,7 +45,7 @@ query StartData(
 		...NewsFragment
 	}
 	programs: allPrograms(
-		filter: { startDate: { gte: $date } }
+		filter: { startDate: { gte: $date }, year: { eq: $yearId } }
 		locale: $locale
 		first: $programItems
 		orderBy: startDate_DESC

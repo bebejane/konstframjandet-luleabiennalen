@@ -4,14 +4,14 @@ import Link from 'next/link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type Props = {
-  data: any
+  data: StartGalleryRecord
 }
 
-export default function StartGallery({ data: { } }: Props) {
+export default function StartGallery({ data: { images } }: Props) {
 
   return (
     <div className={s.container}>
-
+      gallery
     </div>
   )
 }

@@ -4,14 +4,16 @@ import Link from 'next/link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type Props = {
-  data: any
+  data: StartRandomParticipantRecord & {
+    participans: ParticipantRecord[]
+  }
 }
 
-export default function StartRandomParticipant({ data: { } }: Props) {
+export default function StartRandomParticipant({ data: { participans } }: Props) {
 
   return (
     <div className={s.container}>
-
+      participants
     </div>
   )
 }
