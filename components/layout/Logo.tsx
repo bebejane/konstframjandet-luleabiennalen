@@ -11,8 +11,7 @@ export type Props = {
 
 export default function Logo({ }: Props) {
 
-  const { year } = usePage()
-  const { red, green, blue } = year.backgroundColor;
+  const { year: { color: { red, green, blue } } } = usePage()
   const color = `rgb(${red},${green},${blue})`
 
   return (

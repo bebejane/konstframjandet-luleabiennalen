@@ -15,9 +15,8 @@ export type SectionHeaderProps = {
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
 
   const t = useTranslations('Menu')
-  const { year } = usePage()
+  const { year, year: { color: { red, green, blue } } } = usePage()
   const { asPath } = useRouter()
-  const { red, green, blue } = year.backgroundColor;
   const color = `rgb(${red},${green},${blue})`
   const menuItem = menu.find(el => el.slug === asPath || asPath.startsWith(el.slug))
   const haveOverview = menuItem?.slug && !menuItem.sub
