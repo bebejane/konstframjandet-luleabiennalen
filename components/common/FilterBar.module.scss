@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   text-align: center;
-  margin-top: -0.5rem;
+  margin-top: -0.5 rem;
   margin-bottom: var(--space);
 
   @include mq($until: desktop) {
