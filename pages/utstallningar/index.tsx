@@ -3,6 +3,7 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { AllExhibitionsDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail } from "/components";
 import { formatDate } from "/lib/utils";
+import { useRouter } from "next/router";
 
 export type Props = {
   exhibitions: (ExhibitionRecord & ThumbnailImage)[]
@@ -10,9 +11,9 @@ export type Props = {
 
 export default function Exhibition({ exhibitions }: Props) {
 
+  const { asPath } = useRouter()
   return (
-
-    <CardContainer>
+    <CardContainer key={asPath}>
       {exhibitions.map(({ id, image, title, startDate, endDate, intro, slug }) =>
         <Card key={id}>
           <Thumbnail

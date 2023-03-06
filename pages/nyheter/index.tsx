@@ -40,9 +40,7 @@ export default function News({ news }: Props) {
 export const getStaticProps = withGlobalProps({ queries: [AllNewsDocument] }, async ({ props, revalidate }: any) => {
 
   return {
-    props: {
-      ...props
-    },
+    props,
     revalidate
-  };
+  }
 });

@@ -19,13 +19,14 @@ export default function withGlobalProps(opt: any, callback: Function): GetStatic
 
   return async (context: GetStaticPropsContext) => {
 
-    const variables = queries.map(el => ({ locale: context.locale }))
+    const year = years.find(({ title }) => context.params?.year ? title === context.params?.year : title === process.env.NEXT_PUBLIC_CURRENT_YEAR)
+    const variables = queries.map(el => ({ locale: context.locale, yearId: year.id }))
     const props = await apiQuery(queries, { preview: context.preview, variables });
 
     props.menu = await buildMenu(context.locale)
     props.locale = context.locale
     props.messages = (await import(`./messages/${context.locale}.json`)).default
-    props.year = years.find(({ title }) => context.params?.year ? title === context.params?.year : title === process.env.NEXT_PUBLIC_CURRENT_YEAR) || null
+    props.year = year;
 
     if (callback)
       return await callback({ context, props: { ...props }, revalidate });

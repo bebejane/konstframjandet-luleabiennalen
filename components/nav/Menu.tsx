@@ -27,8 +27,10 @@ export default function Menu({ items }: MenuProps) {
 	}, [])
 
 	useEffect(() => {
-		const el = document.getElementById(`menu-${selected}`)
+		//const el = document.getElementById(`menu-${selected}`)
 		//setMaxHeight(el ? el.scrollHeight : undefined)
+		//console.log(selected)
+		//console.log(items)
 	}, [selected])
 
 	return (
@@ -49,7 +51,9 @@ export default function Menu({ items }: MenuProps) {
 								locale={router.locale}
 							/>
 						)}
-						<li><Search /></li>
+						<li>
+							<Search />
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -69,10 +73,14 @@ export type MenuTreeProps = {
 export function MenuTree({ item, level, selected, setSelected, path, locale }: MenuTreeProps) {
 	const [isVisible, setIsVisible] = useState(false);
 	const t = useTranslations('Menu')
+
 	const expand = () => {
 		setIsVisible(!isVisible)
 		setSelected(item)
 	}
+	useEffect(() => {
+		//if (selected.id !== item.id) setIsVisible(false)
+	}, [selected])
 
 	const isSelected = path === item.slug || path === `/${locale}${item.slug}`
 	const isLink = item.slug && !item.sub
