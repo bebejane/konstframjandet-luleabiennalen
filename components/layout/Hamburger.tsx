@@ -10,9 +10,9 @@ export default function Hamburger() {
   return (
     <div className={s.hamburger} onClick={() => setShowMenu(!showMenu)}>
       <div className={s.wrap}>
-        <div className={cn(!showMenu && s.close)}></div>
-        <div className={cn(!showMenu && s.close)}></div>
-        <div className={cn(!showMenu && s.close)}></div>
+        <div className={cn(showMenu ? s.open : s.close)}></div>
+        <div className={cn(showMenu ? s.open : s.close)}></div>
+        <div className={cn(showMenu ? s.open : s.close)}></div>
       </div>
     </div>
   )

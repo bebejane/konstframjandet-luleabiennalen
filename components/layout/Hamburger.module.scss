@@ -19,25 +19,28 @@
     width: 100%;
     height: 100%;
 
-    &.close {
-      animation: close 1s linear;
-    }
+
 
     >div {
       position: relative;
       width: 100%;
       height: var(--line-height);
       background-color: var(--black);
-      animation-duration: 1s;
+      animation-duration: .3s;
       animation-timing-function: ease-in-out;
       animation-direction: normal;
+      animation-fill-mode: forwards;
     }
 
     div:nth-child(1) {
       transform: translateY(0%);
 
       &.close {
-        animation-name: toggle1;
+        animation-name: close1;
+      }
+
+      &.open {
+        animation-name: open1;
       }
     }
 
@@ -46,7 +49,11 @@
       transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
 
       &.close {
-        animation-name: toggle2;
+        animation-name: close2;
+      }
+
+      &.open {
+        animation-name: open2;
       }
     }
 
@@ -54,26 +61,48 @@
       transform: translateY(calc(var(--height) * 1 - calc(var(--line-height) / 2)));
 
       &.close {
-        animation-name: toggle3;
+        animation-name: close3;
+      }
+
+      &.open {
+        animation-name: open3;
       }
     }
   }
 }
 
-@keyframes toggle1 {
+@keyframes open1 {
   to {
     transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
   }
 }
 
-@keyframes toggle2 {
+@keyframes open2 {
   to {
     transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
   }
 }
 
-@keyframes toggle3 {
+@keyframes open3 {
   to {
     transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
+  }
+}
+
+@keyframes close1 {
+  to {
+    transform: translateY(calc(var(--height) * 0 - calc(var(--line-height) / 2)));
+  }
+}
+
+@keyframes close2 {
+  to {
+    transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
+  }
+}
+
+@keyframes close3 {
+  to {
+    transform: translateY(calc(var(--height) * 1.0 - calc(var(--line-height) / 2)));
   }
 }
