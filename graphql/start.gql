@@ -6,6 +6,7 @@ query Start {
 			... on StartTextRecord {
 				__typename
 				id
+				headline
 				linkText
 				text
 				url

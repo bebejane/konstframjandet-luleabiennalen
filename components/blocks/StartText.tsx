@@ -4,20 +4,25 @@ import Link from 'next/link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type Props = {
-  data: any
+  data: StartTextRecord
 }
 
-export default function StartText({ data: { text, headline } }: Props) {
+export default function StartText({ data: { text, headline, linkText, url } }: Props) {
 
   return (
     <div className={s.container}>
       {headline &&
-        <h2>{headline}</h2>
+        <header>
+          <h2>{headline}</h2>
+        </header>
       }
+
+      <Markdown className={s.text}>
+        {text}
+      </Markdown>
+
       <h3>
-        <Markdown className={s.text}>
-          {text}
-        </Markdown>
+        <Link href={url}>{linkText}</Link>
       </h3>
     </div>
   )

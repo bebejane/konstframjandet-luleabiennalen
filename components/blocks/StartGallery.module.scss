@@ -1,1 +1,101 @@
-.container {}
+.container {
+  position: relative;
+
+  h2 {
+    position: absolute;
+    top: var(--space);
+    left: 0;
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+  }
+
+  h3 {
+    margin-top: var(--space);
+  }
+
+  .swiper {
+    position: relative;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    user-select: none;
+    cursor: pointer;
+
+    >div {
+
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+
+      .slide {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        max-height: 80vh;
+        min-height: 80vh;
+        padding-right: var(--gutter);
+
+        >figure {
+
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          cursor: pointer;
+
+          .image,
+          .picture {
+            max-height: 80vh;
+            min-height: 80vh;
+          }
+
+          figcaption {
+            flex: 0 0;
+            padding: 0;
+            margin-top: 1em;
+
+            >p {
+              text-align: left;
+              margin: 0;
+              padding: 0;
+            }
+          }
+
+
+        }
+      }
+    }
+
+  }
+
+  .nav {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    bottom: var(--space);
+    left: 0;
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+    list-style: none;
+
+    li {
+      border: 2px solid var(--black);
+      border-radius: 50%;
+      width: 1rem;
+      height: 1rem;
+      margin: 0.1rem;
+      cursor: pointer;
+
+      &.selected {
+
+        border-width: 4px
+      }
+    }
+  }
+
+}

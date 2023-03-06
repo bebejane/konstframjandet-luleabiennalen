@@ -17,7 +17,9 @@ export default function StartRandomParticipant({ data: { participants } }: Props
     <div className={s.container}>
       <header>
         <h2>{t('Menu.participants')}</h2>
-        <Link href={'/medverkande'}>{t('general.showAll')}</Link>
+        <Link href={'/medverkande'} className="small">
+          {t('general.showAll')}
+        </Link>
       </header>
       <CardContainer>
         {participants.map(({ id, image, intro, name, slug, }) =>

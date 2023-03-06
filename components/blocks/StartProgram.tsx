@@ -17,7 +17,9 @@ export default function StartProgram({ data: { programs } }: Props) {
     <div className={s.container}>
       <header>
         <h2>{t('Menu.program')}</h2>
-        <Link href={'/program'}>{t('general.showAll')}</Link>
+        <Link href={'/program'} className="small">
+          {t('general.showAll')}
+        </Link>
       </header>
       <CardContainer>
         {programs.map(({ id, image, intro, title, slug, }) =>

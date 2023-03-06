@@ -15,11 +15,12 @@ export default function Home({ start }: Props) {
 	return (
 		<div className={s.container}>
 			{start.content.map((block, idx) =>
-				<Block
-					key={idx}
-					data={block}
-					record={start}
-				/>
+				<section key={idx}>
+					<Block
+						data={block}
+						record={start}
+					/>
+				</section>
 			)}
 		</div>
 	);

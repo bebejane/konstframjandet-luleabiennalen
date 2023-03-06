@@ -3699,6 +3699,7 @@ type StartTextRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  headline?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
   linkText?: Maybe<Scalars['String']>;
   text?: Maybe<Scalars['String']>;
@@ -4555,7 +4556,7 @@ type AllProgramCategoriesQuery = { __typename?: 'Query', programCategories: Arra
 type StartQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, content: Array<{ __typename: 'StartFullscreenImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null } | null } | { __typename: 'StartGalleryRecord', id: any, headline?: string | null, linkText?: string | null, url?: string | null, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null }> } | { __typename: 'StartNewsRecord', id: any, amount?: string | null } | { __typename: 'StartProgramRecord', id: any, amount?: string | null } | { __typename: 'StartRandomParticipantRecord', id: any } | { __typename: 'StartTextRecord', id: any, linkText?: string | null, text?: string | null, url?: string | null }> } | null };
+type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, content: Array<{ __typename: 'StartFullscreenImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null } | null } | { __typename: 'StartGalleryRecord', id: any, headline?: string | null, linkText?: string | null, url?: string | null, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null }> } | { __typename: 'StartNewsRecord', id: any, amount?: string | null } | { __typename: 'StartProgramRecord', id: any, amount?: string | null } | { __typename: 'StartRandomParticipantRecord', id: any } | { __typename: 'StartTextRecord', id: any, headline?: string | null, linkText?: string | null, text?: string | null, url?: string | null }> } | null };
 
 type StartDataQueryVariables = Exact<{
   newsItems?: InputMaybe<Scalars['IntType']>;

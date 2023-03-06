@@ -1,7 +1,14 @@
 .container {
 
-  >div {
+  section {
+    padding-top: var(--space);
+    padding-bottom: var(--space);
     border-bottom: 1px solid var(--black);
+
+    &:first-child,
+    &:last-child {
+      border-width: 0;
+    }
 
     header {
       display: flex;
@@ -9,6 +16,7 @@
       width: 100%;
       justify-content: center;
       position: relative;
+      margin-bottom: var(--space);
 
       a {
         position: absolute;

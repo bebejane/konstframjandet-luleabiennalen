@@ -17,7 +17,9 @@ export default function StartNews({ data: { news } }: Props) {
     <div className={s.container}>
       <header>
         <h2>{t('Menu.news')}</h2>
-        <Link href={'/nyheter'}>{t('general.showAll')}</Link>
+        <Link href={'/nyheter'} className="small">
+          {t('general.showAll')}
+        </Link>
       </header>
       <CardContainer>
         {news.map(({ id, intro, title, slug, }) =>

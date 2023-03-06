@@ -21,26 +21,30 @@ export default function StartGallery({ data: { id, images, headline, linkText, u
 
   return (
     <div className={s.container}>
+      <h2>{headline}</h2>
       <SwiperReact
         id={`${id}-swiper-wrap`}
         className={s.swiper}
         loop={true}
         noSwiping={false}
         simulateTouch={true}
-        slidesPerView='auto'
+        slidesPerView={'auto'}
+        navigation={true}
+        pagination={true}
         initialSlide={index}
         onSlideChange={({ realIndex }) => setIndex(realIndex)}
         onSwiper={(swiper) => swiperRef.current = swiper}
       >
         {images.map((item, idx) =>
           <SwiperSlide key={`${idx}`} className={cn(s.slide)} >
-            <figure id={`${id}-${item.id}`} >
+            <figure id={`${id}-${item.id}`} onClick={() => swiperRef.current.slideNext()}>
               <Image
                 data={item.responsiveImage}
                 className={s.image}
                 pictureClassName={s.picture}
                 placeholderClassName={s.picture}
                 objectFit={'cover'}
+
               />
               <figcaption>
                 {item.title && <Markdown allowedElements={['em', 'p']}>{item.title}</Markdown>}
@@ -48,7 +52,20 @@ export default function StartGallery({ data: { id, images, headline, linkText, u
             </figure>
           </SwiperSlide>
         )}
+        <ul className={s.nav}>
+          {images.map(({ id }, idx) =>
+            <li
+              key={id}
+              className={cn(index === idx && s.selected)}
+              onClick={() => swiperRef.current.slideTo(idx)}
+            />
+          )}
+        </ul>
       </SwiperReact>
+
+      <h3>
+        <Link href={url}>{linkText}</Link>
+      </h3>
     </div>
   )
 }

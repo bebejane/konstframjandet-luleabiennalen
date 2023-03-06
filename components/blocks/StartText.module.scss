@@ -1,11 +1,15 @@
 .container {
-  margin-top: var(--space);
 
   p {
     margin: 0;
   }
 
+  .text {
+    text-align: center;
+  }
+
   h3 {
+    padding-top: 1em;
     padding-bottom: 1em;
   }
 }
