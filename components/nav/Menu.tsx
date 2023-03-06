@@ -6,6 +6,7 @@ import type { Menu, MenuItem } from '/lib/menu'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Hamburger, Temperature } from '/components'
+import useStore from '/lib/store'
 
 export type MenuProps = { items: Menu }
 
@@ -17,6 +18,7 @@ export default function Menu({ items }: MenuProps) {
 	const router = useRouter()
 	const [path, setPath] = useState(router.asPath)
 	const [maxHeight, setMaxHeight] = useState<number | undefined>()
+	const [showMenu] = useStore((state) => [state.showMenu])
 
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => setPath(path)
@@ -32,7 +34,7 @@ export default function Menu({ items }: MenuProps) {
 	return (
 		<>
 			<Hamburger />
-			<nav id="menu" ref={menuRef} className={s.menu}>
+			<nav id="menu" ref={menuRef} className={cn(s.menu, !showMenu && s.hide)}>
 				<div className={s.wrapper}>
 					<Temperature />
 					<ul data-level={1}>

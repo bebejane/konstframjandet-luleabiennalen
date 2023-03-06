@@ -12,11 +12,21 @@
   {
     "id": "66074832",
     "title": "2020",
-    "backgroundColor": null
+    "backgroundColor": {
+      "red": 50,
+      "blue": 207,
+      "alpha": 255,
+      "green": 22
+    }
   },
   {
     "id": "69710843",
     "title": "2018",
-    "backgroundColor": null
+    "backgroundColor": {
+      "red": 37,
+      "blue": 103,
+      "alpha": 255,
+      "green": 166
+    }
   }
 ]
