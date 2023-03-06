@@ -16,7 +16,7 @@ export default function Home({ }: Props) {
 
 
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
-	console.log('context', context)
+
 	return {
 		props,
 		revalidate

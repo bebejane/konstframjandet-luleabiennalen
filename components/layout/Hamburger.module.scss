@@ -1,31 +1,108 @@
 .hamburger {
+  --line-height: 4px;
+  --height: 36px;
+  --width: 36px;
+
   position: fixed;
   z-index: 10000;
   top: 0;
   right: 0;
   margin: var(--outer-margin);
-  width: 44px;
-  max-width: 44px;
-  max-height: 28px;
-  padding: 20px 10px 20px 10px;
-
+  width: var(--width);
+  height: var(--height);
+  max-width: var(--width);
+  max-height: var(--height);
   cursor: pointer;
-  --line-height: 4px;
 
-  > div {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .wrap {
+    position: relative;
     width: 100%;
-    height: var(--line-height);
-    background-color: var(--black);
-  }
+    height: 100%;
 
-  div:nth-child(2) {
-    top: calc(50% - calc(var(--line-height) / 2));
-  }
 
-  div:nth-child(3) {
-    top: calc(100% - calc(var(--line-height) / 2));
+
+    >div {
+      position: relative;
+      width: 100%;
+      height: var(--line-height);
+      background-color: var(--black);
+      animation-duration: .3s;
+      animation-timing-function: ease-in-out;
+      animation-direction: normal;
+      animation-fill-mode: forwards;
+    }
+
+    div:nth-child(1) {
+      transform: translateY(0%);
+
+      &.close {
+        animation-name: close1;
+      }
+
+      &.open {
+        animation-name: open1;
+      }
+    }
+
+    div:nth-child(2) {
+
+      transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
+
+      &.close {
+        animation-name: close2;
+      }
+
+      &.open {
+        animation-name: open2;
+      }
+    }
+
+    div:nth-child(3) {
+      transform: translateY(calc(var(--height) * 1 - calc(var(--line-height) / 2)));
+
+      &.close {
+        animation-name: close3;
+      }
+
+      &.open {
+        animation-name: open3;
+      }
+    }
+  }
+}
+
+@keyframes open1 {
+  to {
+    transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
+  }
+}
+
+@keyframes open2 {
+  to {
+    transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
+  }
+}
+
+@keyframes open3 {
+  to {
+    transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
+  }
+}
+
+@keyframes close1 {
+  to {
+    transform: translateY(calc(var(--height) * 0 - calc(var(--line-height) / 2)));
+  }
+}
+
+@keyframes close2 {
+  to {
+    transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
+  }
+}
+
+@keyframes close3 {
+  to {
+    transform: translateY(calc(var(--height) * 1.0 - calc(var(--line-height) / 2)));
   }
 }

@@ -4,6 +4,11 @@
   flex: 0 0 20%;
   overflow: hidden;
 
+  &.hide {
+    flex: 0 0 0%;
+    padding: 0;
+  }
+
   .wrapper {
     position: fixed;
     overflow-y: scroll;

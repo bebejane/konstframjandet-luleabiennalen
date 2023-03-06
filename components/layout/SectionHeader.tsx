@@ -15,8 +15,9 @@ export type SectionHeaderProps = {
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
 
   const t = useTranslations('Menu')
-  const { year } = usePage()
+  const { year, year: { color: { red, green, blue } } } = usePage()
   const { asPath } = useRouter()
+  const color = `rgb(${red},${green},${blue})`
   const menuItem = menu.find(el => el.slug === asPath || asPath.startsWith(el.slug))
   const haveOverview = menuItem?.slug && !menuItem.sub
   const url = menuItem?.slug || menuItem?.sub?.find(({ slug }) => slug === asPath)?.slug || '/'
@@ -26,7 +27,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
       <header className={s.header}>
         <Link href={haveOverview ? url : '#'}>
           <h2>
-            <span>
+            <span style={{ color }}>
               LB°{year.title.substring(2)}{menuItem ? ` — ${t(menuItem.id)}` : ''}
             </span>
           </h2>

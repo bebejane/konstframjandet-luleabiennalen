@@ -6,23 +6,25 @@ export type Menu = MenuItem[]
 export type MenuQueryResponse = { abouts: AboutRecord[], years: YearRecord[], year: YearRecord }
 
 export type MenuItem = {
-  id: 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive'
+  id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive'
   label: string
   slug?: string
   year?: string
   sub?: MenuItem[]
-  global?: boolean
+  root: boolean
+  general?: boolean
 }
 
 const base: Menu = [
-  { id: 'about', label: 'Om', slug: '/om', sub: [] },
-  { id: 'program', label: 'Program', slug: '/program' },
-  { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar' },
-  { id: 'participants', label: 'Medverkande', slug: '/medverkande' },
-  { id: 'locations', label: 'Platser', slug: '/platser' },
-  { id: 'news', label: 'Nyheter', slug: '/nyheter', global: true },
-  { id: 'contact', label: 'Kontakt', slug: '/kontakt', global: true },
-  { id: 'archive', label: 'Arkiv', sub: [] }
+  { id: 'home', label: 'Hem', slug: '/', general: true, root: true },
+  { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
+  { id: 'program', label: 'Program', slug: '/program', root: true },
+  { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar', root: true },
+  { id: 'participants', label: 'Medverkande', slug: '/medverkande', root: true },
+  { id: 'locations', label: 'Platser', slug: '/platser', root: true },
+  { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true, root: true },
+  { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
+  { id: 'archive', label: 'Arkiv', sub: [], root: false }
 ]
 
 export const buildMenu = async (locale: string) => {
@@ -39,7 +41,7 @@ export const buildMenu = async (locale: string) => {
       id: `archive-${el.year.title}`,
       label: `LB°${el.year.title.substring(2)}`,
       slug: `/${el.year.title}`,
-      sub: buildYearMenu(el, true).filter(e => !e.global).map(e => ({
+      sub: buildYearMenu(el, true).filter(e => !e.general).map(e => ({
         ...e,
         slug: `/${el.year.title}${e.slug}`,
         sub: e.sub?.map(e2 => ({ ...e2, slug: `/${el.year.title}${e2.slug}` })) || null
@@ -55,7 +57,8 @@ export const buildYearMenu = (res: MenuQueryResponse, isArchive: boolean = false
     let sub: MenuItem[];
     switch (item.id) {
       case 'about':
-        sub = res.abouts.map(el => ({ id: 'about', label: el.title, slug: `/om/${el.slug}` }))
+        //@ts-ignore
+        sub = res.abouts.map(el => ({ id: `about-${el.slug}`, label: el.title, slug: `/om/${el.slug}`, root: false }))
         break;
       default:
         break;

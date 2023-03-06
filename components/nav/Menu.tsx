@@ -6,6 +6,7 @@ import type { Menu, MenuItem } from '/lib/menu'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Hamburger, Temperature } from '/components'
+import useStore from '/lib/store'
 
 export type MenuProps = { items: Menu }
 
@@ -17,6 +18,7 @@ export default function Menu({ items }: MenuProps) {
 	const router = useRouter()
 	const [path, setPath] = useState(router.asPath)
 	const [maxHeight, setMaxHeight] = useState<number | undefined>()
+	const [showMenu] = useStore((state) => [state.showMenu])
 
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => setPath(path)
@@ -32,17 +34,19 @@ export default function Menu({ items }: MenuProps) {
 	return (
 		<>
 			<Hamburger />
-			<nav id="menu" ref={menuRef} className={s.menu}>
+			<nav id="menu" ref={menuRef} className={cn(s.menu, !showMenu && s.hide)}>
 				<div className={s.wrapper}>
 					<Temperature />
 					<ul data-level={1}>
-						{items.map(item =>
+						{items.map((item, idx) =>
 							<MenuTree
+								key={idx}
 								item={item}
 								level={2}
 								selected={selected}
 								setSelected={setSelected}
 								path={path}
+								locale={router.locale}
 							/>
 						)}
 						<li><Search /></li>
@@ -59,38 +63,42 @@ export type MenuTreeProps = {
 	selected: MenuItem | undefined
 	setSelected: (item: MenuItem) => void
 	path: string
+	locale: string
 }
 
-export function MenuTree({ item, level, selected, setSelected, path }: MenuTreeProps) {
+export function MenuTree({ item, level, selected, setSelected, path, locale }: MenuTreeProps) {
 	const [isVisible, setIsVisible] = useState(false);
-
+	const t = useTranslations('Menu')
 	const expand = () => {
 		setIsVisible(!isVisible)
 		setSelected(item)
 	}
 
-	const isSelected = path === item.slug
+	const isSelected = path === item.slug || path === `/${locale}${item.slug}`
 	const isLink = item.slug && !item.sub
+	const label = t(item.id) || item.label
 
 	return (
 		<>
 			<li onClick={expand} className={cn(isSelected && s.active)}>
 				{isLink ?
 					<Link href={item.slug}>
-						{item.label}
+						{label}
 					</Link>
 					:
-					<>{item.label}</>
+					<>{label}</>
 				}
 				{item?.sub && isVisible &&
 					<ul data-level={level} onClick={e => e.stopPropagation()}>
-						{item.sub.map(item =>
+						{item.sub.map((item, idx) =>
 							<MenuTree
+								key={idx}
 								item={item}
 								level={++level}
 								selected={selected}
 								setSelected={setSelected}
 								path={path}
+								locale={locale}
 							/>
 						)}
 					</ul>

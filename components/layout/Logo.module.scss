@@ -3,4 +3,10 @@
   left: var(--outer-margin);
   bottom: var(--outer-margin);
   max-width: 0;
+
+  svg,
+  g,
+  path {
+    fill: inherit;
+  }
 }

@@ -25,7 +25,7 @@ export default function withGlobalProps(opt: any, callback: Function): GetStatic
     props.menu = await buildMenu(context.locale)
     props.locale = context.locale
     props.messages = (await import(`./messages/${context.locale}.json`)).default
-    props.year = years.find(({ title }) => context.params?.year ? title === context.params?.year : title === process.env.NEXT_PUBLIC_CURRENT_YEAR)
+    props.year = years.find(({ title }) => context.params?.year ? title === context.params?.year : title === process.env.NEXT_PUBLIC_CURRENT_YEAR) || null
 
     if (callback)
       return await callback({ context, props: { ...props }, revalidate });

@@ -65,7 +65,7 @@
 		"react-youtube": "^10.1.0",
 		"remark-breaks": "^3.0.2",
 		"remark-gfm": "^3.0.1",
-		"rooks": "^7.4.1",
+		"rooks": "^7.4.4",
 		"sass": "^1.56.0",
 		"swiper": "^8.4.4",
 		"usehooks-ts": "^2.9.1",
