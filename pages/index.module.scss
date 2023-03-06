@@ -1,1 +1,21 @@
-.container {}
+.container {
+
+  >div {
+    border-bottom: 1px solid var(--black);
+
+    header {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+      position: relative;
+
+      a {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+
+}

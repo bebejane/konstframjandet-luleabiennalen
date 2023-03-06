@@ -2,6 +2,7 @@ import s from './StartProgram.module.scss'
 import React from 'react'
 import { CardContainer, Card, Thumbnail } from '/components'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 export type Props = {
   data: StartProgramRecord & {
@@ -16,7 +17,7 @@ export default function StartProgram({ data: { programs } }: Props) {
     <div className={s.container}>
       <header>
         <h2>{t('Menu.program')}</h2>
-        <span>{t('general.showAll')}</span>
+        <Link href={'/program'}>{t('general.showAll')}</Link>
       </header>
       <CardContainer>
         {programs.map(({ id, image, intro, title, slug, }) =>

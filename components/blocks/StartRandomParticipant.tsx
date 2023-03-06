@@ -2,6 +2,7 @@ import s from './StartRandomParticipant.module.scss'
 import React from 'react'
 import { CardContainer, Card, Thumbnail } from '/components'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 export type Props = {
   data: StartRandomParticipantRecord & {
@@ -16,7 +17,7 @@ export default function StartRandomParticipant({ data: { participants } }: Props
     <div className={s.container}>
       <header>
         <h2>{t('Menu.participants')}</h2>
-        <span>{t('general.showAll')}</span>
+        <Link href={'/medverkande'}>{t('general.showAll')}</Link>
       </header>
       <CardContainer>
         {participants.map(({ id, image, intro, name, slug, }) =>
