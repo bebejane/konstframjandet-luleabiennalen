@@ -6,6 +6,7 @@ import format from "date-fns/format";
 import { formatDate } from "/lib/utils";
 import { useState } from "react";
 import type { FilterOption } from "/components/common/FilterBar";
+import { useRouter } from "next/router";
 
 export type Props = {
   programs: ProgramRecord[]
@@ -14,6 +15,7 @@ export type Props = {
 
 export default function Program({ programs, programCategories }: Props) {
 
+  const { asPath } = useRouter()
   const options = programCategories.map(({ id, title: label }) => ({ id, label }))
   const [categories, setCategories] = useState<string[]>([])
 
@@ -27,7 +29,7 @@ export default function Program({ programs, programCategories }: Props) {
         multi={true}
         onChange={(opt) => setCategories(opt as string[])}
       />
-      <CardContainer key={JSON.stringify(categories)}>
+      <CardContainer key={`${asPath}${JSON.stringify(categories)}`}>
         {programs.filter(categoryFilter).map(({ id, image, title, intro, slug, startDate, endDate, programCategory }) =>
           <Card key={id}>
             <Thumbnail
@@ -44,7 +46,7 @@ export default function Program({ programs, programCategories }: Props) {
   );
 }
 
-export const getStaticProps = withGlobalProps({ queries: [AllProgramsDocument, AllProgramCategoriesDocument] }, async ({ props, revalidate }: any) => {
+export const getStaticProps = withGlobalProps({ queries: [AllProgramsDocument, AllProgramCategoriesDocument] }, async ({ props, revalidate, context }: any) => {
 
   return {
     props: {

@@ -52,6 +52,10 @@
         }
       }
 
+      &.bold>a {
+        font-weight: bold;
+      }
+
       &:first-of-type {
         padding-top: 0.5em;
       }

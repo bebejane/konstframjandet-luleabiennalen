@@ -2,15 +2,17 @@ import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllLocationsDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail } from "/components";
+import { useRouter } from "next/router";
 
 export type Props = {
   locations: (LocationRecord & ThumbnailImage)[]
 }
 
 export default function Location({ locations }: Props) {
+  const { asPath } = useRouter()
 
   return (
-    <CardContainer>
+    <CardContainer key={asPath}>
       {locations.map(({ id, image, thumb, title, slug }) =>
         <Card key={id}>
           <Thumbnail
