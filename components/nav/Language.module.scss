@@ -4,9 +4,10 @@
   left: 0;
   z-index: 100;
   margin: var(--outer-margin);
+  line-height: 1;
 
   a {
-    margin-right: 0.2em;
+    margin-right: 0.5em;
 
     &.selected {
       font-weight: bold;
