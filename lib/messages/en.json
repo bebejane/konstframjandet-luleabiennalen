@@ -36,5 +36,8 @@
 		"subscribe": "Subscribe to our newsletter",
 		"followUs": "Follow us on",
 		"and": "and"
+	},
+	"general": {
+		"showAll": "Show all"
 	}
 }

@@ -1,19 +1,35 @@
 import s from './StartRandomParticipant.module.scss'
 import React from 'react'
-import Link from 'next/link';
-import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
+import { CardContainer, Card, Thumbnail } from '/components'
+import { useTranslations } from 'next-intl'
 
 export type Props = {
   data: StartRandomParticipantRecord & {
-    participans: ParticipantRecord[]
+    participants: ParticipantRecord[]
   }
 }
 
-export default function StartRandomParticipant({ data: { participans } }: Props) {
+export default function StartRandomParticipant({ data: { participants } }: Props) {
+  const t = useTranslations()
 
   return (
     <div className={s.container}>
-      participants
+      <header>
+        <h2>{t('Menu.participants')}</h2>
+        <span>{t('general.showAll')}</span>
+      </header>
+      <CardContainer>
+        {participants.map(({ id, image, intro, name, slug, }) =>
+          <Card key={id}>
+            <Thumbnail
+              intro={intro}
+              image={image}
+              title={name}
+              slug={`/medverkande/${slug}`}
+            />
+          </Card>
+        )}
+      </CardContainer>
     </div>
   )
 }

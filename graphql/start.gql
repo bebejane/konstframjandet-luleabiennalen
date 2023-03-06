@@ -30,6 +30,17 @@ query Start {
 					...ImageFragment
 				}
 			}
+
+			... on StartGalleryRecord {
+				__typename
+				id
+				headline
+				linkText
+				url
+				images {
+					...ImageFragment
+				}
+			}
 		}
 	}
 }

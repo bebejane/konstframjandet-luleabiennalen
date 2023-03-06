@@ -1,9 +1,9 @@
 import s from './ImageGallery.module.scss'
 import "swiper/css";
-import cn from 'classnames'
-import React, { useState, useRef } from 'react'
 import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import type { Swiper } from 'swiper';
+import cn from 'classnames'
+import React, { useState, useRef } from 'react'
 import { Image } from 'react-datocms'
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
