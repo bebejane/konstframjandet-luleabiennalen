@@ -5,11 +5,11 @@ import { useRouter } from 'next/router'
 import { MenuItem } from '/lib/menu'
 import { useTranslations } from 'next-intl'
 import { usePage } from '/lib/context/page'
+import Logo from '/public/images/logo-text.svg'
 
 export type SectionHeaderProps = {
   menu: MenuItem[]
   overview?: boolean
-
 }
 
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
@@ -25,18 +25,20 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   return (
     <>
       <header className={s.header}>
-        <Link href={haveOverview ? url : '#'}>
-          <h2>
-            <span style={{ color }}>
-              LB°{year.title.substring(2)}{menuItem ? ` — ${t(menuItem.id)}` : ''}
-            </span>
-          </h2>
-        </Link>
+        {menuItem ?
+          <Link href={haveOverview ? url : '#'}>
+            <h2>
+              <span style={{ color }}>
+                LB°{year.title.substring(2)}{menuItem ? ` — ${t(menuItem.id)}` : ''}
+              </span>
+            </h2>
+          </Link>
+          :
+          <Logo />
+        }
       </header>
       <div className={s.spacer}></div>
-      {overview &&
-        <div className={s.line}></div>
-      }
+      {haveOverview && <div className={s.line}></div>}
     </>
   )
 }
