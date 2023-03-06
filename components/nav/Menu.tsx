@@ -80,7 +80,7 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 
 	return (
 		<>
-			<li onClick={expand} className={cn(isSelected && s.active)}>
+			<li onClick={expand} className={cn(isSelected && s.active, item.root && s.bold)}>
 				{isLink ?
 					<Link href={item.slug}>
 						{label}
