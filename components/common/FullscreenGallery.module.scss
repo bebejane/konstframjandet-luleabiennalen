@@ -8,15 +8,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--black);
+  backdrop-filter: blur(2rem);
+  //background-color: var(--black);
   z-index: 4000;
 
   .images {
-    --height: calc(100vh - calc(2 * var(--outer-margin)) - 1em);
-    --width: calc(100vw - calc(2 * var(--outer-margin)) - calc(2 * var(--gutter)));
+    //--height: calc(100vh - calc(2 * var(--outer-margin)) - 1em);
+    --height: 100vh;
+    //--width: calc(100vw - calc(2 * var(--outer-margin)) - calc(2 * var(--gutter)));
+    --width: 100vw;
     max-height: var(--height);
     min-height: var(--height);
-    margin-bottom: 2rem;
+    //margin-bottom: 2rem;
     max-width: var(--width);
     min-width: var(--width);
 
@@ -60,6 +63,17 @@
     }
   }
 
+  .caption .text,
+  .close {
+    padding: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border-radius: 2em;
+    background-color: var(--white);
+    z-index: 100000;
+    color: var(--black) !important;
+  }
+
   .caption {
     position: absolute;
     height: 10vh;
@@ -68,22 +82,12 @@
     justify-content: center;
     bottom: 0;
     font-weight: normal;
-    color: var(--white) !important;
+    color: var(--black) !important;
     margin-right: var(--outer-margin);
     margin-left: var(--outer-margin);
 
     .text {
-      z-index: 100000;
-      padding-top: 0.5em;
-      padding-bottom: 0.8em;
-
-      @include mq($from: tablet) {
-        padding-left: 1.5em;
-        padding-right: 1.5em;
-        border-radius: 1.5em;
-      }
-
-      background-color: var(--black);
+      background-color: var(--white);
 
       p {
         padding: 0;
@@ -98,12 +102,16 @@
     top: 0;
     display: flex;
     justify-content: center;
-    color: var(--white);
     z-index: 500;
     cursor: pointer;
-    margin: 1rem;
-    writing-mode: vertical-lr;
+    margin: var(--outer-margin);
+    //writing-mode: vertical-lr;
+    &:hover {
+      background: var(--black);
+      color: var(--white) !important;
+    }
   }
 
-  @include mq($until: tablet) {}
+  @include mq($until: tablet) {
+  }
 }
