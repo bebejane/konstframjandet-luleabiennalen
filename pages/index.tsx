@@ -1,6 +1,5 @@
 import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
-import type { Menu } from "/lib/menu";
 import Link from "next/link";
 
 export type Props = {
@@ -17,7 +16,7 @@ export default function Home({ }: Props) {
 
 
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
-
+	console.log('context', context)
 	return {
 		props,
 		revalidate

@@ -1,7 +1,7 @@
 import '/lib/styles/index.scss'
 import { Layout } from '/components';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { PageProvider } from '/lib/context/page'
+import { NextIntlProvider } from 'next-intl';
 import { sv } from 'date-fns/locale'
 
 import setDefaultOptions from 'date-fns/setDefaultOptions';
@@ -9,14 +9,17 @@ setDefaultOptions({ locale: sv })
 
 function App({ Component, pageProps }) {
 
-  const { menu, footer } = pageProps
-  const pageTitle = 'Luleåbiennalen'
+  const title = 'Luleåbiennalen'
 
   return (
     <>
-      <Layout title={pageTitle} menu={menu || []} footer={footer}>
-        <Component {...pageProps} />
-      </Layout>
+      <NextIntlProvider messages={pageProps.messages}>
+        <PageProvider value={{ year: pageProps.year, title }}>
+          <Layout title={title} menu={pageProps.menu || []} footer={pageProps.footer}>
+            <Component {...pageProps} />
+          </Layout>
+        </PageProvider>
+      </NextIntlProvider>
     </>
   );
 }

@@ -4,6 +4,7 @@ import { apiQueryAll } from '/lib/utils';
 import { ExhibitionDocument, AllExhibitionsDocument } from "/graphql";
 import { Article, Related, BackButton, MetaSection } from '/components';
 import { formatDate } from "/lib/utils";
+import { useTranslations } from "next-intl";
 
 export type Props = {
   exhibition: ExhibitionRecord
@@ -23,6 +24,8 @@ export default function Exhibition({ exhibition: {
   _seoMetaTags
 } }: Props) {
 
+  const t = useTranslations()
+
   return (
     <>
       <Article
@@ -37,21 +40,22 @@ export default function Exhibition({ exhibition: {
       <MetaSection
         key={`${id}-meta`}
         items={[
-          { title: 'När', value: formatDate(startDate) },
-          { title: 'Tider', value: time },
-          { title: 'Länk', value: 'Hemsida', link: externalLink },
-          { title: 'Var', value: location.title, link: `/platser/${location.slug}` }
+          { title: t('MetaSection.when'), value: formatDate(startDate) },
+          { title: t('MetaSection.times'), value: time },
+          { title: t('MetaSection.link'), value: t('MetaSection.webpage'), link: externalLink },
+          { title: t('MetaSection.where'), value: location.title, link: `/platser/${location.slug}` }
         ]}
       />
       <Related header={'Medvärkande'} items={participants} />
-      <BackButton>Visa alla utställningar</BackButton>
+      <BackButton>{t('BackButton.showAllExhibitons')}</BackButton>
     </>
   )
 }
 
 export async function getStaticPaths() {
   const { exhibitions } = await apiQueryAll(AllExhibitionsDocument)
-  const paths = exhibitions.map(({ slug }) => ({ params: { exhibition: slug } }))
+  const paths = exhibitions.map(({ slug }) => ({ params: { exhibition: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -62,7 +66,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.exhibition;
-  const { exhibition } = await apiQuery(ExhibitionDocument, { variables: { slug }, preview: context.preview })
+  const { exhibition } = await apiQuery(ExhibitionDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!exhibition)
     return { notFound: true }

@@ -10,6 +10,11 @@ const sassOptions = {
 };
 
 const nextOptions = {
+	i18n: {
+		locales: ["sv", "en"],
+		defaultLocale: "sv",
+		localeDetection: false,
+	},
 	typescript: {
 		ignoreBuildErrors: true,
 	},

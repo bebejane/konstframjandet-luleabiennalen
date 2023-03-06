@@ -28,7 +28,8 @@ export default function AboutItem({ about: { id, image, title, intro, content, _
 
 export async function getStaticPaths() {
   const { abouts } = await apiQueryAll(AllAboutsDocument)
-  const paths = abouts.map(({ slug }) => ({ params: { about: slug } }))
+  const paths = abouts.map(({ slug }) => ({ params: { about: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -41,7 +42,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.about;
-  const { about } = await apiQuery(AboutDocument, { variables: { slug }, preview: context.preview })
+  const { about } = await apiQuery(AboutDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
   if (!about)
     return { notFound: true }
 

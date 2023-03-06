@@ -2,6 +2,7 @@ import s from './Footer.module.scss'
 import cn from 'classnames'
 import type { MenuItem } from '/lib/menu'
 import KFLogo from '/public/images/kf-logo.svg'
+import { useTranslations } from 'next-intl'
 
 
 export type FooterProps = {
@@ -10,6 +11,8 @@ export type FooterProps = {
 }
 
 export default function Footer({ menu, footer: { email, facebook, instagram, about } }: FooterProps) {
+	const t = useTranslations('Footer')
+
 	return (
 		<footer className={cn(s.footer)} id="footer">
 			<section>
@@ -18,8 +21,8 @@ export default function Footer({ menu, footer: { email, facebook, instagram, abo
 					<a href={`mailto:${email}`}>{email}</a> · Cookies & GDPR
 				</div>
 				<div>
-					Prenumerera på vårt nyhetsbrev <br />
-					Följ oss på <a href={facebook}>Facebook</a> och <a href={instagram}>Instagram</a>
+					{t('subscribe')} <br />
+					{t('followUs')}  <a href={facebook}>Facebook</a> {t('and')} <a href={instagram}>Instagram</a>
 				</div>
 				<div>
 					{about}

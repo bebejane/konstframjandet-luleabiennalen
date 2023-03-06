@@ -3,6 +3,7 @@ import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { LocationDocument, AllLocationsDocument } from "/graphql";
 import { Article, Related, BackButton } from '/components';
+import { useTranslations } from "next-intl";
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]
@@ -14,6 +15,7 @@ export type Props = {
 }
 
 export default function Location({ location: { id, image, title, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
+  const t = useTranslations('BackButton')
 
   return (
     <>
@@ -28,14 +30,15 @@ export default function Location({ location: { id, image, title, intro, content,
         onClick={(imageId) => { }}
       />
       <Related header={'Relaterat'} items={[...exhibitions, ...programs]} />
-      <BackButton>Visa alla platser</BackButton>
+      <BackButton>{t('showAllLocations')}</BackButton>
     </>
   );
 }
 
 export async function getStaticPaths() {
   const { locations } = await apiQueryAll(AllLocationsDocument)
-  const paths = locations.map(({ slug }) => ({ params: { location: slug } }))
+  const paths = locations.map(({ slug }) => ({ params: { location: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -46,7 +49,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.location;
-  const { location } = await apiQuery(LocationDocument, { variables: { slug }, preview: context.preview })
+  const { location } = await apiQuery(LocationDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!location)
     return { notFound: true }

@@ -5,6 +5,7 @@ import { apiQueryAll } from '/lib/utils';
 import { ProgramDocument, AllProgramsDocument } from "/graphql";
 import { Article, Related, BackButton, MetaSection } from '/components';
 import { formatDate } from "/lib/utils";
+import { useTranslations } from "next-intl";
 
 export type Props = {
   program: ProgramRecord
@@ -27,6 +28,8 @@ export default function Program({ program: {
   _seoMetaTags
 } }: Props) {
 
+  const t = useTranslations();
+
   return (
     <>
       <Article
@@ -43,23 +46,24 @@ export default function Program({ program: {
       <MetaSection
         key={`${id}-meta`}
         items={[
-          { title: 'Vad', value: programCategory?.title },
-          { title: 'Var', value: location.title, link: `/platser/${location.slug}` },
-          { title: 'När', value: formatDate(startDate) },
-          { title: 'Tider', value: time },
-          { title: 'Var', value: location?.address },
-          { title: 'Länk', value: 'Hemsida', link: externalLink }
+          { title: t('MetaSection.what'), value: programCategory?.title },
+          { title: t('MetaSection.where'), value: location.title, link: `/platser/${location.slug}` },
+          { title: t('MetaSection.when'), value: formatDate(startDate) },
+          { title: t('MetaSection.times'), value: time },
+          { title: t('MetaSection.where'), value: location?.address },
+          { title: t('MetaSection.link'), value: t('MetaSection.webpage'), link: externalLink }
         ]}
       />
       <Related header={'Medvärkande'} items={partipants} />
-      <BackButton>Visa hela programmet</BackButton>
+      <BackButton>{t('BackButton.showAllPrograms')}</BackButton>
     </>
   );
 }
 
 export async function getStaticPaths() {
   const { programs } = await apiQueryAll(AllProgramsDocument)
-  const paths = programs.map(({ slug }) => ({ params: { program: slug } }))
+  const paths = programs.map(({ slug }) => ({ params: { program: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -70,7 +74,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.program;
-  const { program } = await apiQuery(ProgramDocument, { variables: { slug }, preview: context.preview })
+  const { program } = await apiQuery(ProgramDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!program)
     return { notFound: true }

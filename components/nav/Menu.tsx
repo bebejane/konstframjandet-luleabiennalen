@@ -3,69 +3,49 @@ import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
 import type { Menu, MenuItem } from '/lib/menu'
-import { Hamburger } from '/components'
-import format from 'date-fns/format'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Hamburger, Temperature } from '/components'
 
 export type MenuProps = { items: Menu }
 
 export default function Menu({ items }: MenuProps) {
 
+	const t = useTranslations('Menu')
 	const menuRef = useRef<HTMLDivElement | null>(null);
-	const menuBarRef = useRef<HTMLUListElement | null>(null);
-	const [selected, setSelected] = useState<string | undefined>()
+	const [selected, setSelected] = useState<MenuItem | undefined>()
 	const router = useRouter()
 	const [path, setPath] = useState(router.asPath)
+	const [maxHeight, setMaxHeight] = useState<number | undefined>()
 
 	useEffect(() => {
-		const handleRouteChangeStart = (path: string) => {
-			setSelected(undefined)
-			setPath(path)
-		}
+		const handleRouteChangeStart = (path: string) => setPath(path)
 		router.events.on('routeChangeStart', handleRouteChangeStart)
 		return () => router.events.off('routeChangeStart', handleRouteChangeStart)
 	}, [])
 
+	useEffect(() => {
+		const el = document.getElementById(`menu-${selected}`)
+		//setMaxHeight(el ? el.scrollHeight : undefined)
+	}, [selected])
 
 	return (
 		<>
 			<Hamburger />
-			<nav id="menu" ref={menuRef} className={cn(s.menu)}>
+			<nav id="menu" ref={menuRef} className={s.menu}>
 				<div className={s.wrapper}>
-					<TodaysInfo />
-					<ul className={s.nav} ref={menuBarRef}>
-						{items.map(({ label, slug, sub }, idx) => {
-							const isActive = label === selected || path.startsWith(slug)
-							return (
-								<li
-									key={idx}
-									onClick={() => {
-										setSelected(label === selected ? undefined : label)
-										setPath(slug)
-									}}
-									className={cn(isActive && s.active)}
-								>
-									{sub ? label : <Link href={slug}>{label}</Link>}
-									{sub &&
-										<ul
-											className={cn(s.sub, selected === label && s.selected)}
-											onClick={(e) => e.stopPropagation()}
-										>
-											{sub.map(({ label, slug }) => {
-												const isActiveSub = path === slug
-												return (
-													<li>
-														<Link className={cn(isActiveSub && s.active)} href={slug}>{label}</Link>
-													</li>
-												)
-											})}
-										</ul>
-									}
-								</li>
-							)
-						})}
-
-						<li>Sök</li>
+					<Temperature />
+					<ul data-level={1}>
+						{items.map(item =>
+							<MenuTree
+								item={item}
+								level={2}
+								selected={selected}
+								setSelected={setSelected}
+								path={path}
+							/>
+						)}
+						<li><Search /></li>
 					</ul>
 				</div>
 			</nav>
@@ -73,31 +53,56 @@ export default function Menu({ items }: MenuProps) {
 	)
 }
 
-export function TodaysInfo() {
+export type MenuTreeProps = {
+	item: MenuItem
+	level?: number,
+	selected: MenuItem | undefined
+	setSelected: (item: MenuItem) => void
+	path: string
+}
 
-	const [temp, setTemp] = useState<number | undefined>()
+export function MenuTree({ item, level, selected, setSelected, path }: MenuTreeProps) {
+	const [isVisible, setIsVisible] = useState(false);
 
-	const refreshWeather = async () => {
-
-		try {
-			const url = 'https://api.open-meteo.com/v1/forecast?latitude=65.58&longitude=22.15&hourly=temperature_2m&current_weather=true'
-			const res = await fetch(url)
-			const { current_weather: { temperature } } = await res.json()
-			setTemp(temperature)
-		} catch (err) {
-			console.log(err)
-		}
+	const expand = () => {
+		setIsVisible(!isVisible)
+		setSelected(item)
 	}
 
-	useEffect(() => {
-		refreshWeather()
-		const i = setInterval(refreshWeather, 60 * 1000)
-		return () => clearInterval(i)
-	}, [])
+	const isSelected = path === item.slug
+	const isLink = item.slug && !item.sub
 
 	return (
-		<span style={{ textTransform: 'capitalize' }}>
-			{format(new Date(), 'dd MMM')}, {temp > 0 ? '+' : ''}{temp}°C
-		</span>
-	)
+		<>
+			<li onClick={expand} className={cn(isSelected && s.active)}>
+				{isLink ?
+					<Link href={item.slug}>
+						{item.label}
+					</Link>
+					:
+					<>{item.label}</>
+				}
+				{item?.sub && isVisible &&
+					<ul data-level={level} onClick={e => e.stopPropagation()}>
+						{item.sub.map(item =>
+							<MenuTree
+								item={item}
+								level={++level}
+								selected={selected}
+								setSelected={setSelected}
+								path={path}
+							/>
+						)}
+					</ul>
+				}
+			</li>
+		</>
+	);
+}
+
+
+const Search = () => {
+	const t = useTranslations('Menu')
+	return <input className={s.search} placeholder={t('search')} />
+
 }

@@ -2,9 +2,13 @@
   border-left: 1px solid var(--black);
   padding: var(--outer-margin);
   flex: 0 0 20%;
+  overflow: hidden;
 
   .wrapper {
     position: fixed;
+    overflow-y: scroll;
+    max-height: 100vh;
+
   }
 
   span {
@@ -12,45 +16,59 @@
     padding-bottom: var(--header-height);
   }
 
-  .active {
-    &::before {
-      content: "°  ";
-      position: relative;
-      top: 0.2em;
-      margin-left: -0.65em;
-    }
+  a {
+    font-weight: normal;
 
-    >a {}
+    &.bold {
+      //font-weight: bold;
+    }
   }
 
   ul {
     list-style: none;
     font-weight: bold;
     margin-right: var(--outer-margin);
+    margin-left: 0.5rem;
 
-    >li {
+    &[data-level="1"]>li>a {
+      font-weight: bold;
+    }
+
+    li {
       cursor: pointer;
       padding-bottom: 0.5em;
 
-      >ul.sub {
-        display: block;
-        font-weight: normal;
-        margin-left: 0.5rem;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out;
-
-        &.selected {
-          max-height: 1000px;
-          overflow: visible;
-        }
-
-        li {
-          &:first-of-type {
-            padding-top: 0.5em;
-          }
+      &.active {
+        &::before {
+          content: "°  ";
+          position: relative;
+          top: 0.2em;
+          margin-left: -0.65em;
         }
       }
+
+      &:first-of-type {
+        padding-top: 0.5em;
+      }
+    }
+  }
+}
+
+.search {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+
+  &::placeholder {
+    color: var(--black);
+    font-weight: bold;
+  }
+
+  &:focus {
+    &::placeholder {
+      color: lightgray
     }
   }
 }

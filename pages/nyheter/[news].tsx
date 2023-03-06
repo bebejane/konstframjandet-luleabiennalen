@@ -3,12 +3,14 @@ import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { NewsDocument, AllNewsDocument } from "/graphql";
 import { Article, BackButton } from '/components';
+import { useTranslations } from "next-intl";
 
 export type Props = {
   news: NewsRecord
 }
 
 export default function News({ news: { id, image, title, intro, content, _seoMetaTags } }: Props) {
+  const t = useTranslations('BackButton')
 
   return (
     <>
@@ -21,14 +23,15 @@ export default function News({ news: { id, image, title, intro, content, _seoMet
         content={content}
         onClick={(imageId) => { }}
       />
-      <BackButton>Visa alla nyheter</BackButton>
+      <BackButton>{t('showAllNews')}</BackButton>
     </>
   );
 }
 
 export async function getStaticPaths() {
   const { news } = await apiQueryAll(AllNewsDocument)
-  const paths = news.map(({ slug }) => ({ params: { news: slug } }))
+  const paths = news.map(({ slug }) => ({ params: { news: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -39,7 +42,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.news;
-  const { news } = await apiQuery(NewsDocument, { variables: { slug }, preview: context.preview })
+  const { news } = await apiQuery(NewsDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!news)
     return { notFound: true }

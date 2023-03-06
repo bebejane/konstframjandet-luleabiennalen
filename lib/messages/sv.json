@@ -1,0 +1,39 @@
+{
+	"Menu": {
+		"about": "Om",
+		"program": "Program",
+		"exhibitions": "Utställningar",
+		"participants": "Medverkande",
+		"locations": "Platser",
+		"news": "Nyheter",
+		"contact": "Kontakt",
+		"archive": "Arkiv",
+		"search": "Sök"
+	},
+	"FilterBar": {
+		"all": "Alla"
+	},
+	"MetaSection": {
+		"what": "Vad",
+		"where": "Var",
+		"when": "När",
+		"times": "Tider",
+		"link": "Länk",
+		"webpage": "Hemsida"
+	},
+	"BackButton": {
+		"showAllPrograms": "Visa hela programmet",
+		"showAllExhibitons": "Visa all utställningar",
+		"showAllParticipants": "Visa alla medverkande",
+		"showAllLocations": "Visa alla platser",
+		"showAllNews": "Visa alla nyheter"
+	},
+	"News": {
+		"readMore": "Läs mer"
+	},
+	"Footer": {
+		"subscribe": "Prenumerera på vårt nyhetsbrev",
+		"followUs": "Följ oss på",
+		"and": "och"
+	}
+}

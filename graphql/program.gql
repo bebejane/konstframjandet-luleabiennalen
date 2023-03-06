@@ -1,14 +1,26 @@
-query AllPrograms {
-	programs: allPrograms(orderBy: startDate_DESC) {
+query AllPrograms($locale: SiteLocale, $yearId: ItemId) {
+	programs: allPrograms(
+		filter: { year: { eq: $yearId } }
+		locale: $locale
+		orderBy: startDate_DESC
+		first: 100
+	) {
 		...ProgramFragment
 	}
-	pagination: _allProgramsMeta {
+	pagination: _allProgramsMeta(locale: $locale) {
 		count
 	}
 }
 
-query Program($slug: String!) {
-	program(filter: { slug: { eq: $slug } }) {
+query Program($slug: String!, $locale: SiteLocale) {
+	program(filter: { slug: { eq: $slug } }, locale: $locale) {
 		...ProgramFragment
+	}
+}
+
+query AllProgramCategories($locale: SiteLocale) {
+	programCategories: allProgramCategories(locale: $locale, orderBy: title_DESC, first: 100) {
+		id
+		title
 	}
 }

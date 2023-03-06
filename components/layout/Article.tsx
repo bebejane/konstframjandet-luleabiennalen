@@ -38,7 +38,7 @@ export default function Article({ id, children, title, content, image, imageSize
 
   useEffect(() => {
     const images = [image]
-    content.blocks.forEach(el => {
+    content?.blocks.forEach(el => {
       el.__typename === 'ImageRecord' && images.push(el.image)
       el.__typename === 'ImageGalleryRecord' && images.push.apply(images, el.images)
     })

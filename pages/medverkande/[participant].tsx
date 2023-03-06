@@ -3,6 +3,7 @@ import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ParticipantDocument, AllParticipantsDocument } from "/graphql";
 import { Article, Related, BackButton } from '/components';
+import { useTranslations } from "next-intl";
 
 export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]
@@ -14,6 +15,8 @@ export type Props = {
 }
 
 export default function Participant({ participant: { id, image, name, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
+  const t = useTranslations('BackButton')
+
   return (
     <>
       <Article
@@ -26,14 +29,15 @@ export default function Participant({ participant: { id, image, name, intro, con
         onClick={(imageId) => { }}
       />
       <Related header={'Deltar i'} items={[...exhibitions, ...programs]} />
-      <BackButton>Visa alla medverkande</BackButton>
+      <BackButton>{t('showAllParticipants')}</BackButton>
     </>
   );
 }
 
 export async function getStaticPaths() {
   const { participants } = await apiQueryAll(AllParticipantsDocument)
-  const paths = participants.map(({ slug }) => ({ params: { participant: slug } }))
+  const paths = participants.map(({ slug }) => ({ params: { participant: slug }, locale: 'sv' }))
+  paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
     paths,
@@ -44,7 +48,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const slug = context.params.participant;
-  const { participant } = await apiQuery(ParticipantDocument, { variables: { slug }, preview: context.preview })
+  const { participant } = await apiQuery(ParticipantDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!participant)
     return { notFound: true }
