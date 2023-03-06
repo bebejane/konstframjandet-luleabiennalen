@@ -3536,30 +3536,6 @@ type SlugFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-/** Block of type Slumpade medverkande (starrt_random_participant) */
-type StarrtRandomParticipantRecord = RecordInterface & {
-  __typename?: 'StarrtRandomParticipantRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  /** SEO meta tags */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
-  _updatedAt: Scalars['DateTime'];
-  amount?: Maybe<Scalars['IntType']>;
-  id: Scalars['ItemId'];
-};
-
-
-/** Block of type Slumpade medverkande (starrt_random_participant) */
-type StarrtRandomParticipantRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
 /** Block of type Fullskärmsbild (start_fullscreen_image) */
 type StartFullscreenImageRecord = RecordInterface & {
   __typename?: 'StartFullscreenImageRecord';
@@ -3611,7 +3587,7 @@ type StartGalleryRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-type StartModelContentField = StarrtRandomParticipantRecord | StartNewsRecord | StartProgramRecord | StartTextRecord;
+type StartModelContentField = StartFullscreenImageRecord | StartGalleryRecord | StartNewsRecord | StartProgramRecord | StartRandomParticipantRecord | StartTextRecord;
 
 /** Block of type Senaste nyheter (start_news) */
 type StartNewsRecord = RecordInterface & {
@@ -3627,7 +3603,7 @@ type StartNewsRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  amount?: Maybe<Scalars['IntType']>;
+  amount?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
 };
 
@@ -3651,13 +3627,37 @@ type StartProgramRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  amount?: Maybe<Scalars['IntType']>;
+  amount?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
 };
 
 
 /** Block of type I programmet (start_program) */
 type StartProgramRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Slumpade medverkande (start_random_participant) */
+type StartRandomParticipantRecord = RecordInterface & {
+  __typename?: 'StartRandomParticipantRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  antal?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+};
+
+
+/** Block of type Slumpade medverkande (start_random_participant) */
+type StartRandomParticipantRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4551,6 +4551,22 @@ type AllProgramCategoriesQueryVariables = Exact<{
 
 
 type AllProgramCategoriesQuery = { __typename?: 'Query', programCategories: Array<{ __typename?: 'ProgramCategoryRecord', id: any, title?: string | null }> };
+
+type StartQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, content: Array<{ __typename: 'StartFullscreenImageRecord', id: any, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null } | null } | { __typename: 'StartGalleryRecord' } | { __typename: 'StartNewsRecord', id: any, amount?: string | null } | { __typename: 'StartProgramRecord', id: any, amount?: string | null } | { __typename: 'StartRandomParticipantRecord', id: any } | { __typename: 'StartTextRecord', id: any, linkText?: string | null, text?: string | null, url?: string | null }> } | null };
+
+type StartDataQueryVariables = Exact<{
+  newsItems?: InputMaybe<Scalars['IntType']>;
+  programItems?: InputMaybe<Scalars['IntType']>;
+  date?: InputMaybe<Scalars['Date']>;
+  yearId?: InputMaybe<Scalars['ItemId']>;
+  locale?: InputMaybe<SiteLocale>;
+}>;
+
+
+type StartDataQuery = { __typename?: 'Query', news: Array<{ __typename?: 'NewsRecord', id: any, title?: string | null, intro?: string | null, slug?: string | null, _createdAt: any, content?: { __typename?: 'NewsModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, participants: Array<{ __typename?: 'ParticipantRecord', id: any, name?: string | null, intro?: string | null, slug?: string | null, _createdAt: any, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null }, thumb: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null } | null }, year: { __typename?: 'YearRecord', id: any, title: string, participantName: string, backgroundColor: { __typename?: 'ColorField', hex: string } }, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, id: any, title?: string | null, startDate?: any | null, endDate?: any | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null } | null } | null }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, id: any, title?: string | null, startDate: any, endDate?: any | null, time?: string | null, slug?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null } | null, thumb?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null } | null } | null, programCategory?: { __typename?: 'ProgramCategoryRecord', id: any, title?: string | null } | null }>, content?: { __typename?: 'ParticipantModelContentField', value: any, blocks: Array<{ __typename: 'ButtonRecord', id: any, text?: string | null, url?: string | null } | { __typename: 'ImageGalleryRecord', id: any, images: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null }> } | { __typename: 'ImageRecord', id: any, layout: string, image: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null } } | { __typename: 'VideoRecord', id: any, title?: string | null, video?: { __typename?: 'VideoField', height: any, width: any, title: string, provider: string, providerUid: string, thumbnailUrl: string, url: string } | null }> } | null }> };
 
 type AllYearsQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;

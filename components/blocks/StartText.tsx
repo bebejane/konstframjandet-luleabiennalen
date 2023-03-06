@@ -1,14 +1,13 @@
-import s from './Text.module.scss'
+import s from './StartText.module.scss'
 import React from 'react'
 import Link from 'next/link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
-import ReadMore from '../common/ReadMore';
 
-export type TextBlockProps = {
-  data: TextRecord
+export type Props = {
+  data: any
 }
 
-export default function Text({ data: { text, headline, url } }: TextBlockProps) {
+export default function StartText({ data: { text, headline } }: Props) {
 
   return (
     <div className={s.container}>
@@ -20,7 +19,6 @@ export default function Text({ data: { text, headline, url } }: TextBlockProps) 
           {text}
         </Markdown>
       </h3>
-      <ReadMore link={url} message='Läs mer' regional={false}></ReadMore>
     </div>
   )
 }
