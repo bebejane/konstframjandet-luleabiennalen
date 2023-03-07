@@ -14,7 +14,7 @@ export interface StoreState {
 }
 
 const useStore = create<StoreState>((set) => ({
-  showMenu: true,
+  showMenu: false,
   showMenuMobile: false,
   showSearch: false,
   images: [],

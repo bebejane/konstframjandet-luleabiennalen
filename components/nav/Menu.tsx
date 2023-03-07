@@ -9,6 +9,7 @@ import { Hamburger, Temperature } from '/components'
 import useStore from '/lib/store'
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
 import { useWindowSize } from 'usehooks-ts'
+import useDevice from '/lib/hooks/useDevice'
 
 export type MenuProps = { items: Menu }
 
@@ -17,29 +18,33 @@ export default function Menu({ items }: MenuProps) {
 	const t = useTranslations('Menu')
 	const router = useRouter()
 	const menuRef = useRef<HTMLUListElement | null>(null);
-	const [showMenu] = useStore((state) => [state.showMenu])
+	const [showMenu, setShowMenu] = useStore((state) => [state.showMenu, state.setShowMenu])
 	const [selected, setSelected] = useState<MenuItem | undefined>()
 	const [path, setPath] = useState(router.asPath)
 	const [menuPadding, setMenuPadding] = useState(0)
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0)
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
 	const { width, height } = useWindowSize()
+	const { isDesktop } = useDevice()
 
 	useEffect(() => {
-		const handleRouteChangeStart = (path: string) => setPath(path)
+		const handleRouteChangeStart = (path: string) => {
+			setPath(path)
+			if (!isDesktop)
+				setShowMenu(false)
+		}
 		router.events.on('routeChangeStart', handleRouteChangeStart)
 		return () => router.events.off('routeChangeStart', handleRouteChangeStart)
-	}, [])
+	}, [isDesktop])
 
 	useEffect(() => {
 
 		const footerHeight = document.getElementById('footer').clientHeight - 1
 		const menuOffset = menuRef.current.offsetTop
-
 		const footerScrollPosition = (scrolledPosition + viewportHeight) < documentHeight - footerHeight ? 0 : footerHeight - (documentHeight - (scrolledPosition + viewportHeight))
 		setMenuPadding(footerScrollPosition ? menuOffset + footerScrollPosition : 0)
 		setFooterScrollPosition(footerScrollPosition)
-		console.log({ footerScrollPosition, documentHeight })
+
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height])
 
 	return (
