@@ -10,6 +10,7 @@
 
   &.full {
     width: calc(100% - var(--total-outer-margin));
+
     @include mq($until: tablet) {
       width: 100%;
     }
@@ -39,19 +40,35 @@
       padding: 0;
       margin: 0;
       width: 100%;
-    }
 
-    span {
-      &:hover {
-        padding-left: 1em;
-        padding-right: 1em;
-        padding-top: 0.5em;
-        padding-bottom: 0.5em;
-        border-radius: 1.5em;
-        cursor: pointer;
-        background-color: var(--background);
+      >span {
+        &:hover {
+          padding-left: 1em;
+          padding-right: 1em;
+          padding-top: 0.5em;
+          padding-bottom: 0.5em;
+          border-radius: 1.5em;
+          cursor: pointer;
+        }
+
+        span {
+          animation-name: show;
+          animation-duration: 0.2s;
+          animation-timing-function: steps(1, end);
+          animation-fill-mode: forwards;
+          opacity: 0.5;
+          background-color: var(--background);
+
+          @keyframes show {
+            to {
+              opacity: 1;
+            }
+          }
+        }
       }
     }
+
+
   }
 }
 
@@ -59,6 +76,7 @@
   margin-bottom: var(--space);
   width: 100%;
   border-bottom: 1px solid var(--black);
+
   @include mq($until: tablet) {
     margin-left: var(--outer-margin);
     margin-right: var(--outer-margin);

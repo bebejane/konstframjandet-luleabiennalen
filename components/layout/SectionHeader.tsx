@@ -1,6 +1,6 @@
 import s from './SectionHeader.module.scss'
 import cn from 'classnames'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { MenuItem } from '/lib/menu'
@@ -21,7 +21,9 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const t = useTranslations('Menu')
   const [showMenu] = useStore((state) => [state.showMenu])
   const { year, year: { color: { red, green, blue } } } = usePage()
-  const { asPath, locale } = useRouter()
+  const router = useRouter()
+  const { asPath, locale } = router
+  const [reverse, setReverse] = useState(false);
   const color = `rgb(${red},${green},${blue})`
 
   const menuItem = pathToMenuItem(asPath, locale, menu)
@@ -36,6 +38,10 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const yearLabel = `LB°${year.title.substring(2)}`
   const label = `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}`
 
+  const speed = 0.6
+
+
+
   return (
     <>
       <header className={cn(s.header, !showMenu && s.full)}>
@@ -43,8 +49,15 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
           :
           <Link href={isOverview ? menuItem.slug : '#'}>
             <h2>
-              <span style={{ color }}>
-                {label}
+              <span style={{ color }} key={`${asPath}`}>
+                {label.split('').map((c, idx) =>
+                  <span
+                    key={`${idx}`}
+                    style={{
+                      animationDelay: `${((idx / label.length) * speed)}s`,
+                    }}
+                  >{c}</span>
+                )}
               </span>
             </h2>
           </Link>

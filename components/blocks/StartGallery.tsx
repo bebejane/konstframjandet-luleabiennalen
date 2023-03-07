@@ -44,7 +44,7 @@ export default function StartGallery({ data: { id, images, headline, linkText, u
                 pictureClassName={s.picture}
                 placeholderClassName={s.picture}
                 objectFit={'cover'}
-
+                lazyLoad={idx > 0 ? false : true}
               />
               <figcaption>
                 {item.title && <Markdown allowedElements={['em', 'p']}>{item.title}</Markdown>}
