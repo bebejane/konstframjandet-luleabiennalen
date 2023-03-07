@@ -25,7 +25,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
 
   if (!menuItem) return null
 
-  const isOverview = menuItem?.slug && !menuItem.sub
+  const isOverview = menuItem?.slug && !menuItem.sub && menuItem.id !== 'home'
 
   //@ts-ignore
   const label = t(menuItem.id) || t(menuItem.id.split('-')[0])

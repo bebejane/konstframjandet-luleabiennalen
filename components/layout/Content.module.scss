@@ -4,6 +4,8 @@
   flex-direction: column;
   flex: 1 1 auto;
 
+  &.full {}
+
   article {
     padding-bottom: var(--space);
     margin: 0;
