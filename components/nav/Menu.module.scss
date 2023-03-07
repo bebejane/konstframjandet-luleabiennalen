@@ -45,6 +45,7 @@
     margin-left: 0.5rem;
 
     @include mq($until: tablet) {
+      margin-left: 0.61rem;
       font-size: 1.1rem;
     }
 
@@ -62,7 +63,7 @@
         background: transparent;
       }
 
-      >li>a {
+      > li > a {
         font-weight: bold;
       }
     }
@@ -81,11 +82,9 @@
           content: "°  ";
           position: relative;
           top: 0.2em;
-          margin-left: -0.65em;
+          margin-left: -0.61em;
         }
       }
-
-
 
       &:first-of-type {
         padding-top: 1em;
