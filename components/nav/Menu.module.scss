@@ -1,20 +1,20 @@
 .menu {
   border-left: 1px solid var(--black);
-  padding: var(--outer-margin);
-  flex: 0 0 20%;
   overflow: hidden;
+  min-width: 20%;
+  max-width: 20%;
+  transition: transform 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  right: 0;
+  min-height: 100vh;
 
   &.hide {
-    flex: 0 0 0%;
-    padding: 0;
-    transform: translateX(1px);
-    border-left: 0;
+    transform: translateX(100%);
   }
 
   .wrapper {
-    position: fixed;
-    overflow-y: scroll;
-    max-height: 100vh;
+    padding: var(--outer-margin);
   }
 
   span {
@@ -24,10 +24,6 @@
 
   a {
     font-weight: normal;
-
-    &.bold {
-      //font-weight: bold;
-    }
   }
 
   ul {
@@ -36,8 +32,19 @@
     margin-right: var(--outer-margin);
     margin-left: 0.5rem;
 
-    &[data-level="1"] > li > a {
-      font-weight: bold;
+    &[data-level="0"] {
+      scrollbar-width: 0px;
+      overflow-y: scroll;
+
+
+      &::-webkit-scrollbar {
+        height: 0px;
+      }
+
+      &::-webkit-scrollbar-thumb,
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
     }
 
     li {
@@ -53,7 +60,7 @@
         }
       }
 
-      &.bold > a {
+      &.bold>a {
         font-weight: bold;
       }
 

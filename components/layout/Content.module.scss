@@ -2,9 +2,13 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  flex: 0 1;
+  flex-basis: 80%;
+  transition: flex-basis 0.3s ease-in-out;
 
-  &.full {}
+  &.full {
+    flex-basis: 100%;
+  }
 
   article {
     padding-bottom: var(--space);

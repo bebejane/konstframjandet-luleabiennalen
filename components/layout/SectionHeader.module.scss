@@ -8,6 +8,11 @@
   padding-right: var(--total-outer-margin);
   position: fixed;
   z-index: 1000;
+  transition: width 0.3s ease-in-out;
+
+  &.full {
+    width: calc(100% - var(--total-outer-margin));
+  }
 
   svg {}
 

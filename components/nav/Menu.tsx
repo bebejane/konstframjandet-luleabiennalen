@@ -17,7 +17,7 @@ export default function Menu({ items }: MenuProps) {
 	const [selected, setSelected] = useState<MenuItem | undefined>()
 	const router = useRouter()
 	const [path, setPath] = useState(router.asPath)
-	const [maxHeight, setMaxHeight] = useState<number | undefined>()
+	const [menuHeight, setMenuHeight] = useState<number | undefined>()
 	const [showMenu] = useStore((state) => [state.showMenu])
 
 	useEffect(() => {
@@ -27,19 +27,19 @@ export default function Menu({ items }: MenuProps) {
 	}, [])
 
 	useEffect(() => {
-		//const el = document.getElementById(`menu-${selected}`)
-		//setMaxHeight(el ? el.scrollHeight : undefined)
-		//console.log(selected)
-		//console.log(items)
-	}, [selected])
+		const footerHeight = document.getElementById('footer').clientHeight
+		const menuHeight = menuRef.current.offsetTop
+		console.log(footerHeight, menuHeight)
+		//setMenuHeight(menuHeight - footerHeight)
+	}, [menuRef, selected])
 
 	return (
 		<>
 			<Hamburger />
-			<nav id="menu" ref={menuRef} className={cn(s.menu, !showMenu && s.hide)}>
+			<nav className={cn(s.menu, !showMenu && s.hide)}>
 				<div className={s.wrapper}>
 					<Temperature />
-					<ul data-level={0}>
+					<ul data-level={0} ref={menuRef} >
 						{items.map((item, idx) =>
 							<MenuTree
 								key={idx}
@@ -79,9 +79,9 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 		setSelected(item)
 	}
 	useEffect(() => {
-		console.log(selected?.id, level)
+
 		if (selected?.id !== item.id) {
-			setIsVisible(false)
+			//setIsVisible(false)
 		}
 	}, [selected])
 

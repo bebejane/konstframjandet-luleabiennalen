@@ -31,8 +31,8 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 				<Content menu={menu}>
 					{children}
 				</Content>
-				<Menu items={menu} />
 			</div>
+			<Menu items={menu} />
 			<Language />
 			<Logo />
 			<Footer menu={menu} footer={footer} />

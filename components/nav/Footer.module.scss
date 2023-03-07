@@ -9,12 +9,14 @@
 
   section {
     display: flex;
+
     @include mq($until: tablet) {
       flex-direction: column;
       align-items: center;
       padding-left: var(--outer-margin);
       padding-right: var(--outer-margin);
     }
+
     padding-top: var(--outer-margin);
     padding-left: var(--total-outer-margin);
     padding-right: var(--total-outer-margin);
@@ -22,9 +24,11 @@
 
     div {
       padding-bottom: 0.5em;
+
       @include mq($from: tablet) {
         width: 33.33%;
       }
+
       text-align: center;
     }
   }
@@ -33,6 +37,7 @@
     @include mq($until: tablet) {
       transform: scale(0.7);
     }
+
     @include mq($from: tablet) {
       position: absolute;
       right: 0;
