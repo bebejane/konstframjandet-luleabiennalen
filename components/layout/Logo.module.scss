@@ -3,10 +3,12 @@
   max-width: 0;
   z-index: 100;
   left: var(--outer-margin);
+
   @include mq($until: tablet) {
     top: var(--outer-margin);
     transform: scale(0.9);
   }
+
   @include mq($from: tablet) {
     bottom: var(--outer-margin);
   }
@@ -14,6 +16,8 @@
   svg,
   g,
   path {
-    fill: inherit;
+    @include mq($from: tablet) {
+      fill: inherit;
+    }
   }
 }
