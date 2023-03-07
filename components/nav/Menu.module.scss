@@ -12,10 +12,9 @@
 
 
   @include mq($until: desktop) {
-    --max-width: calc(100vw - var(--logo-size-optical) - calc(var(--outer-margin) * 3));
+    --max-width: calc(100% - var(--logo-size-optical) - calc(var(--outer-margin) * 3));
     min-width: var(--max-width);
     max-width: var(--max-width);
-    border-left: 1px solid var(--black);
   }
 
   &.hide {
