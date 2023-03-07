@@ -25,7 +25,6 @@ export default function StartRandomParticipant({ data: { participants } }: Props
         {participants.map(({ id, image, intro, name, slug, }) =>
           <Card key={id}>
             <Thumbnail
-              intro={intro}
               image={image}
               title={name}
               slug={`/medverkande/${slug}`}
