@@ -39,7 +39,8 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   return (
     <>
       <header className={cn(s.header, !showMenu && s.full)}>
-        {menuItem.id !== 'home' ?
+        {isHome ? <Logo />
+          :
           <Link href={isOverview ? menuItem.slug : '#'}>
             <h2>
               <span style={{ color }}>
@@ -47,8 +48,6 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
               </span>
             </h2>
           </Link>
-          :
-          <Logo />
         }
       </header>
       <div className={s.spacer}></div>
