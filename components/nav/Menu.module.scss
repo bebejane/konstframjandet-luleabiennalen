@@ -1,14 +1,21 @@
 .menu {
-
-  overflow: hidden;
-  min-width: 20%;
-  max-width: 20%;
-  transition: transform 0.3s ease-in-out;
   position: fixed;
   top: 0;
   right: 0;
-  //min-height: 100vh;
+  z-index: 2000;
+  background-color: var(--white);
   padding: var(--outer-margin);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  min-width: 20%;
+  max-width: 20%;
+
+  @include mq($until: desktop) {
+    --max-width: calc(100vw - var(--logo-size-optical) - calc(var(--outer-margin) * 2));
+    min-width: var(--max-width);
+    max-width: var(--max-width);
+    border-left: 1px solid var(--black);
+  }
 
   &.hide {
     transform: translateX(100%);
