@@ -22,7 +22,7 @@ export default function StartText({ data: { text, headline, linkText, url } }: P
       </Markdown>
 
       <h3>
-        <Link href={url}>{linkText}</Link>
+        <Link href={url} className="small">{linkText}</Link>
       </h3>
     </div>
   )

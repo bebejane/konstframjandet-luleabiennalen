@@ -6,5 +6,9 @@
     padding-right: var(--outer-margin);
   }
   padding-left: var(--gutter);
-  margin-bottom: var(--space);
+  margin-bottom: var(--small-space);
+
+  @include mq($from: tablet) {
+    margin-bottom: var(--space);
+  }
 }

@@ -69,38 +69,12 @@
       width: 50%;
 
       &:nth-of-type(odd) {
-        border-right: 1px solid var(--beige-mid);
+        padding-right: calc(0.5 * var(--outer-margin));
       }
 
       &:nth-of-type(even) {
-        border-right: none;
+        padding-left: calc(0.5 * var(--outer-margin));
       }
-    }
-  }
-
-  hr {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-left: var(--gutter);
-    margin-right: var(--gutter);
-
-    @include mq($until: tablet) {
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    &:last-child {
-      display: none;
-    }
-  }
-
-  &.whiteBorder {
-    & > li {
-      border-color: var(--white) !important;
-    }
-
-    hr {
-      background: var(--white) !important;
     }
   }
 }

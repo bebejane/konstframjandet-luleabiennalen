@@ -64,7 +64,7 @@ export default function StartGallery({ data: { id, images, headline, linkText, u
       </SwiperReact>
 
       <h3>
-        <Link href={url}>{linkText}</Link>
+        <Link href={url} className="small">{linkText}</Link>
       </h3>
     </div>
   )
