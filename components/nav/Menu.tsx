@@ -7,18 +7,23 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Hamburger, Temperature } from '/components'
 import useStore from '/lib/store'
+import { useScrollInfo } from 'dato-nextjs-utils/hooks'
+import { useWindowSize } from 'usehooks-ts'
 
 export type MenuProps = { items: Menu }
 
 export default function Menu({ items }: MenuProps) {
 
 	const t = useTranslations('Menu')
-	const menuRef = useRef<HTMLDivElement | null>(null);
-	const [selected, setSelected] = useState<MenuItem | undefined>()
 	const router = useRouter()
-	const [path, setPath] = useState(router.asPath)
-	const [menuHeight, setMenuHeight] = useState<number | undefined>()
+	const menuRef = useRef<HTMLUListElement | null>(null);
 	const [showMenu] = useStore((state) => [state.showMenu])
+	const [selected, setSelected] = useState<MenuItem | undefined>()
+	const [path, setPath] = useState(router.asPath)
+	const [menuPadding, setMenuPadding] = useState(0)
+	const [footerScrollPosition, setFooterScrollPosition] = useState(0)
+	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
+	const { width, height } = useWindowSize()
 
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => setPath(path)
@@ -27,35 +32,44 @@ export default function Menu({ items }: MenuProps) {
 	}, [])
 
 	useEffect(() => {
+
 		const footerHeight = document.getElementById('footer').clientHeight
-		const menuHeight = menuRef.current.offsetTop
-		console.log(footerHeight, menuHeight)
-		//setMenuHeight(menuHeight - footerHeight)
-	}, [menuRef, selected])
+		const menuOffset = menuRef.current.offsetTop
+		const footerScrollPosition = (scrolledPosition + viewportHeight) < documentHeight - footerHeight ? 0 : footerHeight - (documentHeight - (scrolledPosition + viewportHeight))
+		setMenuPadding(footerScrollPosition ? menuOffset + footerScrollPosition : 0)
+		setFooterScrollPosition(footerScrollPosition)
+
+	}, [menuRef, selected, scrolledPosition, documentHeight, width, height])
 
 	return (
 		<>
 			<Hamburger />
-			<nav className={cn(s.menu, !showMenu && s.hide)}>
-				<div className={s.wrapper}>
-					<Temperature />
-					<ul data-level={0} ref={menuRef} >
-						{items.map((item, idx) =>
-							<MenuTree
-								key={idx}
-								item={item}
-								level={2}
-								selected={selected}
-								setSelected={setSelected}
-								path={path}
-								locale={router.locale}
-							/>
-						)}
-						<li>
-							<Search />
-						</li>
-					</ul>
-				</div>
+			<nav
+				className={cn(s.menu, !showMenu && s.hide)}
+				style={{ minHeight: `calc(100vh - ${footerScrollPosition}px)` }}
+			>
+				<Temperature />
+				<ul
+					data-level={0}
+					ref={menuRef}
+					style={{ maxHeight: `calc(100vh - ${menuPadding}px - 1rem)` }}
+				>
+					{items.map((item, idx) =>
+						<MenuTree
+							key={idx}
+							item={item}
+							level={2}
+							selected={selected}
+							setSelected={setSelected}
+							path={path}
+							locale={router.locale}
+						/>
+					)}
+					<li>
+						<Search />
+					</li>
+				</ul>
+
 			</nav>
 		</>
 	)
