@@ -1,6 +1,7 @@
 type PageProps = {
   year: YearRecord
   title?: string
+  isArchive?: boolean
 }
 
 type ThumbnailImage = {
