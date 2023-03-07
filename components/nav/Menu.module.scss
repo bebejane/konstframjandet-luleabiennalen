@@ -10,7 +10,6 @@
   min-width: 20%;
   max-width: 20%;
 
-
   @include mq($until: desktop) {
     --max-width: calc(100% - var(--logo-size-optical) - calc(var(--outer-margin) * 3));
     min-width: var(--max-width);
@@ -27,6 +26,10 @@
 
   span {
     display: block;
+    @include mq($until: tablet) {
+      padding-top: 1.5em;
+      padding-bottom: calc(var(--header-height) - 1.5em);
+    }
     padding-bottom: var(--header-height);
   }
 
@@ -40,7 +43,7 @@
     margin-left: 0.5rem;
 
     @include mq($until: tablet) {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     &[data-level="0"] {
