@@ -1,6 +1,6 @@
 import '/lib/styles/index.scss'
 import { Layout } from '/components';
-import { PageProvider } from '/lib/context/page'
+import { PageProvider, usePage } from '/lib/context/page'
 import { NextIntlProvider, IntlErrorCode } from 'next-intl';
 import { useEffect } from 'react';
 import { sv } from 'date-fns/locale'
@@ -15,10 +15,9 @@ function App({ Component, pageProps, router }) {
 
 
   const title = 'Luleåbiennalen'
-  const { year } = pageProps
+  const { isArchive } = usePage()
 
   useEffect(() => {
-    const isArchive = year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR
     document.body.style.backgroundColor = isArchive ? 'var(--archive)' : 'var(--white)'
   }, [router.asPath])
 

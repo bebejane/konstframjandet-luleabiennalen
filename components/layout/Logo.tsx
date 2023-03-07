@@ -1,9 +1,7 @@
 import s from './Logo.module.scss'
-import cn from 'classnames'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
 import LogoIcon from '/public/images/logo.svg'
 import { usePage } from '/lib/context/page'
+import Link from 'next/link'
 
 export type Props = {
 
@@ -16,7 +14,7 @@ export default function Logo({ }: Props) {
 
   return (
     <div className={s.container} style={{ fill: color }}>
-      <LogoIcon />
+      <Link href={'/'}><LogoIcon /></Link>
     </div>
   )
 }
