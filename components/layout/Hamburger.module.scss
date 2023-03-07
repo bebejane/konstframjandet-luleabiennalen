@@ -1,7 +1,7 @@
 .hamburger {
   --line-height: 4px;
-  --height: 18px;
-  --width: 30px;
+  --height: 16px;
+  --width: 28px;
 
   position: fixed;
   z-index: 10000;
@@ -12,7 +12,7 @@
   max-width: var(--width);
   max-height: var(--height);
   cursor: pointer;
-  top: 12px;
+  top: 13px;
 
   @include mq($from: tablet) {
     top: 0;
