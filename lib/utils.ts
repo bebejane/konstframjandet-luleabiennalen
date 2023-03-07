@@ -2,6 +2,7 @@ import years from './years.json'
 import { TypedDocumentNode } from "@apollo/client/core";
 import { apiQuery } from "dato-nextjs-utils/api";
 import type { ApiQueryOptions } from "dato-nextjs-utils/api";
+import type { MenuItem } from '/lib/menu';
 import format from "date-fns/format";
 import React from "react";
 
@@ -205,4 +206,23 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
     paths,
     fallback: 'blocking',
   };
+}
+
+export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
+
+  let item = items.find(({ slug, sub }, idx) => {
+    if ([slug, `/${locale}${slug}`].includes(path))
+      return true
+    const p = path.split('/'); p.pop()
+    return p.join('/') === slug && !sub
+  })
+
+  if (item) return item
+
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].sub) {
+      item = pathToMenuItem(path, locale, items[i].sub)
+      if (item) return item
+    }
+  }
 }
