@@ -39,7 +39,7 @@ export default function Menu({ items }: MenuProps) {
 			<nav id="menu" ref={menuRef} className={cn(s.menu, !showMenu && s.hide)}>
 				<div className={s.wrapper}>
 					<Temperature />
-					<ul data-level={1}>
+					<ul data-level={0}>
 						{items.map((item, idx) =>
 							<MenuTree
 								key={idx}
@@ -79,7 +79,10 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 		setSelected(item)
 	}
 	useEffect(() => {
-		//if (selected.id !== item.id) setIsVisible(false)
+		console.log(selected?.id, level)
+		if (selected?.id !== item.id) {
+			setIsVisible(false)
+		}
 	}, [selected])
 
 	const isSelected = path === item.slug || path === `/${locale}${item.slug}`
@@ -120,5 +123,4 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 const Search = () => {
 	const t = useTranslations('Menu')
 	return <input className={s.search} placeholder={t('search')} />
-
 }
