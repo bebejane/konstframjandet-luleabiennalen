@@ -61,10 +61,8 @@
 
     li {
       cursor: pointer;
-      padding-bottom: 1em;
-      @include mq($from: tablet) {
-        padding-bottom: 0.5em;
-      }
+      padding-bottom: 0.5em;
+      line-height: 1.4;
 
       &.active {
         &::before {
@@ -75,12 +73,13 @@
         }
       }
 
-      &.bold > a {
+      &.bold>a {
         font-weight: bold;
       }
 
       &:first-of-type {
         padding-top: 1em;
+
         @include mq($from: tablet) {
           padding-bottom: 0.5em;
         }
