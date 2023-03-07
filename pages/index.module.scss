@@ -1,9 +1,13 @@
 .container {
-
   section {
     padding-top: var(--space);
     padding-bottom: var(--space);
     border-bottom: 1px solid var(--black);
+
+    @include mq($until: tablet) {
+      margin-left: var(--outer-margin);
+      margin-right: var(--outer-margin);
+    }
 
     &:first-child,
     &:last-child {
@@ -25,5 +29,4 @@
       }
     }
   }
-
 }
