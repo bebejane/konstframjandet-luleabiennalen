@@ -42,7 +42,7 @@
   ul {
     list-style: none;
     font-weight: bold;
-    margin-left: 0.5rem;
+    padding-left: 0.61rem;
 
     @include mq($until: tablet) {
       margin-left: 0.61rem;
@@ -72,6 +72,8 @@
       cursor: pointer;
       padding-bottom: 0.5em;
       line-height: 1.4;
+      overflow-x: visible !important;
+      overflow-y: visible !important;
 
       a {
         line-height: initial;
