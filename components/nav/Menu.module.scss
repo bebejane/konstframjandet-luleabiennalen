@@ -11,7 +11,7 @@
   max-width: 20%;
 
   @include mq($until: desktop) {
-    --max-width: calc(100vw - var(--logo-size-optical) - calc(var(--outer-margin) * 2));
+    --max-width: calc(100vw - var(--logo-size-optical) - calc(var(--outer-margin) * 3));
     min-width: var(--max-width);
     max-width: var(--max-width);
     border-left: 1px solid var(--black);
@@ -35,14 +35,12 @@
   }
 
   ul {
-
     list-style: none;
     font-weight: bold;
     margin-right: var(--outer-margin);
     margin-left: 0.5rem;
 
     &[data-level="0"] {
-
       scrollbar-width: 0px;
       overflow-y: scroll;
       overflow-x: hidden;
@@ -70,7 +68,7 @@
         }
       }
 
-      &.bold>a {
+      &.bold > a {
         font-weight: bold;
       }
 
