@@ -25,6 +25,9 @@
   }
 
   svg {
+    @include mq($until: tablet) {
+      display: none;
+    }
   }
 
   a {

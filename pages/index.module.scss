@@ -9,6 +9,10 @@
       margin-right: var(--outer-margin);
     }
 
+    &:first-child {
+      padding-top: 0;
+    }
+
     &:first-child,
     &:last-child {
       border-width: 0;

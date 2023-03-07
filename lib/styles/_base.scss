@@ -114,8 +114,8 @@ button {
 	margin-right: var(--outer-margin);
 	padding-left: 1.5em;
 	padding-right: 1.5em;
-	padding-bottom: 1em;
-	padding-top: 1em;
+	padding-bottom: 1.5em;
+	padding-top: 1.5em;
 	background-color: var(--background);
 	color: var(--foreground);
 	border: 0;
@@ -129,6 +129,8 @@ button {
 	@include mq($from: tablet) {
 		margin-left: var(--grid-unit);
 		margin-right: var(--grid-unit);
+		padding-bottom: 1em;
+		padding-top: 1em;
 	}
 
 	transition: color 0.2s ease-in-out, background-color 0.3s ease-in-out;
