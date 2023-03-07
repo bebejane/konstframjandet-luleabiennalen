@@ -12,7 +12,7 @@
   max-width: var(--width);
   max-height: var(--height);
   cursor: pointer;
-  top: 16px;
+  top: 12px;
 
   @include mq($from: tablet) {
     top: 0;

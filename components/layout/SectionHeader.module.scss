@@ -3,18 +3,29 @@
   align-items: baseline;
   justify-content: center;
   margin-top: var(--outer-margin);
-  //Detta måste fixas till när menyn är stängd
-  width: calc(80% - var(--total-outer-margin));
-  padding-right: var(--total-outer-margin);
   position: fixed;
   z-index: 1000;
   transition: width 0.3s ease-in-out;
+  width: 100%;
 
   &.full {
     width: calc(100% - var(--total-outer-margin));
+    @include mq($until: tablet) {
+      width: 100%;
+    }
   }
 
-  svg {}
+  @include mq($until: tablet) {
+    margin-top: -1em;
+  }
+
+  @include mq($from: tablet) {
+    width: calc(80% - var(--total-outer-margin));
+    padding-right: var(--total-outer-margin);
+  }
+
+  svg {
+  }
 
   a {
     width: 100%;
@@ -45,10 +56,18 @@
   margin-bottom: var(--space);
   width: 100%;
   border-bottom: 1px solid var(--black);
-
+  @include mq($until: tablet) {
+    margin-left: var(--outer-margin);
+    margin-right: var(--outer-margin);
+    width: var(--body-width);
+  }
 }
 
 .spacer {
   position: relative;
-  height: var(--header-height);
+  height: calc(var(--header-height) - 0.5rem);
+
+  @include mq($from: tablet) {
+    height: var(--header-height);
+  }
 }
