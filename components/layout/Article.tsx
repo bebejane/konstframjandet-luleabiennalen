@@ -49,7 +49,10 @@ export default function Article({ id, children, title, content, image, imageSize
     <div className={cn(s.article, 'article')}>
       <h1>{title}</h1>
       {image &&
-        <figure className={cn(s.mainImage, imageSize && s[imageSize])} onClick={() => setImageId(image?.id)}>
+        <figure
+          className={cn(s.mainImage, imageSize && s[imageSize], image.height > image.width && s.portrait)}
+          onClick={() => setImageId(image?.id)}
+        >
           <Image
             data={image.responsiveImage}
             pictureClassName={s.picture}

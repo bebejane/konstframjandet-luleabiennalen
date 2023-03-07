@@ -25,11 +25,11 @@
       padding-right: calc(2 * var(--grid-unit));
     }
 
-    &.medium {
-    }
+    &.medium {}
 
-    &.large {
-    }
+    &.large {}
+
+    &.portrait {}
   }
 
   .date {
@@ -39,6 +39,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
     @include mq($until: tablet) {
       width: 14vw;
       float: right;

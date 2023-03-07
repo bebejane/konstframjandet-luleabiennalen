@@ -14,7 +14,7 @@ export type ImageBlockProps = {
 export default function Image({ id, data: { image, layout }, onClick }: ImageBlockProps) {
 
 	return (
-		<figure className={cn(s.figure, s[layout])} onClick={() => onClick?.(image.id)}>
+		<figure className={cn(s.figure, s[layout], image.height > image.width && s.portrait)} onClick={() => onClick?.(image.id)}>
 			<DatoImage
 				data={image.responsiveImage}
 				className={s.image}
