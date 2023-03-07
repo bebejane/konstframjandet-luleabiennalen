@@ -3,9 +3,9 @@ import { Layout } from '/components';
 import { PageProvider, usePage } from '/lib/context/page'
 import { NextIntlProvider, IntlErrorCode } from 'next-intl';
 import { useEffect } from 'react';
-import { sv } from 'date-fns/locale'
-
+import { sv, enGB } from 'date-fns/locale'
 import setDefaultOptions from 'date-fns/setDefaultOptions';
+
 setDefaultOptions({ locale: sv })
 
 function onMessageError() { }
@@ -13,13 +13,14 @@ function getMessageFallback({ namespace, key, error }) { return '' }
 
 function App({ Component, pageProps, router }) {
 
-
   const title = 'Luleåbiennalen'
   const { isArchive } = usePage()
 
+  setDefaultOptions({ locale: router.locale === 'sv' ? sv : enGB })
+
   useEffect(() => {
     document.body.style.backgroundColor = isArchive ? 'var(--archive)' : 'var(--white)'
-  }, [router.asPath])
+  }, [router.asPath, isArchive])
 
   return (
     <>
