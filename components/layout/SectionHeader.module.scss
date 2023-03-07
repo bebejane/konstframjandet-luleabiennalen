@@ -1,12 +1,15 @@
 .header {
   display: flex;
   align-items: baseline;
+  justify-content: center;
   margin-top: var(--outer-margin);
   //Detta måste fixas till när menyn är stängd
   width: calc(80% - var(--total-outer-margin));
   padding-right: var(--total-outer-margin);
   position: fixed;
   z-index: 1000;
+
+  svg {}
 
   a {
     width: 100%;
@@ -37,6 +40,7 @@
   margin-bottom: var(--space);
   width: 100%;
   border-bottom: 1px solid var(--black);
+
 }
 
 .spacer {

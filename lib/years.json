@@ -9,10 +9,10 @@
       "green": 0
     },
     "color": {
-      "red": 59,
-      "blue": 201,
+      "red": 0,
+      "blue": 0,
       "alpha": 255,
-      "green": 186
+      "green": 0
     }
   },
   {
@@ -25,10 +25,10 @@
       "green": 22
     },
     "color": {
-      "red": 131,
-      "blue": 92,
+      "red": 255,
+      "blue": 0,
       "alpha": 255,
-      "green": 16
+      "green": 70
     }
   },
   {
@@ -41,10 +41,10 @@
       "green": 166
     },
     "color": {
-      "red": 154,
-      "blue": 44,
+      "red": 0,
+      "blue": 0,
       "alpha": 255,
-      "green": 44
+      "green": 40
     }
   }
 ]

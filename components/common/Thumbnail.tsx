@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 export type Props = {
-  image: FileField
+  image?: FileField
   slug: string
   title: string
   intro?: string

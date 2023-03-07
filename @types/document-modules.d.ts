@@ -205,6 +205,16 @@ export const AllProgramCategories: DocumentNode;
 }
     
 
+declare module '*/start.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Start: DocumentNode;
+export const StartData: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/year.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

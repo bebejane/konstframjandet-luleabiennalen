@@ -1,0 +1,75 @@
+query Start {
+	start {
+		id
+		content {
+			__typename
+			... on StartTextRecord {
+				__typename
+				id
+				headline
+				linkText
+				text
+				url
+			}
+			... on StartNewsRecord {
+				__typename
+				id
+				amount
+			}
+			... on StartProgramRecord {
+				__typename
+				id
+				amount
+			}
+			... on StartRandomParticipantRecord {
+				__typename
+				id
+			}
+			... on StartFullscreenImageRecord {
+				id
+				image {
+					...ImageFragment
+				}
+			}
+
+			... on StartGalleryRecord {
+				__typename
+				id
+				headline
+				linkText
+				url
+				images {
+					...ImageFragment
+				}
+			}
+		}
+	}
+}
+
+query StartData(
+	$newsItems: IntType
+	$programItems: IntType
+	$date: Date
+	$yearId: ItemId
+	$locale: SiteLocale
+) {
+	news: allNews(locale: $locale, first: $newsItems, orderBy: _createdAt_DESC) {
+		...NewsFragment
+	}
+	programs: allPrograms(
+		filter: { startDate: { gte: $date }, year: { eq: $yearId } }
+		locale: $locale
+		first: $programItems
+		orderBy: startDate_DESC
+	) {
+		...ProgramFragmentLight
+	}
+	participants: allParticipants(
+		filter: { year: { eq: $yearId } }
+		first: 100
+		orderBy: _createdAt_DESC
+		locale: $locale
+	) {
+		...ParticipantFragment
+	}
+}

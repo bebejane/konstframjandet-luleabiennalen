@@ -36,5 +36,8 @@
 		"subscribe": "Prenumerera på vårt nyhetsbrev",
 		"followUs": "Följ oss på",
 		"and": "och"
+	},
+	"general": {
+		"showAll": "Visa alla"
 	}
 }
