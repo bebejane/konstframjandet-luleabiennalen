@@ -111,7 +111,7 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 
 	return (
 		<>
-			<li onClick={expand} className={cn(isSelected && s.active, item.root && s.bold)}>
+			<li onClick={expand} className={cn(isSelected && s.active, level === 0 && s.bold)}>
 				{isLink ?
 					<Link href={item.slug}>
 						{label}
