@@ -33,20 +33,21 @@ export default function Menu({ items }: MenuProps) {
 
 	useEffect(() => {
 
-		const footerHeight = document.getElementById('footer').clientHeight
+		const footerHeight = document.getElementById('footer').clientHeight - 1
 		const menuOffset = menuRef.current.offsetTop
+
 		const footerScrollPosition = (scrolledPosition + viewportHeight) < documentHeight - footerHeight ? 0 : footerHeight - (documentHeight - (scrolledPosition + viewportHeight))
 		setMenuPadding(footerScrollPosition ? menuOffset + footerScrollPosition : 0)
 		setFooterScrollPosition(footerScrollPosition)
-
-	}, [menuRef, selected, scrolledPosition, documentHeight, width, height])
+		console.log({ footerScrollPosition, documentHeight })
+	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height])
 
 	return (
 		<>
 			<Hamburger />
 			<nav
 				className={cn(s.menu, !showMenu && s.hide)}
-				style={{ minHeight: `calc(100vh - ${footerScrollPosition}px)` }}
+				style={{ minHeight: `calc(100vh - ${footerScrollPosition}px - 1px)` }}
 			>
 				<Temperature />
 				<ul
