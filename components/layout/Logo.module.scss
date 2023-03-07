@@ -1,8 +1,13 @@
 .container {
   position: fixed;
-  left: var(--outer-margin);
-  bottom: var(--outer-margin);
   max-width: 0;
+  left: var(--outer-margin);
+  @include mq($until: tablet) {
+    top: var(--outer-margin);
+  }
+  @include mq($from: tablet) {
+    bottom: var(--outer-margin);
+  }
 
   svg,
   g,

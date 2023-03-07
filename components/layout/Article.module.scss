@@ -25,22 +25,31 @@
       padding-right: calc(2 * var(--grid-unit));
     }
 
-    &.medium {}
+    &.medium {
+    }
 
-    &.large {}
+    &.large {
+    }
   }
 
   .date {
     font-family: $headline-font;
-    position: absolute;
-    //aspect-ratio: 4 / 5;
+    border: 1px solid var(--black);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    right: 0;
-    width: calc(var(--grid-unit) - var(--gutter));
-    border: 1px solid var(--black);
+    @include mq($until: tablet) {
+      width: 14vw;
+      float: right;
+      margin-left: var(--outer-margin);
+    }
+
+    @include mq($from: tablet) {
+      position: absolute;
+      right: 0;
+      width: calc(var(--grid-unit) - var(--gutter));
+    }
 
     span {
       display: block;

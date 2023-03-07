@@ -1,4 +1,7 @@
 .language {
+  @include mq($until: tablet) {
+    display: none; //Temp
+  }
   position: fixed;
   top: 0;
   left: 0;

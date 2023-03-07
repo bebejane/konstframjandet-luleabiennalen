@@ -1,20 +1,31 @@
 .meta {
   margin-top: var(--space);
+  margin-bottom: -0.5em;
   width: var(--body-width);
-  margin-left: var(--grid-unit);
   padding-top: var(--space);
   border-top: 1px solid var(--black);
+  margin-left: var(--outer-margin);
+  columns: 2;
+  text-align: center;
+
+  @include mq($from: tablet) {
+    margin-left: var(--grid-unit);
+  }
 
   > ul {
     list-style: none;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     padding-left: 0 !important;
-    justify-content: space-around;
+
+    @include mq($from: tablet) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
 
     li {
-      text-align: left;
+      padding-bottom: 0.5em;
+      text-align: center;
     }
   }
 }

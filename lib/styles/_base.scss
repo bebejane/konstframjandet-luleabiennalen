@@ -2,12 +2,12 @@
 	--black: #121212;
 	--white: #fcfcfc;
 	--red: #bf0000;
-	--archive: #F5F5F5;
+	--archive: #f5f5f5;
 	--outer-margin: 3vw;
 	--logo-size-optical: 2.8rem;
 	--total-outer-margin: calc((var(--outer-margin) * 2) + var(--logo-size-optical));
 	--grid-unit: calc(((100vw - (2 * var(--total-outer-margin))) / 12));
-	--body-width: calc(100% - (2 * var(--grid-unit)));
+	--body-width: calc(100% - (2 * var(--outer-margin)));
 	--full-margin: calc(-1 * (2 * var(--grid-unit)));
 	--small-space: 1rem;
 	--space: 2rem;
@@ -21,6 +21,8 @@
 	--foreground: var(--black);
 
 	@include mq($from: tablet) {
+		--body-width: calc(100% - (2 * var(--grid-unit)));
+
 		--space: 2rem;
 		--outer-margin: 2vw;
 		--gutter: 2vw;
@@ -108,8 +110,8 @@ article p a {
 button {
 	margin-top: var(--big-space);
 	margin-bottom: var(--space);
-	margin-left: var(--grid-unit);
-	margin-right: var(--grid-unit);
+	margin-left: var(--outer-margin);
+	margin-right: var(--outer-margin);
 	padding-left: 1.5em;
 	padding-right: 1.5em;
 	padding-bottom: 1em;
@@ -124,10 +126,19 @@ button {
 	font-weight: bold;
 	cursor: pointer;
 
+	@include mq($from: tablet) {
+		margin-left: var(--grid-unit);
+		margin-right: var(--grid-unit);
+	}
+
 	transition: color 0.2s ease-in-out, background-color 0.3s ease-in-out;
 
 	&.back {
-		width: calc(100% - (2 * var(--grid-unit)));
+		width: var(--body-width);
+
+		@include mq($from: tablet) {
+			width: var(--body-width);
+		}
 	}
 
 	&:hover {
@@ -137,6 +148,10 @@ button {
 }
 
 figcaption {
+	@include mq($until: tablet) {
+		padding-left: var(--outer-margin);
+		padding-right: var(--outer-margin);
+	}
 	line-height: var(--line-height);
 	padding-top: 1em;
 }
