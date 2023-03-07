@@ -7,8 +7,13 @@ export default function Hamburger() {
 
   const [showMenu, setShowMenu] = useStore((state) => [state.showMenu, state.setShowMenu])
 
+  const handleClick = (e) => {
+    setShowMenu(!showMenu)
+    e.stopPropagation();
+  }
+
   return (
-    <div className={s.hamburger} onClick={() => setShowMenu(!showMenu)}>
+    <div className={s.hamburger} onClick={handleClick}>
       <div className={s.wrap}>
         <div className={cn(showMenu ? s.open : s.close)}></div>
         <div className={cn(showMenu ? s.open : s.close)}></div>
