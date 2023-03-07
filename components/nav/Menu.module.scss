@@ -37,7 +37,6 @@
   ul {
     list-style: none;
     font-weight: bold;
-    margin-right: var(--outer-margin);
     margin-left: 0.5rem;
 
     @include mq($until: tablet) {
@@ -77,7 +76,7 @@
         }
       }
 
-      &.bold>a {
+      &.bold > a {
         font-weight: bold;
       }
 
