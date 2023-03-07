@@ -1,6 +1,6 @@
 .hamburger {
   --line-height: 4px;
-  --height: 36px;
+  --height: 24px;
   --width: 36px;
 
   position: fixed;
@@ -19,14 +19,12 @@
     width: 100%;
     height: 100%;
 
-
-
-    >div {
+    > div {
       position: relative;
       width: 100%;
       height: var(--line-height);
       background-color: var(--black);
-      animation-duration: .3s;
+      animation-duration: 0.3s;
       animation-timing-function: ease-in-out;
       animation-direction: normal;
       animation-fill-mode: forwards;
@@ -45,7 +43,6 @@
     }
 
     div:nth-child(2) {
-
       transform: translateY(calc(var(--height) * 0.5 - calc(var(--line-height) / 2)));
 
       &.close {
@@ -103,6 +100,6 @@
 
 @keyframes close3 {
   to {
-    transform: translateY(calc(var(--height) * 1.0 - calc(var(--line-height) / 2)));
+    transform: translateY(calc(var(--height) * 1 - calc(var(--line-height) / 2)));
   }
 }

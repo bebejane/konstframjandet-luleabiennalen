@@ -25,7 +25,7 @@ export default function News({ news }: Props) {
             <h1>{title}</h1>
             <div className="intro">
               <Markdown className={s.intro}>
-                {`**${capitalize(format(new Date(_createdAt), 'dd MMM, yyyy'))}**${intro}`}
+                {intro}
               </Markdown>
             </div>
             <Link href={`/nyheter/${slug}`}><button>{t('readMore')}</button></Link>
