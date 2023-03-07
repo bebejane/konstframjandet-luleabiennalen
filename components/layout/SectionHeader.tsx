@@ -12,24 +12,39 @@ export type SectionHeaderProps = {
   overview?: boolean
 }
 
+const pathToMenuItem = (path: string, locale, items: MenuItem[]): MenuItem => {
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items.find(({ slug }, idx) => {
+      return [slug, `/${locale}${slug}`].includes(path)
+    })
+    if (item) return item
+    else if (items[i].sub)
+      return pathToMenuItem(path, locale, items[i].sub)
+  }
+}
+
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
 
   const t = useTranslations('Menu')
   const { year, year: { color: { red, green, blue } } } = usePage()
-  const { asPath } = useRouter()
+  const { asPath, locale } = useRouter()
   const color = `rgb(${red},${green},${blue})`
-  const menuItem = menu.find(el => el.id !== 'home' && (el.slug === asPath || asPath.startsWith(el.slug)))
+
+  const menuItem = pathToMenuItem(asPath, locale, menu)
   const haveOverview = menuItem?.slug && !menuItem.sub
-  const url = menuItem?.slug || menuItem?.sub?.find(({ slug }) => slug === asPath)?.slug || '/'
+
+  if (!menuItem) return null
+  const label = t(menuItem.id) || t(menuItem.id.split('-')[0])
 
   return (
     <>
       <header className={s.header}>
-        {menuItem ?
-          <Link href={haveOverview ? url : '#'}>
+        {menuItem.id !== 'home' ?
+          <Link href={haveOverview ? menuItem.slug : '#'}>
             <h2>
               <span style={{ color }}>
-                LB°{year.title.substring(2)}{menuItem ? ` — ${t(menuItem.id)}` : ''}
+                LB°{year.title.substring(2)} {label}
               </span>
             </h2>
           </Link>
