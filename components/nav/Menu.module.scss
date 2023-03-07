@@ -40,6 +40,10 @@
     margin-right: var(--outer-margin);
     margin-left: 0.5rem;
 
+    @include mq($until: tablet) {
+      font-size: 1rem;
+    }
+
     &[data-level="0"] {
       scrollbar-width: 0px;
       overflow-y: scroll;
@@ -57,7 +61,10 @@
 
     li {
       cursor: pointer;
-      padding-bottom: 0.5em;
+      padding-bottom: 1em;
+      @include mq($from: tablet) {
+        padding-bottom: 0.5em;
+      }
 
       &.active {
         &::before {
@@ -73,7 +80,10 @@
       }
 
       &:first-of-type {
-        padding-top: 0.5em;
+        padding-top: 1em;
+        @include mq($from: tablet) {
+          padding-bottom: 0.5em;
+        }
       }
     }
   }
