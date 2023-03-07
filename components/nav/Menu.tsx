@@ -35,11 +35,10 @@ export default function Menu({ items }: MenuProps) {
 
 		const footerHeight = document.getElementById('footer').clientHeight - 1
 		const menuOffset = menuRef.current.offsetTop
-
 		const footerScrollPosition = (scrolledPosition + viewportHeight) < documentHeight - footerHeight ? 0 : footerHeight - (documentHeight - (scrolledPosition + viewportHeight))
 		setMenuPadding(footerScrollPosition ? menuOffset + footerScrollPosition : 0)
 		setFooterScrollPosition(footerScrollPosition)
-		console.log({ footerScrollPosition, documentHeight })
+
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height])
 
 	return (

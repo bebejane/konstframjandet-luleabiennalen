@@ -1,18 +1,19 @@
 .hamburger {
   --line-height: 4px;
-  --height: 16px;
-  --width: 28px;
+  --height: 30px;
+  --width: 30px;
 
   position: fixed;
   z-index: 100000;
   right: 0;
   margin: var(--outer-margin);
   width: var(--width);
-  height: var(--height);
+
   max-width: var(--width);
-  max-height: var(--height);
+  min-height: var(--height);
   cursor: pointer;
-  top: 13px;
+  top: 12px;
+  pointer-events: all;
 
   @include mq($from: tablet) {
     top: 0;
@@ -59,7 +60,7 @@
     }
 
     div:nth-child(3) {
-      transform: translateY(calc(var(--height) * 1 - calc(var(--line-height) / 2)));
+      transform: translateY(calc(var(--height) - calc(var(--line-height) / 2)));
 
       &.close {
         animation-name: close3;
