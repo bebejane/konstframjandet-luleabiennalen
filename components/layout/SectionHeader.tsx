@@ -20,11 +20,9 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
 
   const t = useTranslations('Menu')
   const [showMenu, searchQuery] = useStore((state) => [state.showMenu, state.searchQuery])
-  const { year, year: { color: { red, green, blue } } } = usePage()
+  const { year, year: { color: { hex } } } = usePage()
   const router = useRouter()
   const { asPath, locale } = router
-  const [reverse, setReverse] = useState(false);
-  const color = `rgb(${red},${green},${blue})`
 
   const menuItem = pathToMenuItem(asPath, locale, menu)
 
@@ -47,7 +45,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
           :
           <Link href={isOverview ? menuItem.slug : '#'}>
             <h2>
-              <span style={{ color }} key={`${asPath}`}>
+              <span style={{ color: hex }} key={label}>
                 {label.split('').map((c, idx) =>
                   <span
                     key={`${idx}`}

@@ -7,7 +7,7 @@
 		"dev:watch": "LOG_GRAPHQL=false next dev & npm run barrel:watch & graphql-codegen --watch",
 		"dev:emails": "npx mailing",
 		"build": "npm run prebuild && next build",
-		"prebuild": "node prebuild.js",
+		"prebuild": "tsx ./lib/scripts/prebuild.tsx",
 		"codegen": "graphql-codegen",
 		"start": "next start",
 		"lint": "next lint",

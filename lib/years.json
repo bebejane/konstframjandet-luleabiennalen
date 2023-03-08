@@ -1,50 +1,144 @@
 [
   {
+    "__typename": "YearRecord",
     "id": "65893327",
     "title": "2022",
-    "backgroundColor": {
-      "red": 255,
-      "blue": 0,
-      "alpha": 255,
-      "green": 0
-    },
+    "participantName": "Medverkande",
     "color": {
+      "hex": "#000000",
       "red": 0,
-      "blue": 0,
-      "alpha": 255,
-      "green": 0
-    }
+      "green": 0,
+      "__typename": "ColorField"
+    },
+    "backgroundColor": {
+      "hex": "#FF0000",
+      "red": 255,
+      "green": 0,
+      "__typename": "ColorField"
+    },
+    "background": [
+      {
+        "__typename": "FileField",
+        "id": "30432203",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1678264405-back.png",
+        "title": null,
+        "alt": null,
+        "height": 2076,
+        "width": 2880,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1678264405-back.png?auto=format",
+          "width": 2880,
+          "height": 2076,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwwHBg0ODg8HFA0PCg0NBwYHDhEJFhEYFxMZGBYVFiEaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBANGi8cIhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAZAAACAwEAAAAAAAAAAAAAAAAAAwECBAf/xAAaEAACAwEBAAAAAAAAAAAAAAAAAgEDESES/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIDAP/EABkRAQEAAwEAAAAAAAAAAAAAAAABAhExA//aAAwDAQACEQMRAD8A6rSvljek6pnlMG1TwWRX0ylWsnFAXe3CBktrOCEgaBl0q8kACD//2Q==",
+          "sizes": "(max-width: 2880px) 100vw, 2880px",
+          "__typename": "ResponsiveImage"
+        }
+      }
+    ],
+    "loadingImage": [
+      {
+        "__typename": "FileField",
+        "id": "30432198",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1678264263-loading_3.png",
+        "title": null,
+        "alt": null,
+        "height": 591,
+        "width": 692,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1678264263-loading_3.png?auto=format",
+          "width": 692,
+          "height": 591,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBhQNCQ0UDhYOFw0JDRAOCBEODQ0NFxMZGBYVFhUaHysjGh0oHSEWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQUFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABUAGAMBIgACEQEDEQH/xAAZAAEAAgMAAAAAAAAAAAAAAAAAAwQBAgf/xAAbEAADAQEAAwAAAAAAAAAAAAAAAQIDERIhMv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDsrfEazaoxs+ZlTKq8gLt0kgV9afABNr8EGcroADZegAB//9k=",
+          "sizes": "(max-width: 692px) 100vw, 692px",
+          "__typename": "ResponsiveImage"
+        }
+      },
+      {
+        "__typename": "FileField",
+        "id": "30432199",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1678264245-loading_2.png",
+        "title": null,
+        "alt": null,
+        "height": 694,
+        "width": 638,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1678264245-loading_2.png?auto=format",
+          "width": 638,
+          "height": 694,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBw8NBg4NDQkGDQcPDg0NCQgNDhEJDgcMFx8ZGBYfFhUaHysjGh0oHSEWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDw0OHBAOFS8oHhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABgAFgMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAwIHAf/EABoQAQACAwEAAAAAAAAAAAAAAAABAwIRMiL/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAXEQEAAwAAAAAAAAAAAAAAAAAAAREh/9oADAMBAAIRAxEAPwDspE7ZsnWCdWQsRjdkiN2foEpe3hOuHgKlf0AMv//Z",
+          "sizes": "(max-width: 638px) 100vw, 638px",
+          "__typename": "ResponsiveImage"
+        }
+      },
+      {
+        "__typename": "FileField",
+        "id": "30432200",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1678264170-loading_1.png",
+        "title": null,
+        "alt": null,
+        "height": 725,
+        "width": 720,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1678264170-loading_1.png?auto=format",
+          "width": 720,
+          "height": 725,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBw0HBg0PDwsIDREPDg8IDQcOCBENFg4YFxMeGCIVFhUmHysjGh0oHRUiJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDw0OEg8MFS8cIh0vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABkAGAMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAADAQAHAv/EABwQAAEEAwEAAAAAAAAAAAAAAAABAgMhETEyIv/EABQBAQAAAAAAAAAAAAAAAAAAAAH/xAAWEQEBAQAAAAAAAAAAAAAAAAAAEQH/2gAMAwEAAhEDEQA/AOzERckeuGqAx/ocyjdO5cIYKR9ECEsnAMbbGk4Dj2NEeJqQxZ9GAv/Z",
+          "sizes": "(max-width: 720px) 100vw, 720px",
+          "__typename": "ResponsiveImage"
+        }
+      }
+    ]
   },
   {
+    "__typename": "YearRecord",
     "id": "66074832",
     "title": "2020",
-    "backgroundColor": {
-      "red": 50,
-      "blue": 207,
-      "alpha": 255,
-      "green": 22
-    },
+    "participantName": "Medverkande",
     "color": {
+      "hex": "#FF4600",
       "red": 255,
-      "blue": 0,
-      "alpha": 255,
-      "green": 70
-    }
+      "green": 70,
+      "__typename": "ColorField"
+    },
+    "backgroundColor": {
+      "hex": "#3216CF",
+      "red": 50,
+      "green": 22,
+      "__typename": "ColorField"
+    },
+    "background": [],
+    "loadingImage": []
   },
   {
+    "__typename": "YearRecord",
     "id": "69710843",
     "title": "2018",
-    "backgroundColor": {
-      "red": 37,
-      "blue": 103,
-      "alpha": 255,
-      "green": 166
-    },
+    "participantName": "Medverkande",
     "color": {
+      "hex": "#002800",
       "red": 0,
-      "blue": 0,
-      "alpha": 255,
-      "green": 40
-    }
+      "green": 40,
+      "__typename": "ColorField"
+    },
+    "backgroundColor": {
+      "hex": "#25A667",
+      "red": 37,
+      "green": 166,
+      "__typename": "ColorField"
+    },
+    "background": [],
+    "loadingImage": []
   }
 ]

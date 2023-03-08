@@ -20,6 +20,7 @@ export default function Menu({ items }: MenuProps) {
 	const menuRef = useRef<HTMLUListElement | null>(null);
 	const [showMenu, setShowMenu, searchQuery, setSearchQuery] = useStore((state) => [state.showMenu, state.setShowMenu, state.searchQuery, state.setSearchQuery])
 	const [selected, setSelected] = useState<MenuItem | undefined>()
+	const [searchFocus, setSearchFocus] = useState(false)
 	const [path, setPath] = useState(router.asPath)
 	const [menuPadding, setMenuPadding] = useState(0)
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0)
@@ -75,15 +76,16 @@ export default function Menu({ items }: MenuProps) {
 						<input
 							placeholder={t('search')}
 							value={searchQuery || ''}
+							onFocus={() => setSearchFocus(true)}
+							onBlur={() => setSearchFocus(false)}
 							onChange={({ target: { value } }) => setSearchQuery(value)}
 						/>
 						<div
 							onClick={() => setSearchQuery(undefined)}
-							className={cn(s.close, searchQuery === undefined && s.hide)}
+							className={cn(s.close, !searchFocus && s.hide)}
 						>×</div>
 					</li>
 				</ul>
-
 			</nav>
 		</>
 	)

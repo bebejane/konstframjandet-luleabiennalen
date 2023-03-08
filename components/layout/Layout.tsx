@@ -5,6 +5,8 @@ import type { MenuItem } from '/lib/menu'
 import { buildMenu } from '/lib/menu'
 import { useRouter } from 'next/router'
 import { useStore } from '/lib/store'
+import { usePage } from '/lib/context/page'
+import { Image } from 'react-datocms'
 
 export type LayoutProps = {
 	children: React.ReactNode,
@@ -16,6 +18,8 @@ export type LayoutProps = {
 export default function Layout({ children, menu: menuFromProps, footer, title }: LayoutProps) {
 
 	const router = useRouter()
+	const { year: { background } } = usePage()
+
 	const [menu, setMenu] = useState(menuFromProps)
 	const [images, imageId, setImageId, searchQuery] = useStore((state) => [state.images, state.imageId, state.setImageId, state.searchQuery])
 
@@ -27,6 +31,9 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 
 	return (
 		<>
+			<div className={s.background}>
+				<Image data={background[0].responsiveImage} className={s.image} />
+			</div>
 			<div className={s.layout}>
 				<Content menu={menu}>
 					{!searchQuery ? <>{children}</> : <SearchResult />}
@@ -36,7 +43,6 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 			<Language />
 			<Logo />
 			<Footer menu={menu} footer={footer} />
-
 			<FullscreenGallery
 				index={images?.findIndex((image) => image?.id === imageId)}
 				images={images}
