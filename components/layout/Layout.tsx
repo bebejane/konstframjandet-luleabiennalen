@@ -35,7 +35,7 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 		<>
 			{backgroundImage &&
 				<div className={s.background}>
-					<Image data={backgroundImage.responsiveImage} className={s.image} />}
+					<Image data={backgroundImage.responsiveImage} className={s.image} />
 				</div>
 			}
 			<div className={s.layout}>
