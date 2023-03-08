@@ -29,15 +29,18 @@
 		"showAllLocations": "Show all locations",
 		"showAllNews": "Show all news"
 	},
-	"News": {
-		"readMore": "Read more"
-	},
 	"Footer": {
 		"subscribe": "Subscribe to our newsletter",
 		"followUs": "Follow us on",
 		"and": "and"
 	},
-	"general": {
-		"showAll": "Show all"
+	"Search": {
+		"searcResults": "Search results",
+		"noHitsFor": "Nothing found for"
+	},
+	"General": {
+		"showAll": "Show all",
+		"readMore": "Read more",
+		"close": "Close"
 	}
 }

@@ -46,7 +46,6 @@ export const getStaticProps = withGlobalProps({ queries: [StartDocument] }, asyn
 		participants: ParticipantRecord[]
 	} = await apiQuery(StartDataDocument, { variables })
 
-
 	return {
 		props: {
 			...props,

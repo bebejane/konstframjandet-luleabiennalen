@@ -19,7 +19,7 @@ export type SectionHeaderProps = {
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
 
   const t = useTranslations('Menu')
-  const [showMenu] = useStore((state) => [state.showMenu])
+  const [showMenu, searchQuery] = useStore((state) => [state.showMenu, state.searchQuery])
   const { year, year: { color: { red, green, blue } } } = usePage()
   const router = useRouter()
   const { asPath, locale } = router
@@ -32,15 +32,13 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
 
   const isHome = menuItem.id === 'home'
   const isOverview = menuItem?.slug && !menuItem.sub && !isHome
+  const isSearch = searchQuery
 
   //@ts-ignore
   const subLabel = t(menuItem.id) || t(menuItem.id.split('-')[0])
   const yearLabel = `LB°${year.title.substring(2)}`
-  const label = `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}`
-
+  const label = !isSearch ? `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}` : t('search')
   const speed = 0.6
-
-
 
   return (
     <>

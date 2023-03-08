@@ -1,10 +1,48 @@
 .container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100000;
-  min-width: 80%;
-  max-width: 80%;
-  background-color: var(--white);
-  min-height: 100vh;
+
+  h2 {
+    text-align: center;
+  }
+
+  h3 {
+    font-weight: normal;
+    text-transform: uppercase;
+    padding-bottom: var(--space);
+  }
+
+  >ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      margin-top: var(--space);
+
+      .intro {
+        p {
+          padding: 0;
+
+          >strong {
+            font-family: $headline-font;
+            font-size: 0.75rem;
+            font-weight: bold !important;
+          }
+        }
+      }
+
+      button {
+        margin-top: var(--small-space);
+        margin-left: calc(var(--grid-unit) * 3);
+        margin-right: calc(var(--grid-unit) * 3);
+        width: calc(100% - (var(--grid-unit) * 6));
+      }
+    }
+  }
+
+  .loading,
+  .nohits {
+    text-align: center;
+    margin-top: calc(var(--space) *1);
+  }
+
+  .nohits {}
 }

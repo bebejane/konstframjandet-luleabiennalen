@@ -29,15 +29,18 @@
 		"showAllLocations": "Visa alla platser",
 		"showAllNews": "Visa alla nyheter"
 	},
-	"News": {
-		"readMore": "Läs mer"
-	},
 	"Footer": {
 		"subscribe": "Prenumerera på vårt nyhetsbrev",
 		"followUs": "Följ oss på",
 		"and": "och"
 	},
-	"general": {
-		"showAll": "Visa alla"
+	"Search": {
+		"searcResults": "Sökresultat",
+		"noHitsFor": "Inga träffar för",
+		"close": "Stäng"
+	},
+	"General": {
+		"showAll": "Visa alla",
+		"readMore": "Läs mer"
 	}
 }

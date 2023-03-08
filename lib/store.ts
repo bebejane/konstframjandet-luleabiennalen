@@ -52,8 +52,6 @@ const useStore = create<StoreState>((set) => ({
       searchQuery
     })
     )
-
-
 }));
 
 export default useStore;

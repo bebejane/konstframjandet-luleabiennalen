@@ -1,19 +1,19 @@
 import s from "./Search.module.scss";
-import { CardContainer, Card, Thumbnail, Loader } from "/components";
+import cn from 'classnames'
+import { Loader } from "/components";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Image } from "react-datocms";
 import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import useStore from "/lib/store";
 import { useRouter } from "next/router";
+import { useTranslations } from "next-intl";
 
-export type Props = {
-
-}
+export type Props = {}
 
 export default function SearchResult({ }: Props) {
 
   const router = useRouter()
+  const t = useTranslations()
   const [query, setSearchQuery] = useStore((state) => [state.searchQuery, state.setSearchQuery])
   const [results, setResults] = useState<any | undefined>()
   const [error, setError] = useState<Error | undefined>()
@@ -22,16 +22,11 @@ export default function SearchResult({ }: Props) {
 
   const siteSearch = (q) => {
     const variables = {
-      type: 'site',
       q: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined
     };
 
     if (!Object.keys(variables).filter(k => variables[k] !== undefined).length)
-      return
-
-    setError(undefined)
-    setResults(undefined)
-    setLoading(true)
+      return setLoading(false)
 
     fetch('/api/search', {
       body: JSON.stringify(variables),
@@ -50,6 +45,11 @@ export default function SearchResult({ }: Props) {
   }
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setResults(undefined)
+    setLoading(true)
+    setError(undefined)
+
     clearTimeout(searchTimeout.current)
     searchTimeout.current = setTimeout(() => siteSearch(query), 250)
   }, [query])
@@ -64,47 +64,40 @@ export default function SearchResult({ }: Props) {
 
   return (
     <div className={s.container}>
-      <h1>Search</h1>
-      {query &&
-        <div className={s.results}>
-          <header>
-            <nav>Sökresultat: &quot;{query}&quot;</nav>
-          </header>
-          <div className={s.matches}>
-            {results && Object.keys(results).length > 0 ?
-              Object.keys(results).map((type, idx) =>
-                <ul key={idx}>
-                  {results[type]?.map(({ category, title, text, image, slug }, i) =>
-                    <li key={i}>
-                      <div className={s.text}>
-                        <h5>{category}</h5>
-                        <h4>
-                          <Link href={slug}>{title}</Link>
-                        </h4>
-                        <Markdown>{text}</Markdown>
-                      </div>
-                    </li>
-                  )}
-                </ul>
-              )
-              :
-              loading ?
-                <div className={s.loader}>
-                  <Loader />
-                </div>
-                : <>Inga träffar för: &quot;{query}&quot;</>
-            }
-            {error &&
-              <div className={s.error}>
-                <p>
-                  {typeof error === 'string' ? error : error.message}
-                </p>
-                <button onClick={() => setError(undefined)}>Stäng</button>
-              </div>
-            }
-          </div>
+      {results && Object.keys(results).length > 0 ?
+        <>
+          <h2>{t('Search.searcResults')}</h2>
+          {Object.keys(results).map((type, idx) =>
+            <ul key={idx}>
+              <li><h3>{results[type][0].category}</h3></li>
+              {results[type]?.map(({ category, title, text, image, slug }, i) =>
+                <li key={i}>
+                  <h1>
+                    <Link href={slug}>{title}</Link>
+                  </h1>
+                  <div className={s.intro}>
+                    <Markdown>{text}</Markdown>
+                  </div>
+                  <Link href={slug}><button>{t('General.readMore')}</button></Link>
+                </li>
+              )}
+            </ul>
+          )}
+        </>
+        :
+        loading ?
+          <div className={s.loading}><Loader /></div>
+          :
+          results && <p className={cn(s.nohits, "small")}>{t('Search.noHitsFor')}: &quot;{query}&quot;</p>
+      }
+      {error &&
+        <div className={s.error}>
+          <p>
+            {typeof error === 'string' ? error : error.message}
+          </p>
         </div>
       }
-    </div>
+    </div >
+
   );
 }

@@ -17,7 +17,7 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 
 	const router = useRouter()
 	const [menu, setMenu] = useState(menuFromProps)
-	const [images, imageId, setImageId] = useStore((state) => [state.images, state.imageId, state.setImageId, state.showMenu])
+	const [images, imageId, setImageId, searchQuery] = useStore((state) => [state.images, state.imageId, state.setImageId, state.searchQuery])
 
 	useEffect(() => { // Refresh menu on load.
 		buildMenu(router.locale).then(res => setMenu(res)).catch(err => console.error(err))
@@ -29,12 +29,9 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 		<>
 			<div className={s.layout}>
 				<Content menu={menu}>
-					{children}
-
+					{!searchQuery ? <>{children}</> : <SearchResult />}
 				</Content>
-				<SearchResult />
 			</div>
-
 			<Menu items={menu} />
 			<Language />
 			<Logo />
