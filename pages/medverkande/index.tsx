@@ -29,15 +29,10 @@ export default function Participant({ participants }: Props) {
   );
 }
 
-export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate }: any) => {
-
-  const { participants } = await apiQueryAll(AllParticipantsDocument, { variables: { yearId: props.year.id } })
+export const getStaticProps = withGlobalProps({ queries: [AllParticipantsDocument] }, async ({ props, revalidate }: any) => {
 
   return {
-    props: {
-      ...props,
-      participants
-    },
+    props,
     revalidate
   };
 });
