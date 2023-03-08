@@ -1,5 +1,4 @@
 .container {
-
   h2 {
     text-align: center;
   }
@@ -7,10 +6,9 @@
   h3 {
     font-weight: normal;
     text-transform: uppercase;
-    padding-bottom: var(--space);
   }
 
-  >ul {
+  > ul {
     list-style: none;
     padding-left: 0;
 
@@ -21,7 +19,7 @@
         p {
           padding: 0;
 
-          >strong {
+          > strong {
             font-family: $headline-font;
             font-size: 0.75rem;
             font-weight: bold !important;
@@ -41,8 +39,9 @@
   .loading,
   .nohits {
     text-align: center;
-    margin-top: calc(var(--space) *1);
+    margin-top: calc(var(--space) * 1);
   }
 
-  .nohits {}
+  .nohits {
+  }
 }

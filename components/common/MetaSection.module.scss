@@ -10,6 +10,7 @@
 
   @include mq($from: tablet) {
     margin-left: var(--grid-unit);
+    columns: 1;
   }
 
   > ul {
