@@ -29,12 +29,10 @@ export default function Article({ id, children, title, content, image, imageSize
   const [setImageId, setImages, imageId] = useStore((state) => [state.setImageId, state.setImages, state.imageId])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const captionRef = useRef<HTMLElement | null>(null)
-
   const offset = captionRef.current?.offsetTop
-  const ratio = offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight : 0)) / viewportHeight))) : 0
+  const ratio = offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight))) : 0
   const padding = `${ratio * 100}px`;
-  const opacity = Math.max(0, 1 - (ratio * 4));
-  const portraitStyle = {}
+  const opacity = Math.max(0, 1 - (ratio * 1.5));
 
   useEffect(() => {
     const images = [image]
@@ -58,7 +56,7 @@ export default function Article({ id, children, title, content, image, imageSize
             <Image
               data={image.responsiveImage}
               pictureClassName={s.picture}
-              pictureStyle={{ padding, ...portraitStyle }}
+              pictureStyle={{ padding }}
             />
             <figcaption ref={captionRef} style={{ opacity }}>{image.title}</figcaption>
           </figure>

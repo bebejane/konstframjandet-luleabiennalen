@@ -64,7 +64,7 @@ export default function Menu({ items }: MenuProps) {
 						<MenuTree
 							key={idx}
 							item={item}
-							level={2}
+							level={0}
 							selected={selected}
 							setSelected={setSelected}
 							path={path}
@@ -105,11 +105,11 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 
 	const expand = () => {
 		setIsVisible(!isVisible)
-		setSelected(item)
+		setSelected({ ...item, level })
 	}
-	useEffect(() => {
 
-		if (selected?.id !== item.id) {
+	useEffect(() => {
+		if (selected && selected?.id !== item.id) {
 			//setIsVisible(false)
 		}
 	}, [selected])
@@ -119,31 +119,23 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 	const label = t(item.id) || item.label
 
 	return (
-		<>
-			<li onClick={expand} className={cn(isSelected && s.active, level === 0 && s.bold)}>
-				{isLink ?
-					<Link href={item.slug}>
-						{label}
-					</Link>
-					:
-					<>{label}</>
-				}
-				{item?.sub && isVisible &&
-					<ul data-level={level} onClick={e => e.stopPropagation()}>
-						{item.sub.map((item, idx) =>
-							<MenuTree
-								key={idx}
-								item={item}
-								level={++level}
-								selected={selected}
-								setSelected={setSelected}
-								path={path}
-								locale={locale}
-							/>
-						)}
-					</ul>
-				}
-			</li>
-		</>
+		<li onClick={expand} data-parent={item.id} className={cn(isSelected && s.active, level === 0 && s.bold)}>
+			{isLink ? <Link href={item.slug}>{label}</Link> : <>{label}</>}
+			{item?.sub && isVisible &&
+				<ul data-level={++level} onClick={e => e.stopPropagation()}>
+					{item.sub.map((item, idx) =>
+						<MenuTree
+							key={idx}
+							item={item}
+							level={level}
+							selected={selected}
+							setSelected={setSelected}
+							path={path}
+							locale={locale}
+						/>
+					)}
+				</ul>
+			}
+		</li>
 	);
 }

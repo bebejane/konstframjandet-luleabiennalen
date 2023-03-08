@@ -67,6 +67,14 @@
       }
     }
 
+    // About
+    &[data-level="2"],
+    &[data-level="3"] {
+      >li {
+        font-weight: normal !important;
+      }
+    }
+
     li {
       cursor: pointer;
       padding-bottom: 0.5em;

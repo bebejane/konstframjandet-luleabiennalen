@@ -18,7 +18,7 @@ export default function StartRandomParticipant({ data: { participants } }: Props
       <header>
         <h2>{t('Menu.participants')}</h2>
         <Link href={'/medverkande'} className="small">
-          {t('general.showAll')}
+          {t('General.showAll')}
         </Link>
       </header>
       <CardContainer>

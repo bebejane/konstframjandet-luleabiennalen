@@ -18,7 +18,7 @@ export default function StartNews({ data: { news } }: Props) {
       <header>
         <h2>{t('Menu.news')}</h2>
         <Link href={'/nyheter'} className="small">
-          {t('general.showAll')}
+          {t('General.showAll')}
         </Link>
       </header>
       <CardContainer>
