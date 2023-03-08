@@ -47,11 +47,11 @@ export default function Program({ program: {
         key={`${id}-meta`}
         items={[
           { title: t('MetaSection.what'), value: programCategory?.title },
-          { title: t('MetaSection.where'), value: location.title, link: `/platser/${location.slug}` },
+          { title: t('MetaSection.where'), value: location?.title, link: `/platser/${location?.slug}` },
           { title: t('MetaSection.when'), value: formatDate(startDate) },
           { title: t('MetaSection.times'), value: time },
           { title: t('MetaSection.where'), value: location?.address },
-          { title: t('MetaSection.link'), value: t('MetaSection.webpage'), link: externalLink }
+          { title: t('MetaSection.link'), value: externalLink ? t('MetaSection.webpage') : undefined, link: externalLink }
         ]}
       />
       <Related header={'Medvärkande'} items={partipants} />
