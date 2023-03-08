@@ -12,9 +12,9 @@
     @include mq($until: tablet) {
       width: 100%;
     }
-    width: calc(100% - (2 * var(--total-outer-margin) + var(--grid-unit)));
+    width: calc(100% - (2 * var(--total-outer-margin) + (var(--grid-unit))));
 
-    @include mq($from: tablet) {
+    @include mq($from: wide) {
       width: calc(100% - (2 * var(--total-outer-margin) + (3 * var(--grid-unit))));
     }
   }
