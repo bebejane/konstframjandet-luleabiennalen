@@ -20,6 +20,17 @@
 	--background: var(--white);
 	--foreground: var(--black);
 
+	--z-background-image: 0;
+	--z-section-header: 100;
+
+	--z-language: 300;
+	--z-menu: 400;
+	--z-footer: 500;
+	--z-logo: 600;
+	--z-hamburger: 700;
+	--z-fullscreen-gallery: 800;
+	--z-fullscreen-gallery-close: 801;
+
 	@include mq($from: tablet) {
 		--body-width: calc(100% - (2 * var(--grid-unit)));
 
@@ -134,7 +145,8 @@ button {
 		padding-top: 1em;
 	}
 
-	transition: color 0.2s ease-in-out, background-color 0.3s ease-in-out;
+	transition: color 0.2s ease-in-out,
+	background-color 0.3s ease-in-out;
 
 	&.back {
 		width: var(--body-width);
@@ -155,6 +167,7 @@ figcaption {
 		padding-left: var(--outer-margin);
 		padding-right: var(--outer-margin);
 	}
+
 	line-height: var(--line-height);
 	padding-top: 1em;
 }

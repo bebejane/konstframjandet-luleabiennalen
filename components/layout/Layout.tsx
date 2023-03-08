@@ -5,6 +5,8 @@ import type { MenuItem } from '/lib/menu'
 import { buildMenu } from '/lib/menu'
 import { useRouter } from 'next/router'
 import { useStore } from '/lib/store'
+import { usePage } from '/lib/context/page'
+import { KFImage as Image } from '/components'
 
 export type LayoutProps = {
 	children: React.ReactNode,
@@ -16,8 +18,9 @@ export type LayoutProps = {
 export default function Layout({ children, menu: menuFromProps, footer, title }: LayoutProps) {
 
 	const router = useRouter()
+	const { year: { background } } = usePage()
 	const [menu, setMenu] = useState(menuFromProps)
-	const [images, imageId, setImageId] = useStore((state) => [state.images, state.imageId, state.setImageId, state.showMenu])
+	const [images, imageId, setImageId, searchQuery] = useStore((state) => [state.images, state.imageId, state.setImageId, state.searchQuery])
 
 	useEffect(() => { // Refresh menu on load.
 		buildMenu(router.locale).then(res => setMenu(res)).catch(err => console.error(err))
@@ -25,27 +28,31 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 
 	if (!menuFromProps || !footer) return null
 
+	const backgroundImage = background[0];
+
 	return (
 		<>
+			{backgroundImage &&
+				<div className={s.background}>
+					<Image data={backgroundImage.responsiveImage} className={s.image} />
+				</div>
+			}
 			<div className={s.layout}>
 				<Content menu={menu}>
-					{children}
-
+					{!searchQuery ? <>{children}</> : <SearchResult />}
 				</Content>
-				<SearchResult />
 			</div>
-
 			<Menu items={menu} />
 			<Language />
 			<Logo />
 			<Footer menu={menu} footer={footer} />
-
 			<FullscreenGallery
 				index={images?.findIndex((image) => image?.id === imageId)}
 				images={images}
 				show={imageId !== undefined}
 				onClose={() => setImageId(undefined)}
 			/>
+
 			<Grid />
 		</>
 	)

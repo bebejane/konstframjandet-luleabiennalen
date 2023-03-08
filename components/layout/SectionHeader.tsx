@@ -19,12 +19,10 @@ export type SectionHeaderProps = {
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
 
   const t = useTranslations('Menu')
-  const [showMenu] = useStore((state) => [state.showMenu])
-  const { year, year: { color: { red, green, blue } } } = usePage()
+  const [showMenu, searchQuery] = useStore((state) => [state.showMenu, state.searchQuery])
+  const { year, year: { color: { hex } } } = usePage()
   const router = useRouter()
   const { asPath, locale } = router
-  const [reverse, setReverse] = useState(false);
-  const color = `rgb(${red},${green},${blue})`
 
   const menuItem = pathToMenuItem(asPath, locale, menu)
 
@@ -32,15 +30,13 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
 
   const isHome = menuItem.id === 'home'
   const isOverview = menuItem?.slug && !menuItem.sub && !isHome
+  const isSearch = searchQuery
 
   //@ts-ignore
   const subLabel = t(menuItem.id) || t(menuItem.id.split('-')[0])
   const yearLabel = `LB°${year.title.substring(2)}`
-  const label = `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}`
-
+  const label = !isSearch ? `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}` : t('search')
   const speed = 0.6
-
-
 
   return (
     <>
@@ -49,7 +45,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
           :
           <Link href={isOverview ? menuItem.slug : '#'}>
             <h2>
-              <span style={{ color }} key={`${asPath}`}>
+              <span style={{ color: hex }} key={label}>
                 {label.split('').map((c, idx) =>
                   <span
                     key={`${idx}`}

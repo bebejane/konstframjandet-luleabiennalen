@@ -4,7 +4,6 @@ import { AllNewsDocument } from "/graphql";
 import Link from 'next/link'
 import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import format from "date-fns/format";
-import { capitalize } from "/lib/utils";
 import { useTranslations } from "next-intl";
 
 export type Props = {
@@ -12,7 +11,7 @@ export type Props = {
 }
 
 export default function News({ news }: Props) {
-  const t = useTranslations('News')
+  const t = useTranslations('General')
 
   return (
     <section className={s.news}>
@@ -30,8 +29,7 @@ export default function News({ news }: Props) {
             </div>
             <Link href={`/nyheter/${slug}`}><button>{t('readMore')}</button></Link>
           </li>
-        )
-        }
+        )}
       </ul>
     </section>
   )

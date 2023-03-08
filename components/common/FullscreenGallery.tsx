@@ -2,7 +2,7 @@ import "swiper/css";
 import s from './FullscreenGallery.module.scss'
 import cn from 'classnames'
 import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
-import { Image } from 'react-datocms'
+import { KFImage as Image } from '/components'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade } from 'swiper'
 import SwiperCore from 'swiper'

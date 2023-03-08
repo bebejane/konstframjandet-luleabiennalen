@@ -3,7 +3,7 @@ import cn from 'classnames'
 import "swiper/css";
 import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import type { Swiper } from 'swiper';
-import { Image } from 'react-datocms'
+import { KFImage as Image } from '/components'
 import React, { useRef, useState } from 'react'
 import Link from 'next/link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';

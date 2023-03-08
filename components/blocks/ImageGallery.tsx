@@ -4,7 +4,7 @@ import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import type { Swiper } from 'swiper';
 import cn from 'classnames'
 import React, { useState, useRef } from 'react'
-import { Image } from 'react-datocms'
+import { KFImage as Image } from '/components'
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type ImageGalleryBlockProps = {

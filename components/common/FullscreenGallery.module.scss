@@ -10,7 +10,7 @@
   height: 100%;
   backdrop-filter: blur(2rem);
   //background-color: var(--black);
-  z-index: 4000;
+  z-index: var(--z-fullscreen-gallery);
 
   .images {
     //--height: calc(100vh - calc(2 * var(--outer-margin)) - 1em);
@@ -70,7 +70,7 @@
     padding-right: 1.5em;
     border-radius: 2em;
     background-color: var(--white);
-    z-index: 100000;
+    z-index: var(--z-fullscreen-gallery-close);
     color: var(--black) !important;
   }
 
@@ -102,9 +102,9 @@
     top: 0;
     display: flex;
     justify-content: center;
-    z-index: 500;
     cursor: pointer;
     margin: var(--outer-margin);
+
     //writing-mode: vertical-lr;
     &:hover {
       background: var(--black);
@@ -112,6 +112,5 @@
     }
   }
 
-  @include mq($until: tablet) {
-  }
+  @include mq($until: tablet) {}
 }

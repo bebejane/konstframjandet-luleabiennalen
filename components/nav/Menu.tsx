@@ -18,8 +18,9 @@ export default function Menu({ items }: MenuProps) {
 	const t = useTranslations('Menu')
 	const router = useRouter()
 	const menuRef = useRef<HTMLUListElement | null>(null);
-	const [showMenu, setShowMenu] = useStore((state) => [state.showMenu, state.setShowMenu])
+	const [showMenu, setShowMenu, searchQuery, setSearchQuery] = useStore((state) => [state.showMenu, state.setShowMenu, state.searchQuery, state.setSearchQuery])
 	const [selected, setSelected] = useState<MenuItem | undefined>()
+	const [searchFocus, setSearchFocus] = useState(false)
 	const [path, setPath] = useState(router.asPath)
 	const [menuPadding, setMenuPadding] = useState(0)
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0)
@@ -30,8 +31,8 @@ export default function Menu({ items }: MenuProps) {
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => {
 			setPath(path)
-			if (!isDesktop)
-				setShowMenu(false)
+			setSearchQuery(undefined)
+			!isDesktop && setShowMenu(false)
 		}
 		router.events.on('routeChangeStart', handleRouteChangeStart)
 		return () => router.events.off('routeChangeStart', handleRouteChangeStart)
@@ -71,11 +72,20 @@ export default function Menu({ items }: MenuProps) {
 							locale={router.locale}
 						/>
 					)}
-					<li>
-						<SearchInput />
+					<li className={s.search}>
+						<input
+							placeholder={t('search')}
+							value={searchQuery || ''}
+							onFocus={() => setSearchFocus(true)}
+							onBlur={() => setSearchFocus(false)}
+							onChange={({ target: { value } }) => setSearchQuery(value)}
+						/>
+						<div
+							onClick={() => setSearchQuery(undefined)}
+							className={cn(s.close, !searchFocus && s.hide)}
+						>×</div>
 					</li>
 				</ul>
-
 			</nav>
 		</>
 	)
@@ -137,10 +147,4 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 			</li>
 		</>
 	);
-}
-
-const SearchInput = () => {
-	const t = useTranslations('Menu')
-	const [setSearchQuery] = useStore((state) => [state.setSearchQuery])
-	return <input className={s.search} placeholder={t('search')} onChange={({ target: { value } }) => setSearchQuery(value)} />
 }

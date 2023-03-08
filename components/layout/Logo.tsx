@@ -8,12 +8,9 @@ export type Props = {
 }
 
 export default function Logo({ }: Props) {
-
-  const { year: { color: { red, green, blue } } } = usePage()
-  const color = `rgb(${red},${green},${blue})`
-
+  const { year: { color: { hex } } } = usePage()
   return (
-    <div className={s.container} style={{ fill: color }}>
+    <div className={s.container} style={{ fill: hex }}>
       <Link href={'/'}><LogoIcon /></Link>
     </div>
   )

@@ -2,7 +2,22 @@ fragment YearFragment on YearRecord {
 	id
 	title
 	participantName
+	color {
+		hex
+		red
+		green
+		red
+	}
 	backgroundColor {
 		hex
+		red
+		green
+		red
+	}
+	background {
+		...ImageFragment
+	}
+	loadingImage {
+		...ImageFragment
 	}
 }
