@@ -4,6 +4,6 @@
   display: block;
   button {
     cursor: pointer;
-    width: 100%;
+    width: var(--body-width);
   }
 }
