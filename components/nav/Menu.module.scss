@@ -3,7 +3,6 @@
   top: 0;
   right: 0;
   z-index: var(--z-menu);
-  background-color: var(--white);
   padding: var(--outer-margin);
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
@@ -63,7 +62,7 @@
         background: transparent;
       }
 
-      > li > a {
+      >li>a {
         font-weight: bold;
       }
     }
