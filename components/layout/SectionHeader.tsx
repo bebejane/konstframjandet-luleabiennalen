@@ -20,7 +20,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
 
   const t = useTranslations('Menu')
   const [showMenu, searchQuery] = useStore((state) => [state.showMenu, state.searchQuery])
-  const { year, year: { color: { hex } } } = usePage()
+  const { year, year: { color: { hex } }, isArchive } = usePage()
   const router = useRouter()
   const { asPath, locale } = router
 
@@ -58,6 +58,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
             </h2>
           </Link>
         }
+        {isArchive && <span className={s.archive}>ARKIV</span>}
       </header>
       <div className={s.spacer}></div>
       {isOverview && <div className={s.line}></div>}

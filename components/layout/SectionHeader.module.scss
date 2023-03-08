@@ -12,6 +12,7 @@
     @include mq($until: tablet) {
       width: 100%;
     }
+
     width: calc(100% - (2 * var(--total-outer-margin) + (var(--grid-unit))));
 
     @include mq($from: wide) {
@@ -28,8 +29,17 @@
     padding-right: var(--total-outer-margin);
   }
 
+  .archive {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+
   svg {
     margin-top: -0.5em;
+
     @include mq($until: tablet) {
       display: none;
     }
@@ -45,7 +55,7 @@
       margin: 0;
       width: 100%;
 
-      > span {
+      >span {
         &:hover {
           padding-left: 1em;
           padding-right: 1em;

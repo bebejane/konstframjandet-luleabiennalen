@@ -12,6 +12,9 @@ query Menu($locale: SiteLocale, $yearId: ItemId) {
 			title
 		}
 	}
+	aboutsMeta: _allAboutsMeta {
+		count
+	}
 	years: allYears(
 		filter: { id: { neq: $yearId } }
 		locale: $locale

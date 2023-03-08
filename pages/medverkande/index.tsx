@@ -1,7 +1,6 @@
 import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllParticipantsDocument } from "/graphql";
-import { apiQueryAll } from "/lib/utils";
 import { CardContainer, Card, Thumbnail } from "/components";
 import { useRouter } from "next/router";
 
