@@ -34,7 +34,17 @@
     display: block;
     top: 0;
     left: 0;
-    z-index: 0;
+    z-index: -1;
+    font-family: $headline-font;
+    font-weight: bold;
+    margin-top: -0.1em;
+    letter-spacing: 0.2em;
+    font-size: 2.8rem;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px;
+    text-align: center;
+    color: var(--background);
+    width: calc(100% - var(--total-outer-margin));
   }
 
   svg {
@@ -55,7 +65,7 @@
       margin: 0;
       width: 100%;
 
-      >span {
+      > span {
         &:hover {
           padding-left: 1em;
           padding-right: 1em;
