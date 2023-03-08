@@ -4,6 +4,7 @@ import { apiQueryAll } from '/lib/utils';
 import { NewsDocument, AllNewsDocument } from "/graphql";
 import { Article, BackButton } from '/components';
 import { useTranslations } from "next-intl";
+import { DatoSEO } from "dato-nextjs-utils/components";
 
 export type Props = {
   news: NewsRecord

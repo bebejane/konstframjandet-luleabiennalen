@@ -2,11 +2,11 @@ import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllProgramsDocument, AllProgramCategoriesDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail, FilterBar } from "/components";
-import format from "date-fns/format";
 import { formatDate } from "/lib/utils";
 import { useState } from "react";
-import type { FilterOption } from "/components/common/FilterBar";
 import { useRouter } from "next/router";
+import { DatoSEO } from "dato-nextjs-utils/components";
+import { useTranslations } from "next-intl";
 
 export type Props = {
   programs: ProgramRecord[]
@@ -15,6 +15,7 @@ export type Props = {
 
 export default function Program({ programs, programCategories }: Props) {
 
+  const t = useTranslations()
   const { asPath } = useRouter()
   const options = programCategories.map(({ id, title: label }) => ({ id, label }))
   const [categories, setCategories] = useState<string[]>([])
@@ -24,6 +25,7 @@ export default function Program({ programs, programCategories }: Props) {
   }
   return (
     <>
+      <DatoSEO title={t('Menu.program')} />
       <FilterBar
         options={options}
         multi={true}

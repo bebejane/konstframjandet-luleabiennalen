@@ -4,6 +4,7 @@ import { apiQueryAll } from '/lib/utils';
 import { ParticipantDocument, AllParticipantsDocument } from "/graphql";
 import { Article, Related, BackButton } from '/components';
 import { useTranslations } from "next-intl";
+import { DatoSEO } from "dato-nextjs-utils/components";
 
 export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]

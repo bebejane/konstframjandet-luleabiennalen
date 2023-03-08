@@ -4,6 +4,7 @@ import { apiQueryAll } from '/lib/utils';
 import { LocationDocument, AllLocationsDocument } from "/graphql";
 import { Article, Related, BackButton } from '/components';
 import { useTranslations } from "next-intl";
+import { DatoSEO } from "dato-nextjs-utils/components";
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]

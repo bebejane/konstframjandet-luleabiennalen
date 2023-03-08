@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react'
 import { StructuredContent } from "/components";
 import { Image } from 'react-datocms';
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
+import { DatoSEO } from 'dato-nextjs-utils/components';
 import useStore from '/lib/store';
 import format from 'date-fns/format';
 
@@ -45,39 +46,42 @@ export default function Article({ id, children, title, content, image, imageSize
   }, [])
 
   return (
-    <div className={cn(s.article, 'article')}>
-      <h1>{title}</h1>
-      {image &&
-        <figure
-          className={cn(s.mainImage, imageSize && s[imageSize], image.height > image.width && s.portrait)}
-          onClick={() => setImageId(image?.id)}
-        >
-          <Image
-            data={image.responsiveImage}
-            pictureClassName={s.picture}
-            pictureStyle={{ padding, ...portraitStyle }}
-          />
-          <figcaption ref={captionRef} style={{ opacity }}>{image.title}</figcaption>
-        </figure>
-      }
-      <section className="intro">
-        {date &&
-          <div className={s.date}>
-            <span className="small">{format(new Date(date), 'MMM').replace('.', '')}</span>
-            <span>{format(new Date(date), 'dd').replace('.', '')}</span>
-          </div>
+    <>
+      <DatoSEO title={title} />
+      <div className={cn(s.article, 'article')}>
+        <h1>{title}</h1>
+        {image &&
+          <figure
+            className={cn(s.mainImage, imageSize && s[imageSize], image.height > image.width && s.portrait)}
+            onClick={() => setImageId(image?.id)}
+          >
+            <Image
+              data={image.responsiveImage}
+              pictureClassName={s.picture}
+              pictureStyle={{ padding, ...portraitStyle }}
+            />
+            <figcaption ref={captionRef} style={{ opacity }}>{image.title}</figcaption>
+          </figure>
         }
-        {intro}
-      </section>
-      {content &&
-        <StructuredContent
-          id={id}
-          record={record}
-          content={content}
-          onClick={(imageId) => setImageId(imageId)}
-        />
-      }
-      {children}
-    </div>
+        <section className="intro">
+          {date &&
+            <div className={s.date}>
+              <span className="small">{format(new Date(date), 'MMM').replace('.', '')}</span>
+              <span>{format(new Date(date), 'dd').replace('.', '')}</span>
+            </div>
+          }
+          {intro}
+        </section>
+        {content &&
+          <StructuredContent
+            id={id}
+            record={record}
+            content={content}
+            onClick={(imageId) => setImageId(imageId)}
+          />
+        }
+        {children}
+      </div>
+    </>
   )
 }

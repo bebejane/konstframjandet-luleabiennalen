@@ -5,6 +5,7 @@ import { ExhibitionDocument, AllExhibitionsDocument } from "/graphql";
 import { Article, Related, BackButton, MetaSection } from '/components';
 import { formatDate } from "/lib/utils";
 import { useTranslations } from "next-intl";
+import { DatoSEO } from "dato-nextjs-utils/components";
 
 export type Props = {
   exhibition: ExhibitionRecord

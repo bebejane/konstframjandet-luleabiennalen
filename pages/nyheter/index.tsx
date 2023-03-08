@@ -5,33 +5,37 @@ import Link from 'next/link'
 import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import format from "date-fns/format";
 import { useTranslations } from "next-intl";
+import { DatoSEO } from "dato-nextjs-utils/components";
 
 export type Props = {
   news: (NewsRecord & ThumbnailImage)[]
 }
 
 export default function News({ news }: Props) {
-  const t = useTranslations('General')
+  const t = useTranslations()
 
   return (
-    <section className={s.news}>
-      <ul>
-        {news.map(({ id, image, thumb, title, intro, _createdAt, slug }) =>
-          <li key={id}>
-            <h3 className="small">
-              {format(new Date(_createdAt), 'dd MMM, yyyy')}
-            </h3>
-            <h1>{title}</h1>
-            <div className="intro">
-              <Markdown className={s.intro}>
-                {intro}
-              </Markdown>
-            </div>
-            <Link href={`/nyheter/${slug}`}><button>{t('readMore')}</button></Link>
-          </li>
-        )}
-      </ul>
-    </section>
+    <>
+      <DatoSEO title={t('Menu.news')} />
+      <section className={s.news}>
+        <ul>
+          {news.map(({ id, image, thumb, title, intro, _createdAt, slug }) =>
+            <li key={id}>
+              <h3 className="small">
+                {format(new Date(_createdAt), 'dd MMM, yyyy')}
+              </h3>
+              <h1>{title}</h1>
+              <div className="intro">
+                <Markdown className={s.intro}>
+                  {intro}
+                </Markdown>
+              </div>
+              <Link href={`/nyheter/${slug}`}><button>{t('General.readMore')}</button></Link>
+            </li>
+          )}
+        </ul>
+      </section>
+    </>
   )
 }
 

@@ -4,6 +4,7 @@ import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { AboutDocument, AllAboutsDocument } from "/graphql";
 import { Article } from '/components';
+import { DatoSEO } from "dato-nextjs-utils/components";
 
 export type Props = {
   about: AboutRecord
