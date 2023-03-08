@@ -29,11 +29,15 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 
 	if (!menuFromProps || !footer) return null
 
+	const backgroundImage = background[0];
+
 	return (
 		<>
-			<div className={s.background}>
-				<Image data={background[0].responsiveImage} className={s.image} />
-			</div>
+			{backgroundImage &&
+				<div className={s.background}>
+					<Image data={backgroundImage.responsiveImage} className={s.image} />}
+				</div>
+			}
 			<div className={s.layout}>
 				<Content menu={menu}>
 					{!searchQuery ? <>{children}</> : <SearchResult />}
@@ -49,6 +53,7 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 				show={imageId !== undefined}
 				onClose={() => setImageId(undefined)}
 			/>
+
 			<Grid />
 		</>
 	)
