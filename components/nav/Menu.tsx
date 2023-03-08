@@ -100,23 +100,19 @@ export type MenuTreeProps = {
 }
 
 export function MenuTree({ item, level, selected, setSelected, path, locale }: MenuTreeProps) {
-	const [isVisible, setIsVisible] = useState(false);
+
 	const t = useTranslations('Menu')
-
-	const expand = () => {
-		setIsVisible(!isVisible)
-		setSelected({ ...item, level })
-	}
-
-	useEffect(() => {
-		if (selected && selected?.id !== item.id) {
-			//setIsVisible(false)
-		}
-	}, [selected])
-
+	const [isVisible, setIsVisible] = useState(false);
 	const isSelected = path === item.slug || path === `/${locale}${item.slug}`
 	const isLink = item.slug && !item.sub
 	const label = t(item.id) || item.label
+
+	const expand = () => {
+		setIsVisible(!isVisible)
+		setSelected(item)
+		const nodes = Array.from(document.querySelectorAll(`ul[data-level="${level + 1}"]`)) as HTMLUListElement[]
+		nodes.forEach(el => (el.parentNode as HTMLLIElement).click())
+	}
 
 	return (
 		<li onClick={expand} data-parent={item.id} className={cn(isSelected && s.active, level === 0 && s.bold)}>
