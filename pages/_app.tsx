@@ -11,7 +11,7 @@ setDefaultOptions({ locale: sv })
 function onMessageError() { }
 function getMessageFallback({ namespace, key, error }) { return '' }
 
-function App({ Component, pageProps, router }) {
+function App({ Component, pageProps, router, statusCode }) {
 
   const title = 'Luleåbiennalen'
   const { isArchive } = usePage()
@@ -21,6 +21,11 @@ function App({ Component, pageProps, router }) {
   useEffect(() => {
     document.body.style.backgroundColor = isArchive ? 'var(--archive)' : 'var(--white)'
   }, [router.asPath, isArchive])
+
+
+  const errorCode = parseInt(router.pathname.replace('/', ''))
+  const isError = (!isNaN(errorCode) && (errorCode > 400 && errorCode < 600)) || router.pathname.replace('/', '') === '_error'
+  if (isError) return <Component {...pageProps} />
 
   return (
     <>

@@ -6,6 +6,7 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
+import { usePage } from '/lib/context/page';
 import { useInView } from 'react-intersection-observer';
 import { encode } from 'universal-base64';
 
@@ -106,6 +107,10 @@ export type ImagePropTypes = {
    * Default candidate multipliers are [0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4]
    **/
   srcSetCandidates?: number[];
+
+  /** 
+   * Loading mask images
+  */
 };
 
 type State = {
@@ -217,6 +222,7 @@ const KFImage = forwardRef<HTMLDivElement, ImagePropTypes>(
     },
     ref,
   ) => {
+    const { year: { loadingImage } } = usePage()
     const lazyLoad = priority ? false : rawLazyLoad;
 
     const [loaded, setLoaded] = useState(false);
