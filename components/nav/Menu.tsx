@@ -31,7 +31,6 @@ export default function Menu({ items }: MenuProps) {
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => {
 			setPath(path)
-			setSearchQuery(undefined)
 			!isDesktop && setShowMenu(false)
 		}
 		router.events.on('routeChangeStart', handleRouteChangeStart)

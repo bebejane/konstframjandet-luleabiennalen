@@ -23,28 +23,50 @@
     width: 100%;
   }
 
-  .image {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    width: calc(100% - 2em) !important;
-    margin-bottom: 0.8em;
-    aspect-ratio: 8 / 5;
-    transition: all 0.3s ease-in-out;
+  .imageWrap {
+    position: relative;
 
-    img {
-      object-fit: cover;
+    .loader {
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 8 / 5;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.2s ease !important;
+
+      &.hide {
+        opacity: 0 !important;
+      }
     }
-  }
 
-  .picture {
-    overflow: hidden;
-    max-width: 100% !important;
-    transition: left 0.2s ease-in-out;
+    .image {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      width: calc(100% - 2em) !important;
+      margin-bottom: 0.8em;
+      aspect-ratio: 8 / 5;
+      transition: all 0.3s ease-in-out;
 
-    @include mq($from: tablet) {
-      &:hover {
-        left: 2.5rem;
+      img {
+        object-fit: cover;
+      }
+    }
+
+    .picture {
+      overflow: hidden;
+      max-width: 100% !important;
+      transition: left 0.2s ease-in-out;
+
+      @include mq($from: tablet) {
+        &:hover {
+          left: 2.5rem;
+        }
       }
     }
   }
+
 }
