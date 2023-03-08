@@ -3,7 +3,16 @@ import { MenuDocument } from "/graphql";
 import years from '/lib/years.json'
 
 export type Menu = MenuItem[]
-export type MenuQueryResponse = { abouts: AboutRecord[], years: YearRecord[], year: YearRecord }
+export type MenuQueryResponse = {
+  abouts: AboutRecord[]
+  years: YearRecord[]
+  year: YearRecord
+  aboutMeta: { count: number }
+  progamMeta: { count: number }
+  participantsMeta: { count: number }
+  exhibitionsMeta: { count: number }
+  locationsMeta: { count: number }
+}
 
 export type MenuItem = {
   id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive'
@@ -11,6 +20,7 @@ export type MenuItem = {
   slug?: string
   year?: string
   sub?: MenuItem[]
+  count?: number
   root: boolean
   general?: boolean
 }
@@ -45,9 +55,10 @@ export const buildMenu = async (locale: string) => {
         ...e,
         slug: `/${el.year.title}${e.slug}`,
         sub: e.sub?.map(e2 => ({ ...e2, slug: `/${el.year.title}${e2.slug}` })) || null
-      }))
+      })).filter(({ count }) => count || count === null)
     }
   })
+
   return menu
 }
 
@@ -58,12 +69,22 @@ export const buildYearMenu = (res: MenuQueryResponse, isArchive: boolean = false
     switch (item.id) {
       case 'about':
         //@ts-ignore
-        sub = res.abouts.map(el => ({ id: `about-${el.slug}`, label: el.title, slug: `/om/${el.slug}`, root: false }))
+        sub = res.abouts.filter(({ year }) => isArchive ? year : true).map(el => ({
+          id: `about-${el.slug}`,
+          label: el.title,
+          slug: `/om/${el.slug}`,
+          root: false
+        }))
         break;
       default:
         break;
     }
-    return { ...item, sub: sub || item.sub || null, year: res.year.title }
+    return {
+      ...item,
+      sub: sub || item.sub || null,
+      year: res.year.title,
+      count: res[`${item.id}Meta`]?.count ?? null
+    }
   })
   return menu
 }
