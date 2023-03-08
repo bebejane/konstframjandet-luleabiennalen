@@ -9,13 +9,16 @@
 
   @include mq($from: tablet) {
     flex-basis: 80%;
-    transition: flex-basis 0.3s ease-in-out;
+    max-width: 80%;
+    transition: all 0.3s ease-in-out;
 
     &.full {
       flex-basis: 100%;
+      max-width: 100%;
       border-right: 0px;
 
       article {
+
         @include mq($from: tablet) {
           margin-left: calc(var(--grid-unit) + var(--total-outer-margin)) !important;
           margin-right: calc(var(--grid-unit) + var(--total-outer-margin)) !important;
