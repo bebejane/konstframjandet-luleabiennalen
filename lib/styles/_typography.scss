@@ -88,6 +88,9 @@ figcaption,
   font-family: $headline-font;
   font-size: 0.75rem;
   text-align: center;
+  @include mq($from: wide) {
+    font-size: 0.7rem;
+  }
 }
 
 nav,

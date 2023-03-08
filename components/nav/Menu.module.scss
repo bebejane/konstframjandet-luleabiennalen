@@ -63,7 +63,7 @@
         background: transparent;
       }
 
-      >li>a {
+      > li > a {
         font-weight: bold;
       }
     }
@@ -89,7 +89,7 @@
       }
 
       &:first-of-type {
-        padding-top: 1em;
+        padding-top: 0.5em;
 
         @include mq($from: tablet) {
           padding-bottom: 0.5em;
@@ -102,7 +102,7 @@
 .search {
   position: relative;
   padding-bottom: 0 !important;
-  --padding: 0.0rem;
+  --padding: 0rem;
 
   input {
     width: 100%;
