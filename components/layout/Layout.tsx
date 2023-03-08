@@ -6,7 +6,7 @@ import { buildMenu } from '/lib/menu'
 import { useRouter } from 'next/router'
 import { useStore } from '/lib/store'
 import { usePage } from '/lib/context/page'
-import { Image } from 'react-datocms'
+import { KFImage as Image } from '/components'
 
 export type LayoutProps = {
 	children: React.ReactNode,
@@ -19,7 +19,6 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 
 	const router = useRouter()
 	const { year: { background } } = usePage()
-
 	const [menu, setMenu] = useState(menuFromProps)
 	const [images, imageId, setImageId, searchQuery] = useStore((state) => [state.images, state.imageId, state.setImageId, state.searchQuery])
 

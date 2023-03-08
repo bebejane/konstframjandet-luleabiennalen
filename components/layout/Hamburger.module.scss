@@ -5,7 +5,7 @@
   --width: 34px;
 
   position: fixed;
-  z-index: 100000;
+  z-index: var(--z-hamburger);
   top: 12px;
   right: 0;
   margin: var(--outer-margin);

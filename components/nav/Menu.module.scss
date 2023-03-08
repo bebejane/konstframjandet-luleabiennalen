@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 2000;
+  z-index: var(--z-menu);
   background-color: var(--white);
   padding: var(--outer-margin);
   overflow: hidden;

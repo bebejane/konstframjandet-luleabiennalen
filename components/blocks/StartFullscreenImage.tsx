@@ -1,6 +1,6 @@
 import s from './StartFullscreenImage.module.scss'
 import React from 'react'
-import { Image } from 'react-datocms';
+import { KFImage as Image } from '/components';
 import Link from 'next/link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 

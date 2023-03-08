@@ -2,11 +2,10 @@ import s from './Article.module.scss'
 import cn from 'classnames'
 import React, { useEffect, useRef } from 'react'
 import { StructuredContent } from "/components";
-import { Image } from 'react-datocms/image';
+import { KFImage as Image } from '/components';
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
 import useStore from '/lib/store';
 import format from 'date-fns/format';
-import { useInView } from 'react-intersection-observer';
 
 export type ArticleProps = {
   id: string
