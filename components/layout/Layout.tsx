@@ -26,6 +26,10 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 		buildMenu(router.locale).then(res => setMenu(res)).catch(err => console.error(err))
 	}, [router.locale])
 
+	useEffect(() => {
+		document.body.style.backgroundColor = isArchive ? 'var(--archive)' : 'var(--white)'
+	}, [router.asPath, isArchive])
+
 	if (!menuFromProps || !footer) return null
 
 	const backgroundImage = background[0];

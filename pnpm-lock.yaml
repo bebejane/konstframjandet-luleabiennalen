@@ -84,7 +84,7 @@ dependencies:
   '@u-wave/react-vimeo': 0.9.10_react@18.2.0
   classnames: 2.3.2
   date-fns: 2.29.3
-  dato-nextjs-utils: github.com/bebejane/dato-nextjs-utils/1bdb15a8c55807d7fd1b739011f582cc4d4c5189_wlw4hlk3aokl6kbnoyhqpwjn4e
+  dato-nextjs-utils: github.com/bebejane/dato-nextjs-utils/41aa5041ca4c734820bbdb1e95f3e19c52cdb7ab_wlw4hlk3aokl6kbnoyhqpwjn4e
   datocms-structured-text-utils: 2.0.4
   dotenv: 16.0.3
   graphql: 16.6.0
@@ -11986,11 +11986,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/bebejane/dato-nextjs-utils/1bdb15a8c55807d7fd1b739011f582cc4d4c5189_wlw4hlk3aokl6kbnoyhqpwjn4e:
-    resolution: {tarball: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/1bdb15a8c55807d7fd1b739011f582cc4d4c5189}
-    id: github.com/bebejane/dato-nextjs-utils/1bdb15a8c55807d7fd1b739011f582cc4d4c5189
+  github.com/bebejane/dato-nextjs-utils/41aa5041ca4c734820bbdb1e95f3e19c52cdb7ab_wlw4hlk3aokl6kbnoyhqpwjn4e:
+    resolution: {tarball: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/41aa5041ca4c734820bbdb1e95f3e19c52cdb7ab}
+    id: github.com/bebejane/dato-nextjs-utils/41aa5041ca4c734820bbdb1e95f3e19c52cdb7ab
     name: dato-nextjs-utils
-    version: 1.0.261
+    version: 1.0.262
     engines: {node: '>=0.16'}
     peerDependencies:
       '@apollo/client': 3 - 4
