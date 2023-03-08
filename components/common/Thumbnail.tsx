@@ -20,7 +20,7 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
 
   const content = intro ? `${meta ? `**${meta}** ` : ''}${intro}` : undefined
   const { query: { year } } = useRouter()
-  const { year: { loadingImage } } = usePage()
+  const { year: { loadingImage }, isArchive } = usePage()
   const [loadingImageIndex] = useState(randomInt(0, loadingImage.length - 1))
   const [loaded, setLoaded] = useState(false);
   const href = year ? `/${year}${slug}` : slug;
@@ -40,13 +40,15 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
             style={{ opacity: loaded ? 1 : 0.000001 }}
             onLoad={() => setTimeout(() => setLoaded(true), randomInt(200, 400))}
           />
-          <Image
-            data={loadingImage[loadingImageIndex].responsiveImage}
-            className={cn(s.loader)}
-            pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
-            lazyLoad={false}
-            objectFit={'contain'}
-          />
+          {!isArchive &&
+            <Image
+              data={loadingImage[loadingImageIndex].responsiveImage}
+              className={cn(s.loader)}
+              pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
+              lazyLoad={false}
+              objectFit={'contain'}
+            />
+          }
         </div>
       }
       {content &&
