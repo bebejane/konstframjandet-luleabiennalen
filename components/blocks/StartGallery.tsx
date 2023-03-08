@@ -20,7 +20,7 @@ export default function StartGallery({ data: { id, images, headline, linkText, u
 
 
   return (
-    <div className={s.container}>
+    <div ref={containerRef} className={s.container}>
       <h2>{headline}</h2>
       <SwiperReact
         id={`${id}-swiper-wrap`}
@@ -29,8 +29,6 @@ export default function StartGallery({ data: { id, images, headline, linkText, u
         noSwiping={false}
         simulateTouch={true}
         slidesPerView={'auto'}
-        navigation={true}
-        pagination={true}
         initialSlide={index}
         onSlideChange={({ realIndex }) => setIndex(realIndex)}
         onSwiper={(swiper) => swiperRef.current = swiper}

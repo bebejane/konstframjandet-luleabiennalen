@@ -14,11 +14,13 @@
     &.full {
       flex-basis: 100%;
       border-right: 0px;
+
       article {
         @include mq($from: tablet) {
           margin-left: calc(var(--grid-unit) + var(--total-outer-margin)) !important;
           margin-right: calc(var(--grid-unit) + var(--total-outer-margin)) !important;
         }
+
         @include mq($from: wide) {
           margin-left: calc(2 * var(--grid-unit) + var(--total-outer-margin)) !important;
           margin-right: calc(2 * var(--grid-unit) + var(--total-outer-margin)) !important;
@@ -45,6 +47,7 @@
     @include mq($until: tablet) {
       padding-top: var(--navbar-height);
     }
+
     @include mq($from: tablet) {
       margin-left: calc(var(--total-outer-margin));
       margin-right: calc(var(--total-outer-margin));
