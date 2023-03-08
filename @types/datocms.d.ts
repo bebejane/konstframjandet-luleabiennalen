@@ -659,6 +659,20 @@ type FileFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
 };
 
+/** Specifies how to filter Multiple files/images field */
+type GalleryFilter = {
+  /** Filter records that have all of the specified uploads. The specified values must be Upload IDs */
+  allIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
+  /** Filter records that have one of the specified uploads. The specified values must be Upload IDs */
+  anyIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
+  /** Search for records with an exact match. The specified values must be Upload IDs */
+  eq?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records that do not have any of the specified uploads. The specified values must be Upload IDs */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
+};
+
 /** Record of type Generellt (general) */
 type GeneralRecord = RecordInterface & {
   __typename?: 'GeneralRecord';
@@ -4216,9 +4230,11 @@ type YearModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  background?: InputMaybe<GalleryFilter>;
   backgroundColor?: InputMaybe<ColorFilter>;
   color?: InputMaybe<ColorFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  loadingImage?: InputMaybe<GalleryFilter>;
   participantName?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
 };
@@ -4278,9 +4294,11 @@ type YearRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  background: Array<FileField>;
   backgroundColor: ColorField;
   color: ColorField;
   id: Scalars['ItemId'];
+  loadingImage: Array<FileField>;
   participantName: Scalars['String'];
   title: Scalars['String'];
 };

@@ -11,9 +11,8 @@ export const config = {
 export default async function handler(req: NextRequest, res: NextResponse) {
 
   try {
-    console.log('search...')
+
     const params = await req.json();
-    console.log(params)
     const results = await siteSearch(params)
     return new Response(JSON.stringify(results), {
       status: 200,
@@ -21,7 +20,7 @@ export default async function handler(req: NextRequest, res: NextResponse) {
     })
 
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return new Response(JSON.stringify(err), {
       status: 500,
       headers: { 'content-type': 'application/json' }
@@ -45,7 +44,7 @@ export const siteSearch = async (opt: any) => {
   const itemTypes = await client.itemTypes.list();
 
   const search = (await client.items.list({
-    filter: { type: itemTypes.map(m => m.api_key).join(','), q },
+    filter: { type: itemTypes.map(m => m.api_key).join(','), query: q },
     order_by: '_rank_DESC',
     allPages: true
   })).map(el => ({

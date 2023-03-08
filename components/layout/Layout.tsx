@@ -30,9 +30,9 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 			<div className={s.layout}>
 				<Content menu={menu}>
 					{children}
-					<SearchResult />
-				</Content>
 
+				</Content>
+				<SearchResult />
 			</div>
 
 			<Menu items={menu} />

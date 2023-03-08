@@ -1,9 +1,11 @@
-import s from "./SearchResult.module.scss";
+import s from "./Search.module.scss";
 import { CardContainer, Card, Thumbnail, Loader } from "/components";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Image } from "react-datocms";
+import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import useStore from "/lib/store";
+import { useRouter } from "next/router";
 
 export type Props = {
 
@@ -11,6 +13,7 @@ export type Props = {
 
 export default function SearchResult({ }: Props) {
 
+  const router = useRouter()
   const [query, setSearchQuery] = useStore((state) => [state.searchQuery, state.setSearchQuery])
   const [results, setResults] = useState<any | undefined>()
   const [error, setError] = useState<Error | undefined>()
@@ -26,6 +29,7 @@ export default function SearchResult({ }: Props) {
     if (!Object.keys(variables).filter(k => variables[k] !== undefined).length)
       return
 
+    setError(undefined)
     setResults(undefined)
     setLoading(true)
 
@@ -37,11 +41,9 @@ export default function SearchResult({ }: Props) {
       .then(async (res) => {
         const results = await res.json()
         if (res.status === 200) {
-
           setResults(results)
         } else
-          console.log(res)
-        setError(new Error('error in search'))
+          setError(new Error('error in search'))
       })
       .catch((err) => setError(err))
       .finally(() => setLoading(false))
@@ -50,7 +52,13 @@ export default function SearchResult({ }: Props) {
   useEffect(() => {
     clearTimeout(searchTimeout.current)
     searchTimeout.current = setTimeout(() => siteSearch(query), 250)
-  }, [query, setResults])
+  }, [query])
+
+  useEffect(() => {
+    const handleRouteChangeStart = (path: string) => setSearchQuery(undefined)
+    router.events.on('routeChangeStart', handleRouteChangeStart)
+    return () => router.events.off('routeChangeStart', handleRouteChangeStart)
+  }, [])
 
   if (!query) return null
 
@@ -78,12 +86,11 @@ export default function SearchResult({ }: Props) {
                     </li>
                   )}
                 </ul>
-
               )
               :
               loading ?
                 <div className={s.loader}>
-                  <Loader invert={true} />
+                  <Loader />
                 </div>
                 : <>Inga träffar för: &quot;{query}&quot;</>
             }

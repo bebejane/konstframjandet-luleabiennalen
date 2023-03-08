@@ -67,6 +67,9 @@ export const recordToSlug = (record: any): string => {
     const { __typename, slug } = record
 
     switch (__typename) {
+      case 'AboutRecord':
+        url = `/om/${slug}`
+        break;
       case 'ParticipantRecord':
         url = `/medverkande/${slug}`
         break;
