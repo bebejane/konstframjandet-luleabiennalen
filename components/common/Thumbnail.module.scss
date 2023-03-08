@@ -38,6 +38,10 @@
       opacity: 1;
       transition: opacity 0.2s ease !important;
 
+      img {
+        object-fit: contain;
+      }
+
       &.hide {
         opacity: 0 !important;
       }
