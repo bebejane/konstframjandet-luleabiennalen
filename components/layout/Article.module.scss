@@ -25,11 +25,20 @@
       padding-right: calc(2 * var(--grid-unit));
     }
 
-    &.medium {}
+    &.medium {
+    }
 
-    &.large {}
+    &.large {
+    }
 
-    &.portrait {}
+    &.portrait {
+      padding-left: calc(3 * var(--grid-unit));
+      padding-right: calc(3 * var(--grid-unit));
+      @include mq($from: tablet) {
+        padding-left: calc(2 * var(--grid-unit));
+        padding-right: calc(2 * var(--grid-unit));
+      }
+    }
   }
 
   .date {

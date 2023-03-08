@@ -1,8 +1,8 @@
 .hamburger {
   --line-height: 3px;
   --line-height-half: calc(var(--line-height) / 2);
-  --height: 32px;
-  --width: 34px;
+  --height: 28px;
+  --width: 30px;
 
   position: fixed;
   z-index: var(--z-hamburger);
