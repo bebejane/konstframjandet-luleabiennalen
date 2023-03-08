@@ -1,0 +1,87 @@
+#import "./fragments/ImageThumbnailFragment"
+
+query SiteSearch(
+	$aboutIds: [ItemId]
+	$newsIds: [ItemId]
+	$programIds: [ItemId]
+	$exhibitionIds: [ItemId]
+	$participantIds: [ItemId]
+	$locationIds: [ItemId]
+	$first: IntType = 100
+	$skip: IntType = 0
+) {
+	abouts: allAbouts(first: $first, skip: $skip, filter: { id: { in: $aboutIds } }) {
+		__typename
+		_modelApiKey
+		title
+		text: intro(markdown: false)
+		slug
+		image {
+			...ImageThumbnailFragment
+		}
+	}
+	news: allNews(first: $first, skip: $skip, filter: { id: { in: $newsIds } }) {
+		__typename
+		_modelApiKey
+		title
+		text: intro(markdown: false)
+		slug
+		image {
+			...ImageThumbnailFragment
+		}
+	}
+	programs: allPrograms(first: $first, skip: $skip, filter: { id: { in: $programIds } }) {
+		__typename
+		_modelApiKey
+		title
+		text: intro(markdown: false)
+		slug
+		image {
+			...ImageThumbnailFragment
+		}
+	}
+	exhibitions: allExhibitions(first: $first, skip: $skip, filter: { id: { in: $exhibitionIds } }) {
+		__typename
+		_modelApiKey
+		title
+		text: intro(markdown: false)
+		slug
+		image {
+			...ImageThumbnailFragment
+		}
+	}
+	exhibitions: allExhibitions(first: $first, skip: $skip, filter: { id: { in: $exhibitionIds } }) {
+		__typename
+		_modelApiKey
+		title
+		text: intro(markdown: false)
+		slug
+		image {
+			...ImageThumbnailFragment
+		}
+	}
+	participants: allParticipants(
+		first: $first
+		skip: $skip
+		filter: { id: { in: $participantIds } }
+	) {
+		__typename
+		_modelApiKey
+		title: name
+		text: intro(markdown: false)
+		slug
+		image {
+			...ImageThumbnailFragment
+		}
+	}
+	locations: allLocations(first: $first, skip: $skip, filter: { id: { in: $locationIds } }) {
+		__typename
+		_modelApiKey
+		title
+		text: intro(markdown: false)
+		slug
+		image {
+			...ImageThumbnailFragment
+		}
+	}
+}

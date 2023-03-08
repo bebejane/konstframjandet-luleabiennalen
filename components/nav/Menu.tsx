@@ -72,7 +72,7 @@ export default function Menu({ items }: MenuProps) {
 						/>
 					)}
 					<li>
-						<Search />
+						<SearchInput />
 					</li>
 				</ul>
 
@@ -139,8 +139,8 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 	);
 }
 
-
-const Search = () => {
+const SearchInput = () => {
 	const t = useTranslations('Menu')
-	return <input className={s.search} placeholder={t('search')} />
+	const [setSearchQuery] = useStore((state) => [state.setSearchQuery])
+	return <input className={s.search} placeholder={t('search')} onChange={({ target: { value } }) => setSearchQuery(value)} />
 }

@@ -4,19 +4,22 @@ export interface StoreState {
   showMenu: boolean,
   showMenuMobile: boolean,
   showSearch: boolean,
+  searchQuery: string | undefined,
   images: FileField[],
   imageId: string,
   setShowMenu: (showMenu: boolean) => void,
   setShowMenuMobile: (showMenuMobile: boolean) => void,
   setImages: (images: FileField[] | undefined) => void
   setImageId: (imageId: string | undefined) => void,
-  setShowSearch: (showSearch: boolean) => void
+  setShowSearch: (showSearch: boolean) => void,
+  setSearchQuery: (searchQuery: string) => void
 }
 
 const useStore = create<StoreState>((set) => ({
   showMenu: false,
   showMenuMobile: false,
   showSearch: false,
+  searchQuery: undefined,
   images: [],
   imageId: undefined,
   setShowMenu: (showMenu: boolean) =>
@@ -43,7 +46,13 @@ const useStore = create<StoreState>((set) => ({
     set((state) => ({
       showSearch
     })
+    ),
+  setSearchQuery: (searchQuery: string) =>
+    set((state) => ({
+      searchQuery
+    })
     )
+
 
 }));
 
