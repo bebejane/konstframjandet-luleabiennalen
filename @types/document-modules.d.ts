@@ -10,6 +10,15 @@ export const AllAboutsMenu: DocumentNode;
 }
     
 
+declare module '*/contact.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Contact: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/exhibition.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
