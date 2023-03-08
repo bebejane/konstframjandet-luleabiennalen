@@ -18,10 +18,7 @@
       border-right: 0px;
 
       article {
-
-
         @include mq($from: tablet) {
-
           margin-left: calc(var(--grid-unit) + var(--total-outer-margin)) !important;
           margin-right: calc(var(--grid-unit) + var(--total-outer-margin)) !important;
         }

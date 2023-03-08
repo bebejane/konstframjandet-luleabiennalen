@@ -19,8 +19,8 @@ query AllLocations(
 	}
 }
 
-query Location($slug: String!) {
-	location(filter: { slug: { eq: $slug } }) {
+query Location($slug: String!, $locale: SiteLocale) {
+	location(filter: { slug: { eq: $slug } }, locale: $locale) {
 		...LocationFragment
 	}
 }

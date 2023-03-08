@@ -4502,6 +4502,7 @@ type AllLocationsQuery = { __typename?: 'Query', locations: Array<{ __typename?:
 
 type LocationQueryVariables = Exact<{
   slug: Scalars['String'];
+  locale?: InputMaybe<SiteLocale>;
 }>;
 
 
