@@ -1,7 +1,7 @@
 import s from './Related.module.scss'
 import cn from 'classnames'
 import React from 'react'
-import { KFImage as Image } from '/components'
+import { Image } from 'react-datocms'
 import Link from 'next/link'
 import { recordToSlug } from '/lib/utils'
 

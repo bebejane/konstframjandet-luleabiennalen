@@ -2,7 +2,7 @@ import s from './Article.module.scss'
 import cn from 'classnames'
 import React, { useEffect, useRef } from 'react'
 import { StructuredContent } from "/components";
-import { KFImage as Image } from '/components';
+import { Image } from 'react-datocms';
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
 import useStore from '/lib/store';
 import format from 'date-fns/format';

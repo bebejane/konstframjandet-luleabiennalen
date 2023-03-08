@@ -6,7 +6,7 @@ import { buildMenu } from '/lib/menu'
 import { useRouter } from 'next/router'
 import { useStore } from '/lib/store'
 import { usePage } from '/lib/context/page'
-import { KFImage as Image } from '/components'
+import { Image } from 'react-datocms'
 
 export type LayoutProps = {
 	children: React.ReactNode,
