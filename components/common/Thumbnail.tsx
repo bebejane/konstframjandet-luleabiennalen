@@ -44,6 +44,7 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
             data={loadingImage[loadingImageIndex].responsiveImage}
             className={cn(s.loader)}
             pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
+            lazyLoad={false}
             objectFit={'contain'}
           />
         </div>
