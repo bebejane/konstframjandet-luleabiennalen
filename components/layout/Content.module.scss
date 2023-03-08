@@ -19,12 +19,15 @@
 
       article {
 
+
         @include mq($from: tablet) {
+
           margin-left: calc(var(--grid-unit) + var(--total-outer-margin)) !important;
           margin-right: calc(var(--grid-unit) + var(--total-outer-margin)) !important;
         }
 
         @include mq($from: wide) {
+
           margin-left: calc(2 * var(--grid-unit) + var(--total-outer-margin)) !important;
           margin-right: calc(2 * var(--grid-unit) + var(--total-outer-margin)) !important;
         }
@@ -44,6 +47,7 @@
   }
 
   article {
+    transition: all 0.3s ease-in-out;
     padding-bottom: var(--space);
     margin: 0;
 
