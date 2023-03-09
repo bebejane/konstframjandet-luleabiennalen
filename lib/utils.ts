@@ -213,8 +213,9 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
 
 export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
 
-  let item = items.find(({ slug, sub }, idx) => {
-    if ([slug, `/${locale}${slug}`].includes(path))
+  let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
+    const baseSlug = years.find(el => slug.split('/')[1] === el.title) ? `/${slug.split('/').slice(2).join('/')}` : undefined
+    if ([slug, `/${locale}${slug}`, baseSlug].filter(el => el).includes(path))
       return true
     const p = path.split('/'); p.pop()
     return p.join('/') === slug && !sub
