@@ -10,7 +10,6 @@ export type Props = {
 
 export default function Link({ href, className, children }: Props) {
   const { locale, query: { year } } = useRouter()
-
   const as = translatePath(href, locale, year !== undefined)
 
   return (

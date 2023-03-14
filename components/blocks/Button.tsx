@@ -1,6 +1,6 @@
 import s from './Button.module.scss'
 import React from 'react'
-import Link from 'next/link'
+import Link from '/components/nav/Link'
 
 export type ButtonBlockProps = { data: ButtonRecord, onClick: Function }
 

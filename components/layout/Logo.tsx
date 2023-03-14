@@ -1,7 +1,7 @@
 import s from './Logo.module.scss'
 import LogoIcon from '/public/images/logo.svg'
 import { usePage } from '/lib/context/page'
-import Link from 'next/link'
+import Link from '/components/nav/Link'
 
 export type Props = {
 

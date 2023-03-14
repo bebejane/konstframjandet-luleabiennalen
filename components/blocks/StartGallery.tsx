@@ -5,7 +5,7 @@ import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import type { Swiper } from 'swiper';
 import { Image } from 'react-datocms'
 import React, { useRef, useState } from 'react'
-import Link from 'next/link';
+import Link from '/components/nav/Link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type Props = {

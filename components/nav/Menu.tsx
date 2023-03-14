@@ -3,6 +3,7 @@ import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
 import type { Menu, MenuItem } from '/lib/menu'
+//import Link from '/components/nav/Link'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Hamburger, Temperature } from '/components'
@@ -46,6 +47,7 @@ export default function Menu({ items }: MenuProps) {
 		setFooterScrollPosition(footerScrollPosition)
 
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height])
+
 
 	return (
 		<>

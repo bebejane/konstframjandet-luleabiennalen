@@ -198,8 +198,8 @@ export const randomInt = (min, max) => {
 
 export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string) {
 
-  const res = await Promise.all(locales.map(locale => apiQueryAll(doc, { variables: { locale } })))
   const paths = []
+  const res = await Promise.all(locales.map(locale => apiQueryAll(doc, { variables: { locale } })))
 
   res.forEach((r, idx) => {
     const data = r[Object.keys(r)[0]];

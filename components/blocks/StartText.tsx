@@ -1,6 +1,6 @@
 import s from './StartText.module.scss'
 import React from 'react'
-import Link from 'next/link';
+import Link from '/components/nav/Link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type Props = {
