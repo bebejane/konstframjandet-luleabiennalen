@@ -237,13 +237,13 @@ export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]):
   }
 }
 
-export const translatePath = (href: string, locale: string): string => {
+export const translatePath = (href: string, locale: string, archive: boolean): string => {
 
-  const basePath = href.split('/')[1]
+  const index = archive ? 2 : 1;
+  const basePath = href.split('/')[index]
   const key = Object.keys(i18nPaths).find(k => [i18nPaths[k].sv, i18nPaths[k].en].includes(basePath))
-  const translatedPath = !basePath ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(2).join('/')}`
+  const translatedPath = !basePath ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(index + 1).join('/')}`
   const fullPath = translatedPath ? `/${locale}${translatedPath}` : undefined
-
   return fullPath;
 
 }
