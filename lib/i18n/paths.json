@@ -1,0 +1,34 @@
+{
+	"home": {
+		"en": "",
+		"sv": ""
+	},
+	"contact": {
+		"en": "contact",
+		"sv": "kontakt"
+	},
+	"participants": {
+		"en": "participants",
+		"sv": "medverkande"
+	},
+	"news": {
+		"en": "news",
+		"sv": "nyheter"
+	},
+	"about": {
+		"en": "about",
+		"sv": "om"
+	},
+	"locations": {
+		"en": "locations",
+		"sv": "platser"
+	},
+	"program": {
+		"en": "program",
+		"sv": "program"
+	},
+	"exhibitions": {
+		"en": "exhibitions",
+		"sv": "utstallningar"
+	}
+}

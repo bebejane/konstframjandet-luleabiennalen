@@ -2,6 +2,7 @@ fragment YearFragment on YearRecord {
 	id
 	title
 	participantName
+	slug
 	color {
 		hex
 		red

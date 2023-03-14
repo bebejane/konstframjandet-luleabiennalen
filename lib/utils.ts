@@ -1,4 +1,5 @@
 import years from './years.json'
+import i18nPaths from './i18n/paths.json'
 import { TypedDocumentNode } from "@apollo/client/core";
 import { apiQuery } from "dato-nextjs-utils/api";
 import type { ApiQueryOptions } from "dato-nextjs-utils/api";
@@ -6,6 +7,7 @@ import type { MenuItem } from '/lib/menu';
 import format from "date-fns/format";
 import React from "react";
 
+export const locales = ['sv', 'en']
 export const isServer = typeof window === 'undefined';
 
 export const breakpoints = {
@@ -196,13 +198,15 @@ export const randomInt = (min, max) => {
 
 export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string) {
 
-  const res: { participants: ParticipantRecord[] } = await apiQueryAll(doc)
-  const data = res[Object.keys(res)[0]];
+  const res = await Promise.all(locales.map(locale => apiQueryAll(doc, { variables: { locale } })))
   const paths = []
 
-  years.forEach(({ title }) => {
-    const items = data.filter(({ year }) => year?.title === title || !year)
-    paths.push.apply(paths, items.map(i => ({ params: { year: title, [segment]: i.slug } })))
+  res.forEach((r, idx) => {
+    const data = r[Object.keys(r)[0]];
+    years.forEach(({ title }) => {
+      const items = data.filter(({ year }) => year?.title === title || !year)
+      paths.push.apply(paths, items.map(i => ({ params: { year: title, [segment]: i.slug } })))
+    })
   })
 
   return {
@@ -214,7 +218,9 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
 export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
 
   let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
-    const baseSlug = years.find(el => slug.split('/')[1] === el.title) ? `/${slug.split('/').slice(2).join('/')}` : undefined
+    let baseSlug = years.find(el => slug.split('/')[1] === el.title) ? `/${slug.split('/').slice(2, 3).join('/')}` : undefined
+    //if (locale === 'en') baseSlug = baseSlug ? `/${i18nPaths[baseSlug?.substring(1)]}` : undefined
+
     if ([slug, `/${locale}${slug}`, baseSlug].filter(el => el).includes(path))
       return true
     const p = path.split('/'); p.pop()
@@ -229,4 +235,15 @@ export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]):
       if (item) return item
     }
   }
+}
+
+export const translatePath = (href: string, locale: string): string => {
+
+  const basePath = href.split('/')[1]
+  const key = Object.keys(i18nPaths).find(k => [i18nPaths[k].sv, i18nPaths[k].en].includes(basePath))
+  const translatedPath = !basePath ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(2).join('/')}`
+  const fullPath = translatedPath ? `/${locale}${translatedPath}` : undefined
+
+  return fullPath;
+
 }

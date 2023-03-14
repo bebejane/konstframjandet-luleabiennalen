@@ -28,7 +28,7 @@ export default function withGlobalProps(opt: any, callback: Function): GetStatic
 
     props.menu = await buildMenu(context.locale)
     props.locale = context.locale
-    props.messages = (await import(`./messages/${context.locale}.json`)).default
+    props.messages = (await import(`./i18n/${context.locale}.json`)).default
     props.year = year;
 
     if (callback)

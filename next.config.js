@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const i18nPaths = require("./lib/i18n/paths.json");
 
 const sassOptions = {
 	includePaths: ["./components", "./pages"],
@@ -14,6 +15,13 @@ const nextOptions = {
 		locales: ["sv", "en"],
 		defaultLocale: "sv",
 		localeDetection: false,
+	},
+	async rewrites() {
+		return Object.keys(i18nPaths).map((k) => ({
+			destination: `/en/${i18nPaths[k].sv}/:path*`,
+			source: `/en/${i18nPaths[k].en}/:path*`,
+			locale: false,
+		}));
 	},
 	typescript: {
 		ignoreBuildErrors: true,

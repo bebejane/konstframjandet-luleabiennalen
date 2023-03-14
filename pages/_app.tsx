@@ -17,10 +17,11 @@ function App({ Component, pageProps, router }) {
 
   setDefaultOptions({ locale: router.locale === 'sv' ? sv : enGB })
 
-  const { pageTitle } = pageProps
   const errorCode = parseInt(router.pathname.replace('/', ''))
   const isError = (!isNaN(errorCode) && (errorCode > 400 && errorCode < 600)) || router.pathname.replace('/', '') === '_error'
+
   if (isError) return <Component {...pageProps} />
+
 
   return (
     <>

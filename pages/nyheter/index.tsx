@@ -1,7 +1,8 @@
 import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllNewsDocument } from "/graphql";
-import Link from 'next/link'
+//import Link from 'next/link'
+import Link from '/components/nav/Link'
 import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import format from "date-fns/format";
 import { useTranslations } from "next-intl";
