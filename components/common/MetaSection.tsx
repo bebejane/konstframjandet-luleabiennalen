@@ -1,5 +1,5 @@
 import s from './MetaSection.module.scss'
-import Link from 'next/link'
+import Link from '/components/nav/Link'
 
 export type Props = {
   items: {
