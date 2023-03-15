@@ -139,6 +139,7 @@ export const apiQueryAll = async (doc: TypedDocumentNode, opt: ApiQueryOptions =
   const results = {}
   let size = 100;
   let skip = 0;
+
   const res = await apiQuery(doc, { variables: { ...opt.variables, first: size, skip } });
 
   if (res.pagination?.count === undefined)
@@ -203,7 +204,7 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
   for (let i = 0; i < years.length; i++) {
     const { id, title } = years[i];
     console.log(id, title)
-    const res = await Promise.all(locales.map(locale => apiQuery(doc, { variables: { locale, yearId: id } })))
+    const res = await Promise.all(locales.map(locale => apiQueryAll(doc, { variables: { yearId: id } })))
     res.forEach((r, idx) => {
       const items = r[Object.keys(r)[0]];
       paths.push.apply(paths, items.map((i) => ({ params: { year: title, [segment]: i.slug } })))
@@ -242,8 +243,10 @@ export const translatePath = (href: string, locale: string, archive: boolean): s
 
   const index = archive ? 2 : 1;
   const basePath = href.split('/')[index]
+
   const key = Object.keys(i18nPaths).find(k => [i18nPaths[k].sv, i18nPaths[k].en].includes(basePath))
-  const translatedPath = !basePath ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(index + 1).join('/')}`
+  const translatedPath = !basePath || !key ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(index + 1).join('/')}`
+
   const fullPath = translatedPath ? `/${locale}${translatedPath}` : undefined
   return fullPath;
 
