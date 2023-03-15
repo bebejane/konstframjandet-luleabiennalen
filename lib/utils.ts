@@ -199,15 +199,16 @@ export const randomInt = (min, max) => {
 export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string) {
 
   const paths = []
-  const res = await Promise.all(locales.map(locale => apiQueryAll(doc, { variables: { locale } })))
 
-  res.forEach((r, idx) => {
-    const data = r[Object.keys(r)[0]];
-    years.forEach(({ title }) => {
-      const items = data.filter(({ year }) => year?.title === title || !year)
-      paths.push.apply(paths, items.map(i => ({ params: { year: title, [segment]: i.slug } })))
+  for (let i = 0; i < years.length; i++) {
+    const { id, title } = years[i];
+    console.log(id, title)
+    const res = await Promise.all(locales.map(locale => apiQuery(doc, { variables: { locale, yearId: id } })))
+    res.forEach((r, idx) => {
+      const items = r[Object.keys(r)[0]];
+      paths.push.apply(paths, items.map((i) => ({ params: { year: title, [segment]: i.slug } })))
     })
-  })
+  }
 
   return {
     paths,
