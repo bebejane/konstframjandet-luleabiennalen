@@ -1,4 +1,3 @@
-import years from './years.json'
 import i18nPaths from './i18n/paths.json'
 import { TypedDocumentNode } from "@apollo/client/core";
 import { apiQuery } from "dato-nextjs-utils/api";
@@ -6,6 +5,7 @@ import type { ApiQueryOptions } from "dato-nextjs-utils/api";
 import type { MenuItem } from '/lib/menu';
 import format from "date-fns/format";
 import React from "react";
+import { AllYearsDocument } from '/graphql';
 
 export const locales = ['sv', 'en']
 export const isServer = typeof window === 'undefined';
@@ -201,9 +201,10 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
 
   const paths = []
 
+  const years = await allYears()
+
   for (let i = 0; i < years.length; i++) {
     const { id, title } = years[i];
-    console.log(id, title)
     const res = await Promise.all(locales.map(locale => apiQueryAll(doc, { variables: { yearId: id } })))
     res.forEach((r, idx) => {
       const items = r[Object.keys(r)[0]];
@@ -220,7 +221,7 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
 export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
 
   let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
-    let baseSlug = years.find(el => slug.split('/')[1] === el.title) ? `/${slug.split('/').slice(2, 3).join('/')}` : undefined
+    let baseSlug = !isNaN(parseInt(slug.split('/')[1])) ? `/${slug.split('/').slice(2, 3).join('/')}` : undefined
     //if (locale === 'en') baseSlug = baseSlug ? `/${i18nPaths[baseSlug?.substring(1)]}` : undefined
 
     if ([slug, `/${locale}${slug}`, baseSlug].filter(el => el).includes(path))
@@ -250,4 +251,9 @@ export const translatePath = (href: string, locale: string, archive: boolean): s
   const fullPath = translatedPath ? `/${locale}${translatedPath}` : undefined
   return fullPath;
 
+}
+
+export const allYears = async () => {
+  const { years } = await apiQuery(AllYearsDocument)
+  return years;
 }

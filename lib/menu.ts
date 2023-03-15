@@ -1,7 +1,7 @@
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { MenuDocument } from "/graphql";
-import years from '/lib/years.json'
 import i18nPaths from '/lib/i18n/paths.json'
+import { allYears } from '/lib/utils';
 
 export type Menu = MenuItem[]
 export type MenuQueryResponse = {
@@ -40,6 +40,7 @@ const base: Menu = [
 
 export const buildMenu = async (locale: string) => {
 
+  const years = await allYears()
   const year = years.find(el => el.title === process.env.NEXT_PUBLIC_CURRENT_YEAR)
   const res: MenuQueryResponse = await apiQuery(MenuDocument, { variables: { yearId: year.id, locale } });
   const archive: MenuQueryResponse[] = await Promise.all(years.filter(({ id }) => id !== year.id).map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale } })))
