@@ -1,5 +1,6 @@
-import s from "./Search.module.scss";
+import s from "./index.module.scss";
 import cn from 'classnames'
+import withGlobalProps from "/lib/withGlobalProps";
 import { Loader } from "/components";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -8,13 +9,15 @@ import useStore from "/lib/store";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 
-export type Props = {}
+export type Props = {
+  query?: string
+}
 
-export default function SearchResult({ }: Props) {
+export default function Search({ query }: Props) {
 
   const router = useRouter()
   const t = useTranslations()
-  const [query, setSearchQuery] = useStore((state) => [state.searchQuery, state.setSearchQuery])
+  const [searchQuery, setSearchQuery] = useStore((state) => [state.searchQuery, state.setSearchQuery])
   const [results, setResults] = useState<any | undefined>()
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
@@ -49,10 +52,9 @@ export default function SearchResult({ }: Props) {
     setResults(undefined)
     setLoading(true)
     setError(undefined)
-
     clearTimeout(searchTimeout.current)
-    searchTimeout.current = setTimeout(() => siteSearch(query), 250)
-  }, [query])
+    searchTimeout.current = setTimeout(() => siteSearch(searchQuery), 250)
+  }, [searchQuery])
 
   useEffect(() => {
     const handleRouteChangeStart = (path: string) => setSearchQuery(undefined)
@@ -60,10 +62,19 @@ export default function SearchResult({ }: Props) {
     return () => router.events.off('routeChangeComplete', handleRouteChangeStart)
   }, [])
 
-  if (!query) return null
+  useEffect(() => {
+    setSearchQuery(query)
+  }, [query])
 
   return (
-    <div className={s.container}>
+    <div className={cn(s.container)}>
+      <div className={cn(s.search)}>
+        <input
+          placeholder={t('Menu.search')}
+          value={searchQuery || ''}
+          onChange={({ target: { value } }) => setSearchQuery(value)}
+        />
+      </div>
       {results && Object.keys(results).length > 0 ?
         <>
           <h2>{t('Search.searcResults')}</h2>
@@ -88,7 +99,7 @@ export default function SearchResult({ }: Props) {
         loading ?
           <div className={s.loading}><Loader /></div>
           :
-          results && <p className={cn(s.nohits, "small")}>{t('Search.noHitsFor')}: &quot;{query}&quot;</p>
+          results && <p className={cn(s.nohits, "small")}>{t('Search.noHitsFor')}: &quot;{searchQuery}&quot;</p>
       }
       {error &&
         <div className={s.error}>
@@ -101,3 +112,14 @@ export default function SearchResult({ }: Props) {
 
   );
 }
+
+
+export const getServerSideProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
+
+  return {
+    props: {
+      ...props,
+      query: context.query.q || null
+    }
+  };
+});

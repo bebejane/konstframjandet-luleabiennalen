@@ -63,29 +63,35 @@ export default function Menu({ items }: MenuProps) {
 					style={{ maxHeight: `calc(100vh - ${menuPadding}px - 1rem)` }}
 				>
 					{items.map((item, idx) =>
-						<MenuTree
-							key={idx}
-							item={item}
-							level={0}
-							selected={selected}
-							setSelected={setSelected}
-							path={path}
-							locale={router.locale}
-						/>
+						item.id !== 'search' ?
+							<MenuTree
+								key={idx}
+								item={item}
+								level={0}
+								selected={selected}
+								setSelected={setSelected}
+								path={path}
+								locale={router.locale}
+							/>
+							:
+							<li className={s.search}>
+								<form action="/sok" method="GET">
+									<input
+										name="q"
+										placeholder={t('search')}
+										value={searchQuery || ''}
+										onFocus={() => setSearchFocus(true)}
+										onBlur={() => setSearchFocus(false)}
+										onChange={({ target: { value } }) => setSearchQuery(value)}
+									/>
+								</form>
+								<div
+									onClick={() => setSearchQuery(undefined)}
+									className={cn(s.close, !searchFocus && s.hide)}
+								>×</div>
+							</li>
 					)}
-					<li className={s.search}>
-						<input
-							placeholder={t('search')}
-							value={searchQuery || ''}
-							onFocus={() => setSearchFocus(true)}
-							onBlur={() => setSearchFocus(false)}
-							onChange={({ target: { value } }) => setSearchQuery(value)}
-						/>
-						<div
-							onClick={() => setSearchQuery(undefined)}
-							className={cn(s.close, !searchFocus && s.hide)}
-						>×</div>
-					</li>
+
 				</ul>
 			</nav>
 		</>

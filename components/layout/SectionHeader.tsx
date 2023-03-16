@@ -24,13 +24,13 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const router = useRouter()
   const { asPath, locale } = router
 
-  const menuItem = pathToMenuItem(asPath, locale, menu)
+  const menuItem = pathToMenuItem(asPath.split('?')[0], locale, menu)
 
   if (!menuItem) return null
 
   const isHome = menuItem.id === 'home'
   const isOverview = menuItem?.slug && !menuItem.sub && !isHome
-  const isSearch = searchQuery
+  const isSearch = searchQuery || menuItem.id === 'search'
 
   //@ts-ignore
   const subLabel = t(menuItem.id) || t(menuItem.id.split('-')[0])
