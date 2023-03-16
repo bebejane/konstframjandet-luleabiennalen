@@ -48,7 +48,6 @@ export default function Menu({ items }: MenuProps) {
 
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height])
 
-
 	return (
 		<>
 			<Hamburger />
@@ -75,10 +74,11 @@ export default function Menu({ items }: MenuProps) {
 							/>
 							:
 							<li className={s.search}>
-								<form action="/sok" method="GET">
+								<form action={`/${router.locale === 'sv' ? 'sok' : 'en/search'}`} method="GET">
 									<input
 										name="q"
 										placeholder={t('search')}
+										autoComplete={'off'}
 										value={searchQuery || ''}
 										onFocus={() => setSearchFocus(true)}
 										onBlur={() => setSearchFocus(false)}

@@ -25,12 +25,14 @@ export default function Search({ query }: Props) {
 
   const siteSearch = (q) => {
     const variables = {
-      q: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined
+      q: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined,
+      locale: router.locale
     };
 
     if (!Object.keys(variables).filter(k => variables[k] !== undefined).length)
       return setLoading(false)
 
+    console.log(variables)
     fetch('/api/search', {
       body: JSON.stringify(variables),
       method: 'POST',
@@ -66,10 +68,16 @@ export default function Search({ query }: Props) {
     setSearchQuery(query)
   }, [query])
 
+  useEffect(() => {
+    const params = new URL(document.location.href).searchParams
+    setSearchQuery(params.get('q'))
+  }, [])
+
   return (
     <div className={cn(s.container)}>
       <div className={cn(s.search)}>
         <input
+          className={"mid"}
           placeholder={t('Menu.search')}
           value={searchQuery || ''}
           onChange={({ target: { value } }) => setSearchQuery(value)}
@@ -77,7 +85,6 @@ export default function Search({ query }: Props) {
       </div>
       {results && Object.keys(results).length > 0 ?
         <>
-          <h2>{t('Search.searcResults')}</h2>
           {Object.keys(results).map((type, idx) =>
             <ul key={idx}>
               <li><h3>{results[type][0].category}</h3></li>
@@ -114,12 +121,10 @@ export default function Search({ query }: Props) {
 }
 
 
-export const getServerSideProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
+export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   return {
-    props: {
-      ...props,
-      query: context.query.q || null
-    }
+    props,
+    revalidate
   };
 });

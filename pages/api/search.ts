@@ -31,12 +31,14 @@ export default async function handler(req: NextRequest, res: NextResponse) {
 
 export const siteSearch = async (opt: any) => {
 
-  const { q } = opt;
+  const { q, locale } = opt;
 
   const variables = {
-    query: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined
+    query: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined,
+    locale
   };
 
+  console.log(variables)
   if (isEmptyObject(variables))
     return {}
 
@@ -46,6 +48,7 @@ export const siteSearch = async (opt: any) => {
   const search = (await client.items.list({
     filter: { type: itemTypes.map(m => m.api_key).join(','), query: q },
     order_by: '_rank_DESC',
+    locale,
     allPages: true
   })).map(el => ({
     ...el,
@@ -67,6 +70,7 @@ export const siteSearch = async (opt: any) => {
         locationIds: chunk.filter(el => el._api_key === 'location').map(el => el.id),
         first,
         skip: i,
+        locale
       }
     })
 

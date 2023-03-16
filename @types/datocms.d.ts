@@ -4719,6 +4719,7 @@ type SiteSearchQueryVariables = Exact<{
   locationIds?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>> | InputMaybe<Scalars['ItemId']>>;
   first?: InputMaybe<Scalars['IntType']>;
   skip?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
 }>;
 
 
