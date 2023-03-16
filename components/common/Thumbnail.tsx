@@ -38,7 +38,7 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
             className={s.image}
             pictureClassName={s.picture}
             style={{ opacity: loaded ? 1 : 0.000001 }}
-            onLoad={() => setTimeout(() => setLoaded(true), randomInt(200, 400))}
+            onLoad={() => setLoaded(true)}
           />
           {!isArchive &&
             <Image

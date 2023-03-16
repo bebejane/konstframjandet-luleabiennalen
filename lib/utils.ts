@@ -241,7 +241,7 @@ export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]):
   }
 }
 
-export const translatePath = (href: string, locale: string, archive: boolean): string => {
+export const translatePath = (href: string, locale: string, defaultLocale: string, archive: boolean): string => {
 
   const index = archive ? 2 : 1;
   const basePath = href.split('/')[index]
@@ -249,7 +249,7 @@ export const translatePath = (href: string, locale: string, archive: boolean): s
   const key = Object.keys(i18nPaths).find(k => [i18nPaths[k].sv, i18nPaths[k].en].includes(basePath))
   const translatedPath = !basePath || !key ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(index + 1).join('/')}`
 
-  const fullPath = translatedPath ? `/${locale}${translatedPath}` : undefined
+  const fullPath = translatedPath ? `${locale !== defaultLocale ? `/${locale}` : ''}${translatedPath}` : undefined
   return fullPath;
 
 }
