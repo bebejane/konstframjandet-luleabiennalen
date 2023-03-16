@@ -16,8 +16,8 @@ export default function Link({ href, className, children, prefetch = false }: Pr
 
   return (
     <NextLink
-      href={href}
-      as={as}
+      href={as}
+      //as={as}
       prefetch={prefetch === false ? false : true}
       className={className}
     >
