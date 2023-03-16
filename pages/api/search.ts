@@ -19,21 +19,6 @@ export type SearchResult = {
   }[]
 }
 
-function truncate(text: string, sentences = 1, useEllipsis = true, minLength = 0): string {
-  let truncatedText = text.trim().split(/[.?!\r\n]+/).slice(0, sentences).join(" ");
-
-  const diff = Math.max(minLength - truncatedText.length, 0);
-
-  if (useEllipsis && truncatedText.length < text.length) {
-    truncatedText = truncatedText.slice(0, truncatedText.lastIndexOf(" "));
-    truncatedText += "…".repeat(Math.max(diff, 0));
-  } else {
-    truncatedText += " ".repeat(Math.max(diff, 0));
-  }
-
-  return truncatedText;
-}
-
 export default async function handler(req: NextRequest, res: NextResponse) {
 
   try {
@@ -58,6 +43,8 @@ export default async function handler(req: NextRequest, res: NextResponse) {
 export const siteSearch = async (opt: any) => {
 
   const { q, locale } = opt;
+
+  if (!q) return {}
 
   const variables = {
     query: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined,

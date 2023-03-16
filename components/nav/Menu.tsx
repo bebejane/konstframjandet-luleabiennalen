@@ -33,6 +33,7 @@ export default function Menu({ items }: MenuProps) {
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => {
 			setPath(path)
+			setQuery(undefined)
 			!isDesktop && setShowMenu(false)
 		}
 		router.events.on('routeChangeStart', handleRouteChangeStart)
@@ -87,7 +88,7 @@ export default function Menu({ items }: MenuProps) {
 									/>
 								</form>
 								<div
-									onClick={() => setSearchQuery(undefined)}
+									onClick={() => setQuery(undefined)}
 									className={cn(s.close, !searchFocus && s.hide)}
 								>×</div>
 							</li>
