@@ -2,10 +2,36 @@ import type { NextRequest, NextResponse } from 'next/server'
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { buildClient } from '@datocms/cma-client';
 import { SiteSearchDocument } from '/graphql';
-import { truncateParagraph, isEmptyObject, recordToSlug } from '/lib/utils';
+import { truncateParagraph, truncateText, isEmptyObject, recordToSlug } from '/lib/utils';
 
 export const config = {
   runtime: 'edge',
+}
+
+export type SearchResult = {
+  [index: string]: {
+    __typename: 'AboutRecord' | 'ParticipantRecord' | 'NewsRecord' | 'ExhibitionRecord' | 'LocationRecord' | 'ProgramRecord',
+    _apiKey: string
+    category: string
+    title: string
+    text: string
+    slug: string
+  }[]
+}
+
+function truncate(text: string, sentences = 1, useEllipsis = true, minLength = 0): string {
+  let truncatedText = text.trim().split(/[.?!\r\n]+/).slice(0, sentences).join(" ");
+
+  const diff = Math.max(minLength - truncatedText.length, 0);
+
+  if (useEllipsis && truncatedText.length < text.length) {
+    truncatedText = truncatedText.slice(0, truncatedText.lastIndexOf(" "));
+    truncatedText += "…".repeat(Math.max(diff, 0));
+  } else {
+    truncatedText += " ".repeat(Math.max(diff, 0));
+  }
+
+  return truncatedText;
 }
 
 export default async function handler(req: NextRequest, res: NextResponse) {
@@ -85,9 +111,11 @@ export const siteSearch = async (opt: any) => {
       delete data[type]
     else
       data[type] = data[type].map(el => ({
-        ...el,
+        __typename: el.__typename,
+        _modelApiKey: el._modelApiKey,
         category: itemTypes.find(({ api_key }) => api_key === el._modelApiKey).name,
-        text: truncateParagraph(el.text, 1, false),
+        title: el.title,
+        text: truncateText(el.text, { sentences: 1, useEllipsis: true, minLength: 100 }),
         slug: recordToSlug(el)
       }))
   })

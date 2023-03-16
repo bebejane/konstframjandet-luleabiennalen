@@ -23,6 +23,7 @@ export default function Menu({ items }: MenuProps) {
 	const [selected, setSelected] = useState<MenuItem | undefined>()
 	const [searchFocus, setSearchFocus] = useState(false)
 	const [path, setPath] = useState(router.asPath)
+	const [query, setQuery] = useState('')
 	const [menuPadding, setMenuPadding] = useState(0)
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0)
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
@@ -79,10 +80,10 @@ export default function Menu({ items }: MenuProps) {
 										name="q"
 										placeholder={t('search')}
 										autoComplete={'off'}
-										value={searchQuery || ''}
+										value={query || ''}
 										onFocus={() => setSearchFocus(true)}
 										onBlur={() => setSearchFocus(false)}
-										onChange={({ target: { value } }) => setSearchQuery(value)}
+										onChange={({ target: { value } }) => setQuery(value)}
 									/>
 								</form>
 								<div
@@ -91,7 +92,6 @@ export default function Menu({ items }: MenuProps) {
 								>×</div>
 							</li>
 					)}
-
 				</ul>
 			</nav>
 		</>

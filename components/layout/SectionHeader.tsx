@@ -30,7 +30,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
 
   const isHome = menuItem.id === 'home'
   const isOverview = menuItem?.slug && !menuItem.sub && !isHome
-  const isSearch = searchQuery || menuItem.id === 'search'
+  const isSearch = menuItem.id === 'search'
 
   //@ts-ignore
   const subLabel = t(menuItem.id) || t(menuItem.id.split('-')[0])

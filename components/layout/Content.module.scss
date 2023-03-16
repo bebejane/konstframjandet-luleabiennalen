@@ -5,12 +5,11 @@
   flex: 0 1;
   flex-basis: 100%;
   border-right: 1px solid var(--black);
-  //transform: translateX(0%);
 
   @include mq($from: tablet) {
     flex-basis: 80%;
     max-width: 80%;
-    transition: all 0.3s ease-in-out;
+    transition: max-width 0.3s ease-in-out, margin 0.3s ease-in-out, flex-basis 0.3s ease-in-out;
 
     &.full {
       flex-basis: 100%;
@@ -55,27 +54,6 @@
     @include mq($from: tablet) {
       margin-left: calc(var(--total-outer-margin));
       margin-right: calc(var(--total-outer-margin));
-    }
-  }
-
-  &.noMargins {
-    article {
-      margin: 0;
-      padding-left: 0;
-      padding-right: 0;
-
-      @include mq($from: tablet) {
-        margin-left: 0;
-        margin-right: 0;
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-  }
-
-  &.noBottom {
-    article {
-      padding-bottom: 0;
     }
   }
 }

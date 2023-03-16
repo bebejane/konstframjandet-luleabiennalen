@@ -8,6 +8,7 @@ import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import useStore from "/lib/store";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
+import type { SearchResult } from "/pages/api/search";
 
 export type Props = {
   query?: string
@@ -18,7 +19,7 @@ export default function Search({ query }: Props) {
   const router = useRouter()
   const t = useTranslations()
   const [searchQuery, setSearchQuery] = useStore((state) => [state.searchQuery, state.setSearchQuery])
-  const [results, setResults] = useState<any | undefined>()
+  const [results, setResults] = useState<SearchResult | undefined>()
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
   const searchTimeout = useRef<NodeJS.Timer | null>(null)
@@ -73,8 +74,9 @@ export default function Search({ query }: Props) {
     setSearchQuery(params.get('q'))
   }, [])
 
+
   return (
-    <div className={cn(s.container)}>
+    <section className={cn(s.container)}>
       <div className={cn(s.search)}>
         <input
           className={"mid"}
@@ -88,7 +90,7 @@ export default function Search({ query }: Props) {
           {Object.keys(results).map((type, idx) =>
             <ul key={idx}>
               <li><h3>{results[type][0].category}</h3></li>
-              {results[type]?.map(({ category, title, text, image, slug }, i) =>
+              {results[type]?.map(({ category, title, text, slug }, i) =>
                 <li key={i}>
                   <h1>
                     <Link href={slug}>{title}</Link>
@@ -115,7 +117,7 @@ export default function Search({ query }: Props) {
           </p>
         </div>
       }
-    </div >
+    </section>
 
   );
 }
