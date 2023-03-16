@@ -143,7 +143,7 @@ export const apiQueryAll = async (doc: TypedDocumentNode, opt: ApiQueryOptions =
   const res = await apiQuery(doc, { variables: { ...opt.variables, first: size, skip } });
 
   if (res.pagination?.count === undefined)
-    throw new Error('Not a pagable query')
+    throw new Error('Not a pagable query. pagination response missing')
 
   const { count } = res.pagination
 
@@ -170,13 +170,15 @@ export const apiQueryAll = async (doc: TypedDocumentNode, opt: ApiQueryOptions =
 
   let reqs = []
   for (let skip = size; skip < count; skip += size) {
+
     if (reqs.length < 50 && skip + size < count) {
       reqs.push(apiQuery(doc, { variables: { ...opt.variables, first: size, skip } }))
     } else {
-
       reqs.push(apiQuery(doc, { variables: { ...opt.variables, first: size, skip } }))
+
       const data = await Promise.allSettled(reqs)
       const error = data.find(isRejected)?.reason
+
       if (error)
         throw new Error(error)
 
@@ -204,12 +206,11 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
   const years = await allYears()
 
   for (let i = 0; i < years.length; i++) {
-    const { id, title } = years[i];
-    const res = await Promise.all(locales.map(locale => apiQueryAll(doc, { variables: { yearId: id } })))
-    res.forEach((r, idx) => {
-      const items = r[Object.keys(r)[0]];
-      paths.push.apply(paths, items.map((i) => ({ params: { year: title, [segment]: i.slug } })))
-    })
+    const { id, title: year } = years[i];
+    const res = await apiQueryAll(doc, { variables: { yearId: id } })
+    const items = res[Object.keys(res)[0]];
+    paths.push.apply(paths, items.map((i) => ({ params: { year, [segment]: i.slug } })))
+
   }
 
   return {

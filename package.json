@@ -14,13 +14,14 @@
 		"preview": "npm run build && npm run start",
 		"barrel": "node ./lib/scripts/barrel",
 		"barrel:watch": "watch 'node ./lib/scripts/barrel' ./components",
-		"postbuild": "next-sitemap"
+		"postbuild": "next-sitemap",
+		"test": "tsx --tsconfig ./tsconfig.json ./lib/scripts/test.tsx"
 	},
 	"exports": {
-		"lib/*": "/lib",
-		"components/*": "/components",
-		"graphql/*": "/graphql",
-		"/*": "*"
+		"lib/*": "./lib",
+		"components/*": "./components",
+		"graphql/*": "./graphql",
+		"/*": "./*"
 	},
 	"dependencies": {
 		"@apollo/client": "^3.7.1",
