@@ -9,7 +9,7 @@ export type Props = {
   prefetch?: boolean
 }
 
-export default function Link({ href, className, children, prefetch = true }: Props) {
+export default function Link({ href, className, children, prefetch }: Props) {
 
   const { locale, defaultLocale, query: { year } } = useRouter()
   const translatedHref = translatePath(href, locale, defaultLocale, year !== undefined)

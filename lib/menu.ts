@@ -67,7 +67,7 @@ export const buildMenu = async (locale: string) => {
 
 export const buildYearMenu = (res: MenuQueryResponse, locale: string, isArchive: boolean = false): MenuItem[] => {
 
-  const menu = base.filter(({ id }) => isArchive ? id !== 'archive' : true).map(item => {
+  const menu = base.filter(({ id }) => isArchive ? !['archive', 'search'].includes(id) : true).map(item => {
     let sub: MenuItem[];
     if (item.slug)
       item.slug = `/${i18nPaths[item.id][locale]}`
