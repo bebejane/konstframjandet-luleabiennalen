@@ -1,8 +1,7 @@
 import s from './Loader.module.scss'
 import cn from 'classnames'
-import ClipLoader from "react-spinners/ClipLoader";
 
-type Props = {
+export type Props = {
   message?: string
   loading?: boolean
   className?: string

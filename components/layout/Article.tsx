@@ -1,6 +1,6 @@
 import s from './Article.module.scss'
 import cn from 'classnames'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { StructuredContent } from "/components";
 import { Image } from 'react-datocms';
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
@@ -26,13 +26,17 @@ const MAX_PORTRAIT_HEIGHT = 600;
 
 export default function Article({ id, children, title, content, image, imageSize, intro, date, onClick, record }: ArticleProps) {
 
-  const [setImageId, setImages, imageId] = useStore((state) => [state.setImageId, state.setImages, state.imageId])
+  const [setImageId, setImages] = useStore((state) => [state.setImageId, state.setImages])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const captionRef = useRef<HTMLElement | null>(null)
-  const offset = captionRef.current?.offsetTop
+  const [offset, setOffset] = useState(0)
   const ratio = offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight))) : 0
   const padding = `${ratio * 100}px`;
   const opacity = Math.max(0, 1 - (ratio * 1.5));
+
+  useEffect(() => {
+    setOffset(captionRef.current?.offsetTop ?? 0)
+  }, [])
 
   useEffect(() => {
     const images = [image]
