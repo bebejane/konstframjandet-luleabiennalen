@@ -84,7 +84,7 @@ dependencies:
   '@u-wave/react-vimeo': 0.9.10_react@18.2.0
   classnames: 2.3.2
   date-fns: 2.29.3
-  dato-nextjs-utils: github.com/bebejane/dato-nextjs-utils/41aa5041ca4c734820bbdb1e95f3e19c52cdb7ab_ihakmswch2pmwgegblogej4rae
+  dato-nextjs-utils: github.com/bebejane/dato-nextjs-utils/93c4c485ecafa8f92bf527365577f681edada57e_ihakmswch2pmwgegblogej4rae
   datocms-structured-text-utils: 2.0.4
   dotenv: 16.0.3
   graphql: 16.6.0
@@ -2731,10 +2731,6 @@ packages:
 
   /@next/env/13.1.6:
     resolution: {integrity: sha512-s+W9Fdqh5MFk6ECrbnVmmAOwxKQuhGMT7xXHrkYIBMBcTiOqNWhv5KbJIboKR5STXxNXl32hllnvKaffzFaWQg==}
-
-  /@next/env/13.2.3:
-    resolution: {integrity: sha512-FN50r/E+b8wuqyRjmGaqvqNDuWBWYWQiigfZ50KnSFH0f+AMQQyaZl+Zm2+CIpKk0fL9QxhLxOpTVA3xFHgFow==}
-    dev: false
 
   /@next/env/13.2.4:
     resolution: {integrity: sha512-+Mq3TtpkeeKFZanPturjcXt+KHfKYnLlX6jMLyCrmpq6OOs4i1GqBOAauSkii9QeKCMTYzGppar21JU57b/GEA==}
@@ -12024,11 +12020,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/bebejane/dato-nextjs-utils/41aa5041ca4c734820bbdb1e95f3e19c52cdb7ab_ihakmswch2pmwgegblogej4rae:
-    resolution: {tarball: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/41aa5041ca4c734820bbdb1e95f3e19c52cdb7ab}
-    id: github.com/bebejane/dato-nextjs-utils/41aa5041ca4c734820bbdb1e95f3e19c52cdb7ab
+  github.com/bebejane/dato-nextjs-utils/93c4c485ecafa8f92bf527365577f681edada57e_ihakmswch2pmwgegblogej4rae:
+    resolution: {tarball: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/93c4c485ecafa8f92bf527365577f681edada57e}
+    id: github.com/bebejane/dato-nextjs-utils/93c4c485ecafa8f92bf527365577f681edada57e
     name: dato-nextjs-utils
-    version: 1.0.262
+    version: 1.0.264
     engines: {node: '>=0.16'}
     peerDependencies:
       '@apollo/client': 3 - 4
@@ -12043,7 +12039,7 @@ packages:
     dependencies:
       '@apollo/client': 3.7.7_gdcq4dv6opitr3wbfwyjmanyra
       '@datocms/cma-client': 1.2.8
-      '@next/env': 13.2.3
+      '@next/env': 13.2.4
       '@types/node': 18.13.0
       '@types/react': 18.0.28
       markdown-truncate: 1.0.4
