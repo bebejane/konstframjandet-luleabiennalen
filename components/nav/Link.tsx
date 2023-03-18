@@ -19,6 +19,7 @@ export default function Link({ href, className, children, prefetch }: Props) {
       href={translatedHref}
       prefetch={prefetch}
       className={className}
+      scroll={true}
     >
       {children}
     </NextLink>
