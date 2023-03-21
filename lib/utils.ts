@@ -254,7 +254,7 @@ export const translatePath = (href: string, locale: string, defaultLocale: strin
 
 }
 
-export const allYears = async () => {
+export const allYears = async (): Promise<YearRecord[]> => {
   const { years } = await apiQuery(AllYearsDocument)
   return years;
 }
