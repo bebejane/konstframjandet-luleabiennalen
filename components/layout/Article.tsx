@@ -50,8 +50,6 @@ export default function Article({ id, children, title, content, image, imageSize
 
   }, [asPath, viewportHeight])
 
-  console.log(offset, scrolledPosition)
-
   return (
     <>
       <DatoSEO title={title} />

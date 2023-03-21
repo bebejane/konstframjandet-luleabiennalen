@@ -2,13 +2,13 @@ import { withRevalidate } from 'dato-nextjs-utils/hoc'
 import { allYears } from '/lib/utils';
 
 export default withRevalidate(async (record, revalidate) => {
-  console.log('revalidate')
+
   const { api_key: apiKey, } = record.model;
-  const { slug } = record
+  const { slug: baseSlug, locale } = record
   const years = await allYears()
   const year = years.find(({ id }) => record.year === id)
   const prefix = !year || year?.title === process.env.NEXT_PUBLIC_CURRENT_YEAR ? '' : `/${year.title}`
-
+  const slug = typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug
   const paths = []
 
   switch (apiKey) {
