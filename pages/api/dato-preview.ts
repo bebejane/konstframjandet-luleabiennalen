@@ -5,7 +5,8 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
 
   let path = null;
 
-  const { slug, year: yearId } = item.attributes
+  const { slug: slugs, year: yearId } = item.attributes
+  const slug = slugs[locale]
   const year = yearId ? (await allYears()).find(({ id }) => id === yearId) : undefined
   const yearSlug = year && year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR ? `/${year.title}` : ''
   const localeSlug = locale !== 'sv' ? `/${locale}` : ''
