@@ -10,7 +10,7 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
   const year = yearId ? (await allYears()).find(({ id }) => id === yearId) : undefined
   const yearSlug = year && year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR ? `/${year.title}` : ''
   const localeSlug = locale !== 'sv' ? `/${locale}` : ''
-  const slug = translatePath(typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug, locale, 'sv', yearSlug !== '')
+  const slug = typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug
 
   switch (itemType.attributes.api_key) {
     case 'start':
@@ -41,8 +41,8 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
       break;
   }
 
-  return path ? `${localeSlug}${yearSlug}${path}` : null
-};
+  return path ? translatePath(`${localeSlug}${yearSlug}${path}`, locale, 'sv', yearSlug !== '') : null
+}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
