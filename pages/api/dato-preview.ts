@@ -28,10 +28,10 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
     case 'news':
       path = `/nyheter/${slug}`
       break;
-    case 'locations':
+    case 'location':
       path = `/platser/${slug}`
       break;
-    case 'exhibitions':
+    case 'exhibition':
       path = `/utstallningar/${slug}`
       break;
     case 'contact':

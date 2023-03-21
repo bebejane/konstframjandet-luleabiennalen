@@ -31,11 +31,11 @@ export default withRevalidate(async (record, revalidate) => {
       paths.push(`/nyheter/${slug}`)
       prefix && paths.push(`${prefix}/nyheter/${slug}`)
       break;
-    case 'locations':
+    case 'location':
       paths.push(`/platser/${slug}`)
       prefix && paths.push(`${prefix}/platser/${slug}`)
       break;
-    case 'exhibitions':
+    case 'exhibition':
       paths.push(`/utstallningar/${slug}`)
       prefix && paths.push(`${prefix}/utstallningar/${slug}`)
       break;
