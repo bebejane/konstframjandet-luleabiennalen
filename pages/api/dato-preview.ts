@@ -41,7 +41,7 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
       break;
   }
 
-  return path ? translatePath(`${localeSlug}${yearSlug}${path}`, locale, 'sv', yearSlug !== '') : null
+  return path ? translatePath(`${yearSlug}${path}`, locale, 'sv', yearSlug !== '') : null
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
