@@ -2,7 +2,7 @@ import { withRevalidate } from 'dato-nextjs-utils/hoc'
 import { allYears } from '/lib/utils';
 
 export default withRevalidate(async (record, revalidate) => {
-
+  console.log('revalidate')
   const { api_key: apiKey, } = record.model;
   const { slug } = record
   const years = await allYears()
@@ -14,6 +14,7 @@ export default withRevalidate(async (record, revalidate) => {
   switch (apiKey) {
     case 'start':
       paths.push('/')
+      prefix && paths.push(`${prefix}/`)
       break;
     case 'about':
       paths.push(`/om/${slug}`)
