@@ -1,17 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { allYears } from '/lib/utils';
+import { translatePath } from '/lib/utils';
 
 const generatePreviewUrl = async ({ item, itemType, locale }) => {
 
   let path = null;
 
   const { slug: baseSlug, year: yearId } = item.attributes
-  const slug = typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug
   const year = yearId ? (await allYears()).find(({ id }) => id === yearId) : undefined
   const yearSlug = year && year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR ? `/${year.title}` : ''
   const localeSlug = locale !== 'sv' ? `/${locale}` : ''
-
-  console.log(slug, yearSlug, localeSlug)
+  const slug = translatePath(typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug, locale, 'sv', yearSlug !== '')
 
   switch (itemType.attributes.api_key) {
     case 'start':
