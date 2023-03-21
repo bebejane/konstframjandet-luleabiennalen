@@ -12,6 +12,9 @@ export default withRevalidate(async (record, revalidate) => {
   const paths = []
 
   switch (apiKey) {
+    case 'start':
+      paths.push('/')
+      break;
     case 'about':
       paths.push(`/om/${slug}`)
       prefix && paths.push(`${prefix}/om/${slug}`)
