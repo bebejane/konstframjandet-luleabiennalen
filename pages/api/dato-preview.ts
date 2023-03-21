@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { allYears } from '/lib/utils';
-import { apiQuery } from 'dato-nextjs-utils/api';
 
 const generatePreviewUrl = async ({ item, itemType, locale }) => {
 
@@ -10,6 +9,8 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
   const year = yearId ? (await allYears()).find(({ id }) => id === yearId) : undefined
   const yearSlug = year && year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR ? `/${year.title}` : ''
   const localeSlug = locale !== 'sv' ? `/${locale}` : ''
+
+  console.log(slug, yearSlug, localeSlug)
 
   switch (itemType.attributes.api_key) {
     case 'about':
