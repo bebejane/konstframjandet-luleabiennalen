@@ -8,6 +8,7 @@ import React from "react";
 import { AllYearsDocument } from '/graphql';
 
 export const locales = ['sv', 'en']
+export const defaultLocale = 'sv'
 export const isServer = typeof window === 'undefined';
 
 export const breakpoints = {
