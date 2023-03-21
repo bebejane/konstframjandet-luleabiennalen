@@ -4,7 +4,7 @@ import { allYears, defaultLocale, translatePath } from '/lib/utils';
 export default withRevalidate(async (record, revalidate) => {
 
   const { api_key: apiKey, } = record.model;
-  const { slug, locale } = record
+  const { slug } = record
   const years = await allYears()
   const year = years.find(({ id }) => record.year === id)
   const isArchive = year && year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR
