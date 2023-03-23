@@ -3,7 +3,7 @@ import cn from 'classnames'
 import React, { useState } from 'react'
 import { Image } from 'react-datocms/image'
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
-import Link from 'next/link'
+import Link from '/components/nav/Link'
 import { useRouter } from 'next/router'
 import { usePage } from '/lib/context/page'
 import { randomInt } from '/lib/utils'
@@ -38,7 +38,7 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
             className={s.image}
             pictureClassName={s.picture}
             style={{ opacity: loaded ? 1 : 0.000001 }}
-            onLoad={() => setTimeout(() => setLoaded(true), randomInt(200, 400))}
+            onLoad={() => setLoaded(true)}
           />
           {!isArchive &&
             <Image

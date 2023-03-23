@@ -1,8 +1,10 @@
 import s from './Language.module.scss'
 import cn from 'classnames'
+//import Link from '/components/nav/Link'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { capitalize } from '/lib/utils'
+
 export default function Language() {
 	const { locale, locales, asPath } = useRouter()
 
@@ -11,7 +13,7 @@ export default function Language() {
 			{locales.map((l, idx) =>
 				<Link
 					key={idx}
-					href={asPath}
+					href={'/'}
 					locale={l}
 					className={cn(locale === l && s.selected)}
 				>

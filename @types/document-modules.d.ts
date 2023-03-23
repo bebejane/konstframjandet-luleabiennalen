@@ -47,6 +47,15 @@ declare module '*/AboutFragment.gql' {
 }
     
 
+declare module '*/AboutFragmentLight.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AboutFragmentLight: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ExhibitionFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -101,6 +110,15 @@ declare module '*/LocationFragment.gql' {
 }
     
 
+declare module '*/LocationFragmentLight.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const LocationFragmentLight: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/NewsFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -110,10 +128,28 @@ declare module '*/NewsFragment.gql' {
 }
     
 
+declare module '*/NewsFragmentLight.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const NewsFragmentLight: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ParticipantFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const ParticipantFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/ParticipantFragmentLight.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ParticipantFragmentLight: DocumentNode;
 
   export default defaultDocument;
 }
@@ -159,6 +195,15 @@ declare module '*/YearFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const YearFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/YearFragmentLight.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const YearFragmentLight: DocumentNode;
 
   export default defaultDocument;
 }

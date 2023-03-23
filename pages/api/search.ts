@@ -2,10 +2,21 @@ import type { NextRequest, NextResponse } from 'next/server'
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { buildClient } from '@datocms/cma-client';
 import { SiteSearchDocument } from '/graphql';
-import { truncateParagraph, isEmptyObject, recordToSlug } from '/lib/utils';
+import { truncateParagraph, truncateText, isEmptyObject, recordToSlug } from '/lib/utils';
 
 export const config = {
   runtime: 'edge',
+}
+
+export type SearchResult = {
+  [index: string]: {
+    __typename: 'AboutRecord' | 'ParticipantRecord' | 'NewsRecord' | 'ExhibitionRecord' | 'LocationRecord' | 'ProgramRecord',
+    _apiKey: string
+    category: string
+    title: string
+    text: string
+    slug: string
+  }[]
 }
 
 export default async function handler(req: NextRequest, res: NextResponse) {
@@ -31,12 +42,16 @@ export default async function handler(req: NextRequest, res: NextResponse) {
 
 export const siteSearch = async (opt: any) => {
 
-  const { q } = opt;
+  const { q, locale } = opt;
+
+  if (!q) return {}
 
   const variables = {
-    query: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined
+    query: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined,
+    locale
   };
 
+  console.log(variables)
   if (isEmptyObject(variables))
     return {}
 
@@ -46,6 +61,7 @@ export const siteSearch = async (opt: any) => {
   const search = (await client.items.list({
     filter: { type: itemTypes.map(m => m.api_key).join(','), query: q },
     order_by: '_rank_DESC',
+    locale,
     allPages: true
   })).map(el => ({
     ...el,
@@ -67,6 +83,7 @@ export const siteSearch = async (opt: any) => {
         locationIds: chunk.filter(el => el._api_key === 'location').map(el => el.id),
         first,
         skip: i,
+        locale
       }
     })
 
@@ -81,9 +98,11 @@ export const siteSearch = async (opt: any) => {
       delete data[type]
     else
       data[type] = data[type].map(el => ({
-        ...el,
+        __typename: el.__typename,
+        _modelApiKey: el._modelApiKey,
         category: itemTypes.find(({ api_key }) => api_key === el._modelApiKey).name,
-        text: truncateParagraph(el.text, 1, false),
+        title: el.title,
+        text: truncateText(el.text, { sentences: 1, useEllipsis: true, minLength: 100 }),
         slug: recordToSlug(el)
       }))
   })

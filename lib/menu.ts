@@ -1,6 +1,7 @@
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { MenuDocument } from "/graphql";
-import years from '/lib/years.json'
+import i18nPaths from '/lib/i18n/paths.json'
+import { allYears } from '/lib/utils';
 
 export type Menu = MenuItem[]
 export type MenuQueryResponse = {
@@ -15,7 +16,7 @@ export type MenuQueryResponse = {
 }
 
 export type MenuItem = {
-  id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive'
+  id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive' | 'search'
   label: string
   slug?: string
   year?: string
@@ -34,15 +35,17 @@ const base: Menu = [
   { id: 'locations', label: 'Platser', slug: '/platser', root: true },
   { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true, root: true },
   { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
-  { id: 'archive', label: 'Arkiv', sub: [], root: false }
+  { id: 'archive', label: 'Arkiv', sub: [], root: false },
+  { id: 'search', label: 'Sök', slug: '/sok', root: true }
 ]
 
 export const buildMenu = async (locale: string) => {
 
+  const years = await allYears()
   const year = years.find(el => el.title === process.env.NEXT_PUBLIC_CURRENT_YEAR)
   const res: MenuQueryResponse = await apiQuery(MenuDocument, { variables: { yearId: year.id, locale } });
   const archive: MenuQueryResponse[] = await Promise.all(years.filter(({ id }) => id !== year.id).map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale } })))
-  const menu = buildYearMenu(res);
+  const menu = buildYearMenu(res, locale);
   const archiveIndex = menu.findIndex(el => el.id === 'archive')
 
   //@ts-ignore
@@ -51,7 +54,7 @@ export const buildMenu = async (locale: string) => {
       id: `archive-${el.year.title}`,
       label: `LB°${el.year.title.substring(2)}`,
       slug: `/${el.year.title}`,
-      sub: buildYearMenu(el, true).filter(e => !e.general).map(e => ({
+      sub: buildYearMenu(el, locale, true).filter(e => !e.general).map(e => ({
         ...e,
         slug: `/${el.year.title}${e.slug}`,
         sub: e.sub?.map(e2 => ({ ...e2, slug: `/${el.year.title}${e2.slug}` })) || null
@@ -62,17 +65,19 @@ export const buildMenu = async (locale: string) => {
   return menu
 }
 
-export const buildYearMenu = (res: MenuQueryResponse, isArchive: boolean = false): MenuItem[] => {
+export const buildYearMenu = (res: MenuQueryResponse, locale: string, isArchive: boolean = false): MenuItem[] => {
 
-  const menu = base.filter(({ id }) => isArchive ? id !== 'archive' : true).map(item => {
+  const menu = base.filter(({ id }) => isArchive ? !['archive', 'search'].includes(id) : true).map(item => {
     let sub: MenuItem[];
+    if (item.slug)
+      item.slug = `/${i18nPaths[item.id][locale]}`
     switch (item.id) {
       case 'about':
         //@ts-ignore
         sub = res.abouts.filter(({ year }) => isArchive ? year : true).map(el => ({
           id: `about-${el.slug}`,
           label: el.title,
-          slug: `/om/${el.slug}`,
+          slug: `/${i18nPaths.about[locale]}/${el.slug}`,
           root: false
         }))
         break;

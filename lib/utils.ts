@@ -1,11 +1,14 @@
-import years from './years.json'
+import i18nPaths from './i18n/paths.json'
 import { TypedDocumentNode } from "@apollo/client/core";
 import { apiQuery } from "dato-nextjs-utils/api";
 import type { ApiQueryOptions } from "dato-nextjs-utils/api";
 import type { MenuItem } from '/lib/menu';
 import format from "date-fns/format";
 import React from "react";
+import { AllYearsDocument } from '/graphql';
 
+export const locales = ['sv', 'en']
+export const defaultLocale = 'sv'
 export const isServer = typeof window === 'undefined';
 
 export const breakpoints = {
@@ -137,10 +140,11 @@ export const apiQueryAll = async (doc: TypedDocumentNode, opt: ApiQueryOptions =
   const results = {}
   let size = 100;
   let skip = 0;
+
   const res = await apiQuery(doc, { variables: { ...opt.variables, first: size, skip } });
 
   if (res.pagination?.count === undefined)
-    throw new Error('Not a pagable query')
+    throw new Error('Not a pagable query. pagination response missing')
 
   const { count } = res.pagination
 
@@ -167,13 +171,15 @@ export const apiQueryAll = async (doc: TypedDocumentNode, opt: ApiQueryOptions =
 
   let reqs = []
   for (let skip = size; skip < count; skip += size) {
+
     if (reqs.length < 50 && skip + size < count) {
       reqs.push(apiQuery(doc, { variables: { ...opt.variables, first: size, skip } }))
     } else {
-
       reqs.push(apiQuery(doc, { variables: { ...opt.variables, first: size, skip } }))
+
       const data = await Promise.allSettled(reqs)
       const error = data.find(isRejected)?.reason
+
       if (error)
         throw new Error(error)
 
@@ -196,14 +202,17 @@ export const randomInt = (min, max) => {
 
 export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string) {
 
-  const res: { participants: ParticipantRecord[] } = await apiQueryAll(doc)
-  const data = res[Object.keys(res)[0]];
   const paths = []
 
-  years.forEach(({ title }) => {
-    const items = data.filter(({ year }) => year?.title === title || !year)
-    paths.push.apply(paths, items.map(i => ({ params: { year: title, [segment]: i.slug } })))
-  })
+  const years = await allYears()
+
+  for (let i = 0; i < years.length; i++) {
+    const { id, title: year } = years[i];
+    const res = await apiQueryAll(doc, { variables: { yearId: id } })
+    const items = res[Object.keys(res)[0]];
+    paths.push.apply(paths, items.map((i) => ({ params: { year, [segment]: i.slug } })))
+
+  }
 
   return {
     paths,
@@ -214,7 +223,9 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
 export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
 
   let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
-    const baseSlug = years.find(el => slug.split('/')[1] === el.title) ? `/${slug.split('/').slice(2).join('/')}` : undefined
+    let baseSlug = !isNaN(parseInt(slug.split('/')[1])) ? `/${slug.split('/').slice(2, 3).join('/')}` : undefined
+    //if (locale === 'en') baseSlug = baseSlug ? `/${i18nPaths[baseSlug?.substring(1)]}` : undefined
+
     if ([slug, `/${locale}${slug}`, baseSlug].filter(el => el).includes(path))
       return true
     const p = path.split('/'); p.pop()
@@ -229,4 +240,56 @@ export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]):
       if (item) return item
     }
   }
+}
+
+export const translatePath = (href: string, locale: string, defaultLocale: string, archive: boolean): string => {
+
+  const index = archive ? 2 : 1;
+  const basePath = href.split('/')[index]
+
+  const key = Object.keys(i18nPaths).find(k => [i18nPaths[k].sv, i18nPaths[k].en].includes(basePath))
+  const translatedPath = !basePath || !key ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(index + 1).join('/')}`
+
+  const fullPath = translatedPath ? `${locale !== defaultLocale ? `/${locale}` : ''}${translatedPath}` : undefined
+  return fullPath;
+
+}
+
+export const allYears = async (): Promise<YearRecord[]> => {
+  const { years } = await apiQuery(AllYearsDocument)
+  return years;
+}
+
+
+export type TruncateOptions = {
+  sentences: number
+  useEllipsis: boolean
+  minLength: number
+}
+
+export const truncateText = (text: string, options: TruncateOptions): string => {
+  let { sentences = 1, useEllipsis = false, minLength = 0 } = options;
+
+  // Split the text into sentences
+  const sentencesArr = text.match(/[^\.!\?]+[\.!\?]+/g);
+
+  // If there aren't enough sentences, return the full text
+  if (!sentencesArr || sentencesArr.length <= sentences) {
+    return text;
+  }
+
+  // Create the truncated text by joining specified number of sentences
+  let truncatedText = sentencesArr.slice(0, sentences).join(' ');
+
+  // Cut off at ! and ? until minimum length is reached
+  while (truncatedText.length < minLength && truncatedText.search(/[!?]/) > -1) {
+    truncatedText = truncatedText.concat(sentencesArr[sentences].match(/^[^!.?]+[!.?]+/) ? sentencesArr[sentences].match(/^[^!.?]+[!.?]+/)[0] : "");
+    sentences++;
+  }
+
+  if (useEllipsis) {
+    truncatedText += '...';
+  }
+
+  return truncatedText;
 }

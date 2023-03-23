@@ -1,7 +1,7 @@
 import s from './SectionHeader.module.scss'
 import cn from 'classnames'
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
+import Link from '/components/nav/Link'
 import { useRouter } from 'next/router'
 import { MenuItem } from '/lib/menu'
 import { useTranslations } from 'next-intl'
@@ -24,13 +24,13 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const router = useRouter()
   const { asPath, locale } = router
 
-  const menuItem = pathToMenuItem(asPath, locale, menu)
+  const menuItem = pathToMenuItem(asPath.split('?')[0], locale, menu)
 
   if (!menuItem) return null
 
   const isHome = menuItem.id === 'home'
   const isOverview = menuItem?.slug && !menuItem.sub && !isHome
-  const isSearch = searchQuery
+  const isSearch = menuItem.id === 'search'
 
   //@ts-ignore
   const subLabel = t(menuItem.id) || t(menuItem.id.split('-')[0])

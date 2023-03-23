@@ -4,9 +4,11 @@ type PageProps = {
   isArchive?: boolean
 }
 
+type SiteLocale = 'en' | 'sv'
+
 type ThumbnailImage = {
   thumb: FileField
 }
 
-type Messages = typeof import('../lib/messages/en.json');
+type Messages = typeof import('../lib/i18n/en.json');
 declare interface IntlMessages extends Messages { }

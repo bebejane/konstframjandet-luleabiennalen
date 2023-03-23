@@ -3,6 +3,7 @@ import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
 import type { Menu, MenuItem } from '/lib/menu'
+//import Link from '/components/nav/Link'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Hamburger, Temperature } from '/components'
@@ -22,6 +23,7 @@ export default function Menu({ items }: MenuProps) {
 	const [selected, setSelected] = useState<MenuItem | undefined>()
 	const [searchFocus, setSearchFocus] = useState(false)
 	const [path, setPath] = useState(router.asPath)
+	const [query, setQuery] = useState('')
 	const [menuPadding, setMenuPadding] = useState(0)
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0)
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
@@ -31,6 +33,7 @@ export default function Menu({ items }: MenuProps) {
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => {
 			setPath(path)
+			setQuery(undefined)
 			!isDesktop && setShowMenu(false)
 		}
 		router.events.on('routeChangeStart', handleRouteChangeStart)
@@ -61,29 +64,35 @@ export default function Menu({ items }: MenuProps) {
 					style={{ maxHeight: `calc(100vh - ${menuPadding}px - 1rem)` }}
 				>
 					{items.map((item, idx) =>
-						<MenuTree
-							key={idx}
-							item={item}
-							level={0}
-							selected={selected}
-							setSelected={setSelected}
-							path={path}
-							locale={router.locale}
-						/>
+						item.id !== 'search' ?
+							<MenuTree
+								key={idx}
+								item={item}
+								level={0}
+								selected={selected}
+								setSelected={setSelected}
+								path={path}
+								locale={router.locale}
+							/>
+							:
+							<li className={s.search}>
+								<form action={`/${router.locale === 'sv' ? 'sok' : 'en/search'}`} method="GET">
+									<input
+										name="q"
+										placeholder={t('search')}
+										autoComplete={'off'}
+										value={query || ''}
+										onFocus={() => setSearchFocus(true)}
+										onBlur={() => setSearchFocus(false)}
+										onChange={({ target: { value } }) => setQuery(value)}
+									/>
+								</form>
+								<div
+									onClick={() => setQuery(undefined)}
+									className={cn(s.close, !searchFocus && s.hide)}
+								>×</div>
+							</li>
 					)}
-					<li className={s.search}>
-						<input
-							placeholder={t('search')}
-							value={searchQuery || ''}
-							onFocus={() => setSearchFocus(true)}
-							onBlur={() => setSearchFocus(false)}
-							onChange={({ target: { value } }) => setSearchQuery(value)}
-						/>
-						<div
-							onClick={() => setSearchQuery(undefined)}
-							className={cn(s.close, !searchFocus && s.hide)}
-						>×</div>
-					</li>
 				</ul>
 			</nav>
 		</>

@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from '/components/nav/Link'
 import { useRouter } from "next/router"
 
 export type Props = {
@@ -7,7 +7,7 @@ export type Props = {
 
 export default function BackButton(props: Props) {
   const { children } = props
-  const { asPath, query: { year } } = useRouter()
+  const { asPath } = useRouter()
   const segemnts = asPath.split('/'); segemnts.pop()
 
   return (

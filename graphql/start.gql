@@ -1,5 +1,5 @@
-query Start {
-	start {
+query Start($locale: SiteLocale) {
+	start(locale: $locale) {
 		id
 		content {
 			__typename
@@ -7,9 +7,52 @@ query Start {
 				__typename
 				id
 				headline
-				linkText
 				text
-				url
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						record {
+							... on AboutRecord {
+								id
+								slug
+								title
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+							}
+						}
+					}
+				}
 			}
 			... on StartNewsRecord {
 				__typename
@@ -36,10 +79,53 @@ query Start {
 				__typename
 				id
 				headline
-				linkText
-				url
 				images {
 					...ImageFragment
+				}
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						record {
+							... on AboutRecord {
+								id
+								slug
+								title
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+							}
+						}
+					}
 				}
 			}
 		}

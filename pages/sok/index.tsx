@@ -1,5 +1,6 @@
-import s from "./Search.module.scss";
+import s from "./index.module.scss";
 import cn from 'classnames'
+import withGlobalProps from "/lib/withGlobalProps";
 import { Loader } from "/components";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -7,27 +8,32 @@ import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import useStore from "/lib/store";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
+import type { SearchResult } from "/pages/api/search";
 
-export type Props = {}
+export type Props = {
+  query?: string
+}
 
-export default function SearchResult({ }: Props) {
+export default function Search({ query }: Props) {
 
   const router = useRouter()
   const t = useTranslations()
-  const [query, setSearchQuery] = useStore((state) => [state.searchQuery, state.setSearchQuery])
-  const [results, setResults] = useState<any | undefined>()
+  const [searchQuery, setSearchQuery] = useStore((state) => [state.searchQuery, state.setSearchQuery])
+  const [results, setResults] = useState<SearchResult | undefined>()
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
   const searchTimeout = useRef<NodeJS.Timer | null>(null)
 
   const siteSearch = (q) => {
     const variables = {
-      q: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined
+      q: q ? `${q.split(' ').filter(el => el).join('|')}` : undefined,
+      locale: router.locale
     };
 
     if (!Object.keys(variables).filter(k => variables[k] !== undefined).length)
       return setLoading(false)
 
+    console.log(variables)
     fetch('/api/search', {
       body: JSON.stringify(variables),
       method: 'POST',
@@ -49,10 +55,9 @@ export default function SearchResult({ }: Props) {
     setResults(undefined)
     setLoading(true)
     setError(undefined)
-
     clearTimeout(searchTimeout.current)
-    searchTimeout.current = setTimeout(() => siteSearch(query), 250)
-  }, [query])
+    searchTimeout.current = setTimeout(() => siteSearch(searchQuery), 250)
+  }, [searchQuery])
 
   useEffect(() => {
     const handleRouteChangeStart = (path: string) => setSearchQuery(undefined)
@@ -60,17 +65,32 @@ export default function SearchResult({ }: Props) {
     return () => router.events.off('routeChangeComplete', handleRouteChangeStart)
   }, [])
 
-  if (!query) return null
+  useEffect(() => {
+    setSearchQuery(query)
+  }, [query])
+
+  useEffect(() => {
+    const params = new URL(document.location.href).searchParams
+    setSearchQuery(params.get('q'))
+  }, [])
+
 
   return (
-    <div className={s.container}>
+    <section className={cn(s.container)}>
+      <div className={cn(s.search)}>
+        <input
+          className={"mid"}
+          placeholder={t('Menu.search')}
+          value={searchQuery || ''}
+          onChange={({ target: { value } }) => setSearchQuery(value)}
+        />
+      </div>
       {results && Object.keys(results).length > 0 ?
         <>
-          <h2>{t('Search.searcResults')}</h2>
           {Object.keys(results).map((type, idx) =>
             <ul key={idx}>
               <li><h3>{results[type][0].category}</h3></li>
-              {results[type]?.map(({ category, title, text, image, slug }, i) =>
+              {results[type]?.map(({ category, title, text, slug }, i) =>
                 <li key={i}>
                   <h1>
                     <Link href={slug}>{title}</Link>
@@ -88,7 +108,7 @@ export default function SearchResult({ }: Props) {
         loading ?
           <div className={s.loading}><Loader /></div>
           :
-          results && <p className={cn(s.nohits, "small")}>{t('Search.noHitsFor')}: &quot;{query}&quot;</p>
+          results && <p className={cn(s.nohits, "small")}>{t('Search.noHitsFor')}: &quot;{searchQuery}&quot;</p>
       }
       {error &&
         <div className={s.error}>
@@ -97,7 +117,16 @@ export default function SearchResult({ }: Props) {
           </p>
         </div>
       }
-    </div >
+    </section>
 
   );
 }
+
+
+export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
+
+  return {
+    props,
+    revalidate
+  };
+});

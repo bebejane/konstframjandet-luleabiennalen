@@ -1,8 +1,6 @@
 import s from './StartFullscreenImage.module.scss'
 import React from 'react'
 import { Image } from 'react-datocms';
-import Link from 'next/link';
-import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type Props = {
   data: StartFullscreenImageRecord

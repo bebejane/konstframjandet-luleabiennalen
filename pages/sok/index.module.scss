@@ -1,4 +1,21 @@
 .container {
+  padding-left: var(--outer-margin);
+  padding-right: var(--outer-margin);
+
+  .search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    input {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+
   h2 {
     text-align: center;
   }
@@ -8,7 +25,7 @@
     text-transform: uppercase;
   }
 
-  > ul {
+  >ul {
     list-style: none;
     padding-left: 0;
 
@@ -19,7 +36,7 @@
         p {
           padding: 0;
 
-          > strong {
+          >strong {
             font-family: $headline-font;
             font-size: 0.75rem;
             font-weight: bold !important;
@@ -42,6 +59,5 @@
     margin-top: calc(var(--space) * 1);
   }
 
-  .nohits {
-  }
+  .nohits {}
 }

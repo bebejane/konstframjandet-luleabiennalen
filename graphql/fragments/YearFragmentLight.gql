@@ -1,4 +1,4 @@
-fragment YearFragment on YearRecord {
+fragment YearFragmentLight on YearRecord {
 	id
 	title
 	participantName
@@ -14,11 +14,5 @@ fragment YearFragment on YearRecord {
 		red
 		green
 		red
-	}
-	background {
-		...ImageFragment
-	}
-	loadingImage {
-		...ImageThumbnailFragment
 	}
 }
