@@ -19,6 +19,7 @@ query Start($locale: SiteLocale) {
 					... on InternalLinkRecord {
 						__typename
 						id
+						internalTitle: title
 						record {
 							... on AboutRecord {
 								id
