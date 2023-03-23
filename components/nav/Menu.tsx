@@ -75,7 +75,7 @@ export default function Menu({ items }: MenuProps) {
 								locale={router.locale}
 							/>
 							:
-							<li className={s.search}>
+							<li key={idx} className={s.search}>
 								<form action={`/${router.locale === 'sv' ? 'sok' : 'en/search'}`} method="GET">
 									<input
 										name="q"

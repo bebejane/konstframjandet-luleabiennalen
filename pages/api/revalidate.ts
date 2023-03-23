@@ -12,6 +12,8 @@ export default withRevalidate(async (record, revalidate) => {
   const slugs = typeof slug === 'object' ? slug : { [defaultLocale]: slug }
   const paths = []
 
+  console.log('revalidate', apiKey)
+
   Object.keys(slugs).forEach((locale) => {
     const slug = slugs[locale]
     const localePaths = []
