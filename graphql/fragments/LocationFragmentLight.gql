@@ -6,4 +6,7 @@ fragment LocationFragmentLight on LocationRecord {
 	intro(markdown: false)
 	webpage
 	slug
+	image {
+		...ImageThumbnailFragment
+	}
 }

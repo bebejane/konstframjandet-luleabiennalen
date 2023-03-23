@@ -3,5 +3,8 @@ fragment NewsFragmentLight on NewsRecord {
 	title
 	intro(markdown: false)
 	slug
+	image {
+		...ImageThumbnailFragment
+	}
 	_createdAt
 }

@@ -55,7 +55,7 @@ export default function Program({ program: {
           { title: t('MetaSection.link'), value: externalLink ? t('MetaSection.webpage') : undefined, link: externalLink }
         ]}
       />
-      <Related header={'Medvärkande'} items={partipants} />
+      <Related header={t('Menu.participants')} items={partipants} />
       <BackButton>{t('BackButton.showAllPrograms')}</BackButton>
     </>
   );

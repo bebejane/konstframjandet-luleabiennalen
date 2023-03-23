@@ -19,6 +19,7 @@ query Start($locale: SiteLocale) {
 					... on InternalLinkRecord {
 						__typename
 						id
+						internalTitle: title
 						record {
 							... on AboutRecord {
 								id
@@ -72,6 +73,59 @@ query Start($locale: SiteLocale) {
 				id
 				image {
 					...ImageFragment
+				}
+			}
+			... on StartFullBleedImageRecord {
+				id
+				image {
+					...ImageFragment
+				}
+				headline
+				text
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						record {
+							... on AboutRecord {
+								id
+								slug
+								title
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+							}
+						}
+					}
 				}
 			}
 
@@ -140,7 +194,7 @@ query StartData(
 	$locale: SiteLocale
 ) {
 	news: allNews(locale: $locale, first: $newsItems, orderBy: _createdAt_DESC) {
-		...NewsFragment
+		...NewsFragmentLight
 	}
 	programs: allPrograms(
 		filter: { startDate: { gte: $date }, year: { eq: $yearId } }
@@ -156,6 +210,6 @@ query StartData(
 		orderBy: _createdAt_DESC
 		locale: $locale
 	) {
-		...ParticipantFragment
+		...ParticipantFragmentLight
 	}
 }

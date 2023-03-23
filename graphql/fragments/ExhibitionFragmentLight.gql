@@ -9,9 +9,6 @@ fragment ExhibitionFragmentLight on ExhibitionRecord {
 	startDate
 	endDate
 	image {
-		...ImageFragment
-	}
-	thumb: image {
 		...ImageThumbnailFragment
 	}
 	slug

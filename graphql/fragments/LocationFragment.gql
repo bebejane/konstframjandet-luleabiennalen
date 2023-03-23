@@ -6,9 +6,6 @@ fragment LocationFragment on LocationRecord {
 	image {
 		...ImageFragment
 	}
-	thumb: image {
-		...ImageThumbnailFragment
-	}
 	intro(markdown: false)
 	webpage
 	slug

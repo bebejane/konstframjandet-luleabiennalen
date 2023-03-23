@@ -18,11 +18,11 @@ export default function Location({ locations }: Props) {
     <>
       <DatoSEO title={t('Menu.locations')} />
       <CardContainer key={asPath}>
-        {locations.map(({ id, image, thumb, title, slug }) =>
+        {locations.map(({ id, image, title, slug }) =>
           <Card key={id}>
             <Thumbnail
               title={title}
-              image={thumb}
+              image={image}
               slug={`/platser/${slug}`}
             />
           </Card>

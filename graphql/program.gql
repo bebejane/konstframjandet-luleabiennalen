@@ -5,7 +5,7 @@ query AllPrograms($locale: SiteLocale, $yearId: ItemId) {
 		orderBy: startDate_DESC
 		first: 100
 	) {
-		...ProgramFragment
+		...ProgramFragmentLight
 	}
 	pagination: _allProgramsMeta(locale: $locale) {
 		count

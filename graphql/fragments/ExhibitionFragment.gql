@@ -17,10 +17,10 @@ fragment ExhibitionFragment on ExhibitionRecord {
 	intro(markdown: false)
 	misc
 	participants {
-		...ParticipantFragment
+		...ParticipantFragmentLight
 	}
 	location {
-		...LocationFragment
+		...LocationFragmentLight
 	}
 	slug
 	externalLink

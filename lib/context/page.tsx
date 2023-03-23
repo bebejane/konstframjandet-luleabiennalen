@@ -3,7 +3,8 @@ import { useContext, createContext } from "react";
 const initialState: PageProps = {
   year: undefined,
   title: undefined,
-  isArchive: false
+  isArchive: false,
+  isHome: false
 }
 
 export const PageContext = createContext(initialState);

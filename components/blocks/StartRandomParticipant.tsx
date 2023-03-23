@@ -27,6 +27,7 @@ export default function StartRandomParticipant({ data: { participants } }: Props
             <Thumbnail
               image={image}
               title={name}
+              intro={intro}
               slug={`/medverkande/${slug}`}
             />
           </Card>

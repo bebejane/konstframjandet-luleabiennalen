@@ -2,6 +2,7 @@ type PageProps = {
   year: YearRecord
   title?: string
   isArchive?: boolean
+  isHome: boolean
 }
 
 type SiteLocale = 'en' | 'sv'
