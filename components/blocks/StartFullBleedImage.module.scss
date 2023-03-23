@@ -1,7 +1,12 @@
 .container {
-  @include mq($until: tablet) {
-    margin-left: calc(-1 * var(--outer-margin));
-    margin-right: calc(-1 * var(--outer-margin));
+
+  margin-left: calc(-1 * calc(var(--outer-margin) - var(--full-margin)));
+  margin-right: calc(-1 * calc(var(--outer-margin) - var(--full-margin)));
+
+  .image {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
   }
 
   margin-bottom: calc(-1 * var(--space));
