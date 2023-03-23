@@ -16,7 +16,7 @@ export type Props = {
 }
 
 export default function Location({ location: { id, image, title, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
-  const t = useTranslations('BackButton')
+  const t = useTranslations()
 
   return (
     <>
@@ -30,8 +30,8 @@ export default function Location({ location: { id, image, title, intro, content,
         content={content}
         onClick={(imageId) => { }}
       />
-      <Related header={'Relaterat'} items={[...exhibitions, ...programs]} />
-      <BackButton>{t('showAllLocations')}</BackButton>
+      <Related header={t('Related.related')} items={[...exhibitions, ...programs]} />
+      <BackButton>{t('BackButton.showAllLocations')}</BackButton>
     </>
   );
 }

@@ -21,7 +21,6 @@ export default function AboutItem({ about: { id, image, title, intro, content, _
         image={image}
         intro={intro}
         content={content}
-      //onClick={(imageId) => setImageId(imageId)}
       />
     </>
   );

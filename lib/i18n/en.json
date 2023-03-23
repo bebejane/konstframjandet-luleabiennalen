@@ -42,5 +42,9 @@
 		"showAll": "Show all",
 		"readMore": "Read more",
 		"close": "Close"
+	},
+	"Related": {
+		"related": "Related",
+		"participatingIn": "Participating in"
 	}
 }

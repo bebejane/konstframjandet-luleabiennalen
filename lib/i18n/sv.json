@@ -42,5 +42,9 @@
 	"General": {
 		"showAll": "Visa alla",
 		"readMore": "Läs mer"
+	},
+	"Related": {
+		"related": "Relaterat",
+		"participatingIn": "Deltar i"
 	}
 }

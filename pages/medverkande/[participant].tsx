@@ -16,7 +16,7 @@ export type Props = {
 }
 
 export default function Participant({ participant: { id, image, name, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
-  const t = useTranslations('BackButton')
+  const t = useTranslations()
 
   return (
     <>
@@ -29,8 +29,8 @@ export default function Participant({ participant: { id, image, name, intro, con
         content={content}
         onClick={(imageId) => { }}
       />
-      <Related header={'Deltar i'} items={[...exhibitions, ...programs]} />
-      <BackButton>{t('showAllParticipants')}</BackButton>
+      <Related header={t('Related.participatingIn')} items={[...exhibitions, ...programs]} />
+      <BackButton>{t('BackButton.showAllParticipants')}</BackButton>
     </>
   );
 }
