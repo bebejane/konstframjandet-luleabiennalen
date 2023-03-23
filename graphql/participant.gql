@@ -5,7 +5,7 @@ query AllParticipants($locale: SiteLocale, $yearId: ItemId) {
 		first: 100
 		orderBy: name_ASC
 	) {
-		...ParticipantFragment
+		...ParticipantFragmentLight
 	}
 	pagination: _allParticipantsMeta(locale: $locale) {
 		count

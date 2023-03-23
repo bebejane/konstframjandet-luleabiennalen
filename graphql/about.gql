@@ -6,7 +6,7 @@ query AllAbouts($first: IntType = 100, $skip: IntType = 0, $year: ItemId, $local
 		skip: $skip
 		orderBy: [_createdAt_DESC]
 	) {
-		...AboutFragment
+		...AboutFragmentLight
 	}
 	pagination: _allAboutsMeta {
 		count

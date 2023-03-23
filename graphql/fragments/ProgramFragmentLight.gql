@@ -11,9 +11,6 @@ fragment ProgramFragmentLight on ProgramRecord {
 	intro(markdown: false)
 	time
 	image {
-		...ImageFragment
-	}
-	thumb: image {
 		...ImageThumbnailFragment
 	}
 	programCategory {

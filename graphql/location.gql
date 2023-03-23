@@ -11,7 +11,7 @@ query AllLocations(
 		orderBy: [_createdAt_DESC]
 		locale: $locale
 	) {
-		...LocationFragment
+		...LocationFragmentLight
 	}
 
 	pagination: _allLocationsMeta(locale: $locale) {

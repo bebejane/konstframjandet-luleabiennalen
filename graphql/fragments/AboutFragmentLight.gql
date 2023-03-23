@@ -5,7 +5,7 @@ fragment AboutFragmentLight on AboutRecord {
 	intro
 	slug
 	image {
-		...ImageFragment
+		...ImageThumbnailFragment
 	}
 	year {
 		...YearFragment
