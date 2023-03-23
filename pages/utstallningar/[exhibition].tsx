@@ -47,7 +47,7 @@ export default function Exhibition({ exhibition: {
           { title: t('MetaSection.where'), value: location.title, link: `/platser/${location.slug}` }
         ]}
       />
-      <Related header={'Medvärkande'} items={participants} />
+      <Related header={t('Menu.participants')} items={participants} />
       <BackButton>{t('BackButton.showAllExhibitons')}</BackButton>
     </>
   )

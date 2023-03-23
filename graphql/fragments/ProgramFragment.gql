@@ -18,10 +18,10 @@ fragment ProgramFragment on ProgramRecord {
 	intro(markdown: false)
 	misc
 	location {
-		...LocationFragment
+		...LocationFragmentLight
 	}
 	partipants {
-		...ParticipantFragment
+		...ParticipantFragmentLight
 	}
 	programCategory {
 		id
