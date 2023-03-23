@@ -5,14 +5,14 @@ import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import type { Swiper } from 'swiper';
 import { Image } from 'react-datocms'
 import React, { useRef, useState } from 'react'
-import Link from '/components/nav/Link';
+import DatoLink from '/components/nav/DatoLink';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type Props = {
   data: StartGalleryRecord
 }
 
-export default function StartGallery({ data: { id, images, headline, linkText, url } }: Props) {
+export default function StartGallery({ data: { id, images, headline, link } }: Props) {
 
   const swiperRef = useRef<Swiper | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -62,7 +62,7 @@ export default function StartGallery({ data: { id, images, headline, linkText, u
       </SwiperReact>
 
       <h3>
-        <Link href={url} className="small">{linkText}</Link>
+        <DatoLink link={link} className="small" />
       </h3>
     </div>
   )

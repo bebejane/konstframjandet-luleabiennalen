@@ -1,13 +1,13 @@
 import s from './StartText.module.scss'
 import React from 'react'
-import Link from '/components/nav/Link';
+import DatoLink from '/components/nav/DatoLink';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export type Props = {
   data: StartTextRecord
 }
 
-export default function StartText({ data: { text, headline, linkText, url } }: Props) {
+export default function StartText({ data: { text, headline, link } }: Props) {
 
   return (
     <div className={s.container}>
@@ -22,7 +22,7 @@ export default function StartText({ data: { text, headline, linkText, url } }: P
       </Markdown>
 
       <h3>
-        <Link href={url} className="small">{linkText}</Link>
+        <DatoLink link={link} className="small" />
       </h3>
     </div>
   )

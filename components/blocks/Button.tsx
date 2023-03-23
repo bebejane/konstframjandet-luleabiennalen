@@ -1,14 +1,9 @@
 import s from './Button.module.scss'
 import React from 'react'
-import Link from '/components/nav/Link'
+import DatoLink from '/components/nav/DatoLink'
 
 export type ButtonBlockProps = { data: ButtonRecord, onClick: Function }
 
-export default function Button({ data: { text, url }, onClick }: ButtonBlockProps) {
-
-	return (
-		<Link className={s.button} href={url}>
-			<button>{text}</button>
-		</Link>
-	)
+export default function Button({ data: { link } }: ButtonBlockProps) {
+	return <DatoLink link={link} className={s.button} />
 }
