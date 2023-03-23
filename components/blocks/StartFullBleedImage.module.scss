@@ -1,0 +1,8 @@
+.container {
+  @include mq($until: tablet) {
+    margin-left: calc(-1 * var(--outer-margin));
+    margin-right: calc(-1 * var(--outer-margin));
+  }
+
+  margin-bottom: calc(-1 * var(--space));
+}

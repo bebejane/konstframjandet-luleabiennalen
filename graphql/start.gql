@@ -75,7 +75,12 @@ query Start($locale: SiteLocale) {
 					...ImageFragment
 				}
 			}
-
+			... on StartFullBleedImageRecord {
+				id
+				image {
+					...ImageFragment
+				}
+			}
 			... on StartGalleryRecord {
 				__typename
 				id
