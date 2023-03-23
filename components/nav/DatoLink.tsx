@@ -2,7 +2,7 @@ import Link from './Link'
 import { recordToSlug } from '/lib/utils'
 
 export type Props = {
-  link: ExternalLinkRecord | (InternalLinkRecord & { internalTitle: String })
+  link: ExternalLinkRecord | (InternalLinkRecord & { internalTitle: String }) | any
   className?: string
   children?: React.ReactNode
 }
