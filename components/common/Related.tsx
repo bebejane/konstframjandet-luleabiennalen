@@ -22,10 +22,10 @@ export default function Related({ header, items }: Props) {
             <Link href={recordToSlug(items[idx])}>
               <figure>
                 <Image data={item.image.responsiveImage} />
-                <figcaption>
-                  {item.__typename === 'ParticipantRecord' ? item.name : item.title}
-                </figcaption>
               </figure>
+              <figcaption>
+                {item.__typename === 'ParticipantRecord' ? item.name : item.title}
+              </figcaption>
             </Link>
           </li>
         )}

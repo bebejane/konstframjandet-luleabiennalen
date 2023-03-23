@@ -7,14 +7,9 @@
   text-overflow: ellipsis;
 
   &:hover {
-    .imageWrap>.image {
-      /*
-      margin-left: 0.5rem !important;
-      margin-right: 0.5rem !important;
-      width: calc(100% - 1em) !important;
-      margin-top: -0.25rem;
-      */
-      transform: scale(1.03);
+    .imageWrap > .image {
+      //transform: scale(1.03);
+      box-shadow: 0px 0px 9px var(--black);
     }
   }
 
@@ -75,5 +70,4 @@
       }
     }
   }
-
 }
