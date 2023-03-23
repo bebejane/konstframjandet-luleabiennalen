@@ -2,6 +2,7 @@
   position: relative;
   margin-left: calc(-1 * calc(var(--outer-margin) - var(--full-margin)));
   margin-right: calc(-1 * calc(var(--outer-margin) - var(--full-margin)));
+  margin-bottom: calc(-1 * var(--space));
 
   .image {
     width: 100%;
@@ -20,6 +21,4 @@
     display: flex;
     flex-direction: column;
   }
-
-  margin-bottom: calc(-1 * var(--space));
 }

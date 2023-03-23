@@ -10,15 +10,17 @@ export type Props = {
 export default function StartFullBleedImage({ data: { id, image, headline, text, link } }: Props) {
 
   return (
-    <figure className={s.container}>
-      <DatoLink link={link}>
-        <Image data={image.responsiveImage} className={s.image} objectFit="cover" />
-      </DatoLink>
+    <DatoLink link={link}>
+      <figure className={s.container}>
 
-      <figcaption>
-        <h2>{headline}</h2>
-        <span>{text}</span>
-      </figcaption>
-    </figure>
+        <Image data={image.responsiveImage} className={s.image} objectFit="cover" />
+
+
+        <figcaption>
+          <h2>{headline}</h2>
+          <span>{text}</span>
+        </figcaption>
+      </figure>
+    </DatoLink>
   )
 }
