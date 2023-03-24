@@ -28,14 +28,14 @@ export type MenuItem = {
 
 const base: Menu = [
   { id: 'home', label: 'Hem', slug: '/', general: true, root: true },
-  { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
+  { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true, root: true },
   { id: 'program', label: 'Program', slug: '/program', root: true },
   { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar', root: true },
   { id: 'participants', label: 'Medverkande', slug: '/medverkande', root: true },
   { id: 'locations', label: 'Platser', slug: '/platser', root: true },
-  { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true, root: true },
-  { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
   { id: 'partners', label: 'Partners', slug: '/partners', general: true, root: true },
+  { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
+  { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
   { id: 'archive', label: 'Arkiv', sub: [], root: false },
   { id: 'search', label: 'Sök', slug: '/sok', root: true }
 ]
