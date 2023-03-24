@@ -9,6 +9,7 @@ fragment ProgramFragment on ProgramRecord {
 	startDate
 	endDate
 	time
+	address
 	image {
 		...ImageFragment
 	}

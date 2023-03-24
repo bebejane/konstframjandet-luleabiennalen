@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, useCallback } from 'react'
 import { useWindowSize } from 'usehooks-ts'
 import { useInView } from 'react-intersection-observer'
 
-export type VideoPlayerProps = { data: FileField | VideoField, className?: string }
+export type VideoPlayerProps = { data: VideoFileField, className?: string }
 
 export default function VideoPlayer({ data, className }: VideoPlayerProps) {
 

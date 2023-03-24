@@ -65,6 +65,16 @@ query Start($locale: SiteLocale) {
 				id
 				amount
 			}
+			... on StartFullscreenVideoRecord {
+				__typename
+				id
+				headline
+				text(markdown: false)
+				video {
+					...VideoFragment
+				}
+			}
+
 			... on StartRandomParticipantRecord {
 				__typename
 				id
