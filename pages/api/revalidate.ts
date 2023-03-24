@@ -46,6 +46,10 @@ export default withRevalidate(async (record, revalidate) => {
         localePaths.push(`/utstallningar/${slug}`)
         prefix && localePaths.push(`${prefix}/utstallningar/${slug}`)
         break;
+      case 'partner':
+        localePaths.push(`/partners/${slug}`)
+        prefix && localePaths.push(`${prefix}/partners/${slug}`)
+        break;
       case 'contact':
         localePaths.push(`/kontakt`)
         break;

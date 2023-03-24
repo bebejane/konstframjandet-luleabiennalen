@@ -88,6 +88,9 @@ export const recordToSlug = (record: any): string => {
       case 'LocationRecord':
         url = `/platser/${slug}`
         break;
+      case 'PartnerRecord':
+        url = `/partners/${slug}`
+        break;
       default:
         throw Error(`${__typename} is unknown record slug!`)
     }

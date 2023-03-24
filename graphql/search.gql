@@ -7,6 +7,7 @@ query SiteSearch(
 	$exhibitionIds: [ItemId]
 	$participantIds: [ItemId]
 	$locationIds: [ItemId]
+	$partnerIds: [ItemId]
 	$first: IntType = 100
 	$skip: IntType = 0
 	$locale: SiteLocale
@@ -82,6 +83,18 @@ query SiteSearch(
 		skip: $skip
 		locale: $locale
 		filter: { id: { in: $locationIds } }
+	) {
+		__typename
+		_modelApiKey
+		title
+		text: intro(markdown: false)
+		slug
+	}
+	partners: allPartners(
+		first: $first
+		skip: $skip
+		locale: $locale
+		filter: { id: { in: $partnerIds } }
 	) {
 		__typename
 		_modelApiKey

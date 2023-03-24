@@ -54,7 +54,7 @@ export const getStaticProps = withGlobalProps({ queries: [StartDocument] }, asyn
 					...block,
 					news: block.__typename === 'StartNewsRecord' ? news : null,
 					programs: block.__typename === 'StartProgramRecord' ? programs : null,
-					participants: block.__typename === 'StartRandomParticipantRecord' ? participants.sort(() => Math.random() > 0.5 ? 1 : -1).slice(participantCount) : null,
+					participants: block.__typename === 'StartRandomParticipantRecord' ? participants.sort(() => Math.random() > 0.5 ? 1 : -1).slice(0, participantCount - 1) : null,
 				}))
 			}
 		},
