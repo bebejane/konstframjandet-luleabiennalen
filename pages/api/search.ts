@@ -10,7 +10,7 @@ export const config = {
 
 export type SearchResult = {
   [index: string]: {
-    __typename: 'AboutRecord' | 'ParticipantRecord' | 'NewsRecord' | 'ExhibitionRecord' | 'LocationRecord' | 'ProgramRecord',
+    __typename: 'AboutRecord' | 'ParticipantRecord' | 'PartnerRecord' | 'NewsRecord' | 'ExhibitionRecord' | 'LocationRecord' | 'ProgramRecord',
     _apiKey: string
     category: string
     title: string
@@ -80,6 +80,7 @@ export const siteSearch = async (opt: any) => {
         programIds: chunk.filter(el => el._api_key === 'program').map(el => el.id),
         exhibitionIds: chunk.filter(el => el._api_key === 'exhibition').map(el => el.id),
         participantIds: chunk.filter(el => el._api_key === 'participant').map(el => el.id),
+        partnerIds: chunk.filter(el => el._api_key === 'partner').map(el => el.id),
         locationIds: chunk.filter(el => el._api_key === 'location').map(el => el.id),
         first,
         skip: i,

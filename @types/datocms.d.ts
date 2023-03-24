@@ -5396,13 +5396,14 @@ type SiteSearchQueryVariables = Exact<{
   exhibitionIds?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>> | InputMaybe<Scalars['ItemId']>>;
   participantIds?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>> | InputMaybe<Scalars['ItemId']>>;
   locationIds?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>> | InputMaybe<Scalars['ItemId']>>;
+  partnerIds?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>> | InputMaybe<Scalars['ItemId']>>;
   first?: InputMaybe<Scalars['IntType']>;
   skip?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
 }>;
 
 
-type SiteSearchQuery = { __typename?: 'Query', abouts: Array<{ __typename: 'AboutRecord', _modelApiKey: string, title: string, slug: string, text: string }>, news: Array<{ __typename: 'NewsRecord', _modelApiKey: string, title: string, slug: string, text: string }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, title: string, slug: string, text: string }>, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, title: string, slug: string, text: string }>, participants: Array<{ __typename: 'ParticipantRecord', _modelApiKey: string, slug: string, title: string, text: string }>, locations: Array<{ __typename: 'LocationRecord', _modelApiKey: string, title: string, slug: string, text: string }> };
+type SiteSearchQuery = { __typename?: 'Query', abouts: Array<{ __typename: 'AboutRecord', _modelApiKey: string, title: string, slug: string, text: string }>, news: Array<{ __typename: 'NewsRecord', _modelApiKey: string, title: string, slug: string, text: string }>, programs: Array<{ __typename: 'ProgramRecord', _modelApiKey: string, title: string, slug: string, text: string }>, exhibitions: Array<{ __typename: 'ExhibitionRecord', _modelApiKey: string, title: string, slug: string, text: string }>, participants: Array<{ __typename: 'ParticipantRecord', _modelApiKey: string, slug: string, title: string, text: string }>, locations: Array<{ __typename: 'LocationRecord', _modelApiKey: string, title: string, slug: string, text: string }>, partners: Array<{ __typename: 'PartnerRecord', _modelApiKey: string, title: string, slug: string, text: string }> };
 
 type StartQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
