@@ -2481,6 +2481,14 @@ type InverseRelationshipFieldFilterBetweenParticipantAndYear = {
 };
 
 /** Specifies how to filter by linking fields */
+type InverseRelationshipFieldFilterBetweenPartnerAndYear = {
+  /** Filter linking records that reference current record in at least one of the specified fields */
+  anyIn?: InputMaybe<Array<PartnerModelFieldsReferencingYearModel>>;
+  /** Filter linking records that do not reference current record in any of the specified fields */
+  notIn?: InputMaybe<Array<PartnerModelFieldsReferencingYearModel>>;
+};
+
+/** Specifies how to filter by linking fields */
 type InverseRelationshipFieldFilterBetweenProgramAndLocation = {
   /** Filter linking records that reference current record in at least one of the specified fields */
   anyIn?: InputMaybe<Array<ProgramModelFieldsReferencingLocationModel>>;
@@ -2572,6 +2580,14 @@ type InverseRelationshipFilterBetweenLocationAndYear = {
 type InverseRelationshipFilterBetweenParticipantAndYear = {
   /** Specifies how to filter by linking fields */
   fields?: InputMaybe<InverseRelationshipFieldFilterBetweenParticipantAndYear>;
+  /** Specifies how to filter by linking locales */
+  locales?: InputMaybe<LinkingLocalesFilter>;
+};
+
+/** Specifies how to filter linking records */
+type InverseRelationshipFilterBetweenPartnerAndYear = {
+  /** Specifies how to filter by linking fields */
+  fields?: InputMaybe<InverseRelationshipFieldFilterBetweenPartnerAndYear>;
   /** Specifies how to filter by linking locales */
   locales?: InputMaybe<LinkingLocalesFilter>;
 };
@@ -3094,6 +3110,7 @@ type ParticipantRecord = RecordInterface & {
   __typename?: 'ParticipantRecord';
   _allContentLocales?: Maybe<Array<ParticipantModelContentFieldMultiLocaleField>>;
   _allIntroLocales?: Maybe<Array<StringNonNullMultiLocaleField>>;
+  _allNameLocales?: Maybe<Array<StringNonNullMultiLocaleField>>;
   _allReferencingExhibitions: Array<ExhibitionRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingExhibitionsMeta: CollectionMetadata;
@@ -3136,6 +3153,13 @@ type ParticipantRecord_allContentLocalesArgs = {
 type ParticipantRecord_allIntroLocalesArgs = {
   locale?: InputMaybe<SiteLocale>;
   markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Medverkande (participant) */
+type ParticipantRecord_allNameLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -3218,7 +3242,162 @@ type ParticipantRecordintroArgs = {
 
 
 /** Record of type Medverkande (participant) */
+type ParticipantRecordnameArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Medverkande (participant) */
 type ParticipantRecordslugArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type PartnerModelContentBlocksField = ButtonRecord | ImageGalleryRecord | ImageRecord | VideoRecord;
+
+type PartnerModelContentField = {
+  __typename?: 'PartnerModelContentField';
+  blocks: Array<PartnerModelContentBlocksField>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+type PartnerModelContentFieldMultiLocaleField = {
+  __typename?: 'PartnerModelContentFieldMultiLocaleField';
+  locale?: Maybe<SiteLocale>;
+  value?: Maybe<PartnerModelContentField>;
+};
+
+/** Linking fields */
+enum PartnerModelFieldsReferencingYearModel {
+  partner_year = 'partner_year'
+}
+
+type PartnerModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<PartnerModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  address?: InputMaybe<StringFilter>;
+  city?: InputMaybe<StringFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  intro?: InputMaybe<TextFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  title?: InputMaybe<StringFilter>;
+  webpage?: InputMaybe<StringFilter>;
+  year?: InputMaybe<LinkFilter>;
+};
+
+enum PartnerModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  address_ASC = 'address_ASC',
+  address_DESC = 'address_DESC',
+  city_ASC = 'city_ASC',
+  city_DESC = 'city_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC',
+  webpage_ASC = 'webpage_ASC',
+  webpage_DESC = 'webpage_DESC'
+}
+
+/** Record of type Partner (partner) */
+type PartnerRecord = RecordInterface & {
+  __typename?: 'PartnerRecord';
+  _allContentLocales?: Maybe<Array<PartnerModelContentFieldMultiLocaleField>>;
+  _allIntroLocales?: Maybe<Array<StringNonNullMultiLocaleField>>;
+  _allSlugLocales?: Maybe<Array<StringNonNullMultiLocaleField>>;
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  content?: Maybe<PartnerModelContentField>;
+  id: Scalars['ItemId'];
+  image: FileField;
+  intro: Scalars['String'];
+  slug: Scalars['String'];
+  title: Scalars['String'];
+  webpage?: Maybe<Scalars['String']>;
+  year: YearRecord;
+};
+
+
+/** Record of type Partner (partner) */
+type PartnerRecord_allContentLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Partner (partner) */
+type PartnerRecord_allIntroLocalesArgs = {
+  locale?: InputMaybe<SiteLocale>;
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Partner (partner) */
+type PartnerRecord_allSlugLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Partner (partner) */
+type PartnerRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Partner (partner) */
+type PartnerRecordcontentArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Partner (partner) */
+type PartnerRecordintroArgs = {
+  locale?: InputMaybe<SiteLocale>;
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type Partner (partner) */
+type PartnerRecordslugArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -3537,6 +3716,8 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allParticipantsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allPartnersMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allProgramCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allProgramsMeta: CollectionMetadata;
@@ -3563,6 +3744,8 @@ type Query = {
   /** Returns a collection of records */
   allParticipants: Array<ParticipantRecord>;
   /** Returns a collection of records */
+  allPartners: Array<PartnerRecord>;
+  /** Returns a collection of records */
   allProgramCategories: Array<ProgramCategoryRecord>;
   /** Returns a collection of records */
   allPrograms: Array<ProgramRecord>;
@@ -3586,6 +3769,8 @@ type Query = {
   news?: Maybe<NewsRecord>;
   /** Returns a specific record */
   participant?: Maybe<ParticipantRecord>;
+  /** Returns a specific record */
+  partner?: Maybe<PartnerRecord>;
   /** Returns a specific record */
   program?: Maybe<ProgramRecord>;
   /** Returns a specific record */
@@ -3651,6 +3836,14 @@ type Query_allNewsMetaArgs = {
 type Query_allParticipantsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ParticipantModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allPartnersMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PartnerModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3780,6 +3973,17 @@ type QueryallParticipantsArgs = {
 
 
 /** The query root for this schema */
+type QueryallPartnersArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PartnerModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PartnerModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
 type QueryallProgramCategoriesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ProgramCategoryModelFilter>;
@@ -3888,6 +4092,15 @@ type QueryparticipantArgs = {
   filter?: InputMaybe<ParticipantModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ParticipantModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerypartnerArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PartnerModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PartnerModelOrderBy>>>;
 };
 
 
@@ -4820,6 +5033,9 @@ type YearRecord = RecordInterface & {
   _allReferencingParticipants: Array<ParticipantRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingParticipantsMeta: CollectionMetadata;
+  _allReferencingPartners: Array<PartnerRecord>;
+  /** Returns meta information regarding a record collection */
+  _allReferencingPartnersMeta: CollectionMetadata;
   _allReferencingPrograms: Array<ProgramRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingProgramsMeta: CollectionMetadata;
@@ -4917,6 +5133,23 @@ type YearRecord_allReferencingParticipantsArgs = {
 /** Record of type År (year) */
 type YearRecord_allReferencingParticipantsMetaArgs = {
   through?: InputMaybe<InverseRelationshipFilterBetweenParticipantAndYear>;
+};
+
+
+/** Record of type År (year) */
+type YearRecord_allReferencingPartnersArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PartnerModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenPartnerAndYear>;
+};
+
+
+/** Record of type År (year) */
+type YearRecord_allReferencingPartnersMetaArgs = {
+  through?: InputMaybe<InverseRelationshipFilterBetweenPartnerAndYear>;
 };
 
 

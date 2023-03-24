@@ -52,7 +52,7 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
         </div>
       }
       {content &&
-        <Markdown className="thumb-intro" truncate={200}>
+        <Markdown className="thumb-intro" truncate={120}>
           {content}
         </Markdown>
       }
