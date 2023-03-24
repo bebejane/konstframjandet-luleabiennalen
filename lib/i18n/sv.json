@@ -21,14 +21,17 @@
 		"when": "När",
 		"times": "Tider",
 		"link": "Länk",
-		"webpage": "Hemsida"
+		"webpage": "Hemsida",
+		"city": "Stad",
+		"address": "Adress"
 	},
 	"BackButton": {
 		"showAllPrograms": "Visa hela programmet",
-		"showAllExhibitons": "Visa all utställningar",
+		"showAllExhibitons": "Visa alla utställningar",
 		"showAllParticipants": "Visa alla medverkande",
 		"showAllLocations": "Visa alla platser",
-		"showAllNews": "Visa alla nyheter"
+		"showAllNews": "Visa alla nyheter",
+		"showAllPartners": "Visa alla partners"
 	},
 	"Footer": {
 		"subscribe": "Prenumerera på vårt nyhetsbrev",

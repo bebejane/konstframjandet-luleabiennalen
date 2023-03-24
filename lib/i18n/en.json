@@ -21,14 +21,17 @@
 		"when": "When",
 		"times": "Times",
 		"link": "Link",
-		"webpage": "Homepage"
+		"webpage": "Homepage",
+		"city": "City",
+		"address": "Address"
 	},
 	"BackButton": {
 		"showAllPrograms": "Show complete program",
 		"showAllExhibitons": "Show all exhibitons",
 		"showAllParticipants": "Show all participants",
 		"showAllLocations": "Show all locations",
-		"showAllNews": "Show all news"
+		"showAllNews": "Show all news",
+		"showAllPartners": "Show all partners"
 	},
 	"Footer": {
 		"subscribe": "Subscribe to our newsletter",

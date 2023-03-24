@@ -25,7 +25,7 @@ export default function Partners({ partners }: Props) {
               title={title}
               image={image}
               intro={intro}
-              slug={`/partner/${slug}`}
+              slug={`/partners/${slug}`}
             />
           </Card>
         )}

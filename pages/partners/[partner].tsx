@@ -1,27 +1,25 @@
 import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
-import { ExhibitionDocument, AllExhibitionsDocument } from "/graphql";
+import { PartnerDocument, AllPartnersDocument } from "/graphql";
 import { Article, Related, BackButton, MetaSection } from '/components';
 import { formatDate } from "/lib/utils";
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
 
 export type Props = {
-  exhibition: ExhibitionRecord
+  partner: PartnerRecord
 }
 
-export default function Exhibition({ exhibition: {
+export default function Partner({ partner: {
   id,
   image,
   title,
   intro,
-  externalLink,
-  location,
   content,
-  participants,
-  startDate,
-  time,
+  address,
+  city,
+  webpage,
   _seoMetaTags
 } }: Props) {
 
@@ -41,21 +39,22 @@ export default function Exhibition({ exhibition: {
       <MetaSection
         key={`${id}-meta`}
         items={[
-          { title: t('MetaSection.when'), value: formatDate(startDate) },
-          { title: t('MetaSection.times'), value: time },
-          { title: t('MetaSection.link'), value: t('MetaSection.webpage'), link: externalLink },
-          { title: t('MetaSection.where'), value: location.title, link: `/platser/${location.slug}` }
+          { title: t('MetaSection.city'), value: city },
+          { title: t('MetaSection.address'), value: address },
+          { title: t('MetaSection.link'), value: t('MetaSection.webpage'), link: webpage }
         ]}
       />
-      <Related header={t('Menu.participants')} items={participants} />
-      <BackButton>{t('BackButton.showAllExhibitons')}</BackButton>
+      {/*
+      <Related header={t('Menu.participants')} items={partners} />
+      */}
+      <BackButton>{t('BackButton.showAllPartners')}</BackButton>
     </>
   )
 }
 
 export async function getStaticPaths() {
-  const { exhibitions } = await apiQueryAll(AllExhibitionsDocument)
-  const paths = exhibitions.map(({ slug }) => ({ params: { exhibition: slug }, locale: 'sv' }))
+  const { partners } = await apiQueryAll(AllPartnersDocument)
+  const paths = partners.map(({ slug }) => ({ params: { partner: slug }, locale: 'sv' }))
   paths.forEach(el => paths.push({ ...el, locale: 'en' }))
 
   return {
@@ -66,17 +65,17 @@ export async function getStaticPaths() {
 
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
-  const slug = context.params.exhibition;
-  const { exhibition } = await apiQuery(ExhibitionDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
+  const slug = context.params.partner;
+  const { partner } = await apiQuery(PartnerDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
-  if (!exhibition)
+  if (!partner)
     return { notFound: true }
 
   return {
     props: {
       ...props,
-      exhibition,
-      pageTitle: exhibition.title
+      partner,
+      pageTitle: partner.title
     }
   };
 });
