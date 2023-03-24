@@ -621,6 +621,7 @@ enum ExternalLinkModelOrderBy {
 /** Record of type Extern länk (external_link) */
 type ExternalLinkRecord = RecordInterface & {
   __typename?: 'ExternalLinkRecord';
+  _allTitleLocales?: Maybe<Array<StringNonNullMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -639,7 +640,21 @@ type ExternalLinkRecord = RecordInterface & {
 
 
 /** Record of type Extern länk (external_link) */
+type ExternalLinkRecord_allTitleLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Extern länk (external_link) */
 type ExternalLinkRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Extern länk (external_link) */
+type ExternalLinkRecordtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2356,6 +2371,7 @@ type InternalLinkModelRecordField = AboutRecord | ExhibitionRecord | LocationRec
 /** Record of type Intern länk (internal_link) */
 type InternalLinkRecord = RecordInterface & {
   __typename?: 'InternalLinkRecord';
+  _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -2374,7 +2390,21 @@ type InternalLinkRecord = RecordInterface & {
 
 
 /** Record of type Intern länk (internal_link) */
+type InternalLinkRecord_allTitleLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Intern länk (internal_link) */
 type InternalLinkRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Intern länk (internal_link) */
+type InternalLinkRecordtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
