@@ -4327,7 +4327,7 @@ type StartFullscreenVideoRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime'];
   headline: Scalars['String'];
   id: Scalars['ItemId'];
-  link?: Maybe<StartFullscreenVideoModelLinkField>;
+  link: StartFullscreenVideoModelLinkField;
   text: Scalars['String'];
   video: VideoFileField;
 };
