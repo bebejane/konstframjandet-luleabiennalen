@@ -16,7 +16,7 @@ export type MenuQueryResponse = {
 }
 
 export type MenuItem = {
-  id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'archive' | 'search'
+  id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'partners' | 'archive' | 'search'
   label: string
   slug?: string
   year?: string
@@ -35,6 +35,7 @@ const base: Menu = [
   { id: 'locations', label: 'Platser', slug: '/platser', root: true },
   { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true, root: true },
   { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
+  { id: 'partners', label: 'Partners', slug: '/partners', general: true, root: true },
   { id: 'archive', label: 'Arkiv', sub: [], root: false },
   { id: 'search', label: 'Sök', slug: '/sok', root: true }
 ]

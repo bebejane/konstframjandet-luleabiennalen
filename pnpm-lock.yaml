@@ -56,6 +56,7 @@ specifiers:
   react-datocms: ^4.0.8
   react-dom: ^18.2.0
   react-intersection-observer: ^9.4.0
+  react-markdown: ^8.0.6
   react-simple-tree-menu: ^1.1.18
   react-youtube: ^10.1.0
   remark-breaks: ^3.0.2
@@ -110,6 +111,7 @@ dependencies:
   react-datocms: 4.0.8_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 9.4.2_react@18.2.0
+  react-markdown: 8.0.6_pmekkgnqduwlme35zpnqhenc34
   react-simple-tree-menu: 1.1.18_biqbaboplfbrettd7655fr4n2y
   react-youtube: 10.1.0_react@18.2.0
   remark-breaks: 3.0.2
@@ -10111,8 +10113,8 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
-  /react-markdown/8.0.5_pmekkgnqduwlme35zpnqhenc34:
-    resolution: {integrity: sha512-jGJolWWmOWAvzf+xMdB9zwStViODyyFQhNB/bwCerbBKmrTmgmA599CGiOlP58OId1IMoIRsA8UdI1Lod4zb5A==}
+  /react-markdown/8.0.6_pmekkgnqduwlme35zpnqhenc34:
+    resolution: {integrity: sha512-KgPWsYgHuftdx510wwIzpwf+5js/iHqBR+fzxefv8Khk3mFbnioF1bmL2idHN3ler0LMQmICKeDrWnZrX9mtbQ==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
@@ -12047,7 +12049,7 @@ packages:
       next-seo: 5.15.0_ld2jel3hspngo3u5lti2kgl2sq
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-markdown: 8.0.5_pmekkgnqduwlme35zpnqhenc34
+      react-markdown: 8.0.6_pmekkgnqduwlme35zpnqhenc34
       remark-breaks: 3.0.2
       remark-gfm: 3.0.1
     transitivePeerDependencies:

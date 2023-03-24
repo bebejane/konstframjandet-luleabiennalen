@@ -155,6 +155,24 @@ declare module '*/ParticipantFragmentLight.gql' {
 }
     
 
+declare module '*/PartnerFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const PartnerFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/PartnerFragmentLight.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const PartnerFragmentLight: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ProgramFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -243,6 +261,16 @@ declare module '*/participant.gql' {
   const defaultDocument: DocumentNode;
   export const AllParticipants: DocumentNode;
 export const Participant: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/partner.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllPartners: DocumentNode;
+export const Partner: DocumentNode;
 
   export default defaultDocument;
 }
