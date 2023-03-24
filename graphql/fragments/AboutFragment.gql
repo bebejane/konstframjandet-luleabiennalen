@@ -33,7 +33,7 @@ fragment AboutFragment on AboutRecord {
 				__typename
 				id
 				images {
-					...ImageFragment
+					...ImageThumbnailFragment
 				}
 			}
 			... on ButtonRecord {

@@ -23,7 +23,7 @@ query Contact($locale: SiteLocale) {
 					__typename
 					id
 					images {
-						...ImageFragment
+						...ImageThumbnailFragment
 					}
 				}
 				... on ButtonRecord {

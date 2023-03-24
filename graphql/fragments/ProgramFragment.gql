@@ -45,7 +45,7 @@ fragment ProgramFragment on ProgramRecord {
 				__typename
 				id
 				images {
-					...ImageFragment
+					...ImageThumbnailFragment
 				}
 			}
 			... on ButtonRecord {

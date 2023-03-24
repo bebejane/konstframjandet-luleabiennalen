@@ -13,7 +13,7 @@ export type ImageGalleryBlockProps = {
 	onClick?: Function
 }
 
-export default function ImageGallery({ id, data: { images }, onClick }: ImageGalleryBlockProps) {
+export default function ImageGallery({ data: { id, images }, onClick }: ImageGalleryBlockProps) {
 
 	const swiperRef = useRef<Swiper | null>(null)
 	const containerRef = useRef<HTMLDivElement | null>(null)

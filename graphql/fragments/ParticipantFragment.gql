@@ -30,7 +30,7 @@ fragment ParticipantFragment on ParticipantRecord {
 				__typename
 				id
 				images {
-					...ImageFragment
+					...ImageThumbnailFragment
 				}
 			}
 			... on ButtonRecord {

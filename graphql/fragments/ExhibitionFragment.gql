@@ -40,7 +40,7 @@ fragment ExhibitionFragment on ExhibitionRecord {
 				__typename
 				id
 				images {
-					...ImageFragment
+					...ImageThumbnailFragment
 				}
 			}
 			... on ButtonRecord {

@@ -20,7 +20,7 @@ fragment NewsFragment on NewsRecord {
 				__typename
 				id
 				images {
-					...ImageFragment
+					...ImageThumbnailFragment
 				}
 			}
 			... on ButtonRecord {
