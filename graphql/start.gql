@@ -68,6 +68,7 @@ query Start($locale: SiteLocale) {
 			... on StartRandomParticipantRecord {
 				__typename
 				id
+				amount
 			}
 			... on StartFullscreenImageRecord {
 				id
