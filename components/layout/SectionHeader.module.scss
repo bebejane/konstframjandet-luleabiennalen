@@ -7,6 +7,11 @@
   z-index: var(--z-section-header);
   transition: width 0.3s ease-in-out;
   width: 100%;
+  mix-blend-mode: difference;
+  a,
+  span {
+    color: var(--white) !important;
+  }
 
   &.full {
     @include mq($until: tablet) {
