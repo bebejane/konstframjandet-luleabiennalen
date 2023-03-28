@@ -3,6 +3,7 @@
   --line-height-half: calc(var(--line-height) / 2);
   --height: 28px;
   --width: 30px;
+  mix-blend-mode: difference;
 
   position: fixed;
   z-index: var(--z-hamburger);
@@ -28,7 +29,7 @@
       position: absolute;
       width: 100%;
       height: var(--line-height);
-      background-color: var(--black);
+      background-color: var(--white);
       animation-duration: 0.2s;
       animation-timing-function: steps(2, end);
       animation-iteration-count: 1;

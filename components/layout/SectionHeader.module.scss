@@ -58,6 +58,7 @@
 
   svg {
     margin-top: -0.5em;
+    transform: scale(1.1);
 
     @include mq($until: tablet) {
       display: none;

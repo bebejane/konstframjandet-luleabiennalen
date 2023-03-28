@@ -1,4 +1,5 @@
 .language {
+  mix-blend-mode: difference;
   @include mq($until: tablet) {
     display: none; //Temp
   }
@@ -12,6 +13,7 @@
 
   a {
     margin-right: 0.5em;
+    color: var(--white);
 
     &.selected {
       font-weight: bold;

@@ -7,6 +7,12 @@
   width: 100vw;
   margin-left: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
   margin-right: calc(-1 * calc(var(--outer-margin) - var(--full-margin)));
+
+  @include mq($from: wide) {
+    margin-left: calc(-1 * calc(var(--total-outer-margin) + (2 * var(--grid-unit))));
+    margin-right: calc(-1 * calc(var(--outer-margin) - (2 * var(--full-margin))));
+  }
+
   padding-bottom: 0 !important;
   a {
     position: relative;
