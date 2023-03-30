@@ -29,8 +29,7 @@ export default function StartProgram({ data: { programs } }: Props) {
               intro={intro}
               image={image}
               title={title}
-              //meta={`${formatDate(startDate, endDate)} — ${programCategory.title}`}
-              //Björn denna funkade inte
+              meta={`${formatDate(startDate, endDate)} — ${programCategory.title}`}
               slug={`/program/${slug}`}
             />
           </Card>
