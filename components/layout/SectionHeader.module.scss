@@ -13,7 +13,6 @@
     path {
       width: 200px;
     }
-
   }
 
   a,
@@ -91,7 +90,7 @@
       margin: 0;
       width: 100%;
 
-      >span {
+      > span {
         &:hover {
           padding-left: 1em;
           padding-right: 1em;
@@ -133,7 +132,7 @@
 
 .spacer {
   position: relative;
-  height: calc(var(--header-height) - 0.5rem);
+  height: calc(var(--header-height) - 0.8rem);
 
   @include mq($from: tablet) {
     height: var(--header-height);

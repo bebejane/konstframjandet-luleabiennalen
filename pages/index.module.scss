@@ -13,9 +13,17 @@
       padding-top: 0;
     }
 
+    &:first-child {
+      @include mq($until: tablet) {
+        padding-top: 0.8rem;
+      }
+    }
+
     &:first-child,
     &:last-child {
-      border-width: 0;
+      @include mq($from: tablet) {
+        border-width: 0;
+      }
     }
 
     header {
