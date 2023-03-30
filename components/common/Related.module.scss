@@ -24,12 +24,13 @@
     flex-wrap: wrap;
     flex-direction: row;
     width: 100%;
+    margin-top: calc(-1 * var(--space));
 
     li {
       flex: 0 0 33%.33;
       padding-right: var(--gutter-half);
       padding-left: var(--gutter-half);
-      padding-bottom: var(--space);
+      padding-top: var(--space);
 
       figure {
         display: flex;
@@ -44,10 +45,12 @@
         object-fit: cover;
         transition: all 0.5s;
       }
+
       &:hover {
         figcaption {
           font-weight: bold;
         }
+
         figure {
           box-shadow: 0px 0px 9px var(--black);
         }
