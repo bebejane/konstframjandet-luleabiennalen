@@ -9,6 +9,7 @@ import Link from '/components/nav/Link'
 import useStore from '/lib/store';
 import format from 'date-fns/format';
 import { useRouter } from 'next/router';
+import { useTranslations } from 'next-intl';
 
 export type ArticleProps = {
   id: string
@@ -28,6 +29,7 @@ export type ArticleProps = {
 export default function Article({ id, children, title, content, image, imageSize, intro, partner, date, onClick, record }: ArticleProps) {
 
   const { asPath } = useRouter()
+  const t = useTranslations()
   const [setImageId, setImages] = useStore((state) => [state.setImageId, state.setImages])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const captionRef = useRef<HTMLElement | null>(null)
@@ -88,7 +90,7 @@ export default function Article({ id, children, title, content, image, imageSize
         {children}
         {partner &&
           <p>
-            I samarbete med {partner.map(({ title, slug }, idx) =>
+            {t('General.inCooperationWith')} {partner.map(({ title, slug }, idx) =>
               <>
                 <Link href={`/partners/${slug}`}>
                   {title}
