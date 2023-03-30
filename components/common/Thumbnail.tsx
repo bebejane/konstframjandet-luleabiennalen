@@ -2,11 +2,11 @@ import s from './Thumbnail.module.scss'
 import cn from 'classnames'
 import React, { useState } from 'react'
 import { Image } from 'react-datocms/image'
-import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
+import { DatoMarkdown, DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
 import Link from '/components/nav/Link'
 import { useRouter } from 'next/router'
 import { usePage } from '/lib/context/page'
-import { randomInt } from '/lib/utils'
+import { randomInt, truncateWords } from '/lib/utils'
 
 export type Props = {
   image?: FileField
@@ -18,7 +18,7 @@ export type Props = {
 
 export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
 
-  const content = intro ? `${meta ? `**${meta}** ` : ''}${intro}` : undefined
+  const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(intro, 120)}` : undefined
   const { query: { year } } = useRouter()
   const { year: { loadingImage }, isArchive } = usePage()
   const [loadingImageIndex] = useState(randomInt(0, loadingImage.length - 1))
@@ -54,7 +54,7 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
         </div>
       }
       {content &&
-        <Markdown className="thumb-intro" truncate={120}>
+        <Markdown className="thumb-intro">
           {content}
         </Markdown>
       }
