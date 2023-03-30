@@ -51,7 +51,7 @@ export default function Program({ program: {
         key={`${id}-meta`}
         items={[
           { title: t('MetaSection.what'), value: programCategory?.title },
-          { title: t('MetaSection.where'), value: location?.title ?? address, link: location && `/platser/${location?.slug}` },
+          { title: t('MetaSection.where'), value: address ?? location?.title, link: (location && !address) && `/platser/${location?.slug}` },
           { title: t('MetaSection.when'), value: formatDate(startDate) },
           { title: t('MetaSection.times'), value: time },
           { title: t('MetaSection.where'), value: location?.address },
