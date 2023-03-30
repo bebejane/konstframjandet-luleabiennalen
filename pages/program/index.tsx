@@ -1,4 +1,3 @@
-import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllProgramsDocument, AllProgramCategoriesDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail, FilterBar } from "/components";
@@ -18,20 +17,20 @@ export default function Program({ programs, programCategories }: Props) {
   const t = useTranslations()
   const { asPath } = useRouter()
   const options = programCategories.map(({ id, title: label }) => ({ id, label }))
-  const [categories, setCategories] = useState<string[]>([])
+  const [category, setCategory] = useState<string>()
 
   const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => {
-    return categories.length === 0 || categories.find((cId) => cId === id)
+    return !category || category === id
   }
   return (
     <>
       <DatoSEO title={t('Menu.program')} />
       <FilterBar
         options={options}
-        multi={true}
-        onChange={(opt) => setCategories(opt as string[])}
+        multi={false}
+        onChange={(opt) => setCategory(opt as string)}
       />
-      <CardContainer key={`${asPath}${JSON.stringify(categories)}`}>
+      <CardContainer key={`${category}-${asPath}`}>
         {programs.filter(categoryFilter).map(({ id, image, title, intro, slug, startDate, endDate, programCategory }) =>
           <Card key={id}>
             <Thumbnail

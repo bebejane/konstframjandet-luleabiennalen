@@ -60,7 +60,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
         }
         {isArchive && <span className={s.archive}>ARKIV</span>}
       </header>
-      <div className={s.spacer}></div>
+      {!isHome && <div className={s.spacer}></div>}
       {isOverview && <div className={s.line}></div>}
     </>
   )
