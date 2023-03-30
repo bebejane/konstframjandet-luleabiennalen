@@ -26,6 +26,7 @@ export default function Program({ program: {
   content,
   partipants,
   programCategory,
+  partner,
   slug,
   _seoMetaTags
 } }: Props) {
@@ -42,6 +43,7 @@ export default function Program({ program: {
         imageSize="small"
         intro={intro}
         content={content}
+        partner={partner}
         date={startDate}
         onClick={(imageId) => { }}
       />

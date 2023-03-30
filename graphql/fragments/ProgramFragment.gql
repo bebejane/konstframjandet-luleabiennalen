@@ -24,6 +24,9 @@ fragment ProgramFragment on ProgramRecord {
 	partipants {
 		...ParticipantFragmentLight
 	}
+	partner {
+		...PartnerFragmentLight
+	}
 	programCategory {
 		id
 		title

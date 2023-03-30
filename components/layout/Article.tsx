@@ -5,6 +5,7 @@ import { StructuredContent } from "/components";
 import { Image } from 'react-datocms';
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
 import { DatoSEO } from 'dato-nextjs-utils/components';
+import Link from '/components/nav/Link'
 import useStore from '/lib/store';
 import format from 'date-fns/format';
 import { useRouter } from 'next/router';
@@ -21,11 +22,10 @@ export type ArticleProps = {
   onClick?: (id: string) => void
   record?: any
   date?: string
+  partner?: PartnerRecord[]
 }
 
-const MAX_PORTRAIT_HEIGHT = 600;
-
-export default function Article({ id, children, title, content, image, imageSize, intro, date, onClick, record }: ArticleProps) {
+export default function Article({ id, children, title, content, image, imageSize, intro, partner, date, onClick, record }: ArticleProps) {
 
   const { asPath } = useRouter()
   const [setImageId, setImages] = useStore((state) => [state.setImageId, state.setImages])
@@ -86,6 +86,18 @@ export default function Article({ id, children, title, content, image, imageSize
           />
         }
         {children}
+        {partner &&
+          <p>
+            I samarbete med {partner.map(({ title, slug }, idx) =>
+              <>
+                <Link href={`/partners/${slug}`}>
+                  {title}
+                </Link>
+                {partner.length - 1 > idx && ', '}
+              </>
+            )}
+          </p>
+        }
       </div>
     </>
   )
