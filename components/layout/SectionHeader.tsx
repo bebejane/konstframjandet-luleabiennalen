@@ -24,7 +24,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const router = useRouter()
   const { asPath, locale } = router
 
-  const menuItem = pathToMenuItem(asPath.split('?')[0], locale, menu)
+  const menuItem = pathToMenuItem(asPath, locale, menu)
 
   if (!menuItem) return null
 

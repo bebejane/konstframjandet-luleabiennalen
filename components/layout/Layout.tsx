@@ -47,7 +47,7 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 				</Content>
 			</div>
 			<Menu items={menu} />
-			<Language />
+			<Language menu={menu} />
 			<Logo />
 			<Footer menu={menu} footer={footer} />
 			<FullscreenGallery
