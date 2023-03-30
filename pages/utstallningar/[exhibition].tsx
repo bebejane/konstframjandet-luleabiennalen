@@ -20,6 +20,7 @@ export default function Exhibition({ exhibition: {
   location,
   content,
   participants,
+  partner,
   startDate,
   time,
   _seoMetaTags
@@ -36,6 +37,7 @@ export default function Exhibition({ exhibition: {
         image={image}
         intro={intro}
         content={content}
+        partner={partner}
         onClick={(imageId) => { }}
       />
       <MetaSection

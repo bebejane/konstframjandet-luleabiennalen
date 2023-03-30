@@ -59,7 +59,9 @@ export const buildMenu = async (locale: string) => {
         ...e,
         slug: `/${el.year.title}${e.slug}`,
         sub: e.sub?.map(e2 => ({ ...e2, slug: `/${el.year.title}${e2.slug}` })) || null
-      })).filter(({ count }) => count || count === null)
+      }))
+        .filter(({ count }) => count || count === null)
+        .sort((a, b) => a.id === 'about' ? -1 : 1)
     }
   })
 

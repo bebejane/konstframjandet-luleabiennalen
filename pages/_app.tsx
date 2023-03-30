@@ -18,6 +18,7 @@ function getMessageFallback({ namespace, key, error }) { return '' }
 function App({ Component, pageProps, router }) {
 
   setDefaultOptions({ locale: router.locale === 'sv' ? sv : enGB })
+
   const { asPath } = useRouter()
   const siteTitle = 'Luleåbiennalen'
   const isHome = asPath === '/' || locales.find(l => asPath === `/${l}`) !== undefined

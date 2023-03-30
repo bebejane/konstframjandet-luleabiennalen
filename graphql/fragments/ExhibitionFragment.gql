@@ -22,6 +22,9 @@ fragment ExhibitionFragment on ExhibitionRecord {
 	location {
 		...LocationFragmentLight
 	}
+	partner {
+		...PartnerFragmentLight
+	}
 	slug
 	externalLink
 	content {

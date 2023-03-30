@@ -22,6 +22,11 @@ export default function Program({ programs, programCategories }: Props) {
   const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => {
     return !category || category === id
   }
+
+  const programsSort = (a: ProgramRecord, b: ProgramRecord) => {
+    return 1;
+  }
+
   return (
     <>
       <DatoSEO title={t('Menu.program')} />
@@ -31,7 +36,7 @@ export default function Program({ programs, programCategories }: Props) {
         onChange={(opt) => setCategory(opt as string)}
       />
       <CardContainer key={`${category}-${asPath}`}>
-        {programs.filter(categoryFilter).map(({ id, image, title, intro, slug, startDate, endDate, programCategory }) =>
+        {programs.filter(categoryFilter).sort(programsSort).map(({ id, image, title, intro, slug, startDate, endDate, programCategory }) =>
           <Card key={id}>
             <Thumbnail
               title={title}

@@ -12,7 +12,7 @@ query AllParticipants($locale: SiteLocale, $yearId: ItemId) {
 	}
 }
 
-query Participant($slug: String!, $locale: SiteLocale) {
+query Participant($slug: String, $locale: SiteLocale) {
 	participant(filter: { slug: { eq: $slug } }, locale: $locale) {
 		...ParticipantFragment
 	}

@@ -21,7 +21,7 @@ export default function Related({ header, items }: Props) {
           <li key={item.id}>
             <Link href={recordToSlug(items[idx])}>
               <figure>
-                <Image data={item.image.responsiveImage} />
+                {item.image && <Image data={item.image.responsiveImage} />}
               </figure>
               <figcaption>
                 {item.__typename === 'ParticipantRecord' ? item.name : item.title}

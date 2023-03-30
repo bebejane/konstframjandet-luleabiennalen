@@ -21,8 +21,10 @@ export default function withGlobalProps(opt: any, callback: Function): GetStatic
 
     const years = await allYears()
     const year = years.find(({ title }) => context.params?.year ? title === context.params?.year : title === process.env.NEXT_PUBLIC_CURRENT_YEAR)
-    if (!year)
+
+    if (!year) {
       return { notFound: true };
+    }
 
     const variables = queries.map(el => ({ locale: context.locale, yearId: year.id }))
     const props = await apiQuery(queries, { preview: context.preview, variables });
