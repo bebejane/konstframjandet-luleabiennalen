@@ -5,7 +5,7 @@ import { allYears, locales } from '/lib/utils';
 
 export type Menu = MenuItem[]
 export type MenuQueryResponse = {
-  abouts: AboutRecord[]
+  abouts: (AboutRecord & { altSlug: string })[]
   years: YearRecord[]
   year: YearRecord
   aboutMeta: { count: number }
@@ -37,7 +37,7 @@ const base: Menu = [
   { id: 'partners', label: 'Partners', slug: '/partners', general: true, root: true },
   { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
   { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
-  { id: 'archive', label: 'Arkiv', sub: [], root: false },
+  { id: 'archive', label: 'Arkiv', slug: '/arkiv', sub: [], root: false },
   { id: 'search', label: 'Sök', slug: '/sok', root: true }
 ]
 

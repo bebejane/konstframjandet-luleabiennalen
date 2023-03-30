@@ -35,6 +35,10 @@
 		"en": "partners",
 		"sv": "partners"
 	},
+	"archive": {
+		"en": "archive",
+		"sv": "arkiv"
+	},
 	"search": {
 		"en": "search",
 		"sv": "sok"

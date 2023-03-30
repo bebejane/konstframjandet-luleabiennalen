@@ -113,7 +113,7 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 	const t = useTranslations('Menu')
 	const [isVisible, setIsVisible] = useState(false);
 	const isSelected = path === item.slug || path === `/${locale}${item.slug}`
-	const isLink = item.slug && !item.sub
+	const isLink = item.slug && (!item.sub || item.id === 'archive')
 	const label = t(item.id) || item.label
 
 	const expand = () => {
