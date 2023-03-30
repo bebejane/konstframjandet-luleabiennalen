@@ -33,13 +33,15 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
       <h3>{title}</h3>
       {image &&
         <div className={s.imageWrap}>
-          <Image
-            data={image.responsiveImage}
-            className={s.image}
-            pictureClassName={s.picture}
-            style={{ opacity: loaded ? 1 : 0.000001 }}
-            onLoad={() => setLoaded(true)}
-          />
+          <>
+            <Image
+              data={image.responsiveImage}
+              className={s.image}
+              pictureClassName={s.picture}
+              style={{ opacity: loaded ? 1 : 0.000001 }}
+              onLoad={() => setLoaded(true)}
+            /><div className={s.border}></div>
+          </>
           {!isArchive &&
             <Image
               data={loadingImage[loadingImageIndex].responsiveImage}

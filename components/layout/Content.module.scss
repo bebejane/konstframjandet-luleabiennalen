@@ -23,9 +23,8 @@
         }
 
         @include mq($from: wide) {
-
-          margin-left: calc(2 * var(--grid-unit) + var(--total-outer-margin)) !important;
-          margin-right: calc(2 * var(--grid-unit) + var(--total-outer-margin)) !important;
+          margin-left: var(--wide-margin) !important;
+          margin-right: var(--wide-margin) !important;
         }
       }
     }

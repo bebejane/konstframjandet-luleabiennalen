@@ -10,7 +10,14 @@
   mix-blend-mode: difference;
   a,
   span {
-    color: var(--white) !important;
+    color: var(--white);
+  }
+  &:hover {
+    mix-blend-mode: normal !important;
+    a,
+    span {
+      color: var(--black);
+    }
   }
 
   &.full {
@@ -21,7 +28,7 @@
     width: calc(100% - (2 * var(--total-outer-margin) + (var(--grid-unit))));
 
     @include mq($from: wide) {
-      width: calc(100% - (2 * var(--total-outer-margin) + (3 * var(--grid-unit))));
+      width: calc(100% - (2 * var(--total-outer-margin) + (1.5 * var(--grid-unit))));
     }
   }
 

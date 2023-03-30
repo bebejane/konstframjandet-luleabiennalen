@@ -7,9 +7,13 @@
   text-overflow: ellipsis;
 
   &:hover {
-    .imageWrap>.image {
+    .imageWrap > .image {
       //transform: scale(1.03);
-      box-shadow: 0px 0px 9px var(--black);
+      //box-shadow: 0px 0px 9px var(--black);
+    }
+    .imageWrap .border {
+      display: block;
+      border-width: 5px;
     }
   }
 
@@ -23,6 +27,20 @@
 
   .imageWrap {
     position: relative;
+
+    .border {
+      width: calc(100% - 2rem);
+      height: 100%;
+      border: 1px solid white;
+      mix-blend-mode: difference;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      display: none;
+      transition: all 0.5s ease;
+    }
 
     .loader {
       position: absolute !important;

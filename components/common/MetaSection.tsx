@@ -19,7 +19,7 @@ export default function MetaSection({ items = [] }: Props) {
             {title}:&nbsp;
             <strong>
               {link ?
-                link.startsWith('http') ? <a href={link}>{value}</a> : <Link href={link}>{value}</Link>
+                link.startsWith('http') ? <a href={link}>{value}</a> : <Link href={link}>{value} &#8599;</Link>
                 :
                 <>{value}</>
               }
