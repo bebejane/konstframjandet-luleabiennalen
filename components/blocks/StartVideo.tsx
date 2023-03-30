@@ -1,19 +1,22 @@
-import s from "./Video.module.scss"
+import s from "./StartVideo.module.scss"
+import cn from 'classnames'
 import { useEffect, useRef, useState } from "react";
 import { useWindowSize } from 'usehooks-ts'
 import Youtube from 'react-youtube'
 import Vimeo from '@u-wave/react-vimeo'
 import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
+import useStore from "/lib/store";
 
 export type Props = {
 	data: VideoRecord
 }
 
-export default function Video({ data }: Props) {
+export default function StartVideo({ data }: Props) {
 
 	const ref = useRef<HTMLDivElement | null>(null)
 	const [videoHeight, setVideoHeight] = useState(360);
 	const { width, height } = useWindowSize()
+	const [showMenu] = useStore((state) => [state.showMenu])
 
 	useEffect(() => setVideoHeight((ref.current?.clientWidth / 16) * 9), [width, height, data, ref]) // Set to 16:9
 
@@ -24,7 +27,7 @@ export default function Video({ data }: Props) {
 	const style = { height: `${videoHeight}px`, width: '100%' }
 
 	return (
-		<div className={s.video} ref={ref} >
+		<div className={cn(s.video, !showMenu && s.full)} ref={ref} >
 			{provider === 'youtube' ?
 				<Youtube
 					opts={{

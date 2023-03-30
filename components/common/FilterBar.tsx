@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 export type FilterOption = {
-  id: string,
+  id: string
   label: string
+  description: string
+
 }
 
 export type Props = {
@@ -40,6 +42,9 @@ export default function FilterBar({ options = [], onChange, multi = false }: Pro
           </li>
         )}
       </ul>
+      {(!multi && selected) &&
+        <div className={s.description}>{selected[0]?.description}</div>
+      }
     </nav>
   )
 }

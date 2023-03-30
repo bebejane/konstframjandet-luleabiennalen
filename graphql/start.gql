@@ -60,6 +60,17 @@ query Start($locale: SiteLocale) {
 				id
 				amount
 			}
+			... on StartVideoRecord {
+				__typename
+				id
+				title
+				video {
+					provider
+					providerUid
+					thumbnailUrl
+					url
+				}
+			}
 			... on StartProgramRecord {
 				__typename
 				id
