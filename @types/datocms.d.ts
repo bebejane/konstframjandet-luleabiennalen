@@ -407,6 +407,7 @@ type ExhibitionModelFilter = {
   location?: InputMaybe<LinkFilter>;
   misc?: InputMaybe<StringFilter>;
   participants?: InputMaybe<LinksFilter>;
+  partner?: InputMaybe<LinksFilter>;
   slug?: InputMaybe<SlugFilter>;
   startDate?: InputMaybe<DateFilter>;
   time?: InputMaybe<StringFilter>;
@@ -478,6 +479,7 @@ type ExhibitionRecord = RecordInterface & {
   location?: Maybe<LocationRecord>;
   misc?: Maybe<Scalars['String']>;
   participants: Array<ParticipantRecord>;
+  partner: Array<PartnerRecord>;
   slug: Scalars['String'];
   startDate?: Maybe<Scalars['Date']>;
   time?: Maybe<Scalars['String']>;

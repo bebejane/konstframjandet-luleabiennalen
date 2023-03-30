@@ -8,6 +8,14 @@
   transition: width 0.3s ease-in-out;
   width: 100%;
   mix-blend-mode: difference;
+
+  svg {
+    path {
+      width: 200px;
+    }
+
+  }
+
   a,
   span {
     color: var(--white);
@@ -57,6 +65,7 @@
     text-align: center;
     color: var(--background);
     width: 100%;
+
     @include mq($from: tablet) {
       margin-top: -0.08em;
       width: calc(100% - var(--total-outer-margin));
@@ -82,7 +91,7 @@
       margin: 0;
       width: 100%;
 
-      > span {
+      >span {
         &:hover {
           padding-left: 1em;
           padding-right: 1em;
