@@ -5,7 +5,11 @@ import Youtube from 'react-youtube'
 import Vimeo from '@u-wave/react-vimeo'
 import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 
-export default function Video({ data }) {
+export type Props = {
+	data: VideoRecord
+}
+
+export default function Video({ data }: Props) {
 
 	const ref = useRef<HTMLDivElement | null>(null)
 	const [videoHeight, setVideoHeight] = useState(360);
@@ -20,7 +24,7 @@ export default function Video({ data }) {
 	const style = { height: `${videoHeight}px`, width: '100%' }
 
 	return (
-		<section className={s.video} ref={ref} >
+		<div className={s.video} ref={ref} >
 			{provider === 'youtube' ?
 				<Youtube
 					opts={{
@@ -45,6 +49,6 @@ export default function Video({ data }) {
 						<Markdown allowedElements={['em', 'p']}>{title}</Markdown>
 					</figcaption>
 				</div>}
-		</section>
+		</div>
 	)
 }
