@@ -16,7 +16,7 @@ export default function Program({ programs, programCategories }: Props) {
 
   const t = useTranslations()
   const { asPath } = useRouter()
-  const options = programCategories.map(({ id, title: label }) => ({ id, label }))
+  const options = programCategories.map(({ id, title: label, desc }) => ({ id, label, description: desc }))
   const [category, setCategory] = useState<string>()
 
   const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => {

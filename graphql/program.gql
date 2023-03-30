@@ -22,5 +22,6 @@ query AllProgramCategories($locale: SiteLocale) {
 	programCategories: allProgramCategories(locale: $locale, orderBy: title_DESC, first: 100) {
 		id
 		title
+		desc
 	}
 }

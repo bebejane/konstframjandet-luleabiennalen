@@ -5504,7 +5504,7 @@ type AllProgramCategoriesQueryVariables = Exact<{
 }>;
 
 
-type AllProgramCategoriesQuery = { __typename?: 'Query', programCategories: Array<{ __typename?: 'ProgramCategoryRecord', id: any, title?: string | null }> };
+type AllProgramCategoriesQuery = { __typename?: 'Query', programCategories: Array<{ __typename?: 'ProgramCategoryRecord', id: any, title?: string | null, desc?: string | null }> };
 
 type SiteSearchQueryVariables = Exact<{
   aboutIds?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>> | InputMaybe<Scalars['ItemId']>>;
