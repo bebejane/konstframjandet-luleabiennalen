@@ -60,7 +60,7 @@ query Start($locale: SiteLocale) {
 				id
 				amount
 			}
-			... on VideoRecord {
+			... on StartVideoRecord {
 				__typename
 				id
 				title

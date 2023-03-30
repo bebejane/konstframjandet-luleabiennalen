@@ -5,6 +5,15 @@
   margin-bottom: var(--space);
   min-width: 100%;
 
+  margin-left: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
+  margin-right: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
+
+
+  &.full {
+    margin-left: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
+    margin-right: calc(-1 * calc(var(--outer-margin) - var(--full-margin)));
+  }
+
   .player {
     width: 100%;
 
