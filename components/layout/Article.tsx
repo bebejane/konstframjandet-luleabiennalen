@@ -88,7 +88,7 @@ export default function Article({ id, children, title, content, image, imageSize
           />
         }
         {children}
-        {partner &&
+        {partner?.length > 0 &&
           <p>
             {t('General.inCooperationWith')} {partner.map(({ title, slug }, idx) =>
               <>
