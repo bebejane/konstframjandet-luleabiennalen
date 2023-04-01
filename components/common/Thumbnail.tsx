@@ -6,7 +6,7 @@ import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
 import Link from '/components/nav/Link'
 import { useRouter } from 'next/router'
 import { usePage } from '/lib/context/page'
-import { randomInt, truncateWords } from '/lib/utils'
+import { randomInt, truncateText, truncateWords } from '/lib/utils'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
 
@@ -14,11 +14,12 @@ export type Props = {
   image?: FileField
   slug: string
   title: string
+  titleLength?: number
   intro?: string
   meta?: string
 }
 
-export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
+export default function Thumbnail({ image, slug, intro, title, titleLength, meta }: Props) {
 
   const strippedIntro = remark().use(strip).processSync(intro).value as string
   const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(strippedIntro, 120)}` : undefined
@@ -29,12 +30,13 @@ export default function Thumbnail({ image, slug, intro, title, meta }: Props) {
   const [loaded, setLoaded] = useState(false);
   const href = year ? `/${year}${slug}` : slug;
 
+
   return (
     <Link
       className={s.thumbnail}
       href={href}
     >
-      <h3>{title}</h3>
+      <h3>{titleLength ? truncateWords(title, titleLength) : title}</h3>
       {image &&
         <div className={s.imageWrap}>
           <>

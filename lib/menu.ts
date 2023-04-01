@@ -60,6 +60,7 @@ export const buildMenu = async (locale: string) => {
       slug: `/${el.year.title}`,
       sub: buildYearMenu(el, locale, altLocale, true).filter(e => !e.general).map(e => ({
         ...e,
+        id: `archive-${e.id}`,
         slug: `/${el.year.title}${e.slug}`,
         altSlug: `/${el.year.title}${e.altSlug}`,
         sub: e.sub?.map(e2 => ({

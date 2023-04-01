@@ -40,6 +40,7 @@ export default function Program({ programs, programCategories }: Props) {
           <Card key={id}>
             <Thumbnail
               title={title}
+              titleLength={60}
               image={image}
               intro={intro}
               meta={`${formatDate(startDate, endDate)} — ${programCategory.title}`}
