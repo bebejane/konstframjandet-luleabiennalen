@@ -10,6 +10,7 @@ import useStore from '/lib/store';
 import format from 'date-fns/format';
 import { useRouter } from 'next/router';
 import { useTranslations } from 'next-intl';
+import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
 
 export type ArticleProps = {
   id: string
@@ -77,7 +78,7 @@ export default function Article({ id, children, title, content, image, imageSize
               <span>{format(new Date(date), 'dd').replace('.', '')}</span>
             </div>
           }
-          {intro}
+          <Markdown className={s.intro}>{intro}</Markdown>
         </section>
         {content &&
           <StructuredContent
@@ -88,7 +89,7 @@ export default function Article({ id, children, title, content, image, imageSize
           />
         }
         {children}
-        {partner &&
+        {partner?.length > 0 &&
           <p>
             {t('General.inCooperationWith')} {partner.map(({ title, slug }, idx) =>
               <>

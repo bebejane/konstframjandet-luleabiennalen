@@ -225,6 +225,8 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
 
 export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
 
+  path = path.split('?')[0]
+
   let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
     let baseSlug = !isNaN(parseInt(slug.split('/')[1])) ? `/${slug.split('/').slice(2, 3).join('/')}` : undefined
     //if (locale === 'en') baseSlug = baseSlug ? `/${i18nPaths[baseSlug?.substring(1)]}` : undefined

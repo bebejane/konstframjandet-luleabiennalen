@@ -26,15 +26,14 @@
       padding-right: calc(2 * var(--grid-unit));
     }
 
-    &.medium {
-    }
+    &.medium {}
 
-    &.large {
-    }
+    &.large {}
 
     &.portrait {
       padding-left: calc(3 * var(--grid-unit));
       padding-right: calc(3 * var(--grid-unit));
+
       @include mq($from: tablet) {
         padding-left: calc(2 * var(--grid-unit));
         padding-right: calc(2 * var(--grid-unit));
@@ -75,5 +74,10 @@
         padding-bottom: 0.5em;
       }
     }
+  }
+
+  .intro>p {
+
+    padding: 0;
   }
 }

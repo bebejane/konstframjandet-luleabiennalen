@@ -358,6 +358,24 @@ type DateFilter = {
   neq?: InputMaybe<Scalars['Date']>;
 };
 
+/** Specifies how to filter DateTime fields */
+type DateTimeFilter = {
+  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  eq?: InputMaybe<Scalars['DateTime']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gt?: InputMaybe<Scalars['DateTime']>;
+  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gte?: InputMaybe<Scalars['DateTime']>;
+  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lt?: InputMaybe<Scalars['DateTime']>;
+  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lte?: InputMaybe<Scalars['DateTime']>;
+  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  neq?: InputMaybe<Scalars['DateTime']>;
+};
+
 type ExhibitionModelContentBlocksField = ButtonRecord | ImageGalleryRecord | ImageRecord | VideoRecord;
 
 type ExhibitionModelContentField = {
@@ -3538,6 +3556,7 @@ type ProgramModelFilter = {
   programCategory?: InputMaybe<LinkFilter>;
   slug?: InputMaybe<SlugFilter>;
   startDate?: InputMaybe<DateFilter>;
+  startTime?: InputMaybe<DateTimeFilter>;
   time?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   year?: InputMaybe<LinkFilter>;
@@ -3572,6 +3591,8 @@ enum ProgramModelOrderBy {
   misc_DESC = 'misc_DESC',
   startDate_ASC = 'startDate_ASC',
   startDate_DESC = 'startDate_DESC',
+  startTime_ASC = 'startTime_ASC',
+  startTime_DESC = 'startTime_DESC',
   time_ASC = 'time_ASC',
   time_DESC = 'time_DESC',
   title_ASC = 'title_ASC',
@@ -3611,6 +3632,7 @@ type ProgramRecord = RecordInterface & {
   programCategory: ProgramCategoryRecord;
   slug: Scalars['String'];
   startDate: Scalars['Date'];
+  startTime?: Maybe<Scalars['DateTime']>;
   time?: Maybe<Scalars['String']>;
   title: Scalars['String'];
   year: YearRecord;
@@ -5453,11 +5475,12 @@ type LocationQuery = { __typename?: 'Query', location?: { __typename?: 'Location
 
 type MenuQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
+  altLocale?: InputMaybe<SiteLocale>;
   yearId?: InputMaybe<Scalars['ItemId']>;
 }>;
 
 
-type MenuQuery = { __typename?: 'Query', abouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, year?: { __typename?: 'YearRecord', title: string } | null }>, years: Array<{ __typename?: 'YearRecord', id: any, title: string, participantName: string, slug: string, color: { __typename?: 'ColorField', hex: string, red: any, green: any }, backgroundColor: { __typename?: 'ColorField', hex: string, red: any, green: any }, background: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null }>, loadingImage: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null } | null }> }>, year?: { __typename?: 'YearRecord', title: string } | null, aboutMeta: { __typename?: 'CollectionMetadata', count: any }, programMeta: { __typename?: 'CollectionMetadata', count: any }, participantsMeta: { __typename?: 'CollectionMetadata', count: any }, exhibitionsMeta: { __typename?: 'CollectionMetadata', count: any }, locationsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type MenuQuery = { __typename?: 'Query', abouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, altSlug: string, year?: { __typename?: 'YearRecord', title: string } | null }>, years: Array<{ __typename?: 'YearRecord', id: any, title: string, participantName: string, slug: string, color: { __typename?: 'ColorField', hex: string, red: any, green: any }, backgroundColor: { __typename?: 'ColorField', hex: string, red: any, green: any }, background: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null }>, loadingImage: Array<{ __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null } | null }> }>, year?: { __typename?: 'YearRecord', title: string } | null, aboutMeta: { __typename?: 'CollectionMetadata', count: any }, programMeta: { __typename?: 'CollectionMetadata', count: any }, participantsMeta: { __typename?: 'CollectionMetadata', count: any }, exhibitionsMeta: { __typename?: 'CollectionMetadata', count: any }, locationsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AllNewsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']>;

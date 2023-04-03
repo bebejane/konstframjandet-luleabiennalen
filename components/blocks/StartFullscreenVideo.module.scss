@@ -6,12 +6,6 @@
   height: 100vh;
   padding-bottom: 0 !important;
   padding-bottom: 0 !important;
-
-  @include mq($until: tablet) {
-    height: 50vh;
-  }
-
-  width: 100vw;
   margin-left: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
   margin-right: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
 
@@ -71,6 +65,13 @@
     }
 
     .text {
+    }
+  }
+
+  @include mq($until: tablet) {
+    height: 50vh;
+
+    .textWrap {
     }
   }
 }

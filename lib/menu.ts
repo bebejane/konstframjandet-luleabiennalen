@@ -1,11 +1,11 @@
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { MenuDocument } from "/graphql";
 import i18nPaths from '/lib/i18n/paths.json'
-import { allYears } from '/lib/utils';
+import { allYears, locales } from '/lib/utils';
 
 export type Menu = MenuItem[]
 export type MenuQueryResponse = {
-  abouts: AboutRecord[]
+  abouts: (AboutRecord & { altSlug: string })[]
   years: YearRecord[]
   year: YearRecord
   aboutMeta: { count: number }
@@ -19,6 +19,7 @@ export type MenuItem = {
   id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'partners' | 'archive' | 'search'
   label: string
   slug?: string
+  altSlug?: string
   year?: string
   sub?: MenuItem[]
   count?: number
@@ -36,17 +37,19 @@ const base: Menu = [
   { id: 'partners', label: 'Partners', slug: '/partners', general: true, root: true },
   { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
   { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
-  { id: 'archive', label: 'Arkiv', sub: [], root: false },
+  { id: 'archive', label: 'Arkiv', slug: '/arkiv', sub: [], root: false },
   { id: 'search', label: 'Sök', slug: '/sok', root: true }
 ]
 
 export const buildMenu = async (locale: string) => {
 
+  const altLocale = locales.find(l => locale != l)
+
   const years = await allYears()
   const year = years.find(el => el.title === process.env.NEXT_PUBLIC_CURRENT_YEAR)
-  const res: MenuQueryResponse = await apiQuery(MenuDocument, { variables: { yearId: year.id, locale } });
-  const archive: MenuQueryResponse[] = await Promise.all(years.filter(({ id }) => id !== year.id).map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale } })))
-  const menu = buildYearMenu(res, locale);
+  const res: MenuQueryResponse = await apiQuery(MenuDocument, { variables: { yearId: year.id, locale, altLocale } });
+  const archive: MenuQueryResponse[] = await Promise.all(years.filter(({ id }) => id !== year.id).map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale, altLocale } })))
+  const menu = buildYearMenu(res, locale, altLocale, false);
   const archiveIndex = menu.findIndex(el => el.id === 'archive')
 
   //@ts-ignore
@@ -55,25 +58,35 @@ export const buildMenu = async (locale: string) => {
       id: `archive-${el.year.title}`,
       label: `LB°${el.year.title.substring(2)}`,
       slug: `/${el.year.title}`,
-      sub: buildYearMenu(el, locale, true).filter(e => !e.general).map(e => ({
+      sub: buildYearMenu(el, locale, altLocale, true).filter(e => !e.general).map(e => ({
         ...e,
+        id: `archive-${e.id}`,
         slug: `/${el.year.title}${e.slug}`,
-        sub: e.sub?.map(e2 => ({ ...e2, slug: `/${el.year.title}${e2.slug}` })) || null
+        altSlug: `/${el.year.title}${e.altSlug}`,
+        sub: e.sub?.map(e2 => ({
+          ...e2,
+          slug: `/${el.year.title}${e2.slug}`,
+          altSlug: `/${el.year.title}${e2.altSlug}`
+        })) || null
       }))
         .filter(({ count }) => count || count === null)
         .sort((a, b) => a.id === 'about' ? -1 : 1)
     }
   })
-
   return menu
 }
 
-export const buildYearMenu = (res: MenuQueryResponse, locale: string, isArchive: boolean = false): MenuItem[] => {
+export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale: string, isArchive: boolean = false): MenuItem[] => {
 
   const menu = base.filter(({ id }) => isArchive ? !['archive', 'search'].includes(id) : true).map(item => {
+
     let sub: MenuItem[];
-    if (item.slug)
+
+    if (item.slug) {
       item.slug = `/${i18nPaths[item.id][locale]}`
+      item.altSlug = `/${i18nPaths[item.id][altLocale]}`
+    }
+
     switch (item.id) {
       case 'about':
         //@ts-ignore
@@ -81,6 +94,7 @@ export const buildYearMenu = (res: MenuQueryResponse, locale: string, isArchive:
           id: `about-${el.slug}`,
           label: el.title,
           slug: `/${i18nPaths.about[locale]}/${el.slug}`,
+          altSlug: `/${i18nPaths.about[altLocale]}/${el.altSlug}`,
           root: false
         }))
         break;
