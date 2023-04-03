@@ -28,13 +28,14 @@
     z-index: 100;
   }
 
-  .next {
+  .next,
+  .prev {
     @include mq($until: tablet) {
       display: none;
     }
 
-    width: 3em;
-    height: 3em;
+    width: var(--total-outer-margin);
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,9 +44,13 @@
     right: 0;
     z-index: 1000;
     margin: 0;
-    margin-right: calc(-1 * var(--grid-unit));
-    transform: translateY(-50%);
+    margin-right: calc(-1 * var(--total-outer-margin));
     cursor: pointer;
+  }
+
+  .prev {
+    left: 0;
+    margin-left: calc(-1 * var(--total-outer-margin));
   }
 
   .swiper {
@@ -58,7 +63,7 @@
     user-select: none;
     cursor: pointer;
 
-    >div {
+    > div {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
@@ -70,20 +75,19 @@
         width: calc((100% - (var(--gutter) * 2)) / 3);
         padding-right: var(--gutter);
 
-        >figure {
+        > figure {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           justify-content: flex-start;
           cursor: pointer;
 
-
           figcaption {
             flex: 0 0;
             padding: 0;
             margin-top: 1em;
 
-            >p {
+            > p {
               text-align: left;
               margin: 0;
               padding: 0;

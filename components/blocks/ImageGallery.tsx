@@ -21,6 +21,12 @@ export default function ImageGallery({ data: { id, images }, onClick }: ImageGal
 
 	return (
 		<div className={s.gallery} ref={containerRef}>
+			{images.length > 3 &&
+				<div
+					className={s.prev}
+					onClick={() => swiperRef.current?.slidePrev()}
+				>←</div>
+			}
 			<div className={s.fade}></div>
 			<SwiperReact
 				id={`${id}-swiper-wrap`}

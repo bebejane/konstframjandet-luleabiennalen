@@ -11,12 +11,13 @@
 
     &:first-child {
       padding-top: 0;
-    }
-
-    &:first-child {
       @include mq($until: tablet) {
         padding-top: 0.8rem;
       }
+    }
+
+    &:last-child {
+      padding-bottom: 0;
     }
 
     &:first-child,

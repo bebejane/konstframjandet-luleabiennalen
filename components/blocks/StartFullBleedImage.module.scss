@@ -1,13 +1,34 @@
 .container {
   position: relative;
   margin-bottom: calc(-1 * var(--space));
-  margin-left: calc(-1 * calc(var(--outer-margin)));
-  margin-right: calc(-1 * calc(var(--outer-margin)));
+
+  @include mq($until: tablet) {
+    height: 50vh;
+  }
+
+  width: 100vw;
+  margin-left: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
+  margin-right: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
+
+  @include mq($from: tablet) {
+    width: calc(100% + (2 * var(--total-outer-margin)));
+    margin-left: calc(-1 * calc(var(--total-outer-margin)));
+    margin-right: calc(-1 * calc(var(--total-outer-margin)));
+  }
 
   &.full {
+    width: calc(100% + (2 * var(--outer-margin)));
+    margin-left: calc(-1 * calc(var(--outer-margin)));
+    margin-right: calc(-1 * calc(var(--outer-margin)));
+
     @include mq($from: tablet) {
-      margin-left: calc(-1 * calc(var(--outer-margin) - var(--full-margin)));
-      margin-right: calc(-1 * calc(var(--outer-margin) - var(--full-margin)));
+      width: 100vw;
+      margin-left: calc(-1 * (var(--total-outer-margin) + var(--grid-unit)));
+      margin-right: calc(-1 * (var(--total-outer-margin) + var(--grid-unit)));
+    }
+    @include mq($from: wide) {
+      margin-left: calc(-1 * calc(var(--wide-margin)));
+      margin-right: calc(-1 * calc(var(--wide-margin)));
     }
   }
 
@@ -16,17 +37,30 @@
     min-width: 100%;
     height: 100vh;
     max-height: 100vh;
+    @include mq($until: tablet) {
+      height: 50vh;
+    }
   }
 
   figcaption {
     position: absolute;
-    color: var(--white);
-    top: 0;
+    bottom: var(--small-space);
     left: 0;
-    z-index: 1;
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    color: var(--white);
+    padding: var(--outer-margin);
+    font-size: 1rem;
+    font-family: $body-font;
+    h2 {
+      padding-bottom: var(--space);
+    }
+
+    @include mq($from: tablet) {
+      bottom: var(--space);
+    }
   }
 }

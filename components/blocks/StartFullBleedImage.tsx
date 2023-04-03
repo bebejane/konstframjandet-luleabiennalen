@@ -19,7 +19,7 @@ export default function StartFullBleedImage({ data: { id, image, headline, text,
         <Image data={image.responsiveImage} className={s.image} objectFit="cover" />
         <figcaption>
           <h2>{headline}</h2>
-          <span>{text}</span>
+          <p>{text}</p>
         </figcaption>
       </figure>
     </DatoLink>
