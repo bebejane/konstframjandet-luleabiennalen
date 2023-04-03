@@ -5156,9 +5156,11 @@ type YearModelFilter = {
   backgroundColor?: InputMaybe<ColorFilter>;
   color?: InputMaybe<ColorFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
   loadingImage?: InputMaybe<GalleryFilter>;
   participantName?: InputMaybe<StringFilter>;
   slug?: InputMaybe<SlugFilter>;
+  theme?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
@@ -5183,6 +5185,8 @@ enum YearModelOrderBy {
   id_DESC = 'id_DESC',
   participantName_ASC = 'participantName_ASC',
   participantName_DESC = 'participantName_DESC',
+  theme_ASC = 'theme_ASC',
+  theme_DESC = 'theme_DESC',
   title_ASC = 'title_ASC',
   title_DESC = 'title_DESC'
 }
@@ -5224,9 +5228,11 @@ type YearRecord = RecordInterface & {
   backgroundColor: ColorField;
   color: ColorField;
   id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
   loadingImage: Array<FileField>;
   participantName: Scalars['String'];
   slug: Scalars['String'];
+  theme?: Maybe<Scalars['String']>;
   title: Scalars['String'];
 };
 

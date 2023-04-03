@@ -41,10 +41,10 @@
   ul {
     list-style: none;
     font-weight: bold;
-    padding-left: 0.61rem;
+    padding-left: 0.62rem;
 
     @include mq($until: tablet) {
-      margin-left: 0.61rem;
+      margin-left: 0.62rem;
       font-size: 1.1rem;
     }
 
@@ -62,7 +62,7 @@
         background: transparent;
       }
 
-      >li>a {
+      > li > a {
         font-weight: bold;
       }
     }
@@ -70,7 +70,7 @@
     // About
     &[data-level="2"],
     &[data-level="3"] {
-      >li {
+      > li {
         font-weight: normal !important;
       }
     }
@@ -86,12 +86,13 @@
         line-height: initial;
       }
 
-      &.active {
+      &.active,
+      &:hover {
         &::before {
           content: "°  ";
           position: relative;
           top: 0.2em;
-          margin-left: -0.61em;
+          margin-left: -0.625em;
         }
       }
 
