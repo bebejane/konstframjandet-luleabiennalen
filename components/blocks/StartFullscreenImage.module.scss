@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   @include mq($until: tablet) {
     margin-left: calc(-1 * var(--outer-margin));
     margin-right: calc(-1 * var(--outer-margin));
@@ -7,5 +8,17 @@
 
   img {
     max-width: 100%;
+  }
+
+  figcaption {
+    position: absolute;
+    top: 0;ç
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+    color: var(--white);
   }
 }
