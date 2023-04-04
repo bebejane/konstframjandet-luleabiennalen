@@ -10,11 +10,11 @@ export default function StartFullscreenImage({ data: { id, image, text, headline
 
   return (
     <div className={s.container}>
-      <Image data={image.responsiveImage} className={s.image} />
-      <figcaption>
-        <header>{headline}</header>
-        <div>{text}</div>
-      </figcaption>
+      <figure>
+        <Image data={image.responsiveImage} className={s.image} />
+        <h2>{headline}</h2>
+        <figcaption>{text}</figcaption>
+      </figure>
     </div>
   )
 }
