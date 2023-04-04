@@ -4313,7 +4313,7 @@ type StartFullBleedImageRecordtextArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
-/** Block of type Fullskärmsbild (start_fullscreen_image) */
+/** Block of type Stor bild (start_fullscreen_image) */
 type StartFullscreenImageRecord = RecordInterface & {
   __typename?: 'StartFullscreenImageRecord';
   _createdAt: Scalars['DateTime'];
@@ -4327,12 +4327,14 @@ type StartFullscreenImageRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  headline?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
   image: FileField;
+  text?: Maybe<Scalars['String']>;
 };
 
 
-/** Block of type Fullskärmsbild (start_fullscreen_image) */
+/** Block of type Stor bild (start_fullscreen_image) */
 type StartFullscreenImageRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };

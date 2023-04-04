@@ -18,8 +18,8 @@ export default function StartFullBleedImage({ data: { id, image, headline, text,
       <figure className={cn(s.container, !showMenu && s.full)}>
         <Image data={image.responsiveImage} className={s.image} objectFit="cover" />
         <figcaption>
-          <h2>{headline}</h2>
-          <p>{text}</p>
+          <h2>{headline}Rubrik</h2>
+          <p>{text}Text</p>
         </figcaption>
       </figure>
     </DatoLink>
