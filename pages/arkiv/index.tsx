@@ -19,13 +19,13 @@ export default function Archive({ years }: Props) {
     <>
       <DatoSEO title={t('archive')} />
       <CardContainer key={asPath}>
-        {years.map(({ id, title, slug }) =>
+        {years.map(({ id, title, slug, theme, image }) =>
           <Card key={id}>
             <Thumbnail
               title={title}
-              //image={image}
-              //intro={intro}
-              slug={`/title`}
+              image={image}
+              intro={theme}
+              slug={`/${title}`}
             />
           </Card>
         )}

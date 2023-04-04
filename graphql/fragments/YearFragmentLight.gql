@@ -3,6 +3,10 @@ fragment YearFragmentLight on YearRecord {
 	title
 	participantName
 	slug
+	theme
+	image {
+		...ImageThumbnailFragment
+	}
 	color {
 		hex
 		red

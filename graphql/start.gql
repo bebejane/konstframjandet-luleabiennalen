@@ -76,6 +76,15 @@ query Start($locale: SiteLocale) {
 				id
 				amount
 			}
+			... on StartFullscreenImageRecord {
+				__typename
+				id
+				image {
+					...ImageFragment
+				}
+				headline
+				text
+			}
 			... on StartFullscreenVideoRecord {
 				__typename
 				id
