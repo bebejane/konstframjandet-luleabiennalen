@@ -46,8 +46,8 @@ export default function Exhibition({ exhibition: {
         items={[
           { title: t('MetaSection.when'), value: formatDate(startDate, endDate) },
           { title: t('MetaSection.times'), value: time },
-          { title: t('MetaSection.link'), value: t('MetaSection.webpage'), link: externalLink },
-          { title: t('MetaSection.where'), value: location.title, link: `/platser/${location.slug}` }
+          { title: t('MetaSection.where'), value: location.title, link: `/platser/${location.slug}` },
+          { title: t('MetaSection.link'), value: t('MetaSection.webpage'), link: externalLink }
         ]}
       />
       <Related header={t('Menu.participants')} items={participants} />
