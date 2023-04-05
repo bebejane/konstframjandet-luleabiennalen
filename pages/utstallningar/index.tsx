@@ -24,7 +24,6 @@ export default function Exhibition({ exhibitions }: Props) {
           <Card key={id}>
             <Thumbnail
               title={title}
-              titleLength={80}
               titleRows={1}
               image={image}
               intro={intro}

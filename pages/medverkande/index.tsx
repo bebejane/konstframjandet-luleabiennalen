@@ -24,7 +24,6 @@ export default function Participant({ participants }: Props) {
               title={name}
               image={image}
               intro={intro}
-              titleLength={80}
               titleRows={1}
               slug={`/medverkande/${slug}`}
             />

@@ -37,7 +37,9 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, titl
       href={href}
     >
       <h3 className={cn(s[`rows-${titleRows}`])}>
-        {titleLength ? truncateWords(title, titleLength) : title}
+        <span>
+          {titleLength ? truncateWords(title, titleLength) : title}
+        </span>
       </h3>
       {image &&
         <div className={s.imageWrap}>
