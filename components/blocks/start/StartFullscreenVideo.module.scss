@@ -56,10 +56,6 @@
     color: var(--white);
     padding: var(--outer-margin);
 
-    @include mq($from: tablet) {
-      bottom: var(--space);
-    }
-
     h2 {
       padding-bottom: var(--space);
     }

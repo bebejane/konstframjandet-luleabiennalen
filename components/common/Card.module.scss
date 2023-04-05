@@ -9,6 +9,6 @@
   margin-bottom: var(--small-space);
 
   @include mq($from: tablet) {
-    margin-bottom: var(--space);
+    margin-bottom: var(--small-space);
   }
 }

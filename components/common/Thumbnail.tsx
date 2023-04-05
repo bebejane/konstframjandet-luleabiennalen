@@ -23,7 +23,7 @@ export type Props = {
 export default function Thumbnail({ image, slug, intro, title, titleLength, titleRows = 3, meta }: Props) {
 
   const strippedIntro = remark().use(strip).processSync(intro).value as string
-  const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(strippedIntro, 120)}` : undefined
+  const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(strippedIntro, 500)}` : undefined
 
   const { query: { year } } = useRouter()
   const { year: { loadingImage }, isArchive } = usePage()

@@ -29,6 +29,8 @@ export default function StartRandomParticipant({ data: { participants } }: Props
               title={name}
               intro={intro}
               slug={`/medverkande/${slug}`}
+              titleLength={50}
+              titleRows={1}
             />
           </Card>
         )}

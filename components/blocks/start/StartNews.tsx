@@ -24,7 +24,13 @@ export default function StartNews({ data: { news } }: Props) {
       <CardContainer>
         {news.map(({ id, intro, title, slug, }) =>
           <Card key={id}>
-            <Thumbnail intro={intro} title={title} slug={`/nyheter/${slug}`} />
+            <Thumbnail
+              intro={intro}
+              title={title}
+              slug={`/nyheter/${slug}`}
+              titleLength={80}
+              titleRows={2}
+            />
           </Card>
         )}
       </CardContainer>

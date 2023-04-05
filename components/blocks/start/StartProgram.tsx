@@ -29,6 +29,8 @@ export default function StartProgram({ data: { programs } }: Props) {
               intro={intro}
               image={image}
               title={title}
+              titleLength={100}
+              titleRows={3}
               meta={`${formatDate(startDate, endDate)} — ${programCategory.title}`}
               slug={`/program/${slug}`}
             />

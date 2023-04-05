@@ -23,6 +23,8 @@ export default function Location({ locations }: Props) {
             <Thumbnail
               title={title}
               image={image}
+              titleLength={80}
+              titleRows={1}
               slug={`/platser/${slug}`}
             />
           </Card>

@@ -25,6 +25,8 @@ export default function Partners({ partners }: Props) {
               title={title}
               image={image}
               intro={intro}
+              titleLength={80}
+              titleRows={1}
               slug={`/partners/${slug}`}
             />
           </Card>
