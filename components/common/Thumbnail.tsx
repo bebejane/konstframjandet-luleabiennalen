@@ -15,11 +15,12 @@ export type Props = {
   slug: string
   title: string
   titleLength?: number
+  titleRows?: number
   intro?: string
   meta?: string
 }
 
-export default function Thumbnail({ image, slug, intro, title, titleLength, meta }: Props) {
+export default function Thumbnail({ image, slug, intro, title, titleLength, titleRows = 3, meta }: Props) {
 
   const strippedIntro = remark().use(strip).processSync(intro).value as string
   const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(strippedIntro, 120)}` : undefined
@@ -30,13 +31,14 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, meta
   const [loaded, setLoaded] = useState(false);
   const href = year ? `/${year}${slug}` : slug;
 
-
   return (
     <Link
       className={s.thumbnail}
       href={href}
     >
-      <h3>{titleLength ? truncateWords(title, titleLength) : title}</h3>
+      <h3 className={cn(s[`rows-${titleRows}`])}>
+        {titleLength ? truncateWords(title, titleLength) : title}
+      </h3>
       {image &&
         <div className={s.imageWrap}>
           <>
