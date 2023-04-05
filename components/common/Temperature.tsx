@@ -25,7 +25,7 @@ export default function Temperature() {
 
   return (
     <span style={{ textTransform: 'capitalize' }}>
-      {format(new Date(), 'dd MMM')}, {temp > 0 ? '+' : ''}{temp}°C
+      {format(new Date(), 'dd MMMM')}, {temp > 0 ? '+' : ''}{temp}°C
     </span>
   )
 }
