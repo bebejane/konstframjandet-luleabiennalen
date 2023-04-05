@@ -22,6 +22,7 @@ export default function Exhibition({ exhibition: {
   participants,
   partner,
   startDate,
+  endDate,
   time,
   _seoMetaTags
 } }: Props) {
@@ -43,7 +44,7 @@ export default function Exhibition({ exhibition: {
       <MetaSection
         key={`${id}-meta`}
         items={[
-          { title: t('MetaSection.when'), value: formatDate(startDate) },
+          { title: t('MetaSection.when'), value: formatDate(startDate, endDate) },
           { title: t('MetaSection.times'), value: time },
           { title: t('MetaSection.link'), value: t('MetaSection.webpage'), link: externalLink },
           { title: t('MetaSection.where'), value: location.title, link: `/platser/${location.slug}` }
