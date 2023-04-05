@@ -25,6 +25,7 @@
 
   span {
     display: block;
+    line-height: 1;
 
     @include mq($until: tablet) {
       padding-top: 1.5em;
