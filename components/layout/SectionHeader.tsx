@@ -18,22 +18,20 @@ export type SectionHeaderProps = {
 
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
 
-  const t = useTranslations('Menu')
-  const [showMenu, searchQuery] = useStore((state) => [state.showMenu, state.searchQuery])
-  const { year, year: { title, color: { hex } }, isArchive } = usePage()
   const router = useRouter()
   const { asPath, locale } = router
-
+  const t = useTranslations('Menu')
+  const [showMenu] = useStore((state) => [state.showMenu])
+  const { year, year: { title, color: { hex } }, isArchive } = usePage()
   const menuItem = pathToParentMenuItem(asPath, locale, menu)
 
-  if (!menuItem) return null
-
-  const isHome = menuItem.id === 'home'
+  const isHome = menuItem?.id === 'home'
   const isOverview = menuItem?.slug && !menuItem.sub && !isHome
-  const isSearch = menuItem.id === 'search'
+  const showLine = !menuItem || isOverview
+  const isSearch = menuItem?.id === 'search'
 
   //@ts-ignore
-  const subLabel = t(menuItem.id) || t(menuItem.id.split('-')[0])
+  const subLabel = t(menuItem?.id) || t(menuItem?.id.split('-')[0])
   const yearLabel = `LB°${year.title.substring(2)}`
   const label = !isSearch ? `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}` : t('search')
   const speed = 0.6
@@ -43,10 +41,10 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
       <header className={cn(s.header, !showMenu && s.full)}>
         {isHome ? <Logo />
           :
-          <Link href={isOverview ? menuItem.slug : '#'}>
+          <Link href={isOverview ? menuItem?.slug : '#'}>
             <h2>
               <span style={{ color: hex }} key={label}>
-                {label.split('').map((c, idx) =>
+                {menuItem && label.split('').map((c, idx) =>
                   <span
                     key={`${idx}`}
                     style={{
@@ -61,7 +59,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
         {isArchive && <span className={s.archive}>ARKIV</span>}
       </header>
       {!isHome && <div className={s.spacer}></div>}
-      {isOverview && <div className={s.line}></div>}
+      {showLine && <div className={s.line}></div>}
     </>
   )
 }
