@@ -3,6 +3,10 @@ fragment NewsFragment on NewsRecord {
 	title
 	intro(markdown: false)
 	slug
+	_allSlugLocales {
+		locale
+		value
+	}
 	_createdAt
 	content {
 		value

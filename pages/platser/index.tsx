@@ -5,6 +5,7 @@ import { CardContainer, Card, Thumbnail } from "/components";
 import { useRouter } from "next/router";
 import { DatoSEO } from "dato-nextjs-utils/components";
 import { useTranslations } from "next-intl";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   locations: (LocationRecord & ThumbnailImage)[]
@@ -37,7 +38,12 @@ export default function Location({ locations }: Props) {
 export const getStaticProps = withGlobalProps({ queries: [AllLocationsDocument] }, async ({ props, revalidate }: any) => {
 
   return {
-    props,
+    props: {
+      ...props,
+      page: {
+        slugs: pageSlugs('locations')
+      }
+    },
     revalidate
   };
 });

@@ -6,6 +6,7 @@ import { formatDate } from "/lib/utils";
 import { useRouter } from "next/router";
 import { DatoSEO } from "dato-nextjs-utils/components";
 import { useTranslations } from "next-intl";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   exhibitions: (ExhibitionRecord & ThumbnailImage)[]
@@ -41,7 +42,10 @@ export const getStaticProps = withGlobalProps({ queries: [AllExhibitionsDocument
 
   return {
     props: {
-      ...props
+      ...props,
+      page: {
+        slugs: pageSlugs('exhibitions')
+      }
     },
     revalidate
   };

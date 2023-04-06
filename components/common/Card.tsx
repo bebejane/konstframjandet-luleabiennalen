@@ -5,12 +5,13 @@ import React from 'react'
 export type CardProps = {
   children: React.ReactNode | React.ReactNode[],
   className?: string
+  hideLastOnDesktop?: boolean
 }
 
-export default function Card({ children, className }: CardProps) {
+export default function Card({ children, className, hideLastOnDesktop = false }: CardProps) {
 
   return (
-    <li className={cn(s.card, className)}>
+    <li className={cn(s.card, className, hideLastOnDesktop && s.hideLastOnDesktop)}>
       {children}
     </li>
   )

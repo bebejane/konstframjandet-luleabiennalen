@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { capitalize, pathToMenuItem, defaultLocale } from '/lib/utils'
 import { Menu } from '/lib/menu'
+import { usePage } from '/lib/context/page'
 
 export type Props = {
 	menu: Menu
@@ -11,17 +12,18 @@ export type Props = {
 
 export default function Language({ menu }) {
 	const { locale, locales } = useRouter()
+	const { slugs, year, isArchive } = usePage()
 
 	return (
 		<nav className={s.language}>
-			{locales.map((l, idx) =>
+			{slugs.map((item, idx) =>
 				<Link
 					key={idx}
-					href={'/'}
-					locale={l}
-					className={cn(locale === l && s.selected)}
+					href={`${isArchive ? `/${year.title}` : ''}${item.value}`}
+					locale={item.locale}
+					className={cn(locale === item.locale && s.selected)}
 				>
-					{capitalize(l)}
+					{capitalize(item.locale)}
 				</Link>
 			)}
 		</nav>

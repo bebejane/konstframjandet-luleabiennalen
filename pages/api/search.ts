@@ -51,7 +51,6 @@ export const siteSearch = async (opt: any) => {
     locale
   };
 
-  console.log(variables)
   if (isEmptyObject(variables))
     return {}
 

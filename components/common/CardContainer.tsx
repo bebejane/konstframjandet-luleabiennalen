@@ -2,19 +2,20 @@ import s from './CardContainer.module.scss'
 import cn from 'classnames'
 import { chunkArray } from '/lib/utils'
 import useDevice from '/lib/hooks/useDevice'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 
 export type Props = {
   children?: React.ReactNode | React.ReactNode[],
   columns?: 2 | 3,
   className?: string
+  hideLastOnDesktop?: boolean
 }
 
-export default function CardContainer({ children, columns = 3, className }: Props) {
+export default function CardContainer({ children, columns = 3, className, hideLastOnDesktop = false }: Props) {
 
   const buildCards = () => {
-    return chunkArray(Array.isArray(children) ? children : [children], !isDesktop ? 2 : columns) as [React.ReactNode[]]
+    return chunkArray((Array.isArray(children) ? children : [children]).map(el => React.cloneElement(el as ReactElement, { hideLastOnDesktop })), !isDesktop ? 2 : columns) as [React.ReactNode[]]
   }
 
   const ref = useRef<HTMLUListElement | null>(null)

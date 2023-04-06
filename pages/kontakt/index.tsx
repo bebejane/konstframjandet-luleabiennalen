@@ -3,6 +3,7 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { ContactDocument } from "/graphql";
 import { Article } from "/components";
 import { apiQuery } from "dato-nextjs-utils/api";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   contact: ContactRecord
@@ -30,7 +31,10 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
   return {
     props: {
       ...props,
-      contact
+      contact,
+      page: {
+        slugs: pageSlugs('contact')
+      } as PageProps
     },
     revalidate
   };

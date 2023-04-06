@@ -7,6 +7,7 @@ import { Article, Related, BackButton, MetaSection } from '/components';
 import { formatDate } from "/lib/utils";
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   program: ProgramRecord
@@ -87,7 +88,11 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
     props: {
       ...props,
       program,
-      pageTitle: program.title
-    }
+      page: {
+        title: program.title,
+        slugs: pageSlugs('program')
+      }
+    },
+    revalidate
   };
 });

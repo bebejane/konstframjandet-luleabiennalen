@@ -19,6 +19,7 @@ function App({ Component, pageProps, router }) {
 
   setDefaultOptions({ locale: router.locale === 'sv' ? sv : enGB })
 
+  const page = pageProps.page || {} as PageProps
   const { asPath } = useRouter()
   const siteTitle = 'Luleåbiennalen'
   const isHome = asPath === '/' || locales.find(l => asPath === `/${l}`) !== undefined
@@ -31,7 +32,7 @@ function App({ Component, pageProps, router }) {
     <>
       <DefaultDatoSEO siteTitle={siteTitle} />
       <NextIntlProvider messages={pageProps.messages} onError={onMessageError} getMessageFallback={getMessageFallback}>
-        <PageProvider value={{ year: pageProps.year, title: siteTitle, isHome }}>
+        <PageProvider value={{ ...page, year: pageProps.year, isHome }}>
           <Layout title={siteTitle} menu={pageProps.menu || []} footer={pageProps.footer}>
             <Component {...pageProps} />
           </Layout>

@@ -26,6 +26,10 @@ fragment ExhibitionFragment on ExhibitionRecord {
 		...PartnerFragmentLight
 	}
 	slug
+	_allSlugLocales {
+		locale
+		value
+	}
 	externalLink
 	content {
 		value

@@ -6,6 +6,7 @@ import { Article, Related, BackButton, MetaSection } from '/components';
 import { formatDate } from "/lib/utils";
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   exhibition: ExhibitionRecord
@@ -79,7 +80,10 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
     props: {
       ...props,
       exhibition,
-      pageTitle: exhibition.title
+      page: {
+        title: exhibition.title,
+        slugs: pageSlugs('exhibitions', exhibition._allSlugLocales),
+      }
     }
   };
 });

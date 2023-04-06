@@ -6,6 +6,7 @@ import { Article, Related, BackButton, MetaSection } from '/components';
 import { formatDate } from "/lib/utils";
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   partner: PartnerRecord
@@ -75,7 +76,10 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
     props: {
       ...props,
       partner,
-      pageTitle: partner.title
+      page: {
+        title: partner.title,
+        slugs: pageSlugs('partners', partner._allSlugLocales)
+      }
     }
   };
 });

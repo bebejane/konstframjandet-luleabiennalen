@@ -9,6 +9,10 @@ fragment LocationFragment on LocationRecord {
 	intro(markdown: false)
 	webpage
 	slug
+	_allSlugLocales {
+		locale
+		value
+	}
 	exhibitions: _allReferencingExhibitions(first: 100) {
 		...ExhibitionFragmentLight
 	}

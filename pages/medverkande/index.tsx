@@ -5,6 +5,7 @@ import { CardContainer, Card, Thumbnail } from "/components";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
+import { pageSlugs } from "/lib/i18n";
 export type Props = {
   participants: (ParticipantRecord & ThumbnailImage)[]
 }
@@ -37,7 +38,12 @@ export default function Participant({ participants }: Props) {
 export const getStaticProps = withGlobalProps({ queries: [AllParticipantsDocument] }, async ({ props, revalidate }: any) => {
 
   return {
-    props,
+    props: {
+      ...props,
+      page: {
+        slugs: pageSlugs('participants')
+      } as PageProps
+    },
     revalidate
   };
 });

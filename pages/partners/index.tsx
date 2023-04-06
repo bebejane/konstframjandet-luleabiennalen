@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { DatoSEO } from "dato-nextjs-utils/components";
 import { useTranslations } from "next-intl";
 import { Image } from "react-datocms";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   partners: PartnerRecord[]
@@ -53,7 +54,10 @@ export const getStaticProps = withGlobalProps({ queries: [AllPartnersDocument] }
 
   return {
     props: {
-      ...props
+      ...props,
+      page: {
+        slugs: pageSlugs('partners')
+      }
     },
     revalidate
   };
