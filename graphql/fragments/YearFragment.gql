@@ -25,4 +25,11 @@ fragment YearFragment on YearRecord {
 	loadingImage {
 		...ImageThumbnailFragment
 	}
+	fundedBy {
+		id
+		logo {
+			...ImageMediumFragment
+		}
+		url
+	}
 }
