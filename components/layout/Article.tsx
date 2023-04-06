@@ -90,7 +90,7 @@ export default function Article({ id, children, title, content, image, imageSize
         }
         {children}
         {partner?.length > 0 &&
-          <p>
+          <p className="small-body">
             {t('General.inCooperationWith')} {partner.map(({ title, slug }, idx) =>
               <>
                 <Link href={`/partners/${slug}`}>

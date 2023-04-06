@@ -12,8 +12,11 @@ export default function StartFullscreenImage({ data: { id, image, text, headline
     <div className={s.container}>
       <figure>
         <Image data={image.responsiveImage} className={s.image} />
-        <h2>{headline}</h2>
-        <figcaption>{text}</figcaption>
+        <figcaption>
+          <h2>{headline}</h2>
+          <p>{text}</p>
+          <div className={s.fade}></div>
+        </figcaption>
       </figure>
     </div>
   )

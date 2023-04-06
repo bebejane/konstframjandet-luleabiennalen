@@ -849,6 +849,31 @@ type FileFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
 };
 
+/** Block of type Financiär (funder) */
+type FunderRecord = RecordInterface & {
+  __typename?: 'FunderRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  logo?: Maybe<FileField>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+/** Block of type Financiär (funder) */
+type FunderRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Multiple files/images field */
 type GalleryFilter = {
   /** Filter records that have all of the specified uploads. The specified values must be Upload IDs */
@@ -5229,6 +5254,7 @@ type YearRecord = RecordInterface & {
   background: Array<FileField>;
   backgroundColor: ColorField;
   color: ColorField;
+  fundedBy: Array<FunderRecord>;
   id: Scalars['ItemId'];
   image?: Maybe<FileField>;
   loadingImage: Array<FileField>;

@@ -1,8 +1,6 @@
 .video {
   display: block;
   height: auto;
-  margin-top: var(--space);
-  margin-bottom: var(--space);
   width: 100vw;
   margin-left: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
   margin-right: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
