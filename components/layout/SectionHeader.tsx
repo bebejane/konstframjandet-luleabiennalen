@@ -1,6 +1,6 @@
 import s from './SectionHeader.module.scss'
 import cn from 'classnames'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Link from '/components/nav/Link'
 import { useRouter } from 'next/router'
 import { MenuItem } from '/lib/menu'
