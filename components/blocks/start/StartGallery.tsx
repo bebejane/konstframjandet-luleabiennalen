@@ -4,9 +4,10 @@ import "swiper/css";
 import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import type { Swiper } from 'swiper';
 import { Image } from 'react-datocms'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import DatoLink from '/components/nav/DatoLink';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
+import { useWindowSize } from 'usehooks-ts';
 
 export type Props = {
   data: StartGalleryRecord
@@ -17,7 +18,14 @@ export default function StartGallery({ data: { id, images, headline, link } }: P
   const swiperRef = useRef<Swiper | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [index, setIndex] = useState(0)
+  const { height, width } = useWindowSize()
+  const [captionHeight, setCaptionHeight] = useState(0)
 
+  useEffect(() => {
+    const figures = Array.from(containerRef.current?.querySelectorAll('figcaption'))
+    const maxHeight = Math.max(...figures.map(figure => figure.clientHeight + parseInt(getComputedStyle(figure).marginTop.replace('px', ''))))
+    setCaptionHeight(maxHeight)
+  }, [height, width])
 
   return (
     <div ref={containerRef} className={s.container}>
@@ -50,20 +58,25 @@ export default function StartGallery({ data: { id, images, headline, link } }: P
             </figure>
           </SwiperSlide>
         )}
-        <ul className={s.nav}>
-          {images.map(({ id }, idx) =>
-            <li
-              key={id}
-              className={cn(index === idx && s.selected)}
-              onClick={() => swiperRef.current.slideTo(idx)}
-            />
-          )}
-        </ul>
+        <nav className={s.pagination}>
+          <ul >
+            {images.map(({ id }, idx) =>
+              <li
+                key={id}
+                className={cn(index === idx && s.selected)}
+                onClick={() => swiperRef.current.slideTo(idx)}
+              />
+            )}
+          </ul>
+        </nav>
+        <nav style={{ height: `calc(100% - ${captionHeight}px)` }} className={s.prev} onClick={() => swiperRef.current?.slidePrev()}>←</nav>
+        <nav style={{ height: `calc(100% - ${captionHeight}px)` }} className={s.next} onClick={() => swiperRef.current?.slideNext()}>→</nav>
       </SwiperReact>
 
       <h3>
         <DatoLink link={link} className="small" />
       </h3>
+
     </div>
   )
 }
