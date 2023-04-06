@@ -24,7 +24,6 @@ query Menu($locale: SiteLocale, $altLocale: SiteLocale, $yearId: ItemId) {
 	year(filter: { id: { eq: $yearId } }, locale: $locale, orderBy: title_DESC) {
 		title
 	}
-
 	aboutMeta: _allAboutsMeta(filter: { year: { eq: $yearId } }) {
 		count
 	}

@@ -223,14 +223,31 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
   };
 }
 
+export const pathToParentMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
+  path = path.split('?')[0]
+
+  let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
+    const baseSlug = !isNaN(parseInt(slug.split('/')[1])) ? `/${slug.split('/').slice(2, 3).join('/')}` : undefined
+    if ([slug, `/${locale}${slug}`, baseSlug].filter(el => el).includes(path)) return true
+    const p = path.split('/'); p.pop()
+    return p.join('/') === slug && !sub
+  })
+
+  if (item) return item
+
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].sub) {
+      item = pathToParentMenuItem(path, locale, items[i].sub)
+      if (item) return item
+    }
+  }
+}
+
 export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
   path = path.split('?')[0]
 
   let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
-    let baseSlug = !isNaN(parseInt(slug.split('/')[1])) ? `/${slug.split('/').slice(2, 3).join('/')}` : undefined
-    if ([slug, `/${locale}${slug}`, baseSlug].filter(el => el).includes(path)) return true
-    const p = path.split('/'); p.pop()
-    return p.join('/') === slug && !sub
+    return [slug, `/${locale}${slug}`].filter(el => el).includes(path)
   })
 
   if (item) return item

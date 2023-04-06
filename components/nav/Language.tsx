@@ -10,17 +10,13 @@ export type Props = {
 }
 
 export default function Language({ menu }) {
-	const { locale, locales, asPath } = useRouter()
-	const menuItem = pathToMenuItem(asPath, locale, menu)
-	console.log(asPath)
-	console.log(menuItem)
+	const { locale, locales } = useRouter()
 
 	return (
 		<nav className={s.language}>
 			{locales.map((l, idx) =>
 				<Link
 					key={idx}
-					//href={(l !== locale ? menuItem?.altSlug : menuItem?.slug) ?? '/'}
 					href={'/'}
 					locale={l}
 					className={cn(locale === l && s.selected)}

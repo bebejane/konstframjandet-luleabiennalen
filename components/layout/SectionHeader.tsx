@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { MenuItem } from '/lib/menu'
 import { useTranslations } from 'next-intl'
 import { usePage } from '/lib/context/page'
-import { pathToMenuItem } from '/lib/utils'
+import { pathToParentMenuItem } from '/lib/utils'
 import useStore from '/lib/store'
 
 import Logo from '/public/images/logo-text.svg'
@@ -24,7 +24,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const router = useRouter()
   const { asPath, locale } = router
 
-  const menuItem = pathToMenuItem(asPath, locale, menu)
+  const menuItem = pathToParentMenuItem(asPath, locale, menu)
 
   if (!menuItem) return null
 

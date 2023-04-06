@@ -24,11 +24,6 @@ export default function CardContainer({ children, columns = 3, className }: Prop
 
   useEffect(() => { setCards(buildCards()) }, [isDesktop, locale])
 
-  useEffect(() => {
-    const headers = Array.from(ref.current.querySelectorAll('h3'))
-    headers.forEach(el => console.log(el.clientHeight))
-  }, [])
-
   return (
     <ul ref={ref} className={cn(s.container, columns === 2 && s.two, columns === 3 && s.three, className)}>
       {cards.map((row, idx) => {
