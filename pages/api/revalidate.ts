@@ -56,7 +56,7 @@ export default withRevalidate(async (record, revalidate) => {
       default:
         break;
     }
-    localePaths.forEach(p => paths.push(translatePath(p, locale, defaultLocale, isArchive)))
+    localePaths.forEach(p => paths.push(translatePath(p, locale, defaultLocale, year?.title)))
   })
   console.log(paths)
   revalidate(paths)

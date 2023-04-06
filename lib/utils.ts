@@ -224,15 +224,11 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
 }
 
 export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
-
   path = path.split('?')[0]
 
   let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
     let baseSlug = !isNaN(parseInt(slug.split('/')[1])) ? `/${slug.split('/').slice(2, 3).join('/')}` : undefined
-    //if (locale === 'en') baseSlug = baseSlug ? `/${i18nPaths[baseSlug?.substring(1)]}` : undefined
-
-    if ([slug, `/${locale}${slug}`, baseSlug].filter(el => el).includes(path))
-      return true
+    if ([slug, `/${locale}${slug}`, baseSlug].filter(el => el).includes(path)) return true
     const p = path.split('/'); p.pop()
     return p.join('/') === slug && !sub
   })
@@ -247,15 +243,15 @@ export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]):
   }
 }
 
-export const translatePath = (href: string, locale: string, defaultLocale: string, archive: boolean): string => {
+export const translatePath = (href: string, locale: string, defaultLocale: string, year?: string): string => {
 
-  const index = archive ? 2 : 1;
+  const index = year ? 2 : 1;
   const basePath = href.split('/')[index]
 
   const key = Object.keys(i18nPaths).find(k => [i18nPaths[k].sv, i18nPaths[k].en].includes(basePath))
-  const translatedPath = !basePath || !key ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(index + 1).join('/')}`
+  const translatedPath = (!basePath || !key) ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(index + 1).join('/')}`
 
-  const fullPath = translatedPath ? `${locale !== defaultLocale ? `/${locale}` : ''}${translatedPath}` : undefined
+  const fullPath = translatedPath ? `${locale !== defaultLocale ? `/${locale}` : ''}${year ? `/${year}` : ''}${translatedPath}` : undefined
   return fullPath;
 
 }

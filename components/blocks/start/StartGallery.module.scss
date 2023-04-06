@@ -23,7 +23,7 @@
     user-select: none;
     cursor: pointer;
 
-    > div {
+    >div {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
@@ -36,7 +36,7 @@
         width: 100%;
         padding-right: var(--gutter);
 
-        > figure {
+        >figure {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -54,7 +54,7 @@
             padding: 0;
             margin-top: 1em;
 
-            > p {
+            >p {
               text-align: left;
               margin: 0;
               padding: 0;
@@ -65,30 +65,63 @@
     }
   }
 
-  .nav {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    bottom: calc(var(--space) * 2);
-    left: 0;
-    text-align: center;
-    z-index: 2;
-    width: 100%;
-    list-style: none;
-    mix-blend-mode: difference;
+  .pagination {
+    @include mq($from: desktop) {
+      display: none;
+    }
 
-    li {
-      border: 2px solid var(--white);
-      border-radius: 50%;
-      width: 0.6rem;
-      height: 0.6rem;
-      margin: 0.2rem;
-      cursor: pointer;
+    ul {
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      bottom: calc(var(--space) * 2);
+      left: 0;
+      text-align: center;
+      z-index: 2;
+      width: 100%;
+      list-style: none;
+      mix-blend-mode: difference;
 
-      &.selected {
-        border-width: 4px;
+      li {
+        border: 2px solid var(--white);
+        border-radius: 50%;
+        width: 0.6rem;
+        height: 0.6rem;
+        margin: 0.2rem;
+        cursor: pointer;
+
+        &.selected {
+          border-width: 4px;
+        }
       }
     }
+  }
+
+  .next,
+  .prev {
+    position: absolute;
+    display: flex;
+    align-items: center !important;
+    justify-content: center;
+    height: 100%;
+    top: 0;
+    z-index: 200000;
+    color: var(--white);
+    font-size: 2rem;
+    cursor: pointer;
+
+    @include mq($until: desktop) {
+      display: none;
+    }
+  }
+
+  .next {
+    right: var(--outer-margin);
+
+  }
+
+  .prev {
+    left: var(--outer-margin);
   }
 }

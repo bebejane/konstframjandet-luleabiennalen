@@ -63,7 +63,7 @@
         background: transparent;
       }
 
-      > li > a {
+      >li>a {
         font-weight: bold;
       }
     }
@@ -71,7 +71,7 @@
     // About
     &[data-level="2"],
     &[data-level="3"] {
-      > li {
+      >li {
         font-weight: normal !important;
       }
     }
@@ -88,7 +88,7 @@
       }
 
       &.active,
-      &:hover {
+      &:hover:not(.search) {
         &::before {
           content: "°  ";
           position: relative;
