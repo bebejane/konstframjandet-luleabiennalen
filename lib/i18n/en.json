@@ -51,5 +51,8 @@
 	"Related": {
 		"related": "Related",
 		"participatingIn": "Participating in"
+	},
+	"Partners": {
+		"fundedBy": "Funded by"
 	}
 }
