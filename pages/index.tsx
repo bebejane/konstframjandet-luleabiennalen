@@ -11,14 +11,14 @@ export type Props = {
 	start: StartRecord
 }
 
-export default function Home({ start }: Props) {
+const fullBlocks = ['StartFullscreenImageRecord', 'StartFullBleedImageRecord', 'StartFullscreenVideoRecord']
 
-	const fullBlocks = ['StartFullscreenImage', 'StartFullBleedImage', 'StartFullscreenVideo']
+export default function Home({ start }: Props) {
 
 	return (
 		<div className={s.container}>
 			{start.content.map((block, idx) =>
-				<section key={idx} className={cn(fullBlocks.includes[block.__typename] && s.noborder)}>
+				<section key={idx} className={cn(fullBlocks.includes(block.__typename) && s.noborder)}>
 					<Block
 						data={block}
 						record={start}
