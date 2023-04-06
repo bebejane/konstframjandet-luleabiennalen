@@ -20,7 +20,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
 
   const t = useTranslations('Menu')
   const [showMenu, searchQuery] = useStore((state) => [state.showMenu, state.searchQuery])
-  const { year, year: { color: { hex } }, isArchive } = usePage()
+  const { year, year: { title, color: { hex } }, isArchive } = usePage()
   const router = useRouter()
   const { asPath, locale } = router
 
