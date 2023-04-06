@@ -20,6 +20,7 @@ export default function StartFullBleedImage({ data: { id, image, headline, text,
         <figcaption>
           <h2>{headline}</h2>
           <p>{text}</p>
+          <div className={s.fade}></div>
         </figcaption>
       </figure>
     </DatoLink>
