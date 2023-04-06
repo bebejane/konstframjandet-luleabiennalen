@@ -1,4 +1,5 @@
 import s from "./index.module.scss";
+import cn from 'classnames'
 import withGlobalProps from "/lib/withGlobalProps";
 import { StartDataDocument, StartDocument } from "/graphql";
 import Link from "next/link";
@@ -12,10 +13,12 @@ export type Props = {
 
 export default function Home({ start }: Props) {
 
+	const fullBlocks = ['StartFullscreenImage', 'StartFullBleedImage', 'StartFullscreenVideo']
+
 	return (
 		<div className={s.container}>
 			{start.content.map((block, idx) =>
-				<section key={idx}>
+				<section key={idx} className={cn(fullBlocks.includes[block.__typename] && s.noborder)}>
 					<Block
 						data={block}
 						record={start}
