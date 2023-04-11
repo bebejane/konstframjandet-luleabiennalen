@@ -1,6 +1,7 @@
 .container {
   position: relative;
   margin-bottom: calc(-1 * var(--space));
+  transition: var(--fullscreen-transition);
 
   @include mq($until: tablet) {
     height: 50vh;
@@ -26,6 +27,7 @@
       margin-left: calc(-1 * (var(--total-outer-margin) + var(--grid-unit)));
       margin-right: calc(-1 * (var(--total-outer-margin) + var(--grid-unit)));
     }
+
     @include mq($from: wide) {
       margin-left: calc(-1 * calc(var(--wide-margin)));
       margin-right: calc(-1 * calc(var(--wide-margin)));
@@ -37,6 +39,7 @@
     min-width: 100%;
     height: 100vh;
     max-height: 100vh;
+
     @include mq($until: tablet) {
       height: 50vh;
     }

@@ -4,6 +4,7 @@
   width: 100vw;
   margin-left: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
   margin-right: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
+  transition: var(--fullscreen-transition);
 
   @include mq($from: tablet) {
     width: calc(100% + (2 * var(--total-outer-margin)));
@@ -21,6 +22,7 @@
       margin-left: calc(-1 * (var(--total-outer-margin) + var(--grid-unit)));
       margin-right: calc(-1 * (var(--total-outer-margin) + var(--grid-unit)));
     }
+
     @include mq($from: wide) {
       margin-left: calc(-1 * calc(var(--wide-margin)));
       margin-right: calc(-1 * calc(var(--wide-margin)));

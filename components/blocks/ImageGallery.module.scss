@@ -34,13 +34,13 @@
       display: none;
     }
 
-    user-select: none;
-    width: var(--total-outer-margin);
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
+    user-select: none;
+    width: var(--total-outer-margin);
+    //
     top: 0;
     right: 0;
     z-index: 2;
