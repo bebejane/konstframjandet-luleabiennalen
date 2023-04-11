@@ -21,6 +21,7 @@ export default function Participant({ participant: { id, image, name, intro, con
 
   return (
     <>
+      <DatoSEO title={name} description={intro} seo={_seoMetaTags} />
       <Article
         id={id}
         key={id}

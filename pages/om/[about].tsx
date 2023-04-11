@@ -12,9 +12,10 @@ export type Props = {
 }
 
 export default function AboutItem({ about: { id, image, title, intro, content, _seoMetaTags, _allSlugLocales } }: Props) {
-  console.log(_allSlugLocales)
+
   return (
     <>
+      <DatoSEO title={title} description={intro} seo={_seoMetaTags} />
       <Article
         id={id}
         key={id}

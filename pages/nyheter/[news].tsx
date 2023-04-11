@@ -16,6 +16,7 @@ export default function News({ news: { id, image, title, intro, content, _seoMet
 
   return (
     <>
+      <DatoSEO title={title} description={intro} seo={_seoMetaTags} />
       <Article
         id={id}
         key={id}

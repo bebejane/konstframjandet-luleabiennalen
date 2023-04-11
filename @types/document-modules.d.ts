@@ -227,6 +227,15 @@ declare module '*/YearFragmentLight.gql' {
 }
     
 
+declare module '*/global.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Global: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/location.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

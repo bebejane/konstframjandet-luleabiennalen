@@ -96,4 +96,9 @@ fragment NewsFragment on NewsRecord {
 			}
 		}
 	}
+	_seoMetaTags {
+		attributes
+		content
+		tag
+	}
 }

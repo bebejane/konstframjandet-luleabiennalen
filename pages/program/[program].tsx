@@ -36,6 +36,7 @@ export default function Program({ program: {
 
   return (
     <>
+      <DatoSEO title={title} description={intro} seo={_seoMetaTags} />
       <Article
         id={id}
         key={id}

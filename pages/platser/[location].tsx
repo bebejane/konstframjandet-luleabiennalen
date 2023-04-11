@@ -21,6 +21,7 @@ export default function Location({ location: { id, image, title, intro, content,
 
   return (
     <>
+      <DatoSEO title={title} description={intro} seo={_seoMetaTags} />
       <Article
         id={id}
         key={id}

@@ -1,6 +1,6 @@
 .gallery {
   position: relative;
-  max-width: 100%;
+  max-width: 100vw;
   min-width: 100%;
 
   margin-top: calc(1.2 * var(--space));
@@ -75,6 +75,10 @@
         position: relative;
         width: calc((100% - (var(--gutter) * 2)) / 3);
         padding-right: var(--gutter);
+
+        @include mq($until: desktop) {
+          width: 100%;
+        }
 
         >figure {
           display: flex;
