@@ -42,6 +42,7 @@ export const getStaticProps = withGlobalProps({ queries: [AllYearsDocument] }, a
       ...props,
       years: props.years.slice(1),
       page: {
+        section: 'archive',
         slugs: pageSlugs('archive')
       } as PageProps
     },

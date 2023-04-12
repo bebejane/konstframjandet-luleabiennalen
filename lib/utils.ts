@@ -223,12 +223,13 @@ export async function getStaticYearPaths(doc: TypedDocumentNode, segment: string
   };
 }
 
-export const pathToParentMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
+export const pathToParentMenuItem2 = (path: string, locale: string, items: MenuItem[]): MenuItem => {
   path = path.split('?')[0]
 
   let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
     const baseSlug = !isNaN(parseInt(slug.split('/')[1])) ? `/${slug.split('/').slice(2, 3).join('/')}` : undefined
-    if ([slug, `/${locale}${slug}`, baseSlug].filter(el => el).includes(path)) return true
+
+    if ([`/${locale}${slug}`, slug, baseSlug].filter(el => el).includes(path)) return true
     const p = path.split('/'); p.pop()
     return p.join('/') === slug && !sub
   })
@@ -239,6 +240,23 @@ export const pathToParentMenuItem = (path: string, locale: string, items: MenuIt
     if (items[i].sub) {
       item = pathToParentMenuItem(path, locale, items[i].sub)
       if (item) return item
+    }
+  }
+}
+
+export const pathToParentMenuItem = (path: string, locale: string, items: MenuItem[], parent?: MenuItem): MenuItem => {
+  path = path.split('?')[0]
+
+  let item = items.filter(el => el.slug).find(({ slug, sub }, idx) => {
+    return [slug, `/${locale}${slug}`].filter(el => el).includes(path)
+  })
+
+  if (item) return parent
+
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].sub) {
+      item = pathToParentMenuItem(path, locale, items[i].sub, items[i])
+      if (item) return items[i]
     }
   }
 }
@@ -262,11 +280,10 @@ export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]):
 
 export const translatePath = (href: string, locale: string, defaultLocale: string, year?: string): string => {
 
-  const index = year ? 2 : 1;
-  const basePath = href.split('/')[index]
-
+  const basePath = href.split('/')[1]
+  const slug = href.split('/').slice(2).join('/')
   const key = Object.keys(i18nPaths).find(k => [i18nPaths[k].sv, i18nPaths[k].en].includes(basePath))
-  const translatedPath = (!basePath || !key) ? '/' : `/${i18nPaths[key][locale]}/${href.split('/').slice(index + 1).join('/')}`
+  const translatedPath = (!basePath || !key) ? '/' : `/${i18nPaths[key][locale]}/${slug}`
 
   const fullPath = translatedPath ? `${locale !== defaultLocale ? `/${locale}` : ''}${year ? `/${year}` : ''}${translatedPath}` : undefined
   return fullPath;
@@ -277,7 +294,6 @@ export const allYears = async (): Promise<YearRecord[]> => {
   const { years } = await apiQuery(AllYearsDocument)
   return years;
 }
-
 
 export type TruncateOptions = {
   sentences: number

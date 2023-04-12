@@ -17,5 +17,8 @@ fragment ProgramFragmentLight on ProgramRecord {
 		id
 		title
 	}
+	year {
+		...YearFragmentLight
+	}
 	slug
 }

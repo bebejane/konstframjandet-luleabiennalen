@@ -50,6 +50,7 @@ export default function Menu({ items }: MenuProps) {
 
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height])
 
+	//console.log(items)
 	return (
 		<>
 			<Hamburger />

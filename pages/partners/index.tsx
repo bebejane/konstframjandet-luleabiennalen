@@ -58,8 +58,9 @@ export const getStaticProps = withGlobalProps({ queries: [AllPartnersDocument] }
     props: {
       ...props,
       page: {
+        section: 'partners',
         slugs: pageSlugs('partners')
-      }
+      } as PageProps
     },
     revalidate
   };

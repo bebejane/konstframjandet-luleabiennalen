@@ -19,7 +19,7 @@ export default function Language({ menu }) {
 			{slugs.map((item, idx) =>
 				<Link
 					key={idx}
-					href={`${year.isArchive ? `/${year.title}` : ''}${item.value}`}
+					href={`/${year.title}${item.value}`}
 					locale={item.locale}
 					className={cn(locale === item.locale && s.selected)}
 				>

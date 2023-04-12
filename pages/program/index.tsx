@@ -60,8 +60,9 @@ export const getStaticProps = withGlobalProps({ queries: [AllProgramsDocument, A
     props: {
       ...props,
       page: {
+        section: 'program',
         slugs: pageSlugs('program')
-      }
+      } as PageProps
     },
     revalidate
   };
