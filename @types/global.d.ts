@@ -10,6 +10,8 @@ type PageProps = {
   title?: string
   isHome: boolean
   slugs?: PageSlugs[]
+  section: SectionId
+  parent?: boolean
 }
 
 type YearExtendedRecord = YearRecord & {

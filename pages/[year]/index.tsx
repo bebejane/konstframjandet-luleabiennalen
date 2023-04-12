@@ -1,6 +1,6 @@
 import { AllYearsDocument } from '/graphql';
 import { apiQuery } from 'dato-nextjs-utils/api';
-export { default, getStaticProps } from '/pages'
+export { default, getStaticProps } from '/pages/om'
 
 export async function getStaticPaths() {
 	const { years } = await apiQuery(AllYearsDocument)

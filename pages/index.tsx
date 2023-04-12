@@ -2,8 +2,6 @@ import s from "./index.module.scss";
 import cn from 'classnames'
 import withGlobalProps from "/lib/withGlobalProps";
 import { StartDataDocument, StartDocument } from "/graphql";
-import Link from "next/link";
-import format from "date-fns/format";
 import { apiQuery } from "dato-nextjs-utils/api";
 import { Block } from "/components";
 import { pageSlugs } from "/lib/i18n";
@@ -70,8 +68,9 @@ export const getStaticProps = withGlobalProps({ queries: [StartDocument] }, asyn
 				}))
 			},
 			page: {
-				slugs: pageSlugs('home')
-			}
+				section: 'home',
+				slugs: pageSlugs('home'),
+			} as PageProps
 		},
 		revalidate
 	}

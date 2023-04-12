@@ -19,47 +19,48 @@ export type SectionHeaderProps = {
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
 
   const router = useRouter()
-  const { asPath, locale } = router
+  const { asPath } = router
   const t = useTranslations('Menu')
   const [showMenu] = useStore((state) => [state.showMenu])
-  const { year, year: { title, color: { hex }, isArchive } } = usePage()
+  const { section, parent, year, year: { color: { hex }, isArchive } } = usePage()
 
-  const menuItem = pathToMenuItem(asPath, locale, menu)
-  const parentMenuItem = pathToParentMenuItem(asPath, locale, menu)
+  const isHome = section === 'home'
+  const isSearch = section === 'search'
+  const isArchiveOverview = section === 'archive'
+  const isOverview = !parent
 
-  const isHome = parentMenuItem?.id === 'home'
-  const isOverview = parentMenuItem?.slug && !parentMenuItem.sub && !isHome
-  const isSearch = parentMenuItem?.id === 'search'
-  const showArchive = isArchive || parentMenuItem?.id === 'archive'
-  const showLine = !parentMenuItem || isOverview
-
-
-
-  //@ts-ignore
-  const subLabel = t(parentMenuItem?.id) || t(parentMenuItem?.id.split('-')[0])
+  const showArchive = isArchive || isArchiveOverview
+  const showLine = isOverview && !isHome
+  const parentPath = asPath.split('/').slice(0, -1).join('/')
+  const subLabel = t(section)
   const yearLabel = `LB°${year.title.substring(2)}`
   const label = !isSearch ? `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}` : t('search')
   const speed = 0.6
 
+  const header = (
+    <h2>
+      <span style={{ color: hex }} key={label}>
+        {label.split('').map((c, idx) =>
+          <span
+            key={`${idx}`}
+            style={{
+              animationDelay: `${((idx / label.length) * speed)}s`,
+            }}
+          >{c}</span>
+        )}
+      </span>
+    </h2>
+  )
   return (
     <>
       <header className={cn(s.header, !showMenu && s.full)}>
         {isHome ? <Logo />
           :
-          <Link href={isOverview ? parentMenuItem?.slug : '#'}>
-            <h2>
-              <span style={{ color: hex }} key={label}>
-                {parentMenuItem && label.split('').map((c, idx) =>
-                  <span
-                    key={`${idx}`}
-                    style={{
-                      animationDelay: `${((idx / label.length) * speed)}s`,
-                    }}
-                  >{c}</span>
-                )}
-              </span>
-            </h2>
-          </Link>
+          !isOverview ?
+            <Link href={parentPath} transformHref={false}>
+              {header}
+            </Link>
+            : <>{header}</>
         }
         {showArchive && <span className={s.archive}>ARKIV</span>}
       </header>

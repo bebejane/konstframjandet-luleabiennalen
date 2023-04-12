@@ -23,7 +23,7 @@ export default function StartProgram({ data: { programs } }: Props) {
         </Link>
       </header>
       <CardContainer>
-        {programs.map(({ id, image, intro, title, slug, startDate, endDate, programCategory }) =>
+        {programs.map(({ id, image, intro, title, slug, year, startDate, endDate, programCategory }) =>
           <Card key={id}>
             <Thumbnail
               intro={intro}
@@ -32,7 +32,8 @@ export default function StartProgram({ data: { programs } }: Props) {
               titleLength={100}
               titleRows={3}
               meta={`${formatDate(startDate, endDate)} — ${programCategory.title}`}
-              slug={`/program/${slug}`}
+              slug={`/${year.title}/program/${slug}`}
+              transformHref={false}
             />
           </Card>
         )}

@@ -22,12 +22,13 @@ export default function StartNews({ data: { news } }: Props) {
         </Link>
       </header>
       <CardContainer hideLastOnDesktop={true}>
-        {news.map(({ id, intro, title, slug, }) =>
+        {news.map(({ id, intro, title, slug }) =>
           <Card key={id}>
             <Thumbnail
               intro={intro}
               title={title}
               slug={`/nyheter/${slug}`}
+              transformHref={false}
               titleLength={80}
               titleRows={2}
             />

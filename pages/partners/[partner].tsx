@@ -78,9 +78,11 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
       ...props,
       partner,
       page: {
+        section: 'partners',
+        parent: true,
         title: partner.title,
         slugs: pageSlugs('partners', partner._allSlugLocales)
-      }
+      } as PageProps
     }
   };
 });

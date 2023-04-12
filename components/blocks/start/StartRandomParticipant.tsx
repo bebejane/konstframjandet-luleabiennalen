@@ -22,13 +22,14 @@ export default function StartRandomParticipant({ data: { participants } }: Props
         </Link>
       </header>
       <CardContainer>
-        {participants.map(({ id, image, intro, name, slug, }) =>
+        {participants.map(({ id, image, intro, name, slug, year }) =>
           <Card key={id}>
             <Thumbnail
               image={image}
               title={name}
               intro={intro}
-              slug={`/medverkande/${slug}`}
+              slug={`/${year.title}/medverkande/${slug}`}
+              transformHref={false}
               titleLength={50}
               titleRows={1}
             />

@@ -13,8 +13,8 @@ const base: Menu = [
   { id: 'partners', label: 'Partners', slug: '/partners', general: false, root: true },
   { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
   { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
-  { id: 'archive', label: 'Arkiv', slug: '/arkiv', sub: [], root: false },
-  { id: 'search', label: 'Sök', slug: '/sok', root: true }
+  { id: 'archive', label: 'Arkiv', slug: '/arkiv', general: true, sub: [], root: false },
+  { id: 'search', label: 'Sök', slug: '/sok', general: true, root: true }
 ]
 
 export const buildMenu = async (locale: string) => {
@@ -35,17 +35,17 @@ export const buildMenu = async (locale: string) => {
     return {
       id: `about-archive-${year}`,
       label: `LB°${year.substring(2)}`,
-      slug: haveAboutOverview ? `/${year}/${i18nPaths.about[locale]}` : null,
-      altSlug: haveAboutOverview ? `/${year}/${i18nPaths.about[locales.find(l => l != locale)]}` : null,
+      slug: haveAboutOverview ? `/${year}` : null,
+      altSlug: haveAboutOverview ? `/${year}` : null,
       sub: buildYearMenu(el, locale, altLocale, true).filter(e => !e.general).map(e => ({
         ...e,
         id: `${e.id}-archive`,
-        slug: `/${year}${e.slug}`,
-        altSlug: `/${year}${e.altSlug}`,
+        slug: `/${e.slug}`,
+        altSlug: `/${e.altSlug}`,
         sub: e.sub?.map(e2 => ({
           ...e2,
-          slug: `/${year}${e2.slug}`,
-          altSlug: `/${year}${e2.altSlug}`
+          slug: `/${e2.slug}`,
+          altSlug: `/${e2.altSlug}`
         })) || null
       }))
         .filter(({ count }) => count || count === null)
@@ -58,13 +58,14 @@ export const buildMenu = async (locale: string) => {
 
 export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale: string, isArchive: boolean = false): MenuItem[] => {
 
-  const menu = base.filter(({ id }) => isArchive ? !['archive', 'search'].includes(id) : true).map(item => {
+  const menu = base.map(item => {
 
     let sub: MenuItem[];
+    const year = res.year.title
 
     if (item.slug) {
-      item.slug = `/${i18nPaths[item.id][locale]}`
-      item.altSlug = `/${i18nPaths[item.id][altLocale]}`
+      item.slug = `/${!item.general ? year + '/' : ''}${i18nPaths[item.id][locale]}`
+      item.altSlug = `/${!item.general ? year + '/' : ''}${i18nPaths[item.id][altLocale]}`
     }
 
     switch (item.id) {
@@ -73,8 +74,8 @@ export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale:
         sub = res.abouts.filter(({ year }) => isArchive ? year : true).map(el => ({
           id: `about-${el.slug}`,
           label: el.title,
-          slug: `/${i18nPaths.about[locale]}/${el.slug}`,
-          altSlug: `/${i18nPaths.about[altLocale]}/${el.altSlug}`,
+          slug: `/${year}/${i18nPaths.about[locale]}/${el.slug}`,
+          altSlug: `/${year}/${i18nPaths.about[altLocale]}/${el.altSlug}`,
           root: false
         }))
         break;

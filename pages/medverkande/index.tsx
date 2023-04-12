@@ -41,6 +41,7 @@ export const getStaticProps = withGlobalProps({ queries: [AllParticipantsDocumen
     props: {
       ...props,
       page: {
+        section: 'participants',
         slugs: pageSlugs('participants')
       } as PageProps
     },

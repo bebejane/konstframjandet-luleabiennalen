@@ -82,9 +82,11 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
       ...props,
       exhibition,
       page: {
+        section: 'exhibitions',
+        parent: true,
         title: exhibition.title,
         slugs: pageSlugs('exhibitions', exhibition._allSlugLocales),
-      }
+      } as PageProps
     }
   };
 });

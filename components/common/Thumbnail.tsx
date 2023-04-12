@@ -18,24 +18,21 @@ export type Props = {
   titleRows?: number
   intro?: string
   meta?: string
+  transformHref?: boolean
 }
 
-export default function Thumbnail({ image, slug, intro, title, titleLength, titleRows = 3, meta }: Props) {
+export default function Thumbnail({ image, slug, intro, title, titleLength, titleRows = 3, meta, transformHref = true }: Props) {
 
   const strippedIntro = remark().use(strip).processSync(intro).value as string
   const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(strippedIntro, 500)}` : undefined
 
   const { query: { year } } = useRouter()
-  const { year: { loadingImage, isArchive } } = usePage()
+  const { year: { loadingImage } } = usePage()
   const [loadingImageIndex] = useState(randomInt(0, loadingImage.length - 1))
   const [loaded, setLoaded] = useState(false);
-  const href = year ? `/${year}${slug}` : slug;
 
   return (
-    <Link
-      className={s.thumbnail}
-      href={href}
-    >
+    <Link href={slug} transformHref={transformHref} className={s.thumbnail}>
       <h3 className={cn(s[`rows-${titleRows}`])}>
         <span>
           {titleLength ? truncateWords(title, titleLength) : title}
@@ -52,15 +49,13 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, titl
               onLoad={() => setLoaded(true)}
             /><div className={s.border}></div>
           </>
-          {!isArchive &&
-            <Image
-              data={loadingImage[loadingImageIndex].responsiveImage}
-              className={cn(s.loader)}
-              pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
-              lazyLoad={false}
-              objectFit={'contain'}
-            />
-          }
+          <Image
+            data={loadingImage[loadingImageIndex].responsiveImage}
+            className={cn(s.loader)}
+            pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
+            lazyLoad={false}
+            objectFit={'contain'}
+          />
         </div>
       }
       {content &&
