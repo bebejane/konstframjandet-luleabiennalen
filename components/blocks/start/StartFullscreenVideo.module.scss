@@ -6,8 +6,10 @@
   height: 100vh;
   padding-bottom: 0 !important;
   padding-bottom: 0 !important;
-  margin-left: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
-  margin-right: calc(-1 * calc(var(--total-outer-margin) + var(--grid-unit)));
+  width: 100vw;
+
+  margin-left: calc(-1 * var(--outer-margin));
+  margin-right: calc(-1 * var(--outer-margin));
 
   @include mq($from: tablet) {
     width: calc(100% + (2 * var(--total-outer-margin)));

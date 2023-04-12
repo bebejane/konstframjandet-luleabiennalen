@@ -15,7 +15,7 @@ export default function StartFullscreenVideo({ data: { video, text, headline, li
 	const [showMenu] = useStore((state) => [state.showMenu])
 
 	return (
-		<section className={cn(s.fullScreenVideo, !showMenu && s.full)} ref={ref}>
+		<div className={cn(s.fullScreenVideo, !showMenu && s.full)} ref={ref}>
 			<DatoLink link={link}>
 				<VideoPlayer data={video} />
 			</DatoLink>
@@ -23,6 +23,6 @@ export default function StartFullscreenVideo({ data: { video, text, headline, li
 				<h2>{headline}</h2>
 				<Markdown className={s.text}>{text}</Markdown>
 			</div>
-		</section>
+		</div>
 	)
 }
