@@ -11,7 +11,7 @@ export default function BackButton(props: Props) {
   const segemnts = asPath.split('/'); segemnts.pop()
 
   return (
-    <Link href={segemnts.join('/')}>
+    <Link href={segemnts.join('/')} transformHref={false}>
       <button className="back">{children}</button>
     </Link>
   )

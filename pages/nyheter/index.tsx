@@ -32,7 +32,9 @@ export default function News({ news }: Props) {
                   {intro}
                 </Markdown>
               </div>
-              <Link href={`/nyheter/${slug}`}><button>{t('General.readMore')}</button></Link>
+              <Link href={`/nyheter/${slug}`} transformHref={false}>
+                <button>{t('General.readMore')}</button>
+              </Link>
             </li>
           )}
         </ul>
