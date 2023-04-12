@@ -22,6 +22,7 @@ export default function Related({ header, items }: Props) {
             <Link href={recordToSlug(items[idx])}>
               <figure>
                 {item.image && <Image data={item.image.responsiveImage} />}
+                <div className={s.border}></div>
               </figure>
               <figcaption>
                 {item.__typename === 'ParticipantRecord' ? item.name : item.title}
