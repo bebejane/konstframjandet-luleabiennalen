@@ -7,8 +7,9 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
   let path = null;
 
   const { slug: baseSlug, year: yearId } = item.attributes
-  const year = yearId ? (await allYears()).find(({ id }) => id === yearId) : undefined
-  const yearSlug = year && year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR ? `/${year.title}` : ''
+  const years = await allYears()
+  const year = yearId ? years.find(({ id }) => id === yearId) : undefined
+  const yearSlug = year && year.title !== years[0].title ? `/${year.title}` : ''
   const slug = typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug
 
   switch (itemType.attributes.api_key) {

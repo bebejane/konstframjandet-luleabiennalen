@@ -68,10 +68,8 @@
       }
     }
 
-    // About
-    &[data-level="2"],
-    &[data-level="3"] {
-      >li {
+    &[data-level="2"] {
+      li>a {
         font-weight: normal !important;
       }
     }
@@ -85,6 +83,10 @@
 
       a {
         line-height: initial;
+      }
+
+      &.bold>a {
+        font-weight: bold;
       }
 
       &.active,

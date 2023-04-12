@@ -112,8 +112,9 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 
 	const t = useTranslations('Menu')
 	const [isVisible, setIsVisible] = useState(false);
-	const isSelected = selected?.id == item.id //path === item.slug || path === `/${locale}${item.slug}`
-	const isLink = item.slug && (!item.sub || item.id === 'archive')
+	const isSelected = selected?.id == item.id
+	const isLink = item.slug //&& (!item.sub || item.id === 'archive')
+	const isBold = level === 0 || item.sub?.length > 0
 	const label = t(item.id) || item.label
 
 	const expand = () => {
@@ -121,11 +122,10 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 		nodes.forEach(el => (el.parentNode as HTMLLIElement).click())
 		setIsVisible(!isVisible)
 		setSelected(item)
-
 	}
 
 	return (
-		<li onClick={expand} data-parent={item.id} className={cn(isSelected && s.active, level === 0 && s.bold)}>
+		<li onClick={expand} data-parent={item.id} className={cn(isSelected && s.active, isBold && s.bold)}>
 			{isLink ? <Link href={item.slug}>{label}</Link> : <>{label}</>}
 			{item?.sub && isVisible &&
 				<ul data-level={++level} onClick={e => e.stopPropagation()}>

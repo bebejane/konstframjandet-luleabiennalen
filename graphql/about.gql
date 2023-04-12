@@ -1,10 +1,9 @@
-query AllAbouts($first: IntType = 100, $skip: IntType = 0, $year: ItemId, $locale: SiteLocale) {
+query AllAbouts($first: IntType = 100, $skip: IntType = 0, $yearId: ItemId, $locale: SiteLocale) {
 	abouts: allAbouts(
-		filter: { year: { eq: $year } }
+		filter: { year: { eq: $yearId } }
 		locale: $locale
 		first: $first
 		skip: $skip
-		orderBy: [_createdAt_DESC]
 	) {
 		...AboutFragmentLight
 	}

@@ -56,6 +56,7 @@ type AboutModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
   intro?: InputMaybe<TextFilter>;
+  position?: InputMaybe<PositionFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
   year?: InputMaybe<LinkFilter>;
@@ -80,6 +81,8 @@ enum AboutModelOrderBy {
   _updatedAt_DESC = '_updatedAt_DESC',
   id_ASC = 'id_ASC',
   id_DESC = 'id_DESC',
+  position_ASC = 'position_ASC',
+  position_DESC = 'position_DESC',
   title_ASC = 'title_ASC',
   title_DESC = 'title_DESC'
 }
@@ -106,6 +109,7 @@ type AboutRecord = RecordInterface & {
   id: Scalars['ItemId'];
   image?: Maybe<FileField>;
   intro: Scalars['String'];
+  position?: Maybe<Scalars['IntType']>;
   slug: Scalars['String'];
   title: Scalars['String'];
   year?: Maybe<YearRecord>;
@@ -3448,6 +3452,22 @@ type PartnerRecordslugArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Specifies how to filter by position (sorted and tree-like collections) */
+type PositionFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['IntType']>;
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['IntType']>;
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['IntType']>;
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['IntType']>;
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['IntType']>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['IntType']>;
+};
+
 type ProgramCategoryModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<ProgramCategoryModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
@@ -5396,7 +5416,7 @@ type focalPoint = {
 type AllAboutsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']>;
   skip?: InputMaybe<Scalars['IntType']>;
-  year?: InputMaybe<Scalars['ItemId']>;
+  yearId?: InputMaybe<Scalars['ItemId']>;
   locale?: InputMaybe<SiteLocale>;
 }>;
 

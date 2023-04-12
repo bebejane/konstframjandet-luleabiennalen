@@ -18,7 +18,7 @@ export type LayoutProps = {
 export default function Layout({ children, menu: menuFromProps, footer, title }: LayoutProps) {
 
 	const router = useRouter()
-	const { year: { background }, isArchive } = usePage()
+	const { year, isArchive } = usePage()
 	const [menu, setMenu] = useState(menuFromProps)
 	const [images, imageId, setImageId, searchQuery] = useStore((state) => [state.images, state.imageId, state.setImageId, state.searchQuery])
 
@@ -32,7 +32,7 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 
 	if (!menuFromProps || !footer) return null
 
-	const backgroundImage = background[0];
+	const backgroundImage = year?.background[0];
 
 	return (
 		<>

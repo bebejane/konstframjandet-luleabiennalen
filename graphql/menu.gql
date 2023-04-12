@@ -3,7 +3,6 @@ query Menu($locale: SiteLocale, $altLocale: SiteLocale, $yearId: ItemId) {
 		filter: { OR: [{ year: { eq: $yearId } }, { year: { exists: false } }] }
 		locale: $locale
 		first: 100
-		orderBy: [_createdAt_DESC]
 	) {
 		id
 		title
