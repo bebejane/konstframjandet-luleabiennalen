@@ -8,7 +8,9 @@ export type Props = {
 }
 
 export default function DatoLink({ link, className, children }: Props) {
-  if (!link) return null
+
+  if (!link)
+    return <a className={className}>{children}</a>
 
   const slug = link.__typename === 'ExternalLinkRecord' ? link.url : recordToSlug(link.record)
   const title = link.__typename === 'ExternalLinkRecord' ? link.title : link.internalTitle || (link.record.__typename === 'ParticipantRecord' ? link.record.name : link.record.title)
