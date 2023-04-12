@@ -3,7 +3,7 @@ import { Layout } from '/components';
 import { PageProvider, usePage } from '/lib/context/page'
 import { NextIntlProvider } from 'next-intl';
 import { DefaultDatoSEO } from 'dato-nextjs-utils/components';
-import { sv, enGB } from 'date-fns/locale'
+import { sv, enGB as en } from 'date-fns/locale'
 import setDefaultOptions from 'date-fns/setDefaultOptions';
 import { useRouter } from 'next/router';
 import { locales, defaultLocale } from '/lib/utils';
@@ -13,11 +13,9 @@ setDefaultOptions({ locale: sv })
 function onMessageError() { }
 function getMessageFallback({ namespace, key, error }) { return '' }
 
-
-
 function App({ Component, pageProps, router }) {
 
-  setDefaultOptions({ locale: router.locale === 'sv' ? sv : enGB })
+  setDefaultOptions({ locale: router.locale === 'sv' ? sv : en })
 
   const page = pageProps.page || {} as PageProps
   const { asPath } = useRouter()
@@ -26,8 +24,7 @@ function App({ Component, pageProps, router }) {
   const errorCode = parseInt(router.pathname.replace('/', ''))
   const isError = (!isNaN(errorCode) && (errorCode > 400 && errorCode < 600)) || router.pathname.replace('/', '') === '_error'
 
-  if (isError)
-    return <Component {...pageProps} />
+  if (isError) return <Component {...pageProps} />
 
   return (
     <>

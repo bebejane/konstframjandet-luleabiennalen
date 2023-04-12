@@ -34,7 +34,6 @@ export default function Search({ query }: Props) {
     if (!Object.keys(variables).filter(k => variables[k] !== undefined).length)
       return setLoading(false)
 
-    console.log(variables)
     fetch('/api/search', {
       body: JSON.stringify(variables),
       method: 'POST',

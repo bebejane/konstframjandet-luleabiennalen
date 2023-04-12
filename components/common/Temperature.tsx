@@ -13,7 +13,7 @@ export default function Temperature() {
       const { current_weather: { temperature } } = await res.json()
       setTemp(temperature)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 

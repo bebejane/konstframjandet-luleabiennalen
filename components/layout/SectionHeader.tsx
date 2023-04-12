@@ -37,7 +37,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const yearLabel = `LB°${year.title.substring(2)}`
   const label = !isSearch ? `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}` : t('search')
   const speed = 0.6
-  console.log(parentMenuItem)
+
   return (
     <>
       <header className={cn(s.header, !showMenu && s.full)}>
