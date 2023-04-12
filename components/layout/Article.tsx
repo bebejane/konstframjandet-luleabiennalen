@@ -68,7 +68,7 @@ export default function Article({ id, children, title, content, image, imageSize
               pictureClassName={s.picture}
               pictureStyle={{ padding }}
             />
-            <figcaption ref={captionRef} style={{ opacity, transform: `translateY(-${padding})` }}>{image.title}</figcaption>
+            <figcaption ref={captionRef} style={{ transform: `translateY(-${padding})` }}>{image.title}</figcaption>
           </figure>
         }
         <section className="intro">
