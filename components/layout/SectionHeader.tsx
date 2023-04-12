@@ -22,7 +22,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const { asPath, locale } = router
   const t = useTranslations('Menu')
   const [showMenu] = useStore((state) => [state.showMenu])
-  const { year, year: { title, color: { hex } }, isArchive } = usePage()
+  const { year, year: { title, color: { hex }, isArchive } } = usePage()
   const menuItem = pathToParentMenuItem(asPath, locale, menu)
 
   const isHome = menuItem?.id === 'home'

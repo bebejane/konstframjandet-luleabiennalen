@@ -12,14 +12,14 @@ export type Props = {
 
 export default function Language({ menu }) {
 	const { locale, locales } = useRouter()
-	const { slugs, year, isArchive } = usePage()
+	const { slugs, year } = usePage()
 
 	return (
 		<nav className={s.language}>
 			{slugs.map((item, idx) =>
 				<Link
 					key={idx}
-					href={`${isArchive ? `/${year.title}` : ''}${item.value}`}
+					href={`${year.isArchive ? `/${year.title}` : ''}${item.value}`}
 					locale={item.locale}
 					className={cn(locale === item.locale && s.selected)}
 				>

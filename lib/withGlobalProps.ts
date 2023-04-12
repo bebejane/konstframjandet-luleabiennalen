@@ -20,13 +20,13 @@ export default function withGlobalProps(opt: any, callback: Function): GetStatic
   return async (context: GetStaticPropsContext) => {
 
     const years = await allYears()
-    const year = years.find(({ title }) => context.params?.year ? title === context.params?.year : title === years[0].title)
+    let year = years.find(({ title }) => context.params?.year ? title === context.params?.year : title === years[0].title)
 
     if (!year) {
       return { notFound: true };
     }
 
-    year.isArchive = year.title !== years[0].title
+    year = { ...year, isArchive: year.title !== years[0].title } as YearExtendedRecord
 
     const variables = queries.map(el => ({ locale: context.locale, yearId: year.id }))
     const props = await apiQuery(queries, { preview: context.preview, variables });

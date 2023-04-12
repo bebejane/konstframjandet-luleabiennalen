@@ -6,14 +6,13 @@ type PageSlug = {
 }
 
 type PageProps = {
-  year: YearRecord
+  year: YearExtendedRecord
   title?: string
-  isArchive?: boolean
   isHome: boolean
-  slugs: PageSlugs[]
+  slugs?: PageSlugs[]
 }
 
-type YearExtendedRecords = YearRecord & {
+type YearExtendedRecord = YearRecord & {
   isArchive: boolean
 }
 
