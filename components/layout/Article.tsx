@@ -37,7 +37,7 @@ export default function Article({ id, children, title, content, image, imageSize
   const [offset, setOffset] = useState(0)
   const ratio = offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight))) : 0
   const padding = `${ratio * 100}px`;
-  const opacity = Math.max(0, 1 - (ratio * 1.5));
+  const opacity = Math.max(0, 1 - (ratio * 1));
 
   useEffect(() => {
     const images = [image]
@@ -68,7 +68,7 @@ export default function Article({ id, children, title, content, image, imageSize
               pictureClassName={s.picture}
               pictureStyle={{ padding }}
             />
-            <figcaption ref={captionRef} style={{ opacity }}>{image.title}</figcaption>
+            <figcaption ref={captionRef} style={{ opacity, transform: `translateY(-${padding})` }}>{image.title}</figcaption>
           </figure>
         }
         <section className="intro">

@@ -3,30 +3,6 @@ import { MenuDocument } from "/graphql";
 import i18nPaths from '/lib/i18n/paths.json'
 import { allYears, locales } from '/lib/utils';
 
-export type Menu = MenuItem[]
-export type MenuQueryResponse = {
-  abouts: (AboutRecord & { altSlug: string })[]
-  years: YearRecord[]
-  year: YearRecord
-  aboutMeta: { count: number }
-  progamMeta: { count: number }
-  participantsMeta: { count: number }
-  exhibitionsMeta: { count: number }
-  locationsMeta: { count: number }
-}
-
-export type MenuItem = {
-  id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'partners' | 'archive' | 'search'
-  label: string
-  slug?: string
-  altSlug?: string
-  year?: string
-  sub?: MenuItem[]
-  count?: number
-  root: boolean
-  general?: boolean
-}
-
 const base: Menu = [
   { id: 'home', label: 'Hem', slug: '/', general: true, root: true },
   { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true, root: true },
@@ -34,7 +10,7 @@ const base: Menu = [
   { id: 'program', label: 'Program', slug: '/program', root: true },
   { id: 'participants', label: 'Medverkande', slug: '/medverkande', root: true },
   { id: 'locations', label: 'Platser', slug: '/platser', root: true },
-  { id: 'partners', label: 'Partners', slug: '/partners', general: true, root: true },
+  { id: 'partners', label: 'Partners', slug: '/partners', general: false, root: true },
   { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
   { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
   { id: 'archive', label: 'Arkiv', slug: '/arkiv', sub: [], root: false },
@@ -44,7 +20,6 @@ const base: Menu = [
 export const buildMenu = async (locale: string) => {
 
   const altLocale = locales.find(l => locale != l)
-
   const years = await allYears()
   const year = years[0]
   const res: MenuQueryResponse = await apiQuery(MenuDocument, { variables: { yearId: year.id, locale, altLocale } });
@@ -55,14 +30,16 @@ export const buildMenu = async (locale: string) => {
   //@ts-ignore
   menu[archiveIndex].sub = archive.map(el => {
     const year = el.year.title;
+    const haveAboutOverview = el.abouts.filter(({ year }) => year).length > 0
+
     return {
-      id: `archive-${year}`,
+      id: `about-archive-${year}`,
       label: `LB°${year.substring(2)}`,
-      slug: `/${year}/${i18nPaths.about[locale]}`,
-      altSlug: `/${year}/${i18nPaths.about[locales.find(l => l != locale)]}`,
+      slug: haveAboutOverview ? `/${year}/${i18nPaths.about[locale]}` : null,
+      altSlug: haveAboutOverview ? `/${year}/${i18nPaths.about[locales.find(l => l != locale)]}` : null,
       sub: buildYearMenu(el, locale, altLocale, true).filter(e => !e.general).map(e => ({
         ...e,
-        id: `archive-${e.id}`,
+        id: `${e.id}-archive`,
         slug: `/${year}${e.slug}`,
         altSlug: `/${year}${e.altSlug}`,
         sub: e.sub?.map(e2 => ({
@@ -111,5 +88,31 @@ export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale:
       count: res[`${item.id}Meta`]?.count ?? null
     }
   })
-  return menu
+
+  return menu.filter(({ count }) => count || count === null);
+}
+
+
+export type Menu = MenuItem[]
+export type MenuQueryResponse = {
+  abouts: (AboutRecord & { altSlug: string })[]
+  years: YearRecord[]
+  year: YearRecord
+  aboutMeta: { count: number }
+  progamMeta: { count: number }
+  participantsMeta: { count: number }
+  exhibitionsMeta: { count: number }
+  locationsMeta: { count: number }
+}
+
+export type MenuItem = {
+  id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'partners' | 'archive' | 'search'
+  label: string
+  slug?: string
+  altSlug?: string
+  year?: string
+  sub?: MenuItem[]
+  count?: number
+  root: boolean
+  general?: boolean
 }

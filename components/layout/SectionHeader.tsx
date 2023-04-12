@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { MenuItem } from '/lib/menu'
 import { useTranslations } from 'next-intl'
 import { usePage } from '/lib/context/page'
-import { pathToParentMenuItem } from '/lib/utils'
+import { pathToMenuItem, pathToParentMenuItem } from '/lib/utils'
 import useStore from '/lib/store'
 
 import Logo from '/public/images/logo-text.svg'
@@ -23,15 +23,20 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const t = useTranslations('Menu')
   const [showMenu] = useStore((state) => [state.showMenu])
   const { year, year: { title, color: { hex }, isArchive } } = usePage()
-  const menuItem = pathToParentMenuItem(asPath, locale, menu)
 
-  const isHome = menuItem?.id === 'home'
-  const isOverview = menuItem?.slug && !menuItem.sub && !isHome
-  const showLine = !menuItem || isOverview
-  const isSearch = menuItem?.id === 'search'
+  const menuItem = pathToMenuItem(asPath, locale, menu)
+  const parentMenuItem = pathToParentMenuItem(asPath, locale, menu)
+
+  const isHome = parentMenuItem?.id === 'home'
+  const isOverview = parentMenuItem?.slug && !parentMenuItem.sub && !isHome
+  const isSearch = parentMenuItem?.id === 'search'
+  const showArchive = isArchive || parentMenuItem?.id === 'archive'
+  const showLine = !parentMenuItem || isOverview
+
+
 
   //@ts-ignore
-  const subLabel = t(menuItem?.id) || t(menuItem?.id.split('-')[0])
+  const subLabel = t(parentMenuItem?.id) || t(parentMenuItem?.id.split('-')[0])
   const yearLabel = `LB°${year.title.substring(2)}`
   const label = !isSearch ? `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}` : t('search')
   const speed = 0.6
@@ -41,10 +46,10 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
       <header className={cn(s.header, !showMenu && s.full)}>
         {isHome ? <Logo />
           :
-          <Link href={isOverview ? menuItem?.slug : '#'}>
+          <Link href={isOverview ? parentMenuItem?.slug : '#'}>
             <h2>
               <span style={{ color: hex }} key={label}>
-                {menuItem && label.split('').map((c, idx) =>
+                {parentMenuItem && label.split('').map((c, idx) =>
                   <span
                     key={`${idx}`}
                     style={{
@@ -56,7 +61,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
             </h2>
           </Link>
         }
-        {isArchive && <span className={s.archive}>ARKIV</span>}
+        {showArchive && <span className={s.archive}>ARKIV</span>}
       </header>
       {!isHome && <div className={s.spacer}></div>}
       {showLine && <div className={s.line}></div>}

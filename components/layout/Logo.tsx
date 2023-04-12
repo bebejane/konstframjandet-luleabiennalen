@@ -9,10 +9,10 @@ export type Props = {
 }
 
 export default function Logo({ }: Props) {
-  const { year: { color: { hex } }, isHome } = usePage()
+  const { year: { color: { hex }, isArchive }, isHome } = usePage()
 
   return (
-    <div className={cn(s.container, isHome && s.home)} style={{ fill: hex }}>
+    <div className={cn(s.container, isHome && s.home)} style={isArchive ? { fill: hex } : undefined}>
       <Link href={'/'}><LogoIcon /></Link>
     </div>
   )

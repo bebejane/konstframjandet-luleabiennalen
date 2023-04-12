@@ -11,7 +11,7 @@ export type Props = {
   about: AboutRecord
 }
 
-export default function AboutItem({ about: { id, image, title, intro, content, _seoMetaTags, _allSlugLocales } }: Props) {
+export default function AboutItem({ about: { id, image, title, intro, content, _seoMetaTags } }: Props) {
 
   return (
     <>
