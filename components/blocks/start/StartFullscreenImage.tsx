@@ -1,15 +1,16 @@
 import s from './StartFullscreenImage.module.scss'
 import React from 'react'
 import { Image } from 'react-datocms';
+import DatoLink from '/components/nav/DatoLink';
 
 export type Props = {
   data: StartFullscreenImageRecord
 }
 
-export default function StartFullscreenImage({ data: { id, image, text, headline } }: Props) {
+export default function StartFullscreenImage({ data: { id, image, text, headline, link } }: Props) {
 
   return (
-    <div className={s.container}>
+    <DatoLink link={link} className={s.container}>
       <figure>
         <Image data={image.responsiveImage} className={s.image} />
         <figcaption>
@@ -18,6 +19,6 @@ export default function StartFullscreenImage({ data: { id, image, text, headline
           <div className={s.fade}></div>
         </figcaption>
       </figure>
-    </div>
+    </DatoLink>
   )
 }
