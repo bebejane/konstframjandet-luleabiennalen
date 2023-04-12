@@ -27,8 +27,8 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 	}, [router.locale])
 
 	useEffect(() => {
-		document.body.style.backgroundColor = year.isArchive ? 'var(--archive)' : 'var(--white)'
-	}, [router.asPath, year.isArchive])
+		document.body.style.backgroundColor = year?.isArchive ? 'var(--archive)' : 'var(--white)'
+	}, [router.asPath, year])
 
 	if (!menuFromProps || !footer) return null
 

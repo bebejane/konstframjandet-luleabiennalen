@@ -7,6 +7,7 @@ import { DatoSEO } from "dato-nextjs-utils/components";
 import { useTranslations } from "next-intl";
 import { Image } from "react-datocms";
 import { pageSlugs } from "/lib/i18n";
+import { usePage } from "/lib/context/page";
 
 export type Props = {
   partners: PartnerRecord[]
@@ -17,6 +18,7 @@ export default function Partners({ partners, financiers: { fundedBy } }: Props) 
 
   const t = useTranslations()
   const { asPath } = useRouter()
+  const { year } = usePage()
 
   return (
     <>
@@ -35,7 +37,7 @@ export default function Partners({ partners, financiers: { fundedBy } }: Props) 
         )}
       </CardContainer>
       <section className={s.financiers}>
-        <h3>{t('Partners.fundedBy')}</h3>
+        <h3>Luleåbiennalen {year.title} {t('Partners.supportedBy')}</h3>
         <ul>
           {fundedBy.map(({ id, url, logo }) =>
             <li key={id}>
