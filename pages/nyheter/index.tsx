@@ -7,6 +7,7 @@ import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import format from "date-fns/format";
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   news: (NewsRecord & ThumbnailImage)[]
@@ -43,7 +44,12 @@ export default function News({ news }: Props) {
 export const getStaticProps = withGlobalProps({ queries: [AllNewsDocument] }, async ({ props, revalidate }: any) => {
 
   return {
-    props,
+    props: {
+      ...props,
+      page: {
+        slugs: pageSlugs('news')
+      }
+    },
     revalidate
   }
 });

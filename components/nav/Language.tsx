@@ -4,28 +4,26 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { capitalize, pathToMenuItem, defaultLocale } from '/lib/utils'
 import { Menu } from '/lib/menu'
+import { usePage } from '/lib/context/page'
 
 export type Props = {
 	menu: Menu
 }
 
 export default function Language({ menu }) {
-	const { locale, locales, asPath } = useRouter()
-	const menuItem = pathToMenuItem(asPath, locale, menu)
-	console.log(asPath)
-	console.log(menuItem)
+	const { locale, locales } = useRouter()
+	const { slugs, year } = usePage()
 
 	return (
 		<nav className={s.language}>
-			{locales.map((l, idx) =>
+			{slugs.map((item, idx) =>
 				<Link
 					key={idx}
-					//href={(l !== locale ? menuItem?.altSlug : menuItem?.slug) ?? '/'}
-					href={'/'}
-					locale={l}
-					className={cn(locale === l && s.selected)}
+					href={`${year.isArchive ? `/${year.title}` : ''}${item.value}`}
+					locale={item.locale}
+					className={cn(locale === item.locale && s.selected)}
 				>
-					{capitalize(l)}
+					{capitalize(item.locale)}
 				</Link>
 			)}
 		</nav>

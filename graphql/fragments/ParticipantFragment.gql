@@ -1,7 +1,13 @@
 fragment ParticipantFragment on ParticipantRecord {
+	_createdAt
 	id
 	name
 	intro(markdown: false)
+	slug
+	_allSlugLocales {
+		locale
+		value
+	}
 	image {
 		...ImageFragment
 	}
@@ -102,6 +108,9 @@ fragment ParticipantFragment on ParticipantRecord {
 			}
 		}
 	}
-	slug
-	_createdAt
+	_seoMetaTags {
+		attributes
+		content
+		tag
+	}
 }

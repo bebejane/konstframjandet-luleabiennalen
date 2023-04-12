@@ -22,7 +22,7 @@ export default function Video({ data }: Props) {
 	const { provider, providerUid } = data.video
 	const { title } = data;
 	const style = { height: `${videoHeight}px`, width: '100%' }
-
+	return null
 	return (
 		<div className={s.video} ref={ref} >
 			{provider === 'youtube' ?

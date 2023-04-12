@@ -26,7 +26,7 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, titl
   const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(strippedIntro, 500)}` : undefined
 
   const { query: { year } } = useRouter()
-  const { year: { loadingImage }, isArchive } = usePage()
+  const { year: { loadingImage, isArchive } } = usePage()
   const [loadingImageIndex] = useState(randomInt(0, loadingImage.length - 1))
   const [loaded, setLoaded] = useState(false);
   const href = year ? `/${year}${slug}` : slug;

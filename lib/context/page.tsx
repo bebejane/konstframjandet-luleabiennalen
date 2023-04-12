@@ -3,8 +3,7 @@ import { useContext, createContext } from "react";
 const initialState: PageProps = {
   year: undefined,
   title: undefined,
-  isArchive: false,
-  isHome: false
+  isHome: false,
 }
 
 export const PageContext = createContext(initialState);
@@ -20,8 +19,7 @@ export const PageProvider = ({ children, value }: PageProviderProps) => {
   return (
     <PageContext.Provider value={{
       ...initialState,
-      ...value,
-      isArchive: value.year?.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR
+      ...value
     }}>
       {children}
     </PageContext.Provider>

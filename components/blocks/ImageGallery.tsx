@@ -3,9 +3,10 @@ import "swiper/css";
 import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import type { Swiper } from 'swiper';
 import cn from 'classnames'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { Image } from 'react-datocms'
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
+import { useWindowSize } from 'rooks';
 
 export type ImageGalleryBlockProps = {
 	id: string,
@@ -17,13 +18,29 @@ export default function ImageGallery({ data: { id, images }, onClick }: ImageGal
 
 	const swiperRef = useRef<Swiper | null>(null)
 	const containerRef = useRef<HTMLDivElement | null>(null)
+	const arrowRef = useRef<HTMLDivElement | null>(null)
 	const [index, setIndex] = useState(0)
+
+	const [arrowMarginTop, setArrowMarginTop] = useState(0)
+	const { innerHeight, innerWidth } = useWindowSize()
+	const [captionHeight, setCaptionHeight] = useState<number | undefined>()
+
+	const calculatePositions = useCallback(() => {
+
+		if (!arrowRef.current) return
+
+		const images = Array.from(containerRef.current.querySelectorAll<HTMLImageElement>('picture>img'))
+		const maxImageHeight = Math.max(...images.map(img => img.clientHeight))
+		setArrowMarginTop(maxImageHeight / 2 - (arrowRef.current.clientHeight / 2))
+
+	}, [setArrowMarginTop])
+
+	useEffect(() => {
+		calculatePositions()
+	}, [innerHeight, innerWidth, calculatePositions])
 
 	return (
 		<div className={s.gallery} ref={containerRef}>
-			{images.length > 3 &&
-				<div className={s.prev} onClick={() => swiperRef.current?.slidePrev()}>←</div>
-			}
 			<div className={s.fade}></div>
 			<SwiperReact
 				id={`${id}-swiper-wrap`}
@@ -45,6 +62,7 @@ export default function ImageGallery({ data: { id, images }, onClick }: ImageGal
 								pictureClassName={s.picture}
 								placeholderClassName={s.picture}
 								objectFit={'cover'}
+								onLoad={calculatePositions}
 							/>
 							<figcaption>
 								{item.title && <Markdown allowedElements={['em', 'p']}>{item.title}</Markdown>}
@@ -54,7 +72,10 @@ export default function ImageGallery({ data: { id, images }, onClick }: ImageGal
 				)}
 			</SwiperReact>
 			{images.length > 3 &&
-				<div className={s.next} onClick={() => swiperRef.current?.slideNext()}>→</div>
+				<>
+					<div ref={arrowRef} className={s.prev} style={{ top: arrowMarginTop }} onClick={() => swiperRef.current?.slidePrev()}>←</div>
+					<div className={s.next} style={{ top: arrowMarginTop }} onClick={() => swiperRef.current?.slideNext()}>→</div>
+				</>
 			}
 		</div>
 	)

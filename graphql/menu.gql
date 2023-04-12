@@ -3,7 +3,6 @@ query Menu($locale: SiteLocale, $altLocale: SiteLocale, $yearId: ItemId) {
 		filter: { OR: [{ year: { eq: $yearId } }, { year: { exists: false } }] }
 		locale: $locale
 		first: 100
-		orderBy: [_createdAt_DESC]
 	) {
 		id
 		title
@@ -24,7 +23,6 @@ query Menu($locale: SiteLocale, $altLocale: SiteLocale, $yearId: ItemId) {
 	year(filter: { id: { eq: $yearId } }, locale: $locale, orderBy: title_DESC) {
 		title
 	}
-
 	aboutMeta: _allAboutsMeta(filter: { year: { eq: $yearId } }) {
 		count
 	}

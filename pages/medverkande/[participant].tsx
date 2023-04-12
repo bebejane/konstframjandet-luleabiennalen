@@ -5,6 +5,7 @@ import { ParticipantDocument, AllParticipantsDocument } from "/graphql";
 import { Article, Related, BackButton } from '/components';
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
+import { pageSlugs } from "/lib/i18n";
 
 export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]
@@ -20,6 +21,7 @@ export default function Participant({ participant: { id, image, name, intro, con
 
   return (
     <>
+      <DatoSEO title={name} description={intro} seo={_seoMetaTags} />
       <Article
         id={id}
         key={id}
@@ -58,7 +60,10 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
     props: {
       ...props,
       participant,
-      pageTitle: participant.name
+      page: {
+        title: participant.name,
+        slugs: pageSlugs('participants', participant._allSlugLocales)
+      } as PageProps
     },
     revalidate
   };

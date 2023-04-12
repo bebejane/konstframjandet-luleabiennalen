@@ -5,6 +5,7 @@ import { LocationDocument, AllLocationsDocument } from "/graphql";
 import { Article, Related, BackButton } from '/components';
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
+import { pageSlugs } from "/lib/i18n";
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]
@@ -20,6 +21,7 @@ export default function Location({ location: { id, image, title, intro, content,
 
   return (
     <>
+      <DatoSEO title={title} description={intro} seo={_seoMetaTags} />
       <Article
         id={id}
         key={id}
@@ -59,7 +61,10 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
     props: {
       ...props,
       location,
-      pageTitle: location.title
+      page: {
+        title: location.title,
+        slugs: pageSlugs('locations', location._allSlugLocales)
+      }
     },
     revalidate
   };

@@ -3,24 +3,29 @@ import withGlobalProps from "/lib/withGlobalProps";
 import { ContactDocument } from "/graphql";
 import { Article } from "/components";
 import { apiQuery } from "dato-nextjs-utils/api";
+import { pageSlugs } from "/lib/i18n";
+import { DatoSEO } from "dato-nextjs-utils/components";
 
 export type Props = {
   contact: ContactRecord
 }
 
-export default function Program({ contact: { id, title, image, intro, content } }: Props) {
+export default function Program({ contact: { id, title, image, intro, content, _seoMetaTags } }: Props) {
 
   return (
-    <Article
-      id={id}
-      key={id}
-      title={title}
-      image={image}
-      intro={intro}
-      imageSize="small"
-      content={content}
-      onClick={(imageId) => { }}
-    />
+    <>
+      <DatoSEO title={title} description={intro} seo={_seoMetaTags} />
+      <Article
+        id={id}
+        key={id}
+        title={title}
+        image={image}
+        intro={intro}
+        imageSize="small"
+        content={content}
+        onClick={(imageId) => { }}
+      />
+    </>
   );
 }
 
@@ -30,7 +35,10 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
   return {
     props: {
       ...props,
-      contact
+      contact,
+      page: {
+        slugs: pageSlugs('contact')
+      } as PageProps
     },
     revalidate
   };

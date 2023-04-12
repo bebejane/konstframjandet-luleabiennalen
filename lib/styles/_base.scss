@@ -17,6 +17,7 @@
 	--gutter: 4vw;
 	--gutter-half: 4vw;
 	--header-height: calc((var(--outer-margin) * 2) + 0.75rem); //snygga upp sen
+	--fullscreen-transition: all 0.3s ease-in-out;
 
 	--background: var(--white);
 	--foreground: var(--black);
@@ -146,7 +147,8 @@ button {
 		padding-top: 1em;
 	}
 
-	transition: color 0.2s ease-in-out, background-color 0.3s ease-in-out;
+	transition: color 0.2s ease-in-out,
+	background-color 0.3s ease-in-out;
 
 	&.back {
 		width: var(--body-width);

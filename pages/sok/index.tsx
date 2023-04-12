@@ -9,6 +9,7 @@ import useStore from "/lib/store";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 import type { SearchResult } from "/pages/api/search";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   query?: string
@@ -126,7 +127,12 @@ export default function Search({ query }: Props) {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   return {
-    props,
+    props: {
+      ...props,
+      page: {
+        slugs: pageSlugs('search')
+      }
+    },
     revalidate
   };
 });

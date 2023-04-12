@@ -19,19 +19,21 @@ function App({ Component, pageProps, router }) {
 
   setDefaultOptions({ locale: router.locale === 'sv' ? sv : enGB })
 
+  const page = pageProps.page || {} as PageProps
   const { asPath } = useRouter()
   const siteTitle = 'Luleåbiennalen'
   const isHome = asPath === '/' || locales.find(l => asPath === `/${l}`) !== undefined
   const errorCode = parseInt(router.pathname.replace('/', ''))
   const isError = (!isNaN(errorCode) && (errorCode > 400 && errorCode < 600)) || router.pathname.replace('/', '') === '_error'
 
-  if (isError) return <Component {...pageProps} />
+  if (isError)
+    return <Component {...pageProps} />
 
   return (
     <>
-      <DefaultDatoSEO siteTitle={siteTitle} />
+      <DefaultDatoSEO siteTitle={siteTitle} site={pageProps.site} />
       <NextIntlProvider messages={pageProps.messages} onError={onMessageError} getMessageFallback={getMessageFallback}>
-        <PageProvider value={{ year: pageProps.year, title: siteTitle, isHome }}>
+        <PageProvider value={{ ...page, year: pageProps.year, isHome }}>
           <Layout title={siteTitle} menu={pageProps.menu || []} footer={pageProps.footer}>
             <Component {...pageProps} />
           </Layout>

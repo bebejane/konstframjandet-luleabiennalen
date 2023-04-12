@@ -6,6 +6,7 @@ import Link from "next/link";
 import format from "date-fns/format";
 import { apiQuery } from "dato-nextjs-utils/api";
 import { Block } from "/components";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
 	start: StartRecord
@@ -34,10 +35,18 @@ export const getStaticProps = withGlobalProps({ queries: [StartDocument] }, asyn
 
 	let { start }: { start: StartRecord } = props;
 	const date = '2022-01-01' //format(new Date(), 'yyyy-MM-dd')
-	const participantCount = parseInt((start.content.find(el => el.__typename === 'StartRandomParticipantRecord') as StartRandomParticipantRecord).amount)
+	const count = {
+		participants: parseInt((start.content.find(el => el.__typename === 'StartRandomParticipantRecord') as StartRandomParticipantRecord).amount),
+		news: parseInt((start.content.find(el => el.__typename === 'StartNewsRecord') as StartNewsRecord).amount),
+		programs: parseInt((start.content.find(el => el.__typename === 'StartProgramRecord') as StartProgramRecord).amount)
+	}
+
+	// Add extra items to make sure we have enough to fill the grid
+	Object.keys(count).forEach(k => count[k] += count[k] % 2 === 0 ? 0 : 1)
+
 	const variables = {
-		newsItems: parseInt((start.content.find(el => el.__typename === 'StartNewsRecord') as StartNewsRecord).amount),
-		programItems: parseInt((start.content.find(el => el.__typename === 'StartProgramRecord') as StartProgramRecord).amount),
+		newsItems: count.news,
+		programItems: count.participants,
 		yearId: props.year.id,
 		locale: props.locale,
 		date
@@ -57,8 +66,11 @@ export const getStaticProps = withGlobalProps({ queries: [StartDocument] }, asyn
 					...block,
 					news: block.__typename === 'StartNewsRecord' ? news : null,
 					programs: block.__typename === 'StartProgramRecord' ? programs : null,
-					participants: block.__typename === 'StartRandomParticipantRecord' ? participants.sort(() => Math.random() > 0.5 ? 1 : -1).slice(0, participantCount) : null,
+					participants: block.__typename === 'StartRandomParticipantRecord' ? participants.sort(() => Math.random() > 0.5 ? 1 : -1).slice(0, count.participants) : null,
 				}))
+			},
+			page: {
+				slugs: pageSlugs('home')
 			}
 		},
 		revalidate

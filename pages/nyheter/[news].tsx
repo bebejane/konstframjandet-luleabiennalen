@@ -5,6 +5,7 @@ import { NewsDocument, AllNewsDocument } from "/graphql";
 import { Article, BackButton } from '/components';
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
+import { pageSlugs } from "/lib/i18n";
 
 export type Props = {
   news: NewsRecord
@@ -15,6 +16,7 @@ export default function News({ news: { id, image, title, intro, content, _seoMet
 
   return (
     <>
+      <DatoSEO title={title} description={intro} seo={_seoMetaTags} />
       <Article
         id={id}
         key={id}
@@ -52,7 +54,10 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
     props: {
       ...props,
       news,
-      pageTitle: news?.title
+      page: {
+        title: news.title,
+        slugs: pageSlugs('news', news._allSlugLocales)
+      }
     },
     revalidate
   };

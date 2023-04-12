@@ -5,15 +5,17 @@ import { apiQueryAll } from '/lib/utils';
 import { AboutDocument, AllAboutsDocument } from "/graphql";
 import { Article } from '/components';
 import { DatoSEO } from "dato-nextjs-utils/components";
+import { pageSlugs } from '/lib/i18n';
 
 export type Props = {
   about: AboutRecord
 }
 
-export default function AboutItem({ about: { id, image, title, intro, content, _seoMetaTags } }: Props) {
+export default function AboutItem({ about: { id, image, title, intro, content, _seoMetaTags, _allSlugLocales } }: Props) {
 
   return (
     <>
+      <DatoSEO title={title} description={intro} seo={_seoMetaTags} />
       <Article
         id={id}
         key={id}
@@ -43,6 +45,7 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
 
   const slug = context.params.about;
   const { about } = await apiQuery(AboutDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
+
   if (!about)
     return { notFound: true }
 
@@ -50,7 +53,11 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
     props: {
       ...props,
       about,
-      pageTitle: about.title
-    }
+      page: {
+        title: about.title,
+        slugs: pageSlugs('about', about._allSlugLocales)
+      }
+    },
+    revalidate
   };
 });

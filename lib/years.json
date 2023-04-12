@@ -99,6 +99,33 @@
           "__typename": "ResponsiveImage"
         }
       }
+    ],
+    "fundedBy": [
+      {
+        "id": "100085659",
+        "logo": {
+          "__typename": "FileField",
+          "id": "37014531",
+          "mimeType": "image/jpeg",
+          "url": "https://www.datocms-assets.com/95303/1679991049-lb22-pattern.jpg",
+          "title": "LB22",
+          "alt": null,
+          "height": 1400,
+          "width": 2400,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1679991049-lb22-pattern.jpg?ar64=Mzoy&auto=format&crop=focalpoint&fit=crop&fp-x=0.67&fp-y=0.52&q=70",
+            "width": 2100,
+            "height": 1400,
+            "alt": null,
+            "title": "LB22",
+            "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoQDw0NDQ4NDQ8KDg0NDhEJFg0NFxMZGBYTFhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQUFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABAAGAMBIgACEQEDEQH/xAAYAAACAwAAAAAAAAAAAAAAAAABBAADBv/EABsQAAEFAQEAAAAAAAAAAAAAAAACAwQRIRIB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANM55yLq0veVYvYCshNADJVhAP/Z",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw",
+            "__typename": "ResponsiveImage"
+          }
+        },
+        "url": "https://dn.se",
+        "__typename": "FunderRecord"
+      }
     ]
   },
   {
@@ -201,7 +228,8 @@
           "__typename": "ResponsiveImage"
         }
       }
-    ]
+    ],
+    "fundedBy": []
   },
   {
     "__typename": "YearRecord",
@@ -303,6 +331,7 @@
           "__typename": "ResponsiveImage"
         }
       }
-    ]
+    ],
+    "fundedBy": []
   }
 ]

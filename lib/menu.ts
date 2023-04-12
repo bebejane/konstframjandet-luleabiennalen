@@ -46,7 +46,7 @@ export const buildMenu = async (locale: string) => {
   const altLocale = locales.find(l => locale != l)
 
   const years = await allYears()
-  const year = years.find(el => el.title === process.env.NEXT_PUBLIC_CURRENT_YEAR)
+  const year = years[0]
   const res: MenuQueryResponse = await apiQuery(MenuDocument, { variables: { yearId: year.id, locale, altLocale } });
   const archive: MenuQueryResponse[] = await Promise.all(years.filter(({ id }) => id !== year.id).map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale, altLocale } })))
   const menu = buildYearMenu(res, locale, altLocale, false);
@@ -54,25 +54,28 @@ export const buildMenu = async (locale: string) => {
 
   //@ts-ignore
   menu[archiveIndex].sub = archive.map(el => {
+    const year = el.year.title;
     return {
-      id: `archive-${el.year.title}`,
-      label: `LB°${el.year.title.substring(2)}`,
-      slug: `/${el.year.title}`,
+      id: `archive-${year}`,
+      label: `LB°${year.substring(2)}`,
+      slug: `/${year}/${i18nPaths.about[locale]}`,
+      altSlug: `/${year}/${i18nPaths.about[locales.find(l => l != locale)]}`,
       sub: buildYearMenu(el, locale, altLocale, true).filter(e => !e.general).map(e => ({
         ...e,
         id: `archive-${e.id}`,
-        slug: `/${el.year.title}${e.slug}`,
-        altSlug: `/${el.year.title}${e.altSlug}`,
+        slug: `/${year}${e.slug}`,
+        altSlug: `/${year}${e.altSlug}`,
         sub: e.sub?.map(e2 => ({
           ...e2,
-          slug: `/${el.year.title}${e2.slug}`,
-          altSlug: `/${el.year.title}${e2.altSlug}`
+          slug: `/${year}${e2.slug}`,
+          altSlug: `/${year}${e2.altSlug}`
         })) || null
       }))
         .filter(({ count }) => count || count === null)
         .sort((a, b) => a.id === 'about' ? -1 : 1)
     }
   })
+
   return menu
 }
 

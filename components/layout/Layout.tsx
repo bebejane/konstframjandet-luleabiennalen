@@ -18,7 +18,7 @@ export type LayoutProps = {
 export default function Layout({ children, menu: menuFromProps, footer, title }: LayoutProps) {
 
 	const router = useRouter()
-	const { year: { background }, isArchive } = usePage()
+	const { year } = usePage()
 	const [menu, setMenu] = useState(menuFromProps)
 	const [images, imageId, setImageId, searchQuery] = useStore((state) => [state.images, state.imageId, state.setImageId, state.searchQuery])
 
@@ -27,16 +27,16 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 	}, [router.locale])
 
 	useEffect(() => {
-		document.body.style.backgroundColor = isArchive ? 'var(--archive)' : 'var(--white)'
-	}, [router.asPath, isArchive])
+		document.body.style.backgroundColor = year?.isArchive ? 'var(--archive)' : 'var(--white)'
+	}, [router.asPath, year])
 
 	if (!menuFromProps || !footer) return null
 
-	const backgroundImage = background[0];
+	const backgroundImage = year?.background[0];
 
 	return (
 		<>
-			{backgroundImage && !isArchive &&
+			{backgroundImage && !year.isArchive &&
 				<div className={s.background}>
 					<Image data={backgroundImage.responsiveImage} className={s.image} />
 				</div>
