@@ -29,8 +29,11 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
 
   const isHome = parentMenuItem?.id === 'home'
   const isOverview = parentMenuItem?.slug && !parentMenuItem.sub && !isHome
-  const showLine = !parentMenuItem || isOverview
   const isSearch = parentMenuItem?.id === 'search'
+  const showArchive = isArchive || parentMenuItem?.id === 'archive'
+  const showLine = !parentMenuItem || isOverview
+
+
 
   //@ts-ignore
   const subLabel = t(parentMenuItem?.id) || t(parentMenuItem?.id.split('-')[0])
@@ -58,7 +61,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
             </h2>
           </Link>
         }
-        {isArchive && <span className={s.archive}>ARKIV</span>}
+        {showArchive && <span className={s.archive}>ARKIV</span>}
       </header>
       {!isHome && <div className={s.spacer}></div>}
       {showLine && <div className={s.line}></div>}
