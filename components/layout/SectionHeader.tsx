@@ -28,9 +28,9 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const isSearch = section === 'search'
   const isArchiveOverview = section === 'archive'
   const isOverview = !parent
-
   const showArchive = isArchive || isArchiveOverview
-  const showLine = isOverview && !isHome
+  const showLine = !isHome
+
   const parentPath = asPath.split('/').slice(0, -1).join('/')
   const subLabel = t(section)
   const yearLabel = `LB°${year.title.substring(2)}`

@@ -103,7 +103,7 @@ export const siteSearch = async (opt: any) => {
         category: itemTypes.find(({ api_key }) => api_key === el._modelApiKey).name,
         title: el.title,
         text: truncateText(el.text, { sentences: 1, useEllipsis: true, minLength: 100 }),
-        slug: recordToSlug(el)
+        slug: `${el.year ? `/${el.year.title}` : ''}${recordToSlug(el)}`
       }))
   })
 
