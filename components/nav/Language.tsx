@@ -13,7 +13,7 @@ export type Props = {
 export default function Language({ menu }) {
 	const { locale, locales } = useRouter()
 	const { slugs, year } = usePage()
-
+	console.log(slugs)
 	return (
 		<nav className={s.language}>
 			{slugs.map((item, idx) =>
