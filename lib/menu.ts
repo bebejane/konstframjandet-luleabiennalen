@@ -34,7 +34,7 @@ const base: Menu = [
   { id: 'program', label: 'Program', slug: '/program', root: true },
   { id: 'participants', label: 'Medverkande', slug: '/medverkande', root: true },
   { id: 'locations', label: 'Platser', slug: '/platser', root: true },
-  { id: 'partners', label: 'Partners', slug: '/partners', general: true, root: true },
+  { id: 'partners', label: 'Partners', slug: '/partners', general: false, root: true },
   { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
   { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
   { id: 'archive', label: 'Arkiv', slug: '/arkiv', sub: [], root: false },
@@ -44,7 +44,6 @@ const base: Menu = [
 export const buildMenu = async (locale: string) => {
 
   const altLocale = locales.find(l => locale != l)
-
   const years = await allYears()
   const year = years[0]
   const res: MenuQueryResponse = await apiQuery(MenuDocument, { variables: { yearId: year.id, locale, altLocale } });
@@ -56,13 +55,13 @@ export const buildMenu = async (locale: string) => {
   menu[archiveIndex].sub = archive.map(el => {
     const year = el.year.title;
     return {
-      id: `archive-${year}`,
+      id: `about-archive-${year}`,
       label: `LB°${year.substring(2)}`,
       slug: `/${year}/${i18nPaths.about[locale]}`,
       altSlug: `/${year}/${i18nPaths.about[locales.find(l => l != locale)]}`,
       sub: buildYearMenu(el, locale, altLocale, true).filter(e => !e.general).map(e => ({
         ...e,
-        id: `archive-${e.id}`,
+        id: `${e.id}-archive`,
         slug: `/${year}${e.slug}`,
         altSlug: `/${year}${e.altSlug}`,
         sub: e.sub?.map(e2 => ({
@@ -111,5 +110,6 @@ export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale:
       count: res[`${item.id}Meta`]?.count ?? null
     }
   })
-  return menu
+
+  return menu.filter(({ count }) => count || count === null);
 }

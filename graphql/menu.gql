@@ -32,6 +32,9 @@ query Menu($locale: SiteLocale, $altLocale: SiteLocale, $yearId: ItemId) {
 	participantsMeta: _allParticipantsMeta(filter: { year: { eq: $yearId } }) {
 		count
 	}
+	partnersMeta: _allPartnersMeta(filter: { year: { eq: $yearId } }) {
+		count
+	}
 	exhibitionsMeta: _allExhibitionsMeta(filter: { year: { eq: $yearId } }) {
 		count
 	}
