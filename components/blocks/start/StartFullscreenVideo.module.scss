@@ -7,6 +7,7 @@
   padding-bottom: 0 !important;
   padding-bottom: 0 !important;
   width: 100vw;
+  transition: all var(--menu-transition);
 
   margin-left: calc(-1 * var(--outer-margin));
   margin-right: calc(-1 * var(--outer-margin));
@@ -63,14 +64,12 @@
       padding-bottom: var(--space);
     }
 
-    .text {
-    }
+    .text {}
   }
 
   @include mq($until: tablet) {
     height: 50vh;
 
-    .textWrap {
-    }
+    .textWrap {}
   }
 }

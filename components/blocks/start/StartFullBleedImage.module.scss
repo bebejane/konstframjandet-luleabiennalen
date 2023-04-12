@@ -1,7 +1,7 @@
 .container {
   position: relative;
   margin-bottom: calc(-1 * var(--space));
-  transition: var(--fullscreen-transition);
+  transition: all var(--menu-transition);
 
   @include mq($until: tablet) {
     height: 50vh;

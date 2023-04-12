@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  transition: var(--fullscreen-transition);
+  transition: all var(--menu-transition);
 
   @include mq($until: tablet) {
     margin-left: calc(-1 * var(--outer-margin));
