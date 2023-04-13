@@ -6,7 +6,7 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
 
   let path = null;
 
-  const { slug: baseSlug, year: yearId } = item.attributes
+  const { slug: baseSlug, year: yearId, title } = item.attributes
   const years = await allYears()
   const year = yearId ? years.find(({ id }) => id === yearId) : undefined
   const slug = typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug
@@ -38,6 +38,12 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
       break;
     case 'partner':
       path = `/partners/${slug}`
+      break;
+    case 'contact':
+      path = `/kontakt`
+      break;
+    case 'year':
+      path = `/${title}`
       break;
     default:
       break;
