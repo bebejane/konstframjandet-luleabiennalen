@@ -8,7 +8,7 @@ export default withRevalidate(async (record, revalidate) => {
   const years = await allYears()
   const year = years.find(({ id }) => record.year === id)
   const isArchive = year?.title !== years[0].title
-  const prefix = !isArchive || !year ? '' : `/${year.title}`
+  const prefix = !year ? '' : `/${year.title}`
   const slugs = typeof slug === 'object' ? slug : { [defaultLocale]: slug }
   const paths = []
 

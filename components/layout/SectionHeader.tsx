@@ -24,7 +24,8 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const [showMenu] = useStore((state) => [state.showMenu])
   const { section, parent, year, year: { color: { hex }, isArchive } } = usePage()
 
-  const isHome = section === 'home'
+  const isHome = section === 'home' && !isArchive
+  const isArchiveHome = section === 'home' && isArchive
   const isSearch = section === 'search'
   const isArchiveOverview = section === 'archive'
   const isOverview = !parent
@@ -32,9 +33,8 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const showLine = !isHome
 
   const parentPath = asPath.split('/').slice(0, -1).join('/')
-  const subLabel = t(section)
-  const yearLabel = `LB°${year.title.substring(2)}`
-  const label = !isSearch ? `${yearLabel}${!isHome ? ` — ${subLabel}` : ''}` : t('search')
+  const yearLabel = isArchiveHome ? `Luleåbiennalen ${year.title}` : `LB°${year.title.substring(2)}`
+  const label = isArchiveOverview ? 'Luleåbiennalen' : isArchiveHome ? yearLabel : !isSearch ? `${yearLabel}${!isHome ? ` — ${t(section)}` : ''}` : t('search')
   const speed = 0.6
 
   const header = (

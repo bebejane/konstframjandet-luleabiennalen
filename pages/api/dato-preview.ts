@@ -9,7 +9,6 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
   const { slug: baseSlug, year: yearId } = item.attributes
   const years = await allYears()
   const year = yearId ? years.find(({ id }) => id === yearId) : undefined
-  const yearSlug = year && year.title !== years[0].title ? `/${year.title}` : ''
   const slug = typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug
 
   switch (itemType.attributes.api_key) {

@@ -40,12 +40,12 @@ export const buildMenu = async (locale: string) => {
       sub: buildYearMenu(el, locale, altLocale, true).filter(e => !e.general).map(e => ({
         ...e,
         id: `${e.id}-archive`,
-        slug: `/${e.slug}`,
-        altSlug: `/${e.altSlug}`,
+        slug: `${e.slug}`,
+        altSlug: `${e.altSlug}`,
         sub: e.sub?.map(e2 => ({
           ...e2,
-          slug: `/${e2.slug}`,
-          altSlug: `/${e2.altSlug}`
+          slug: `${e2.slug}`,
+          altSlug: `${e2.altSlug}`
         })) || null
       }))
         .filter(({ count }) => count || count === null)
@@ -107,7 +107,7 @@ export type MenuQueryResponse = {
 }
 
 export type MenuItem = {
-  id: 'home' | 'about' | 'program' | 'exhibitions' | 'participants' | 'locations' | 'news' | 'contact' | 'partners' | 'archive' | 'search'
+  id: SectionId
   label: string
   slug?: string
   altSlug?: string

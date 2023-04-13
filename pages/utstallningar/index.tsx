@@ -45,7 +45,7 @@ export const getStaticProps = withGlobalProps({ queries: [AllExhibitionsDocument
       ...props,
       page: {
         section: 'exhibitions',
-        slugs: pageSlugs('exhibitions')
+        slugs: pageSlugs('exhibitions', props.year.title)
       } as PageProps
     },
     revalidate
