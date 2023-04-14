@@ -25,6 +25,10 @@
   }
 
   &.two > li {
+    p {
+      text-align: center;
+    }
+
     @include mq($from: tablet) {
       width: 50%;
 
@@ -37,8 +41,8 @@
       width: 100%;
       border-right: none;
       a:last-of-type {
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
+        //margin-bottom: 2rem;
+        //padding-bottom: 2rem;
         border-bottom: 1px solid var(--beige-mid);
       }
 

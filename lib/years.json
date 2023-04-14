@@ -5,8 +5,27 @@
     "title": "2022",
     "participantName": "Medverkande",
     "slug": "2022",
-    "theme": "Hantverk",
-    "image": null,
+    "theme": "Konst & hantverk",
+    "image": {
+      "__typename": "FileField",
+      "id": "43529753",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1681464155-2022.png",
+      "title": null,
+      "alt": null,
+      "height": 1000,
+      "width": 1444,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1681464155-2022.png?auto=format",
+        "width": 1444,
+        "height": 1000,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAARCAMAAADwppwCAAABTVBMVEV0cHZ1cXd2cXh2cnh3c3l5dXt6dnx6dn17dn17d318eH59eX9/e4GAfIKBfYOCfoSDf4WEgIaFgYeGgoiHg4mIg4qIhIqIhIuJhYuKhYyKhoyKho2Lh42MiI6MiI+NiY+OipCPipGPi5GQjJKRjJORjZOSjpSTjpWTj5WUj5aUkJaVkZeVkZiWkpiXk5mYlJqZlJuZlZualpybl52cmJ6cmJ+dmZ+emaCemqCfmqGfm6GgnKKgnKOhnKOhnaOinaSinqSjn6Wjn6akoKaloaeloaimoqino6mno6qopKqppauqpqyrp62sqK6tqK+tqa+uqrCvqrGvq7GwrLKxrLOxrbOyrrSzr7W0sLa1sLe1sbe2sbi2sri3s7m4s7q4tLq5tbu6try7tr27t728uL69ub+/u8HAvMLBvMPBvcPCvsTEwMbFwcfGwsjHw8nCxZ0YAAABG0lEQVR42i2QW7KUIQyEQy4E5qKWi3L/C/HB4xmBHxIwU8pDqlNUku6Pf8zWh1N9fn1omv31aywQLcwMy7aTZGHGs1gNkuTMXBZA2qlUVUnJZzVKUgtx4fgwumcVSajL94SiMZEhuxJybCI4TCSAWTLygXP2Tnu/69nRhIgl3G305gmIcScfYzQjQGD+XK0Nx7XOVgj9cTldswr/tN674c185eR/Pl8RKq8r88cc3TaGm1Xo6q/fa6NYTLRrrumoLeKl1V7TLAzBYt/Hz/8HYeif2oeVoiJxVlVIvvxgYg1AX0yabKyP5zNcIUCPplbm77PUN937t6owhag4Fb0JP72zvrE/bhlmZJOwew/sNegO54AbONHNwDjO8V/se7c1qApz6QAAAABJRU5ErkJggg==",
+        "sizes": "(max-width: 1444px) 100vw, 1444px",
+        "__typename": "ResponsiveImage"
+      }
+    },
     "color": {
       "hex": "#000000",
       "red": 0,
@@ -35,7 +54,7 @@
           "height": 2076,
           "alt": null,
           "title": null,
-          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwwHBg0ODg8HFA0PCg0NBwYHDhEJFhEYFxMZGBYVFiEaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBANGi8cIhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAZAAACAwEAAAAAAAAAAAAAAAAAAwECBAf/xAAaEAACAwEBAAAAAAAAAAAAAAAAAgEDESES/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIDAP/EABkRAQEAAwEAAAAAAAAAAAAAAAABAhExA//aAAwDAQACEQMRAD8A6rSvljek6pnlMG1TwWRX0ylWsnFAXe3CBktrOCEgaBl0q8kACD//2Q==",
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoRDRQLDRYPDhgQDRYZDR0SFg0NGBgZGCIfFhUaHysjGh0oHRYWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHA4QHS8oIhw1NDYvLy81Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy81Ly8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAaAAACAgMAAAAAAAAAAAAAAAAABAEHAgMG/8QAGxABAQACAwEAAAAAAAAAAAAAAAEDBAIhMxP/xAAWAQEBAQAAAAAAAAAAAAAAAAACBAD/xAAaEQEAAQUAAAAAAAAAAAAAAAAAAgEDERIx/9oADAMBAAIRAxEAPwCwdaXjsR0GPvHC3DUx/SHZJIMaYUXp7MbENgJOVx+hlIahT6AAwv/Z",
           "sizes": "(max-width: 2880px) 100vw, 2880px",
           "__typename": "ResponsiveImage"
         }
@@ -118,7 +137,7 @@
             "height": 1400,
             "alt": null,
             "title": "LB22",
-            "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoQDw0NDQ4NDQ8KDg0NDhEJFg0NFxMZGBYTFhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQUFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABAAGAMBIgACEQEDEQH/xAAYAAACAwAAAAAAAAAAAAAAAAABBAADBv/EABsQAAEFAQEAAAAAAAAAAAAAAAACAwQRIRIB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANM55yLq0veVYvYCshNADJVhAP/Z",
+            "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoIDggNDQ0ODg0JDg0NCRENCg0NFx8ZGCIVFhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQUFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABAAGAMBIgACEQEDEQH/xAAYAAACAwAAAAAAAAAAAAAAAAAAAwEEBv/EABsQAAMAAgMAAAAAAAAAAAAAAAABAgQRAyEi/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSctNCae0N5aTEVWgkq5E9ATkV4Ak//9k=",
             "sizes": "(max-width: 46.24em) 100vw, 50vw",
             "__typename": "ResponsiveImage"
           }
@@ -134,8 +153,27 @@
     "title": "2020",
     "participantName": "Medverkande",
     "slug": "2020",
-    "theme": "Nåt tema",
-    "image": null,
+    "theme": "Tiden på jorden",
+    "image": {
+      "__typename": "FileField",
+      "id": "43529725",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1681463713-2020.png",
+      "title": null,
+      "alt": null,
+      "height": 1000,
+      "width": 1600,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1681463713-2020.png?auto=format",
+        "width": 1600,
+        "height": 1000,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBw0HBg0IDggNCQ0NDQ0NCg0NDhENFgkNFxMZGBYVFhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHAoQHDsdHR07NS8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAA8AGAMBIgACEQEDEQH/xAAYAAACAwAAAAAAAAAAAAAAAAABAwACB//EABkQAAMBAQEAAAAAAAAAAAAAAAABIQIREv/EABcBAAMBAAAAAAAAAAAAAAAAAAMEBgH/xAAYEQADAQEAAAAAAAAAAAAAAAAAAQIRA//aAAwDAQACEQMRAD8A1TTgvtG6UF+aRHNzg0y+WQKXEEBTnTT/2Q==",
+        "sizes": "(max-width: 1600px) 100vw, 1600px",
+        "__typename": "ResponsiveImage"
+      }
+    },
     "color": {
       "hex": "#0F1193",
       "red": 15,
@@ -164,7 +202,7 @@
           "height": 2076,
           "alt": null,
           "title": null,
-          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwwHBg0ODg8HFA0PCg0NBwYHDhEJFhEYFxMZGBYVFiEaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBANGi8cIhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAZAAACAwEAAAAAAAAAAAAAAAAAAwECBAf/xAAaEAACAwEBAAAAAAAAAAAAAAAAAgEDESES/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIDAP/EABkRAQEAAwEAAAAAAAAAAAAAAAABAhExA//aAAwDAQACEQMRAD8A6rSvljek6pnlMG1TwWRX0ylWsnFAXe3CBktrOCEgaBl0q8kACD//2Q==",
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoRDRQLDRYPDhgQDRYZDR0SFg0NGBgZGCIfFhUaHysjGh0oHRYWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHA4QHS8oIhw1NDYvLy81Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy81Ly8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAaAAACAgMAAAAAAAAAAAAAAAAABAEHAgMG/8QAGxABAQACAwEAAAAAAAAAAAAAAAEDBAIhMxP/xAAWAQEBAQAAAAAAAAAAAAAAAAACBAD/xAAaEQEAAQUAAAAAAAAAAAAAAAAAAgEDERIx/9oADAMBAAIRAxEAPwCwdaXjsR0GPvHC3DUx/SHZJIMaYUXp7MbENgJOVx+hlIahT6AAwv/Z",
           "sizes": "(max-width: 2880px) 100vw, 2880px",
           "__typename": "ResponsiveImage"
         }
@@ -237,8 +275,27 @@
     "title": "2018",
     "participantName": "Medverkande",
     "slug": "2018",
-    "theme": "Ett annat tema",
-    "image": null,
+    "theme": "Tidjord",
+    "image": {
+      "__typename": "FileField",
+      "id": "43529705",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1681463540-18.png",
+      "title": null,
+      "alt": null,
+      "height": 1000,
+      "width": 1600,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1681463540-18.png?auto=format",
+        "width": 1600,
+        "height": 1000,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoIEhANDQ0NDg8NDg4NDhENDQ0NFxUZGBYTIhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBAQEC8oFhw7Ly8vOy8vLy8vLy8vOzsvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAA8AGAMBIgACEQEDEQH/xAAXAAEAAwAAAAAAAAAAAAAAAAAFAAEH/8QAHBAAAgICAwAAAAAAAAAAAAAAAAMBAiMzERIh/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwQC/8QAGREAAgMBAAAAAAAAAAAAAAAAADEBAxEC/9oADAMBAAIRAxEAPwDLa0izYgRWvrQOXugT5xkk6BWg1u+SEt66SjcaD0z/2Q==",
+        "sizes": "(max-width: 1600px) 100vw, 1600px",
+        "__typename": "ResponsiveImage"
+      }
+    },
     "color": {
       "hex": "#002800",
       "red": 0,
@@ -267,7 +324,7 @@
           "height": 2076,
           "alt": null,
           "title": null,
-          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwwHBg0ODg8HFA0PCg0NBwYHDhEJFhEYFxMZGBYVFiEaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBANGi8cIhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAZAAACAwEAAAAAAAAAAAAAAAAAAwECBAf/xAAaEAACAwEBAAAAAAAAAAAAAAAAAgEDESES/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIDAP/EABkRAQEAAwEAAAAAAAAAAAAAAAABAhExA//aAAwDAQACEQMRAD8A6rSvljek6pnlMG1TwWRX0ylWsnFAXe3CBktrOCEgaBl0q8kACD//2Q==",
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoRDRQLDRYPDhgQDRYZDR0SFg0NGBgZGCIfFhUaHysjGh0oHRYWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHA4QHS8oIhw1NDYvLy81Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy81Ly8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAaAAACAgMAAAAAAAAAAAAAAAAABAEHAgMG/8QAGxABAQACAwEAAAAAAAAAAAAAAAEDBAIhMxP/xAAWAQEBAQAAAAAAAAAAAAAAAAACBAD/xAAaEQEAAQUAAAAAAAAAAAAAAAAAAgEDERIx/9oADAMBAAIRAxEAPwCwdaXjsR0GPvHC3DUx/SHZJIMaYUXp7MbENgJOVx+hlIahT6AAwv/Z",
           "sizes": "(max-width: 2880px) 100vw, 2880px",
           "__typename": "ResponsiveImage"
         }

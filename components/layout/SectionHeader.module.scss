@@ -15,10 +15,13 @@
     }
   }
 
-  a,
-  span {
-    color: var(--white);
+  @include mq($from: tablet) {
+    a,
+    span {
+      color: var(--white);
+    }
   }
+
   &:hover {
     mix-blend-mode: normal !important;
     a,

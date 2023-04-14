@@ -1023,6 +1023,14 @@ type ImgixParams = {
    */
   bg?: InputMaybe<Scalars['String']>;
   /**
+   * Background Removal
+   *
+   * Removes background from image.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background-removal/bg-remove)
+   */
+  bgRemove?: InputMaybe<Scalars['BooleanType']>;
+  /**
    * Blend
    *
    * Specifies the location of the blend image.
@@ -1475,6 +1483,18 @@ type ImgixParams = {
    */
   fpZ?: InputMaybe<Scalars['FloatType']>;
   /**
+   * Frames Per Second
+   *
+   * Specifies the framerate of the generated image.
+   */
+  fps?: InputMaybe<Scalars['IntType']>;
+  /**
+   * Frame Selection
+   *
+   * Specifies the frame of an animated image to use.
+   */
+  frame?: InputMaybe<Scalars['String']>;
+  /**
    * Gamma
    *
    * Adjusts the gamma of the source image.
@@ -1482,6 +1502,12 @@ type ImgixParams = {
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/gam)
    */
   gam?: InputMaybe<Scalars['IntType']>;
+  /**
+   * Animated Gif Quality
+   *
+   * Depends on: `fm=gif`
+   */
+  gifQ?: InputMaybe<Scalars['IntType']>;
   /**
    * Grid Colors
    *
@@ -1531,6 +1557,12 @@ type ImgixParams = {
    */
   hue?: InputMaybe<Scalars['IntType']>;
   /**
+   * Frame Interval
+   *
+   * Displays every Nth frame starting with the first frame.
+   */
+  interval?: InputMaybe<Scalars['IntType']>;
+  /**
    * Invert
    *
    * Inverts the colors on the source image.
@@ -1544,6 +1576,12 @@ type ImgixParams = {
    * Determine if IPTC data should be passed for JPEG images.
    */
   iptc?: InputMaybe<ImgixParamsIptc>;
+  /**
+   * Animation Loop Count
+   *
+   * Specifies the number of times an animated image should repeat. A value of 0 means infinite looping.
+   */
+  loop?: InputMaybe<Scalars['IntType']>;
   /**
    * Lossless Compression
    *
@@ -1871,6 +1909,12 @@ type ImgixParams = {
    */
   rect?: InputMaybe<Scalars['String']>;
   /**
+   * Reverse
+   *
+   * Reverses the frame order on the source animation.
+   */
+  reverse?: InputMaybe<Scalars['BooleanType']>;
+  /**
    * Rotation
    *
    * Rotates an image by a specified number of degrees.
@@ -1910,6 +1954,12 @@ type ImgixParams = {
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/sharp)
    */
   sharp?: InputMaybe<Scalars['FloatType']>;
+  /**
+   * Frame Skip
+   *
+   * Skips every Nth frame starting with the first frame.
+   */
+  skip?: InputMaybe<Scalars['IntType']>;
   /**
    * Transparency
    *
@@ -4361,6 +4411,8 @@ type StartFullBleedImageRecordtextArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
+type StartFullscreenImageModelLinkField = ExternalLinkRecord | InternalLinkRecord;
+
 /** Block of type Stor bild (start_fullscreen_image) */
 type StartFullscreenImageRecord = RecordInterface & {
   __typename?: 'StartFullscreenImageRecord';
@@ -4378,6 +4430,7 @@ type StartFullscreenImageRecord = RecordInterface & {
   headline: Scalars['String'];
   id: Scalars['ItemId'];
   image: FileField;
+  link: StartFullscreenImageModelLinkField;
   text: Scalars['String'];
 };
 
@@ -5264,6 +5317,7 @@ type YearRecord = RecordInterface & {
   _allReferencingPrograms: Array<ProgramRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingProgramsMeta: CollectionMetadata;
+  _allThemeLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
   _isValid: Scalars['BooleanType'];
@@ -5399,6 +5453,13 @@ type YearRecord_allReferencingProgramsMetaArgs = {
 
 
 /** Record of type År (year) */
+type YearRecord_allThemeLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type År (year) */
 type YearRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
@@ -5406,6 +5467,13 @@ type YearRecord_seoMetaTagsArgs = {
 
 /** Record of type År (year) */
 type YearRecordparticipantNameArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type År (year) */
+type YearRecordthemeArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
