@@ -27,6 +27,7 @@ export default function Archive({ years }: Props) {
               image={image}
               intro={theme}
               slug={`/${title}`}
+              transformHref={false}
             />
           </Card>
         )}

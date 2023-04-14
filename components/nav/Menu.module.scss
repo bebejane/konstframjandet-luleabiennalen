@@ -5,7 +5,7 @@
   z-index: var(--z-menu);
   padding: var(--outer-margin);
   overflow: hidden;
-  transition: transform 0.3s ease-in-out;
+  transition: transform var(--menu-transition);
   min-width: 20%;
   max-width: 20%;
 

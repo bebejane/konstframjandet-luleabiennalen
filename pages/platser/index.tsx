@@ -42,7 +42,7 @@ export const getStaticProps = withGlobalProps({ queries: [AllLocationsDocument] 
       ...props,
       page: {
         section: 'locations',
-        slugs: pageSlugs('locations')
+        slugs: pageSlugs('locations', props.year.title)
       } as PageProps
     },
     revalidate

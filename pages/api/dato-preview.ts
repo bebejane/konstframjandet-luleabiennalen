@@ -1,15 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { allYears } from '/lib/utils';
-import { translatePath, defaultLocale } from '/lib/utils';
+import { translatePath } from '/lib/utils';
+import { defaultLocale } from '/lib/i18n'
 
 const generatePreviewUrl = async ({ item, itemType, locale }) => {
 
   let path = null;
 
-  const { slug: baseSlug, year: yearId } = item.attributes
+  const { slug: baseSlug, year: yearId, title } = item.attributes
   const years = await allYears()
   const year = yearId ? years.find(({ id }) => id === yearId) : undefined
-  const yearSlug = year && year.title !== years[0].title ? `/${year.title}` : ''
   const slug = typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug
 
   switch (itemType.attributes.api_key) {
@@ -39,6 +39,12 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
       break;
     case 'partner':
       path = `/partners/${slug}`
+      break;
+    case 'contact':
+      path = `/kontakt`
+      break;
+    case 'year':
+      path = `/${title}`
       break;
     default:
       break;

@@ -42,7 +42,7 @@ export const getStaticProps = withGlobalProps({ queries: [AllParticipantsDocumen
       ...props,
       page: {
         section: 'participants',
-        slugs: pageSlugs('participants')
+        slugs: pageSlugs('participants', props.year.title)
       } as PageProps
     },
     revalidate

@@ -1,5 +1,6 @@
 import { withRevalidate } from 'dato-nextjs-utils/hoc'
-import { allYears, defaultLocale, translatePath } from '/lib/utils';
+import { allYears, translatePath } from '/lib/utils';
+import { defaultLocale } from '/lib/i18n'
 
 export default withRevalidate(async (record, revalidate) => {
 
@@ -8,7 +9,7 @@ export default withRevalidate(async (record, revalidate) => {
   const years = await allYears()
   const year = years.find(({ id }) => record.year === id)
   const isArchive = year?.title !== years[0].title
-  const prefix = !isArchive || !year ? '' : `/${year.title}`
+  const prefix = !year ? '' : `/${year.title}`
   const slugs = typeof slug === 'object' ? slug : { [defaultLocale]: slug }
   const paths = []
 

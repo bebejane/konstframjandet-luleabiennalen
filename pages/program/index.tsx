@@ -61,7 +61,7 @@ export const getStaticProps = withGlobalProps({ queries: [AllProgramsDocument, A
       ...props,
       page: {
         section: 'program',
-        slugs: pageSlugs('program')
+        slugs: pageSlugs('program', props.year.title)
       } as PageProps
     },
     revalidate

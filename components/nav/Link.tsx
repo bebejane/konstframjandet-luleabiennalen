@@ -15,7 +15,7 @@ export default function Link({ href, className, children, prefetch, transformHre
 
   const { locale, defaultLocale } = useRouter()
   const { year } = usePage()
-  const translatedHref = transformHref ? translatePath(href, locale, defaultLocale, year.title) : href
+  const translatedHref = transformHref ? translatePath(href, locale, defaultLocale, year?.title) : href
 
   return (
     <NextLink

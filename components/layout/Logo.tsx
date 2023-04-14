@@ -2,7 +2,7 @@ import s from './Logo.module.scss'
 import cn from 'classnames'
 import LogoIcon from '/public/images/logo.svg'
 import { usePage } from '/lib/context/page'
-import Link from '/components/nav/Link'
+import Link from 'next/link'
 
 export type Props = {
 

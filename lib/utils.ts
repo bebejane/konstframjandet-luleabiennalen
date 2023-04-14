@@ -7,19 +7,7 @@ import format from "date-fns/format";
 import React from "react";
 import { AllYearsDocument } from '/graphql';
 
-export const locales = ['sv', 'en']
-export const defaultLocale = 'sv'
 export const isServer = typeof window === 'undefined';
-
-export const breakpoints = {
-  mobile: 320,
-  tablet: 740,
-  desktop: 980,
-  wide: 1441,
-  navBreak: 1368
-}
-
-export const pageSize = 10;
 
 export const chunkArray = (array: any[] | React.ReactNode[], chunkSize: number) => {
   const newArr = []
