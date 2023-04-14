@@ -1,7 +1,8 @@
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { MenuDocument } from "/graphql";
 import i18nPaths from '/lib/i18n/paths.json'
-import { allYears, locales } from '/lib/utils';
+import { allYears } from '/lib/utils';
+import { locales } from '/lib/i18n'
 
 const base: Menu = [
   { id: 'home', label: 'Hem', slug: '/', general: true, root: true },

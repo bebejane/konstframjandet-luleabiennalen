@@ -6,7 +6,7 @@ import { DefaultDatoSEO } from 'dato-nextjs-utils/components';
 import { sv, enGB as en } from 'date-fns/locale'
 import setDefaultOptions from 'date-fns/setDefaultOptions';
 import { useRouter } from 'next/router';
-import { locales, defaultLocale } from '/lib/utils';
+import { locales } from '/lib/i18n'
 
 setDefaultOptions({ locale: sv })
 

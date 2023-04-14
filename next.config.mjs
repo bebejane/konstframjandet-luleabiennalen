@@ -1,6 +1,9 @@
 import { GraphQLClient, gql } from "graphql-request";
 import i18nPaths from "./lib/i18n/paths.json" assert { type: "json" };
 
+export const locales = ["sv", "en"];
+export const defaultLocale = "sv";
+
 const sassOptions = {
 	includePaths: ["./components", "./pages"],
 	prependData: `
@@ -60,8 +63,8 @@ export default async (phase, { defaultConfig }) => {
 	 */
 	const nextConfig = {
 		i18n: {
-			locales: ["sv", "en"],
-			defaultLocale: "sv",
+			locales,
+			defaultLocale,
 			localeDetection: false,
 		},
 		async rewrites() {

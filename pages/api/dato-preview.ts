@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { allYears } from '/lib/utils';
-import { translatePath, defaultLocale } from '/lib/utils';
+import { translatePath } from '/lib/utils';
+import { defaultLocale } from '/lib/i18n'
 
 const generatePreviewUrl = async ({ item, itemType, locale }) => {
 
