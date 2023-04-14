@@ -22,9 +22,8 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const { asPath } = router
   const t = useTranslations('Menu')
   const [showMenu] = useStore((state) => [state.showMenu])
-  const { section, parent, year, year: { color: { hex }, isArchive } } = usePage()
+  const { section, parent, year, year: { color: { hex }, isArchive }, isHome } = usePage()
 
-  const isHome = section === 'home' && !isArchive
   const isArchiveHome = section === 'home' && isArchive
   const isSearch = section === 'search'
   const isArchiveOverview = section === 'archive'
