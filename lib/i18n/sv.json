@@ -26,6 +26,7 @@
 		"address": "Adress"
 	},
 	"BackButton": {
+		"showAll": "Visa alla",
 		"showAllPrograms": "Visa hela programmet",
 		"showAllExhibitons": "Visa alla utställningar",
 		"showAllParticipants": "Visa alla medverkande",

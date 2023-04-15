@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { useStore } from '/lib/store'
 import { usePage } from '/lib/context/page'
 import { Image } from 'react-datocms'
+import { randomInt } from '/lib/utils'
 
 export type LayoutProps = {
 	children: React.ReactNode,
@@ -18,25 +19,26 @@ export type LayoutProps = {
 export default function Layout({ children, menu: menuFromProps, footer, title }: LayoutProps) {
 
 	const router = useRouter()
-	const { year } = usePage()
+	const { year, section } = usePage()
 	const [menu, setMenu] = useState(menuFromProps)
 	const [images, imageId, setImageId, searchQuery] = useStore((state) => [state.images, state.imageId, state.setImageId, state.searchQuery])
+	const backgroundImage = year?.background[randomInt(0, year?.background.length - 1)];
+	const showBackground = backgroundImage && !year?.isArchive && section !== 'archive'
 
 	useEffect(() => { // Refresh menu on load.
 		buildMenu(router.locale).then(res => setMenu(res)).catch(err => console.error(err))
 	}, [router.locale])
 
 	useEffect(() => {
-		document.body.style.backgroundColor = year?.isArchive ? 'var(--archive)' : 'var(--white)'
-	}, [router.asPath, year])
+		document.body.style.backgroundColor = year?.isArchive || section === 'archive' ? 'var(--archive)' : 'var(--white)'
+	}, [router.asPath, year, section])
 
 	if (!menuFromProps || !footer) return null
 
-	const backgroundImage = year?.background[0];
 
 	return (
 		<>
-			{backgroundImage && !year.isArchive &&
+			{showBackground &&
 				<div className={s.background}>
 					<Image data={backgroundImage.responsiveImage} className={s.image} />
 				</div>
@@ -56,7 +58,6 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 				show={imageId !== undefined}
 				onClose={() => setImageId(undefined)}
 			/>
-
 			<Grid />
 		</>
 	)

@@ -26,6 +26,7 @@
 		"address": "Address"
 	},
 	"BackButton": {
+		"showAll": "Show all",
 		"showAllPrograms": "Show complete program",
 		"showAllExhibitons": "Show all exhibitons",
 		"showAllParticipants": "Show all participants",
