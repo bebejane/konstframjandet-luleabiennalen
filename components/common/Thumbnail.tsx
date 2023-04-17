@@ -25,10 +25,8 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, titl
 
   const strippedIntro = remark().use(strip).processSync(intro).value as string
   const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(strippedIntro, 500)}` : undefined
-
-  const { query: { year } } = useRouter()
   const { year: { loadingImage } } = usePage()
-  const [loadingImageIndex] = useState(randomInt(0, loadingImage.length - 1))
+  const [loadingImageIndex] = useState(loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0)
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -49,13 +47,15 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, titl
               onLoad={() => setLoaded(true)}
             /><div className={s.border}></div>
           </>
-          <Image
-            data={loadingImage[loadingImageIndex].responsiveImage}
-            className={cn(s.loader)}
-            pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
-            lazyLoad={false}
-            objectFit={'contain'}
-          />
+          {loadingImage.length > 0 &&
+            <Image
+              data={loadingImage[loadingImageIndex].responsiveImage}
+              className={cn(s.loader)}
+              pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
+              lazyLoad={false}
+              objectFit={'contain'}
+            />
+          }
         </div>
       }
       {content &&

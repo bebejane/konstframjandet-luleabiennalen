@@ -21,8 +21,8 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 	const router = useRouter()
 	const { year, section } = usePage()
 	const [menu, setMenu] = useState(menuFromProps)
-	const [images, imageId, setImageId, searchQuery] = useStore((state) => [state.images, state.imageId, state.setImageId, state.searchQuery])
-	const backgroundImage = year?.background[randomInt(0, year?.background.length - 1)];
+	const [images, imageId, setImageId] = useStore((state) => [state.images, state.imageId, state.setImageId])
+	const backgroundImage = year?.background?.[randomInt(0, year?.background.length - 1)];
 	const showBackground = backgroundImage && !year?.isArchive && section !== 'archive'
 
 	useEffect(() => { // Refresh menu on load.
@@ -35,10 +35,9 @@ export default function Layout({ children, menu: menuFromProps, footer, title }:
 
 	if (!menuFromProps || !footer) return null
 
-
 	return (
 		<>
-			{showBackground &&
+			{showBackground && backgroundImage &&
 				<div className={s.background}>
 					<Image data={backgroundImage.responsiveImage} className={s.image} />
 				</div>

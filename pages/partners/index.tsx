@@ -1,6 +1,6 @@
 import s from "./index.module.scss";
 import withGlobalProps from "/lib/withGlobalProps";
-import { AllPartnersDocument } from "/graphql";
+import { AllLocationsDocument, AllPartnersDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail, Link } from "/components";
 import { useRouter } from "next/router";
 import { DatoSEO } from "dato-nextjs-utils/components";
@@ -11,10 +11,11 @@ import { usePage } from "/lib/context/page";
 
 export type Props = {
   partners: PartnerRecord[]
+  locations: LocationRecord[]
   financiers: YearRecord
 }
 
-export default function Partners({ partners, financiers: { fundedBy } }: Props) {
+export default function Partners({ partners, locations, financiers: { fundedBy } }: Props) {
 
   const t = useTranslations()
   const { asPath } = useRouter()
@@ -36,6 +37,20 @@ export default function Partners({ partners, financiers: { fundedBy } }: Props) 
           </Card>
         )}
       </CardContainer>
+      <h3>{t('Menu.locations')}</h3>
+      <CardContainer key={asPath}>
+        {locations.map(({ id, image, title, intro, slug }) =>
+          <Card key={id}>
+            <Thumbnail
+              title={title}
+              image={image}
+              intro={intro}
+              titleRows={1}
+              slug={`/locations/${slug}`}
+            />
+          </Card>
+        )}
+      </CardContainer>
       <section className={s.financiers}>
         <h3>Luleåbiennalen {year.title} {t('Partners.supportedBy')}</h3>
         <ul>
@@ -52,7 +67,7 @@ export default function Partners({ partners, financiers: { fundedBy } }: Props) 
   );
 }
 
-export const getStaticProps = withGlobalProps({ queries: [AllPartnersDocument] }, async ({ props, revalidate }: any) => {
+export const getStaticProps = withGlobalProps({ queries: [AllPartnersDocument, AllLocationsDocument] }, async ({ props, revalidate }: any) => {
 
   return {
     props: {

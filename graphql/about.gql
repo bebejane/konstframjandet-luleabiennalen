@@ -18,6 +18,12 @@ query About($slug: String!, $locale: SiteLocale) {
 	}
 }
 
+query MainAbout($yearId: ItemId, $locale: SiteLocale) {
+	abouts: allAbouts(filter: { year: { eq: $yearId } }, first: 1, locale: $locale) {
+		...AboutFragment
+	}
+}
+
 query AllAboutsMenu($locale: SiteLocale) {
 	abouts: allAbouts(locale: $locale, first: 100) {
 		title

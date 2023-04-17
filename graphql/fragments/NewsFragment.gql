@@ -2,7 +2,11 @@ fragment NewsFragment on NewsRecord {
 	id
 	title
 	intro(markdown: false)
+	image {
+		...ImageFragment
+	}
 	slug
+
 	_allSlugLocales {
 		locale
 		value

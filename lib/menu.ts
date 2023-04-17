@@ -10,7 +10,6 @@ const base: Menu = [
   { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar', root: true },
   { id: 'program', label: 'Program', slug: '/program', root: true },
   { id: 'participants', label: 'Medverkande', slug: '/medverkande', root: true },
-  { id: 'locations', label: 'Platser', slug: '/platser', root: true },
   { id: 'partners', label: 'Partners', slug: '/partners', general: false, root: true },
   { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
   { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },

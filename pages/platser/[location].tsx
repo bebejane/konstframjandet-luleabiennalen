@@ -62,7 +62,7 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
       ...props,
       location,
       page: {
-        section: 'locations',
+        section: 'partners',
         parent: true,
         title: location.title,
         slugs: pageSlugs('locations', props.year.title, location._allSlugLocales)

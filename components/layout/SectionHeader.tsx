@@ -6,10 +6,10 @@ import { useRouter } from 'next/router'
 import { MenuItem } from '/lib/menu'
 import { useTranslations } from 'next-intl'
 import { usePage } from '/lib/context/page'
-import { pathToMenuItem, pathToParentMenuItem } from '/lib/utils'
 import useStore from '/lib/store'
 
 import Logo from '/public/images/logo-text.svg'
+import { translatePath } from '/lib/utils'
 
 export type SectionHeaderProps = {
   menu: MenuItem[]
@@ -19,7 +19,7 @@ export type SectionHeaderProps = {
 export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
 
   const router = useRouter()
-  const { asPath } = router
+  const { asPath, locale, defaultLocale } = router
   const t = useTranslations('Menu')
   const [showMenu] = useStore((state) => [state.showMenu])
   const { section, parent, year, year: { color: { hex }, isArchive }, isHome } = usePage()
@@ -27,14 +27,12 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const isArchiveHome = section === 'home' && isArchive
   const isSearch = section === 'search'
   const isArchiveOverview = section === 'archive'
-  const isOverview = !parent
+  const isOverview = !parent && !isArchive
   const showArchive = isArchive || isArchiveOverview
   const showLine = !isHome
-
-  const parentPath = asPath.split('/').slice(0, -1).join('/')
+  const parentPath = !isArchiveHome ? asPath.split('/').slice(0, -1).join('/') : translatePath('/arkiv', locale, defaultLocale)
   const yearLabel = isArchiveHome ? `Luleåbiennalen ${year.title}` : `LB°${year.title.substring(2)}`
   const label = isArchiveOverview ? 'Luleåbiennalen' : isArchiveHome ? yearLabel : !isSearch ? `${yearLabel}${!isHome ? ` — ${t(section)}` : ''}` : t('search')
-  const speed = 0.6
 
   const header = (
     <h2>
@@ -43,7 +41,7 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
           <span
             key={`${idx}`}
             style={{
-              animationDelay: `${((idx / label.length) * speed)}s`,
+              animationDelay: `${((idx / label.length) * 0.6)}s`,
             }}
           >{c}</span>
         )}

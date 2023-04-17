@@ -2,6 +2,7 @@ fragment YearFragment on YearRecord {
 	id
 	title
 	participantName
+	introExhibitions(markdown: false)
 	slug
 	theme
 	image {
