@@ -25,7 +25,7 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, titl
 
   const strippedIntro = remark().use(strip).processSync(intro).value as string
   const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(strippedIntro, 500)}` : undefined
-  const { year: { loadingImage } } = usePage()
+  const { year: { loadingImage, isArchive } } = usePage()
   const [loadingImageIndex] = useState(loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0)
   const [loaded, setLoaded] = useState(false);
 
@@ -43,11 +43,11 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, titl
               data={image.responsiveImage}
               className={s.image}
               pictureClassName={s.picture}
-              style={{ opacity: loaded ? 1 : 0.000001 }}
+              style={!isArchive ? { opacity: loaded ? 1 : 0.000001 } : {}}
               onLoad={() => setLoaded(true)}
             /><div className={s.border}></div>
           </>
-          {loadingImage.length > 0 &&
+          {loadingImage.length > 0 && !isArchive &&
             <Image
               data={loadingImage[loadingImageIndex].responsiveImage}
               className={cn(s.loader)}
