@@ -9,6 +9,7 @@
   z-index: var(--z-footer);
 
   section {
+    position: relative;
     display: flex;
 
     @include mq($until: tablet) {
@@ -22,6 +23,16 @@
     padding-left: var(--total-outer-margin);
     padding-right: var(--total-outer-margin);
     position: relative;
+
+    .logo {
+      position: absolute;
+      top: var(--outer-margin);
+      left: 0;
+
+      @include mq($until: desktop) {
+        display: none;
+      }
+    }
 
     div {
       padding-bottom: 0.5em;

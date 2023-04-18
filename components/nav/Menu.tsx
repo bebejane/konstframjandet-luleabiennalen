@@ -3,7 +3,6 @@ import cn from 'classnames'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
 import type { Menu, MenuItem } from '/lib/menu'
-//import Link from '/components/nav/Link'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Hamburger, Temperature } from '/components'
@@ -50,7 +49,7 @@ export default function Menu({ items }: MenuProps) {
 
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height])
 
-	//console.log(items)
+
 	return (
 		<>
 			<Hamburger />
@@ -117,7 +116,7 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 	const isExpanded = isExpandedNode(path, item.slug)
 	const isLink = item.slug
 	const isBold = level === 0 || item.sub?.length > 0
-	const label = t(item.id) || item.label
+	const label = item.label
 
 	const expand = (e) => {
 		const nodes = Array.from(document.querySelectorAll(`ul[data-level="${level + 1}"]`)) as HTMLUListElement[]
@@ -125,8 +124,6 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 		setIsVisible(!isVisible)
 		setSelected(item)
 	}
-
-	//isExpanded() && console.log(isExpanded(), item.slug)
 
 	return (
 		<li onClick={expand} data-parent={item.id} className={cn(isSelected && s.active, isBold && s.bold)}>
