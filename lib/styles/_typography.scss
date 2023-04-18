@@ -18,7 +18,7 @@ h3,
 h4,
 h5 {
   strong {
-    font-weight: normal;
+    //font-weight: normal;
   }
 }
 
@@ -120,7 +120,8 @@ article {
   }
 
   p,
-  .intro {
+  .intro,
+  h2 {
     padding-left: var(--outer-margin);
     padding-right: var(--outer-margin);
     @include mq($from: tablet) {

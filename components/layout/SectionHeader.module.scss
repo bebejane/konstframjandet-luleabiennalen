@@ -9,6 +9,10 @@
   width: 100%;
   mix-blend-mode: difference;
 
+  h2 {
+    line-height: 1;
+  }
+
   svg {
     path {
       width: 200px;
@@ -23,10 +27,10 @@
   }
 
   &:hover {
-    mix-blend-mode: normal !important;
+    // mix-blend-mode: normal !important;
     a,
     span {
-      color: var(--black);
+      //color: var(--black);
     }
   }
 
@@ -94,14 +98,16 @@
       width: 100%;
 
       > span {
+        /*
         &:hover {
           padding-left: 1em;
           padding-right: 1em;
           padding-top: 0.5em;
           padding-bottom: 0.5em;
           border-radius: 1.5em;
-          background-color: var(--background);
+          background-color: var(--foreground);
         }
+        */
 
         span {
           animation-name: show;

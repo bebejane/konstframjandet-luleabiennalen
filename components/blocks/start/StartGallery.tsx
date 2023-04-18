@@ -73,8 +73,8 @@ export default function StartGallery({ data: { id, images, headline, link } }: P
         <nav style={{ height: `calc(100% - ${captionHeight}px)` }} className={s.next} onClick={() => swiperRef.current?.slideNext()}>→</nav>
       </SwiperReact>
 
-      <h3>
-        <DatoLink link={link} className="small" />
+      <h3 className="small">
+        <DatoLink link={link} />
       </h3>
 
     </div>
