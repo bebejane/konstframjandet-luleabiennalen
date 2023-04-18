@@ -1,3 +1,3 @@
-## Konstnärscentrum
+## Luleåbiennalen
 
 Website
