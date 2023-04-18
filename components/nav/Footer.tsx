@@ -5,7 +5,6 @@ import KFLogo from '/public/images/kf-logo.svg'
 import { useTranslations } from 'next-intl'
 import { usePage } from '/lib/context/page'
 
-
 export type FooterProps = {
 	menu: MenuItem[]
 	footer: GeneralRecord
@@ -30,7 +29,6 @@ export default function Footer({ menu, footer: { email, facebook, instagram, abo
 					{about}
 				</div>
 				{isHome && <KFLogo className={s.kf} />}
-
 			</section>
 		</footer>
 	)

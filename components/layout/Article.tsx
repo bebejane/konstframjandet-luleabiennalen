@@ -66,7 +66,7 @@ export default function Article({ id, children, title, content, image, imageSize
             <Image
               data={image.responsiveImage}
               pictureClassName={s.picture}
-              pictureStyle={{ padding }}
+              style={{ transform: `translateY(calc(-1 * ${ratio * 0.3}px))`, scale: `${1 - (ratio * 0.3)}` }}
             />
             <figcaption ref={captionRef} style={{ transform: `translateY(-${padding})` }}>{image.title}</figcaption>
           </figure>

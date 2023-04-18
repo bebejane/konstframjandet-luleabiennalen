@@ -40,7 +40,7 @@ export default function withGlobalProps(opt: any, callback: Function): GetStatic
     props.year = year
     props.messages = messages;
     props.locale = context.locale
-    props.menu = await buildMenu(context.locale)
+    props.menu = await buildMenu(context.locale, messages)
 
     if (callback)
       return await callback({ context, props: { ...props }, revalidate });

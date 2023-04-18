@@ -17,19 +17,20 @@ const base: Menu = [
   { id: 'search', label: 'Sök', slug: '/sok', general: true, root: true }
 ]
 
-export const buildMenu = async (locale: string) => {
+export const buildMenu = async (locale: string, messages: any) => {
 
   const altLocale = locales.find(l => locale != l)
   const years = await allYears()
   const year = years[0]
   const res: MenuQueryResponse = await apiQuery(MenuDocument, { variables: { yearId: year.id, locale, altLocale } });
   const archive: MenuQueryResponse[] = await Promise.all(years.filter(({ id }) => id !== year.id).map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale, altLocale } })))
-  const menu = buildYearMenu(res, locale, altLocale, false);
+  const menu = buildYearMenu(res, { locale, altLocale, isArchive: false });
   const archiveIndex = menu.findIndex(el => el.id === 'archive')
 
   //@ts-ignore
   menu[archiveIndex].sub = archive.map(el => {
     const year = el.year.title;
+    const participantName = el.year.participantName
     const haveAboutOverview = el.abouts.filter(({ year }) => year).length > 0
 
     return {
@@ -37,8 +38,9 @@ export const buildMenu = async (locale: string) => {
       label: `LB°${year.substring(2)}`,
       slug: haveAboutOverview ? `/${year}` : null,
       altSlug: haveAboutOverview ? `/${year}` : null,
-      sub: buildYearMenu(el, locale, altLocale, true).filter(e => !e.general).map(e => ({
+      sub: buildYearMenu(el, { locale, altLocale, isArchive: true }).filter(e => !e.general).map(e => ({
         ...e,
+        //label: e.id === 'participants' ? participantName ?? e.label : e.label,
         id: `${e.id}-archive`,
         slug: `${e.slug}`,
         altSlug: `${e.altSlug}`,
@@ -56,7 +58,7 @@ export const buildMenu = async (locale: string) => {
   return menu
 }
 
-export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale: string, isArchive: boolean = false): MenuItem[] => {
+export const buildYearMenu = (res: MenuQueryResponse, { locale, altLocale, isArchive = false }: { locale: string, altLocale: string, isArchive: boolean }): MenuItem[] => {
 
   const menu = base.map(item => {
 
@@ -64,6 +66,7 @@ export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale:
     const year = res.year.title
 
     if (item.slug) {
+      //item.label = item.id === 'participants' ? res.year.participantName ?? item.label : item.label
       item.slug = `/${!item.general ? year + '/' : ''}${i18nPaths[item.id][locale]}`
       item.altSlug = `/${!item.general ? year + '/' : ''}${i18nPaths[item.id][altLocale]}`
     }

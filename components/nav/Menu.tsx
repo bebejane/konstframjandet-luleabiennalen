@@ -114,21 +114,24 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 	const t = useTranslations('Menu')
 	const [isVisible, setIsVisible] = useState(false);
 	const isSelected = selected?.id == item.id
-	const isLink = item.slug //&& (!item.sub || item.id === 'archive')
+	const isExpanded = isExpandedNode(path, item.slug)
+	const isLink = item.slug
 	const isBold = level === 0 || item.sub?.length > 0
 	const label = t(item.id) || item.label
 
-	const expand = () => {
+	const expand = (e) => {
 		const nodes = Array.from(document.querySelectorAll(`ul[data-level="${level + 1}"]`)) as HTMLUListElement[]
 		nodes.forEach(el => (el.parentNode as HTMLLIElement).click())
 		setIsVisible(!isVisible)
 		setSelected(item)
 	}
 
+	//isExpanded() && console.log(isExpanded(), item.slug)
+
 	return (
 		<li onClick={expand} data-parent={item.id} className={cn(isSelected && s.active, isBold && s.bold)}>
 			{isLink ? <Link href={item.slug}>{label}</Link> : <>{label}</>}
-			{item?.sub && isVisible &&
+			{item?.sub && (isVisible || isExpanded) &&
 				<ul data-level={++level} onClick={e => e.stopPropagation()}>
 					{item.sub.map((item, idx) =>
 						<MenuTree
@@ -143,6 +146,13 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 					)}
 				</ul>
 			}
-		</li>
+		</li >
 	);
+}
+
+const isExpandedNode = (path: string, slug: string) => {
+	return false
+	const slugs = path?.split('/').filter(slug => slug !== '')
+	const parentSlugs = slugs?.map((slug, idx) => `/${slugs.slice(0, idx + 1).join('/')}`)
+	return parentSlugs?.find(s => s === slug) !== undefined
 }
