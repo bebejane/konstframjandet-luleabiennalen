@@ -39,87 +39,8 @@
       "green": 0,
       "__typename": "ColorField"
     },
-    "background": [
-      {
-        "__typename": "FileField",
-        "id": "30432203",
-        "mimeType": "image/png",
-        "url": "https://www.datocms-assets.com/95303/1678264405-back.png",
-        "title": null,
-        "alt": null,
-        "height": 2076,
-        "width": 2880,
-        "responsiveImage": {
-          "src": "https://www.datocms-assets.com/95303/1678264405-back.png?auto=format",
-          "width": 2880,
-          "height": 2076,
-          "alt": null,
-          "title": null,
-          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoRDRQLDRYPDhgQDRYZDR0SFg0NGBgZGCIfFhUaHysjGh0oHRYWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHA4QHS8oIhw1NDYvLy81Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy81Ly8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAaAAACAgMAAAAAAAAAAAAAAAAABAEHAgMG/8QAGxABAQACAwEAAAAAAAAAAAAAAAEDBAIhMxP/xAAWAQEBAQAAAAAAAAAAAAAAAAACBAD/xAAaEQEAAQUAAAAAAAAAAAAAAAAAAgEDERIx/9oADAMBAAIRAxEAPwCwdaXjsR0GPvHC3DUx/SHZJIMaYUXp7MbENgJOVx+hlIahT6AAwv/Z",
-          "sizes": "(max-width: 2880px) 100vw, 2880px",
-          "__typename": "ResponsiveImage"
-        }
-      }
-    ],
-    "loadingImage": [
-      {
-        "__typename": "FileField",
-        "id": "30432198",
-        "mimeType": "image/png",
-        "url": "https://www.datocms-assets.com/95303/1678264263-loading_3.png",
-        "title": null,
-        "alt": null,
-        "height": 591,
-        "width": 692,
-        "responsiveImage": {
-          "src": "https://www.datocms-assets.com/95303/1678264263-loading_3.png?ar64=Mzoy&auto=format&fit=crop&q=50",
-          "width": 692,
-          "height": 461,
-          "alt": null,
-          "title": null,
-          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAA/FBMVEXFwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb8oJ528AAAAVHRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRocHR4fICEiIyQlJigqKywtLi8xMjM0Njg5Ozw9PkBBQkZHSElLTE1OT1BRU1RXWFlaW1xdYWJjZmcYIjXiAAAAt0lEQVR42o3Q7W7DIAwFUGNMoCHv/6BbUj5s7JG1VatWk3YFP6xjZBmCP0L/AfQw9BN8XBCk13e4rCl44F728Qo+bzkGtNFi+G5PCNu2XRJ5k7QE/KoPCDnnNa2BjLt3BlBvgHFmOXsB3YjCrP0G7gycF9HPQyR6whDhTkQOwUTGjOrvC6vOIcKIBNp6bTP34XYdKixzsHK/Hvvx3KPxbI0TRilHfd1c95ZicMatyNtfMRdCE76XP8oHYQNQfRU7AAAAAElFTkSuQmCC",
-          "__typename": "ResponsiveImage"
-        }
-      },
-      {
-        "__typename": "FileField",
-        "id": "30432199",
-        "mimeType": "image/png",
-        "url": "https://www.datocms-assets.com/95303/1678264245-loading_2.png",
-        "title": null,
-        "alt": null,
-        "height": 694,
-        "width": 638,
-        "responsiveImage": {
-          "src": "https://www.datocms-assets.com/95303/1678264245-loading_2.png?ar64=Mzoy&auto=format&fit=crop&q=50",
-          "width": 638,
-          "height": 425,
-          "alt": null,
-          "title": null,
-          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAA9lBMVEX/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29nz8BftAAAAUnRSTlMAAQIDBAUGBwgJCgwNDg8QERITFRYXGBobHB0eHyIjJCUmJygpKissLS8wMTIzNDU4OTo7PD0+P0BBREVGR0hJSktNTlBSU1RVV1hZWltcXV5flyrKCQAAAMZJREFUeNpdkItuBCEIRUHwtf3/X62j8iiZqdltTTTiyb1cYTgrtULJdU25Sz7vuddC6JZp7E9Qe6+N0YQSjvUG9fXqvWS0xQnc9wGltf7VSyiY3MxcHkC51tZaDpBcRIq6/gLOzBwKscyUYvkNEDHusSEh4G3+ALfbWBFEVdRU9QFhu2UzKOhee6617GkeISliKoHs8T2vy07cfUW7wDGRa4yh7w/OkEkJxZpjyOdIpoc9xTGvf0NcJkygMhX+goiWE9g+5Q96sn31CDEo8gAAAABJRU5ErkJggg==",
-          "__typename": "ResponsiveImage"
-        }
-      },
-      {
-        "__typename": "FileField",
-        "id": "30432200",
-        "mimeType": "image/png",
-        "url": "https://www.datocms-assets.com/95303/1678264170-loading_1.png",
-        "title": null,
-        "alt": null,
-        "height": 725,
-        "width": 720,
-        "responsiveImage": {
-          "src": "https://www.datocms-assets.com/95303/1678264170-loading_1.png?ar64=Mzoy&auto=format&fit=crop&q=50",
-          "width": 720,
-          "height": 480,
-          "alt": null,
-          "title": null,
-          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAABEVBMVEWV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fg58l5sAAAAW3RSTlMAAQIDBAUGBwgJCgsMDg8QERITFBUWFxkaGx0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU3OTo8PT5AQUJERUhJSktMTU5PUFFUVVZXWVpcXV5fYGFiZGZoaW5vhQsMZwAAAM5JREFUeNplkOtyxCAIhUExF5Np3/8xO25MFISaNpvZbc8fRz49cCD4VZhHglYyX3eg64hxCiDktvoGaF3WmUB3j4/6AmhdP+NpRYSwlRuEuHwscSLsVqoG5QJhmnu5A2hOhaUZ2wl8GIYxTENwgDQUIu+1GRA6fAoQ+lMz0/OHiReRxtJNRSoX5qo/PexA2gfy5k3yseW83VPt6BxqJeMjfaXHS45s1tbRGW8p5bfkuzYevZYjlT+7KibFad3vHT4BVOUOGvwDIIrn+Le+ARZcce8xjMKjAAAAAElFTkSuQmCC",
-          "__typename": "ResponsiveImage"
-        }
-      }
-    ],
+    "background": [],
+    "loadingImage": [],
     "fundedBy": [
       {
         "id": "100085659",

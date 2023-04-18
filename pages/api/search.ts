@@ -2,7 +2,7 @@ import type { NextRequest, NextResponse } from 'next/server'
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { buildClient } from '@datocms/cma-client';
 import { SiteSearchDocument } from '/graphql';
-import { truncateParagraph, truncateText, isEmptyObject, recordToSlug } from '/lib/utils';
+import { truncateParagraph, truncateWords, isEmptyObject, recordToSlug } from '/lib/utils';
 
 export const config = {
   runtime: 'edge',
@@ -102,7 +102,7 @@ export const siteSearch = async (opt: any) => {
         _modelApiKey: el._modelApiKey,
         category: itemTypes.find(({ api_key }) => api_key === el._modelApiKey).name,
         title: el.title,
-        text: truncateText(el.text, { sentences: 1, useEllipsis: true, minLength: 100 }),
+        text: truncateWords(el.text, 200),
         slug: `${el.year ? `/${el.year.title}` : ''}${recordToSlug(el)}`
       }))
   })
