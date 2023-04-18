@@ -10,6 +10,7 @@ import useStore from '/lib/store'
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
 import { useWindowSize } from 'usehooks-ts'
 import useDevice from '/lib/hooks/useDevice'
+import { usePage } from '/lib/context/page'
 
 export type MenuProps = { items: Menu }
 
@@ -48,7 +49,6 @@ export default function Menu({ items }: MenuProps) {
 		setFooterScrollPosition(footerScrollPosition)
 
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height])
-
 
 	return (
 		<>
@@ -125,6 +125,8 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 		setSelected(item)
 	}
 
+	//isExpanded && console.log(isExpanded, item.slug)
+
 	return (
 		<li onClick={expand} data-parent={item.id} className={cn(isSelected && s.active, isBold && s.bold)}>
 			{isLink ? <Link href={item.slug}>{label}</Link> : <>{label}</>}
@@ -148,7 +150,7 @@ export function MenuTree({ item, level, selected, setSelected, path, locale }: M
 }
 
 const isExpandedNode = (path: string, slug: string) => {
-	return false
+	if (path === slug) return true
 	const slugs = path?.split('/').filter(slug => slug !== '')
 	const parentSlugs = slugs?.map((slug, idx) => `/${slugs.slice(0, idx + 1).join('/')}`)
 	return parentSlugs?.find(s => s === slug) !== undefined
