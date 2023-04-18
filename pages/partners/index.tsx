@@ -37,8 +37,8 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
           </Card>
         )}
       </CardContainer>
-      <h3>{t('Menu.locations')}</h3>
-      <CardContainer key={asPath}>
+      <h2 className={s.head}>{t('Menu.locations')}</h2>
+      <CardContainer key={asPath} className={s.locations}>
         {locations.map(({ id, image, title, intro, slug }) =>
           <Card key={id}>
             <Thumbnail
@@ -52,7 +52,7 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
         )}
       </CardContainer>
       <section className={s.financiers}>
-        <h3>Luleåbiennalen {year.title} {t('Partners.supportedBy')}</h3>
+        <h2 className={s.head}>{t('Partners.supportedBy')}</h2>
         <ul>
           {fundedBy.map(({ id, url, logo }) =>
             <li key={id}>

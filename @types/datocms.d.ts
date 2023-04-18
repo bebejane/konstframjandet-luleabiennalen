@@ -3584,6 +3584,7 @@ enum ProgramCategoryModelOrderBy {
 /** Record of type Program kategori (program_category) */
 type ProgramCategoryRecord = RecordInterface & {
   __typename?: 'ProgramCategoryRecord';
+  _allDescLocales?: Maybe<Array<StringMultiLocaleField>>;
   _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3603,6 +3604,13 @@ type ProgramCategoryRecord = RecordInterface & {
 
 
 /** Record of type Program kategori (program_category) */
+type ProgramCategoryRecord_allDescLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program kategori (program_category) */
 type ProgramCategoryRecord_allTitleLocalesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
@@ -3611,6 +3619,13 @@ type ProgramCategoryRecord_allTitleLocalesArgs = {
 
 /** Record of type Program kategori (program_category) */
 type ProgramCategoryRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Program kategori (program_category) */
+type ProgramCategoryRecorddescArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 

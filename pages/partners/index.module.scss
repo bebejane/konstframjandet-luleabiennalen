@@ -1,11 +1,6 @@
 .financiers {
   margin-top: var(--space);
 
-  h3 {
-    width: 100%;
-    text-align: center;
-  }
-
   ul {
     display: flex;
     flex-direction: row;
@@ -22,4 +17,12 @@
       }
     }
   }
+}
+
+h2.head {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--black);
+  padding-bottom: var(--small-space);
+  margin-bottom: var(--space);
 }

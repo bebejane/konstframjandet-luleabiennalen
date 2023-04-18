@@ -23,7 +23,7 @@ export default function Archive({ years }: Props) {
         {years.map(({ id, title, slug, theme, image }) =>
           <Card key={id}>
             <Thumbnail
-              title={`Lulebiennalen ${title}`}
+              title={`Luleåbiennalen ${title}`}
               image={image}
               intro={theme}
               slug={`/${title}`}
