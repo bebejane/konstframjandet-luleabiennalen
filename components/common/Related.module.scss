@@ -1,11 +1,16 @@
 .related {
-  margin-left: var(--grid-unit);
-  margin-right: var(--grid-unit);
   width: var(--body-width);
   border-top: 1px solid var(--black);
   padding-top: var(--space);
-  margin-top: var(--big-space);
+  margin-top: var(--space);
   position: relative;
+  margin-left: var(--outer-margin);
+  margin-right: var(--outer-margin);
+
+  @include mq($from: tablet) {
+    margin-left: var(--grid-unit);
+    margin-right: var(--grid-unit);
+  }
 
   h2 {
     text-align: center;
@@ -23,8 +28,15 @@
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
-    width: 100%;
     margin-top: calc(-1 * var(--space));
+    @include mq($until: tablet) {
+      margin-left: calc(-1 * var(--gutter-half));
+      margin-right: calc(-1 * var(--gutter-half));
+    }
+
+    @include mq($from: tablet) {
+      width: 100%;
+    }
 
     li {
       flex: 0 0 33%.33;

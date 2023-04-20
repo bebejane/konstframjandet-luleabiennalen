@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  display: block;
   transition: all var(--menu-transition);
 
   @include mq($until: tablet) {
@@ -23,7 +24,7 @@
     bottom: var(--space);
     left: 0;
     height: auto;
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -31,6 +32,10 @@
     color: var(--white);
     font-family: $body-font;
     font-size: 1rem;
+
+    @include mq($from: tablet) {
+      width: 100%;
+    }
 
     h2,
     p {

@@ -23,15 +23,13 @@
 
     &:first-child,
     &:last-child {
-      @include mq($from: tablet) {
-        border-width: 0;
-      }
+      border-width: 0;
     }
 
     &.noborder {
       border-width: 0 !important;
       @include mq($until: tablet) {
-        padding-bottom: 0;
+        //padding-bottom: 0;
         padding-top: 1.5rem;
       }
     }

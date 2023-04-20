@@ -22,6 +22,9 @@
     position: absolute;
     top: var(--outer-margin);
     left: 0;
+    @include mq($until: desktop) {
+      display: none;
+    }
   }
 
   svg,
