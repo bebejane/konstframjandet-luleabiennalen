@@ -1,4 +1,5 @@
 import s from "./index.module.scss";
+import cn from 'classnames'
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllLocationsDocument, AllPartnersDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail, Link } from "/components";
@@ -37,7 +38,8 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
           </Card>
         )}
       </CardContainer>
-      <h2 className={s.head}>{t('Menu.locations')}</h2>
+
+      <h2 id="locations" className={cn(s.head, s.locations)}>{t('Menu.locations')}</h2>
       <CardContainer key={asPath} className={s.locations}>
         {locations.map(({ id, image, title, intro, slug }) =>
           <Card key={id}>
@@ -46,7 +48,7 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
               image={image}
               intro={intro}
               titleRows={1}
-              slug={`/locations/${slug}`}
+              slug={`/platser/${slug}`}
             />
           </Card>
         )}
@@ -57,7 +59,11 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
           {fundedBy.map(({ id, url, logo }) =>
             <li key={id}>
               <a href={url}>
-                <Image data={logo.responsiveImage} className={s.image} objectFit={'contain'} />
+                <Image
+                  data={logo.responsiveImage}
+                  className={s.image}
+                  objectFit={'contain'}
+                />
               </a>
             </li>
           )}

@@ -4,7 +4,8 @@ import type { MenuItem } from '/lib/menu'
 import KFLogo from '/public/images/kf-logo.svg'
 import { useTranslations } from 'next-intl'
 import { usePage } from '/lib/context/page'
-
+import Logo from '/components/layout/Logo'
+import { PROJECT_NAME } from '/lib/constant'
 
 export type FooterProps = {
 	menu: MenuItem[]
@@ -18,8 +19,9 @@ export default function Footer({ menu, footer: { email, facebook, instagram, abo
 	return (
 		<footer className={cn(s.footer)} id="footer">
 			<section>
+				<Logo />
 				<div>
-					Copyright Luleåbiennalen, 2023 <br />
+					Copyright {PROJECT_NAME}, 2023 <br />
 					<a href={`mailto:${email}`}>{email}</a> · Cookies & GDPR
 				</div>
 				<div>
@@ -29,8 +31,7 @@ export default function Footer({ menu, footer: { email, facebook, instagram, abo
 				<div>
 					{about}
 				</div>
-				{isHome && <KFLogo className={s.kf} />}
-
+				<KFLogo className={s.kf} />
 			</section>
 		</footer>
 	)

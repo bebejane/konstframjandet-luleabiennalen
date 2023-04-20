@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { MenuItem } from '/lib/menu'
 import { useTranslations } from 'next-intl'
 import { usePage } from '/lib/context/page'
+import { PROJECT_NAME, PROJECT_ABBR } from '/lib/constant'
 import useStore from '/lib/store'
 
 import Logo from '/public/images/logo-text.svg'
@@ -16,13 +17,18 @@ export type SectionHeaderProps = {
   overview?: boolean
 }
 
-export default function SectionHeader({ overview = true, menu }: SectionHeaderProps) {
+export default function SectionHeader() {
 
-  const router = useRouter()
-  const { asPath, locale, defaultLocale } = router
   const t = useTranslations('Menu')
+  const router = useRouter()
+  const { locale, defaultLocale } = router
+
   const [showMenu] = useStore((state) => [state.showMenu])
-  const { section, parent, year, year: { color: { hex }, isArchive }, isHome } = usePage()
+  const { section, parent, year, year: { color: { hex }, isArchive }, isHome, slugs } = usePage()
+
+  const locationsParentPath = `${translatePath('/partners', locale, defaultLocale, year?.title)}#locations`
+  const isLocation = section === 'locations'
+  const parentPath = isLocation ? locationsParentPath : slugs.find((slug) => slug.locale === locale)?.parent
 
   const isArchiveHome = section === 'home' && isArchive
   const isSearch = section === 'search'
@@ -30,9 +36,9 @@ export default function SectionHeader({ overview = true, menu }: SectionHeaderPr
   const isOverview = !parent && !isArchive
   const showArchive = isArchive || isArchiveOverview
   const showLine = !isHome
-  const parentPath = !isArchiveHome ? asPath.split('/').slice(0, -1).join('/') : translatePath('/arkiv', locale, defaultLocale)
-  const yearLabel = isArchiveHome ? `Luleåbiennalen ${year.title}` : `LB°${year.title.substring(2)}`
-  const label = isArchiveOverview ? 'Luleåbiennalen' : isArchiveHome ? yearLabel : !isSearch ? `${yearLabel}${!isHome ? ` — ${t(section)}` : ''}` : t('search')
+
+  const yearLabel = isArchiveHome ? `${PROJECT_NAME} ${year.title}` : `${PROJECT_ABBR}°${year.title.substring(2)}`
+  const label = isArchiveOverview ? PROJECT_NAME : isArchiveHome ? yearLabel : !isSearch ? `${yearLabel}${!isHome ? ` — ${t(section)}` : ''}` : t('search')
 
   const header = (
     <h2>

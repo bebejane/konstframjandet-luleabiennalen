@@ -11,11 +11,14 @@
 
   @include mq($from: tablet) {
     bottom: var(--outer-margin);
-
-    &.home {
-      display: none;
-    }
   }
+
+  &.home {
+    position: absolute;
+    top: var(--outer-margin);
+    left: 0;
+  }
+
 
   svg,
   g,

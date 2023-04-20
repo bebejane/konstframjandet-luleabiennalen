@@ -34,6 +34,7 @@ export default function Article({ id, children, title, content, image, imageSize
   const [setImageId, setImages] = useStore((state) => [state.setImageId, state.setImages])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const captionRef = useRef<HTMLElement | null>(null)
+  const figureRef = useRef<HTMLElement | null>(null)
   const [offset, setOffset] = useState(0)
   const ratio = offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight))) : 0
   const padding = `${ratio * 100}px`;
@@ -50,7 +51,6 @@ export default function Article({ id, children, title, content, image, imageSize
 
   useEffect(() => {
     setOffset(captionRef?.current?.offsetTop ?? 0)
-
   }, [asPath, viewportHeight])
 
   return (
@@ -62,13 +62,16 @@ export default function Article({ id, children, title, content, image, imageSize
           <figure
             className={cn(s.mainImage, imageSize && s[imageSize], image.height > image.width && s.portrait)}
             onClick={() => setImageId(image?.id)}
+            ref={figureRef}
           >
             <Image
               data={image.responsiveImage}
               pictureClassName={s.picture}
-              pictureStyle={{ padding }}
+              style={{ transform: `scale(${1 - (ratio * 0.3)})` }}
             />
-            <figcaption ref={captionRef} style={{ transform: `translateY(-${padding})` }}>{image.title}</figcaption>
+            <figcaption ref={captionRef} style={{ opacity: 1 - ratio }}>
+              {image.title}
+            </figcaption>
           </figure>
         }
         <section className="intro">

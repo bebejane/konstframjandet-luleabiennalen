@@ -1,11 +1,13 @@
 import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
-import { apiQueryAll } from '/lib/utils';
+import { apiQueryAll, translatePath } from '/lib/utils';
 import { LocationDocument, AllLocationsDocument } from "/graphql";
 import { Article, Related, BackButton } from '/components';
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
 import { pageSlugs } from "/lib/i18n";
+import { useRouter } from "next/router";
+import { usePage } from "/lib/context/page";
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
   exhibitions: ExhibitionRecord[]
@@ -18,6 +20,9 @@ export type Props = {
 
 export default function Location({ location: { id, image, title, intro, content, exhibitions, programs, _seoMetaTags } }: Props) {
   const t = useTranslations()
+  const { locale, defaultLocale } = useRouter()
+  const { year } = usePage()
+  const href = `${translatePath('/partners', locale, defaultLocale, year?.title)}#locations`
 
   return (
     <>
@@ -33,7 +38,7 @@ export default function Location({ location: { id, image, title, intro, content,
         onClick={(imageId) => { }}
       />
       <Related header={t('Related.related')} items={[...exhibitions, ...programs]} />
-      <BackButton>{t('BackButton.showAllLocations')}</BackButton>
+      <BackButton href={href}>{t('BackButton.showAllLocations')}</BackButton>
     </>
   );
 }
@@ -62,7 +67,8 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
       ...props,
       location,
       page: {
-        section: 'partners',
+        section: 'locations',
+        overview: '/partners#locations',
         parent: true,
         title: location.title,
         slugs: pageSlugs('locations', props.year.title, location._allSlugLocales)

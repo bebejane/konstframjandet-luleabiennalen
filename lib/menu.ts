@@ -5,26 +5,27 @@ import { allYears } from '/lib/utils';
 import { locales } from '/lib/i18n'
 
 const base: Menu = [
-  { id: 'home', label: 'Hem', slug: '/', general: true, root: true },
-  { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true, root: true },
-  { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar', root: true },
-  { id: 'program', label: 'Program', slug: '/program', root: true },
-  { id: 'participants', label: 'Medverkande', slug: '/medverkande', root: true },
-  { id: 'partners', label: 'Partners', slug: '/partners', general: false, root: true },
-  { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
-  { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
-  { id: 'archive', label: 'Arkiv', slug: '/arkiv', general: true, sub: [], root: false },
-  { id: 'search', label: 'Sök', slug: '/sok', general: true, root: true }
+  { id: 'home', label: 'Hem', slug: '/', general: true },
+  { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true },
+  { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar' },
+  { id: 'program', label: 'Program', slug: '/program' },
+  { id: 'participants', label: 'Medverkande', slug: '/medverkande' },
+  { id: 'partners', label: 'Partners', slug: '/partners', general: false },
+  { id: 'about', label: 'Om', slug: '/om', sub: [] },
+  { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true },
+  { id: 'archive', label: 'Arkiv', slug: '/arkiv', general: true, sub: [] },
+  { id: 'search', label: 'Sök', slug: '/sok', general: true }
 ]
 
 export const buildMenu = async (locale: string) => {
 
+  const messages = (await import(`./i18n/${locale}.json`)).default
   const altLocale = locales.find(l => locale != l)
   const years = await allYears()
   const year = years[0]
   const res: MenuQueryResponse = await apiQuery(MenuDocument, { variables: { yearId: year.id, locale, altLocale } });
   const archive: MenuQueryResponse[] = await Promise.all(years.filter(({ id }) => id !== year.id).map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale, altLocale } })))
-  const menu = buildYearMenu(res, locale, altLocale, false);
+  const menu = buildYearMenu(res, { locale, altLocale, isArchive: false, messages });
   const archiveIndex = menu.findIndex(el => el.id === 'archive')
 
   //@ts-ignore
@@ -37,7 +38,7 @@ export const buildMenu = async (locale: string) => {
       label: `LB°${year.substring(2)}`,
       slug: haveAboutOverview ? `/${year}` : null,
       altSlug: haveAboutOverview ? `/${year}` : null,
-      sub: buildYearMenu(el, locale, altLocale, true).filter(e => !e.general).map(e => ({
+      sub: buildYearMenu(el, { locale, altLocale, isArchive: true, messages }).filter(e => !e.general).map(e => ({
         ...e,
         id: `${e.id}-archive`,
         slug: `${e.slug}`,
@@ -56,7 +57,7 @@ export const buildMenu = async (locale: string) => {
   return menu
 }
 
-export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale: string, isArchive: boolean = false): MenuItem[] => {
+export const buildYearMenu = (res: MenuQueryResponse, { locale, altLocale, isArchive = false, messages }: { locale: string, altLocale: string, isArchive: boolean, messages: any }): MenuItem[] => {
 
   const menu = base.map(item => {
 
@@ -64,6 +65,7 @@ export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale:
     const year = res.year.title
 
     if (item.slug) {
+      item.label = item.id === 'participants' ? res.year.participantName : messages.Menu[item.id]
       item.slug = `/${!item.general ? year + '/' : ''}${i18nPaths[item.id][locale]}`
       item.altSlug = `/${!item.general ? year + '/' : ''}${i18nPaths[item.id][altLocale]}`
     }
@@ -75,8 +77,7 @@ export const buildYearMenu = (res: MenuQueryResponse, locale: string, altLocale:
           id: `about-${el.slug}`,
           label: el.title,
           slug: `/${year}/${i18nPaths.about[locale]}/${el.slug}`,
-          altSlug: `/${year}/${i18nPaths.about[altLocale]}/${el.altSlug}`,
-          root: false
+          altSlug: `/${year}/${i18nPaths.about[altLocale]}/${el.altSlug}`
         }))
         break;
       default:
@@ -114,6 +115,5 @@ export type MenuItem = {
   year?: string
   sub?: MenuItem[]
   count?: number
-  root: boolean
   general?: boolean
 }

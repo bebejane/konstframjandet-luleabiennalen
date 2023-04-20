@@ -4,11 +4,7 @@ import LogoIcon from '/public/images/logo.svg'
 import { usePage } from '/lib/context/page'
 import Link from 'next/link'
 
-export type Props = {
-
-}
-
-export default function Logo({ }: Props) {
+export default function Logo() {
   const { year: { color: { hex }, isArchive }, isHome } = usePage()
 
   return (

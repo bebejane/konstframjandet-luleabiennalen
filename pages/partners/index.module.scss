@@ -25,4 +25,8 @@ h2.head {
   border-bottom: 1px solid var(--black);
   padding-bottom: var(--small-space);
   margin-bottom: var(--space);
+
+  &.locations {
+    scroll-margin-top: var(--space);
+  }
 }

@@ -74,7 +74,6 @@ export default function Search({ query }: Props) {
     setSearchQuery(params.get('q'))
   }, [])
 
-
   return (
     <section className={cn(s.container)}>
       <div className={cn(s.search)}>

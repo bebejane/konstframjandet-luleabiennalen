@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 import { DatoSEO } from "dato-nextjs-utils/components";
 import { pageSlugs } from "/lib/i18n";
+import { PROJECT_NAME } from "/lib/constant";
 
 export type Props = {
   years: YearRecord[]
@@ -23,7 +24,7 @@ export default function Archive({ years }: Props) {
         {years.map(({ id, title, slug, theme, image }) =>
           <Card key={id}>
             <Thumbnail
-              title={`Luleåbiennalen ${title}`}
+              title={`${PROJECT_NAME} ${title}`}
               image={image}
               intro={theme}
               slug={`/${title}`}
