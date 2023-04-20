@@ -38,7 +38,7 @@ export default function SectionHeader() {
   const showLine = !isHome
 
   const yearLabel = isArchiveHome ? `${PROJECT_NAME} ${year.title}` : `${PROJECT_ABBR}°${year.title.substring(2)}`
-  const label = isArchiveOverview ? PROJECT_NAME : isArchiveHome ? yearLabel : !isSearch ? `${yearLabel}${!isHome ? ` — ${t(section)}` : ''}` : t('search')
+  const label = isArchiveOverview ? PROJECT_NAME : isArchiveHome ? yearLabel : !isSearch ? `${yearLabel}${!isHome ? ` — ${t(isLocation ? 'partners' : section)}` : ''}` : t('search')
 
   const header = (
     <h2>

@@ -41,7 +41,7 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
 
       <h2 id="locations" className={cn(s.head, s.locations)}>{t('Menu.locations')}</h2>
       <CardContainer key={asPath} className={s.locations}>
-        {locations.map(({ id, image, title, intro, slug }) =>
+        {locations.map(({ id, image, title, intro, slug, year }) =>
           <Card key={id}>
             <Thumbnail
               title={title}
