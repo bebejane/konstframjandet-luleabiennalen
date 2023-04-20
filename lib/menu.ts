@@ -5,16 +5,16 @@ import { allYears } from '/lib/utils';
 import { locales } from '/lib/i18n'
 
 const base: Menu = [
-  { id: 'home', label: 'Hem', slug: '/', general: true, root: true },
-  { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true, root: true },
-  { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar', root: true },
-  { id: 'program', label: 'Program', slug: '/program', root: true },
-  { id: 'participants', label: 'Medverkande', slug: '/medverkande', root: true },
-  { id: 'partners', label: 'Partners', slug: '/partners', general: false, root: true },
-  { id: 'about', label: 'Om', slug: '/om', sub: [], root: false },
-  { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true, root: true },
-  { id: 'archive', label: 'Arkiv', slug: '/arkiv', general: true, sub: [], root: false },
-  { id: 'search', label: 'Sök', slug: '/sok', general: true, root: true }
+  { id: 'home', label: 'Hem', slug: '/', general: true },
+  { id: 'news', label: 'Nyheter', slug: '/nyheter', general: true },
+  { id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar' },
+  { id: 'program', label: 'Program', slug: '/program' },
+  { id: 'participants', label: 'Medverkande', slug: '/medverkande' },
+  { id: 'partners', label: 'Partners', slug: '/partners', general: false },
+  { id: 'about', label: 'Om', slug: '/om', sub: [] },
+  { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true },
+  { id: 'archive', label: 'Arkiv', slug: '/arkiv', general: true, sub: [] },
+  { id: 'search', label: 'Sök', slug: '/sok', general: true }
 ]
 
 export const buildMenu = async (locale: string) => {
@@ -31,7 +31,6 @@ export const buildMenu = async (locale: string) => {
   //@ts-ignore
   menu[archiveIndex].sub = archive.map(el => {
     const year = el.year.title;
-    const participantName = el.year.participantName
     const haveAboutOverview = el.abouts.filter(({ year }) => year).length > 0
 
     return {
@@ -78,8 +77,7 @@ export const buildYearMenu = (res: MenuQueryResponse, { locale, altLocale, isArc
           id: `about-${el.slug}`,
           label: el.title,
           slug: `/${year}/${i18nPaths.about[locale]}/${el.slug}`,
-          altSlug: `/${year}/${i18nPaths.about[altLocale]}/${el.altSlug}`,
-          root: false
+          altSlug: `/${year}/${i18nPaths.about[altLocale]}/${el.altSlug}`
         }))
         break;
       default:
@@ -117,6 +115,5 @@ export type MenuItem = {
   year?: string
   sub?: MenuItem[]
   count?: number
-  root: boolean
   general?: boolean
 }

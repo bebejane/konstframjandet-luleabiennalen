@@ -15,7 +15,6 @@ export default function Language({ menu }: Props) {
 
 	const { locale } = useRouter()
 	const { slugs } = usePage()
-	//console.log(slugs.map((item) => item.value))
 
 	if (locales.length <= 1) return null
 

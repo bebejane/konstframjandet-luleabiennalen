@@ -10,7 +10,6 @@ import useStore from '/lib/store'
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
 import { useWindowSize } from 'usehooks-ts'
 import useDevice from '/lib/hooks/useDevice'
-import { usePage } from '/lib/context/page'
 
 export type MenuProps = { items: Menu }
 
@@ -108,29 +107,46 @@ export type MenuTreeProps = {
 	locale: string
 }
 
-export function MenuTree({ item, level, selected, setSelected, path, locale }: MenuTreeProps) {
+export function MenuTree({ item, level, selected, setSelected, path, locale, }: MenuTreeProps) {
 
 	const t = useTranslations('Menu')
-	const [isVisible, setIsVisible] = useState(false);
-	const isSelected = selected?.id == item.id
-	const isExpanded = isExpandedNode(path, item.slug)
+
+
+	const expand = (e) => {
+		//const nodes = Array.from(document.querySelectorAll(`ul[data-level="${level + 1}"]`)) as HTMLUListElement[]
+		//nodes.forEach(el => (el.parentNode as HTMLLIElement).click())
+		setSelected(item)
+	}
+
+	const itemIncludesPath = (item: MenuItem) => {
+		if (!item) return false
+		const slugs = [item.slug, item.altSlug].map(s => s.startsWith(`/${locale}`) ? s.replace(`/${locale}`, '') : s)
+		const p = path.startsWith(`/${locale}`) ? path.replace(`/${locale}`, '') : path
+		return slugs.includes(p)
+	}
+
+	const isVisible = (path: string, item: MenuItem) => {
+		if (itemIncludesPath(item)) return true
+		if (!item.sub?.length) return false
+
+		for (let i = 0; i < item.sub.length; i++) {
+			if (item.sub[i].sub && isVisible(path, item.sub[i]))
+				return true
+			else if (itemIncludesPath(item.sub[i]))
+				return true
+		}
+		return false
+	}
+
+	const isSelected = itemIncludesPath(item)
 	const isLink = item.slug
 	const isBold = level === 0 || item.sub?.length > 0
 	const label = item.label
 
-	const expand = (e) => {
-		const nodes = Array.from(document.querySelectorAll(`ul[data-level="${level + 1}"]`)) as HTMLUListElement[]
-		nodes.forEach(el => (el.parentNode as HTMLLIElement).click())
-		setIsVisible(!isVisible)
-		setSelected(item)
-	}
-
-	//isExpanded && console.log(isExpanded, item.slug)
-
 	return (
 		<li onClick={expand} data-parent={item.id} className={cn(isSelected && s.active, isBold && s.bold)}>
 			{isLink ? <Link href={item.slug}>{label}</Link> : <>{label}</>}
-			{item?.sub && (isVisible || isExpanded) &&
+			{item?.sub && isVisible(path, item) &&
 				<ul data-level={++level} onClick={e => e.stopPropagation()}>
 					{item.sub.map((item, idx) =>
 						<MenuTree
