@@ -29,6 +29,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     margin-top: calc(-1 * var(--space));
+
     @include mq($until: tablet) {
       margin-left: calc(-1 * var(--gutter-half));
       margin-right: calc(-1 * var(--gutter-half));
@@ -43,6 +44,10 @@
       padding-right: var(--gutter-half);
       padding-left: var(--gutter-half);
       padding-top: var(--space);
+
+      @include mq($until: tablet) {
+        max-width: 33.33%;
+      }
 
       figure {
         display: flex;
@@ -70,13 +75,12 @@
         transition: all 0.5s;
       }
 
-      &:hover {
-        figcaption {
-          //font-weight: bold;
-        }
+      figcaption {
+        padding: 0;
+      }
 
+      &:hover {
         figure .border {
-          //display: block;
           border-width: 5px;
         }
       }

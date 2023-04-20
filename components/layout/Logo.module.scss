@@ -19,11 +19,11 @@
   }
 
   &.home {
-    position: absolute;
-    top: var(--outer-margin);
-    left: 0;
-    @include mq($until: desktop) {
-      display: none;
+
+    @include mq($from: desktop) {
+      position: absolute;
+      top: var(--outer-margin);
+      left: 0;
     }
   }
 
