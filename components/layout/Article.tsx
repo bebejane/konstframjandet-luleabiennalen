@@ -81,12 +81,16 @@ export default function Article({ id, children, title, content, image, imageSize
           <Markdown className={s.intro}>{intro}</Markdown>
         </section>
         {content &&
-          <StructuredContent
-            id={id}
-            record={record}
-            content={content}
-            onClick={(imageId) => setImageId(imageId)}
-          />
+          <>
+            <div className="structured">
+              <StructuredContent
+                id={id}
+                record={record}
+                content={content}
+                onClick={(imageId) => setImageId(imageId)}
+              />
+            </div>
+          </>
         }
         {children}
         {partner?.length > 0 &&
