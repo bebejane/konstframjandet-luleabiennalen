@@ -25,7 +25,7 @@
     width: 100%;
     height: 100%;
 
-    > div {
+    >div {
       position: absolute;
       width: 100%;
       height: var(--line-height);
@@ -33,7 +33,7 @@
       animation-duration: 0.2s;
       animation-timing-function: steps(2, end);
       animation-iteration-count: 1;
-      animation-direction: alternate;
+      animation-direction: reverse;
       animation-fill-mode: forwards;
 
       &.closed {
@@ -43,18 +43,34 @@
       &.opened {
         animation-direction: reverse;
       }
-    }
 
-    div:nth-child(1) {
-      animation-name: line1;
-    }
+      //animation-name: line1;
+      &:nth-child(1) {
+        transform: translateY(0) rotate(0deg);
+      }
 
-    div:nth-child(2) {
-      animation-name: line2;
-    }
+      &:nth-child(2) {
+        transform: translateY(calc(calc(var(--height) * 0.5) - var(--line-height-half)));
+      }
 
-    div:nth-child(3) {
-      animation-name: line3;
+      &:nth-child(3) {
+        transform: translateY(calc(calc(var(--height) * 1) - var(--line-height-half))) rotate(0deg);
+      }
+
+      &.init {
+        &:nth-child(1) {
+          animation-name: line1;
+        }
+
+        &:nth-child(2) {
+          animation-name: line2;
+        }
+
+        &:nth-child(3) {
+          animation-name: line3;
+        }
+      }
+
     }
   }
 }
