@@ -109,15 +109,7 @@ export type MenuTreeProps = {
 
 export function MenuTree({ item, level, selected, setSelected, path, locale, }: MenuTreeProps) {
 
-	const t = useTranslations('Menu')
-
-
-	const expand = (e) => {
-		//const nodes = Array.from(document.querySelectorAll(`ul[data-level="${level + 1}"]`)) as HTMLUListElement[]
-		//nodes.forEach(el => (el.parentNode as HTMLLIElement).click())
-		setSelected(item)
-	}
-
+	const expand = () => setSelected(item)
 	const itemIncludesPath = (item: MenuItem) => {
 		if (!item) return false
 		const slugs = [item.slug, item.altSlug].map(s => s.startsWith(`/${locale}`) ? s.replace(`/${locale}`, '') : s)
@@ -163,11 +155,4 @@ export function MenuTree({ item, level, selected, setSelected, path, locale, }: 
 			}
 		</li >
 	);
-}
-
-const isExpandedNode = (path: string, slug: string) => {
-	if (path === slug) return true
-	const slugs = path?.split('/').filter(slug => slug !== '')
-	const parentSlugs = slugs?.map((slug, idx) => `/${slugs.slice(0, idx + 1).join('/')}`)
-	return parentSlugs?.find(s => s === slug) !== undefined
 }
