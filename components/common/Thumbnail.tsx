@@ -60,7 +60,7 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, titl
       {strippedIntro &&
         <div className="thumb-intro">
           <p>
-            <strong>{meta}</strong>
+            {meta && <strong>{meta}</strong>}
             {strippedIntro}
           </p>
         </div>

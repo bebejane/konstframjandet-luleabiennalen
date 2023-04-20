@@ -144,6 +144,10 @@ article {
     font-weight: normal !important;
     font-family: $headline-font-medium;
   }
+
+  p.center {
+    text-align: center;
+  }
 }
 
 button {

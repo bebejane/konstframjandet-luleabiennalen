@@ -42,7 +42,7 @@
     width: calc(100% - (2 * var(--total-outer-margin) + (var(--grid-unit))));
 
     @include mq($from: wide) {
-      width: calc(100% - (2 * var(--total-outer-margin) + (1.5 * var(--grid-unit))));
+      width: calc(100% - (2 * var(--total-outer-margin) + (2 * var(--grid-unit))));
     }
   }
 
