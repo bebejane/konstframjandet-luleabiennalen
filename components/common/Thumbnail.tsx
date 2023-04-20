@@ -23,8 +23,7 @@ export type Props = {
 
 export default function Thumbnail({ image, slug, intro, title, titleLength, titleRows = 3, meta, transformHref = true }: Props) {
 
-  const strippedIntro = remark().use(strip).processSync(intro).value as string
-  const content = intro ? `${meta ? `**${meta}** ` : ''}${truncateWords(strippedIntro, 500)}` : undefined
+  const strippedIntro = truncateWords(remark().use(strip).processSync(intro).value as string, 500)
   const { year: { loadingImage, isArchive } } = usePage()
   const [loadingImageIndex] = useState(loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0)
   const [loaded, setLoaded] = useState(false);
@@ -58,10 +57,13 @@ export default function Thumbnail({ image, slug, intro, title, titleLength, titl
           }
         </div>
       }
-      {content &&
-        <Markdown className="thumb-intro">
-          {content}
-        </Markdown>
+      {strippedIntro &&
+        <div className="thumb-intro">
+          <p>
+            <strong>{meta}</strong>
+            {strippedIntro}
+          </p>
+        </div>
       }
     </Link>
   )
