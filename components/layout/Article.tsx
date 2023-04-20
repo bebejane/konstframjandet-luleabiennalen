@@ -37,8 +37,6 @@ export default function Article({ id, children, title, content, image, imageSize
   const figureRef = useRef<HTMLElement | null>(null)
   const [offset, setOffset] = useState(0)
   const ratio = offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight))) : 0
-  const padding = `${ratio * 100}px`;
-  const opacity = Math.max(0, 1 - (ratio * 1));
 
   useEffect(() => {
     const images = [image]
@@ -98,13 +96,13 @@ export default function Article({ id, children, title, content, image, imageSize
         {children}
         {partner?.length > 0 &&
           <p className="small-body">
-            {t('General.inCooperationWith')} {partner.map(({ title, slug }, idx) =>
-              <>
+            {t('General.inCooperationWith')} {partner.map(({ id, title, slug }, idx) =>
+              <React.Fragment key={id}>
                 <Link href={`/partners/${slug}`}>
                   {title}
                 </Link>
                 {partner.length - 1 > idx && ', '}
-              </>
+              </React.Fragment>
             )}
           </p>
         }
