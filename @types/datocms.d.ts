@@ -43,7 +43,6 @@ enum AboutModelFieldsReferencingYearModel {
 }
 
 type AboutModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<AboutModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<AboutModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -434,7 +433,6 @@ enum ExhibitionModelFieldsReferencingYearModel {
 }
 
 type ExhibitionModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<ExhibitionModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ExhibitionModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -627,7 +625,6 @@ type ExhibitionRecordtitleArgs = {
 };
 
 type ExternalLinkModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<ExternalLinkModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ExternalLinkModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -2455,7 +2452,6 @@ enum InternalLinkModelFieldsReferencingParticipantModel {
 }
 
 type InternalLinkModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<InternalLinkModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<InternalLinkModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -2825,7 +2821,6 @@ enum LocationModelFieldsReferencingYearModel {
 }
 
 type LocationModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<LocationModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<LocationModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -3035,7 +3030,6 @@ type NewsModelContentFieldMultiLocaleField = {
 };
 
 type NewsModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<NewsModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<NewsModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -3193,7 +3187,6 @@ enum ParticipantModelFieldsReferencingYearModel {
 }
 
 type ParticipantModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<ParticipantModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ParticipantModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -3405,7 +3398,6 @@ enum PartnerModelFieldsReferencingYearModel {
 }
 
 type PartnerModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<PartnerModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<PartnerModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -3550,7 +3542,6 @@ type PositionFilter = {
 };
 
 type ProgramCategoryModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<ProgramCategoryModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ProgramCategoryModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -3676,7 +3667,6 @@ enum ProgramModelFieldsReferencingYearModel {
 }
 
 type ProgramModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<ProgramModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ProgramModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
@@ -4929,7 +4919,6 @@ type UploadFilenameFilter = {
 };
 
 type UploadFilter = {
-  AND?: InputMaybe<Array<InputMaybe<UploadFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<UploadFilter>>>;
   _createdAt?: InputMaybe<UploadCreatedAtFilter>;
   _updatedAt?: InputMaybe<UploadUpdatedAtFilter>;
@@ -5294,7 +5283,6 @@ type VideoRecord_seoMetaTagsArgs = {
 };
 
 type YearModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<YearModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<YearModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
