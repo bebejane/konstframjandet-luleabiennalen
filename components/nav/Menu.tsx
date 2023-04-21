@@ -145,7 +145,7 @@ export function MenuTree({ item, level, selected, setSelected, path, locale, }: 
 		return false
 	}
 
-	const isSelected = itemIncludesPath(item)
+	const isSelected = itemIncludesPath(item) && !item.virtual
 	const isLink = item.slug
 	const isBold = level === 0 || item.sub?.length > 0
 	const label = item.label

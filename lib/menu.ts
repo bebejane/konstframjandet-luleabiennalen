@@ -11,7 +11,7 @@ const base: Menu = [
   { id: 'program', label: 'Program', slug: '/program' },
   { id: 'participants', label: 'Medverkande', slug: '/medverkande' },
   { id: 'partners', label: 'Partners', slug: '/partners', general: false },
-  { id: 'about', label: 'Om', slug: '/om', sub: [] },
+  { id: 'about', label: 'Om', slug: '/om', virtual: true, sub: [] },
   { id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true },
   { id: 'archive', label: 'Arkiv', slug: '/arkiv', general: true, sub: [] },
   { id: 'search', label: 'Sök', slug: '/sok', general: true }
@@ -79,6 +79,8 @@ export const buildYearMenu = (res: MenuQueryResponse, { locale, altLocale, isArc
           slug: `/${year}/${i18nPaths.about[locale]}/${el.slug}`,
           altSlug: `/${year}/${i18nPaths.about[altLocale]}/${el.altSlug}`
         }))
+        item.slug = `/${year}/${i18nPaths.about[locale]}/${res.abouts[0].slug}`
+        item.altSlug = `/${year}/${i18nPaths.about[altLocale]}/${res.abouts[0].altSlug}`
         break;
       default:
         break;
@@ -114,6 +116,7 @@ export type MenuItem = {
   altSlug?: string
   year?: string
   sub?: MenuItem[]
+  virtual?: boolean
   count?: number
   general?: boolean
 }
