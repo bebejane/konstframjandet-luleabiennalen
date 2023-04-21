@@ -25,7 +25,6 @@ export default function Menu({ items }: MenuProps) {
 	const [selected, setSelected] = useState<MenuItem | undefined>()
 	const [searchFocus, setSearchFocus] = useState(false)
 	const [path, setPath] = useState(router.asPath)
-	const [query, setQuery] = useState('')
 	const [menuPadding, setMenuPadding] = useState(0)
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0)
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
@@ -34,18 +33,17 @@ export default function Menu({ items }: MenuProps) {
 
 	const onSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		setSearchFocus(false)
 
 		const segment = i18nPaths['search'][locale];
 		const path = `/${locale === defaultLocale ? segment : `${locale}/${segment}`}`
-		router.push(path, undefined, { shallow: true })
+		router.push(path, undefined, { shallow: true, scroll: true })
+		setSearchFocus(false)
 
 	}
 
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => {
 			setPath(path)
-			setQuery(undefined)
 			!isDesktop && setShowMenu(false)
 		}
 		router.events.on('routeChangeStart', handleRouteChangeStart)

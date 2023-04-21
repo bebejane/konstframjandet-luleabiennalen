@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import { useTranslations } from 'next-intl';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
 import useDevice from '/lib/hooks/useDevice';
+import BalanceText from 'react-balance-text'
 
 export type ArticleProps = {
   id: string
@@ -57,7 +58,7 @@ export default function Article({ id, children, title, content, image, imageSize
     <>
       <DatoSEO title={title} />
       <div className={cn(s.article, 'article')}>
-        <h1>{title}</h1>
+        <h1><BalanceText>{title}</BalanceText></h1>
         {image &&
           <figure
             className={cn(s.mainImage, imageSize && s[imageSize], image.height > image.width && s.portrait)}

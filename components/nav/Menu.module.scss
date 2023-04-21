@@ -47,12 +47,18 @@
     @include mq($until: tablet) {
       margin-left: 0.62em;
       font-size: 1.1rem;
+
     }
 
     &[data-level="0"] {
       scrollbar-width: 0px;
       overflow-y: scroll;
       overflow-x: hidden;
+
+      // Extra padding for scrolling on mobile
+      @include mq($until: tablet) {
+        padding-bottom: 4rem;
+      }
 
       &::-webkit-scrollbar {
         height: 0px;
