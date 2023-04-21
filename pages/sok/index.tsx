@@ -60,10 +60,8 @@ export default function Search({ query }: Props) {
   }, [searchQuery])
 
   useEffect(() => {
-    return
-    const handleRouteChangeStart = (path: string) => setSearchQuery(undefined)
-    router.events.on('routeChangeComplete', handleRouteChangeStart)
-    return () => router.events.off('routeChangeComplete', handleRouteChangeStart)
+    // Clear search query on unmount
+    return () => setSearchQuery(undefined)
   }, [])
 
   useEffect(() => {

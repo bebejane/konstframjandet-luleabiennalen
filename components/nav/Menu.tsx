@@ -93,7 +93,7 @@ export default function Menu({ items }: MenuProps) {
 										name="q"
 										placeholder={t('search')}
 										autoComplete={'off'}
-										value={searchFocus ? searchQuery || '' : ''}
+										value={searchFocus && searchQuery ? searchQuery : ''}
 										onFocus={() => setSearchFocus(true)}
 										onBlur={() => setSearchFocus(false)}
 										onChange={({ target: { value } }) => setSearchQuery(value)}
@@ -169,3 +169,4 @@ export function MenuTree({ item, level, selected, setSelected, path, locale, }: 
 		</li >
 	);
 }
+
