@@ -61,7 +61,7 @@ export default function ImageGallery({ data: { id, images }, onClick }: ImageGal
 								pictureClassName={s.picture}
 								placeholderClassName={s.picture}
 								objectFit={'cover'}
-								lazyLoad={index === 0}
+								lazyLoad={index !== idx}
 								onLoad={calculatePositions}
 							/>
 							<figcaption>

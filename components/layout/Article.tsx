@@ -11,6 +11,7 @@ import format from 'date-fns/format';
 import { useRouter } from 'next/router';
 import { useTranslations } from 'next-intl';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
+import useDevice from '/lib/hooks/useDevice';
 
 export type ArticleProps = {
   id: string
@@ -36,7 +37,8 @@ export default function Article({ id, children, title, content, image, imageSize
   const captionRef = useRef<HTMLElement | null>(null)
   const figureRef = useRef<HTMLElement | null>(null)
   const [offset, setOffset] = useState(0)
-  const ratio = offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight))) : 0
+  const { isDesktop } = useDevice()
+  const ratio = !isDesktop ? 0 : offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight))) : 0
 
   useEffect(() => {
     const images = [image]
