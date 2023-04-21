@@ -45,7 +45,7 @@
     padding-left: 0.62rem;
 
     @include mq($until: tablet) {
-      margin-left: 0.62rem;
+      margin-left: 0.62em;
       font-size: 1.1rem;
     }
 

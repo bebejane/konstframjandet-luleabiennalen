@@ -1,3 +1,4 @@
+import s from './index.module.scss'
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllProgramsDocument, AllProgramCategoriesDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail, FilterBar } from "/components";
@@ -19,14 +20,8 @@ export default function Program({ programs, programCategories }: Props) {
   const { asPath } = useRouter()
   const options = programCategories.map(({ id, title: label, desc }) => ({ id, label, description: desc }))
   const [category, setCategory] = useState<string>()
-
-  const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => {
-    return !category || category === id
-  }
-
-  const programsSort = (a: ProgramRecord, b: ProgramRecord) => {
-    return 1;
-  }
+  const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => !category || category === id
+  const haveProgramItems = programs.filter(categoryFilter).length > 0
 
   return (
     <>
@@ -36,22 +31,26 @@ export default function Program({ programs, programCategories }: Props) {
         multi={false}
         onChange={(opt) => setCategory(opt as string)}
       />
-      <CardContainer key={`${category}-${asPath}`}>
-        {programs.filter(categoryFilter).sort(programsSort).map(({ id, image, title, intro, slug, startDate, endDate, programCategory }) =>
-          <Card key={id}>
-            <Thumbnail
-              title={title}
-              titleRows={2}
-              image={image}
-              intro={intro}
-              meta={`${formatDate(startDate, endDate)} — ${programCategory.title}`}
-              slug={`/program/${slug}`}
-            />
-          </Card>
-        )}
-      </CardContainer>
+      {haveProgramItems ?
+        <CardContainer key={`${category}-${asPath}`}>
+          {programs.filter(categoryFilter).map(({ id, image, title, intro, slug, startDate, endDate, programCategory }) =>
+            <Card key={id}>
+              <Thumbnail
+                title={title}
+                titleRows={2}
+                image={image}
+                intro={intro}
+                meta={`${formatDate(startDate, endDate)} — ${programCategory.title}`}
+                slug={`/program/${slug}`}
+              />
+            </Card>
+          )}
+        </CardContainer>
+        :
+        <p className={s.nomatch}>{t('Program.noProgramItems')}</p>
+      }
     </>
-  );
+  )
 }
 
 export const getStaticProps = withGlobalProps({ queries: [AllProgramsDocument, AllProgramCategoriesDocument] }, async ({ props, revalidate, context }: any) => {

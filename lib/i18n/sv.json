@@ -55,5 +55,8 @@
 	},
 	"Partners": {
 		"supportedBy": "Finansiärer"
+	},
+	"Program": {
+		"noProgramItems": "Det finns inga program i den här kategorin"
 	}
 }
