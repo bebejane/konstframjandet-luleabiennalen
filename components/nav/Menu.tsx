@@ -9,7 +9,9 @@ import { Hamburger, Temperature } from '/components'
 import useStore from '/lib/store'
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
 import { useWindowSize } from 'usehooks-ts'
+import i18nPaths from '/lib/i18n/paths.json'
 import useDevice from '/lib/hooks/useDevice'
+
 
 export type MenuProps = { items: Menu }
 
@@ -17,6 +19,7 @@ export default function Menu({ items }: MenuProps) {
 
 	const t = useTranslations('Menu')
 	const router = useRouter()
+	const { locale, defaultLocale } = router
 	const menuRef = useRef<HTMLUListElement | null>(null);
 	const [showMenu, setShowMenu, searchQuery, setSearchQuery] = useStore((state) => [state.showMenu, state.setShowMenu, state.searchQuery, state.setSearchQuery])
 	const [selected, setSelected] = useState<MenuItem | undefined>()
@@ -28,6 +31,14 @@ export default function Menu({ items }: MenuProps) {
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
 	const { width, height } = useWindowSize()
 	const { isDesktop } = useDevice()
+
+	const onSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+
+		const segment = i18nPaths['search'][locale];
+		const path = `/${locale === defaultLocale ? segment : `${locale}/${segment}`}`
+		router.push(path, undefined, { shallow: true })
+	}
 
 	useEffect(() => {
 		const handleRouteChangeStart = (path: string) => {
@@ -75,19 +86,19 @@ export default function Menu({ items }: MenuProps) {
 							/>
 							:
 							<li key={idx} className={s.search}>
-								<form action={`/${router.locale === 'sv' ? 'sok' : 'en/search'}`} method="GET">
+								<form onSubmit={onSubmitSearch}>
 									<input
 										name="q"
 										placeholder={t('search')}
 										autoComplete={'off'}
-										value={query || ''}
+										value={searchFocus ? searchQuery || '' : ''}
 										onFocus={() => setSearchFocus(true)}
 										onBlur={() => setSearchFocus(false)}
-										onChange={({ target: { value } }) => setQuery(value)}
+										onChange={({ target: { value } }) => setSearchQuery(value)}
 									/>
 								</form>
 								<div
-									onClick={() => setQuery(undefined)}
+									onClick={() => setSearchFocus(false)}
 									className={cn(s.close, !searchFocus && s.hide)}
 								>×</div>
 							</li>
