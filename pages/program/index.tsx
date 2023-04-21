@@ -55,9 +55,13 @@ export default function Program({ programs, programCategories }: Props) {
 
 export const getStaticProps = withGlobalProps({ queries: [AllProgramsDocument, AllProgramCategoriesDocument] }, async ({ props, revalidate, context }: any) => {
 
+  // Filter out program categories that don't have any programs
+  const programCategories = props.programCategories.filter(({ id }) => props.programs.some(({ programCategory }) => programCategory.id === id))
+
   return {
     props: {
       ...props,
+      programCategories,
       page: {
         section: 'program',
         slugs: pageSlugs('program', props.year.title)

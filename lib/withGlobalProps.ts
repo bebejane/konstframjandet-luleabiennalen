@@ -18,7 +18,7 @@ export default function withGlobalProps(opt: any, callback: Function): GetStatic
     queries.push(SEOQuery(opt.seo))
 
   return async (context: GetStaticPropsContext) => {
-    console.log('withGlobalProps', context.locale)
+
     const years = await allYears(context.locale)
     let year = years.find(({ title }) => context.params?.year ? title === context.params?.year : title === years[0].title)
 

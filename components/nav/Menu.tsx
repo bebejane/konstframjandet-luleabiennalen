@@ -30,7 +30,7 @@ export default function Menu({ items }: MenuProps) {
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0)
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
 	const { width, height } = useWindowSize()
-	const { isDesktop } = useDevice()
+	const { isDesktop, isMobile } = useDevice()
 
 	const onSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -57,10 +57,12 @@ export default function Menu({ items }: MenuProps) {
 		const footerHeight = document.getElementById('footer').clientHeight - 1
 		const menuOffset = menuRef.current.offsetTop
 		const footerScrollPosition = (scrolledPosition + viewportHeight) < documentHeight - footerHeight ? 0 : footerHeight - (documentHeight - (scrolledPosition + viewportHeight))
-		setMenuPadding(footerScrollPosition ? menuOffset + footerScrollPosition : 0)
+		const menuPadding = isMobile ? (menuOffset + footerScrollPosition) : footerScrollPosition ? menuOffset + footerScrollPosition : 0
+
+		setMenuPadding(menuPadding)
 		setFooterScrollPosition(footerScrollPosition)
 
-	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height])
+	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height, isMobile])
 
 	return (
 		<>
@@ -93,7 +95,7 @@ export default function Menu({ items }: MenuProps) {
 										name="q"
 										placeholder={t('search')}
 										autoComplete={'off'}
-										value={searchFocus && searchQuery ? searchQuery : ''}
+										value={searchQuery ?? ''}
 										onFocus={() => setSearchFocus(true)}
 										onBlur={() => setSearchFocus(false)}
 										onChange={({ target: { value } }) => setSearchQuery(value)}
