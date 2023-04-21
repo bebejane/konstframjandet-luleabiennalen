@@ -34,10 +34,12 @@ export default function Menu({ items }: MenuProps) {
 
 	const onSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		setSearchFocus(false)
 
 		const segment = i18nPaths['search'][locale];
 		const path = `/${locale === defaultLocale ? segment : `${locale}/${segment}`}`
 		router.push(path, undefined, { shallow: true })
+
 	}
 
 	useEffect(() => {
