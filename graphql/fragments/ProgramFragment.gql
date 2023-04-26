@@ -70,6 +70,7 @@ fragment ProgramFragment on ProgramRecord {
 					... on InternalLinkRecord {
 						__typename
 						id
+						title
 						record {
 							... on AboutRecord {
 								id

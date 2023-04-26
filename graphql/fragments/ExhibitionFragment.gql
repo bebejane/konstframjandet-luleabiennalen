@@ -64,6 +64,7 @@ fragment ExhibitionFragment on ExhibitionRecord {
 					... on InternalLinkRecord {
 						__typename
 						id
+						title
 						record {
 							... on AboutRecord {
 								id

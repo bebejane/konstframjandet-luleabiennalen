@@ -40,6 +40,7 @@ query Contact($locale: SiteLocale) {
 						... on InternalLinkRecord {
 							__typename
 							id
+							title
 							record {
 								... on AboutRecord {
 									id

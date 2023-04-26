@@ -51,6 +51,7 @@ fragment PartnerFragment on PartnerRecord {
 					... on InternalLinkRecord {
 						__typename
 						id
+						title
 						record {
 							... on AboutRecord {
 								id

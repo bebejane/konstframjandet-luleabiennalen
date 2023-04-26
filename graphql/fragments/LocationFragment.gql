@@ -52,6 +52,7 @@ fragment LocationFragment on LocationRecord {
 					... on InternalLinkRecord {
 						__typename
 						id
+						title
 						record {
 							... on AboutRecord {
 								id

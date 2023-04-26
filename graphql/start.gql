@@ -19,7 +19,7 @@ query Start($locale: SiteLocale) {
 					... on InternalLinkRecord {
 						__typename
 						id
-						internalTitle: title
+						title
 						record {
 							... on AboutRecord {
 								id
@@ -95,6 +95,7 @@ query Start($locale: SiteLocale) {
 					... on InternalLinkRecord {
 						__typename
 						id
+						title
 						record {
 							... on AboutRecord {
 								id
@@ -149,7 +150,7 @@ query Start($locale: SiteLocale) {
 					... on InternalLinkRecord {
 						__typename
 						id
-						internalTitle: title
+						title
 						record {
 							... on AboutRecord {
 								id
@@ -215,6 +216,7 @@ query Start($locale: SiteLocale) {
 					... on InternalLinkRecord {
 						__typename
 						id
+						title
 						record {
 							... on AboutRecord {
 								id
@@ -269,6 +271,7 @@ query Start($locale: SiteLocale) {
 					... on InternalLinkRecord {
 						__typename
 						id
+						title
 						record {
 							... on AboutRecord {
 								id
