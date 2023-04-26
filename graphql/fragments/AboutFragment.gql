@@ -54,6 +54,7 @@ fragment AboutFragment on AboutRecord {
 					... on InternalLinkRecord {
 						__typename
 						id
+						title
 						record {
 							... on AboutRecord {
 								id

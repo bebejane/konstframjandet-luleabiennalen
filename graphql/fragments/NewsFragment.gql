@@ -45,6 +45,7 @@ fragment NewsFragment on NewsRecord {
 					... on InternalLinkRecord {
 						__typename
 						id
+						title
 						record {
 							... on AboutRecord {
 								id

@@ -40,7 +40,7 @@ export default withRevalidate(async (record, revalidate) => {
         prefix && localePaths.push(`${prefix}/nyheter/${slug}`)
         break;
       case 'location':
-        localePaths.push(`/platser/${slug}`)
+        localePaths.push(`/partners`)
         prefix && localePaths.push(`${prefix}/platser/${slug}`)
         break;
       case 'exhibition':
