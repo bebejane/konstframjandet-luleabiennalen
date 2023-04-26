@@ -11,6 +11,8 @@ import format from 'date-fns/format';
 import { useRouter } from 'next/router';
 import { useTranslations } from 'next-intl';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
+import useDevice from '/lib/hooks/useDevice';
+import BalanceText from 'react-balance-text'
 
 export type ArticleProps = {
   id: string
@@ -36,9 +38,8 @@ export default function Article({ id, children, title, content, image, imageSize
   const captionRef = useRef<HTMLElement | null>(null)
   const figureRef = useRef<HTMLElement | null>(null)
   const [offset, setOffset] = useState(0)
-  const ratio = offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight))) : 0
-  const padding = `${ratio * 100}px`;
-  const opacity = Math.max(0, 1 - (ratio * 1));
+  const { isDesktop } = useDevice()
+  const ratio = !isDesktop ? 0 : offset ? Math.max(0, Math.min(1, ((scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight))) : 0
 
   useEffect(() => {
     const images = [image]
@@ -57,7 +58,7 @@ export default function Article({ id, children, title, content, image, imageSize
     <>
       <DatoSEO title={title} />
       <div className={cn(s.article, 'article')}>
-        <h1>{title}</h1>
+        <h1><BalanceText>{title}</BalanceText></h1>
         {image &&
           <figure
             className={cn(s.mainImage, imageSize && s[imageSize], image.height > image.width && s.portrait)}
@@ -98,13 +99,13 @@ export default function Article({ id, children, title, content, image, imageSize
         {children}
         {partner?.length > 0 &&
           <p className="small-body">
-            {t('General.inCooperationWith')} {partner.map(({ title, slug }, idx) =>
-              <>
+            {t('General.inCooperationWith')} {partner.map(({ id, title, slug }, idx) =>
+              <React.Fragment key={id}>
                 <Link href={`/partners/${slug}`}>
                   {title}
                 </Link>
                 {partner.length - 1 > idx && ', '}
-              </>
+              </React.Fragment>
             )}
           </p>
         }

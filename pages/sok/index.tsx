@@ -60,19 +60,15 @@ export default function Search({ query }: Props) {
   }, [searchQuery])
 
   useEffect(() => {
-    const handleRouteChangeStart = (path: string) => setSearchQuery(undefined)
-    router.events.on('routeChangeComplete', handleRouteChangeStart)
-    return () => router.events.off('routeChangeComplete', handleRouteChangeStart)
+    // Clear search query on unmount
+    return () => setSearchQuery(undefined)
   }, [])
-
-  useEffect(() => {
-    setSearchQuery(query)
-  }, [query])
 
   useEffect(() => {
     const params = new URL(document.location.href).searchParams
-    setSearchQuery(params.get('q'))
-  }, [])
+    query && setSearchQuery(query)
+    params.get('q') && setSearchQuery(params.get('q'))
+  }, [query])
 
   return (
     <section className={cn(s.container)}>

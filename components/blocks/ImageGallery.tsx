@@ -20,14 +20,13 @@ export default function ImageGallery({ data: { id, images }, onClick }: ImageGal
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const arrowRef = useRef<HTMLDivElement | null>(null)
 	const [index, setIndex] = useState(0)
-
 	const [arrowMarginTop, setArrowMarginTop] = useState(0)
 	const { innerHeight, innerWidth } = useWindowSize()
-	const [captionHeight, setCaptionHeight] = useState<number | undefined>()
+	const isSingleImage = images.length === 1
 
 	const calculatePositions = useCallback(() => {
 
-		if (!arrowRef.current) return
+		if (!arrowRef.current || !arrowRef.current.clientHeight) return
 
 		const images = Array.from(containerRef.current.querySelectorAll<HTMLImageElement>('picture>img'))
 		const maxImageHeight = Math.max(...images.map(img => img.clientHeight))
@@ -45,8 +44,8 @@ export default function ImageGallery({ data: { id, images }, onClick }: ImageGal
 			<SwiperReact
 				id={`${id}-swiper-wrap`}
 				className={s.swiper}
-				loop={true}
-				noSwiping={false}
+				loop={isSingleImage ? false : true}
+				noSwiping={isSingleImage ? true : false}
 				simulateTouch={true}
 				slidesPerView='auto'
 				initialSlide={index}
@@ -62,6 +61,7 @@ export default function ImageGallery({ data: { id, images }, onClick }: ImageGal
 								pictureClassName={s.picture}
 								placeholderClassName={s.picture}
 								objectFit={'cover'}
+								lazyLoad={index !== idx}
 								onLoad={calculatePositions}
 							/>
 							<figcaption>

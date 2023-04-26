@@ -25,7 +25,7 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
   return (
     <>
       <DatoSEO title={t('Menu.partners')} />
-      <CardContainer key={asPath}>
+      <CardContainer key={`${asPath}-partners`}>
         {partners.map(({ id, image, title, intro, slug }) =>
           <Card key={id}>
             <Thumbnail
@@ -40,7 +40,7 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
       </CardContainer>
 
       <h2 id="locations" className={cn(s.head, s.locations)}>{t('Menu.locations')}</h2>
-      <CardContainer key={asPath} className={s.locations}>
+      <CardContainer key={`${asPath}-locations`} className={s.locations}>
         {locations.map(({ id, image, title, intro, slug, year }) =>
           <Card key={id}>
             <Thumbnail
