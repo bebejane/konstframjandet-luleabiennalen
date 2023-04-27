@@ -2,7 +2,7 @@ import s from "./index.module.scss";
 import cn from 'classnames'
 import withGlobalProps from "/lib/withGlobalProps";
 import { AllLocationsDocument, AllPartnersDocument } from "/graphql";
-import { CardContainer, Card, Thumbnail, Link } from "/components";
+import { CardContainer, Card, Thumbnail } from "/components";
 import { useRouter } from "next/router";
 import { DatoSEO } from "dato-nextjs-utils/components";
 import { useTranslations } from "next-intl";
@@ -53,22 +53,25 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
           </Card>
         )}
       </CardContainer>
-      <section className={s.financiers}>
-        <h2 className={s.head}>{t('Partners.supportedBy')}</h2>
-        <ul>
-          {fundedBy.map(({ id, url, logo }) =>
-            <li key={id}>
-              <a href={url}>
-                <Image
-                  data={logo.responsiveImage}
-                  className={s.image}
-                  objectFit={'contain'}
-                />
-              </a>
-            </li>
-          )}
-        </ul>
-      </section>
+
+      {fundedBy.length > 0 &&
+        <section className={s.financiers}>
+          <h2 className={s.head}>{t('Partners.supportedBy')}</h2>
+          <ul>
+            {fundedBy.map(({ id, url, logo }) =>
+              <li key={id}>
+                <a href={url}>
+                  <Image
+                    data={logo.responsiveImage}
+                    className={s.image}
+                    objectFit={'contain'}
+                  />
+                </a>
+              </li>
+            )}
+          </ul>
+        </section>
+      }
     </>
   );
 }
