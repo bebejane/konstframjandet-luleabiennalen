@@ -81,8 +81,10 @@ export const buildYearMenu = (res: MenuQueryResponse, { locale, altLocale, isArc
         }))
 
         const mainAbout = res.abouts.filter(({ year }) => year)[0]
-        item.slug = `/${year}/${i18nPaths.about[locale]}/${mainAbout.slug}`
-        item.altSlug = `/${year}/${i18nPaths.about[altLocale]}/${mainAbout.altSlug}`
+        if (mainAbout) {
+          item.slug = `/${year}/${i18nPaths.about[locale]}/${mainAbout.slug}`
+          item.altSlug = `/${year}/${i18nPaths.about[altLocale]}/${mainAbout.altSlug}`
+        }
 
         break;
       default:

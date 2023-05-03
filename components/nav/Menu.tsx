@@ -125,7 +125,7 @@ export function MenuTree({ item, level, selected, setSelected, path, locale, }: 
 	const expand = () => setSelected(item)
 	const itemIncludesPath = (item: MenuItem) => {
 		if (!item) return false
-		const slugs = [item.slug, item.altSlug].map(s => s.startsWith(`/${locale}`) ? s.replace(`/${locale}`, '') : s)
+		const slugs = [item.slug, item.altSlug].map(s => s?.startsWith(`/${locale}`) ? s?.replace(`/${locale}`, '') : s)
 		const p = path.startsWith(`/${locale}`) ? path.replace(`/${locale}`, '') : path
 		return slugs.includes(p)
 	}
