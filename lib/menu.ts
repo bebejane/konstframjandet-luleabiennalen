@@ -79,8 +79,11 @@ export const buildYearMenu = (res: MenuQueryResponse, { locale, altLocale, isArc
           slug: `/${year}/${i18nPaths.about[locale]}/${el.slug}`,
           altSlug: `/${year}/${i18nPaths.about[altLocale]}/${el.altSlug}`
         }))
-        item.slug = `/${year}/${i18nPaths.about[locale]}/${res.abouts[0].slug}`
-        item.altSlug = `/${year}/${i18nPaths.about[altLocale]}/${res.abouts[0].altSlug}`
+
+        const mainAbout = res.abouts.filter(({ year }) => year)[0]
+        item.slug = `/${year}/${i18nPaths.about[locale]}/${mainAbout.slug}`
+        item.altSlug = `/${year}/${i18nPaths.about[altLocale]}/${mainAbout.altSlug}`
+
         break;
       default:
         break;
