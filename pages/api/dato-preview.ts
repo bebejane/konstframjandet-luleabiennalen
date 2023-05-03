@@ -8,6 +8,7 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
   let path = null;
 
   const { slug: baseSlug, year: yearId, title } = item.attributes
+  const isYearRecord = itemType.attributes.api_key === 'year'
   const years = await allYears()
   const year = yearId ? years.find(({ id }) => id === yearId) : undefined
   const slug = typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug
@@ -49,6 +50,8 @@ const generatePreviewUrl = async ({ item, itemType, locale }) => {
     default:
       break;
   }
+
+  if (isYearRecord) return path
 
   return path ? translatePath(path, locale, defaultLocale, year?.title) : null
 }
