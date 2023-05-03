@@ -34,9 +34,9 @@ export const getStaticProps = withGlobalProps({ queries: [StartDocument] }, asyn
 	let { start }: { start: StartRecord } = props;
 	const date = '2022-01-01' //format(new Date(), 'yyyy-MM-dd')
 	const count = {
-		participants: parseInt((start.content.find(el => el.__typename === 'StartRandomParticipantRecord') as StartRandomParticipantRecord).amount),
-		news: parseInt((start.content.find(el => el.__typename === 'StartNewsRecord') as StartNewsRecord).amount),
-		programs: parseInt((start.content.find(el => el.__typename === 'StartProgramRecord') as StartProgramRecord).amount)
+		participants: parseInt((start.content.find(el => el.__typename === 'StartRandomParticipantRecord') as StartRandomParticipantRecord)?.amount ?? '1'),
+		news: parseInt((start.content.find(el => el.__typename === 'StartNewsRecord') as StartNewsRecord)?.amount ?? '1'),
+		programs: parseInt((start.content.find(el => el.__typename === 'StartProgramRecord') as StartProgramRecord)?.amount ?? '1')
 	}
 
 	// Add extra items to make sure we have enough to fill the grid
