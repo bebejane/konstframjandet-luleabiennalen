@@ -1,5 +1,10 @@
 query AllPartners($locale: SiteLocale, $yearId: ItemId) {
-	partners: allPartners(filter: { year: { eq: $yearId } }, locale: $locale, first: 100) {
+	partners: allPartners(
+		filter: { year: { eq: $yearId } }
+		locale: $locale
+		first: 100
+		orderBy: title_ASC
+	) {
 		...PartnerFragmentLight
 	}
 	pagination: _allPartnersMeta(locale: $locale) {
