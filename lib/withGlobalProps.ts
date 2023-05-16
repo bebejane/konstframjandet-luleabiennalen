@@ -1,6 +1,6 @@
 import { apiQuery, SEOQuery } from "dato-nextjs-utils/api";
 import { GetStaticProps, GetServerSideProps, GetStaticPropsContext } from 'next'
-import { GlobalDocument, FooterDocument } from "/graphql";
+import { GlobalDocument, GeneralDocument } from "/graphql";
 import type { TypedDocumentNode } from "@apollo/client/core/types.js";
 import { buildMenu } from "/lib/menu";
 import { allYears } from "/lib/utils";
@@ -8,7 +8,7 @@ import { allYears } from "/lib/utils";
 export default function withGlobalProps(opt: any, callback: Function): GetStaticProps | GetServerSideProps {
 
   const revalidate: number = parseInt(process.env.REVALIDATE_TIME)
-  const queries: TypedDocumentNode[] = [GlobalDocument, FooterDocument]
+  const queries: TypedDocumentNode[] = [GlobalDocument, GeneralDocument]
 
   if (opt.query)
     queries.push(opt.query)
