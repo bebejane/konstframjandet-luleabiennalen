@@ -558,6 +558,7 @@ type ExhibitionRecord_allMiscLocalesArgs = {
 /** Record of type Utställning (exhibition) */
 type ExhibitionRecord_allReferencingInternalLinksArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<InternalLinkModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<InternalLinkModelOrderBy>>>;
@@ -568,6 +569,8 @@ type ExhibitionRecord_allReferencingInternalLinksArgs = {
 
 /** Record of type Utställning (exhibition) */
 type ExhibitionRecord_allReferencingInternalLinksMetaArgs = {
+  filter?: InputMaybe<InternalLinkModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenInternalLinkAndExhibition>;
 };
 
@@ -935,6 +938,7 @@ type GeneralRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
   about?: Maybe<Scalars['String']>;
+  archiveIntro?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
@@ -959,6 +963,12 @@ type GeneralRecord_seoMetaTagsArgs = {
 type GeneralRecordaboutArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Generellt (general) */
+type GeneralRecordarchiveIntroArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
 type GlobalSeoField = {
@@ -2932,6 +2942,7 @@ type LocationRecord_allIntroLocalesArgs = {
 /** Record of type Plats (location) */
 type LocationRecord_allReferencingExhibitionsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExhibitionModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ExhibitionModelOrderBy>>>;
@@ -2942,6 +2953,8 @@ type LocationRecord_allReferencingExhibitionsArgs = {
 
 /** Record of type Plats (location) */
 type LocationRecord_allReferencingExhibitionsMetaArgs = {
+  filter?: InputMaybe<ExhibitionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenExhibitionAndLocation>;
 };
 
@@ -2949,6 +2962,7 @@ type LocationRecord_allReferencingExhibitionsMetaArgs = {
 /** Record of type Plats (location) */
 type LocationRecord_allReferencingInternalLinksArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<InternalLinkModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<InternalLinkModelOrderBy>>>;
@@ -2959,6 +2973,8 @@ type LocationRecord_allReferencingInternalLinksArgs = {
 
 /** Record of type Plats (location) */
 type LocationRecord_allReferencingInternalLinksMetaArgs = {
+  filter?: InputMaybe<InternalLinkModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenInternalLinkAndLocation>;
 };
 
@@ -2966,6 +2982,7 @@ type LocationRecord_allReferencingInternalLinksMetaArgs = {
 /** Record of type Plats (location) */
 type LocationRecord_allReferencingProgramsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProgramModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ProgramModelOrderBy>>>;
@@ -2976,6 +2993,8 @@ type LocationRecord_allReferencingProgramsArgs = {
 
 /** Record of type Plats (location) */
 type LocationRecord_allReferencingProgramsMetaArgs = {
+  filter?: InputMaybe<ProgramModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenProgramAndLocation>;
 };
 
@@ -3296,6 +3315,7 @@ type ParticipantRecord_allNameLocalesArgs = {
 /** Record of type Medverkande (participant) */
 type ParticipantRecord_allReferencingExhibitionsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExhibitionModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ExhibitionModelOrderBy>>>;
@@ -3306,6 +3326,8 @@ type ParticipantRecord_allReferencingExhibitionsArgs = {
 
 /** Record of type Medverkande (participant) */
 type ParticipantRecord_allReferencingExhibitionsMetaArgs = {
+  filter?: InputMaybe<ExhibitionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenExhibitionAndParticipant>;
 };
 
@@ -3313,6 +3335,7 @@ type ParticipantRecord_allReferencingExhibitionsMetaArgs = {
 /** Record of type Medverkande (participant) */
 type ParticipantRecord_allReferencingInternalLinksArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<InternalLinkModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<InternalLinkModelOrderBy>>>;
@@ -3323,6 +3346,8 @@ type ParticipantRecord_allReferencingInternalLinksArgs = {
 
 /** Record of type Medverkande (participant) */
 type ParticipantRecord_allReferencingInternalLinksMetaArgs = {
+  filter?: InputMaybe<InternalLinkModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenInternalLinkAndParticipant>;
 };
 
@@ -3330,6 +3355,7 @@ type ParticipantRecord_allReferencingInternalLinksMetaArgs = {
 /** Record of type Medverkande (participant) */
 type ParticipantRecord_allReferencingProgramsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProgramModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ProgramModelOrderBy>>>;
@@ -3340,6 +3366,8 @@ type ParticipantRecord_allReferencingProgramsArgs = {
 
 /** Record of type Medverkande (participant) */
 type ParticipantRecord_allReferencingProgramsMetaArgs = {
+  filter?: InputMaybe<ProgramModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenProgramAndParticipant>;
 };
 
@@ -3900,7 +3928,7 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allProgramsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
-  _allUploadsMeta?: Maybe<CollectionMetadata>;
+  _allUploadsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allYearsMeta: CollectionMetadata;
   /** Returns the single instance record */
@@ -5411,6 +5439,7 @@ type YearRecord_allParticipantNameLocalesArgs = {
 /** Record of type År (year) */
 type YearRecord_allReferencingAboutsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<AboutModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<AboutModelOrderBy>>>;
@@ -5421,6 +5450,8 @@ type YearRecord_allReferencingAboutsArgs = {
 
 /** Record of type År (year) */
 type YearRecord_allReferencingAboutsMetaArgs = {
+  filter?: InputMaybe<AboutModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenAboutAndYear>;
 };
 
@@ -5428,6 +5459,7 @@ type YearRecord_allReferencingAboutsMetaArgs = {
 /** Record of type År (year) */
 type YearRecord_allReferencingExhibitionsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExhibitionModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ExhibitionModelOrderBy>>>;
@@ -5438,6 +5470,8 @@ type YearRecord_allReferencingExhibitionsArgs = {
 
 /** Record of type År (year) */
 type YearRecord_allReferencingExhibitionsMetaArgs = {
+  filter?: InputMaybe<ExhibitionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenExhibitionAndYear>;
 };
 
@@ -5445,6 +5479,7 @@ type YearRecord_allReferencingExhibitionsMetaArgs = {
 /** Record of type År (year) */
 type YearRecord_allReferencingLocationsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<LocationModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<LocationModelOrderBy>>>;
@@ -5455,6 +5490,8 @@ type YearRecord_allReferencingLocationsArgs = {
 
 /** Record of type År (year) */
 type YearRecord_allReferencingLocationsMetaArgs = {
+  filter?: InputMaybe<LocationModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenLocationAndYear>;
 };
 
@@ -5462,6 +5499,7 @@ type YearRecord_allReferencingLocationsMetaArgs = {
 /** Record of type År (year) */
 type YearRecord_allReferencingParticipantsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ParticipantModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ParticipantModelOrderBy>>>;
@@ -5472,6 +5510,8 @@ type YearRecord_allReferencingParticipantsArgs = {
 
 /** Record of type År (year) */
 type YearRecord_allReferencingParticipantsMetaArgs = {
+  filter?: InputMaybe<ParticipantModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenParticipantAndYear>;
 };
 
@@ -5479,6 +5519,7 @@ type YearRecord_allReferencingParticipantsMetaArgs = {
 /** Record of type År (year) */
 type YearRecord_allReferencingPartnersArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PartnerModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<PartnerModelOrderBy>>>;
@@ -5489,6 +5530,8 @@ type YearRecord_allReferencingPartnersArgs = {
 
 /** Record of type År (year) */
 type YearRecord_allReferencingPartnersMetaArgs = {
+  filter?: InputMaybe<PartnerModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenPartnerAndYear>;
 };
 
@@ -5496,6 +5539,7 @@ type YearRecord_allReferencingPartnersMetaArgs = {
 /** Record of type År (year) */
 type YearRecord_allReferencingProgramsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProgramModelFilter>;
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ProgramModelOrderBy>>>;
@@ -5506,6 +5550,8 @@ type YearRecord_allReferencingProgramsArgs = {
 
 /** Record of type År (year) */
 type YearRecord_allReferencingProgramsMetaArgs = {
+  filter?: InputMaybe<ProgramModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenProgramAndYear>;
 };
 

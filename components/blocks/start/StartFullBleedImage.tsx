@@ -18,7 +18,7 @@ export default function StartFullBleedImage({ data: { id, image, headline, text,
       <figure className={cn(s.container, !showMenu && s.full)}>
         <Image data={image.responsiveImage} className={s.image} objectFit="cover" />
         <figcaption>
-          <h2>{headline}</h2>
+          <h3>{headline}</h3>
           <p>{text}</p>
           <div className={s.fade}></div>
         </figcaption>
