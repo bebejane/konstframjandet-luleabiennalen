@@ -18,6 +18,7 @@ export default function StartFullscreenImage({ data: { id, image, text, headline
           <p>{text}</p>
           <div className={s.fade}></div>
         </figcaption>
+        <div className={s.border}></div>
       </figure>
     </DatoLink>
   )
