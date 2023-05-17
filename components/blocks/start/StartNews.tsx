@@ -17,7 +17,7 @@ export default function StartNews({ data: { news } }: Props) {
     <div className={s.container}>
       <header>
         <h2>{t('Menu.news')}</h2>
-        <Link href={'/nyheter'} className="small">
+        <Link href={'/nyheter'} transformHref={false} className="small">
           {t('General.showAll')}
         </Link>
       </header>

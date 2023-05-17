@@ -4,15 +4,16 @@ import { AllYearsDocument } from "/graphql";
 import { CardContainer, Card, Thumbnail } from "/components";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
-import { DatoSEO } from "dato-nextjs-utils/components";
+import { DatoSEO, DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
 import { pageSlugs } from "/lib/i18n";
 import { PROJECT_NAME } from "/lib/constant";
 
 export type Props = {
   years: YearRecord[]
+  general: GeneralRecord
 }
 
-export default function Archive({ years }: Props) {
+export default function Archive({ years, general }: Props) {
 
   const t = useTranslations('Menu')
   const { asPath } = useRouter()
@@ -20,6 +21,7 @@ export default function Archive({ years }: Props) {
   return (
     <>
       <DatoSEO title={t('archive')} />
+      <Markdown className={s.intro}>{general.archiveIntro}</Markdown>
       <CardContainer key={asPath} columns={2}>
         {years.map(({ id, title, slug, theme, image }) =>
           <Card key={id}>

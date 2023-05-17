@@ -8,7 +8,7 @@ query AllLocations(
 		filter: { year: { eq: $yearId } }
 		first: $first
 		skip: $skip
-		orderBy: [_createdAt_DESC]
+		orderBy: [title_ASC]
 		locale: $locale
 	) {
 		...LocationFragmentLight
