@@ -203,7 +203,7 @@ query Start($locale: SiteLocale) {
 				image {
 					...ImageFragment
 				}
-				headline
+				headlineText: headline
 				text
 				link {
 					__typename

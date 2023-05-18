@@ -6,10 +6,12 @@ import DatoLink from '/components/nav/DatoLink';
 import useStore from '/lib/store';
 
 export type Props = {
-  data: StartFullBleedImageRecord
+  data: StartFullBleedImageRecord & {
+    headlineText: string
+  }
 }
 
-export default function StartFullBleedImage({ data: { id, image, headline, text, link } }: Props) {
+export default function StartFullBleedImage({ data: { id, image, headlineText, text, link } }: Props) {
 
   const [showMenu] = useStore((state) => [state.showMenu])
 
@@ -18,7 +20,7 @@ export default function StartFullBleedImage({ data: { id, image, headline, text,
       <figure className={cn(s.container, !showMenu && s.full)}>
         <Image data={image.responsiveImage} className={s.image} objectFit="cover" />
         <figcaption>
-          <h3>{headline}</h3>
+          <h3>{headlineText}</h3>
           <p>{text}</p>
           <div className={s.fade}></div>
         </figcaption>

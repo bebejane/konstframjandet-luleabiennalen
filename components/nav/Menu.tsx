@@ -19,7 +19,7 @@ export default function Menu({ items }: MenuProps) {
 
 	const t = useTranslations('Menu')
 	const router = useRouter()
-	const { locale, defaultLocale } = router
+	const { locale, defaultLocale, asPath } = router
 	const menuRef = useRef<HTMLUListElement | null>(null);
 	const [showMenu, setShowMenu, searchQuery, setSearchQuery] = useStore((state) => [state.showMenu, state.setShowMenu, state.searchQuery, state.setSearchQuery])
 	const [selected, setSelected] = useState<MenuItem | undefined>()
@@ -61,6 +61,28 @@ export default function Menu({ items }: MenuProps) {
 		setFooterScrollPosition(footerScrollPosition)
 
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height, isMobile])
+
+	useEffect(() => {
+
+		// Find selected item from asPath recursively
+		const findSelected = (path: string, item: MenuItem): MenuItem | undefined => {
+			if (item.slug === path || item.altSlug === path) return item
+			if (item.sub?.length) {
+				for (let i = 0; i < item.sub.length; i++) {
+					const selected = findSelected(path, item.sub[i])
+					if (selected) return selected
+				}
+			}
+		}
+		for (let i = 0; i < items.length; i++) {
+			const selected = findSelected(asPath, items[i]);
+			if (selected) {
+				console.log(selected)
+				return setSelected(selected)
+			}
+		}
+
+	}, [asPath])
 
 	return (
 		<>
@@ -123,14 +145,18 @@ export type MenuTreeProps = {
 export function MenuTree({ item, level, selected, setSelected, path, locale, }: MenuTreeProps) {
 
 	const expand = () => setSelected(item)
+
 	const itemIncludesPath = (item: MenuItem) => {
 		if (!item) return false
-		const slugs = [item.slug, item.altSlug].map(s => s?.startsWith(`/${locale}`) ? s?.replace(`/${locale}`, '') : s)
+
+		const parentSlug = item.slug?.split('/').slice(0, -1).join('/')
+		const slugs = [parentSlug, item.slug, item.altSlug].map(s => s?.startsWith(`/${locale}`) ? s?.replace(`/${locale}`, '') : s)
 		const p = path.startsWith(`/${locale}`) ? path.replace(`/${locale}`, '') : path
 		return slugs.includes(p)
 	}
 
 	const isVisible = (path: string, item: MenuItem) => {
+
 		if (itemIncludesPath(item)) return true
 		if (!item.sub?.length) return false
 
