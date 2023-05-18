@@ -2,7 +2,7 @@ query AllPrograms($locale: SiteLocale, $yearId: ItemId) {
 	programs: allPrograms(
 		filter: { year: { eq: $yearId } }
 		locale: $locale
-		orderBy: [startDate_DESC, startTime_ASC]
+		orderBy: [startDate_ASC, startTime_ASC]
 		first: 100
 	) {
 		...ProgramFragmentLight

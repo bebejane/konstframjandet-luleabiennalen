@@ -63,7 +63,7 @@ export default function Menu({ items }: MenuProps) {
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height, isMobile])
 
 	useEffect(() => {
-
+		return
 		// Find selected item from asPath recursively
 		const findSelected = (path: string, item: MenuItem): MenuItem | undefined => {
 			if (item.slug === path || item.altSlug === path) return item
@@ -77,7 +77,6 @@ export default function Menu({ items }: MenuProps) {
 		for (let i = 0; i < items.length; i++) {
 			const selected = findSelected(asPath, items[i]);
 			if (selected) {
-				console.log(selected)
 				return setSelected(selected)
 			}
 		}
@@ -150,7 +149,7 @@ export function MenuTree({ item, level, selected, setSelected, path, locale, }: 
 		if (!item) return false
 
 		const parentSlug = item.slug?.split('/').slice(0, -1).join('/')
-		const slugs = [parentSlug, item.slug, item.altSlug].map(s => s?.startsWith(`/${locale}`) ? s?.replace(`/${locale}`, '') : s)
+		const slugs = [item.slug, item.altSlug].map(s => s?.startsWith(`/${locale}`) ? s?.replace(`/${locale}`, '') : s)
 		const p = path.startsWith(`/${locale}`) ? path.replace(`/${locale}`, '') : path
 		return slugs.includes(p)
 	}
