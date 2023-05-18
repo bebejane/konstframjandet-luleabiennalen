@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { DatoSEO } from "dato-nextjs-utils/components";
 import { useTranslations } from "next-intl";
 import { pageSlugs } from "/lib/i18n";
+import { usePage } from '/lib/context/page';
 
 export type Props = {
   programs: ProgramRecord[]
@@ -18,13 +19,15 @@ export default function Program({ programs, programCategories }: Props) {
 
   const t = useTranslations()
   const { asPath } = useRouter()
+  const { year } = usePage()
+
   const options = programCategories.map(({ id, title: label, desc }) => ({ id, label, description: desc }))
   const [category, setCategory] = useState<string>()
   const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => !category || category === id
-  const haveProgramItems = programs.filter(categoryFilter).length > 0
-  const pastPrograms = programs.filter(({ startDate, endDate }) => new Date(startDate) < new Date() && endDate);
-  const comingPrograms = programs.filter(({ startDate, endDate }) => new Date(startDate) >= new Date());
 
+  const haveProgramItems = programs.filter(categoryFilter).length > 0
+  const comingPrograms = programs.filter(({ startDate }) => year.isArchive || new Date(startDate) >= new Date());
+  const pastPrograms = programs.filter(({ startDate, endDate }) => !year.isArchive && (new Date(startDate) < new Date() && endDate));
 
   return (
     <>
