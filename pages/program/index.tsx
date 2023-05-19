@@ -9,7 +9,7 @@ import { DatoSEO } from "dato-nextjs-utils/components";
 import { useTranslations } from "next-intl";
 import { pageSlugs } from "/lib/i18n";
 import { usePage } from '/lib/context/page';
-import { isAfter, isBefore } from 'date-fns';
+import { isAfter } from 'date-fns';
 
 export type Props = {
   programs: ProgramRecord[]

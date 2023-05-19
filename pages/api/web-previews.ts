@@ -1,9 +1,12 @@
-import { allYears } from '/lib/utils';
-import { translatePath } from '/lib/utils';
+import { translatePath, allYears } from '/lib/utils';
 import { defaultLocale } from '/lib/i18n'
-import { withWebPreviews } from 'dato-nextjs-utils/hoc';
+import { withWebPreviewsEdge } from 'dato-nextjs-utils/hoc';
 
-export default withWebPreviews(async ({ item, itemType, locale }) => {
+export const config = {
+  runtime: 'edge'
+}
+
+export default withWebPreviewsEdge(async ({ item, itemType, locale }) => {
 
   let path = null;
 
