@@ -5,6 +5,7 @@ import { StartDataDocument, StartDocument } from "/graphql";
 import { apiQuery } from "dato-nextjs-utils/api";
 import { Block } from "/components";
 import { pageSlugs } from "/lib/i18n";
+import { format } from 'date-fns'
 
 export type Props = {
 	start: StartRecord
@@ -28,11 +29,10 @@ export default function Home({ start }: Props) {
 	);
 }
 
-
 export const getStaticProps = withGlobalProps({ queries: [StartDocument] }, async ({ props, revalidate, context }: any) => {
 
 	let { start }: { start: StartRecord } = props;
-	const date = '2022-01-01' //format(new Date(), 'yyyy-MM-dd')
+	const date = format(new Date(), 'yyyy-MM-dd')
 	const count = {
 		participants: parseInt((start.content.find(el => el.__typename === 'StartRandomParticipantRecord') as StartRandomParticipantRecord)?.amount ?? '1'),
 		news: parseInt((start.content.find(el => el.__typename === 'StartNewsRecord') as StartNewsRecord)?.amount ?? '1'),
