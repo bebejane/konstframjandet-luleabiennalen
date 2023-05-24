@@ -1,17 +1,17 @@
-import s from './[about].module.scss'
 import withGlobalProps from "/lib/withGlobalProps";
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { AboutDocument, AllAboutsDocument } from "/graphql";
-import { Article } from '/components';
+import { Article, ArchiveShortcuts } from '/components';
 import { DatoSEO } from "dato-nextjs-utils/components";
 import { pageSlugs } from '/lib/i18n';
 
 export type Props = {
   about: AboutRecord
+  shortcuts?: (AboutRecord | ExhibitionRecord | ProgramRecord | ParticipantRecord | PartnerRecord)[]
 }
 
-export default function AboutItem({ about: { id, image, title, intro, content, _seoMetaTags } }: Props) {
+export default function AboutItem({ about: { id, image, title, intro, content, _seoMetaTags }, shortcuts }: Props) {
 
   return (
     <>
@@ -24,6 +24,7 @@ export default function AboutItem({ about: { id, image, title, intro, content, _
         intro={intro}
         content={content}
       />
+      {shortcuts?.length && <ArchiveShortcuts items={shortcuts} />}
     </>
   );
 }
@@ -38,8 +39,6 @@ export async function getStaticPaths() {
     fallback: 'blocking'
   }
 }
-
-//AboutItem.page = { crumbs: [{ slug: 'nyheter', title: 'Nyheter' }], regional: true } as PageProps
 
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 

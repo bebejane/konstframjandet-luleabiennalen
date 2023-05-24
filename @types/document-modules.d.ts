@@ -11,6 +11,15 @@ export const AllAboutsMenu: DocumentNode;
 }
     
 
+declare module '*/archive.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ArchiveHome: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/contact.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

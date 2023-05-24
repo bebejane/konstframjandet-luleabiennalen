@@ -1,0 +1,32 @@
+query ArchiveHome($yearId: ItemId, $locale: SiteLocale) {
+	about: allAbouts(filter: { year: { eq: $yearId } }, locale: $locale, first: 1) {
+		...AboutFragmentLight
+	}
+	program: allPrograms(
+		filter: { year: { eq: $yearId } }
+		orderBy: [startDate_ASC, startTime_ASC]
+		locale: $locale
+		first: 1
+	) {
+		...ProgramFragmentLight
+	}
+	participant: allParticipants(
+		filter: { year: { eq: $yearId } }
+		orderBy: name_ASC
+		locale: $locale
+		first: 1
+	) {
+		...ParticipantFragmentLight
+	}
+	partner: allPartners(
+		filter: { year: { eq: $yearId } }
+		orderBy: title_ASC
+		locale: $locale
+		first: 1
+	) {
+		...PartnerFragmentLight
+	}
+	exhibition: allExhibitions(filter: { year: { eq: $yearId } }, locale: $locale, first: 1) {
+		...ExhibitionFragmentLight
+	}
+}
