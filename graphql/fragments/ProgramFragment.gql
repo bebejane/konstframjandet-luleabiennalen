@@ -127,8 +127,6 @@ fragment ProgramFragment on ProgramRecord {
 		}
 	}
 	_seoMetaTags {
-		attributes
-		content
-		tag
+		...SeoMetaTagsFragment
 	}
 }

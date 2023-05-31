@@ -121,8 +121,6 @@ fragment ExhibitionFragment on ExhibitionRecord {
 		}
 	}
 	_seoMetaTags {
-		attributes
-		content
-		tag
+		...SeoMetaTagsFragment
 	}
 }

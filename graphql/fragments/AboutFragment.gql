@@ -111,8 +111,6 @@ fragment AboutFragment on AboutRecord {
 		}
 	}
 	_seoMetaTags {
-		attributes
-		content
-		tag
+		...SeoMetaTagsFragment
 	}
 }

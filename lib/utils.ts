@@ -321,7 +321,7 @@ export const truncateWords = (text: string, minLength: number): string => {
   if (text.length <= minLength) {
     return text;
   }
-  var truncatedText = text.substr(0, minLength);
+  var truncatedText = text.substring(0, minLength);
   var lastSpaceIndex = truncatedText.lastIndexOf(' ');
   if (lastSpaceIndex !== -1) {
     truncatedText = truncatedText.substr(0, lastSpaceIndex);

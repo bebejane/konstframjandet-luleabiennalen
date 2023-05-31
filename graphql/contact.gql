@@ -97,9 +97,7 @@ query Contact($locale: SiteLocale) {
 			}
 		}
 		_seoMetaTags {
-			attributes
-			content
-			tag
+			...SeoMetaTagsFragment
 		}
 	}
 }
