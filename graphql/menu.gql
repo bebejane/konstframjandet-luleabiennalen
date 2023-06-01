@@ -24,7 +24,9 @@ query Menu($locale: SiteLocale, $altLocale: SiteLocale, $yearId: ItemId) {
 		title
 		participantName
 	}
-	aboutMeta: _allAboutsMeta(filter: { year: { eq: $yearId } }) {
+	aboutMeta: _allAboutsMeta(
+		filter: { OR: [{ year: { eq: $yearId } }, { year: { exists: false } }] }
+	) {
 		count
 	}
 	programMeta: _allProgramsMeta(filter: { year: { eq: $yearId } }) {
