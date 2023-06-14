@@ -39,20 +39,24 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
         )}
       </CardContainer>
 
-      <h2 id="locations" className={cn(s.head, s.locations)}>{t('Menu.locations')}</h2>
-      <CardContainer key={`${asPath}-locations`} className={s.locations}>
-        {locations.map(({ id, image, title, intro, slug, year }) =>
-          <Card key={id}>
-            <Thumbnail
-              title={title}
-              image={image}
-              intro={intro}
-              titleRows={1}
-              slug={`/platser/${slug}`}
-            />
-          </Card>
-        )}
-      </CardContainer>
+      {locations.length > 0 &&
+        <>
+          <h2 id="locations" className={cn(s.head, s.locations)}>{t('Menu.locations')}</h2>
+          <CardContainer key={`${asPath}-locations`} className={s.locations}>
+            {locations.map(({ id, image, title, intro, slug, year }) =>
+              <Card key={id}>
+                <Thumbnail
+                  title={title}
+                  image={image}
+                  intro={intro}
+                  titleRows={1}
+                  slug={`/platser/${slug}`}
+                />
+              </Card>
+            )}
+          </CardContainer>
+        </>
+      }
 
       {fundedBy.length > 0 &&
         <section className={s.financiers}>
