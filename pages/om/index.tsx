@@ -1,7 +1,7 @@
 import s from './[about].module.scss'
 import withGlobalProps from "/lib/withGlobalProps";
-import { apiQuery } from 'dato-nextjs-utils/api';
-import { MainAboutDocument } from "/graphql";
+import { apiQueryAll } from 'dato-nextjs-utils/api';
+import { AllAboutsDocument } from "/graphql";
 import { pageSlugs } from '/lib/i18n';
 
 export { default } from './[about]'
@@ -9,8 +9,8 @@ export { default } from './[about]'
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
   const yearId = props.year.id
-  const { abouts } = await apiQuery(MainAboutDocument, { variables: { locale: context.locale, yearId }, preview: context.preview })
-  const about = abouts[0] ?? null
+  const { abouts } = await apiQueryAll(AllAboutsDocument, { variables: { locale: context.locale }, preview: context.preview })
+  const about = abouts.filter(el => !el.year || el.year?.id === yearId).sort((a, b) => a.year?.title > b.year?.title ? -1 : 1)[0]
 
   if (!about)
     return { notFound: true }
