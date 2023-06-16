@@ -20,7 +20,6 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
 
   const t = useTranslations()
   const { asPath } = useRouter()
-  const { year } = usePage()
 
   return (
     <>
