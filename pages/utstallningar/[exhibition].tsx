@@ -75,7 +75,7 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
   const { exhibition } = await apiQuery(ExhibitionDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!exhibition)
-    return { notFound: true }
+    return { notFound: true, revalidate }
 
   return {
     props: {
@@ -87,6 +87,7 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
         title: exhibition.title,
         slugs: pageSlugs('exhibitions', props.year.title, exhibition._allSlugLocales),
       } as PageProps
-    }
+    },
+    revalidate
   };
 });

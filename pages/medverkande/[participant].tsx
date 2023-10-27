@@ -54,7 +54,7 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
   const { participant } = await apiQuery(ParticipantDocument, { variables: { slug, locale: context.locale }, preview: context.preview })
 
   if (!participant)
-    return { notFound: true }
+    return { notFound: true, revalidate }
 
   return {
     props: {

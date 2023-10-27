@@ -13,7 +13,7 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
   const about = abouts.filter(el => !el.year || el.year?.id === yearId).sort((a, b) => a.year?.title > b.year?.title ? -1 : 1)[0]
 
   if (!about)
-    return { notFound: true }
+    return { notFound: true, revalidate }
 
   return {
     props: {
