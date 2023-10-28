@@ -39,8 +39,8 @@ const i18Rewrites = async () => {
 
 	Object.keys(i18nPaths).forEach((k) =>
 		rewrites.push({
-			destination: `/en/${i18nPaths[k].sv}/:path*`,
 			source: `/en/${i18nPaths[k].en}/:path*`,
+			destination: `/en/${i18nPaths[k].sv}/:path*`,
 			locale: false,
 		})
 	);
@@ -48,8 +48,8 @@ const i18Rewrites = async () => {
 	years.forEach(({ title }) =>
 		Object.keys(i18nPaths).forEach((k) =>
 			rewrites.push({
-				destination: `/en/${title}/${i18nPaths[k].sv}/:path*`,
 				source: `/en/${title}/${i18nPaths[k].en}/:path*`,
+				destination: `/en/${title}/${i18nPaths[k].sv}/:path*`,
 				locale: false,
 			})
 		)

@@ -26,6 +26,9 @@ export default withWebPreviewsEdge(async ({ item, itemType, locale }) => {
     case 'program':
       path = `/program/${slug}`
       break;
+    case 'program_category':
+      path = `/program`
+      break;
     case 'participant':
       path = `/medverkande/${slug}`
       break;

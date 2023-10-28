@@ -1,6 +1,7 @@
 import { withRevalidate } from 'dato-nextjs-utils/hoc'
 import { allYears, translatePath } from '/lib/utils';
-import { defaultLocale } from '/lib/i18n'
+import { defaultLocale, } from '/lib/i18n'
+import i18nPaths from '/lib/i18n/paths.json'
 
 export default withRevalidate(async (record, revalidate) => {
 
@@ -12,12 +13,14 @@ export default withRevalidate(async (record, revalidate) => {
   const slugs = typeof slug === 'object' ? slug : { [defaultLocale]: slug }
   const paths = []
 
-  console.log('revalidate', apiKey)
-
   Object.keys(slugs).forEach((locale) => {
     const slug = slugs[locale]
     const localePaths = []
     switch (apiKey) {
+      case 'year':
+        localePaths.push('/')
+        localePaths.push(`/${record.title}`)
+        break;
       case 'start':
         localePaths.push('/')
         prefix && localePaths.push(`${prefix}/`)
@@ -29,6 +32,10 @@ export default withRevalidate(async (record, revalidate) => {
       case 'program':
         localePaths.push(`/program/${slug}`)
         prefix && localePaths.push(`${prefix}/program/${slug}`)
+        break;
+      case 'program_category':
+        localePaths.push(`/program`)
+        prefix && localePaths.push(`${prefix}/program`)
         break;
       case 'participant':
         localePaths.push(`/medverkande/${slug}`)
@@ -56,7 +63,9 @@ export default withRevalidate(async (record, revalidate) => {
       default:
         break;
     }
-    localePaths.forEach(p => paths.push(translatePath(p, locale, defaultLocale, year?.title)))
+    // Revalidate original paths before rewrites are applied
+    localePaths.forEach(p => paths.push(translatePath(p, defaultLocale, defaultLocale, year?.title)))
+
   })
 
   await revalidate(paths)
