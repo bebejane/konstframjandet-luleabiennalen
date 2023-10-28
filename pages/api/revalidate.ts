@@ -1,7 +1,6 @@
 import { withRevalidate } from 'dato-nextjs-utils/hoc'
 import { allYears, translatePath } from '/lib/utils';
 import { defaultLocale, } from '/lib/i18n'
-import i18nPaths from '/lib/i18n/paths.json'
 
 export default withRevalidate(async (record, revalidate) => {
 
