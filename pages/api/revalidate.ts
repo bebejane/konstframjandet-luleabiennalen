@@ -8,7 +8,6 @@ export default withRevalidate(async (record, revalidate) => {
   const { slug } = record
   const years = await allYears()
   const year = years.find(({ id }) => record.year === id)
-  const isArchive = year?.title !== years[0].title
   const prefix = !year ? '' : `/${year.title}`
   const slugs = typeof slug === 'object' ? slug : { [defaultLocale]: slug }
   const paths = []
@@ -59,6 +58,6 @@ export default withRevalidate(async (record, revalidate) => {
     }
     localePaths.forEach(p => paths.push(translatePath(p, locale, defaultLocale, year?.title)))
   })
-  console.log(paths)
-  revalidate(paths)
+
+  await revalidate(paths)
 })
