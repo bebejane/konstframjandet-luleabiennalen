@@ -9,7 +9,7 @@
   min-width: 20%;
   max-width: 20%;
 
-  @include mq($until: desktop) {
+  @include mq($until: tablet) {
     --max-width: calc(100% - var(--logo-size-optical) - calc(var(--outer-margin) * 3));
     min-width: var(--max-width);
     max-width: var(--max-width);
@@ -47,7 +47,6 @@
     @include mq($until: tablet) {
       margin-left: 0.62em;
       font-size: 1.1rem;
-
     }
 
     &[data-level="0"] {
@@ -69,13 +68,13 @@
         background: transparent;
       }
 
-      >li>a {
+      > li > a {
         font-weight: bold;
       }
     }
 
     &[data-level="2"] {
-      li>a {
+      li > a {
         font-weight: normal !important;
       }
     }
@@ -91,7 +90,7 @@
         line-height: initial;
       }
 
-      &.bold>a {
+      &.bold > a {
         font-weight: bold;
       }
 
