@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react'
 import type { Menu, MenuItem } from '/lib/menu'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { Hamburger, Temperature } from '/components'
+import { Hamburger, Language, Temperature } from '/components'
 import useStore from '/lib/store'
 import { useScrollInfo } from 'dato-nextjs-utils/hooks'
 import { useWindowSize } from 'usehooks-ts'
@@ -134,6 +134,7 @@ export default function Menu({ items }: MenuProps) {
 							</li>
 					)}
 				</ul>
+				<Language menu={items} className={s.language} />
 			</nav>
 		</>
 	)

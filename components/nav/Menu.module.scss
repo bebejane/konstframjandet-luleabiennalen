@@ -54,10 +54,7 @@
       overflow-y: scroll;
       overflow-x: hidden;
 
-      // Extra padding for scrolling on mobile
-      @include mq($until: tablet) {
-        padding-bottom: 4rem;
-      }
+
 
       &::-webkit-scrollbar {
         height: 0px;
@@ -68,13 +65,13 @@
         background: transparent;
       }
 
-      > li > a {
+      >li>a {
         font-weight: bold;
       }
     }
 
     &[data-level="2"] {
-      li > a {
+      li>a {
         font-weight: normal !important;
       }
     }
@@ -90,7 +87,7 @@
         line-height: initial;
       }
 
-      &.bold > a {
+      &.bold>a {
         font-weight: bold;
       }
 
@@ -112,6 +109,22 @@
         }
       }
     }
+  }
+
+}
+
+.language {
+  position: relative;
+  font-size: 1.1rem;
+  padding-bottom: 4rem;
+
+  a {
+    color: var(--black);
+  }
+
+  @include mq($from: desktop) {
+    display: none;
+
   }
 }
 
