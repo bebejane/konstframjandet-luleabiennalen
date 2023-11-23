@@ -63,8 +63,7 @@ export default function Menu({ items }: MenuProps) {
 	}, [menuRef, selected, scrolledPosition, documentHeight, viewportHeight, width, height, isMobile])
 
 	useEffect(() => {
-		return
-		// Find selected item from asPath recursively
+
 		const findSelected = (path: string, item: MenuItem): MenuItem | undefined => {
 			if (item.slug === path || item.altSlug === path) return item
 			if (item.sub?.length) {
@@ -74,14 +73,22 @@ export default function Menu({ items }: MenuProps) {
 				}
 			}
 		}
+
+		let parent = null;
+
 		for (let i = 0; i < items.length; i++) {
-			const selected = findSelected(asPath, items[i]);
-			if (selected) {
+			const selected = findSelected(path, items[i]);
+			if (!parent)
+				parent = findSelected(path.split('/').slice(0, -1).join('/'), items[i]);
+			if (selected)
 				return setSelected(selected)
-			}
 		}
 
-	}, [asPath])
+		setSelected(parent)
+
+	}, [path])
+
+	useEffect(() => { setPath(asPath) }, [asPath])
 
 	return (
 		<>
@@ -104,7 +111,7 @@ export default function Menu({ items }: MenuProps) {
 								level={0}
 								selected={selected}
 								setSelected={setSelected}
-								path={path}
+								path={asPath}
 								locale={router.locale}
 							/>
 							:
@@ -133,6 +140,7 @@ export default function Menu({ items }: MenuProps) {
 }
 
 export type MenuTreeProps = {
+	parent?: MenuItem | null | undefined
 	item: MenuItem
 	level?: number,
 	selected: MenuItem | undefined
@@ -141,21 +149,20 @@ export type MenuTreeProps = {
 	locale: string
 }
 
-export function MenuTree({ item, level, selected, setSelected, path, locale, }: MenuTreeProps) {
+export function MenuTree({ parent, item, level, selected, setSelected, path, locale, }: MenuTreeProps) {
 
 	const expand = () => setSelected(item)
 
 	const itemIncludesPath = (item: MenuItem) => {
 		if (!item) return false
 
-		const parentSlug = item.slug?.split('/').slice(0, -1).join('/')
 		const slugs = [item.slug, item.altSlug].map(s => s?.startsWith(`/${locale}`) ? s?.replace(`/${locale}`, '') : s)
-		const p = path.startsWith(`/${locale}`) ? path.replace(`/${locale}`, '') : path
+		const p = path.indexOf(`/${locale}`) === 0 ? path.replace(`/${locale}`, '') : path
 		return slugs.includes(p)
 	}
 
-	const isVisible = (path: string, item: MenuItem) => {
-
+	const isVisible = (path: string, item?: MenuItem) => {
+		if (!item) return false
 		if (itemIncludesPath(item)) return true
 		if (!item.sub?.length) return false
 
@@ -178,10 +185,11 @@ export function MenuTree({ item, level, selected, setSelected, path, locale, }: 
 			{isLink ? <Link href={item.slug}>{label}</Link> : <>{label}</>}
 			{item?.sub && isVisible(path, item) &&
 				<ul data-level={++level} onClick={e => e.stopPropagation()}>
-					{item.sub.map((item, idx) =>
+					{item.sub.map((i, idx) =>
 						<MenuTree
 							key={idx}
-							item={item}
+							parent={item}
+							item={i}
 							level={level}
 							selected={selected}
 							setSelected={setSelected}
