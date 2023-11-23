@@ -19,7 +19,7 @@ export default function Language({ menu, className }: Props) {
 	const { slugs } = usePage()
 
 	if (locales.length <= 1) return null
-
+	console.log(className)
 	return (
 		<nav className={cn(s.language, className)}>
 			{slugs.map((item, idx) =>

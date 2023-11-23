@@ -54,7 +54,10 @@
       overflow-y: scroll;
       overflow-x: hidden;
 
+      @include mq($until: tablet) {
 
+        padding-bottom: 4rem;
+      }
 
       &::-webkit-scrollbar {
         height: 0px;
@@ -114,9 +117,15 @@
 }
 
 .language {
-  position: relative;
+  position: absolute !important;
+  top: unset;
+  left: 0;
+  bottom: 0;
   font-size: 1.1rem;
-  padding-bottom: 4rem;
+  z-index: 100000;
+  display: block !important;
+  height: 1em;
+  padding-left: 0.62rem;
 
   a {
     color: var(--black);

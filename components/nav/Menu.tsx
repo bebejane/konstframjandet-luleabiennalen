@@ -136,6 +136,7 @@ export default function Menu({ items }: MenuProps) {
 				</ul>
 				<Language menu={items} className={s.language} />
 			</nav>
+
 		</>
 	)
 }
