@@ -46,6 +46,10 @@
       height: 100%;
       object-fit: cover;
     }
+
+    &:hover {
+      border: 0px !important;
+    }
   }
 
   .textWrap {
@@ -64,12 +68,14 @@
       padding-bottom: var(--space);
     }
 
-    .text {}
+    .text {
+    }
   }
 
   @include mq($until: tablet) {
     height: 50vh;
 
-    .textWrap {}
+    .textWrap {
+    }
   }
 }
