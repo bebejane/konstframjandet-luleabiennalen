@@ -54,8 +54,8 @@
       overflow-y: scroll;
       overflow-x: hidden;
 
-      // Extra padding for scrolling on mobile
       @include mq($until: tablet) {
+
         padding-bottom: 4rem;
       }
 
@@ -68,13 +68,13 @@
         background: transparent;
       }
 
-      > li > a {
+      >li>a {
         font-weight: bold;
       }
     }
 
     &[data-level="2"] {
-      li > a {
+      li>a {
         font-weight: normal !important;
       }
     }
@@ -90,7 +90,7 @@
         line-height: initial;
       }
 
-      &.bold > a {
+      &.bold>a {
         font-weight: bold;
       }
 
@@ -112,6 +112,28 @@
         }
       }
     }
+  }
+
+}
+
+.language {
+  position: absolute !important;
+  top: unset;
+  left: 0;
+  bottom: 0;
+  font-size: 1.1rem;
+  z-index: 100000;
+  display: block !important;
+  height: 1em;
+  padding-left: 0.62rem;
+
+  a {
+    color: var(--black);
+  }
+
+  @include mq($from: desktop) {
+    display: none;
+
   }
 }
 
