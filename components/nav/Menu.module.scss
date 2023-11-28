@@ -55,7 +55,6 @@
       overflow-x: hidden;
 
       @include mq($until: tablet) {
-
         padding-bottom: 4rem;
       }
 
@@ -68,13 +67,13 @@
         background: transparent;
       }
 
-      >li>a {
+      > li > a {
         font-weight: bold;
       }
     }
 
     &[data-level="2"] {
-      li>a {
+      li > a {
         font-weight: normal !important;
       }
     }
@@ -90,7 +89,7 @@
         line-height: initial;
       }
 
-      &.bold>a {
+      &.bold > a {
         font-weight: bold;
       }
 
@@ -113,14 +112,13 @@
       }
     }
   }
-
 }
 
 .language {
   position: absolute !important;
   top: unset;
   left: 0;
-  bottom: 0;
+  bottom: 1rem;
   font-size: 1.1rem;
   z-index: 100000;
   display: block !important;
@@ -132,8 +130,7 @@
   }
 
   @include mq($from: desktop) {
-    display: none;
-
+    display: none !important;
   }
 }
 
