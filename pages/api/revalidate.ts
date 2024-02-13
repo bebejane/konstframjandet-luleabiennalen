@@ -67,5 +67,5 @@ export default withRevalidate(async (record, revalidate) => {
 
   })
 
-  await revalidate(paths)
+  return await revalidate(paths)
 })
