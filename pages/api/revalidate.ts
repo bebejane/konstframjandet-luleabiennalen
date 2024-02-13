@@ -63,7 +63,8 @@ export default withRevalidate(async (record, revalidate) => {
         break;
     }
     // Revalidate original paths before rewrites are applied
-    localePaths.forEach(p => paths.push(p))//translatePath(p, defaultLocale, defaultLocale, year?.title)))
+    localePaths.forEach(p => paths.push(translatePath(p, locale, defaultLocale, year?.title)))
   })
+
   return await revalidate(paths)
 })
