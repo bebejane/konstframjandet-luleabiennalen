@@ -4457,6 +4457,7 @@ type SeoField = {
   __typename?: 'SeoField';
   description?: Maybe<Scalars['String']>;
   image?: Maybe<FileField>;
+  noIndex?: Maybe<Scalars['BooleanType']>;
   title?: Maybe<Scalars['String']>;
   twitterCard?: Maybe<Scalars['String']>;
 };
@@ -4467,6 +4468,7 @@ type Site = {
   faviconMetaTags: Array<Tag>;
   globalSeo?: Maybe<GlobalSeoField>;
   locales: Array<SiteLocale>;
+  noIndex?: Maybe<Scalars['BooleanType']>;
 };
 
 
