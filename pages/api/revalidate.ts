@@ -1,4 +1,5 @@
 import { withRevalidate } from 'dato-nextjs-utils/hoc'
+import { sleep } from '/lib/utils';
 import { allYears, translatePath } from '/lib/utils';
 import { defaultLocale, } from '/lib/i18n'
 
@@ -66,8 +67,6 @@ export default withRevalidate(async (record, revalidate) => {
     localePaths.forEach(p => paths.push(translatePath(p, defaultLocale, defaultLocale, year?.title)))
 
   })
-
-  // dedupe paths
-  const deduped = paths.filter((path, index) => paths.indexOf(path) === index)
-  return await revalidate(deduped)
+  await sleep(1000)
+  return await revalidate(paths)
 })
