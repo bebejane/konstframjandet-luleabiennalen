@@ -67,6 +67,6 @@ export default withRevalidate(async (record, revalidate) => {
     localePaths.forEach(p => paths.push(translatePath(p, defaultLocale, defaultLocale, year?.title)))
 
   })
-  await sleep(1000)
+  await sleep(5000)
   return await revalidate(paths)
 })
