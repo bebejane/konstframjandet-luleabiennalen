@@ -1,5 +1,4 @@
 import { withRevalidate } from 'dato-nextjs-utils/hoc'
-import { sleep } from '/lib/utils';
 import { allYears, translatePath } from '/lib/utils';
 import { defaultLocale, } from '/lib/i18n'
 
@@ -64,7 +63,7 @@ export default withRevalidate(async (record, revalidate) => {
         break;
     }
     // Revalidate original paths before rewrites are applied
-    localePaths.forEach(p => paths.push(translatePath(p, defaultLocale, defaultLocale, year?.title)))
+    localePaths.forEach(p => paths.push(p))//translatePath(p, defaultLocale, defaultLocale, year?.title)))
   })
   return await revalidate(paths)
 })
