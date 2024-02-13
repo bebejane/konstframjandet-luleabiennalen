@@ -67,5 +67,7 @@ export default withRevalidate(async (record, revalidate) => {
 
   })
 
-  return await revalidate(paths)
+  // dedupe paths
+  const deduped = paths.filter((path, index) => paths.indexOf(path) === index)
+  return await revalidate(deduped)
 })
