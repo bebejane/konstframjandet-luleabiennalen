@@ -3,6 +3,10 @@ fragment NewsFragmentLight on NewsRecord {
 	title
 	intro(markdown: false)
 	slug
+	_allSlugLocales {
+		locale
+		value
+	}
 	image {
 		...ImageThumbnailFragment
 	}
