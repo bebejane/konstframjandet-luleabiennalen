@@ -146,7 +146,8 @@ button {
 		padding-top: 1em;
 	}
 
-	transition: color 0.2s ease-in-out, background-color 0.3s ease-in-out;
+	transition: color 0.2s ease-in-out,
+	background-color 0.3s ease-in-out;
 
 	&.back {
 		width: var(--body-width);
@@ -213,6 +214,7 @@ select {
 	min-height: 100vh;
 	z-index: 100000;
 	background-color: var(--white);
+	color: var(--black);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

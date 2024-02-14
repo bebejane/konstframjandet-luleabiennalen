@@ -1,6 +1,6 @@
 import '/lib/styles/index.scss'
 import { Layout } from '/components';
-import { PageProvider, usePage } from '/lib/context/page'
+import { PageProvider } from '/lib/context/page'
 import { NextIntlProvider } from 'next-intl';
 import { DefaultDatoSEO } from 'dato-nextjs-utils/components';
 import { sv, enGB as en } from 'date-fns/locale'

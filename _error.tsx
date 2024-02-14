@@ -12,7 +12,7 @@ function Error({ statusCode }) {
   )
 }
 
-Error.getInitialProps = ({ res, err }) => {
+Error.getInitialProps = ({ res, err, revalidate, notFound }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }
