@@ -9,7 +9,6 @@ export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, r
 
 	const yearId = props.year.id
 	const { about, exhibition, program, participant, partner } = await apiQuery(ArchiveHomeDocument, { variables: { first: 1, locale: context.locale, yearId }, preview: context.preview })
-
 	if (!about || !about.length)
 		return { notFound: true, revalidate }
 

@@ -68,7 +68,9 @@ export default async (phase, { defaultConfig }) => {
 			localeDetection: false,
 		},
 		async rewrites() {
-			return await i18Rewrites();
+			return {
+				beforeFiles: await i18Rewrites(),
+			};
 		},
 		sassOptions,
 		typescript: {
