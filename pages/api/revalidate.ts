@@ -66,8 +66,18 @@ export default withRevalidate(async (record, revalidate) => {
     localePaths.forEach(p => {
       const t = translatePath(p, defaultLocale, defaultLocale, year?.title)
       paths.push(locale === defaultLocale ? t : `/${locale}${t}`)
+      //paths.push(t)
     })
   })
+
+  const revalidatePaths = []
+  paths.filter(p => !p.startsWith('/en')).forEach(p => {
+    revalidatePaths.push(`/en${p}`)
+    revalidatePaths.push(p)
+  })
+  console.log(paths)
+  //console.log(revalidatePaths)
+  return await revalidate(paths)
 
   return await revalidate(paths)
 })

@@ -40,7 +40,7 @@ const i18Rewrites = async () => {
 	Object.keys(i18nPaths).forEach((k) =>
 		rewrites.push({
 			source: `/en/${i18nPaths[k].en}/:path*`,
-			destination: `/en/${i18nPaths[k].sv}/:path*`,
+			destination: `/${i18nPaths[k].sv}/:path*`,
 			locale: false,
 		})
 	);
@@ -49,7 +49,7 @@ const i18Rewrites = async () => {
 		Object.keys(i18nPaths).forEach((k) =>
 			rewrites.push({
 				source: `/en/${title}/${i18nPaths[k].en}/:path*`,
-				destination: `/en/${title}/${i18nPaths[k].sv}/:path*`,
+				destination: `/${title}/${i18nPaths[k].sv}/:path*`,
 				locale: false,
 			})
 		)
