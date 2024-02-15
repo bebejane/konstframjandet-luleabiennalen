@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function FourOhFour({ }) {
+function FourOhFour({ }) {
   return (
     <div id="error-404" className="page-error">
       <h1>404 - Page Not Found</h1>
@@ -10,3 +10,7 @@ export default function FourOhFour({ }) {
     </div>
   )
 }
+
+FourOhFour.errorCode = 404
+
+export default FourOhFour
