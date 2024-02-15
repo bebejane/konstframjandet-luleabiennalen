@@ -23,7 +23,7 @@ function App({ Component, pageProps, router }) {
   const siteTitle = PROJECT_NAME
   const isHome = asPath === '/' || locales.find(l => asPath === `/${l}`) !== undefined
   const errorCode = parseInt(router.pathname.replace('/', ''))
-  const isError = (!isNaN(errorCode) && (errorCode > 400 && errorCode < 600)) || router.pathname.replace('/', '') === '_error'
+  const isError = (!isNaN(errorCode) && (errorCode > 400 && errorCode < 600)) || router.pathname.replace('/', '') === '_error' || Component.name === 'FourOhFour' || Component.name === 'FiveZeroZero'
 
   if (isError) return <Component {...pageProps} />
 
