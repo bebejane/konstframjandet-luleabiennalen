@@ -28,10 +28,7 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
         {partners.map(({ id, image, title, intro, slug }) =>
           <Card key={id}>
             <Thumbnail
-              title={title}
               image={image}
-              intro={intro}
-              titleRows={1}
               slug={`/partners/${slug}`}
             />
           </Card>

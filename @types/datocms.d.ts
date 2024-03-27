@@ -2026,6 +2026,12 @@ type ImgixParams = {
    */
   skip?: InputMaybe<Scalars['IntType']>;
   /**
+   * Bypasses any [DatoCMS Automatic Image Optimization](https://www.datocms.com/docs/cdn-settings/advanced-asset-settings) that might be set up for the project.
+   *
+   * Exercise caution when using this parameter, as it could significantly increase your bandwidth costs.
+   */
+  skipDefaultOptimizations?: InputMaybe<Scalars['BooleanType']>;
+  /**
    * Transparency
    *
    * Adds checkerboard behind images which support transparency.
@@ -3259,6 +3265,7 @@ type ParticipantModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  colab?: InputMaybe<LinksFilter>;
   content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
@@ -3320,6 +3327,7 @@ type ParticipantRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  colab: Array<PartnerRecord>;
   content?: Maybe<ParticipantModelContentField>;
   id: Scalars['ItemId'];
   image?: Maybe<FileField>;
