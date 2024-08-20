@@ -60,13 +60,12 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
           <ul>
             {fundedBy.map(({ id, url, logo }) =>
               <li key={id}>
-                <a href={url}>
-                  <Image
-                    data={logo.responsiveImage}
-                    className={s.image}
-                    objectFit={'contain'}
-                  />
-                </a>
+                <Image
+                  data={logo.responsiveImage}
+                  className={s.image}
+                  objectFit={'contain'}
+                />
+
               </li>
             )}
           </ul>

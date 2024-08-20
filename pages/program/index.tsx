@@ -27,7 +27,7 @@ export default function Program({ programs, programCategories }: Props) {
   const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => !category || category === id
 
   const haveProgramItems = programs.filter(categoryFilter).length > 0
-  const today = new Date()
+  const today = new Date(); today.setHours(0, 0, 0, 0);
   const pastPrograms = programs.filter(({ startDate, endDate }) => !year.isArchive && isAfter(today, new Date(startDate)) && (!endDate || isAfter(today, new Date(endDate))));
   const comingPrograms = programs.filter(({ id }) => pastPrograms.find(({ id: pastId }) => pastId === id) === undefined);
 

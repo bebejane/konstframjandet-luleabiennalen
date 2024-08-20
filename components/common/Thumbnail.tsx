@@ -2,18 +2,16 @@ import s from './Thumbnail.module.scss'
 import cn from 'classnames'
 import React, { useState } from 'react'
 import { Image } from 'react-datocms/image'
-import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components'
 import Link from '/components/nav/Link'
-import { useRouter } from 'next/router'
 import { usePage } from '/lib/context/page'
-import { randomInt, truncateText, truncateWords } from '/lib/utils'
+import { randomInt, truncateWords } from '/lib/utils'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
 
 export type Props = {
   image?: FileField
   slug: string
-  title: string
+  title?: string
   titleLength?: number
   titleRows?: number
   intro?: string

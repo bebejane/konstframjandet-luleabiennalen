@@ -23,16 +23,16 @@
         margin-right: 0;
       }
 
-      a {
-        .image {
-          aspect-ratio: 4/4;
-          max-height: 6rem;
 
-          @include mq($until: tablet) {
-            max-height: 4rem;
-          }
+      .image {
+        aspect-ratio: 4/4;
+        max-height: 6rem;
+
+        @include mq($until: tablet) {
+          max-height: 4rem;
         }
       }
+
     }
   }
 }
