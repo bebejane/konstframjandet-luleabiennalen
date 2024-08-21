@@ -688,6 +688,7 @@ enum ExternalLinkModelOrderBy {
 type ExternalLinkRecord = RecordInterface & {
   __typename?: 'ExternalLinkRecord';
   _allTitleLocales?: Maybe<Array<StringNonNullMultiLocaleField>>;
+  _allUrlLocales?: Maybe<Array<StringNonNullMultiLocaleField>>;
   _createdAt: Scalars['DateTime'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']>;
@@ -715,6 +716,13 @@ type ExternalLinkRecord_allTitleLocalesArgs = {
 
 
 /** Record of type Extern länk (external_link) */
+type ExternalLinkRecord_allUrlLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Extern länk (external_link) */
 type ExternalLinkRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
@@ -722,6 +730,13 @@ type ExternalLinkRecord_seoMetaTagsArgs = {
 
 /** Record of type Extern länk (external_link) */
 type ExternalLinkRecordtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Extern länk (external_link) */
+type ExternalLinkRecordurlArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
