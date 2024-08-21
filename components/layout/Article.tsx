@@ -68,7 +68,7 @@ export default function Article({ id, children, title, content, image, imageSize
             <Image
               data={image.responsiveImage}
               pictureClassName={s.picture}
-              style={{ transform: `scale(${1 - (ratio * 0.3)})` }}
+              pictureStyle={{ transform: `scale(${1 - (ratio * 0.3)})` }}
             />
             <figcaption ref={captionRef} style={{ opacity: 1 - ratio }}>
               {image.title}
