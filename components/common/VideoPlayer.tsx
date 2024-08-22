@@ -42,7 +42,7 @@ export default function VideoPlayer({ data, className }: VideoPlayerProps) {
 			loop={true}
 			autoPlay={false}
 			disablePictureInPicture={true}
-			poster={data.video?.thumbnailUrl}
+			poster={`${data.video?.thumbnailUrl}?time=0`}
 		/>
 	)
 }
