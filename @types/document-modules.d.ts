@@ -255,6 +255,15 @@ declare module '*/global.gql' {
 }
     
 
+declare module '*/land-ownership.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const LandOwnership: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/location.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

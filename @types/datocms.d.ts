@@ -3047,6 +3047,76 @@ enum ItemStatus {
   updated = 'updated'
 }
 
+type LandOwnershipModelTextField = {
+  __typename?: 'LandOwnershipModelTextField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+type LandOwnershipModelTextFieldMultiLocaleField = {
+  __typename?: 'LandOwnershipModelTextFieldMultiLocaleField';
+  locale?: Maybe<SiteLocale>;
+  value?: Maybe<LandOwnershipModelTextField>;
+};
+
+/** Record of type Markerkännande (land_ownership) */
+type LandOwnershipRecord = RecordInterface & {
+  __typename?: 'LandOwnershipRecord';
+  _allTextLocales?: Maybe<Array<LandOwnershipModelTextFieldMultiLocaleField>>;
+  _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
+  _createdAt: Scalars['DateTime'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  text?: Maybe<LandOwnershipModelTextField>;
+  title?: Maybe<Scalars['String']>;
+};
+
+
+/** Record of type Markerkännande (land_ownership) */
+type LandOwnershipRecord_allTextLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Markerkännande (land_ownership) */
+type LandOwnershipRecord_allTitleLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Markerkännande (land_ownership) */
+type LandOwnershipRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Markerkännande (land_ownership) */
+type LandOwnershipRecordtextArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Markerkännande (land_ownership) */
+type LandOwnershipRecordtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Single-link fields */
 type LinkFilter = {
   /** Search for records with an exact match. The specified value must be a Record ID */
@@ -4227,6 +4297,8 @@ type Query = {
   _allProgramCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allProgramsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allTestsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -4255,6 +4327,8 @@ type Query = {
   allProgramCategories: Array<ProgramCategoryRecord>;
   /** Returns a collection of records */
   allPrograms: Array<ProgramRecord>;
+  /** Returns a collection of records */
+  allTests: Array<TestRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns a collection of records */
@@ -4269,6 +4343,8 @@ type Query = {
   general?: Maybe<GeneralRecord>;
   /** Returns a specific record */
   internalLink?: Maybe<InternalLinkRecord>;
+  /** Returns the single instance record */
+  landOwnership?: Maybe<LandOwnershipRecord>;
   /** Returns a specific record */
   location?: Maybe<LocationRecord>;
   /** Returns a specific record */
@@ -4283,6 +4359,8 @@ type Query = {
   programCategory?: Maybe<ProgramCategoryRecord>;
   /** Returns the single instance record */
   start?: Maybe<StartRecord>;
+  /** Returns a specific record */
+  test?: Maybe<TestRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
   /** Returns a specific record */
@@ -4366,6 +4444,14 @@ type Query_allProgramCategoriesMetaArgs = {
 type Query_allProgramsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ProgramModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allTestsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TestModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4512,6 +4598,17 @@ type QueryallProgramsArgs = {
 
 
 /** The query root for this schema */
+type QueryallTestsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TestModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TestModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
 type QueryallUploadsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<UploadFilter>;
@@ -4575,6 +4672,13 @@ type QueryinternalLinkArgs = {
 
 
 /** The query root for this schema */
+type QuerylandOwnershipArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
 type QuerylocationArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<LocationModelFilter>;
@@ -4632,6 +4736,15 @@ type QueryprogramCategoryArgs = {
 type QuerystartArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QuerytestArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TestModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TestModelOrderBy>>>;
 };
 
 
@@ -5150,6 +5263,87 @@ type Tag = {
   attributes?: Maybe<Scalars['MetaTagAttributes']>;
   content?: Maybe<Scalars['String']>;
   tag: Scalars['String'];
+};
+
+type TestModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TestModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<TestModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  testbild?: InputMaybe<FileFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+enum TestModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  text_ASC = 'text_ASC',
+  text_DESC = 'text_DESC'
+}
+
+/** Record of type Test (test) */
+type TestRecord = RecordInterface & {
+  __typename?: 'TestRecord';
+  _allTextLocales?: Maybe<Array<StringMultiLocaleField>>;
+  _createdAt: Scalars['DateTime'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  testbild?: Maybe<FileField>;
+  text?: Maybe<Scalars['String']>;
+};
+
+
+/** Record of type Test (test) */
+type TestRecord_allTextLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Test (test) */
+type TestRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Test (test) */
+type TestRecordtextArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter text fields */
@@ -6073,6 +6267,13 @@ type GlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type GlobalQuery = { __typename?: 'Query', site: { __typename?: 'Site', favicon: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string | null, siteName?: string | null, titleSuffix?: string | null, twitterAccount?: string | null, fallbackSeo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', id: any, mimeType: string, url: string, title?: string | null, alt?: string | null, height?: any | null, width?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', src: string, width: any, height: any, alt?: string | null, title?: string | null, base64?: string | null, sizes: string } | null } | null } | null } | null } };
+
+type LandOwnershipQueryVariables = Exact<{
+  locale?: InputMaybe<SiteLocale>;
+}>;
+
+
+type LandOwnershipQuery = { __typename?: 'Query', landOwnership?: { __typename: 'LandOwnershipRecord', id: any, title?: string | null, text?: { __typename?: 'LandOwnershipModelTextField', blocks: Array<string>, links: Array<string>, value: any } | null } | null };
 
 type AllLocationsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']>;

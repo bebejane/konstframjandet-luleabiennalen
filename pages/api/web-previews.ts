@@ -17,7 +17,7 @@ export default withWebPreviewsEdge(async ({ item, itemType, locale }) => {
   const slug = typeof baseSlug === 'object' ? baseSlug[locale] : baseSlug
 
   switch (itemType.attributes.api_key) {
-    case 'start':
+    case 'start': case 'land_ownership': case 'general':
       path = `/`
       break;
     case 'about':

@@ -20,7 +20,7 @@ export default withRevalidate(async (record, revalidate) => {
         localePaths.push('/')
         localePaths.push(`/${record.title}`)
         break;
-      case 'start':
+      case 'start': case 'land_ownership': case 'general':
         localePaths.push('/')
         prefix && localePaths.push(`${prefix}/`)
         break;
@@ -59,6 +59,7 @@ export default withRevalidate(async (record, revalidate) => {
       case 'contact':
         localePaths.push(`/kontakt`)
         break;
+
       default:
         break;
     }
@@ -75,9 +76,5 @@ export default withRevalidate(async (record, revalidate) => {
     revalidatePaths.push(`/en${p}`)
     revalidatePaths.push(p)
   })
-  //console.log(paths)
-  console.log(revalidatePaths)
   return await revalidate(revalidatePaths)
-
-  return await revalidate(paths)
 })

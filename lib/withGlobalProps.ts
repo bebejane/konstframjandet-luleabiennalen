@@ -1,6 +1,6 @@
 import { apiQuery, SEOQuery } from "dato-nextjs-utils/api";
 import { GetStaticProps, GetServerSideProps, GetStaticPropsContext } from 'next'
-import { GlobalDocument, GeneralDocument } from "/graphql";
+import { GlobalDocument, GeneralDocument, LandOwnershipDocument } from "/graphql";
 import type { TypedDocumentNode } from "@apollo/client/core/types.js";
 import { buildMenu } from "/lib/menu";
 import { allYears } from "/lib/utils";

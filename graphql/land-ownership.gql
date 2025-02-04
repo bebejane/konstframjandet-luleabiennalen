@@ -1,0 +1,12 @@
+query LandOwnership($locale: SiteLocale) {
+	landOwnership(locale: $locale) {
+		__typename
+		id
+		title
+		text {
+			blocks
+			links
+			value
+		}
+	}
+}
