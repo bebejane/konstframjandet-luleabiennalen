@@ -24,7 +24,8 @@ export default function Language({ menu, className }: Props) {
 			{slugs.map((item, idx) => (
 				<Link
 					key={idx}
-					href={`${item.value}?locale=${item.locale}`}
+					href={item.value}
+					//href={`${item.value}?locale=${item.locale}`}
 					locale={item.locale}
 					className={cn(locale === item.locale && s.selected)}
 				>
