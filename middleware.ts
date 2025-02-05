@@ -3,18 +3,29 @@ import { parseAcceptLanguage } from 'intl-parse-accept-language';
 import { locales, defaultLocale } from './next.config.mjs';
 
 export function middleware(request: NextRequest) {
+  return NextResponse.next()
   const { pathname } = request.nextUrl
+  const locale = request.cookies.get('locale')
+  const l = request.nextUrl.searchParams.get('locale')
 
+  if (l) {
+    request.nextUrl.searchParams.delete('locale')
+    request.cookies.set('locale', l)
+    return NextResponse.next()
+  }
   if (pathname === '/') {
     const language = parseAcceptLanguage(request.headers.get('accept-language'))
-    const country = language.find(l => locales.includes(l))
+    const country = locale ?? language.find(l => locales.includes(l))
+    let response = null
 
     if (country !== defaultLocale && request.nextUrl.locale !== country) {
       request.nextUrl.pathname = `/${country}`
-      return NextResponse.redirect(request.nextUrl)
+      response = NextResponse.redirect(request.nextUrl)
     }
-    else
-      return NextResponse.next()
+    else {
+      response = NextResponse.next()
+    }
+    return response
   }
 }
 
