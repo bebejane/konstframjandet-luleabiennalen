@@ -22,7 +22,7 @@ export default function Footer({ menu, footer: { email, facebook, instagram, abo
 				<Logo className={s.logo} />
 				<div>
 					Copyright {PROJECT_NAME}, 2023 <br />
-					<a href={`mailto:${email}`}>{email}</a> · Cookies & GDPR
+					<a href={`mailto:${email}`}>{email}</a>
 				</div>
 				<div>
 					<a href="https://konstframjandet.us14.list-manage.com/subscribe?u=7dd0bf23c62bd536dd345b0fe&id=5ae8929851">{t('subscribe')}</a><br />
