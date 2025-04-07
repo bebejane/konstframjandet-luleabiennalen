@@ -18,7 +18,7 @@ export type Props = {
 
 export default function Program({ programs, programCategories }: Props) {
 	const t = useTranslations();
-	const { asPath } = useRouter();
+	const { asPath, locale } = useRouter();
 	const { year } = usePage();
 
 	const options = programCategories.map(({ id, title: label, desc }) => ({
@@ -61,7 +61,6 @@ export default function Program({ programs, programCategories }: Props) {
 			<DatoSEO title={t('Menu.program')} />
 			<FilterBar options={options} multi={false} onChange={(opt) => setCategory(opt as string)} />
 			<FilterBar
-				className={s.place}
 				options={places.map(({ id, title: label }) => ({ id, label, description: '' }))}
 				multi={false}
 				onChange={(opt) => setPlace(opt as string)}
@@ -69,7 +68,18 @@ export default function Program({ programs, programCategories }: Props) {
 			{haveProgramItems ? (
 				<CardContainer key={`${category}-${place}-${asPath}`}>
 					{comingPrograms.map(
-						({ id, image, imageEn, title, intro, slug, startDate, endDate, programCategory }) => (
+						({
+							id,
+							image,
+							imageEn,
+							title,
+							intro,
+							slug,
+							startDate,
+							endDate,
+							programCategory,
+							programPlace,
+						}) => (
 							<Card key={id}>
 								<Thumbnail
 									title={title}
@@ -77,8 +87,10 @@ export default function Program({ programs, programCategories }: Props) {
 									image={image}
 									imageEn={imageEn}
 									intro={intro}
-									meta={`${formatDate(startDate, endDate)} ${programPlace?.title ? `• ${programPlace?.title}` : ''
-										} • ${programCategory.title}`} slug={`/program/${slug}`}
+									meta={`${formatDate(startDate, endDate, locale)} ${
+										programPlace?.title ? `• ${programPlace?.title}` : ''
+									} • ${programCategory.title}`}
+									slug={`/program/${slug}`}
 								/>
 							</Card>
 						)
@@ -109,8 +121,9 @@ export default function Program({ programs, programCategories }: Props) {
 										titleRows={2}
 										image={image}
 										intro={intro}
-										meta={`${formatDate(startDate, endDate)} ${programPlace?.title ? `• ${programPlace?.title}` : ''
-											} • ${programCategory.title}`}
+										meta={`${formatDate(startDate, endDate, locale)} ${
+											programPlace?.title ? `• ${programPlace?.title}` : ''
+										} • ${programCategory.title}`}
 										metaOneLine={true}
 										slug={`/program/${slug}`}
 									/>

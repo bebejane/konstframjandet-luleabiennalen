@@ -7,6 +7,7 @@ import { formatDate } from '/lib/utils';
 import { useTranslations } from 'next-intl';
 import { DatoSEO } from 'dato-nextjs-utils/components';
 import { pageSlugs } from '/lib/i18n';
+import { useRouter } from 'next/router';
 
 export type Props = {
 	exhibition: ExhibitionRecord;
@@ -31,6 +32,7 @@ export default function Exhibition({
 	},
 }: Props) {
 	const t = useTranslations();
+	const { locale } = useRouter();
 
 	return (
 		<>
@@ -49,7 +51,7 @@ export default function Exhibition({
 			<MetaSection
 				key={`${id}-meta`}
 				items={[
-					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate) },
+					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
 					{ title: t('MetaSection.times'), value: time },
 					{
 						title: t('MetaSection.where'),

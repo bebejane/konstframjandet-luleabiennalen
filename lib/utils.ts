@@ -4,6 +4,7 @@ import { apiQuery } from "dato-nextjs-utils/api";
 import type { ApiQueryOptions } from "dato-nextjs-utils/api";
 import type { MenuItem } from '/lib/menu';
 import format from "date-fns/format";
+import { sv, enGB as en } from 'date-fns/locale';
 import React from "react";
 import { AllYearsDocument } from '/graphql';
 
@@ -117,10 +118,11 @@ export const capitalize = (str: string, lower: boolean = false) => {
   return (lower ? str.toLowerCase() : str).replace(/(?:^|\s|["'([{])+\S/g, match => match.toUpperCase());
 }
 
-export const formatDate = (date: string, endDate?: string) => {
+export const formatDate = (date: string, endDate?: string, locale?: string) => {
   if (!date) return ''
-  const s = capitalize(format(new Date(date), 'dd MMM')).replace('.', '');
-  const e = endDate ? capitalize(format(new Date(endDate), 'dd MMM')).replace('.', '') : undefined;
+  const f = locale === 'sv' ? 'd MMMM' : 'MMMM d';
+  const s = capitalize(format(new Date(date), f)).replace('.', '');
+  const e = endDate ? capitalize(format(new Date(endDate), f)).replace('.', '') : undefined;
   return `${s}${e ? ` – ${e}` : ''}`
 }
 

@@ -2,7 +2,7 @@ import withGlobalProps from '/lib/withGlobalProps';
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll, translatePath } from '/lib/utils';
 import { LocationDocument, AllLocationsDocument } from '/graphql';
-import { Article, Related, BackButton } from '/components';
+import { Article, Related, BackButton, MetaSection } from '/components';
 import { useTranslations } from 'next-intl';
 import { DatoSEO } from 'dato-nextjs-utils/components';
 import { pageSlugs } from '/lib/i18n';
@@ -19,7 +19,20 @@ export type Props = {
 };
 
 export default function Location({
-	location: { id, image, imageEn, title, intro, content, exhibitions, programs, _seoMetaTags },
+	location: {
+		id,
+		image,
+		imageEn,
+		title,
+		intro,
+		address,
+		city,
+		webpage,
+		content,
+		exhibitions,
+		programs,
+		_seoMetaTags,
+	},
 }: Props) {
 	const t = useTranslations();
 	const { locale, defaultLocale } = useRouter();
@@ -39,6 +52,18 @@ export default function Location({
 				imageSize='small'
 				content={content}
 				onClick={(imageId) => {}}
+			/>
+			<MetaSection
+				key={`${id}-meta`}
+				items={[
+					{ title: t('MetaSection.city'), value: city },
+					{ title: t('MetaSection.address'), value: address },
+					{
+						title: t('MetaSection.link'),
+						value: webpage ? t('MetaSection.webpage') : undefined,
+						link: webpage,
+					},
+				]}
 			/>
 			<Related header={t('Related.related')} items={[...exhibitions, ...programs]} />
 			<BackButton href={href}>{t('BackButton.showAllLocations')}</BackButton>

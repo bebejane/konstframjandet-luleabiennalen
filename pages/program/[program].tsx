@@ -8,6 +8,7 @@ import { formatDate } from '/lib/utils';
 import { useTranslations } from 'next-intl';
 import { DatoSEO } from 'dato-nextjs-utils/components';
 import { pageSlugs } from '/lib/i18n';
+import { useRouter } from 'next/router';
 
 export type Props = {
 	program: ProgramRecord;
@@ -35,6 +36,7 @@ export default function Program({
 	},
 }: Props) {
 	const t = useTranslations();
+	const { locale } = useRouter();
 
 	return (
 		<>
@@ -60,7 +62,7 @@ export default function Program({
 						value: address ?? location?.title,
 						link: location && !address && `/platser/${location?.slug}`,
 					},
-					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate) },
+					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
 					{ title: t('MetaSection.times'), value: time },
 					{ title: t('MetaSection.where'), value: location?.address },
 					{

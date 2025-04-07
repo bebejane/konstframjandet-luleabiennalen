@@ -17,7 +17,7 @@ export type Props = {
 
 export default function Exhibition({ exhibitions }: Props) {
 	const t = useTranslations();
-	const { asPath } = useRouter();
+	const { asPath, locale } = useRouter();
 	const { year } = usePage();
 
 	return (
@@ -33,7 +33,7 @@ export default function Exhibition({ exhibitions }: Props) {
 							image={image}
 							imageEn={imageEn}
 							intro={intro}
-							meta={`${formatDate(startDate, endDate)}`}
+							meta={`${formatDate(startDate, endDate, locale)}`}
 							slug={`/utstallningar/${slug}`}
 						/>
 					</Card>

@@ -3,7 +3,6 @@ import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { PartnerDocument, AllPartnersDocument } from '/graphql';
 import { Article, Related, BackButton, MetaSection } from '/components';
-import { formatDate } from '/lib/utils';
 import { useTranslations } from 'next-intl';
 import { DatoSEO } from 'dato-nextjs-utils/components';
 import { pageSlugs } from '/lib/i18n';
@@ -42,9 +41,6 @@ export default function Partner({
 					},
 				]}
 			/>
-			{/*
-      <Related header={t('Menu.participants')} items={partners} />
-      */}
 			<BackButton>{t('BackButton.showAllPartners')}</BackButton>
 		</>
 	);
