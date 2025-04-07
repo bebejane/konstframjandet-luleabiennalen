@@ -40,7 +40,7 @@
       width: 100%;
       justify-content: center;
       position: relative;
-      margin-bottom: var(--space);
+      margin-bottom: calc(0.7 * var(--space));
 
       a {
         position: absolute;
