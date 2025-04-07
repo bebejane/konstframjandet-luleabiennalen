@@ -61,6 +61,14 @@
   .imageWrap {
     position: relative;
 
+    @include mq($from: tablet) {
+      &.zoomOutOnHover:hover {
+        img {
+          transform: scale(0.8);
+        }
+      }
+    }
+
     .border {
       width: calc(100% - 2rem);
       height: 100%;
@@ -107,7 +115,11 @@
 
       img {
         object-fit: cover;
+        transition: all 0.3s ease-in-out !important;
+
       }
+
+
     }
 
     .picture {

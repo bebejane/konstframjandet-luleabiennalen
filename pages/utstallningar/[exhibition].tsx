@@ -43,7 +43,7 @@ export default function Exhibition({
 				imageEn={imageEn}
 				intro={intro}
 				content={content}
-				partner={partner}
+				partner={partner as PartnerRecord[] | FinancierRecord[]}
 				onClick={(imageId) => {}}
 			/>
 			<MetaSection

@@ -48,7 +48,7 @@ export default function Program({
 				imageSize='small'
 				intro={intro}
 				content={content}
-				partner={partner}
+				partner={partner as PartnerRecord[] | FinancierRecord[]}
 				date={startDate}
 				onClick={(imageId) => {}}
 			/>

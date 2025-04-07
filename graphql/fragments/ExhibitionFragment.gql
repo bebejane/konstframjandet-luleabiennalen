@@ -29,7 +29,13 @@ fragment ExhibitionFragment on ExhibitionRecord {
 		...LocationFragmentLight
 	}
 	partner {
-		...PartnerFragmentLight
+		__typename
+		... on PartnerRecord {
+			...PartnerFragmentLight
+		}
+		... on FinancierRecord {
+			...FinancierFragmentLight
+		}
 	}
 	slug
 	_allSlugLocales {
@@ -54,6 +60,13 @@ fragment ExhibitionFragment on ExhibitionRecord {
 				id
 				images {
 					...ImageThumbnailFragment
+				}
+			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
 				}
 			}
 			... on ButtonRecord {

@@ -75,6 +75,15 @@ declare module '*/ExhibitionFragmentLight.gql' {
 }
     
 
+declare module '*/FinancierFragmentLight.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const FinancierFragmentLight: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ImageFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
