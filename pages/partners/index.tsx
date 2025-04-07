@@ -23,14 +23,6 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
 	return (
 		<>
 			<DatoSEO title={t('Menu.partners')} />
-			<CardContainer key={`${asPath}-partners`}>
-				{partners.map(({ id, image, imageEn, title, intro, slug }) => (
-					<Card key={id}>
-						<Thumbnail image={image} imageEn={imageEn} slug={`/partners/${slug}`} />
-					</Card>
-				))}
-			</CardContainer>
-
 			{locations.length > 0 && (
 				<>
 					<h2 id='locations' className={cn(s.head, s.locations)}>
@@ -51,6 +43,16 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
 					</CardContainer>
 				</>
 			)}
+
+			<CardContainer key={`${asPath}-partners`}>
+				{partners.map(({ id, image, imageEn, title, intro, slug }) => (
+					<Card key={id}>
+						<Thumbnail image={image} imageEn={imageEn} slug={`/partners/${slug}`} />
+					</Card>
+				))}
+			</CardContainer>
+
+
 
 			{fundedBy.length > 0 && (
 				<section className={s.financiers}>
