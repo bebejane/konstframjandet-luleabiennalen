@@ -9,6 +9,10 @@ fragment LocationFragmentLight on LocationRecord {
 	image {
 		...ImageThumbnailFragment
 	}
+	imageEn {
+		...ImageThumbnailFragment
+	}
+
 	year {
 		id
 		title

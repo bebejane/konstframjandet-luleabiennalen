@@ -11,10 +11,12 @@ fragment PartnerFragment on PartnerRecord {
 	image {
 		...ImageFragment
 	}
+	imageEn {
+		...ImageFragment
+	}
 	year {
 		...YearFragment
 	}
-
 	address
 	city
 	webpage

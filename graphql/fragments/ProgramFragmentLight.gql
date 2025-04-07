@@ -13,6 +13,9 @@ fragment ProgramFragmentLight on ProgramRecord {
 	image {
 		...ImageThumbnailFragment
 	}
+	imageEn {
+		...ImageThumbnailFragment
+	}
 	programCategory {
 		id
 		title

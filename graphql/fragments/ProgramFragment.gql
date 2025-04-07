@@ -13,7 +13,13 @@ fragment ProgramFragment on ProgramRecord {
 	image {
 		...ImageFragment
 	}
+	imageEn {
+		...ImageFragment
+	}
 	thumb: image {
+		...ImageThumbnailFragment
+	}
+	thumbEn: imageEn {
 		...ImageThumbnailFragment
 	}
 	intro(markdown: false)

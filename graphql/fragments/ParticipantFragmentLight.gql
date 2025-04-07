@@ -5,6 +5,9 @@ fragment ParticipantFragmentLight on ParticipantRecord {
 	image {
 		...ImageThumbnailFragment
 	}
+	imageEn {
+		...ImageFragment
+	}
 	year {
 		...YearFragment
 	}

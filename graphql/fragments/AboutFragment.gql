@@ -15,7 +15,13 @@ fragment AboutFragment on AboutRecord {
 	image {
 		...ImageFragment
 	}
+	imageEn {
+		...ImageFragment
+	}
 	thumb: image {
+		...ImageThumbnailFragment
+	}
+	thumbEn: imageEn {
 		...ImageThumbnailFragment
 	}
 	year {

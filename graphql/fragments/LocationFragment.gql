@@ -6,6 +6,9 @@ fragment LocationFragment on LocationRecord {
 	image {
 		...ImageFragment
 	}
+	imageEn {
+		...ImageFragment
+	}
 	intro(markdown: false)
 	webpage
 	slug

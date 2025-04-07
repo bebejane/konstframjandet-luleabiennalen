@@ -11,6 +11,9 @@ fragment ParticipantFragment on ParticipantRecord {
 	image {
 		...ImageFragment
 	}
+	imageEn {
+		...ImageFragment
+	}
 	year {
 		...YearFragment
 	}

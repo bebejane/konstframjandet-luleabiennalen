@@ -5,8 +5,10 @@ fragment NewsFragment on NewsRecord {
 	image {
 		...ImageFragment
 	}
+	imageEn {
+		...ImageFragment
+	}
 	slug
-
 	_allSlugLocales {
 		locale
 		value

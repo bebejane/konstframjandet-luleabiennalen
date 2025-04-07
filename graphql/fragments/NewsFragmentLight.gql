@@ -6,5 +6,8 @@ fragment NewsFragmentLight on NewsRecord {
 	image {
 		...ImageThumbnailFragment
 	}
+	imageEn {
+		...ImageThumbnailFragment
+	}
 	_createdAt
 }

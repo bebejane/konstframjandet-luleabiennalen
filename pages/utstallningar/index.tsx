@@ -1,15 +1,15 @@
-import s from "./index.module.scss";
-import withGlobalProps from "/lib/withGlobalProps";
-import { AllExhibitionsDocument, ContactDocument, LandOwnershipDocument } from "/graphql";
-import { CardContainer, Card, Thumbnail } from "/components";
-import { formatDate } from "/lib/utils";
-import { useRouter } from "next/router";
-import { DatoSEO } from "dato-nextjs-utils/components";
-import { useTranslations } from "next-intl";
-import { pageSlugs } from "/lib/i18n";
-import { DatoMarkdown } from "dato-nextjs-utils/components";
-import { usePage } from "/lib/context/page";
-import { apiQuery } from "dato-nextjs-utils/api";
+import s from './index.module.scss';
+import withGlobalProps from '/lib/withGlobalProps';
+import { AllExhibitionsDocument, ContactDocument, LandOwnershipDocument } from '/graphql';
+import { CardContainer, Card, Thumbnail } from '/components';
+import { formatDate } from '/lib/utils';
+import { useRouter } from 'next/router';
+import { DatoSEO } from 'dato-nextjs-utils/components';
+import { useTranslations } from 'next-intl';
+import { pageSlugs } from '/lib/i18n';
+import { DatoMarkdown } from 'dato-nextjs-utils/components';
+import { usePage } from '/lib/context/page';
+import { apiQuery } from 'dato-nextjs-utils/api';
 
 export type Props = {
 	exhibitions: (ExhibitionRecord & ThumbnailImage)[];
@@ -22,18 +22,16 @@ export default function Exhibition({ exhibitions }: Props) {
 
 	return (
 		<>
-			<DatoSEO title={t("Menu.exhibitions")} />
+			<DatoSEO title={t('Menu.exhibitions')} />
 			<DatoMarkdown className={s.intro}>{year.introExhibitions}</DatoMarkdown>
-			<CardContainer
-				key={asPath}
-				columns={2}
-			>
-				{exhibitions.map(({ id, image, title, startDate, endDate, intro, slug }) => (
+			<CardContainer key={asPath} columns={2}>
+				{exhibitions.map(({ id, image, imageEn, title, startDate, endDate, intro, slug }) => (
 					<Card key={id}>
 						<Thumbnail
 							title={title}
 							titleRows={1}
 							image={image}
+							imageEn={imageEn}
 							intro={intro}
 							meta={`${formatDate(startDate, endDate)}`}
 							slug={`/utstallningar/${slug}`}
@@ -52,8 +50,8 @@ export const getStaticProps = withGlobalProps(
 			props: {
 				...props,
 				page: {
-					section: "exhibitions",
-					slugs: pageSlugs("exhibitions", props.year.title),
+					section: 'exhibitions',
+					slugs: pageSlugs('exhibitions', props.year.title),
 				} as PageProps,
 			},
 			revalidate,
