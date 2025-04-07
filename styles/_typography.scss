@@ -46,6 +46,11 @@ h3 {
   font-family: $headline-font;
   text-align: center;
   padding-bottom: 1em;
+
+  &.left {
+    padding-top: 1rem;
+    text-align: left;
+  }
 }
 
 p {
@@ -76,7 +81,7 @@ p.intro,
     }
   }
 
-  >p {
+  > p {
     padding: 0;
   }
 }
@@ -148,10 +153,10 @@ article {
     padding-left: 0;
   }
 
-  p+h3,
-  ul+h3,
-  ul+h2,
-  p+h2 {
+  p + h3,
+  ul + h3,
+  ul + h2,
+  p + h2 {
     padding-top: 1rem;
   }
 

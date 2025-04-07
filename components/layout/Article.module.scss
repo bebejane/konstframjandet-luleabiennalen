@@ -26,9 +26,11 @@
       padding-right: calc(2 * var(--grid-unit));
     }
 
-    &.medium {}
+    &.medium {
+    }
 
-    &.large {}
+    &.large {
+    }
 
     &.portrait {
       padding-left: calc(3 * var(--grid-unit));
@@ -76,8 +78,7 @@
     }
   }
 
-  .intro>p {
-
+  .intro > p {
     padding: 0;
   }
 
@@ -92,10 +93,12 @@
     .logo {
       display: flex;
       align-items: center;
-      flex: 0 0 25%;
-      height: 10vh;
+      //flex: 0 0 25%;
+      width: auto;
+      margin-right: 1rem;
 
       img {
+        max-height: 3rem;
         object-fit: contain;
       }
     }

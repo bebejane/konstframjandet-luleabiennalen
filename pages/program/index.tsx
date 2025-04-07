@@ -61,6 +61,7 @@ export default function Program({ programs, programCategories }: Props) {
 			<DatoSEO title={t('Menu.program')} />
 			<FilterBar options={options} multi={false} onChange={(opt) => setCategory(opt as string)} />
 			<FilterBar
+				className={s.place}
 				options={places.map(({ id, title: label }) => ({ id, label, description: '' }))}
 				multi={false}
 				onChange={(opt) => setPlace(opt as string)}
@@ -108,9 +109,8 @@ export default function Program({ programs, programCategories }: Props) {
 										titleRows={2}
 										image={image}
 										intro={intro}
-										meta={`${formatDate(startDate, endDate)} ${
-											programPlace?.title ? `• ${programPlace?.title}` : ''
-										} • ${programCategory.title}`}
+										meta={`${formatDate(startDate, endDate)} ${programPlace?.title ? `• ${programPlace?.title}` : ''
+											} • ${programCategory.title}`}
 										metaOneLine={true}
 										slug={`/program/${slug}`}
 									/>

@@ -5,6 +5,10 @@
   margin-top: -0.5 rem;
   margin-bottom: var(--small-space);
 
+  &:first-of-type {
+    margin-bottom: 0;
+  }
+
   @include mq($until: desktop) {
     overflow: hidden;
   }

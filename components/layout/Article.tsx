@@ -54,15 +54,15 @@ export default function Article({
 	const ratio = !isDesktop
 		? 0
 		: offset
-		? Math.max(
+			? Math.max(
 				0,
 				Math.min(
 					1,
 					(scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) /
-						viewportHeight
+					viewportHeight
 				)
-		  )
-		: 0;
+			)
+			: 0;
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
 
 	useEffect(() => {
@@ -129,7 +129,7 @@ export default function Article({
 				{children}
 				{partner?.length > 0 && (
 					<p className='small-body'>
-						<h3>{t('General.inCooperationWith')}</h3>
+						<h3 className="left">{t('General.inCooperationWith')}</h3>
 						<ul className={s.partners}>
 							{partner.map(({ id, image }, idx) => (
 								<li className={s.logo}>
