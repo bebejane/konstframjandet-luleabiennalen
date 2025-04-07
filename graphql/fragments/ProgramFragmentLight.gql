@@ -20,6 +20,10 @@ fragment ProgramFragmentLight on ProgramRecord {
 		id
 		title
 	}
+	programPlace {
+		id
+		title
+	}
 	year {
 		...YearFragmentLight
 	}

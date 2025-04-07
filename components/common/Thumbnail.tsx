@@ -18,6 +18,7 @@ export type Props = {
 	titleRows?: number;
 	intro?: string;
 	meta?: string;
+	metaOneLine?: boolean;
 	transformHref?: boolean;
 };
 
@@ -30,6 +31,7 @@ export default function Thumbnail({
 	titleLength,
 	titleRows = 3,
 	meta,
+	metaOneLine,
 	transformHref = true,
 }: Props) {
 	const strippedIntro = truncateWords(remark().use(strip).processSync(intro).value as string, 500);
@@ -75,7 +77,7 @@ export default function Thumbnail({
 			{strippedIntro && (
 				<div className='thumb-intro'>
 					<p>
-						{meta && <strong>{meta}</strong>}
+						{meta && <strong className={metaOneLine && 'oneline'}>{meta}</strong>}
 						{strippedIntro}
 					</p>
 				</div>

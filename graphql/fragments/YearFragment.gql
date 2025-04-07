@@ -8,6 +8,9 @@ fragment YearFragment on YearRecord {
 	image {
 		...ImageFragment
 	}
+	imageEn {
+		...ImageFragment
+	}
 	color {
 		hex
 		red

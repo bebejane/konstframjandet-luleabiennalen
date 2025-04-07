@@ -22,11 +22,12 @@ export default function Archive({ years, general }: Props) {
 			<DatoSEO title={t('archive')} />
 			<Markdown className={s.intro}>{general.archiveIntro}</Markdown>
 			<CardContainer key={asPath} columns={2}>
-				{years.map(({ id, title, slug, theme, image }) => (
+				{years.map(({ id, title, slug, theme, image, imageEn }) => (
 					<Card key={id}>
 						<Thumbnail
 							title={`${PROJECT_NAME} ${title}`}
 							image={image}
+							imageEn={imageEn}
 							intro={theme}
 							slug={`/${title}`}
 							transformHref={false}
