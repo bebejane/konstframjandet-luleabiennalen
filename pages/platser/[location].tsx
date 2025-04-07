@@ -51,13 +51,13 @@ export default function Location({
 				intro={intro}
 				imageSize='small'
 				content={content}
-				onClick={(imageId) => {}}
+				onClick={(imageId) => { }}
 			/>
 			<MetaSection
 				key={`${id}-meta`}
 				items={[
-					{ title: t('MetaSection.city'), value: city },
 					{ title: t('MetaSection.address'), value: address },
+					{ title: t('MetaSection.city'), value: city },
 					{
 						title: t('MetaSection.link'),
 						value: webpage ? t('MetaSection.webpage') : undefined,
