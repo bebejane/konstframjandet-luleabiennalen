@@ -52,7 +52,6 @@ export default function Program({ program: {
       <MetaSection
         key={`${id}-meta`}
         items={[
-          { title: t('MetaSection.what'), value: programCategory?.title },
           { title: t('MetaSection.where'), value: address ?? location?.title, link: (location && !address) && `/platser/${location?.slug}` },
           { title: t('MetaSection.when'), value: formatDate(startDate, endDate) },
           { title: t('MetaSection.times'), value: time },

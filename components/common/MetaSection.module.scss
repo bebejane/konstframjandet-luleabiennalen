@@ -7,6 +7,8 @@
   margin-left: var(--outer-margin);
   columns: 2;
   text-align: center;
+  display: flex;
+  justify-content: center;
 
   @include mq($from: tablet) {
     margin-left: var(--grid-unit);
@@ -16,6 +18,7 @@
   > ul {
     list-style: none;
     padding-left: 0 !important;
+    padding-right: 0 !important;
 
     @include mq($from: tablet) {
       display: flex;
@@ -27,6 +30,9 @@
     li {
       padding-bottom: 0.5em;
       text-align: center;
+      @include mq($from: desktop) {
+        padding-right: 1em;
+      }
 
       a:hover {
         border-bottom: 1px solid var(--black);

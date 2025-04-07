@@ -15,13 +15,15 @@ export type FooterProps = {
 export default function Footer({ menu, footer: { email, facebook, instagram, about } }: FooterProps) {
 	const t = useTranslations('Footer')
 	const { isHome } = usePage()
+	const currentYear = new Date().getFullYear();
+
 
 	return (
 		<footer className={cn(s.footer)} id="footer">
 			<section>
 				<Logo className={s.logo} />
 				<div>
-					Copyright {PROJECT_NAME}, 2023 <br />
+					Copyright {PROJECT_NAME}, {currentYear} <br />
 					<a href={`mailto:${email}`}>{email}</a>
 				</div>
 				<div>

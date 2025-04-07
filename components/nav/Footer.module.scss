@@ -8,6 +8,10 @@
   text-align: left;
   z-index: var(--z-footer);
 
+  a {
+    border-bottom: 1px solid black;
+  }
+
   section {
     position: relative;
     display: flex;

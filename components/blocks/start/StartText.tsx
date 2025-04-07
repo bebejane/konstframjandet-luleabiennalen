@@ -13,7 +13,7 @@ export default function StartText({ data: { text, headline, link } }: Props) {
     <div className={s.container}>
       {headline &&
         <header>
-          <h3>{headline}</h3>
+          <h2>{headline}</h2>
         </header>
       }
 

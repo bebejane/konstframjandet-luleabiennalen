@@ -11,6 +11,7 @@
 
   h2 {
     line-height: 1;
+    font-size: 0.75rem;
   }
 
   svg {
@@ -42,7 +43,7 @@
     width: calc(100% - (2 * var(--total-outer-margin) + (var(--grid-unit))));
 
     @include mq($from: wide) {
-      width: calc(100% - (2 * var(--total-outer-margin) + (2 * var(--grid-unit))));
+      width: calc(100% - (2 * var(--total-outer-margin) + (var(--grid-unit))));
     }
   }
 
