@@ -20,6 +20,7 @@ export type Props = {
 	meta?: string;
 	metaOneLine?: boolean;
 	transformHref?: boolean;
+	zoomOutOnHover?: boolean;
 };
 
 export default function Thumbnail({
@@ -33,6 +34,7 @@ export default function Thumbnail({
 	meta,
 	metaOneLine,
 	transformHref = true,
+	zoomOutOnHover = false,
 }: Props) {
 	const strippedIntro = truncateWords(remark().use(strip).processSync(intro).value as string, 500);
 	const {
@@ -52,11 +54,11 @@ export default function Thumbnail({
 				<span>{titleLength ? truncateWords(title, titleLength) : title}</span>
 			</h3>
 			{image && (
-				<div className={s.imageWrap}>
+				<div className={cn(s.imageWrap, zoomOutOnHover && s.zoomOutOnHover)}>
 					<>
 						<Image
 							data={image.responsiveImage}
-							className={s.image}
+							className={cn(s.image)}
 							pictureClassName={s.picture}
 							style={!isArchive ? { opacity: loaded ? 1 : 0.000001 } : {}}
 							onLoad={() => setLoaded(true)}

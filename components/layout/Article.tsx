@@ -27,7 +27,7 @@ export type ArticleProps = {
 	onClick?: (id: string) => void;
 	record?: any;
 	date?: string;
-	partner?: PartnerRecord[];
+	partner?: PartnerRecord[] | FinancierRecord[];
 };
 
 export default function Article({
@@ -129,13 +129,14 @@ export default function Article({
 				{children}
 				{partner?.length > 0 && (
 					<p className='small-body'>
-						{t('General.inCooperationWith')}{' '}
-						{partner.map(({ id, title, slug }, idx) => (
-							<React.Fragment key={id}>
-								<Link href={`/partners/${slug}`}>{title}</Link>
-								{partner.length - 1 > idx && ', '}
-							</React.Fragment>
-						))}
+						<h3>{t('General.inCooperationWith')}</h3>
+						<ul className={s.partners}>
+							{partner.map(({ id, image }, idx) => (
+								<li className={s.logo}>
+									<Image data={image.responsiveImage} key={id} />
+								</li>
+							))}
+						</ul>
 					</p>
 				)}
 			</div>

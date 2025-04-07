@@ -1,0 +1,7 @@
+fragment FinancierFragmentLight on FinancierRecord {
+	id
+	name
+	image {
+		...ImageFragment
+	}
+}
