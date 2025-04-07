@@ -41,6 +41,13 @@ fragment LocationFragment on LocationRecord {
 					...ImageThumbnailFragment
 				}
 			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
+				}
+			}
 			... on ButtonRecord {
 				__typename
 				id

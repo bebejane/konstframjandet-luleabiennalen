@@ -62,6 +62,13 @@ fragment ExhibitionFragment on ExhibitionRecord {
 					...ImageThumbnailFragment
 				}
 			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
+				}
+			}
 			... on ButtonRecord {
 				__typename
 				id
