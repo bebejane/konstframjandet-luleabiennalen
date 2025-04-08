@@ -1,14 +1,11 @@
 import s from './index.module.scss';
 import withGlobalProps from '/lib/withGlobalProps';
 import { AllNewsDocument } from '/graphql';
-//import Link from '/components/nav/Link'
 import Link from '/components/nav/Link';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
-import format from 'date-fns/format';
 import { useTranslations } from 'next-intl';
 import { DatoSEO } from 'dato-nextjs-utils/components';
 import { pageSlugs } from '/lib/i18n';
-import { DateTime } from '/components';
 import { formatDate } from '/lib/utils';
 import { useRouter } from 'next/router';
 
@@ -25,9 +22,9 @@ export default function News({ news }: Props) {
 			<DatoSEO title={t('Menu.news')} />
 			<section className={s.news}>
 				<ul>
-					{news.map(({ id, image, thumb, title, intro, _createdAt, slug }) => (
+					{news.map(({ id, title, intro, _createdAt, slug }) => (
 						<li key={id}>
-							<h3 className='small'>{formatDate(_createdAt, null, locale)}</h3>
+							<h3 className='small'>{formatDate(_createdAt, null, locale, true)}</h3>
 							<h1>{title}</h1>
 							<div className='intro'>
 								<Markdown className={s.intro}>{intro}</Markdown>

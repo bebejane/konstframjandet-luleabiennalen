@@ -118,9 +118,9 @@ export const capitalize = (str: string, lower: boolean = false) => {
   return (lower ? str.toLowerCase() : str).replace(/(?:^|\s|["'([{])+\S/g, match => match.toUpperCase());
 }
 
-export const formatDate = (date: string, endDate?: string, locale?: string) => {
+export const formatDate = (date: string, endDate?: string, locale?: string, long: boolean = false) => {
   if (!date) return ''
-  const f = locale === 'sv' ? 'd MMMM' : 'MMMM d';
+  const f = locale === 'sv' ? `d MMM${long ? 'M' : ''}` : `MMM${long ? 'M' : ''} d`;
   const s = capitalize(format(new Date(date), f)).replace('.', '');
   const e = endDate ? capitalize(format(new Date(endDate), f)).replace('.', '') : undefined;
   const d = `${s}${e ? ` – ${e}` : ''}`
