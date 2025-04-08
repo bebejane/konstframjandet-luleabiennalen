@@ -48,7 +48,7 @@
     "markdown-truncate": "^1.0.4",
     "mjml": "^4.13.0",
     "mjml-react": "^2.0.8",
-    "next": "14.2.23",
+    "next": "14.2.27",
     "next-compose-plugins": "^2.2.1",
     "next-intl": "^2.10.4",
     "next-plugin-graphql": "^0.0.2",
