@@ -1,6 +1,3 @@
-#import "./ImageFragment.gql"
-#import "./VideoFragment.gql"
-
 fragment ProgramFragmentLight on ProgramRecord {
 	__typename
 	_modelApiKey

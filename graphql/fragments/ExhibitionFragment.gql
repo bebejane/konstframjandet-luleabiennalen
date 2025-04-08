@@ -1,6 +1,3 @@
-#import "./ImageFragment.gql"
-#import "./VideoFragment.gql"
-
 fragment ExhibitionFragment on ExhibitionRecord {
 	__typename
 	_modelApiKey
