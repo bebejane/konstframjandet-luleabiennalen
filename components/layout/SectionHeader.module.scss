@@ -21,7 +21,6 @@
   }
 
   @include mq($from: tablet) {
-
     a,
     span {
       color: var(--white);
@@ -29,7 +28,6 @@
   }
 
   &:hover {
-
     // mix-blend-mode: normal !important;
     a,
     span {
@@ -67,7 +65,7 @@
     font-family: $headline-font;
     font-weight: bold;
     margin-top: -0.15em;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
     font-size: 2.7rem;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 1px;
@@ -101,7 +99,7 @@
       margin: 0;
       width: 100%;
 
-      >span {
+      > span {
         /*
         &:hover {
           padding-left: 1em;
