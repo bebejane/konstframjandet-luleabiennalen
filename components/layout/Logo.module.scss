@@ -19,7 +19,6 @@
   }
 
   &.home {
-
     @include mq($from: desktop) {
       position: absolute;
       top: var(--outer-margin);
