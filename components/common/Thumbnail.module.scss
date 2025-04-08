@@ -134,4 +134,23 @@
       }
     }
   }
+
+  .meta {
+    display: inline;
+
+
+    &.oneline {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .right {
+      display: flex;
+      justify-content: flex-end;
+      flex: 1 1 auto;
+      text-align: right;
+    }
+  }
+
+
 }

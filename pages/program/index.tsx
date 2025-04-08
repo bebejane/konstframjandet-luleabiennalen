@@ -93,9 +93,8 @@ export default function Program({ programs, programCategories }: Props) {
 									image={image}
 									imageEn={imageEn}
 									intro={intro}
-									meta={`${formatDate(startDate, endDate, locale)} ${
-										programPlace?.title ? `• ${programPlace?.title}` : ''
-									} • ${programCategory.title}`}
+									meta={programPlace?.title}
+									metaRight={`${formatDate(startDate, endDate, locale)} • ${programCategory.title}`}
 									metaOneLine={true}
 									slug={`/program/${slug}`}
 								/>
@@ -128,9 +127,10 @@ export default function Program({ programs, programCategories }: Props) {
 										titleRows={2}
 										image={image}
 										intro={intro}
-										meta={`${formatDate(startDate, endDate, locale)} ${
-											programPlace?.title ? `• ${programPlace?.title}` : ''
-										} • ${programCategory.title}`}
+										meta={programPlace?.title}
+										metaRight={`${formatDate(startDate, endDate, locale)} • ${
+											programCategory.title
+										}`}
 										metaOneLine={true}
 										slug={`/program/${slug}`}
 									/>

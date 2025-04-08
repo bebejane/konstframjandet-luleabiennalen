@@ -36,6 +36,9 @@ fragment ProgramFragment on ProgramRecord {
 			...FinancierFragmentLight
 		}
 	}
+	location {
+		...LocationFragmentLight
+	}
 	programCategory {
 		id
 		title

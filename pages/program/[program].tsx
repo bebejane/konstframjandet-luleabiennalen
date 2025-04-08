@@ -59,12 +59,11 @@ export default function Program({
 				items={[
 					{
 						title: t('MetaSection.where'),
-						value: address ?? location?.title,
-						link: location && !address && `/platser/${location?.slug}`,
+						value: address ?? location.map(({ title }) => title).join(', '),
 					},
 					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
 					{ title: t('MetaSection.times'), value: time },
-					{ title: t('MetaSection.where'), value: location?.address },
+					{ title: t('MetaSection.where'), value: location.map(({ title }) => title).join(', ') },
 					{
 						title: t('MetaSection.link'),
 						value: externalLink ? t('MetaSection.webpage') : undefined,
@@ -72,6 +71,7 @@ export default function Program({
 					},
 				]}
 			/>
+			<Related header={t('Menu.locations')} items={location} />
 			<Related header={t('Menu.participants')} items={partipants} />
 			<BackButton>{t('BackButton.showAllPrograms')}</BackButton>
 		</>

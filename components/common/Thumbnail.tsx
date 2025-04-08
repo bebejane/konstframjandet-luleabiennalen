@@ -18,6 +18,7 @@ export type Props = {
 	titleRows?: number;
 	intro?: string;
 	meta?: string;
+	metaRight?: string;
 	metaOneLine?: boolean;
 	transformHref?: boolean;
 	zoomOutOnHover?: boolean;
@@ -32,6 +33,7 @@ export default function Thumbnail({
 	titleLength,
 	titleRows = 3,
 	meta,
+	metaRight,
 	metaOneLine,
 	transformHref = true,
 	zoomOutOnHover = false,
@@ -79,7 +81,10 @@ export default function Thumbnail({
 			{strippedIntro && (
 				<div className='thumb-intro'>
 					<p>
-						{meta && <strong className={metaOneLine && 'oneline'}>{meta}</strong>}
+						<div className={cn(s.meta, metaOneLine && s.oneline)}>
+							{meta && <strong>{meta}</strong>}
+							{metaRight && <strong className={s.right}>{metaRight}</strong>}
+						</div>
 						{strippedIntro}
 					</p>
 				</div>
