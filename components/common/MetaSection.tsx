@@ -4,7 +4,7 @@ import Link from '/components/nav/Link';
 export type Props = {
 	items: {
 		title: string;
-		value: string;
+		value: string | React.ReactNode | React.ReactNode[];
 		link?: string;
 	}[];
 };

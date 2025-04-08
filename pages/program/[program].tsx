@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import { DatoSEO } from 'dato-nextjs-utils/components';
 import { pageSlugs } from '/lib/i18n';
 import { useRouter } from 'next/router';
+import Link from '/components/nav/Link';
 
 export type Props = {
 	program: ProgramRecord;
@@ -59,11 +60,16 @@ export default function Program({
 				items={[
 					{
 						title: t('MetaSection.where'),
-						value: address ?? location.map(({ title }) => title).join(', '),
+						value: address,
 					},
 					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
 					{ title: t('MetaSection.times'), value: time },
-					{ title: t('MetaSection.where'), value: location.map(({ title }) => title).join(', ') },
+					{
+						title: t('MetaSection.where'),
+						value: location?.map(({ slug, title }) => (
+							<Link href={`/platser/${slug}`}>{title}</Link>
+						)),
+					},
 					{
 						title: t('MetaSection.link'),
 						value: externalLink ? t('MetaSection.webpage') : undefined,
