@@ -19,7 +19,7 @@ query Program($slug: String!, $locale: SiteLocale) {
 }
 
 query AllProgramCategories($locale: SiteLocale) {
-	programCategories: allProgramCategories(locale: $locale, orderBy: title_DESC, first: 100) {
+	programCategories: allProgramCategories(locale: $locale, orderBy: title_ASC, first: 100) {
 		id
 		title
 		desc

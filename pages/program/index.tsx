@@ -21,11 +21,6 @@ export default function Program({ programs, programCategories }: Props) {
 	const { asPath, locale } = useRouter();
 	const { year } = usePage();
 
-	const options = programCategories.map(({ id, title: label, desc }) => ({
-		id,
-		label,
-		description: desc,
-	}));
 	const [category, setCategory] = useState<string>();
 	const [place, setPlace] = useState<string>();
 	const categoryFilter = ({ programCategory: { id } }: ProgramRecord) =>
@@ -60,13 +55,17 @@ export default function Program({ programs, programCategories }: Props) {
 		<>
 			<DatoSEO title={t('Menu.program')} />
 			<FilterBar
-				options={options}
+				options={programCategories.map(({ id, title: label, desc }) => ({
+					id,
+					label,
+					description: desc,
+				}))}
 				multi={false}
 				category={t('Program.types')}
 				onChange={(opt) => setCategory(opt as string)}
 			/>
 			<FilterBar
-				options={places.map(({ id, title: label }) => ({ id, label, description: '' }))}
+				options={places.map(({ id, title: label }) => ({ id, label }))}
 				multi={false}
 				category={t('Program.places')}
 				onChange={(opt) => setPlace(opt as string)}

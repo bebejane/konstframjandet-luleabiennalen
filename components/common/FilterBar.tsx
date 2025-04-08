@@ -2,11 +2,12 @@ import s from './FilterBar.module.scss';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { sortSwedish } from 'dato-nextjs-utils/utils';
 
 export type FilterOption = {
 	id: string;
 	label: string;
-	description: string;
+	description?: string;
 };
 
 export type Props = {
@@ -30,7 +31,7 @@ export default function FilterBar({ options = [], onChange, multi = false, categ
 				<li onClick={() => setSelected([])} className={cn(!selected?.length && s.selected)}>
 					{t('all')}&nbsp; {category}
 				</li>
-				{options.map((opt, idx) => (
+				{sortSwedish(options, 'label').map((opt, idx) => (
 					<li
 						key={idx}
 						className={cn(selected?.find(({ id }) => id === opt.id) && s.selected)}
