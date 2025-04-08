@@ -66,9 +66,9 @@ export default function Program({
 					{ title: t('MetaSection.times'), value: time },
 					{
 						title: t('MetaSection.where'),
-						value: location?.map(({ slug, title }) => (
-							<Link href={`/platser/${slug}`}>{title}</Link>
-						)),
+						value:
+							location.length &&
+							location.map(({ slug, title }) => <Link href={`/platser/${slug}`}>{title}</Link>),
 					},
 					{
 						title: t('MetaSection.link'),
