@@ -123,7 +123,8 @@ export const formatDate = (date: string, endDate?: string, locale?: string) => {
   const f = locale === 'sv' ? 'd MMMM' : 'MMMM d';
   const s = capitalize(format(new Date(date), f)).replace('.', '');
   const e = endDate ? capitalize(format(new Date(endDate), f)).replace('.', '') : undefined;
-  return `${s}${e ? ` – ${e}` : ''}`
+  const d = `${s}${e ? ` – ${e}` : ''}`
+  return locale === 'sv' ? d.toLowerCase() : d
 }
 
 export const sleep = (ms: number) => new Promise((resolve, refject) => setTimeout(resolve, ms))

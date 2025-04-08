@@ -36,7 +36,6 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
 									image={image}
 									intro={intro}
 									titleRows={1}
-									zoomOutOnHover={true}
 									slug={`/platser/${slug}`}
 								/>
 							</Card>
