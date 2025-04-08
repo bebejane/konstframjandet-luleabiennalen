@@ -55,14 +55,20 @@ export default function Program({ programs, programCategories }: Props) {
 		if (acc.find(({ id }) => id === el.programPlace?.id)) return acc;
 		return el.programPlace ? [...acc, el.programPlace] : acc;
 	}, [] as ProgramPlaceRecord[]);
-
+	console.log(locale);
 	return (
 		<>
 			<DatoSEO title={t('Menu.program')} />
-			<FilterBar options={options} multi={false} onChange={(opt) => setCategory(opt as string)} />
+			<FilterBar
+				options={options}
+				multi={false}
+				category={t('Program.types')}
+				onChange={(opt) => setCategory(opt as string)}
+			/>
 			<FilterBar
 				options={places.map(({ id, title: label }) => ({ id, label, description: '' }))}
 				multi={false}
+				category={t('Program.places')}
 				onChange={(opt) => setPlace(opt as string)}
 			/>
 			{haveProgramItems ? (
@@ -90,6 +96,7 @@ export default function Program({ programs, programCategories }: Props) {
 									meta={`${formatDate(startDate, endDate, locale)} ${
 										programPlace?.title ? `• ${programPlace?.title}` : ''
 									} • ${programCategory.title}`}
+									metaOneLine={true}
 									slug={`/program/${slug}`}
 								/>
 							</Card>

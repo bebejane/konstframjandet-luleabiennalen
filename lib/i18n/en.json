@@ -58,6 +58,8 @@
 	},
 	"Program": {
 		"noProgramItems": "There are no events in this category",
-		"finished": "Finished"
+		"finished": "Finished",
+		"types": "types",
+		"places": "places"
 	}
 }

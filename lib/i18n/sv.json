@@ -58,6 +58,8 @@
 	},
 	"Program": {
 		"noProgramItems": "Det finns inga program i den här kategorin",
-		"finished": "Avslutade"
+		"finished": "Avslutade",
+		"types": "typer",
+		"places": "platser"
 	}
 }
