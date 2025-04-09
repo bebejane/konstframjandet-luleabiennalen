@@ -23,7 +23,8 @@
 		"link": "Länk",
 		"webpage": "Mer info",
 		"city": "Stad",
-		"address": "Adress"
+		"address": "Adress",
+		"place": "Plats"
 	},
 	"BackButton": {
 		"showAll": "Visa alla",

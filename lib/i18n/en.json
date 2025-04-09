@@ -23,7 +23,8 @@
 		"link": "Link",
 		"webpage": "More info",
 		"city": "City",
-		"address": "Address"
+		"address": "Address",
+		"place": "Place"
 	},
 	"BackButton": {
 		"showAll": "Show all",

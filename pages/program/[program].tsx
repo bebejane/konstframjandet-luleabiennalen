@@ -60,11 +60,11 @@ export default function Program({
 				key={`${id}-meta`}
 				items={[
 					{
-						title: t('MetaSection.address'),
+						title: t('MetaSection.where'),
 						value: address,
 					},
 					{
-						title: t('MetaSection.where'),
+						title: t('MetaSection.place'),
 						value: programPlace?.map(({ title }) => title).join(', '),
 					},
 
