@@ -30,6 +30,7 @@ export default function Program({
 		location,
 		content,
 		partipants,
+		programPlace,
 		programCategory,
 		partner,
 		slug,
@@ -59,9 +60,14 @@ export default function Program({
 				key={`${id}-meta`}
 				items={[
 					{
-						title: t('MetaSection.where'),
+						title: t('MetaSection.address'),
 						value: address,
 					},
+					{
+						title: t('MetaSection.where'),
+						value: programPlace?.map(({ title }) => title).join(', '),
+					},
+
 					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
 					{ title: t('MetaSection.times'), value: time },
 					{

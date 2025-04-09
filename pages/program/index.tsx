@@ -26,7 +26,7 @@ export default function Program({ programs, programCategories }: Props) {
 	const categoryFilter = ({ programCategory: { id } }: ProgramRecord) =>
 		!category || category === id;
 	const placeFilter = (p: ProgramRecord) =>
-		!place || (p.programPlace?.id && place === p.programPlace?.id);
+		!place || (p.programPlace.length && p.programPlace.find((el) => el.id === place));
 
 	const haveProgramItems = programs.filter(categoryFilter).filter(placeFilter).length > 0;
 	const today = new Date();
@@ -47,10 +47,10 @@ export default function Program({ programs, programCategories }: Props) {
 		.filter(placeFilter);
 
 	const places = programs.reduce((acc, el) => {
-		if (acc.find(({ id }) => id === el.programPlace?.id)) return acc;
-		return el.programPlace ? [...acc, el.programPlace] : acc;
+		if (acc.find(({ id }) => el.programPlace?.find((el) => el.id === id))) return acc;
+		return el.programPlace ? [...acc, ...el.programPlace] : acc;
 	}, [] as ProgramPlaceRecord[]);
-	console.log(locale);
+
 	return (
 		<>
 			<DatoSEO title={t('Menu.program')} />
@@ -92,7 +92,7 @@ export default function Program({ programs, programCategories }: Props) {
 									image={image}
 									imageEn={imageEn}
 									intro={intro}
-									meta={programPlace?.title}
+									meta={programPlace?.map(({ title }) => title).join(', ')}
 									metaRight={`${formatDate(startDate, endDate, locale)} • ${programCategory.title}`}
 									metaOneLine={true}
 									slug={`/program/${slug}`}
@@ -126,7 +126,7 @@ export default function Program({ programs, programCategories }: Props) {
 										titleRows={2}
 										image={image}
 										intro={intro}
-										meta={programPlace?.title}
+										meta={programPlace?.map(({ title }) => title).join(', ')}
 										metaRight={`${formatDate(startDate, endDate, locale)} • ${
 											programCategory.title
 										}`}

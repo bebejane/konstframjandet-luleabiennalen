@@ -43,7 +43,10 @@ fragment ProgramFragment on ProgramRecord {
 		id
 		title
 	}
-	slug
+	programPlace {
+		id
+		title
+	}
 	_allSlugLocales {
 		locale
 		value
@@ -145,6 +148,7 @@ fragment ProgramFragment on ProgramRecord {
 			}
 		}
 	}
+	slug
 	_seoMetaTags {
 		...SeoMetaTagsFragment
 	}
