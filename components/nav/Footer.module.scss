@@ -33,13 +33,20 @@
       top: var(--outer-margin);
       left: 0;
 
-      @include mq($until: desktop) {
-        display: none;
+      a {
+        text-decoration: none;
       }
 
       img {
         height: 46px;
       }
+
+      @include mq($until: tablet) {
+        position: fixed;
+        top: 0.5rem;
+        left: var(--outer-margin);
+      }
+
     }
 
     div {
