@@ -48,7 +48,9 @@ export default function Program({ programs, programCategories }: Props) {
 
 	const places = programs.reduce((acc, el) => {
 		if (acc.find(({ id }) => el.programPlace?.find((el) => el.id === id))) return acc;
-		return el.programPlace ? [...acc, ...el.programPlace] : acc;
+		return el.programPlace
+			? [...acc, ...el.programPlace.filter(({ id }) => !acc.some(({ id: accId }) => accId === id))]
+			: acc;
 	}, [] as ProgramPlaceRecord[]);
 
 	return (
