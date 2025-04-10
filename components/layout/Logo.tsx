@@ -4,7 +4,7 @@ import LogoIcon from '/public/images/logo.svg';
 import { usePage } from '/lib/context/page';
 import Link from 'next/link';
 
-export default function Logo({ className }: { className: string }) {
+export default function Logo() {
 	const {
 		year: {
 			color: { hex },
@@ -15,11 +15,11 @@ export default function Logo({ className }: { className: string }) {
 
 	return (
 		<div
-			className={cn(s.container, isHome && s.home, className)}
+			className={cn(s.container, isHome && s.home)}
 			style={isArchive ? { fill: hex } : undefined}
 		>
 			<Link href={'/'}>
-				<img src='/images/logo.svg' />
+				<LogoIcon />
 			</Link>
 		</div>
 	);

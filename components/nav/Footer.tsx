@@ -21,26 +21,28 @@ export default function Footer({
 	const currentYear = new Date().getFullYear();
 
 	return (
-		<footer className={cn(s.footer)} id='footer'>
-			<section>
-				<Logo className={s.logo} />
-				<div>
-					Copyright {PROJECT_NAME}, {currentYear} <br />
-					<a href={`mailto:${email}`}>{email}</a>
-				</div>
-				<div>
-					<a href='https://konstframjandet.us14.list-manage.com/subscribe?u=7dd0bf23c62bd536dd345b0fe&id=5ae8929851'>
-						{t('subscribe')}
-					</a>
-					<br />
-					{t('followUs')} <a href={facebook}>Facebook</a> {t('and')}{' '}
-					<a href={instagram}>Instagram</a>
-				</div>
-				<div>
-					<a href='https://norrbotten.konstframjandet.se/'>{about}</a>
-				</div>
-				<KFLogo className={s.kf} />
-			</section>
-		</footer>
+		<>
+			<Logo />
+			<footer className={cn(s.footer)} id='footer'>
+				<section>
+					<div>
+						Copyright {PROJECT_NAME}, {currentYear} <br />
+						<a href={`mailto:${email}`}>{email}</a>
+					</div>
+					<div>
+						<a href='https://konstframjandet.us14.list-manage.com/subscribe?u=7dd0bf23c62bd536dd345b0fe&id=5ae8929851'>
+							{t('subscribe')}
+						</a>
+						<br />
+						{t('followUs')} <a href={facebook}>Facebook</a> {t('and')}{' '}
+						<a href={instagram}>Instagram</a>
+					</div>
+					<div>
+						<a href='https://norrbotten.konstframjandet.se/'>{about}</a>
+					</div>
+					<KFLogo className={s.kf} />
+				</section>
+			</footer>
+		</>
 	);
 }
