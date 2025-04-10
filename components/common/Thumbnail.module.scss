@@ -116,10 +116,7 @@
       img {
         object-fit: cover;
         transition: all 0.3s ease-in-out !important;
-
       }
-
-
     }
 
     .picture {
@@ -137,20 +134,29 @@
 
   .meta {
     display: inline;
+    padding-bottom: 0.3rem;
 
+    strong {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding-right: 0;
+    }
 
     &.oneline {
       display: flex;
-      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      align-items: center;
+      //flex-direction: row;
     }
 
     .right {
-      display: flex;
-      justify-content: flex-end;
-      flex: 1 1 auto;
-      text-align: right;
+      padding-left: 1em;
+      //display: flex;
+      //justify-content: flex-end;
+      //flex: 1 1 auto;
+      //text-align: center;
     }
   }
-
-
 }
