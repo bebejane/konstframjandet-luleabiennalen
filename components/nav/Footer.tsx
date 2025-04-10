@@ -22,9 +22,9 @@ export default function Footer({
 
 	return (
 		<>
-			<Logo />
 			<footer className={cn(s.footer)} id='footer'>
 				<section>
+					<Logo />
 					<div>
 						Copyright {PROJECT_NAME}, {currentYear} <br />
 						<a href={`mailto:${email}`}>{email}</a>
