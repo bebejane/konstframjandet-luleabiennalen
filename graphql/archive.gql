@@ -1,6 +1,6 @@
 query ArchiveHome($yearId: ItemId, $locale: SiteLocale) {
 	about: allAbouts(filter: { year: { eq: $yearId } }, locale: $locale, first: 1) {
-		...AboutFragmentLight
+		...AboutFragment
 	}
 	program: allPrograms(
 		filter: { year: { eq: $yearId } }
