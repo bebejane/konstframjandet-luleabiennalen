@@ -28,10 +28,7 @@ export default function Partner({
 				intro={intro}
 				content={content}
 				onClick={(imageId) => {}}
-			/>
-			<MetaSection
-				key={`${id}-meta`}
-				items={[
+				meta={[
 					{ title: t('MetaSection.city'), value: city },
 					{ title: t('MetaSection.address'), value: address },
 					{

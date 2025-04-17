@@ -1,11 +1,11 @@
 import s from './Article.module.scss';
 import cn from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
-import { StructuredContent } from '/components';
+import { MetaSection, StructuredContent } from '/components';
+import { MetaSectionProps } from '/components/common/MetaSection';
 import { Image } from 'react-datocms';
 import { useScrollInfo } from 'dato-nextjs-utils/hooks';
 import { DatoSEO } from 'dato-nextjs-utils/components';
-import Link from '/components/nav/Link';
 import useStore from '/lib/store';
 import format from 'date-fns/format';
 import { useRouter } from 'next/router';
@@ -27,7 +27,7 @@ export type ArticleProps = {
 	onClick?: (id: string) => void;
 	record?: any;
 	date?: string;
-	partner?: PartnerRecord[] | FinancierRecord[];
+	meta?: MetaSectionProps['items'];
 };
 
 export default function Article({
@@ -39,9 +39,9 @@ export default function Article({
 	imageEn,
 	imageSize,
 	intro,
-	partner,
 	date,
 	record,
+	meta,
 }: ArticleProps) {
 	const { asPath, locale } = useRouter();
 	const t = useTranslations();
@@ -54,15 +54,15 @@ export default function Article({
 	const ratio = !isDesktop
 		? 0
 		: offset
-			? Math.max(
+		? Math.max(
 				0,
 				Math.min(
 					1,
 					(scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) /
-					viewportHeight
+						viewportHeight
 				)
-			)
-			: 0;
+		  )
+		: 0;
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
 
 	useEffect(() => {
@@ -105,6 +105,9 @@ export default function Article({
 						</figcaption>
 					</figure>
 				)}
+
+				{meta && <MetaSection items={meta} />}
+
 				<section className='intro'>
 					{date && (
 						<div className={s.date}>
@@ -127,18 +130,6 @@ export default function Article({
 					</>
 				)}
 				{children}
-				{partner?.length > 0 && (
-					<p className='small-body'>
-						<h3 className="left">{t('General.inCooperationWith')}</h3>
-						<ul className={s.partners}>
-							{partner.map(({ id, image }, idx) => (
-								<li className={s.logo}>
-									<Image data={image.responsiveImage} key={id} />
-								</li>
-							))}
-						</ul>
-					</p>
-				)}
 			</div>
 		</>
 	);

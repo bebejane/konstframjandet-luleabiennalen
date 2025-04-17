@@ -36,6 +36,13 @@ fragment ProgramFragment on ProgramRecord {
 			...FinancierFragmentLight
 		}
 	}
+	supportedBy {
+		id
+		name
+		image {
+			...ImageThumbnailFragment
+		}
+	}
 	location {
 		...LocationFragmentLight
 	}
@@ -43,6 +50,7 @@ fragment ProgramFragment on ProgramRecord {
 		id
 		title
 	}
+
 	programPlace {
 		id
 		title

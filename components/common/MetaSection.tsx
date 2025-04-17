@@ -1,7 +1,7 @@
 import s from './MetaSection.module.scss';
 import Link from '/components/nav/Link';
 
-export type Props = {
+export type MetaSectionProps = {
 	items: {
 		title: string;
 		value: string | React.ReactNode | React.ReactNode[];
@@ -9,7 +9,7 @@ export type Props = {
 	}[];
 };
 
-export default function MetaSection({ items = [] }: Props) {
+export default function MetaSection({ items = [] }: MetaSectionProps) {
 	return (
 		<section className={s.meta}>
 			<ul className='small'>

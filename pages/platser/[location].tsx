@@ -51,11 +51,8 @@ export default function Location({
 				intro={intro}
 				imageSize='small'
 				content={content}
-				onClick={(imageId) => { }}
-			/>
-			<MetaSection
-				key={`${id}-meta`}
-				items={[
+				onClick={(imageId) => {}}
+				meta={[
 					{ title: t('MetaSection.address'), value: address },
 					{ title: t('MetaSection.city'), value: city },
 					{

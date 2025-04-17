@@ -3,8 +3,11 @@
   margin-bottom: -0.5em;
   width: var(--body-width);
   padding-top: var(--space);
+  padding-bottom: var(--space);
   border-top: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
   margin-left: var(--outer-margin);
+  margin-bottom: var(--space);
   columns: 2;
   text-align: center;
   display: flex;
@@ -15,7 +18,7 @@
     columns: 1;
   }
 
-  > ul {
+  >ul {
     list-style: none;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -30,6 +33,7 @@
     li {
       padding-bottom: 0.5em;
       text-align: center;
+
       @include mq($from: desktop) {
         padding-right: 1em;
       }

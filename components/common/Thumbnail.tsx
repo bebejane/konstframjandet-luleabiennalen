@@ -81,10 +81,10 @@ export default function Thumbnail({
 			{strippedIntro && (
 				<div className='thumb-intro'>
 					<p>
-						<div className={cn(s.meta, metaOneLine && s.oneline)}>
+						<span className={cn(s.meta, metaOneLine && s.oneline)}>
 							{meta && <strong>{meta}</strong>}
 							{metaRight && <strong className={s.right}>{metaRight}</strong>}
-						</div>
+						</span>
 						{strippedIntro}
 					</p>
 				</div>

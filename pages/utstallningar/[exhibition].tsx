@@ -47,10 +47,7 @@ export default function Exhibition({
 				content={content}
 				partner={partner as PartnerRecord[] | FinancierRecord[]}
 				onClick={(imageId) => {}}
-			/>
-			<MetaSection
-				key={`${id}-meta`}
-				items={[
+				meta={[
 					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
 					{ title: t('MetaSection.times'), value: time },
 					{
