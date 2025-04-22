@@ -1,5 +1,5 @@
 .meta {
-  margin-top: var(--space);
+  //margin-top: var(--space);
   margin-bottom: -0.5em;
   width: var(--body-width);
   padding-top: var(--space);
@@ -18,7 +18,7 @@
     columns: 1;
   }
 
-  >ul {
+  > ul {
     list-style: none;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -31,8 +31,11 @@
     }
 
     li {
-      padding-bottom: 0.5em;
       text-align: center;
+
+      @include mq($until: desktop) {
+        padding-bottom: 0.5em;
+      }
 
       @include mq($from: desktop) {
         padding-right: 1em;
