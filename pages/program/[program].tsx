@@ -1,9 +1,8 @@
-import s from './[program].module.scss';
 import withGlobalProps from '/lib/withGlobalProps';
 import { apiQuery } from 'dato-nextjs-utils/api';
 import { apiQueryAll } from '/lib/utils';
 import { ProgramDocument, AllProgramsDocument } from '/graphql';
-import { Article, Related, BackButton, MetaSection } from '/components';
+import { Article, Related, BackButton } from '/components';
 import { formatDate } from '/lib/utils';
 import { useTranslations } from 'next-intl';
 import { DatoSEO } from 'dato-nextjs-utils/components';
@@ -31,10 +30,8 @@ export default function Program({
 		content,
 		partipants,
 		programPlace,
-		programCategory,
 		partner,
 		supportedBy,
-		slug,
 		_seoMetaTags,
 	},
 }: Props) {
@@ -56,6 +53,9 @@ export default function Program({
 				date={startDate}
 				onClick={(imageId) => {}}
 				meta={[
+					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
+					{ title: t('MetaSection.times'), value: time },
+
 					{
 						title: t('MetaSection.where'),
 						value: address,
@@ -64,9 +64,6 @@ export default function Program({
 						title: t('MetaSection.place'),
 						value: programPlace?.map(({ title }) => title).join(', '),
 					},
-
-					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
-					{ title: t('MetaSection.times'), value: time },
 					{
 						title: t('MetaSection.where'),
 						value:

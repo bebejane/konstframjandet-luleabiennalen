@@ -106,11 +106,19 @@ export default function Article({
 					</figure>
 				)}
 
-				{meta && <MetaSection items={meta} />}
+				<section className={s.meta}>
+					{meta && <MetaSection items={meta} />}
+					{date && (
+						<div className={s.date}>
+							<span className='small'>{format(new Date(date), 'MMM').replace('.', '')}</span>
+							<span>{format(new Date(date), 'dd').replace('.', '')}</span>
+						</div>
+					)}
+				</section>
 
 				<section className='intro'>
 					{date && (
-						<div className={s.date}>
+						<div className={cn(s.date, s.mobile)}>
 							<span className='small'>{format(new Date(date), 'MMM').replace('.', '')}</span>
 							<span>{format(new Date(date), 'dd').replace('.', '')}</span>
 						</div>

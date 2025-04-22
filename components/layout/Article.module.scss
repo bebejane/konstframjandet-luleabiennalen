@@ -26,11 +26,9 @@
       padding-right: calc(2 * var(--grid-unit));
     }
 
-    &.medium {
-    }
+    &.medium {}
 
-    &.large {
-    }
+    &.large {}
 
     &.portrait {
       padding-left: calc(3 * var(--grid-unit));
@@ -43,6 +41,12 @@
     }
   }
 
+  .meta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   .date {
     font-family: $headline-font;
     border: 1px solid var(--black);
@@ -50,17 +54,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-left: var(--outer-margin);
+    margin-top: calc(var(--space) * -1);
+    width: calc(var(--grid-unit) - var(--gutter));
 
     @include mq($until: tablet) {
-      width: 14vw;
-      float: right;
-      margin-left: var(--outer-margin);
-    }
-
-    @include mq($from: tablet) {
-      position: absolute;
-      right: 0;
-      width: calc(var(--grid-unit) - var(--gutter));
+      display: none;
     }
 
     span {
@@ -76,11 +75,28 @@
         padding-bottom: 0.4em;
       }
     }
+
+    &.mobile {
+
+      display: flex;
+      float: right;
+      margin-left: var(--outer-margin);
+      margin-top: 0;
+      width: 14vw;
+
+      @include mq($from: tablet) {
+        display: none;
+      }
+    }
   }
 
-  .intro > p {
-    padding: 0;
+  .intro {
+
+    p {
+      padding: 0;
+    }
   }
+
 
   .partners {
     display: flex;
