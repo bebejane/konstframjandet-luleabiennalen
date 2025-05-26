@@ -59,10 +59,10 @@ export default function SectionHeader() {
 	const label = isArchiveOverview
 		? PROJECT_NAME
 		: isArchiveHome
-			? yearLabel
-			: !isSearch
-				? `${yearLabel}${!isHome ? ` — ${t(isLocation ? 'partners' : section)}` : ''}`
-				: t('search');
+		? yearLabel
+		: !isSearch
+		? `${yearLabel}${!isHome ? ` — ${t(isLocation ? 'partners' : section)}` : ''}`
+		: t('search');
 
 	const header = (
 		<h2>
@@ -92,7 +92,7 @@ export default function SectionHeader() {
 				) : (
 					<>{header}</>
 				)}
-				{showArchive && <span className={s.archive}>ARKIV</span>}
+				{showArchive && <span className={s.archive}>{t('archive')}</span>}
 			</header>
 			{!isHome && <div className={s.spacer}></div>}
 			{showLine && <div className={s.line}></div>}

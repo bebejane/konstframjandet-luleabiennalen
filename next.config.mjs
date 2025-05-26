@@ -1,11 +1,11 @@
-import { GraphQLClient, gql } from "graphql-request";
-import i18nPaths from "./lib/i18n/paths.json" assert { type: "json" };
+import { GraphQLClient, gql } from 'graphql-request';
+import i18nPaths from './lib/i18n/paths.json' with { type: 'json' }
 
-export const locales = ["sv", "en"];
-export const defaultLocale = "sv";
+export const locales = ['sv', 'en'];
+export const defaultLocale = 'sv';
 
 const sassOptions = {
-	includePaths: ["./components", "./pages"],
+	includePaths: ['./components', './pages'],
 	prependData: `
     @use "sass:math";
     @import "./styles/mediaqueries"; 
@@ -14,10 +14,10 @@ const sassOptions = {
 };
 
 async function allYears() {
-	const graphQLClient = new GraphQLClient("https://graphql.datocms.com", {
+	const graphQLClient = new GraphQLClient('https://graphql.datocms.com', {
 		headers: {
 			Authorization: process.env.GRAPHQL_API_TOKEN,
-			"X-Exclude-Invalid": true,
+			'X-Exclude-Invalid': true,
 		},
 	});
 
@@ -89,13 +89,13 @@ export default async (phase, { defaultConfig }) => {
 			config.module.rules.push({
 				test: /\.(graphql|gql)$/,
 				exclude: /node_modules/,
-				loader: "graphql-tag/loader",
+				loader: 'graphql-tag/loader',
 			});
 			config.module.rules.push({
 				test: /\.svg$/i,
 				issuer: /\.[jt]sx?$/,
 				exclude: /node_modules/,
-				use: ["@svgr/webpack"],
+				use: ['@svgr/webpack'],
 			});
 			return config;
 		},
