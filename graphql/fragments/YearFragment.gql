@@ -36,4 +36,5 @@ fragment YearFragment on YearRecord {
 		}
 		url
 	}
+	fullOpacity
 }
