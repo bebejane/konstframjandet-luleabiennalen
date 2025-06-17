@@ -66,9 +66,7 @@ export default function Program({
 					},
 					{
 						title: t('MetaSection.where'),
-						value:
-							location.length &&
-							location.map(({ slug, title }) => <Link href={`/platser/${slug}`}>{title}</Link>),
+						value: location.length && location.map(({ slug, title }) => <Link href={`/platser/${slug}`}>{title}</Link>),
 					},
 					{
 						title: t('MetaSection.link'),
@@ -97,29 +95,26 @@ export async function getStaticPaths() {
 	};
 }
 
-export const getStaticProps = withGlobalProps(
-	{ queries: [] },
-	async ({ props, revalidate, context }: any) => {
-		const slug = context.params.program;
-		const { program } = await apiQuery(ProgramDocument, {
-			variables: { slug, locale: context.locale },
-			preview: context.preview,
-		});
+export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
+	const slug = context.params.program;
+	const { program } = await apiQuery(ProgramDocument, {
+		variables: { slug, locale: context.locale },
+		preview: context.preview,
+	});
 
-		if (!program) return { notFound: true, revalidate };
+	if (!program) return { notFound: true, revalidate };
 
-		return {
-			props: {
-				...props,
-				program,
-				page: {
-					section: 'program',
-					parent: true,
-					title: program.title,
-					slugs: pageSlugs('program', props.year.title, program._allSlugLocales),
-				} as PageProps,
-			},
-			revalidate,
-		};
-	}
-);
+	return {
+		props: {
+			...props,
+			program,
+			page: {
+				section: 'program',
+				parent: true,
+				title: program.title,
+				slugs: pageSlugs('program', props.year.title, program._allSlugLocales),
+			} as PageProps,
+		},
+		revalidate,
+	};
+});

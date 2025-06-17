@@ -43,9 +43,7 @@ export default function Thumbnail({
 		year: { loadingImage, isArchive },
 	} = usePage();
 	const { locale, defaultLocale } = useRouter();
-	const [loadingImageIndex] = useState(
-		loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0
-	);
+	const [loadingImageIndex] = useState(loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0);
 	const [loaded, setLoaded] = useState(false);
 
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
@@ -55,7 +53,7 @@ export default function Thumbnail({
 			<h3 className={cn(s[`rows-${titleRows}`])}>
 				<span>{titleLength ? truncateWords(title, titleLength) : title}</span>
 			</h3>
-			{image && (
+			{image?.responsiveImage && (
 				<div className={cn(s.imageWrap, zoomOutOnHover && s.zoomOutOnHover)}>
 					<>
 						<Image
@@ -67,7 +65,7 @@ export default function Thumbnail({
 						/>
 						<div className={s.border}></div>
 					</>
-					{loadingImage.length > 0 && !isArchive && (
+					{loadingImage.length > 0 && !isArchive && loadingImage[loadingImageIndex]?.responsiveImage && (
 						<Image
 							data={loadingImage[loadingImageIndex].responsiveImage}
 							className={cn(s.loader)}

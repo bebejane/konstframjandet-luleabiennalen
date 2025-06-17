@@ -23,8 +23,7 @@ export default function Program({ programs, programCategories }: Props) {
 
 	const [category, setCategory] = useState<string>();
 	const [place, setPlace] = useState<string>();
-	const categoryFilter = ({ programCategory: { id } }: ProgramRecord) =>
-		!category || category === id;
+	const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => !category || category === id;
 	const placeFilter = (p: ProgramRecord) =>
 		!place || (p.programPlace.length && p.programPlace.find((el) => el.id === place));
 
@@ -34,9 +33,7 @@ export default function Program({ programs, programCategories }: Props) {
 	const pastPrograms = programs
 		.filter(
 			({ startDate, endDate }) =>
-				!year.isArchive &&
-				isAfter(today, new Date(startDate)) &&
-				(!endDate || isAfter(today, new Date(endDate)))
+				!year.isArchive && isAfter(today, new Date(startDate)) && (!endDate || isAfter(today, new Date(endDate)))
 		)
 		.filter(categoryFilter)
 		.filter(placeFilter);
@@ -75,18 +72,7 @@ export default function Program({ programs, programCategories }: Props) {
 			{haveProgramItems ? (
 				<CardContainer key={`${category}-${place}-${asPath}`}>
 					{comingPrograms.map(
-						({
-							id,
-							image,
-							imageEn,
-							title,
-							intro,
-							slug,
-							startDate,
-							endDate,
-							programCategory,
-							programPlace,
-						}) => (
+						({ id, image, imageEn, title, intro, slug, startDate, endDate, programCategory, programPlace }) => (
 							<Card key={id}>
 								<Thumbnail
 									title={title}
@@ -94,7 +80,9 @@ export default function Program({ programs, programCategories }: Props) {
 									image={image}
 									imageEn={imageEn}
 									intro={intro}
-									meta={`${formatDate(startDate, endDate, locale)} • ${programPlace?.map(({ title }) => title).join(', ')} • `}
+									meta={`${formatDate(startDate, endDate, locale)} • ${programPlace
+										?.map(({ title }) => title)
+										.join(', ')} • `}
 									metaRight={programCategory.title}
 									metaOneLine={true}
 									slug={`/program/${slug}`}
@@ -111,26 +99,17 @@ export default function Program({ programs, programCategories }: Props) {
 					<h2 className={s.subheader}>{t('Program.finished')}</h2>
 					<CardContainer key={`${category}-${place}-${asPath}`}>
 						{pastPrograms.map(
-							({
-								id,
-								image,
-								title,
-								intro,
-								slug,
-								startDate,
-								endDate,
-								programCategory,
-								programPlace,
-							}) => (
+							({ id, image, title, intro, slug, startDate, endDate, programCategory, programPlace }) => (
 								<Card key={id}>
 									<Thumbnail
 										title={title}
 										titleRows={2}
 										image={image}
 										intro={intro}
-										meta={`${formatDate(startDate, endDate, locale)} • ${programPlace?.map(({ title }) => title).join(', ')} • `}
+										meta={`${formatDate(startDate, endDate, locale)} • ${programPlace
+											?.map(({ title }) => title)
+											.join(', ')} • `}
 										metaRight={programCategory.title}
-
 										metaOneLine={true}
 										slug={`/program/${slug}`}
 									/>

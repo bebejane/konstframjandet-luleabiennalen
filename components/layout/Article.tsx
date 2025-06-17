@@ -56,11 +56,7 @@ export default function Article({
 		: offset
 		? Math.max(
 				0,
-				Math.min(
-					1,
-					(scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) /
-						viewportHeight
-				)
+				Math.min(1, (scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight)
 		  )
 		: 0;
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
@@ -85,13 +81,9 @@ export default function Article({
 				<h1>
 					<BalanceText>{title}</BalanceText>
 				</h1>
-				{image && (
+				{image?.responsiveImage && (
 					<figure
-						className={cn(
-							s.mainImage,
-							imageSize && s[imageSize],
-							image.height > image.width && s.portrait
-						)}
+						className={cn(s.mainImage, imageSize && s[imageSize], image.height > image.width && s.portrait)}
 						onClick={() => setImageId(image?.id)}
 						ref={figureRef}
 					>
@@ -100,6 +92,7 @@ export default function Article({
 							pictureClassName={s.picture}
 							pictureStyle={{ transform: `scale(${1 - ratio * 0.3})` }}
 						/>
+
 						<figcaption ref={captionRef} style={{ opacity: 1 - ratio }}>
 							{image.title}
 						</figcaption>
@@ -128,12 +121,7 @@ export default function Article({
 				{content && (
 					<>
 						<div className='structured'>
-							<StructuredContent
-								id={id}
-								record={record}
-								content={content}
-								onClick={(imageId) => setImageId(imageId)}
-							/>
+							<StructuredContent id={id} record={record} content={content} onClick={(imageId) => setImageId(imageId)} />
 						</div>
 					</>
 				)}
