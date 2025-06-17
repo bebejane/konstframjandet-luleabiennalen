@@ -51,29 +51,26 @@ export async function getStaticPaths() {
 	};
 }
 
-export const getStaticProps = withGlobalProps(
-	{ queries: [] },
-	async ({ props, revalidate, context }: any) => {
-		const slug = context.params.participant;
-		const { participant } = await apiQuery(ParticipantDocument, {
-			variables: { slug, locale: context.locale },
-			preview: context.preview,
-		});
+export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
+	const slug = context.params.participant;
+	const { participant } = await apiQuery(ParticipantDocument, {
+		variables: { slug, locale: context.locale },
+		preview: context.preview,
+	});
 
-		if (!participant) return { notFound: true, revalidate };
+	if (!participant) return { notFound: true, revalidate };
 
-		return {
-			props: {
-				...props,
-				participant,
-				page: {
-					section: 'participants',
-					parent: true,
-					title: participant.name,
-					slugs: pageSlugs('participants', props.year.title, participant._allSlugLocales),
-				} as PageProps,
-			},
-			revalidate,
-		};
-	}
-);
+	return {
+		props: {
+			...props,
+			participant,
+			page: {
+				section: 'participants',
+				parent: true,
+				title: participant.name,
+				slugs: pageSlugs('participants', props.year.title, participant._allSlugLocales),
+			} as PageProps,
+		},
+		revalidate,
+	};
+});

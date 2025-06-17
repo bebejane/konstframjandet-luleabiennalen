@@ -25,9 +25,7 @@ export default function Related({ header, items }: Props) {
 			<ul>
 				{items.map((item, idx) => {
 					const title =
-						item.__typename === 'ParticipantRecord' || item.__typename === 'FinancierRecord'
-							? item.name
-							: item.title;
+						item.__typename === 'ParticipantRecord' || item.__typename === 'FinancierRecord' ? item.name : item.title;
 					let href = null;
 					try {
 						href = recordToSlug(items[idx]);
@@ -35,7 +33,7 @@ export default function Related({ header, items }: Props) {
 					const content = (
 						<>
 							<figure>
-								{item.image && <Image data={item.image.responsiveImage} />}
+								{item.image?.responsiveImage && <Image data={item.image.responsiveImage} />}
 								<div className={s.border}></div>
 							</figure>
 							<figcaption>{title}</figcaption>
