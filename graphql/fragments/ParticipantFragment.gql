@@ -23,6 +23,9 @@ fragment ParticipantFragment on ParticipantRecord {
 	programs: _allReferencingPrograms(first: 100) {
 		...ProgramFragmentLight
 	}
+	colab {
+		...PartnerFragment
+	}
 	content {
 		value
 		blocks {

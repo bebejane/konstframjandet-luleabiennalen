@@ -17,7 +17,7 @@ export type Props = {
 };
 
 export default function Participant({
-	participant: { id, image, imageEn, name, intro, content, exhibitions, programs, _seoMetaTags },
+	participant: { id, image, imageEn, name, intro, content, exhibitions, colab, programs, _seoMetaTags },
 }: Props) {
 	const t = useTranslations();
 
@@ -35,6 +35,7 @@ export default function Participant({
 				onClick={(imageId) => {}}
 			/>
 			<Related header={t('Related.participatingIn')} items={[...exhibitions, ...programs]} />
+			<Related header={t('General.inCooperationWith')} items={colab} />
 			<BackButton>{t('BackButton.showAllParticipants')}</BackButton>
 		</>
 	);

@@ -45,7 +45,6 @@ export default function Exhibition({
 				imageEn={imageEn}
 				intro={intro}
 				content={content}
-				partner={partner as PartnerRecord[] | FinancierRecord[]}
 				onClick={(imageId) => {}}
 				meta={[
 					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
@@ -63,6 +62,7 @@ export default function Exhibition({
 				]}
 			/>
 			<Related header={t('Menu.participants')} items={participants} />
+			<Related header={t('General.inCooperationWith')} items={partner} />
 			<BackButton>{t('BackButton.showAllExhibitons')}</BackButton>
 		</>
 	);
@@ -79,29 +79,26 @@ export async function getStaticPaths() {
 	};
 }
 
-export const getStaticProps = withGlobalProps(
-	{ queries: [] },
-	async ({ props, revalidate, context }: any) => {
-		const slug = context.params.exhibition;
-		const { exhibition } = await apiQuery(ExhibitionDocument, {
-			variables: { slug, locale: context.locale },
-			preview: context.preview,
-		});
+export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
+	const slug = context.params.exhibition;
+	const { exhibition } = await apiQuery(ExhibitionDocument, {
+		variables: { slug, locale: context.locale },
+		preview: context.preview,
+	});
 
-		if (!exhibition) return { notFound: true, revalidate };
+	if (!exhibition) return { notFound: true, revalidate };
 
-		return {
-			props: {
-				...props,
-				exhibition,
-				page: {
-					section: 'exhibitions',
-					parent: true,
-					title: exhibition.title,
-					slugs: pageSlugs('exhibitions', props.year.title, exhibition._allSlugLocales),
-				} as PageProps,
-			},
-			revalidate,
-		};
-	}
-);
+	return {
+		props: {
+			...props,
+			exhibition,
+			page: {
+				section: 'exhibitions',
+				parent: true,
+				title: exhibition.title,
+				slugs: pageSlugs('exhibitions', props.year.title, exhibition._allSlugLocales),
+			} as PageProps,
+		},
+		revalidate,
+	};
+});
