@@ -77,7 +77,7 @@ export default function Program({
 			/>
 			<Related header={t('Menu.participants')} items={partipants} />
 			<Related header={t('Menu.locations')} items={location} />
-			<Related header={t('General.inCooperationWith')} items={partner} />
+			<Related header={t('General.inCooperationWith')} items={partner} noLink={true} />
 			<Related header={t('Partners.supportedBy')} items={supportedBy} />
 			<BackButton>{t('BackButton.showAllPrograms')}</BackButton>
 		</>

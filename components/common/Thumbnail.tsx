@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 export type Props = {
 	image?: FileField;
 	imageEn?: FileField;
-	slug: string;
+	slug?: string;
 	title?: string;
 	titleLength?: number;
 	titleRows?: number;
@@ -49,7 +49,7 @@ export default function Thumbnail({
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
 
 	return (
-		<Link href={slug} transformHref={transformHref} className={s.thumbnail}>
+		<Link href={slug} transformHref={transformHref} className={cn(s.thumbnail, !slug && s.nolink)}>
 			<h3 className={cn(s[`rows-${titleRows}`])}>
 				<span>{titleLength ? truncateWords(title, titleLength) : title}</span>
 			</h3>
