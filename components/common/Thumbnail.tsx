@@ -45,7 +45,6 @@ export default function Thumbnail({
 	const { locale, defaultLocale } = useRouter();
 	const [loadingImageIndex] = useState(loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0);
 	const [loaded, setLoaded] = useState(false);
-
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
 
 	return (
@@ -53,22 +52,26 @@ export default function Thumbnail({
 			<h3 className={cn(s[`rows-${titleRows}`])}>
 				<span>{titleLength ? truncateWords(title, titleLength) : title}</span>
 			</h3>
-			{image?.responsiveImage && (
+			{image && (
 				<div className={cn(s.imageWrap, zoomOutOnHover && s.zoomOutOnHover)}>
 					<>
-						<Image
-							data={image.responsiveImage}
-							className={cn(s.image)}
-							pictureClassName={s.picture}
-							style={!isArchive ? { opacity: loaded ? 1 : 0.000001 } : {}}
-							onLoad={() => setLoaded(true)}
-						/>
+						{image.responsiveImage ? (
+							<Image
+								data={image.responsiveImage}
+								className={cn(s.image)}
+								pictureClassName={s.picture}
+								style={!isArchive ? { opacity: loaded ? 1 : 0.000001 } : {}}
+								onLoad={() => setLoaded(true)}
+							/>
+						) : (
+							<img src={image.url} className={cn(s.picture)} />
+						)}
 						<div className={s.border}></div>
 					</>
-					{loadingImage.length > 0 && !isArchive && loadingImage[loadingImageIndex]?.responsiveImage && (
+					{loadingImage.length > 0 && !isArchive && !loaded && (
 						<Image
 							data={loadingImage[loadingImageIndex].responsiveImage}
-							className={cn(s.loader)}
+							className={s.loader}
 							pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
 							lazyLoad={false}
 							objectFit={'contain'}
