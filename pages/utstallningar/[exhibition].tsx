@@ -62,7 +62,7 @@ export default function Exhibition({
 				]}
 			/>
 			<Related header={t('Menu.participants')} items={participants} />
-			<Related header={t('General.inCooperationWith')} items={partner} />
+			<Related header={t('General.inCooperationWith')} items={partner} noLink={true} />
 			<BackButton>{t('BackButton.showAllExhibitons')}</BackButton>
 		</>
 	);

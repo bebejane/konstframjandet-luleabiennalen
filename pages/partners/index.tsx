@@ -31,13 +31,7 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
 					<CardContainer key={`${asPath}-locations`} className={s.locations}>
 						{locations.map(({ id, image, title, intro, slug, year }) => (
 							<Card key={id}>
-								<Thumbnail
-									title={title}
-									image={image}
-									intro={intro}
-									titleRows={1}
-									slug={`/platser/${slug}`}
-								/>
+								<Thumbnail title={title} image={image} intro={intro} titleRows={1} slug={`/platser/${slug}`} />
 							</Card>
 						))}
 					</CardContainer>
@@ -48,12 +42,7 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
 			<CardContainer key={`${asPath}-partners`}>
 				{partners.map(({ id, image, imageEn, title, intro, slug }) => (
 					<Card key={id}>
-						<Thumbnail
-							image={image}
-							imageEn={imageEn}
-							slug={`/partners/${slug}`}
-							zoomOutOnHover={true}
-						/>
+						<Thumbnail image={image} imageEn={imageEn} zoomOutOnHover={true} />
 					</Card>
 				))}
 			</CardContainer>

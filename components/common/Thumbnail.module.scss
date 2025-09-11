@@ -1,165 +1,171 @@
 .thumbnail {
-  position: relative;
-  display: block;
-  //width: 100%;
-  height: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	position: relative;
+	display: block;
+	//width: 100%;
+	height: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 
-  &:hover {
-    .imageWrap .border {
-      border-width: 5px;
-    }
-  }
+	&:hover {
+		.imageWrap .border {
+			border-width: 5px;
+		}
+	}
+	&.nolink {
+		&:hover {
+			.imageWrap .border {
+				border-width: 0px;
+			}
+		}
+	}
+	h3 {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		width: 100%;
+		height: 5rem;
 
-  h3 {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    width: 100%;
-    height: 5rem;
+		span {
+			display: -webkit-box;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
 
-    span {
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+		&.rows-1 {
+			height: 3rem;
 
-    &.rows-1 {
-      height: 3rem;
+			span {
+				-webkit-line-clamp: 1;
+			}
+		}
 
-      span {
-        -webkit-line-clamp: 1;
-      }
-    }
+		&.rows-2 {
+			height: 4rem;
 
-    &.rows-2 {
-      height: 4rem;
+			span {
+				-webkit-line-clamp: 2;
+			}
+		}
 
-      span {
-        -webkit-line-clamp: 2;
-      }
-    }
+		&.rows-3 {
+			height: 4rem;
 
-    &.rows-3 {
-      height: 4rem;
+			span {
+				-webkit-line-clamp: 3;
+			}
+		}
+	}
 
-      span {
-        -webkit-line-clamp: 3;
-      }
-    }
-  }
+	p {
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		//text-align: center;
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+	}
 
-  p {
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    //text-align: center;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
+	.imageWrap {
+		position: relative;
 
-  .imageWrap {
-    position: relative;
+		@include mq($from: tablet) {
+			&.zoomOutOnHover:hover {
+				img {
+					transform: scale(0.8);
+				}
+			}
+		}
 
-    @include mq($from: tablet) {
-      &.zoomOutOnHover:hover {
-        img {
-          transform: scale(0.8);
-        }
-      }
-    }
+		.border {
+			width: calc(100% - 1rem);
+			height: 100%;
+			border: 0px solid white;
+			mix-blend-mode: difference;
+			position: absolute;
+			top: 0;
+			left: 0;
+			margin-left: 0.5rem;
+			margin-right: 0.5rem;
+			transition: all 0.3s ease;
+		}
 
-    .border {
-      width: calc(100% - 1rem);
-      height: 100%;
-      border: 0px solid white;
-      mix-blend-mode: difference;
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      transition: all 0.3s ease;
-    }
+		.loader {
+			position: absolute !important;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
+			aspect-ratio: 8 / 5;
+			pointer-events: none;
+			opacity: 1;
+			transition: opacity 0.2s ease !important;
 
-    .loader {
-      position: absolute !important;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      aspect-ratio: 8 / 5;
-      pointer-events: none;
-      opacity: 1;
-      transition: opacity 0.2s ease !important;
+			img {
+				object-fit: contain;
+			}
 
-      img {
-        object-fit: contain;
-      }
+			&.hide {
+				opacity: 0 !important;
+			}
+		}
 
-      &.hide {
-        opacity: 0 !important;
-      }
-    }
+		.image {
+			margin-left: 0.5rem;
+			margin-right: 0.5rem;
+			width: calc(100% - 1em) !important;
+			min-width: calc(100% - 1em) !important;
 
-    .image {
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      width: calc(100% - 1em) !important;
-      min-width: calc(100% - 1em) !important;
+			margin-bottom: 0.8em;
+			aspect-ratio: 8 / 5;
+			transition: all 0.3s ease-in-out;
 
-      margin-bottom: 0.8em;
-      aspect-ratio: 8 / 5;
-      transition: all 0.3s ease-in-out;
+			img {
+				object-fit: cover;
+				transition: all 0.3s ease-in-out !important;
+			}
+		}
 
-      img {
-        object-fit: cover;
-        transition: all 0.3s ease-in-out !important;
-      }
-    }
+		.picture {
+			overflow: hidden;
+			max-width: 100% !important;
+			transition: transform 0.2s ease-in-out;
 
-    .picture {
-      overflow: hidden;
-      max-width: 100% !important;
-      transition: transform 0.2s ease-in-out;
+			@include mq($from: tablet) {
+				&:hover {
+					left: 2.5rem;
+				}
+			}
+		}
+	}
 
-      @include mq($from: tablet) {
-        &:hover {
-          left: 2.5rem;
-        }
-      }
-    }
-  }
+	.meta {
+		display: inline;
+		padding-bottom: 0.3rem;
 
-  .meta {
-    display: inline;
-    padding-bottom: 0.3rem;
+		strong {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			padding-right: 0;
+		}
 
-    strong {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      padding-right: 0;
-    }
+		&.oneline {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			align-items: center;
+			//flex-direction: row;
+		}
 
-    &.oneline {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      align-items: center;
-      //flex-direction: row;
-    }
-
-    .right {
-      padding-left: 0.2em;
-      //display: flex;
-      //justify-content: flex-end;
-      //flex: 1 1 auto;
-      //text-align: center;
-    }
-  }
+		.right {
+			padding-left: 0.2em;
+			//display: flex;
+			//justify-content: flex-end;
+			//flex: 1 1 auto;
+			//text-align: center;
+		}
+	}
 }

@@ -35,7 +35,7 @@ export default function Participant({
 				onClick={(imageId) => {}}
 			/>
 			<Related header={t('Related.participatingIn')} items={[...exhibitions, ...programs]} />
-			<Related header={t('General.inCooperationWith')} items={colab} />
+			<Related header={t('General.inCooperationWith')} items={colab} noLink={true} />
 			<BackButton>{t('BackButton.showAllParticipants')}</BackButton>
 		</>
 	);

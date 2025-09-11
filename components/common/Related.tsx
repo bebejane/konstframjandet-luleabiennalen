@@ -6,6 +6,7 @@ import { recordToSlug } from '/lib/utils';
 
 export type Props = {
 	header: string;
+	noLink?: boolean;
 	items: (
 		| ParticipantRecord
 		| LocationRecord
@@ -16,7 +17,7 @@ export type Props = {
 	)[];
 };
 
-export default function Related({ header, items }: Props) {
+export default function Related({ header, items, noLink }: Props) {
 	if (!items?.length) return null;
 
 	return (
@@ -28,7 +29,7 @@ export default function Related({ header, items }: Props) {
 						item.__typename === 'ParticipantRecord' || item.__typename === 'FinancierRecord' ? item.name : item.title;
 					let href = null;
 					try {
-						href = recordToSlug(items[idx]);
+						href = noLink ? null : recordToSlug(items[idx]);
 					} catch (e) {}
 					const content = (
 						<>
@@ -40,7 +41,7 @@ export default function Related({ header, items }: Props) {
 						</>
 					);
 					return (
-						<li key={item.id}>
+						<li key={item.id} className={noLink && s.nolink}>
 							{href && <Link href={href}>{content}</Link>}
 							{!href && content}
 						</li>
