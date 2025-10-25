@@ -46,7 +46,7 @@ importers:
         version: 2.29.3
       dato-nextjs-utils:
         specifier: github:bebejane/dato-nextjs-utils
-        version: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/657e89ecc1a2fc75f69cbd5d22ba25e624f3cd25(@apollo/client@3.7.7(graphql-ws@5.11.3(graphql@16.6.0))(graphql@16.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@datocms/cma-client-browser@3.0.1)(@datocms/cma-client-node@3.0.2)(@datocms/cma-client@3.0.1)(@types/node@22.15.21)(@types/react-dom@18.2.19)(@types/react@18.2.55)(datocms-listen@0.1.15(graphql@16.6.0))(next-seo@5.15.0(next@14.2.27(@babel/core@7.20.12)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.58.1))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(next@14.2.27(@babel/core@7.20.12)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.58.1))(react-datocms@4.2.2(@types/react-dom@18.2.19)(@types/react@18.2.55)(graphql@16.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/726ad4318261863b55bb505e6c9bda73bd741e58(@apollo/client@3.7.7(graphql-ws@5.11.3(graphql@16.6.0))(graphql@16.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@datocms/cma-client-browser@3.0.1)(@datocms/cma-client-node@3.0.2)(@datocms/cma-client@3.0.1)(@types/node@22.15.21)(@types/react-dom@18.2.19)(@types/react@18.2.55)(datocms-listen@0.1.15(graphql@16.6.0))(next-seo@5.15.0(next@14.2.27(@babel/core@7.20.12)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.58.1))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(next@14.2.27(@babel/core@7.20.12)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.58.1))(react-datocms@4.2.2(@types/react-dom@18.2.19)(@types/react@18.2.55)(graphql@16.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       datocms-structured-text-utils:
         specifier: ^2.0.4
         version: 2.1.12
@@ -1436,6 +1436,7 @@ packages:
 
   '@graphql-tools/prisma-loader@7.2.64':
     resolution: {integrity: sha512-W8GfzfBKiBSIEgw+/nJk6zUlF6k/jterlNoFhM27mBsbeMtWxKnm1+gEU6KA0N1PNEdq2RIa2W4AfVfVBl2GgQ==}
+    deprecated: 'This package was intended to be used with an older versions of Prisma.\nThe newer versions of Prisma has a different approach to GraphQL integration.\nTherefore, this package is no longer needed and has been deprecated and removed.\nLearn more: https://www.prisma.io/graphql'
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
 
@@ -2964,9 +2965,9 @@ packages:
     resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
     engines: {node: '>=0.11'}
 
-  dato-nextjs-utils@https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/657e89ecc1a2fc75f69cbd5d22ba25e624f3cd25:
-    resolution: {tarball: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/657e89ecc1a2fc75f69cbd5d22ba25e624f3cd25}
-    version: 1.0.434
+  dato-nextjs-utils@https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/726ad4318261863b55bb505e6c9bda73bd741e58:
+    resolution: {tarball: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/726ad4318261863b55bb505e6c9bda73bd741e58}
+    version: 1.0.443
     engines: {node: '>=0.16'}
     peerDependencies:
       '@apollo/client': '>=3'
@@ -10373,7 +10374,7 @@ snapshots:
 
   date-fns@2.29.3: {}
 
-  dato-nextjs-utils@https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/657e89ecc1a2fc75f69cbd5d22ba25e624f3cd25(@apollo/client@3.7.7(graphql-ws@5.11.3(graphql@16.6.0))(graphql@16.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@datocms/cma-client-browser@3.0.1)(@datocms/cma-client-node@3.0.2)(@datocms/cma-client@3.0.1)(@types/node@22.15.21)(@types/react-dom@18.2.19)(@types/react@18.2.55)(datocms-listen@0.1.15(graphql@16.6.0))(next-seo@5.15.0(next@14.2.27(@babel/core@7.20.12)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.58.1))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(next@14.2.27(@babel/core@7.20.12)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.58.1))(react-datocms@4.2.2(@types/react-dom@18.2.19)(@types/react@18.2.55)(graphql@16.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  dato-nextjs-utils@https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/726ad4318261863b55bb505e6c9bda73bd741e58(@apollo/client@3.7.7(graphql-ws@5.11.3(graphql@16.6.0))(graphql@16.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@datocms/cma-client-browser@3.0.1)(@datocms/cma-client-node@3.0.2)(@datocms/cma-client@3.0.1)(@types/node@22.15.21)(@types/react-dom@18.2.19)(@types/react@18.2.55)(datocms-listen@0.1.15(graphql@16.6.0))(next-seo@5.15.0(next@14.2.27(@babel/core@7.20.12)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.58.1))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(next@14.2.27(@babel/core@7.20.12)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.58.1))(react-datocms@4.2.2(@types/react-dom@18.2.19)(@types/react@18.2.55)(graphql@16.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@apollo/client': 3.7.7(graphql-ws@5.11.3(graphql@16.6.0))(graphql@16.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@datocms/cma-client': 3.0.1
