@@ -1,5 +1,6 @@
-import Link from '/components/nav/Link'
-import { useRouter } from "next/router"
+'use client'
+
+import { Link, usePathname } from '@/i18n/routing'
 
 export type Props = {
   children: React.ReactNode
@@ -8,11 +9,11 @@ export type Props = {
 
 export default function BackButton(props: Props) {
   const { children, href } = props
-  const { asPath } = useRouter()
-  const segemnts = asPath.split('/'); segemnts.pop()
+  const pathname = usePathname()
+  const segemnts = pathname.split('/'); segemnts.pop()
 
   return (
-    <Link href={href ?? segemnts.join('/')} transformHref={false}>
+    <Link href={href ?? segemnts.join('/')} >
       <button className="back">{children}</button>
     </Link>
   )

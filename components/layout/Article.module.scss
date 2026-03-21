@@ -50,7 +50,7 @@
   }
 
   .date {
-    font-family: $headline-font;
+    font-family: var(--headline-font);
     border: 1px solid var(--black);
     display: none;
     flex-direction: column;

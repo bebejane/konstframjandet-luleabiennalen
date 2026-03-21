@@ -1,9 +1,8 @@
 import s from './ArchiveShortcuts.module.scss';
-import React from 'react';
 import { Image } from 'react-datocms';
-import Link from '/components/nav/Link';
-import { recordToSlug } from '/lib/utils';
+import { recordToSlug } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 
 export type Props = {
 	items: (ParticipantRecord | PartnerRecord | ProgramRecord | ExhibitionRecord | AboutRecord)[];

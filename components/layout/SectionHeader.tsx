@@ -1,16 +1,16 @@
+'use client'
+
 import s from './SectionHeader.module.scss';
 import cn from 'classnames';
-import React from 'react';
-import Link from '/components/nav/Link';
-import { useRouter } from 'next/router';
-import { MenuItem } from '/lib/menu';
-import { useTranslations } from 'next-intl';
-import { usePage } from '/lib/context/page';
-import { PROJECT_NAME, PROJECT_ABBR } from '/lib/constant';
-import useStore from '/lib/store';
-
-import Logo from '/public/images/logo-text.svg';
-import { translatePath } from '/lib/utils';
+import { MenuItem } from '@/lib/menu';
+import { useLocale, useTranslations } from 'next-intl';
+import { usePage } from '@/lib/context/page';
+import { PROJECT_NAME, PROJECT_ABBR } from '@/lib/constant';
+import { translatePath } from '@/lib/utils';
+import { defaultLocale, Link, useRouter } from '@/i18n/routing';
+import {useStore, useShallow} from '@/lib/store';
+import Logo from '@/public/images/logo-text.svg';
+import { Icon } from '@/components';
 
 export type SectionHeaderProps = {
 	menu: MenuItem[];
@@ -20,9 +20,8 @@ export type SectionHeaderProps = {
 export default function SectionHeader() {
 	const t = useTranslations('Menu');
 	const router = useRouter();
-	const { locale, defaultLocale } = router;
-
-	const [showMenu] = useStore((state) => [state.showMenu]);
+	const locale = useLocale();
+	const [showMenu] = useStore(useShallow((state) => [state.showMenu]));
 	const {
 		section,
 		parent,
@@ -44,7 +43,7 @@ export default function SectionHeader() {
 	const isLocation = section === 'locations';
 	const parentPath = isLocation
 		? locationsParentPath
-		: slugs.find((slug) => slug.locale === locale)?.parent;
+		: slugs?.find((slug) => slug.locale === locale)?.parent;
 
 	const isArchiveHome = section === 'home' && isArchive;
 	const isSearch = section === 'search';
@@ -84,9 +83,9 @@ export default function SectionHeader() {
 		<>
 			<header className={cn(s.header, !showMenu && s.full)}>
 				{isHome ? (
-					<Logo />
+					<Icon src={Logo} />
 				) : !isOverview ? (
-					<Link href={parentPath} transformHref={false}>
+					<Link href={parentPath} >
 						{header}
 					</Link>
 				) : (

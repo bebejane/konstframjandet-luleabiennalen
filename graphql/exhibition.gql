@@ -12,3 +12,167 @@ query Exhibition($slug: String!, $locale: SiteLocale) {
 		...ExhibitionFragment
 	}
 }
+
+fragment ExhibitionFragment on ExhibitionRecord {
+	__typename
+	_modelApiKey
+	id
+	title
+	startDate
+	endDate
+	image {
+		...ImageFragment
+	}
+	thumb: image {
+		...ImageThumbnailFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	thumbEn: imageEn {
+		...ImageThumbnailFragment
+	}
+	intro(markdown: false)
+	misc
+	participants {
+		...ParticipantFragmentLight
+	}
+	location {
+		...LocationFragmentLight
+	}
+	partner {
+		__typename
+		... on PartnerRecord {
+			...PartnerFragmentLight
+		}
+		... on FinancierRecord {
+			...FinancierFragmentLight
+		}
+	}
+	slug
+	_allSlugLocales {
+		locale
+		value
+	}
+	externalLink
+	content {
+		value
+		blocks {
+			__typename
+			... on ImageRecord {
+				__typename
+				id
+				layout
+				image {
+					...ImageFragment
+				}
+			}
+			... on ImageGalleryRecord {
+				__typename
+				id
+				images {
+					...ImageThumbnailFragment
+				}
+			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
+				}
+			}
+			... on ButtonRecord {
+				__typename
+				id
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						title
+						record {
+							... on AboutRecord {
+								id
+								slug
+								title
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+							}
+						}
+					}
+				}
+			}
+			... on VideoRecord {
+				__typename
+				id
+				title
+				video {
+					height
+					width
+					title
+					provider
+					providerUid
+					thumbnailUrl
+					url
+				}
+			}
+			... on RecordInterface {
+				__typename
+				id
+			}
+		}
+	}
+	_seoMetaTags {
+		...SeoMetaTagsFragment
+	}
+}
+
+fragment ExhibitionFragmentLight on ExhibitionRecord {
+	__typename
+	_modelApiKey
+	id
+	title
+	startDate
+	endDate
+	image {
+		...ImageThumbnailFragment
+	}
+	slug
+}
+
+fragment FinancierFragmentLight on FinancierRecord {
+	id
+	name
+	image {
+		...ImageFragment
+	}
+}

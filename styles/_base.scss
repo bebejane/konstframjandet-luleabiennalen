@@ -1,8 +1,15 @@
+@use 'fonts';
+@use 'mediaqueries' as *;
+
 :root {
 	--black: #161616;
 	--white: #fcfcfc;
 	--red: #bf0000;
 	--archive: #ececec;
+
+	--body-font: "Remix", Times, "Times New Roman", Sans-Serif;
+	--headline-font: "Rauschen", Arial, Helvetica, Sans-Serif;
+
 	--outer-margin: 4vw;
 	--logo-size-optical: 2.8rem;
 	--total-outer-margin: calc((var(--outer-margin) * 2) + var(--logo-size-optical));
@@ -19,6 +26,7 @@
 	--header-height: calc((var(--outer-margin) * 2) + 0.75rem); //snygga upp sen
 	--menu-transition: 0.3s ease-in-out;
 
+	
 	--background: var(--white);
 	--foreground: var(--black);
 
@@ -54,7 +62,7 @@ body {
 	line-height: 1em;
 	color: var(--foreground);
 	background-color: var(--background);
-	font-family: $body-font;
+	font-family: var(--body-font);
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
 	overflow-x: hidden;

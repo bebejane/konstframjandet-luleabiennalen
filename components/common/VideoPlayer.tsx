@@ -1,4 +1,6 @@
-import styles from './VideoPlayer.module.scss'
+'use client'
+
+import s from './VideoPlayer.module.scss'
 import cn from 'classnames'
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { useWindowSize } from 'usehooks-ts'
@@ -34,7 +36,7 @@ export default function VideoPlayer({ data, className }: VideoPlayerProps) {
 
 	return (
 		<video
-			className={cn(styles.video, className)}
+			className={cn(s.video, className)}
 			src={quality ? data.video[`mp4${quality}`] : undefined}
 			ref={setRefs}
 			playsInline

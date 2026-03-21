@@ -1,23 +1,19 @@
 import s from './Footer.module.scss';
 import cn from 'classnames';
-import type { MenuItem } from '/lib/menu';
-import KFLogo from '/public/images/kf-logo.svg';
-import { useTranslations } from 'next-intl';
-import { usePage } from '/lib/context/page';
-import Logo from '/components/layout/Logo';
-import { PROJECT_NAME } from '/lib/constant';
+import KFLogo from '@/public/images/kf-logo.svg';
+import Logo from '@/components/layout/Logo';
+import { PROJECT_NAME } from '@/lib/constant';
+import {getTranslations} from 'next-intl/server';
+import Link from 'next/link';
+import { Icon } from '@/components';
 
 export type FooterProps = {
-	menu: MenuItem[];
-	footer: GeneralRecord;
+	footer: GeneralQuery['general']
 };
 
-export default function Footer({
-	menu,
-	footer: { email, facebook, instagram, about },
-}: FooterProps) {
-	const t = useTranslations('Footer');
-	const { isHome } = usePage();
+export default async function Footer({footer}: FooterProps) {
+	const { email, facebook, instagram, about } = footer!;
+	const t = await getTranslations('Footer');
 	const currentYear = new Date().getFullYear();
 
 	return (
@@ -34,13 +30,13 @@ export default function Footer({
 							{t('subscribe')}
 						</a>
 						<br />
-						{t('followUs')} <a href={facebook}>Facebook</a> {t('and')}{' '}
-						<a href={instagram}>Instagram</a>
+						{t('followUs')} {facebook &&<Link href={facebook}>Facebook</Link>} {t('and')}{' '}
+						{instagram && <Link href={instagram}>Instagram</Link>}
 					</div>
 					<div>
 						<a href='https://norrbotten.konstframjandet.se/'>{about}</a>
 					</div>
-					<KFLogo className={s.kf} />
+					<Icon src={KFLogo} className={s.kf} />
 				</section>
 			</footer>
 		</>

@@ -1,30 +1,30 @@
+'use client'
+
 import s from './Menu.module.scss'
 import cn from 'classnames'
-import { useRouter } from 'next/router'
-import { useState, useRef, useEffect } from 'react'
-import type { Menu, MenuItem } from '/lib/menu'
+import { useState, useRef, useEffect} from 'react'
+import type { Menu, MenuItem } from '@/lib/menu'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
-import { Hamburger, Language, Temperature } from '/components'
-import useStore from '/lib/store'
-import { useScrollInfo } from 'dato-nextjs-utils/hooks'
+import { useLocale, useTranslations } from 'next-intl'
+import { Hamburger, Language, Temperature } from '@/components'
+import useStore, { useShallow } from '@/lib/store'
+import { useScrollInfo } from 'next-dato-utils/hooks'
 import { useWindowSize } from 'usehooks-ts'
-import i18nPaths from '/lib/i18n/paths.json'
-import useDevice from '/lib/hooks/useDevice'
-
+import i18nPaths from '@/i18n/paths.json'
+import useDevice from '@/lib/hooks/useDevice'
+import { usePathname } from '@/i18n/routing'
 
 export type MenuProps = { items: Menu }
 
 export default function Menu({ items }: MenuProps) {
-
 	const t = useTranslations('Menu')
-	const router = useRouter()
-	const { locale, defaultLocale, asPath } = router
+	const pathname = usePathname()
+	const locale = useLocale()
 	const menuRef = useRef<HTMLUListElement | null>(null);
-	const [showMenu, setShowMenu, searchQuery, setSearchQuery] = useStore((state) => [state.showMenu, state.setShowMenu, state.searchQuery, state.setSearchQuery])
+	const [showMenu, setShowMenu, searchQuery, setSearchQuery] = useStore(useShallow((state) => [state.showMenu, state.setShowMenu, state.searchQuery, state.setSearchQuery]))
 	const [selected, setSelected] = useState<MenuItem | undefined>()
 	const [searchFocus, setSearchFocus] = useState(false)
-	const [path, setPath] = useState(router.asPath)
+	const [path, setPath] = useState(pathname)
 	const [menuPadding, setMenuPadding] = useState(0)
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0)
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
@@ -32,31 +32,30 @@ export default function Menu({ items }: MenuProps) {
 	const { isDesktop, isMobile } = useDevice()
 
 	const onSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
+		// e.preventDefault()
 
-		const segment = i18nPaths['search'][locale];
-		const path = `/${locale === defaultLocale ? segment : `${locale}/${segment}`}`
-		router.push(path, undefined, { shallow: true, scroll: true })
-		setSearchFocus(false)
-
+		// const segment = i18nPaths['search'][locale];
+		// const path = `/${locale === defaultLocale ? segment : `${locale}/${segment}`}`
+		// router.push(path, undefined, { shallow: true, scroll: true })
+		// setSearchFocus(false)
 	}
 
 	useEffect(() => {
-		const handleRouteChangeStart = (path: string) => {
-			setPath(path)
-			!isDesktop && setShowMenu(false)
-		}
-		router.events.on('routeChangeStart', handleRouteChangeStart)
-		return () => router.events.off('routeChangeStart', handleRouteChangeStart)
+		// const handleRouteChangeStart = (path: string) => {
+		// 	setPath(path)
+		// 	!isDesktop && setShowMenu(false)
+		// }
+		// router.events.on('routeChangeStart', handleRouteChangeStart)
+		// return () => router.events.off('routeChangeStart', handleRouteChangeStart)
 	}, [isDesktop])
 
 	useEffect(() => {
-
-		const footerHeight = document.getElementById('footer').clientHeight - 1
-		const menuOffset = menuRef.current.offsetTop
+		const footer = document.getElementById('footer')
+		if(!footer || !menuRef.current) return
+		const footerHeight = footer.clientHeight - 1
+		const menuOffset = menuRef.current?.offsetTop
 		const footerScrollPosition = (scrolledPosition + viewportHeight) < documentHeight - footerHeight ? 0 : footerHeight - (documentHeight - (scrolledPosition + viewportHeight))
 		const menuPadding = isMobile ? (menuOffset + footerScrollPosition) : footerScrollPosition ? menuOffset + footerScrollPosition : 0
-
 		setMenuPadding(menuPadding)
 		setFooterScrollPosition(footerScrollPosition)
 
@@ -88,7 +87,7 @@ export default function Menu({ items }: MenuProps) {
 
 	}, [path])
 
-	useEffect(() => { setPath(asPath) }, [asPath])
+	useEffect(() => { setPath(pathname) }, [pathname])
 
 	return (
 		<>
@@ -111,8 +110,8 @@ export default function Menu({ items }: MenuProps) {
 								level={0}
 								selected={selected}
 								setSelected={setSelected}
-								path={asPath}
-								locale={router.locale}
+								path={pathname}
+								locale={locale}
 							/>
 							:
 							<li key={idx} className={s.search}>

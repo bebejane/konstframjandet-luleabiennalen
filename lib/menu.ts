@@ -1,8 +1,8 @@
-import { apiQuery } from 'dato-nextjs-utils/api';
-import { MenuDocument } from "/graphql";
-import i18nPaths from '/lib/i18n/paths.json'
-import { allYears } from '/lib/utils';
-import { locales } from '/lib/i18n'
+import { apiQuery } from 'next-dato-utils/api';
+import { MenuDocument } from "@/graphql";
+import i18nPaths from '@/i18n/paths.json'
+import { allYears } from '@/lib/utils';
+import { locales } from '@/i18n/routing'
 
 const base: Menu = [
   { id: 'home', label: 'Hem', slug: '/', general: true },
@@ -19,7 +19,7 @@ const base: Menu = [
 
 export const buildMenu = async (locale: string) => {
 
-  const messages = (await import(`./i18n/${locale}.json`)).default
+  const messages = (await import(`@/i18n/${locale}.json`)).default
   const altLocale = locales.find(l => locale != l)
   const years = await allYears()
   const year = years[0]

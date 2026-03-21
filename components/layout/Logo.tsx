@@ -1,17 +1,25 @@
+'use client'
+
 import s from './Logo.module.scss';
 import cn from 'classnames';
-import LogoIcon from '/public/images/logo.svg';
-import { usePage } from '/lib/context/page';
+import LogoIcon from '@/public/images/logo.svg';
+import { usePage } from '@/lib/context/page';
 import Link from 'next/link';
+import { Icon } from '@/components';
+import { usePathname } from '@/i18n/routing';
 
 export default function Logo() {
-	const {
-		year: {
-			color: { hex },
-			isArchive,
-		},
-		isHome,
-	} = usePage();
+	const isHome = usePathname() === '/'
+	const isArchive = false
+	const hex = '#161616'
+	//return null
+	// const {
+	// 	year: {
+	// 		color: { hex },
+	// 		isArchive,
+	// 	},
+	// 	isHome,
+	// } = usePage();
 
 	return (
 		<div
@@ -19,7 +27,7 @@ export default function Logo() {
 			style={isArchive ? { fill: hex } : undefined}
 		>
 			<Link href={'/'}>
-				<LogoIcon />
+				<Icon src={LogoIcon}  />
 			</Link>
 		</div>
 	);

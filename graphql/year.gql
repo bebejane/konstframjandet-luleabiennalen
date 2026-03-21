@@ -1,5 +1,5 @@
 query AllYears($locale: SiteLocale, $year: String) {
-	years: allYears(
+	allYears(
 		filter: { title: { neq: $year } }
 		locale: $locale
 		first: 100
@@ -12,5 +12,69 @@ query AllYears($locale: SiteLocale, $year: String) {
 query Year($title: String!, $locale: SiteLocale) {
 	year(filter: { title: { eq: $title } }, locale: $locale) {
 		...YearFragment
+	}
+}
+
+fragment YearFragment on YearRecord {
+	id
+	title
+	participantName
+	introExhibitions(markdown: false)
+	slug
+	theme
+	image {
+		...ImageFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	color {
+		hex
+		red
+		green
+		red
+	}
+	backgroundColor {
+		hex
+		red
+		green
+		red
+	}
+	background {
+		...ImageFragment
+	}
+	loadingImage {
+		...ImageThumbnailFragment
+	}
+	fundedBy {
+		id
+		logo {
+			...ImageMediumFragment
+		}
+		url
+	}
+	fullOpacity
+}
+
+fragment YearFragmentLight on YearRecord {
+	id
+	title
+	participantName
+	slug
+	theme
+	image {
+		...ImageThumbnailFragment
+	}
+	color {
+		hex
+		red
+		green
+		red
+	}
+	backgroundColor {
+		hex
+		red
+		green
+		red
 	}
 }

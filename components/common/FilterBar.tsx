@@ -1,8 +1,10 @@
+'use client'
+
 import s from './FilterBar.module.scss';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { sortSwedish } from 'dato-nextjs-utils/utils';
+import { sortSwedish } from 'next-dato-utils/utils';
 
 export type FilterOption = {
 	id: string;

@@ -1,13 +1,15 @@
+'use client'
+
 import s from './Thumbnail.module.scss';
 import cn from 'classnames';
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Image } from 'react-datocms/image';
-import Link from '/components/nav/Link';
-import { usePage } from '/lib/context/page';
-import { randomInt, truncateWords } from '/lib/utils';
+import { usePage } from '@/lib/context/page';
+import { randomInt, truncateWords } from '@/lib/utils';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
-import { useRouter } from 'next/router';
+import { useLocale } from 'next-intl';
+import { Link } from '@/i18n/routing';
 
 export type Props = {
 	image?: FileField;
@@ -20,7 +22,6 @@ export type Props = {
 	meta?: string;
 	metaRight?: string;
 	metaOneLine?: boolean;
-	transformHref?: boolean;
 	zoomOutOnHover?: boolean;
 };
 
@@ -35,20 +36,22 @@ export default function Thumbnail({
 	meta,
 	metaRight,
 	metaOneLine,
-	transformHref = true,
 	zoomOutOnHover = false,
 }: Props) {
 	const strippedIntro = truncateWords(remark().use(strip).processSync(intro).value as string, 500);
-	const {
-		year: { loadingImage, isArchive },
-	} = usePage();
-	const { locale, defaultLocale } = useRouter();
-	const [loadingImageIndex] = useState(loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0);
+	const isArchive = false
+	const loadingImageIndex = 0
+	const loadingImage = null
+	// const {
+	// 	year: { loadingImage, isArchive },
+	// } = usePage();
+	const locale = useLocale();
+	//const [loadingImageIndex] = useState(loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0);
 	const [loaded, setLoaded] = useState(false);
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
 
 	return (
-		<Link href={slug} transformHref={transformHref} className={cn(s.thumbnail, !slug && s.nolink)}>
+		<Link href={slug} className={cn(s.thumbnail, !slug && s.nolink)}>
 			<h3 className={cn(s[`rows-${titleRows}`])}>
 				<span>{titleLength ? truncateWords(title, titleLength) : title}</span>
 			</h3>
@@ -68,7 +71,7 @@ export default function Thumbnail({
 						)}
 						<div className={s.border}></div>
 					</>
-					{loadingImage.length > 0 && !isArchive && !loaded && (
+					{loadingImage?.length > 0 && !isArchive && !loaded && (
 						<Image
 							data={loadingImage[loadingImageIndex].responsiveImage}
 							className={s.loader}

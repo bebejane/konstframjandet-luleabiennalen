@@ -1,5 +1,5 @@
-import Link from './Link'
-import { recordToSlug } from '/lib/utils'
+import { Link } from '@/i18n/routing'
+import { recordToSlug } from '@/lib/utils'
 
 export type Props = {
   link: ExternalLinkRecord | InternalLinkRecord | any
@@ -20,7 +20,7 @@ export default function DatoLink({ link, className, children }: Props) {
     link.__typename === 'ExternalLinkRecord' ?
       <a href={slug}>{children ?? title}</a>
       :
-      <Link href={slug} transformHref={transformHref} className={className}>{children ?? title}</Link>
+      <Link href={slug} className={className}>{children ?? title}</Link>
   )
 
 }

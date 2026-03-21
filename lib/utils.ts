@@ -1,12 +1,9 @@
-import i18nPaths from './i18n/paths.json'
-import { TypedDocumentNode } from "@apollo/client/core";
-import { apiQuery } from "dato-nextjs-utils/api";
-import type { ApiQueryOptions } from "dato-nextjs-utils/api";
-import type { MenuItem } from '/lib/menu';
-import format from "date-fns/format";
-import { sv, enGB as en } from 'date-fns/locale';
+import i18nPaths from '@/i18n/paths.json'
+import { apiQuery } from "next-dato-utils/api";
+import type { MenuItem } from '@/lib/menu';
+import {format} from "date-fns";
 import React from "react";
-import { AllYearsDocument } from '/graphql';
+import { AllYearsDocument } from '@/graphql';
 
 export const isServer = typeof window === 'undefined';
 
@@ -81,7 +78,9 @@ export const recordToSlug = (record: any): string => {
         url = `/partners/${slug}`
         break;
       default:
-        throw Error(`${__typename} is unknown record slug!`)
+        url = '/'
+        break;
+        //throw Error(`${__typename} is unknown record slug!`)
     }
   }
 
@@ -281,9 +280,9 @@ export const translatePath = (href: string, locale: string, defaultLocale: strin
 
 }
 
-export const allYears = async (locale?: string): Promise<YearRecord[]> => {
-  const { years } = await apiQuery(AllYearsDocument, { variables: { locale } })
-  return years;
+export const allYears = async (locale?: SiteLocale): Promise<YearRecord[]> => {
+  const { allYears } = await apiQuery(AllYearsDocument, { variables: { locale } })
+  return allYears as YearRecord[];
 }
 
 export type TruncateOptions = {

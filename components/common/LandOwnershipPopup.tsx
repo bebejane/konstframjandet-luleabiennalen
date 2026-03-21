@@ -1,8 +1,10 @@
+'use client'
+
 import s from "./LandOwnershipPopup.module.scss";
 import cn from "classnames";
-import StructuredContent from "./StructuredContent";
+import Content from "@/components/content/Content";
 import { useEffect, useState } from "react";
-import { Modal } from "/components";
+import { Modal } from "next-dato-utils/components";
 
 export type Props = {
 	data: LandOwnershipQuery["landOwnership"];
@@ -34,11 +36,7 @@ export default function LandOwnershipPopup({ data: { title, text }, data }: Prop
 			<div className={s.container}>
 				<div className={cn(s.box)}>
 					<h1>{title}</h1>
-					<StructuredContent
-						id={data.id}
-						record={data}
-						content={text}
-					/>
+					<Content content={text}/>
 					<button
 						className={s.close}
 						onClick={close}

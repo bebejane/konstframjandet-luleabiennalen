@@ -1,5 +1,7 @@
+'use client'
+
 import { useState, useEffect } from 'react'
-import format from 'date-fns/format'
+import {format} from 'date-fns'
 
 export default function Temperature() {
 

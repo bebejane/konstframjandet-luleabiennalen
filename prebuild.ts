@@ -1,0 +1,11 @@
+import 'dotenv/config';
+import { apiQuery } from 'next-dato-utils/api';
+import { AllYearsDocument } from '@/graphql';
+import fs from 'fs';
+
+(async () => {
+	const { years } = await apiQuery(AllYearsDocument, { apiToken: process.env.GRAPHQL_API_TOKEN });
+	if (!years.length) throw new Error('No years found!');
+	fs.writeFileSync('./years.json', JSON.stringify(years, null, 2));
+	console.log(`generated years.json (${years.length})`);
+})();

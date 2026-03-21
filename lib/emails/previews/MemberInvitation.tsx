@@ -1,4 +1,4 @@
-import MemberInvitation from "/lib/emails/MemberInvitation";
+import MemberInvitation from "@/lib/emails/MemberInvitation";
 
 export function memberInvitation() {
   return (

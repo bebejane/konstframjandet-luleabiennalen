@@ -318,10 +318,10 @@ query StartData(
 	$yearId: ItemId
 	$locale: SiteLocale
 ) {
-	news: allNews(locale: $locale, first: $newsItems, orderBy: _createdAt_DESC) {
+	allNews(locale: $locale, first: $newsItems, orderBy: _createdAt_DESC) {
 		...NewsFragmentLight
 	}
-	programs: allPrograms(
+	allPrograms(
 		filter: { startDate: { gte: $date }, year: { eq: $yearId } }
 		locale: $locale
 		first: $programItems
@@ -329,7 +329,7 @@ query StartData(
 	) {
 		...ProgramFragmentLight
 	}
-	participants: allParticipants(
+	allParticipants(
 		filter: { year: { eq: $yearId } }
 		first: 100
 		orderBy: _createdAt_DESC

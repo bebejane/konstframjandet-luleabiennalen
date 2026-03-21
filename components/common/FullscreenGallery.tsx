@@ -1,17 +1,17 @@
+'use client'
+
 import "swiper/css";
 import s from './FullscreenGallery.module.scss'
 import cn from 'classnames'
-import { DatoMarkdown as Markdown } from "dato-nextjs-utils/components";
+import { Markdown, Modal } from "next-dato-utils/components";
 import { Image } from 'react-datocms'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade } from 'swiper'
+import { EffectFade } from 'swiper/modules'
 import SwiperCore from 'swiper'
 import React, { useState, useRef, useEffect } from 'react';
 import type { Swiper as SwiperType } from 'swiper'
-import { Modal } from "/components";
 
 SwiperCore.use([EffectFade]);
-
 
 export type FullscreenGalleryProps = {
   images: FileField[],
@@ -91,9 +91,7 @@ export default function FullscreenGallery({ images, onClose, index = 0, show }: 
         </div>
         <div className={s.caption}>
           {title &&
-            <Markdown className={cn(s.text, "small")} allowedElements={['em', 'p']}>
-              {title}
-            </Markdown>
+            <Markdown className={cn(s.text, "small")} allowedElements={['em', 'p']} content={title}/>              
           }
         </div>
         <div className={cn(s.close, "mid")} onClick={onClose}>STÄNG</div>
