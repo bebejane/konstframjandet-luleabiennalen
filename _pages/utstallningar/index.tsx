@@ -1,13 +1,13 @@
 import s from './page.module.scss';
 import withGlobalProps from '@/lib/withGlobalProps';
-import { AllExhibitionsDocument, ContactDocument, LandOwnershipDocument } from '/graphql';
+import { AllExhibitionsDocument, ContactDocument, LandOwnershipDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail } from '@/components';
 import { formatDate } from '@/lib/utils';
-import { useRouter } from 'next/router';
-import { DatoSEO } from 'next-dato-utils/components';
+
+
 import { useTranslations } from 'next-intl';
-import { pageSlugs } from '@/lib/i18n';
-import { DatoMarkdown } from 'next-dato-utils/components';
+
+import { Markdown } from 'next-dato-utils/components';
 import { usePage } from '@/lib/context/page';
 import { apiQuery } from 'next-dato-utils/api';
 
@@ -23,7 +23,7 @@ export default function Exhibition({ exhibitions }: Props) {
 	return (
 		<>
 			<DatoSEO title={t('Menu.exhibitions')} />
-			<DatoMarkdown className={s.intro}>{year.introExhibitions}</DatoMarkdown>
+			<Markdown className={s.intro}>{year.introExhibitions}</Markdown>
 			<CardContainer key={asPath} columns={2}>
 				{exhibitions.map(({ id, image, imageEn, title, startDate, endDate, intro, slug }) => (
 					<Card key={id}>

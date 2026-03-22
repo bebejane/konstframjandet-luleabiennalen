@@ -8,7 +8,6 @@ export default async function YearLayout({ children, params }: LayoutProps<'/[lo
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
-
 	return (<>{children}</>);
 }
 

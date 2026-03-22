@@ -4,7 +4,7 @@ query AllLocations(
 	$locale: SiteLocale
 	$yearId: ItemId
 ) {
-	locations: allLocations(
+	allLocations(
 		filter: { year: { eq: $yearId } }
 		first: $first
 		skip: $skip
@@ -14,7 +14,7 @@ query AllLocations(
 		...LocationFragmentLight
 	}
 
-	pagination: _allLocationsMeta(locale: $locale) {
+	_allLocationsMeta(locale: $locale, filter: { year: { eq: $yearId } }) {
 		count
 	}
 }

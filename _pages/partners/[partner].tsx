@@ -1,11 +1,11 @@
 import withGlobalProps from '@/lib/withGlobalProps';
 import { apiQuery } from 'next-dato-utils/api';
-import { apiQueryAll } from '@/lib/utils';
-import { PartnerDocument, AllPartnersDocument } from '/graphql';
+Markdown
+import { PartnerDocument, AllPartnersDocument } from '@/graphql';
 import { Article, Related, BackButton, MetaSection } from '@/components';
 import { useTranslations } from 'next-intl';
-import { DatoSEO } from 'next-dato-utils/components';
-import { pageSlugs } from '@/lib/i18n';
+
+
 
 export type Props = {
 	partner: PartnerRecord;
@@ -59,7 +59,7 @@ export const getStaticProps = withGlobalProps(
 	async ({ props, revalidate, context }: any) => {
 		const slug = context.params.partner;
 		const { partner } = await apiQuery(PartnerDocument, {
-			variables: { slug, locale: context.locale },
+			variables: { slug, locale },
 			preview: context.preview,
 		});
 

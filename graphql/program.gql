@@ -1,13 +1,14 @@
-query AllPrograms($locale: SiteLocale, $yearId: ItemId) {
-	programs: allPrograms(
+query AllPrograms($locale: SiteLocale, $yearId: ItemId, $first: IntType = 100, $skip: IntType = 0) {
+	allPrograms(
 		filter: { year: { eq: $yearId } }
 		locale: $locale
 		orderBy: [startDate_ASC, startTime_ASC]
-		first: 100
+		first: $first
+		skip: $skip
 	) {
 		...ProgramFragmentLight
 	}
-	pagination: _allProgramsMeta(locale: $locale) {
+	_allProgramsMeta(locale: $locale) {
 		count
 	}
 }

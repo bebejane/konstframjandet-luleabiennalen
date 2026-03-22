@@ -1,13 +1,13 @@
 import s from './page.module.scss';
 import cn from 'classnames';
 import withGlobalProps from '@/lib/withGlobalProps';
-import { AllLocationsDocument, AllPartnersDocument } from '/graphql';
+import { AllLocationsDocument, AllPartnersDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail } from '@/components';
-import { useRouter } from 'next/router';
-import { DatoSEO } from 'next-dato-utils/components';
+
+
 import { useTranslations } from 'next-intl';
 import { Image } from 'react-datocms';
-import { pageSlugs } from '@/lib/i18n';
+
 import { usePage } from '@/lib/context/page';
 
 export type Props = {

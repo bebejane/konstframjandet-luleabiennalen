@@ -19,8 +19,7 @@ export default function CardContainer({ children, columns = 3, className, hideLa
 
   const buildCards = () => {
     return chunkArray((Array.isArray(children) ? children : [children]).map(el => React.cloneElement(el as ReactElement, {  
-      //@ts-ignore
-      hideLastOnDesktop 
+      //hideLastOnDesktop
     })), !isDesktop ? 2 : columns) as [React.ReactNode[]]
   }
 

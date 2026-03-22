@@ -1,11 +1,11 @@
 import withGlobalProps from '@/lib/withGlobalProps';
 import { apiQuery } from 'next-dato-utils/api';
-import { apiQueryAll } from '@/lib/utils';
-import { NewsDocument, AllNewsDocument } from '/graphql';
+Markdown
+import { NewsDocument, AllNewsDocument } from '@/graphql';
 import { Article, BackButton } from '@/components';
 import { useTranslations } from 'next-intl';
-import { DatoSEO } from 'next-dato-utils/components';
-import { pageSlugs } from '@/lib/i18n';
+
+
 
 export type Props = {
 	news: NewsRecord;
@@ -50,7 +50,7 @@ export const getStaticProps = withGlobalProps(
 	async ({ props, revalidate, context }: any) => {
 		const slug = context.params.news;
 		const { news } = await apiQuery(NewsDocument, {
-			variables: { slug, locale: context.locale },
+			variables: { slug, locale },
 			preview: context.preview,
 		});
 

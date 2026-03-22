@@ -1,10 +1,10 @@
 import withGlobalProps from '@/lib/withGlobalProps';
 import { apiQuery } from 'next-dato-utils/api';
-import { apiQueryAll } from '@/lib/utils';
-import { AboutDocument, AllAboutsDocument } from '/graphql';
+Markdown
+import { AboutDocument, AllAboutsDocument } from '@/graphql';
 import { Article, ArchiveShortcuts } from '@/components';
-import { DatoSEO } from 'next-dato-utils/components';
-import { pageSlugs } from '@/lib/i18n';
+
+
 
 export type Props = {
 	about: AboutRecord;
@@ -38,7 +38,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 	const slug = context.params.about;
 	const { about } = await apiQuery(AboutDocument, {
-		variables: { slug, locale: context.locale },
+		variables: { slug, locale },
 		preview: context.preview,
 	});
 

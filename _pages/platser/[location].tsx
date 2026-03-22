@@ -1,12 +1,12 @@
 import withGlobalProps from '@/lib/withGlobalProps';
 import { apiQuery } from 'next-dato-utils/api';
 import { apiQueryAll, translatePath } from '@/lib/utils';
-import { LocationDocument, AllLocationsDocument } from '/graphql';
+import { LocationDocument, AllLocationsDocument } from '@/graphql';
 import { Article, Related, BackButton, MetaSection } from '@/components';
 import { useTranslations } from 'next-intl';
-import { DatoSEO } from 'next-dato-utils/components';
-import { pageSlugs } from '@/lib/i18n';
-import { useRouter } from 'next/router';
+
+
+
 import { usePage } from '@/lib/context/page';
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
@@ -84,7 +84,7 @@ export const getStaticProps = withGlobalProps(
 	async ({ props, revalidate, context }: any) => {
 		const slug = context.params.location;
 		const { location } = await apiQuery(LocationDocument, {
-			variables: { slug, locale: context.locale },
+			variables: { slug, locale },
 			preview: context.preview,
 		});
 

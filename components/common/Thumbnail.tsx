@@ -12,15 +12,15 @@ import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 
 export type Props = {
-	image?: FileField;
-	imageEn?: FileField;
+	image?: FileField | null;
+	imageEn?: FileField | null;
 	slug?: string;
-	title?: string;
+	title?: string | null;
 	titleLength?: number;
 	titleRows?: number;
-	intro?: string;
+	intro?: string | null;
 	meta?: string;
-	metaRight?: string;
+	metaRight?: string | null;
 	metaOneLine?: boolean;
 	zoomOutOnHover?: boolean;
 };
@@ -71,7 +71,7 @@ export default function Thumbnail({
 						)}
 						<div className={s.border}></div>
 					</>
-					{loadingImage?.length > 0 && !isArchive && !loaded && (
+					{loadingImage && loadingImage?.length > 0 && !isArchive && !loaded && (
 						<Image
 							data={loadingImage[loadingImageIndex].responsiveImage}
 							className={s.loader}

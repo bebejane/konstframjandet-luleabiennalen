@@ -1,13 +1,13 @@
 import s from './page.module.scss';
 import withGlobalProps from '@/lib/withGlobalProps';
-import { AllProgramsDocument, AllProgramCategoriesDocument } from '/graphql';
+import { AllProgramsDocument, AllProgramCategoriesDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail, FilterBar } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { DatoSEO } from 'next-dato-utils/components';
+
+
 import { useTranslations } from 'next-intl';
-import { pageSlugs } from '@/lib/i18n';
+
 import { usePage } from '@/lib/context/page';
 import { isAfter } from 'date-fns';
 

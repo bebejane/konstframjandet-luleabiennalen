@@ -1,0 +1,60 @@
+import s from './page.module.scss';
+import { AllYearsDocument, GeneralDocument } from '@/graphql';
+import { CardContainer, Card, Thumbnail } from '@/components';
+import { Markdown as Markdown } from 'next-dato-utils/components';
+import { apiQuery } from 'next-dato-utils/api';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { locales } from '@/i18n/routing';
+import { notFound } from 'next/navigation';
+
+export type Props = {
+	years: YearRecord[];
+	general: GeneralRecord;
+};
+
+export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) {
+	const { locale } = await params;
+	if (!locales.includes(locale as any)) return notFound();
+	setRequestLocale(locale);
+
+	const { allYears } = await apiQuery(AllYearsDocument, { variables: { locale: locale as SiteLocale } });
+	const { general } = await apiQuery(GeneralDocument, { variables: { locale: locale as SiteLocale } });
+	const t = await getTranslations('Menu');
+	
+	return (
+		<>
+			{/* <DatoSEO title={t('archive')} /> */}
+			<Markdown className={s.intro} content={general?.archiveIntro}/>
+			<CardContainer  columns={2}>
+				{allYears.map(({ id, title, slug, theme, image, imageEn }) => (
+					<Card key={id}>
+						<Thumbnail
+							title={`LB° ${title}`}
+							image={image as FileField}
+							imageEn={imageEn as FileField}
+							intro={theme}
+							slug={`/${title}`}
+						/>
+					</Card>
+				))}
+			</CardContainer>
+		</>
+	);
+}
+
+// export const getStaticProps = withGlobalProps(
+// 	{ queries: [AllYearsDocument] },
+// 	async ({ props, revalidate }: any) => {
+// 		return {
+// 			props: {
+// 				...props,
+// 				years: props.years.slice(1),
+// 				page: {
+// 					section: 'archive',
+// 					slugs: pageSlugs('archive'),
+// 				} as PageProps,
+// 			},
+// 			revalidate,
+// 		};
+// 	}
+// );

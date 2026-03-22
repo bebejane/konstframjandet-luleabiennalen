@@ -30,7 +30,7 @@ export default function Program({ contact: { id, title, image, intro, content, _
 }
 
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
-  const { contact } = await apiQuery(ContactDocument, { variables: { locale: context.locale } })
+  const { contact } = await apiQuery(ContactDocument, { variables: { locale } })
 
   return {
     props: {

@@ -1,22 +1,3 @@
-type SiteLocale = 'en' | 'sv'
-
-type PageSlug = {
-  locale: SiteLocale
-  value: string
-  parent: string
-
-}
-
-type PageProps = {
-  year: YearExtendedRecord
-  title?: string
-  isHome: boolean
-  slugs?: PageSlugs[]
-  section: SectionId
-  parent?: boolean
-  overview?: string
-}
-
 type YearExtendedRecord = YearRecord & {
   isArchive: boolean
 }

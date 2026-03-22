@@ -1,13 +1,13 @@
 import withGlobalProps from '@/lib/withGlobalProps';
 import { apiQuery } from 'next-dato-utils/api';
-import { apiQueryAll } from '@/lib/utils';
-import { ExhibitionDocument, AllExhibitionsDocument } from '/graphql';
+Markdown
+import { ExhibitionDocument, AllExhibitionsDocument } from '@/graphql';
 import { Article, Related, BackButton, MetaSection } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
-import { DatoSEO } from 'next-dato-utils/components';
-import { pageSlugs } from '@/lib/i18n';
-import { useRouter } from 'next/router';
+
+
+
 
 export type Props = {
 	exhibition: ExhibitionRecord;
@@ -82,7 +82,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 	const slug = context.params.exhibition;
 	const { exhibition } = await apiQuery(ExhibitionDocument, {
-		variables: { slug, locale: context.locale },
+		variables: { slug, locale },
 		preview: context.preview,
 	});
 

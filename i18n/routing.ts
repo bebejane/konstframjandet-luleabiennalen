@@ -11,13 +11,94 @@ export const routing = defineRouting({
 	localeDetection: false,
 	pathnames: {
 		'/': {
-			sv: '/',
+			en: '/',
 		},
-		'/posts/[post]': {
-			sv: '/poster/[post]',
+		'/arkiv': {
+			en: '/archive',
 		},
-		'/api/draft': {
-			sv: '/api/utkast',
+		'/kontakt': {
+			en: '/contact',
+		},
+		'/medverkande': {
+			en: '/participants',
+		},
+		'/medverkande/[participant]': {
+			en: '/participants/[participant]',
+		},
+		'/nyheter': {
+			en: '/news',
+		},
+		'/nyheter/[news]': {
+			en: '/news/[news]',
+		},
+		'/om': {
+			en: '/about',
+		},
+		'/om/[about]': {
+			en: '/about/[about]',
+		},
+		'/partners': {
+			en: '/partners',
+		},
+		'/partners/[partner]': {
+			en: '/partners/[partner]',
+		},
+		'/platser': {
+			en: '/locations',
+		},
+		'/platser/[location]': {
+			en: '/locations/[location]',
+		},
+		'/program': {
+			en: '/program',
+		},
+		'/program/[program]': {
+			en: '/program/[program]',
+		},
+		'/sok': {
+			en: '/search',
+		},
+		'/utstallningar': {
+			en: '/exhibitions',
+		},
+		'/utstallningar/[exhibition]': {
+			en: '/exhibitions/[exhibition]',
+		},
+		'/[year]': {
+			en: '/[year]',
+		},
+		'/[year]/medverkande': {
+			en: '/[year]/participants',
+		},
+		'/[year]/medverkande/[participant]': {
+			en: '/[year]/participants/[participant]',
+		},
+		'/[year]/om': {
+			en: '/[year]/about',
+		},
+		'/[year]/om/[about]': {
+			en: '/[year]/about/[about]',
+		},
+		'/[year]/partners': {
+			en: '/[year]/partners',
+		},
+		'/[year]/partners/[partner]': {
+			en: '/[year]/partners/[partner]',
+		},
+		'/[year]/platser/[location]': {
+			en: '/[year]/locations/[location]',
+		},
+		'/[year]/program': {
+			en: '/[year]/program',
+		},
+		'/[year]/program/[program]': {
+			en: '/[year]/program/[program]',
+		},
+		'/[year]/utstallningar': {
+			en: '/[year]/exhibitions',
+		},
+		'/[year]/utstallningar/[exhibition]': {
+			en: '/[year]/exhibitions/[exhibition]',
 		},
 	},
 });

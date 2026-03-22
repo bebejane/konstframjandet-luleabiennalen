@@ -1,11 +1,11 @@
 import s from './page.module.scss';
 import withGlobalProps from '@/lib/withGlobalProps';
-import { AllParticipantsDocument } from '/graphql';
+import { AllParticipantsDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail } from '@/components';
-import { useRouter } from 'next/router';
+
 import { useTranslations } from 'next-intl';
-import { DatoSEO } from 'next-dato-utils/components';
-import { pageSlugs } from '@/lib/i18n';
+
+
 export type Props = {
 	participants: (ParticipantRecord & ThumbnailImage)[];
 };

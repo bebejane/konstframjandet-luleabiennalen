@@ -1,8 +1,8 @@
-query AllExhibitions($locale: SiteLocale, $yearId: ItemId) {
-	exhibitions: allExhibitions(filter: { year: { eq: $yearId } }, locale: $locale, first: 100) {
+query AllExhibitions($locale: SiteLocale, $yearId: ItemId, $first: IntType = 100, $skip: IntType = 0) {
+	allExhibitions(filter: { year: { eq: $yearId } }, locale: $locale, first: $first, skip: $skip) {
 		...ExhibitionFragmentLight
 	}
-	pagination: _allExhibitionsMeta(locale: $locale) {
+	_allExhibitionsMeta(locale: $locale) {
 		count
 	}
 }
@@ -20,6 +20,7 @@ fragment ExhibitionFragment on ExhibitionRecord {
 	title
 	startDate
 	endDate
+	time
 	image {
 		...ImageFragment
 	}
@@ -163,6 +164,7 @@ fragment ExhibitionFragmentLight on ExhibitionRecord {
 	title
 	startDate
 	endDate
+	time
 	image {
 		...ImageThumbnailFragment
 	}

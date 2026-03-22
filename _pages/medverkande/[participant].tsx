@@ -1,11 +1,11 @@
 import withGlobalProps from '@/lib/withGlobalProps';
 import { apiQuery } from 'next-dato-utils/api';
-import { apiQueryAll } from '@/lib/utils';
-import { ParticipantDocument, AllParticipantsDocument } from '/graphql';
+Markdown
+import { ParticipantDocument, AllParticipantsDocument } from '@/graphql';
 import { Article, Related, BackButton } from '@/components';
 import { useTranslations } from 'next-intl';
-import { DatoSEO } from 'next-dato-utils/components';
-import { pageSlugs } from '@/lib/i18n';
+
+
 
 export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];
@@ -55,7 +55,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 	const slug = context.params.participant;
 	const { participant } = await apiQuery(ParticipantDocument, {
-		variables: { slug, locale: context.locale },
+		variables: { slug, locale },
 		preview: context.preview,
 	});
 

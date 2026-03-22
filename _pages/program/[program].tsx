@@ -1,14 +1,14 @@
 import withGlobalProps from '@/lib/withGlobalProps';
 import { apiQuery } from 'next-dato-utils/api';
-import { apiQueryAll } from '@/lib/utils';
-import { ProgramDocument, AllProgramsDocument } from '/graphql';
+Markdown
+import { ProgramDocument, AllProgramsDocument } from '@/graphql';
 import { Article, Related, BackButton } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
-import { DatoSEO } from 'next-dato-utils/components';
-import { pageSlugs } from '@/lib/i18n';
-import { useRouter } from 'next/router';
-import Link from '@/components/nav/Link';
+
+
+
+import Link from '@/i18n/routing';
 
 export type Props = {
 	program: ProgramRecord;
@@ -98,7 +98,7 @@ export async function getStaticPaths() {
 export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 	const slug = context.params.program;
 	const { program } = await apiQuery(ProgramDocument, {
-		variables: { slug, locale: context.locale },
+		variables: { slug, locale },
 		preview: context.preview,
 	});
 

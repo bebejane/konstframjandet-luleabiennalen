@@ -1,11 +1,11 @@
 import s from './page.module.scss';
 import withGlobalProps from '@/lib/withGlobalProps';
-import { AllYearsDocument } from '/graphql';
+import { AllYearsDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail } from '@/components';
-import { useRouter } from 'next/router';
+
 import { useTranslations } from 'next-intl';
-import { DatoSEO, DatoMarkdown as Markdown } from 'next-dato-utils/components';
-import { pageSlugs } from '@/lib/i18n';
+import { DatoSEO, Markdown as Markdown } from 'next-dato-utils/components';
+
 import { PROJECT_ABBR } from '@/lib/constant';
 
 export type Props = {

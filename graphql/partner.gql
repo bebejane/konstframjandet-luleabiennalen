@@ -1,13 +1,13 @@
 query AllPartners($locale: SiteLocale, $yearId: ItemId) {
-	partners: allPartners(
+	allPartners(
 		filter: { year: { eq: $yearId } }
 		locale: $locale
-		first: 100
+		first: 500
 		orderBy: title_ASC
 	) {
 		...PartnerFragmentLight
 	}
-	pagination: _allPartnersMeta(locale: $locale) {
+	_allPartnersMeta(locale: $locale) {
 		count
 	}
 	financiers: year(filter: { id: { eq: $yearId } }, locale: $locale) {

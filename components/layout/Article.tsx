@@ -18,15 +18,13 @@ import { usePathname } from '@/i18n/routing';
 export type ArticleProps = {
 	id: string;
 	children?: React.ReactNode | React.ReactNode[] | undefined;
-	title?: string;
-	subtitle?: string;
-	intro?: string;
-	image?: FileField;
-	imageEn?: FileField;
+	title?: string | null;
+	subtitle?: string | null;
+	intro?: string | null;
+	image?: FileField | null;
+	imageEn?: FileField | null;
 	imageSize?: 'small' | 'medium' | 'large';
 	content?: any;
-	onClick?: (id: string) => void;
-	record?: any;
 	date?: string;
 	meta?: MetaSectionProps['items'];
 };
@@ -63,11 +61,11 @@ export default function Article({
 
 	useEffect(() => {
 		const images = [image];
-		content?.blocks.forEach((el) => {
+		content?.blocks.forEach((el: any) => {
 			el.__typename === 'ImageRecord' && images.push(el.image);
 			el.__typename === 'ImageGalleryRecord' && images.push.apply(images, el.images);
 		});
-		setImages(images.filter((el) => el));
+		setImages(images.filter((el) => el) as FileField[]);
 	}, []);
 
 	useEffect(() => {

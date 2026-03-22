@@ -1,7 +1,7 @@
 import type { NextRequest, NextResponse } from 'next/server'
 import { apiQuery } from 'next-dato-utils/api';
 import { buildClient } from '@datocms/cma-client';
-import { SiteSearchDocument } from '/graphql';
+import { SiteSearchDocument } from '@/graphql';
 import { truncateParagraph, truncateWords, isEmptyObject, recordToSlug } from '@/lib/utils';
 
 export const config = {
