@@ -2,7 +2,7 @@ import { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 import path from 'path';
 
-const withNextIntl = createNextIntlPlugin()
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
 	sassOptions: {
@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
     	@use "@/styles/mediaqueries" as *;
   	`,
 	},
+	typedRoutes: true,
 	typescript: {
 		ignoreBuildErrors: true,
 	},

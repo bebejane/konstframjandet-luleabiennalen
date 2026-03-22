@@ -10,7 +10,6 @@ import { Hamburger, Language, Temperature } from '@/components';
 import useStore, { useShallow } from '@/lib/store';
 import { useScrollInfo } from 'next-dato-utils/hooks';
 import { useWindowSize } from 'usehooks-ts';
-import i18nPaths from '@/i18n/paths.json';
 import useDevice from '@/lib/hooks/useDevice';
 import { usePathname } from 'next/navigation';
 

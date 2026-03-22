@@ -1,5 +1,5 @@
 import { apiQuery } from 'next-dato-utils/api';
-import { MenuDocument } from '@/graphql';
+import { AllYearsDocument, MenuDocument } from '@/graphql';
 import i18nPaths from '@/i18n/paths.json';
 import { allYears } from '@/lib/utils';
 import { locales } from '@/i18n/routing';
@@ -33,8 +33,8 @@ const base: Menu = [
 export const buildMenu = async (locale: SiteLocale) => {
 	const messages = (await import(`@/i18n/${locale}.json`)).default;
 	const altLocale = locales.find((l) => locale != l) as SiteLocale;
-	const years = await allYears();
-	const year = years[0];
+	const { allYears } = await apiQuery(AllYearsDocument, { variables: { locale } });
+	const year = allYears[0];
 	const res = await apiQuery(MenuDocument, {
 		variables: {
 			yearId: year.id,
@@ -43,7 +43,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 		},
 	});
 	const archive = await Promise.all(
-		years
+		allYears
 			.filter(({ id }) => id !== year.id)
 			.map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale, altLocale } })),
 	);
