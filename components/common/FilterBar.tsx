@@ -1,59 +1,59 @@
-'use client'
-
+import { AppPathnames, Link } from '@/i18n/routing';
 import s from './FilterBar.module.scss';
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
 import { sortSwedish } from 'next-dato-utils/utils';
+import { getTranslations } from 'next-intl/server';
 
 export type FilterOption = {
-	id: string;
-	label: string;
-	description?: string;
+	title?: string | null;
+	description?: string | null;
 };
 
 export type Props = {
 	options: FilterOption[];
-	multi?: boolean;
 	category: string;
-	onChange: (value: string[] | string) => void;
+	pathname: any;
+	name: string;
+	value: string;
+	params: any;
 };
 
-export default function FilterBar({ options = [], onChange, multi = false, category }: Props) {
-	const t = useTranslations('FilterBar');
-	const [selected, setSelected] = useState<FilterOption[]>([]);
-
-	useEffect(() => {
-		onChange(multi ? selected.map(({ id }) => id) : selected[0]?.id);
-	}, [selected]);
+export default async function FilterBar({
+	options = [],
+	category,
+	pathname,
+	name,
+	value,
+	params,
+}: Props) {
+	const t = await getTranslations('FilterBar');
 
 	return (
 		<nav className={s.filter}>
 			<ul>
-				<li onClick={() => setSelected([])} className={cn(!selected?.length && s.selected)}>
-					{t('all')}&nbsp; {category}
-				</li>
-				{sortSwedish(options, 'label').map((opt, idx) => (
-					<li
-						key={idx}
-						className={cn(selected?.find(({ id }) => id === opt.id) && s.selected)}
-						onClick={() =>
-							setSelected(
-								selected.find(({ id }) => id === opt.id)
-									? selected.filter(({ id }) => id !== opt.id)
-									: multi
-									? [...selected, opt]
-									: [opt]
-							)
-						}
+				<li className={cn(!value && s.selected)}>
+					<Link
+						href={{
+							pathname,
+							query: { ...params, [name]: null },
+						}}
 					>
-						{opt.label}
+						{t('all')}&nbsp; {category}
+					</Link>
+				</li>
+				{sortSwedish(options, 'label').map(({ title, description }, idx) => (
+					<li key={idx} className={cn(value === title && s.selected)}>
+						<Link
+							href={{
+								pathname,
+								query: { ...params, [name]: title },
+							}}
+						>
+							{title}
+						</Link>
 					</li>
 				))}
 			</ul>
-			{!multi && selected && selected[0]?.description && (
-				<div className={s.description}>{selected[0]?.description}</div>
-			)}
 		</nav>
 	);
 }

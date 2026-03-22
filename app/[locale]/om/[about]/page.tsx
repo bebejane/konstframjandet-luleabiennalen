@@ -24,7 +24,6 @@ export type Props = {
 
 export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/om/[about]'>) {
 	const { locale, about: slug, year: _year } = await params;
-	console.log({ _year });
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
@@ -59,13 +58,11 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/
 		{ variables: { first: 1, locale: locale as SiteLocale, yearId: year.id } },
 	);
 	const { id, image, imageEn, title, intro, content, _seoMetaTags } = about;
-	const shortcuts = [
-		allExhibitions[0],
-		allPrograms[0],
-		allParticipants[0],
-		allPartners[0],
-		allAbouts[0],
-	].filter((el) => el && _year);
+	const shortcuts = _year
+		? [allExhibitions[0], allPrograms[0], allParticipants[0], allPartners[0], allAbouts[0]].filter(
+				(el) => el,
+			)
+		: [];
 
 	return (
 		<>
@@ -79,7 +76,7 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/
 				intro={intro}
 				content={content}
 			/>
-			{shortcuts?.length && <ArchiveShortcuts items={shortcuts} />}
+			{shortcuts.length > 0 && <ArchiveShortcuts items={shortcuts} />}
 		</>
 	);
 }

@@ -1,61 +1,62 @@
 .filter {
-  position: relative;
-  width: 100%;
-  text-align: center;
-  margin-top: -0.5 rem;
-  margin-bottom: var(--small-space);
+	position: relative;
+	width: 100%;
+	text-align: center;
+	margin-top: 3rem;
+	//margin-top: -0.5rem;
+	margin-bottom: var(--small-space);
 
-  &:first-of-type {
-    margin-bottom: 0;
-  }
+	&:first-of-type {
+		margin-bottom: 0;
+	}
 
-  @include mq($until: desktop) {
-    overflow: hidden;
-  }
+	@include mq($until: desktop) {
+		overflow: hidden;
+	}
 
-  > ul {
-    list-style: none;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding-bottom: 1em;
+	> ul {
+		list-style: none;
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		padding-bottom: 1em;
 
-    @include mq($until: tablet) {
-      scrollbar-width: 0px;
-      overflow-x: scroll;
+		@include mq($until: tablet) {
+			scrollbar-width: 0px;
+			overflow-x: scroll;
 
-      &::-webkit-scrollbar {
-        height: 0px;
-      }
+			&::-webkit-scrollbar {
+				height: 0px;
+			}
 
-      &::-webkit-scrollbar-thumb,
-      &::-webkit-scrollbar-track {
-        background: transparent;
-      }
+			&::-webkit-scrollbar-thumb,
+			&::-webkit-scrollbar-track {
+				background: transparent;
+			}
 
-      margin-right: calc(-1 * var(--outer-margin));
-    }
+			margin-right: calc(-1 * var(--outer-margin));
+		}
 
-    li {
-      padding-right: 1em;
-      cursor: pointer;
+		li {
+			padding-right: 1em;
+			cursor: pointer;
 
-      &.selected {
-        font-weight: bold;
-      }
-    }
-  }
+			&.selected {
+				font-weight: bold;
+			}
+		}
+	}
 
-  .description {
-    font-family: var(--body-font);
-    font-size: 1rem;
-    line-height: var(--line-height);
-    padding-bottom: 1rem;
-  }
+	.description {
+		font-family: var(--body-font);
+		font-size: 1rem;
+		line-height: var(--line-height);
+		padding-bottom: 1rem;
+	}
 
-  &.multi-row {
-    li {
-      padding-bottom: 1em;
-    }
-  }
+	&.multi-row {
+		li {
+			padding-bottom: 1em;
+		}
+	}
 }

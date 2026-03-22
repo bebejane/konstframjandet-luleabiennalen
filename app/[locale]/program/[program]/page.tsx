@@ -95,20 +95,3 @@ export async function generateStaticParams({ params }: PageProps<'/[locale]/prog
 	});
 	return allPrograms.map((program) => ({ program: program.slug }));
 }
-
-// 	if (!program) return { notFound: true, revalidate };
-
-// 	return {
-// 		props: {
-// 			...props,
-// 			program,
-// 			page: {
-// 				section: 'program',
-// 				parent: true,
-// 				title: program.title,
-// 				slugs: pageSlugs('program', props.year.title, program._allSlugLocales),
-// 			} as PageProps,
-// 		},
-// 		revalidate,
-// 	};
-// });

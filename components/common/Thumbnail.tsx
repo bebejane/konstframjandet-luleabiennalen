@@ -2,13 +2,13 @@
 
 import s from './Thumbnail.module.scss';
 import cn from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Image } from 'react-datocms/image';
 import { useYear } from '@/lib/context/year';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 import { useLocale } from 'next-intl';
-import { Link } from '@/i18n/routing';
+import { defaultLocale, Link } from '@/i18n/routing';
 import { rInt, truncateWords } from 'next-dato-utils/utils';
 
 export type Props = {
@@ -38,13 +38,22 @@ export default function Thumbnail({
 	metaOneLine,
 	zoomOutOnHover = false,
 }: Props) {
-	const strippedIntro = truncateWords(remark().use(strip).processSync(intro).value as string, 500);
-	const loadingImage = null;
-	const { year, isArchive } = useYear();
+	const strippedIntro = truncateWords(
+		remark()
+			.use(strip)
+			.processSync(intro ?? '').value as string,
+		500,
+	);
 	const locale = useLocale();
-	const [loadingImageIndex] = useState(loadingImage?.length ? rInt(0, loadingImage.length - 1) : 0);
+	const { year, isArchive } = useYear();
+	const loadingImages = year?.loadingImage;
+	const [loadingImageIndex, setLoadingImageIndex] = useState(0);
 	const [loaded, setLoaded] = useState(false);
-	const image = locale === 'en' && imageEn ? imageEn : imageSv;
+	const image = locale !== defaultLocale && imageEn ? imageEn : imageSv;
+
+	useEffect(() => {
+		setLoadingImageIndex(loadingImages?.length ? rInt(0, loadingImages.length - 1) : 0);
+	}, [loadingImages]);
 
 	if (!slug) return null;
 
@@ -64,6 +73,7 @@ export default function Thumbnail({
 								data={image.responsiveImage}
 								className={cn(s.image)}
 								pictureClassName={s.picture}
+								usePlaceholder={false}
 								style={!isArchive ? { opacity: loaded ? 1 : 0.000001 } : {}}
 								onLoad={() => setLoaded(true)}
 							/>
@@ -72,14 +82,20 @@ export default function Thumbnail({
 						)}
 						<div className={s.border}></div>
 					</>
-					{loadingImage && loadingImage?.length > 0 && !isArchive && !loaded && (
-						<Image
-							data={loadingImage[loadingImageIndex].responsiveImage}
-							className={s.loader}
-							pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
-							objectFit={'contain'}
-						/>
-					)}
+					{loadingImages &&
+						loadingImages?.length > 0 &&
+						!isArchive &&
+						!loaded &&
+						loadingImages[loadingImageIndex].responsiveImage && (
+							<Image
+								data={loadingImages[loadingImageIndex].responsiveImage}
+								className={s.loader}
+								usePlaceholder={false}
+								fadeInDuration={0}
+								imgClassName={cn(s.picture, s.loader, loaded && s.hide)}
+								objectFit={'contain'}
+							/>
+						)}
 				</div>
 			)}
 			{strippedIntro && (
