@@ -1,7 +1,6 @@
 import '@/styles/index.scss';
 import 'swiper/css';
 import s from './layout.module.scss';
-import cn from 'classnames';
 import { apiQuery } from 'next-dato-utils/api';
 import { GeneralDocument, SiteDocument } from '@/graphql';
 import { Metadata } from 'next';
@@ -9,11 +8,10 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { NextIntlClientProvider } from 'next-intl';
 import { getPathname, locales } from '@/i18n/routing';
 import { DraftModeContentLink } from 'next-dato-utils/components';
-import { Footer, Language, Menu } from '@/components';
+import { Footer, FullscreenGallery, Language, Menu, PageBackground } from '@/components';
 import { buildMenu } from '@/lib/menu';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import PageBackground from '@/components/common/PageBackground';
 
 export default async function RootLayout({ children, params }: LayoutProps<'/[locale]'>) {
 	const { locale } = await params;
@@ -29,41 +27,16 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 		<html lang='en-US'>
 			<body id='root' className='root'>
 				<NextIntlClientProvider>
-					{/* <PageProvider value={{ ...page, year: pageProps.year, isHome }}> */}
-
-					{/* {showBackground && backgroundImage?.responsiveImage && (
-						<div className={s.background}>
-							<Image
-								data={backgroundImage.responsiveImage}
-								className={s.image}
-								style={year.fullOpacity ? { opacity: 1 } : undefined}
-							/>
-						</div>
-					)} */}
+					<PageBackground />
 					<div className={s.layout}>
-						<main
-							id='content'
-							//className={cn(s.content, !showMenu && s.full)}
-							className={cn(s.content, s.full)}
-						>
-							<article>
-								{/* <SectionHeader menu={menu} /> */}
-								{children}
-							</article>
+						<main id='content' className={s.content} data-full={true}>
+							<article>{children}</article>
 						</main>
 					</div>
 					<Menu items={menu} />
 					<Language menu={menu} />
 					<Footer footer={general} />
-					<PageBackground />
-					{/* <FullscreenGallery
-					index={images?.findIndex((image) => image?.id === imageId)}
-					images={images}
-					show={imageId !== undefined}
-					onClose={() => setImageId(undefined)}
-				/> */}
-
-					{/* </PageProvider> */}
+					<FullscreenGallery />
 				</NextIntlClientProvider>
 				<DraftModeContentLink />
 			</body>

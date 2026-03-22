@@ -7,11 +7,18 @@ import { setRequestLocale } from 'next-intl/server';
 
 export type Props = {
 	about: AboutRecord;
-	shortcuts?: (AboutRecord | ExhibitionRecord | ProgramRecord | ParticipantRecord | PartnerRecord)[];
+	shortcuts?: (
+		| AboutRecord
+		| ExhibitionRecord
+		| ProgramRecord
+		| ParticipantRecord
+		| PartnerRecord
+	)[];
 };
 
 export default async function AboutItem({ params }: PageProps<'/[locale]/om/[about]'>) {
 	const { locale, about: slug } = await params;
+
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
@@ -20,11 +27,19 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/om/[abo
 	});
 	if (!about) return notFound();
 
-	const { id, image, imageEn, title, intro, content,_seoMetaTags } = about;
+	const { id, image, imageEn, title, intro, content, _seoMetaTags } = about;
 	return (
 		<>
 			{/* <DatoSEO title={title} description={intro} seo={_seoMetaTags} /> */}
-			<Article id={id} key={id} title={title} image={image as FileField} imageEn={imageEn as FileField} intro={intro} content={content} />
+			<Article
+				id={id}
+				key={id}
+				title={title}
+				image={image as FileField}
+				imageEn={imageEn as FileField}
+				intro={intro}
+				content={content}
+			/>
 			{/* {shortcuts?.length && <ArchiveShortcuts items={shortcuts} />} */}
 		</>
 	);
@@ -32,7 +47,10 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/om/[abo
 
 export async function generateStaticParams({ params }: PageProps<'/[locale]/om'>) {
 	const { locale } = await params;
-	const { allAbouts } = await apiQuery(AllAboutsDocument, { all: true, variables: { locale: locale as SiteLocale } });
+	const { allAbouts } = await apiQuery(AllAboutsDocument, {
+		all: true,
+		variables: { locale: locale as SiteLocale },
+	});
 	return allAbouts.map((about) => ({ about: about.slug }));
 }
 

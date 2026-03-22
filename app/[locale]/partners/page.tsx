@@ -18,11 +18,15 @@ export default async function Partners({ params }: PageProps<'/[locale]/partners
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
-	
-	const { allPartners,  financiers } = await apiQuery(AllPartnersDocument, { variables: { locale: locale as SiteLocale } });
-	const { allLocations } = await apiQuery(AllLocationsDocument, { variables: { locale: locale as SiteLocale } });
+
+	const { allPartners, financiers } = await apiQuery(AllPartnersDocument, {
+		variables: { locale: locale as SiteLocale },
+	});
+	const { allLocations } = await apiQuery(AllLocationsDocument, {
+		variables: { locale: locale as SiteLocale },
+	});
 	const t = await getTranslations();
-	
+
 	return (
 		<>
 			{/* <DatoSEO title={t('Menu.partners')} /> */}
@@ -34,7 +38,13 @@ export default async function Partners({ params }: PageProps<'/[locale]/partners
 					<CardContainer className={s.locations}>
 						{allLocations.map(({ id, image, title, intro, slug, year }) => (
 							<Card key={id}>
-								<Thumbnail title={title} image={image as FileField} intro={intro} titleRows={1} slug={`/platser/${slug}`} />
+								<Thumbnail
+									title={title}
+									image={image as FileField}
+									intro={intro}
+									titleRows={1}
+									slug={`/platser/${slug}`}
+								/>
 							</Card>
 						))}
 					</CardContainer>
@@ -43,9 +53,13 @@ export default async function Partners({ params }: PageProps<'/[locale]/partners
 
 			<h2 className={s.head}>Partners</h2>
 			<CardContainer>
-				{allPartners.map(({ id, image }) => (
+				{allPartners.map(({ id, image, slug }) => (
 					<Card key={id}>
-						<Thumbnail image={image as FileField} zoomOutOnHover={true} />
+						<Thumbnail
+							slug={`/partners/${slug}`}
+							image={image as FileField}
+							zoomOutOnHover={true}
+						/>
 					</Card>
 				))}
 			</CardContainer>
@@ -56,7 +70,9 @@ export default async function Partners({ params }: PageProps<'/[locale]/partners
 					<ul>
 						{financiers.fundedBy.map(({ id, url, logo }) => (
 							<li key={id}>
-								{logo?.responsiveImage && <Image data={logo.responsiveImage} className={s.image} objectFit={'contain'} />}
+								{logo?.responsiveImage && (
+									<Image data={logo.responsiveImage} className={s.image} objectFit={'contain'} />
+								)}
 							</li>
 						))}
 					</ul>

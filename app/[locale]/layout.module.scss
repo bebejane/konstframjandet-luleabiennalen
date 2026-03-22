@@ -20,7 +20,7 @@
 			margin 0.3s ease-in-out,
 			flex-basis 0.3s ease-in-out;
 
-		&.full {
+		&[data-full='true'] {
 			flex-basis: 100%;
 			max-width: 100%;
 			border-right: 0px;
@@ -44,7 +44,7 @@
 		transition: transform 0.3s ease-in-out;
 		transform: translateX(calc(-1 * var(--max-width)));
 
-		&.full {
+		&[data-full='true'] {
 			transform: translateX(0%);
 			border-right: 0px;
 		}

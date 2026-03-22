@@ -17,19 +17,18 @@ export default async function Exhibition({ params }: PageProps<'/[locale]/utstal
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
-	
-	const { exhibitions } = await apiQuery(AllExhibitionsDocument, { variables: { locale: locale as SiteLocale } });
-	if (!exhibitions) return notFound();
+	const { allExhibitions } = await apiQuery(AllExhibitionsDocument, {
+		variables: { locale: locale as SiteLocale },
+	});
 	const t = await getTranslations();
-	 
-	const { year } = usePage();
+	// /const { year } = usePage();
 
 	return (
 		<>
 			{/* <DatoSEO title={t('Menu.exhibitions')} /> */}
-			<Markdown className={s.intro} content={year.introExhibitions}/>
-			<CardContainer  columns={2}>
-				{exhibitions.map(({ id, image, title, startDate, endDate,slug }) => (
+			{/* <Markdown className={s.intro} content={year.introExhibitions} /> */}
+			<CardContainer columns={2}>
+				{allExhibitions.map(({ id, image, title, startDate, endDate, slug }) => (
 					<Card key={id}>
 						<Thumbnail
 							title={title}

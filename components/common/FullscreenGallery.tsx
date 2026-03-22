@@ -7,16 +7,13 @@ import { Image } from 'react-datocms';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade } from 'swiper/modules';
 import SwiperCore from 'swiper';
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import useStore, { useShallow } from '@/lib/store';
 
 SwiperCore.use([EffectFade]);
 
-export type FullscreenGalleryProps = {
-	images: FileField[];
-	show: boolean;
-};
+export type FullscreenGalleryProps = {};
 
 export default function FullscreenGallery({}: FullscreenGalleryProps) {
 	const [images, imageId, setImageId] = useStore(
@@ -40,7 +37,6 @@ export default function FullscreenGallery({}: FullscreenGalleryProps) {
 	}, [index]);
 
 	useEffect(() => {
-		// handle  keys
 		const handleKeys = ({ key }: KeyboardEvent) => {
 			if (isHidden) return;
 			if (key === 'ArrowRight') swiperRef?.current?.slideNext();
@@ -53,7 +49,7 @@ export default function FullscreenGallery({}: FullscreenGalleryProps) {
 
 	useEffect(() => {
 		setTimeout(() => setInitLoaded(true), 300);
-	}, [initLoaded]); // Delay loader
+	}, [initLoaded]);
 
 	if (isHidden) return null;
 

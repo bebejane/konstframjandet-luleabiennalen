@@ -6924,6 +6924,8 @@ type ParticipantFragmentLightFragment = { __typename?: 'ParticipantRecord', id: 
 type AllPartnersQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
   yearId?: InputMaybe<Scalars['ItemId']['input']>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
 }>;
 
 

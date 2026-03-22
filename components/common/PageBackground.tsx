@@ -9,6 +9,7 @@ export default function PageBackground() {
 	const pathname = usePathname();
 	const backgroundImage = null;
 	const year = null;
+	//const showBackground = backgroundImage && !year?.isArchive && section !== 'archive';
 
 	useEffect(() => {
 		//document.body.style.backgroundColor = year?.isArchive || section === 'archive' ? 'var(--archive)' : 'var(--white)';

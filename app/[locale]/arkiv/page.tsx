@@ -17,15 +17,19 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { allYears } = await apiQuery(AllYearsDocument, { variables: { locale: locale as SiteLocale } });
-	const { general } = await apiQuery(GeneralDocument, { variables: { locale: locale as SiteLocale } });
+	const { allYears } = await apiQuery(AllYearsDocument, {
+		variables: { locale: locale as SiteLocale },
+	});
+	const { general } = await apiQuery(GeneralDocument, {
+		variables: { locale: locale as SiteLocale },
+	});
 	const t = await getTranslations('Menu');
-	
+
 	return (
 		<>
 			{/* <DatoSEO title={t('archive')} /> */}
-			<Markdown className={s.intro} content={general?.archiveIntro}/>
-			<CardContainer  columns={2}>
+			<Markdown className={s.intro} content={general?.archiveIntro} />
+			<CardContainer columns={2}>
 				{allYears.map(({ id, title, slug, theme, image, imageEn }) => (
 					<Card key={id}>
 						<Thumbnail
