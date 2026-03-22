@@ -4,10 +4,10 @@ import s from './SectionHeader.module.scss';
 import cn from 'classnames';
 import { MenuItem } from '@/lib/menu';
 import { useLocale, useTranslations } from 'next-intl';
-import { useYear } from '@/lib/context/year';
+import { usePage } from '@/lib/context/page';
 import { PROJECT_NAME, PROJECT_ABBR } from '@/lib/constant';
 import { translatePath } from '@/lib/utils';
-import { defaultLocale, Link, useRouter } from '@/i18n/routing';
+import { defaultLocale, Link, usePathname } from '@/i18n/routing';
 import { useStore, useShallow } from '@/lib/store';
 import Logo from '@/public/images/logo-text.svg';
 import { Icon } from '@/components';
@@ -19,20 +19,11 @@ export type SectionHeaderProps = {
 
 export default function SectionHeader() {
 	const t = useTranslations('Menu');
-	const router = useRouter();
+	const pathname = usePathname();
 	const locale = useLocale();
 	const [showMenu] = useStore(useShallow((state) => [state.showMenu]));
-	const {
-		section,
-		parent,
-		year,
-		year: {
-			color: { hex },
-			isArchive,
-		},
-		isHome,
-		slugs,
-	} = useYear();
+	const { year, isArchive, isHome, section } = usePage();
+	const slugs: string[] = [];
 
 	const locationsParentPath = `${translatePath(
 		'/partners',
@@ -40,21 +31,16 @@ export default function SectionHeader() {
 		defaultLocale,
 		year?.title,
 	)}#locations`;
-	const isLocation = section === 'locations';
-	const parentPath = isLocation
-		? locationsParentPath
-		: slugs?.find((slug) => slug.locale === locale)?.parent;
 
+	const parent = false;
+	const isLocation = section === 'locations';
 	const isArchiveHome = section === 'home' && isArchive;
 	const isSearch = section === 'search';
 	const isArchiveOverview = section === 'archive';
 	const isOverview = !parent && !isArchive;
 	const showArchive = isArchive || isArchiveOverview;
-	const showLine = !isHome;
+	const yearLabel = `${PROJECT_ABBR}°${year?.title.substring(2)}`;
 
-	const yearLabel = isArchiveHome
-		? `${PROJECT_ABBR}°${year.title.substring(2)}`
-		: `${PROJECT_ABBR}°${year.title.substring(2)}`;
 	const label = isArchiveOverview
 		? PROJECT_NAME
 		: isArchiveHome
@@ -65,7 +51,7 @@ export default function SectionHeader() {
 
 	const header = (
 		<h2>
-			<span style={{ color: hex }} key={label}>
+			<span style={{ color: year?.color.hex }} key={label}>
 				{label.split('').map((c, idx) => (
 					<span
 						key={`${idx}`}
@@ -79,20 +65,21 @@ export default function SectionHeader() {
 			</span>
 		</h2>
 	);
+	console.log({ section });
 	return (
 		<>
 			<header className={cn(s.header, !showMenu && s.full)}>
 				{isHome ? (
-					<Icon src={Logo} />
+					<Icon src={Logo} className={s.logo} nofill={true} />
 				) : !isOverview ? (
-					<Link href={parentPath}>{header}</Link>
+					<Link href={'/'}>{header}</Link>
 				) : (
 					<>{header}</>
 				)}
 				{showArchive && <span className={s.archive}>{t('archive')}</span>}
 			</header>
 			{!isHome && <div className={s.spacer}></div>}
-			{showLine && <div className={s.line}></div>}
+			{!isHome && <div className={s.line}></div>}
 		</>
 	);
 }

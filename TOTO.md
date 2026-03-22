@@ -2,6 +2,8 @@
 - datocms.config
 - draft mode / visual editing
 - search
-- TreeView / Menu
-- Link year base
-- Thumbnal loader
+- Logo on startpage
+- chcek html hirachy
+- Simpler SectionHeader on pages
+- Simplify TreeView / Menu
+- Thumbnal loader random

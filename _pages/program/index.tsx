@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 
-import { useYear } from '@/lib/context/year';
+import { usePage } from '@/lib/context/page';
 import { isAfter } from 'date-fns';
 
 export type Props = {

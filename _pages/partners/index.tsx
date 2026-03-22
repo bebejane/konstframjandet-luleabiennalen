@@ -7,7 +7,7 @@ import { CardContainer, Card, Thumbnail } from '@/components';
 import { useTranslations } from 'next-intl';
 import { Image } from 'react-datocms';
 
-import { useYear } from '@/lib/context/year';
+import { usePage } from '@/lib/context/page';
 
 export type Props = {
 	partners: PartnerRecord[];

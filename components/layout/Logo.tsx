@@ -3,14 +3,14 @@
 import s from './Logo.module.scss';
 import cn from 'classnames';
 import LogoIcon from '@/public/images/logo.svg';
-import { useYear } from '@/lib/context/year';
+import { usePage } from '@/lib/context/page';
 import Link from 'next/link';
 import { Icon } from '@/components';
 import { usePathname } from '@/i18n/routing';
 
 export default function Logo() {
 	const isHome = usePathname() === '/';
-	const { year, isArchive } = useYear();
+	const { year, isArchive } = usePage();
 
 	return (
 		<div

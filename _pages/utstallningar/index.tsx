@@ -7,7 +7,7 @@ import { formatDate } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 
 import { Markdown } from 'next-dato-utils/components';
-import { useYear } from '@/lib/context/year';
+import { usePage } from '@/lib/context/page';
 import { apiQuery } from 'next-dato-utils/api';
 
 export type Props = {

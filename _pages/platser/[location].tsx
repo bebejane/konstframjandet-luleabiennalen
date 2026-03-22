@@ -5,7 +5,7 @@ import { LocationDocument, AllLocationsDocument } from '@/graphql';
 import { Article, Related, BackButton, MetaSection } from '@/components';
 import { useTranslations } from 'next-intl';
 
-import { useYear } from '@/lib/context/year';
+import { usePage } from '@/lib/context/page';
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];

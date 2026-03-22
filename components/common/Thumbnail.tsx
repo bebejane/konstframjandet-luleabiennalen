@@ -4,7 +4,7 @@ import s from './Thumbnail.module.scss';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { Image } from 'react-datocms/image';
-import { useYear } from '@/lib/context/year';
+import { usePage } from '@/lib/context/page';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 import { useLocale } from 'next-intl';
@@ -45,7 +45,7 @@ export default function Thumbnail({
 		500,
 	);
 	const locale = useLocale();
-	const { year, isArchive } = useYear();
+	const { year, isArchive } = usePage();
 	const loadingImages = year?.loadingImage;
 	const [loadingImageIndex, setLoadingImageIndex] = useState(0);
 	const [loaded, setLoaded] = useState(false);

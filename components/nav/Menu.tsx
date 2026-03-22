@@ -12,7 +12,7 @@ import { useScrollInfo } from 'next-dato-utils/hooks';
 import { useWindowSize } from 'usehooks-ts';
 import i18nPaths from '@/i18n/paths.json';
 import useDevice from '@/lib/hooks/useDevice';
-import { usePathname } from '@/i18n/routing';
+import { usePathname } from 'next/navigation';
 
 export type MenuProps = { items: Menu };
 

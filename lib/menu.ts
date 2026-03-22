@@ -30,15 +30,19 @@ const base: Menu = [
 	{ id: 'search', label: 'Sök', slug: '/sok', general: true },
 ];
 
-export const buildMenu = async (locale: string) => {
+export const buildMenu = async (locale: SiteLocale) => {
 	const messages = (await import(`@/i18n/${locale}.json`)).default;
-	const altLocale = locales.find((l) => locale != l);
+	const altLocale = locales.find((l) => locale != l) as SiteLocale;
 	const years = await allYears();
 	const year = years[0];
-	const res: MenuQueryResponse = await apiQuery(MenuDocument, {
-		variables: { yearId: year.id, locale, altLocale },
+	const res = await apiQuery(MenuDocument, {
+		variables: {
+			yearId: year.id,
+			locale: locale as SiteLocale,
+			altLocale: altLocale as SiteLocale,
+		},
 	});
-	const archive: MenuQueryResponse[] = await Promise.all(
+	const archive = await Promise.all(
 		years
 			.filter(({ id }) => id !== year.id)
 			.map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale, altLocale } })),
@@ -79,7 +83,7 @@ export const buildMenu = async (locale: string) => {
 };
 
 export const buildYearMenu = (
-	res: MenuQueryResponse,
+	res: MenuQuery,
 	{
 		locale,
 		altLocale,
@@ -89,7 +93,7 @@ export const buildYearMenu = (
 ): MenuItem[] => {
 	const menu = base.map((item) => {
 		let sub: MenuItem[];
-		const year = res.year.title;
+		const year = res.year?.title;
 
 		if (item.slug) {
 			item.label = item.id === 'participants' ? res.year.participantName : messages.Menu[item.id];

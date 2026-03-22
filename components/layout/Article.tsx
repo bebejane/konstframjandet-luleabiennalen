@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
 import s from './Article.module.scss';
 import cn from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
-import { MetaSection, Content } from '@/components';
+import { MetaSection, Content, SectionHeader } from '@/components';
 import { MetaSectionProps } from '@/components/common/MetaSection';
 import { Image } from 'react-datocms';
 import { useScrollInfo } from 'next-dato-utils/hooks';
-import {useStore, useShallow} from '@/lib/store';
-import {format} from 'date-fns';
+import { useStore, useShallow } from '@/lib/store';
+import { format } from 'date-fns';
 import { useLocale, useTranslations } from 'next-intl';
 import { Markdown } from 'next-dato-utils/components';
 import useDevice from '@/lib/hooks/useDevice';
@@ -43,7 +43,9 @@ export default function Article({
 	const locale = useLocale();
 	const pathname = usePathname();
 	const t = useTranslations();
-	const [setImageId, setImages] = useStore(useShallow((state) => [state.setImageId, state.setImages]));
+	const [setImageId, setImages] = useStore(
+		useShallow((state) => [state.setImageId, state.setImages]),
+	);
 	const { scrolledPosition, viewportHeight } = useScrollInfo();
 	const captionRef = useRef<HTMLElement | null>(null);
 	const figureRef = useRef<HTMLElement | null>(null);
@@ -52,11 +54,15 @@ export default function Article({
 	const ratio = !isDesktop
 		? 0
 		: offset
-		? Math.max(
-				0,
-				Math.min(1, (scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight)
-		  )
-		: 0;
+			? Math.max(
+					0,
+					Math.min(
+						1,
+						(scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) /
+							viewportHeight,
+					),
+				)
+			: 0;
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
 
 	useEffect(() => {
@@ -80,7 +86,11 @@ export default function Article({
 				</h1>
 				{image?.responsiveImage && (
 					<figure
-						className={cn(s.mainImage, imageSize && s[imageSize], image.height > image.width && s.portrait)}
+						className={cn(
+							s.mainImage,
+							imageSize && s[imageSize],
+							image.height > image.width && s.portrait,
+						)}
 						onClick={() => setImageId(image?.id)}
 						ref={figureRef}
 					>
@@ -113,12 +123,12 @@ export default function Article({
 							<span>{format(new Date(date), 'dd').replace('.', '')}</span>
 						</div>
 					)}
-					<Markdown className={s.intro} content={intro}/>
+					<Markdown className={s.intro} content={intro} />
 				</section>
 				{content && (
 					<>
 						<div className='structured'>
-							<Content content={content}/>
+							<Content content={content} />
 						</div>
 					</>
 				)}

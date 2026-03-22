@@ -1,6 +1,6 @@
 import s from './page.module.scss';
 import cn from 'classnames';
-import { AllLocationsDocument, AllPartnersDocument } from '@/graphql';
+import { AllLocationsDocument, AllPartnersDocument, YearDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail } from '@/components';
 import { Image } from 'react-datocms';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -15,15 +15,22 @@ export type Props = {
 };
 
 export default async function Partners({ params }: PageProps<'/[locale]/[year]/partners'>) {
-	const { locale } = await params;
+	const { locale, year: _year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
+	const { year } = await apiQuery(YearDocument, {
+		variables: {
+			locale: locale as SiteLocale,
+			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR,
+		},
+	});
+
 	const { allPartners, financiers } = await apiQuery(AllPartnersDocument, {
-		variables: { locale: locale as SiteLocale },
+		variables: { locale: locale as SiteLocale, yearId: year?.id },
 	});
 	const { allLocations } = await apiQuery(AllLocationsDocument, {
-		variables: { locale: locale as SiteLocale },
+		variables: { locale: locale as SiteLocale, yearId: year?.id },
 	});
 	const t = await getTranslations();
 

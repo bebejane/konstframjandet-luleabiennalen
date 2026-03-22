@@ -8,11 +8,18 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { NextIntlClientProvider } from 'next-intl';
 import { getPathname, locales } from '@/i18n/routing';
 import { DraftModeContentLink } from 'next-dato-utils/components';
-import { Footer, FullscreenGallery, Language, Menu, PageBackground } from '@/components';
+import {
+	Footer,
+	FullscreenGallery,
+	Language,
+	Menu,
+	PageBackground,
+	SectionHeader,
+} from '@/components';
 import { buildMenu } from '@/lib/menu';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { YearProvider } from '@/lib/context/year';
+import { PageProvider } from '@/lib/context/page';
 
 export default async function RootLayout({ children, params }: LayoutProps<'/[locale]/[year]'>) {
 	const { locale, year: _year } = await params;
@@ -38,18 +45,22 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 		<html lang='en-US'>
 			<body id='root' className='root'>
 				<NextIntlClientProvider>
-					<YearProvider value={{ year }}>
+					<PageProvider value={{ year }}>
 						<PageBackground />
+
 						<div className={s.layout}>
 							<main id='content' className={s.content} data-full={true}>
-								<article>{children}</article>
+								<article>
+									<SectionHeader />
+									{children}
+								</article>
 							</main>
 						</div>
 						<Menu items={menu} />
 						<Language menu={menu} />
 						<Footer footer={general} />
 						<FullscreenGallery />
-					</YearProvider>
+					</PageProvider>
 				</NextIntlClientProvider>
 				<DraftModeContentLink />
 			</body>

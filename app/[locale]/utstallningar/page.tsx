@@ -2,7 +2,7 @@ import { AllExhibitionsDocument, ContactDocument, LandOwnershipDocument } from '
 import { CardContainer, Card, Thumbnail } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { Markdown } from 'next-dato-utils/components';
-import { useYear } from '@/lib/context/year';
+import { usePage } from '@/lib/context/page';
 import { apiQuery } from 'next-dato-utils/api';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';

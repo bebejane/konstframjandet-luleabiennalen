@@ -2,7 +2,7 @@ import s from './page.module.scss';
 import cn from 'classnames';
 import { LandOwnershipDocument, StartDataDocument, StartDocument, YearDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
-import { Block, LandOwnershipPopup } from '@/components';
+import { Block, LandOwnershipPopup, SectionHeader } from '@/components';
 import { locales } from '@/i18n/routing';
 import { format } from 'date-fns';
 import { setRequestLocale } from 'next-intl/server';
