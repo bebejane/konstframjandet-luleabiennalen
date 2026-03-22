@@ -27,7 +27,7 @@ export default async function FilterBar({
 	params,
 }: Props) {
 	const t = await getTranslations('FilterBar');
-
+	const description = options.find(({ title }) => title === value)?.description;
 	return (
 		<nav className={s.filter}>
 			<ul>
@@ -54,6 +54,7 @@ export default async function FilterBar({
 					</li>
 				))}
 			</ul>
+			{description && <div className={s.description}>{description}</div>}
 		</nav>
 	);
 }

@@ -1,0 +1,7 @@
+- seo
+- datocms.config
+- draft mode / visual editing
+- search
+- TreeView / Menu
+- Link year base
+- Thumbnal loader
