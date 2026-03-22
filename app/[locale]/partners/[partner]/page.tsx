@@ -1,4 +1,3 @@
-
 import { apiQuery } from 'next-dato-utils/api';
 import { PartnerDocument, AllPartnersDocument } from '@/graphql';
 import { Article, Related, BackButton, MetaSection } from '@/components';
@@ -10,16 +9,19 @@ export type Props = {
 	partner: PartnerRecord;
 };
 
-export default  async function Partner({ params }: PageProps<'/[locale]/partners/[partner]'>) {
+export default async function Partner({
+	params,
+}: PageProps<'/[locale]/[year]/partners/[partner]'>) {
 	const { locale, partner: slug } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
-	
+
 	const { partner } = await apiQuery(PartnerDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!partner) return notFound();
-	const { id, image, imageEn, title, intro, content, address, city, webpage, _seoMetaTags } = partner;
+	const { id, image, imageEn, title, intro, content, address, city, webpage, _seoMetaTags } =
+		partner;
 	const t = await getTranslations();
 
 	return (
@@ -48,9 +50,14 @@ export default  async function Partner({ params }: PageProps<'/[locale]/partners
 	);
 }
 
-export async function generateStaticParams({ params }: PageProps<'/[locale]/partners'>) {
+export async function generateStaticParams({
+	params,
+}: PageProps<'/[locale]/[year]/partners/[partner]'>) {
 	const { locale } = await params;
-	const { allPartners } = await apiQuery(AllPartnersDocument, { all:true, variables: { locale: locale as SiteLocale } });
+	const { allPartners } = await apiQuery(AllPartnersDocument, {
+		all: true,
+		variables: { locale: locale as SiteLocale },
+	});
 	return allPartners.map((partner) => ({ partner: partner.slug }));
 }
 

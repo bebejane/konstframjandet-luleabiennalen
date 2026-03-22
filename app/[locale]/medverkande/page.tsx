@@ -9,15 +9,18 @@ export type Props = {
 	allParticipants: (ParticipantRecord & ThumbnailImage)[];
 };
 
-export default async function Participant({ params }: PageProps<'/[locale]/medverkande'>) {
-	const { locale } = await params;
+export default async function Participant({ params }: PageProps<'/[locale]/[year]/medverkande'>) {
+	const { locale, year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
-	
-	const { allParticipants } = await apiQuery(AllParticipantsDocument, {all: true, variables: { locale: locale as SiteLocale } });
+
+	const { allParticipants } = await apiQuery(AllParticipantsDocument, {
+		all: true,
+		variables: { locale: locale as SiteLocale },
+	});
 	if (!allParticipants) return notFound();
 	const t = getTranslations('Menu');
-	
+
 	return (
 		<>
 			{/* <DatoSEO title={t('allParticipants')} /> */}
@@ -41,7 +44,10 @@ export default async function Participant({ params }: PageProps<'/[locale]/medve
 
 export async function generateStaticParams({ params }: PageProps<'/[locale]/medverkande'>) {
 	const { locale } = await params;
-	const { allParticipants } = await apiQuery(AllParticipantsDocument, { all: true, variables: { locale: locale as SiteLocale } });
+	const { allParticipants } = await apiQuery(AllParticipantsDocument, {
+		all: true,
+		variables: { locale: locale as SiteLocale },
+	});
 	return allParticipants.map((participant) => ({ participant: participant.slug }));
 }
 

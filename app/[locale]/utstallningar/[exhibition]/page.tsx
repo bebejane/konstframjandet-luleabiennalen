@@ -1,8 +1,7 @@
-
 import { apiQuery } from 'next-dato-utils/api';
 import { ExhibitionDocument, AllExhibitionsDocument } from '@/graphql';
 import { Article, Related, BackButton } from '@/components';
-import {  formatDate } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n/routing';
@@ -11,8 +10,10 @@ export type Props = {
 	exhibition: ExhibitionRecord;
 };
 
-export default async function Exhibition({ params }: PageProps<'/[locale]/utstallningar/[exhibition]'>) {
-	const { locale, exhibition: slug } = await params;
+export default async function Exhibition({
+	params,
+}: PageProps<'/[locale]/[year]/utstallningar/[exhibition]'>) {
+	const { locale, exhibition: slug, year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
@@ -20,9 +21,23 @@ export default async function Exhibition({ params }: PageProps<'/[locale]/utstal
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!exhibition) return notFound();
-	const { id, image, imageEn, title, intro, externalLink,time, location, content, participants, partner, startDate, endDate,  _seoMetaTags } = exhibition;
+	const {
+		id,
+		image,
+		imageEn,
+		title,
+		intro,
+		externalLink,
+		time,
+		location,
+		content,
+		participants,
+		partner,
+		startDate,
+		endDate,
+		_seoMetaTags,
+	} = exhibition;
 	const t = await getTranslations();
-	
 
 	return (
 		<>
@@ -57,12 +72,16 @@ export default async function Exhibition({ params }: PageProps<'/[locale]/utstal
 	);
 }
 
-export async function generateStaticParams({ params }: PageProps<'/[locale]/utstallningar'>) {
-	const { locale } = await params;
-	const { allExhibitions } = await apiQuery(AllExhibitionsDocument, { all:true, variables: { locale: locale as SiteLocale } });
+export async function generateStaticParams({
+	params,
+}: PageProps<'/[locale]/[year]/utstallningar'>) {
+	const { locale, year } = await params;
+	const { allExhibitions } = await apiQuery(AllExhibitionsDocument, {
+		all: true,
+		variables: { locale: locale as SiteLocale },
+	});
 	return allExhibitions.map((exhibition) => ({ exhibition: exhibition.slug }));
 }
-
 
 // export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 // 	const slug = context.params.exhibition;

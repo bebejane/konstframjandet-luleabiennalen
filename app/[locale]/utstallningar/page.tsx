@@ -1,4 +1,3 @@
-import s from './page.module.scss';
 import { AllExhibitionsDocument, ContactDocument, LandOwnershipDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail } from '@/components';
 import { formatDate } from '@/lib/utils';
@@ -13,15 +12,15 @@ export type Props = {
 	exhibitions: (ExhibitionRecord & ThumbnailImage)[];
 };
 
-export default async function Exhibition({ params }: PageProps<'/[locale]/utstallningar'>) {
-	const { locale } = await params;
+export default async function Exhibition({ params }: PageProps<'/[locale]/[year]/utstallningar'>) {
+	const { locale, year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
+
 	const { allExhibitions } = await apiQuery(AllExhibitionsDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
 	const t = await getTranslations();
-	// /const { year } = usePage();
 
 	return (
 		<>

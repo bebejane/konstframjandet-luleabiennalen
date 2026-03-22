@@ -1,13 +1,9 @@
-
 import { apiQuery } from 'next-dato-utils/api';
 import { translatePath } from '@/lib/utils';
 import { LocationDocument, AllLocationsDocument } from '@/graphql';
 import { Article, Related, BackButton, MetaSection } from '@/components';
-import { usePage } from '@/lib/context/page';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { useRouter } from 'next/router';
-import { useLocale } from 'next-intl';
 import { defaultLocale, locales } from '@/i18n/routing';
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
@@ -19,18 +15,33 @@ export type Props = {
 	location: LocationExtendedRecord;
 };
 
-export default async function Location({ params }: PageProps<'/[locale]/platser/[location]'>) {
-	const { locale, location: slug } = await params;
+export default async function Location({
+	params,
+}: PageProps<'/[locale]/[year]/platser/[location]'>) {
+	const { locale, location: slug, year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
-	
+
 	const { location } = await apiQuery(LocationDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!location) return notFound();
-	const { id, image, imageEn, title, intro, address, city, webpage, content, exhibitions, programs, _seoMetaTags } = location;
+	const {
+		id,
+		image,
+		imageEn,
+		title,
+		intro,
+		address,
+		city,
+		webpage,
+		content,
+		exhibitions,
+		programs,
+		_seoMetaTags,
+	} = location;
 	const t = await getTranslations();
-	const { year } = usePage();
+	//const { year } = usePage();
 	const href = `${translatePath('/partners', locale, defaultLocale, year?.title)}#locations`;
 
 	return (
@@ -61,21 +72,16 @@ export default async function Location({ params }: PageProps<'/[locale]/platser/
 	);
 }
 
-export async function generateStaticParams({ params }: PageProps<'/[locale]/platser/[location]'>) {
+export async function generateStaticParams({
+	params,
+}: PageProps<'/[locale]/[year]/platser/[location]'>) {
 	const { locale } = await params;
-	const { allLocations } = await apiQuery(AllLocationsDocument, { all:true, variables: { locale: locale as SiteLocale } });
+	const { allLocations } = await apiQuery(AllLocationsDocument, {
+		all: true,
+		variables: { locale: locale as SiteLocale },
+	});
 	return allLocations.map((location) => ({ location: location.slug }));
 }
-// export async function getStaticPaths() {
-// 	const { locations } = await apiQueryAll(AllLocationsDocument);
-// 	const paths = locations.map(({ slug }) => ({ params: { location: slug }, locale: 'sv' }));
-// 	paths.forEach((el) => paths.push({ ...el, locale: 'en' }));
-
-// 	return {
-// 		paths,
-// 		fallback: 'blocking',
-// 	};
-// }
 
 // export const getStaticProps = withGlobalProps(
 // 	{ queries: [] },

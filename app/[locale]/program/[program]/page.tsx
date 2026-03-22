@@ -1,21 +1,16 @@
-
 import { apiQuery } from 'next-dato-utils/api';
 import { ProgramDocument, AllProgramsDocument } from '@/graphql';
 import { Article, Related, BackButton } from '@/components';
-import {  formatDate } from '@/lib/utils';
-import {Link, locales} from '@/i18n/routing';
-
-import { id } from 'date-fns/locale';
+import { formatDate } from '@/lib/utils';
+import { Link, locales } from '@/i18n/routing';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import image from 'next/image';
 import { notFound } from 'next/navigation';
-import { title } from 'process';
 
 export type Props = {
 	program: ProgramRecord;
 };
 
-export default async function Program({ params }: PageProps<'/[locale]/program/[program]'>) {
+export default async function Program({ params }: PageProps<'/[locale]/[year]/program/[program]'>) {
 	const { locale, program: slug } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
@@ -23,11 +18,28 @@ export default async function Program({ params }: PageProps<'/[locale]/program/[
 	const { program } = await apiQuery(ProgramDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
+
 	if (!program) return notFound();
 	const t = await getTranslations();
 
-	const { id, image, imageEn, title, intro,  partipants, partner, supportedBy, location, programPlace, content, address, startDate, externalLink, endDate, time } = program;
-	
+	const {
+		id,
+		image,
+		imageEn,
+		title,
+		intro,
+		partipants,
+		partner,
+		supportedBy,
+		location,
+		programPlace,
+		content,
+		address,
+		startDate,
+		externalLink,
+		endDate,
+		time,
+	} = program;
 
 	return (
 		<>
@@ -45,7 +57,6 @@ export default async function Program({ params }: PageProps<'/[locale]/program/[
 				meta={[
 					{ title: t('MetaSection.when'), value: formatDate(startDate, endDate, locale) },
 					{ title: t('MetaSection.times'), value: time },
-
 					{
 						title: t('MetaSection.where'),
 						value: address,
@@ -56,7 +67,9 @@ export default async function Program({ params }: PageProps<'/[locale]/program/[
 					},
 					{
 						title: t('MetaSection.where'),
-						value: location.length && location.map(({ slug, title }) => <Link href={`/platser/${slug}`}>{title}</Link>),
+						value:
+							location.length &&
+							location.map(({ slug, title }) => <Link href={`/platser/${slug}`}>{title}</Link>),
 					},
 					{
 						title: t('MetaSection.link'),
@@ -76,16 +89,12 @@ export default async function Program({ params }: PageProps<'/[locale]/program/[
 
 export async function generateStaticParams({ params }: PageProps<'/[locale]/program'>) {
 	const { locale } = await params;
-	const { allPrograms } = await apiQuery(AllProgramsDocument, { all:true, variables: { locale: locale as SiteLocale } });
+	const { allPrograms } = await apiQuery(AllProgramsDocument, {
+		all: true,
+		variables: { locale: locale as SiteLocale },
+	});
 	return allPrograms.map((program) => ({ program: program.slug }));
 }
-
-// export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
-// 	const slug = context.params.program;
-// 	const { program } = await apiQuery(ProgramDocument, {
-// 		variables: { slug, locale },
-// 		preview: context.preview,
-// 	});
 
 // 	if (!program) return { notFound: true, revalidate };
 

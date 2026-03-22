@@ -1,6 +1,6 @@
-export { default } from './[about]/page'
-
-
+import { AllAboutsDocument } from '@/graphql';
+import { apiQuery } from 'next-dato-utils/api';
+export { default } from './[about]/page';
 // export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 
 //   const yearId = props.year.id

@@ -13,5 +13,5 @@ export default async function YearLayout({ children, params }: LayoutProps<'/[lo
 
 export async function generateStaticParams() {
 	const { allYears } = await apiQuery(AllYearsDocument);
-	return allYears.map((year) => ({ year: year.title }));
+	return locales.map((locale) => allYears.map((year) => ({ year: year.title, locale }))).flat();
 }

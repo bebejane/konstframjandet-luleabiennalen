@@ -16,9 +16,9 @@ export type Props = {
 	)[];
 };
 
-export default async function AboutItem({ params }: PageProps<'/[locale]/om/[about]'>) {
-	const { locale, about: slug } = await params;
-
+export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/om/[about]'>) {
+	const { locale, about: slug, year } = await params;
+	console.log(year, locale, slug);
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 

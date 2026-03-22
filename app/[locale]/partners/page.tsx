@@ -14,7 +14,7 @@ export type Props = {
 	financiers: YearRecord;
 };
 
-export default async function Partners({ params }: PageProps<'/[locale]/partners'>) {
+export default async function Partners({ params }: PageProps<'/[locale]/[year]/partners'>) {
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
