@@ -1,23 +1,23 @@
-import s from "./page.module.scss";
-import cn from "classnames";
-import { LandOwnershipDocument, StartDataDocument, StartDocument } from "@/graphql";
-import { apiQuery } from "next-dato-utils/api";
-import { Block, LandOwnershipPopup } from "@/components";
-import { locales} from "@/i18n/routing";
-import { format } from "date-fns";
-import { setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
-import { allYears } from "@/lib/utils";
+import s from './page.module.scss';
+import cn from 'classnames';
+import { LandOwnershipDocument, StartDataDocument, StartDocument } from '@/graphql';
+import { apiQuery } from 'next-dato-utils/api';
+import { Block, LandOwnershipPopup } from '@/components';
+import { locales } from '@/i18n/routing';
+import { format } from 'date-fns';
+import { setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { allYears } from '@/lib/utils';
 
 export type Props = {
 	start: StartRecord;
-	landOwnership: LandOwnershipQuery["landOwnership"];
+	landOwnership: LandOwnershipQuery['landOwnership'];
 };
 
 const fullBlocks = [
-	"StartFullscreenImageRecord",
-	"StartFullBleedImageRecord",
-	"StartFullscreenVideoRecord",
+	'StartFullscreenImageRecord',
+	'StartFullBleedImageRecord',
+	'StartFullscreenVideoRecord',
 ];
 
 export default async function Home({ params }: PageProps<'/[locale]'>) {
@@ -25,7 +25,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { start, landOwnership } = await getData(locale, '2026')
+	const { start, landOwnership } = await getData(locale as SiteLocale, '2026');
 
 	return (
 		<>
@@ -35,7 +35,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 						key={idx}
 						className={cn(fullBlocks.includes(block.__typename ?? '') && s.noborder)}
 					>
-						<Block data={block}/>
+						<Block data={block} />
 					</section>
 				))}
 			</div>
@@ -44,35 +44,33 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 	);
 }
 
-async function getData(locale: SiteLocale, _year:string) {
-	
+async function getData(locale: SiteLocale, _year: string) {
 	let { start } = await apiQuery(StartDocument, {
 		variables: { locale },
 	});
 
-	if(!start) notFound()
+	if (!start) notFound();
 
-	const years = await allYears(locale)	
-  let year = years.find(({ title }) => _year ? title === _year : title === years[0].title)
-  year = { ...year, isArchive: year?.title !== years[0].title } as YearExtendedRecord
+	const years = await allYears(locale);
+	let year = years.find(({ title }) => (_year ? title === _year : title === years[0].title));
+	year = { ...year, isArchive: year?.title !== years[0].title } as YearExtendedRecord;
 
-		
-	const date = format(new Date(), "yyyy-MM-dd");
+	const date = format(new Date(), 'yyyy-MM-dd');
 	const count = {
 		participants: parseInt(
 			(
 				start.content.find(
-					(el) => el.__typename === "StartRandomParticipantRecord"
+					(el) => el.__typename === 'StartRandomParticipantRecord',
 				) as StartRandomParticipantRecord
-			)?.amount ?? "1"
+			)?.amount ?? '1',
 		),
 		news: parseInt(
-			(start.content.find((el) => el.__typename === "StartNewsRecord") as StartNewsRecord)
-				?.amount ?? "1"
+			(start.content.find((el) => el.__typename === 'StartNewsRecord') as StartNewsRecord)
+				?.amount ?? '1',
 		),
 		programs: parseInt(
-			(start.content.find((el) => el.__typename === "StartProgramRecord") as StartProgramRecord)
-				?.amount ?? "1"
+			(start.content.find((el) => el.__typename === 'StartProgramRecord') as StartProgramRecord)
+				?.amount ?? '1',
 		),
 	};
 
@@ -87,10 +85,12 @@ async function getData(locale: SiteLocale, _year:string) {
 		date,
 	};
 
-	const {allNews, allPrograms, allParticipants} = await apiQuery(StartDataDocument, { variables });
+	const { allNews, allPrograms, allParticipants } = await apiQuery(StartDataDocument, {
+		variables,
+	});
 
 	const { landOwnership } = await apiQuery(LandOwnershipDocument, {
-		variables: { locale }
+		variables: { locale },
 	});
 
 	return {
@@ -100,19 +100,18 @@ async function getData(locale: SiteLocale, _year:string) {
 			...start,
 			content: start.content.map((block) => ({
 				...block,
-				news: block.__typename === "StartNewsRecord" ? allNews : null,
-				programs: block.__typename === "StartProgramRecord" ? allPrograms : null,
+				news: block.__typename === 'StartNewsRecord' ? allNews : null,
+				programs: block.__typename === 'StartProgramRecord' ? allPrograms : null,
 				participants:
-					block.__typename === "StartRandomParticipantRecord"
+					block.__typename === 'StartRandomParticipantRecord'
 						? allParticipants
 								.sort(() => (Math.random() > 0.5 ? 1 : -1))
 								.slice(0, count.participants)
 						: null,
 			})),
-		}
+		},
 	};
 }
-
 
 // page: {
 // 					section: "home",

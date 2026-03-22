@@ -1,5 +1,5 @@
 import '@/styles/index.scss';
-import "swiper/css";
+import 'swiper/css';
 import s from './layout.module.scss';
 import cn from 'classnames';
 import { apiQuery } from 'next-dato-utils/api';
@@ -13,25 +13,24 @@ import { Footer, Language, Menu } from '@/components';
 import { buildMenu } from '@/lib/menu';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import PageBackground from '@/components/common/PageBackground';
 
 export default async function RootLayout({ children, params }: LayoutProps<'/[locale]'>) {
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const menu = await buildMenu(locale)
-	const { general, draftUrl } = await apiQuery(GeneralDocument, { variables: { locale: locale as SiteLocale } })
-	
-	// useEffect(() => {
-	// 	document.body.style.backgroundColor = year?.isArchive || section === 'archive' ? 'var(--archive)' : 'var(--white)';
-	// }, [router.asPath, year, section]);
+	const menu = await buildMenu(locale);
+	const { general, draftUrl } = await apiQuery(GeneralDocument, {
+		variables: { locale: locale as SiteLocale },
+	});
 
 	return (
 		<html lang='en-US'>
 			<body id='root' className='root'>
 				<NextIntlClientProvider>
-					{/* <PageProvider value={{ ...page, year: pageProps.year, isHome }}> */}					
-						
+					{/* <PageProvider value={{ ...page, year: pageProps.year, isHome }}> */}
+
 					{/* {showBackground && backgroundImage?.responsiveImage && (
 						<div className={s.background}>
 							<Image
@@ -41,33 +40,36 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 							/>
 						</div>
 					)} */}
-				<div className={s.layout}>
-					<main id="content" className={cn(s.content, /*!showMenu && s.full*/)}>
-						<article>
-							{/* <SectionHeader menu={menu} /> */}
-							{children}
-						</article>
-					</main>
-				</div>
-				<Menu items={menu} />
-				<Language menu={menu} />
-				<Footer footer={general} />
-				{/* <FullscreenGallery
+					<div className={s.layout}>
+						<main
+							id='content'
+							//className={cn(s.content, !showMenu && s.full)}
+							className={cn(s.content, s.full)}
+						>
+							<article>
+								{/* <SectionHeader menu={menu} /> */}
+								{children}
+							</article>
+						</main>
+					</div>
+					<Menu items={menu} />
+					<Language menu={menu} />
+					<Footer footer={general} />
+					<PageBackground />
+					{/* <FullscreenGallery
 					index={images?.findIndex((image) => image?.id === imageId)}
 					images={images}
 					show={imageId !== undefined}
 					onClose={() => setImageId(undefined)}
 				/> */}
-					
-				{/* </PageProvider> */}
-					
+
+					{/* </PageProvider> */}
 				</NextIntlClientProvider>
 				<DraftModeContentLink />
 			</body>
 		</html>
 	);
 }
-
 
 export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
 	const { locale } = await params;
