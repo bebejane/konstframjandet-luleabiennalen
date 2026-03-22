@@ -4,11 +4,10 @@ import { AllExhibitionsDocument, ContactDocument, LandOwnershipDocument } from '
 import { CardContainer, Card, Thumbnail } from '@/components';
 import { formatDate } from '@/lib/utils';
 
-
 import { useTranslations } from 'next-intl';
 
 import { Markdown } from 'next-dato-utils/components';
-import { usePage } from '@/lib/context/page';
+import { useYear } from '@/lib/context/year';
 import { apiQuery } from 'next-dato-utils/api';
 
 export type Props = {
@@ -56,5 +55,5 @@ export const getStaticProps = withGlobalProps(
 			},
 			revalidate,
 		};
-	}
+	},
 );

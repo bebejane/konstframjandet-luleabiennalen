@@ -5,10 +5,9 @@ import { CardContainer, Card, Thumbnail, FilterBar } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { useState } from 'react';
 
-
 import { useTranslations } from 'next-intl';
 
-import { usePage } from '@/lib/context/page';
+import { useYear } from '@/lib/context/year';
 import { isAfter } from 'date-fns';
 
 export type Props = {
@@ -23,7 +22,8 @@ export default function Program({ programs, programCategories }: Props) {
 
 	const [category, setCategory] = useState<string>();
 	const [place, setPlace] = useState<string>();
-	const categoryFilter = ({ programCategory: { id } }: ProgramRecord) => !category || category === id;
+	const categoryFilter = ({ programCategory: { id } }: ProgramRecord) =>
+		!category || category === id;
 	const placeFilter = (p: ProgramRecord) =>
 		!place || (p.programPlace.length && p.programPlace.find((el) => el.id === place));
 
@@ -33,7 +33,9 @@ export default function Program({ programs, programCategories }: Props) {
 	const pastPrograms = programs
 		.filter(
 			({ startDate, endDate }) =>
-				!year.isArchive && isAfter(today, new Date(startDate)) && (!endDate || isAfter(today, new Date(endDate)))
+				!year.isArchive &&
+				isAfter(today, new Date(startDate)) &&
+				(!endDate || isAfter(today, new Date(endDate))),
 		)
 		.filter(categoryFilter)
 		.filter(placeFilter);
@@ -72,7 +74,18 @@ export default function Program({ programs, programCategories }: Props) {
 			{haveProgramItems ? (
 				<CardContainer key={`${category}-${place}-${asPath}`}>
 					{comingPrograms.map(
-						({ id, image, imageEn, title, intro, slug, startDate, endDate, programCategory, programPlace }) => (
+						({
+							id,
+							image,
+							imageEn,
+							title,
+							intro,
+							slug,
+							startDate,
+							endDate,
+							programCategory,
+							programPlace,
+						}) => (
 							<Card key={id}>
 								<Thumbnail
 									title={title}
@@ -88,7 +101,7 @@ export default function Program({ programs, programCategories }: Props) {
 									slug={`/program/${slug}`}
 								/>
 							</Card>
-						)
+						),
 					)}
 				</CardContainer>
 			) : (
@@ -99,7 +112,17 @@ export default function Program({ programs, programCategories }: Props) {
 					<h2 className={s.subheader}>{t('Program.finished')}</h2>
 					<CardContainer key={`${category}-${place}-${asPath}`}>
 						{pastPrograms.map(
-							({ id, image, title, intro, slug, startDate, endDate, programCategory, programPlace }) => (
+							({
+								id,
+								image,
+								title,
+								intro,
+								slug,
+								startDate,
+								endDate,
+								programCategory,
+								programPlace,
+							}) => (
 								<Card key={id}>
 									<Thumbnail
 										title={title}
@@ -114,7 +137,7 @@ export default function Program({ programs, programCategories }: Props) {
 										slug={`/program/${slug}`}
 									/>
 								</Card>
-							)
+							),
 						)}
 					</CardContainer>
 				</>
@@ -128,7 +151,7 @@ export const getStaticProps = withGlobalProps(
 	async ({ props, revalidate, context }: any) => {
 		// Filter out program categories that don't have any programs
 		const programCategories = props.programCategories.filter(({ id }) =>
-			props.programs.some(({ programCategory }) => programCategory.id === id)
+			props.programs.some(({ programCategory }) => programCategory.id === id),
 		);
 
 		return {
@@ -142,5 +165,5 @@ export const getStaticProps = withGlobalProps(
 			},
 			revalidate,
 		};
-	}
+	},
 );

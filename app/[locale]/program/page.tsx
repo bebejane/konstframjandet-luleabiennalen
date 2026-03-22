@@ -2,7 +2,7 @@ import s from './page.module.scss';
 import { AllProgramsDocument, AllProgramCategoriesDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail, FilterBar } from '@/components';
 import { formatDate } from '@/lib/utils';
-import { usePage } from '@/lib/context/page';
+import { useYear } from '@/lib/context/year';
 import { isAfter } from 'date-fns';
 import { apiQuery } from 'next-dato-utils/api';
 import { getTranslations, setRequestLocale } from 'next-intl/server';

@@ -4,11 +4,10 @@ import withGlobalProps from '@/lib/withGlobalProps';
 import { AllLocationsDocument, AllPartnersDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail } from '@/components';
 
-
 import { useTranslations } from 'next-intl';
 import { Image } from 'react-datocms';
 
-import { usePage } from '@/lib/context/page';
+import { useYear } from '@/lib/context/year';
 
 export type Props = {
 	partners: PartnerRecord[];
@@ -31,7 +30,13 @@ export default function Partners({ partners, locations, financiers: { fundedBy }
 					<CardContainer key={`${asPath}-locations`} className={s.locations}>
 						{locations.map(({ id, image, title, intro, slug, year }) => (
 							<Card key={id}>
-								<Thumbnail title={title} image={image} intro={intro} titleRows={1} slug={`/platser/${slug}`} />
+								<Thumbnail
+									title={title}
+									image={image}
+									intro={intro}
+									titleRows={1}
+									slug={`/platser/${slug}`}
+								/>
 							</Card>
 						))}
 					</CardContainer>
@@ -76,5 +81,5 @@ export const getStaticProps = withGlobalProps(
 			},
 			revalidate,
 		};
-	}
+	},
 );

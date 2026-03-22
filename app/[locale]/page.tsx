@@ -1,13 +1,12 @@
 import s from './page.module.scss';
 import cn from 'classnames';
-import { LandOwnershipDocument, StartDataDocument, StartDocument } from '@/graphql';
+import { LandOwnershipDocument, StartDataDocument, StartDocument, YearDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { Block, LandOwnershipPopup } from '@/components';
 import { locales } from '@/i18n/routing';
 import { format } from 'date-fns';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { allYears } from '@/lib/utils';
 
 export type Props = {
 	start: StartRecord;
@@ -20,12 +19,21 @@ const fullBlocks = [
 	'StartFullscreenVideoRecord',
 ];
 
-export default async function Home({ params }: PageProps<'/[locale]'>) {
-	const { locale } = await params;
+export default async function Home({ params }: PageProps<'/[locale]/[year]'>) {
+	const { locale, year: _year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { start, landOwnership } = await getData(locale as SiteLocale, '2026');
+	const { year } = await apiQuery(YearDocument, {
+		variables: {
+			locale: locale as SiteLocale,
+			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR,
+		},
+	});
+
+	if (!year) return notFound();
+
+	const { start, landOwnership } = await getData(locale as SiteLocale, year);
 
 	return (
 		<>
@@ -44,16 +52,12 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 	);
 }
 
-async function getData(locale: SiteLocale, _year: string) {
+async function getData(locale: SiteLocale, year: YearQuery['year']) {
 	let { start } = await apiQuery(StartDocument, {
 		variables: { locale },
 	});
 
 	if (!start) notFound();
-
-	const years = await allYears(locale);
-	let year = years.find(({ title }) => (_year ? title === _year : title === years[0].title));
-	year = { ...year, isArchive: year?.title !== years[0].title } as YearExtendedRecord;
 
 	const date = format(new Date(), 'yyyy-MM-dd');
 	const count = {
@@ -75,12 +79,14 @@ async function getData(locale: SiteLocale, _year: string) {
 	};
 
 	// Add extra items to make sure we have enough to fill the grid
-	Object.keys(count).forEach((k) => (count[k] += count[k] % 2 === 0 ? 0 : 1));
+	Object.keys(count).forEach(
+		(k) => (count[k as keyof typeof count] += count[k as keyof typeof count] % 2 === 0 ? 0 : 1),
+	);
 
 	const variables = {
 		newsItems: count.news,
 		programItems: count.participants,
-		yearId: year.id,
+		yearId: year?.id,
 		locale,
 		date,
 	};
@@ -94,7 +100,6 @@ async function getData(locale: SiteLocale, _year: string) {
 	});
 
 	return {
-		year,
 		landOwnership,
 		start: {
 			...start,

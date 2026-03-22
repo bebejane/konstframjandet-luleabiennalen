@@ -2,7 +2,7 @@ import '@/styles/index.scss';
 import 'swiper/css';
 import s from './layout.module.scss';
 import { apiQuery } from 'next-dato-utils/api';
-import { GeneralDocument, SiteDocument } from '@/graphql';
+import { GeneralDocument, SiteDocument, YearDocument } from '@/graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { NextIntlClientProvider } from 'next-intl';
@@ -12,9 +12,11 @@ import { Footer, FullscreenGallery, Language, Menu, PageBackground } from '@/com
 import { buildMenu } from '@/lib/menu';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { YearProvider } from '@/lib/context/year';
 
-export default async function RootLayout({ children, params }: LayoutProps<'/[locale]'>) {
-	const { locale } = await params;
+export default async function RootLayout({ children, params }: LayoutProps<'/[locale]/[year]'>) {
+	const { locale, year: _year } = await params;
+
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
@@ -23,20 +25,31 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 		variables: { locale: locale as SiteLocale },
 	});
 
+	const { year } = await apiQuery(YearDocument, {
+		variables: {
+			locale: locale as SiteLocale,
+			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR,
+		},
+	});
+
+	if (!year) return notFound();
+
 	return (
 		<html lang='en-US'>
 			<body id='root' className='root'>
 				<NextIntlClientProvider>
-					<PageBackground />
-					<div className={s.layout}>
-						<main id='content' className={s.content} data-full={true}>
-							<article>{children}</article>
-						</main>
-					</div>
-					<Menu items={menu} />
-					<Language menu={menu} />
-					<Footer footer={general} />
-					<FullscreenGallery />
+					<YearProvider value={{ year }}>
+						<PageBackground />
+						<div className={s.layout}>
+							<main id='content' className={s.content} data-full={true}>
+								<article>{children}</article>
+							</main>
+						</div>
+						<Menu items={menu} />
+						<Language menu={menu} />
+						<Footer footer={general} />
+						<FullscreenGallery />
+					</YearProvider>
 				</NextIntlClientProvider>
 				<DraftModeContentLink />
 			</body>
@@ -50,6 +63,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
 	const { locale } = await params;
+	if (!locales.includes(locale as any)) return notFound();
+
 	const {
 		_site: { globalSeo, faviconMetaTags },
 	} = await apiQuery(SiteDocument, {

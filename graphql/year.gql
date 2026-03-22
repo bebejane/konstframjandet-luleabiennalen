@@ -1,10 +1,5 @@
 query AllYears($locale: SiteLocale, $year: String) {
-	allYears(
-		filter: { title: { neq: $year } }
-		locale: $locale
-		first: 100
-		orderBy: title_DESC
-	) {
+	allYears(filter: { title: { neq: $year } }, locale: $locale, first: 100, orderBy: title_DESC) {
 		...YearFragment
 	}
 }

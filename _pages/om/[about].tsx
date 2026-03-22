@@ -1,14 +1,18 @@
 import withGlobalProps from '@/lib/withGlobalProps';
 import { apiQuery } from 'next-dato-utils/api';
-Markdown
+Markdown;
 import { AboutDocument, AllAboutsDocument } from '@/graphql';
 import { Article, ArchiveShortcuts } from '@/components';
 
-
-
 export type Props = {
 	about: AboutRecord;
-	shortcuts?: (AboutRecord | ExhibitionRecord | ProgramRecord | ParticipantRecord | PartnerRecord)[];
+	shortcuts?: (
+		| AboutRecord
+		| ExhibitionRecord
+		| ProgramRecord
+		| ParticipantRecord
+		| PartnerRecord
+	)[];
 };
 
 export default function AboutItem({
@@ -18,7 +22,15 @@ export default function AboutItem({
 	return (
 		<>
 			<DatoSEO title={title} description={intro} seo={_seoMetaTags} />
-			<Article id={id} key={id} title={title} image={image} imageEn={imageEn} intro={intro} content={content} />
+			<Article
+				id={id}
+				key={id}
+				title={title}
+				image={image}
+				imageEn={imageEn}
+				intro={intro}
+				content={content}
+			/>
 			{shortcuts?.length && <ArchiveShortcuts items={shortcuts} />}
 		</>
 	);
@@ -35,26 +47,29 @@ export async function getStaticPaths() {
 	};
 }
 
-export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
-	const slug = context.params.about;
-	const { about } = await apiQuery(AboutDocument, {
-		variables: { slug, locale },
-		preview: context.preview,
-	});
+export const getStaticProps = withGlobalProps(
+	{ queries: [] },
+	async ({ props, revalidate, context }: any) => {
+		const slug = context.params.about;
+		const { about } = await apiQuery(AboutDocument, {
+			variables: { slug, locale },
+			preview: context.preview,
+		});
 
-	if (!about) return { notFound: true, revalidate };
+		if (!about) return { notFound: true, revalidate };
 
-	return {
-		props: {
-			...props,
-			about,
-			page: {
-				section: 'about',
-				parent: false,
-				title: about.title,
-				slugs: pageSlugs('about', props.year.title, about._allSlugLocales),
-			} as PageProps,
-		},
-		revalidate,
-	};
-});
+		return {
+			props: {
+				...props,
+				about,
+				page: {
+					section: 'about',
+					parent: false,
+					title: about.title,
+					slugs: pageSlugs('about', props.year.title, about._allSlugLocales),
+				} as PageProps,
+			},
+			revalidate,
+		};
+	},
+);

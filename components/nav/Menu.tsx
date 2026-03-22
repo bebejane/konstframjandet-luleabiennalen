@@ -47,13 +47,11 @@ export default function Menu({ items }: MenuProps) {
 	};
 
 	useEffect(() => {
-		// const handleRouteChangeStart = (path: string) => {
-		// 	setPath(path)
-		// 	!isDesktop && setShowMenu(false)
-		// }
-		// router.events.on('routeChangeStart', handleRouteChangeStart)
-		// return () => router.events.off('routeChangeStart', handleRouteChangeStart)
-	}, [isDesktop]);
+		return () => {
+			!isDesktop && setShowMenu(false);
+			setPath(pathname);
+		};
+	}, [pathname]);
 
 	useEffect(() => {
 		const footer = document.getElementById('footer');

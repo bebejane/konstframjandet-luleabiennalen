@@ -5,9 +5,7 @@ import { LocationDocument, AllLocationsDocument } from '@/graphql';
 import { Article, Related, BackButton, MetaSection } from '@/components';
 import { useTranslations } from 'next-intl';
 
-
-
-import { usePage } from '@/lib/context/page';
+import { useYear } from '@/lib/context/year';
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];
@@ -104,5 +102,5 @@ export const getStaticProps = withGlobalProps(
 			},
 			revalidate,
 		};
-	}
+	},
 );

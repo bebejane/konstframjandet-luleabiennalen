@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
 import s from './SectionHeader.module.scss';
 import cn from 'classnames';
 import { MenuItem } from '@/lib/menu';
 import { useLocale, useTranslations } from 'next-intl';
-import { usePage } from '@/lib/context/page';
+import { useYear } from '@/lib/context/year';
 import { PROJECT_NAME, PROJECT_ABBR } from '@/lib/constant';
 import { translatePath } from '@/lib/utils';
 import { defaultLocale, Link, useRouter } from '@/i18n/routing';
-import {useStore, useShallow} from '@/lib/store';
+import { useStore, useShallow } from '@/lib/store';
 import Logo from '@/public/images/logo-text.svg';
 import { Icon } from '@/components';
 
@@ -32,13 +32,13 @@ export default function SectionHeader() {
 		},
 		isHome,
 		slugs,
-	} = usePage();
+	} = useYear();
 
 	const locationsParentPath = `${translatePath(
 		'/partners',
 		locale,
 		defaultLocale,
-		year?.title
+		year?.title,
 	)}#locations`;
 	const isLocation = section === 'locations';
 	const parentPath = isLocation
@@ -58,10 +58,10 @@ export default function SectionHeader() {
 	const label = isArchiveOverview
 		? PROJECT_NAME
 		: isArchiveHome
-		? yearLabel
-		: !isSearch
-		? `${yearLabel}${!isHome ? ` — ${t(isLocation ? 'partners' : section)}` : ''}`
-		: t('search');
+			? yearLabel
+			: !isSearch
+				? `${yearLabel}${!isHome ? ` — ${t(isLocation ? 'partners' : section)}` : ''}`
+				: t('search');
 
 	const header = (
 		<h2>
@@ -85,9 +85,7 @@ export default function SectionHeader() {
 				{isHome ? (
 					<Icon src={Logo} />
 				) : !isOverview ? (
-					<Link href={parentPath} >
-						{header}
-					</Link>
+					<Link href={parentPath}>{header}</Link>
 				) : (
 					<>{header}</>
 				)}

@@ -1,13 +1,8 @@
 query AllAbouts($first: IntType = 100, $skip: IntType = 0, $yearId: ItemId, $locale: SiteLocale) {
-	allAbouts(
-		filter: { year: { eq: $yearId } }
-		locale: $locale
-		first: $first
-		skip: $skip
-	) {
+	allAbouts(filter: { year: { eq: $yearId } }, locale: $locale, first: $first, skip: $skip) {
 		...AboutFragment
 	}
-	_allAboutsMeta(filter: { year: { eq: $yearId } }) {
+	_allAboutsMeta(locale: $locale, filter: { year: { eq: $yearId } }) {
 		count
 	}
 }
@@ -19,11 +14,7 @@ query About($slug: String!, $locale: SiteLocale) {
 }
 
 query MainAbout($yearId: ItemId, $locale: SiteLocale) {
-	allAbouts(
-		filter: { OR: [{ year: { eq: $yearId } }, { year: { exists: false } }] }
-		first: 1
-		locale: $locale
-	) {
+	allAbouts(filter: { year: { eq: $yearId } }, orderBy: [position_ASC], first: 1, locale: $locale) {
 		...AboutFragment
 	}
 }
@@ -38,6 +29,7 @@ query AllAboutsMenu($locale: SiteLocale) {
 fragment AboutFragment on AboutRecord {
 	__typename
 	_modelApiKey
+	position
 	id
 	title
 	intro

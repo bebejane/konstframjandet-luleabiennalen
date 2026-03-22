@@ -4,13 +4,12 @@ import s from './Thumbnail.module.scss';
 import cn from 'classnames';
 import { useState } from 'react';
 import { Image } from 'react-datocms/image';
-import { usePage } from '@/lib/context/page';
-import { randomInt, truncateWords } from '@/lib/utils';
+import { useYear } from '@/lib/context/year';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { sl } from 'date-fns/locale';
+import { rInt, truncateWords } from 'next-dato-utils/utils';
 
 export type Props = {
 	image?: FileField | null;
@@ -40,23 +39,22 @@ export default function Thumbnail({
 	zoomOutOnHover = false,
 }: Props) {
 	const strippedIntro = truncateWords(remark().use(strip).processSync(intro).value as string, 500);
-	const isArchive = false;
-	const loadingImageIndex = 0;
 	const loadingImage = null;
-	// const {
-	// 	year: { loadingImage, isArchive },
-	// } = usePage();
+	const { year, isArchive } = useYear();
 	const locale = useLocale();
-	//const [loadingImageIndex] = useState(loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0);
+	const [loadingImageIndex] = useState(loadingImage?.length ? rInt(0, loadingImage.length - 1) : 0);
 	const [loaded, setLoaded] = useState(false);
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
 
 	if (!slug) return null;
 
 	return (
-		<Link href={slug} className={cn(s.thumbnail, !slug && s.nolink)}>
+		<Link
+			href={`${isArchive ? `/${year?.title}` : ''}${slug}`}
+			className={cn(s.thumbnail, !slug && s.nolink)}
+		>
 			<h3 className={cn(s[`rows-${titleRows}`])}>
-				<span>{titleLength ? truncateWords(title, titleLength) : title}</span>
+				<span>{titleLength ? truncateWords(title ?? '', titleLength) : title}</span>
 			</h3>
 			{image && (
 				<div className={cn(s.imageWrap, zoomOutOnHover && s.zoomOutOnHover)}>
