@@ -1,7 +1,6 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { AllYearsDocument, MenuDocument } from '@/graphql';
 import i18nPaths from '@/i18n/paths.json';
-import { allYears } from '@/lib/utils';
 import { locales } from '@/i18n/routing';
 
 export type SectionId =
