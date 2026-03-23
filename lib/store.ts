@@ -8,6 +8,8 @@ export interface StoreState {
 	searchQuery: string | null;
 	images: FileField[] | null;
 	imageId: string | null;
+	color?: string | null;
+	setColor: (color: string | null) => void;
 	setShowMenu: (showMenu: boolean) => void;
 	setShowMenuMobile: (showMenuMobile: boolean) => void;
 	setImages: (images: FileField[] | null) => void;
@@ -23,6 +25,11 @@ const useStore = create<StoreState>((set) => ({
 	searchQuery: null,
 	images: [],
 	imageId: null,
+	color: null,
+	setColor: (color) =>
+		set((state) => ({
+			color,
+		})),
 	setShowMenu: (showMenu) =>
 		set((state) => ({
 			showMenu,

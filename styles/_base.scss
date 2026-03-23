@@ -7,8 +7,8 @@
 	--red: #bf0000;
 	--archive: #ececec;
 
-	--body-font: "Remix", Times, "Times New Roman", Sans-Serif;
-	--headline-font: "Rauschen", Arial, Helvetica, Sans-Serif;
+	--body-font: 'Remix', Times, 'Times New Roman', Sans-Serif;
+	--headline-font: 'Rauschen', Arial, Helvetica, Sans-Serif;
 
 	--outer-margin: 4vw;
 	--logo-size-optical: 2.8rem;
@@ -26,11 +26,10 @@
 	--header-height: calc((var(--outer-margin) * 2) + 0.75rem); //snygga upp sen
 	--menu-transition: 0.3s ease-in-out;
 
-	
 	--background: var(--white);
 	--foreground: var(--black);
 
-	--z-background-image: 0;
+	--z-background-image: -1;
 	--z-section-header: 100;
 
 	--z-language: 300;
@@ -64,7 +63,7 @@ body {
 	background-color: var(--background);
 	font-family: var(--body-font);
 	-webkit-font-smoothing: antialiased;
-	font-feature-settings: "liga", "kern";
+	font-feature-settings: 'liga', 'kern';
 	overflow-x: hidden;
 }
 
@@ -155,8 +154,9 @@ button {
 		padding-top: 1em;
 	}
 
-	transition: color 0.2s ease-in-out,
-	background-color 0.3s ease-in-out;
+	transition:
+		color 0.2s ease-in-out,
+		background-color 0.3s ease-in-out;
 
 	&.back {
 		width: var(--body-width);
@@ -197,7 +197,7 @@ select {
 	padding: 0.8em;
 	padding-bottom: 0.9em;
 	padding-left: 1em;
-	font-family: "Jazz";
+	font-family: 'Jazz';
 	border: none;
 
 	&:focus {

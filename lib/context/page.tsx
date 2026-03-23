@@ -2,8 +2,9 @@
 
 import { getPathname, locales, usePathname as useIntlPathname } from '@/i18n/routing';
 import { SectionId, sections } from '@/lib/menu';
+import useStore, { useShallow } from '@/lib/store';
 import { usePathname } from 'next/navigation';
-import { useContext, createContext, use } from 'react';
+import { useContext, createContext, use, useEffect } from 'react';
 
 type PageContextProps = {
 	year: YearQuery['year'];
@@ -59,6 +60,11 @@ export const PageProvider = ({ children, value }: YearProviderProps) => {
 	const pathname = usePathname();
 	const intlPathname = useIntlPathname();
 	const section = getSection(pathname, intlPathname, value.year?.title);
+	const [setColor] = useStore(useShallow((state) => [state.setColor]));
+
+	useEffect(() => {
+		setColor(value.year?.color?.hex ?? null);
+	}, [value.year?.color?.hex]);
 
 	return (
 		<PageContext.Provider

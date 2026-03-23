@@ -58,7 +58,7 @@ importers:
         version: 16.2.1(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0)
       next-dato-utils:
         specifier: github:bebejane/next-dato-utils
-        version: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/f6f70448428dc391224bf18cb77629801d25b41b(@datocms/cda-client@0.2.10(graphql@16.13.1))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@datocms/content-link@0.3.18)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.1)(next@16.2.1(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.6(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(graphql@16.13.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0)(zod@4.1.12)
+        version: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/1ce7c52ba1a3f1a88d1e38be237dd782a6a0b376(@datocms/cda-client@0.2.10(graphql@16.13.1))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@datocms/content-link@0.3.18)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.1)(next@16.2.1(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.6(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(graphql@16.13.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0)(zod@4.1.12)
       next-intl:
         specifier: ^4.8.3
         version: 4.8.3(next@16.2.1(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(react@19.2.4)(typescript@5.9.3)
@@ -2651,9 +2651,9 @@ packages:
     resolution: {integrity: sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==}
     engines: {node: '>= 0.6'}
 
-  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/f6f70448428dc391224bf18cb77629801d25b41b:
-    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/f6f70448428dc391224bf18cb77629801d25b41b}
-    version: 2.0.274
+  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/1ce7c52ba1a3f1a88d1e38be237dd782a6a0b376:
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/1ce7c52ba1a3f1a88d1e38be237dd782a6a0b376}
+    version: 2.0.275
     engines: {node: '>=0.22'}
     hasBin: true
     peerDependencies:
@@ -6138,7 +6138,7 @@ snapshots:
 
   negotiator@1.0.0: {}
 
-  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/f6f70448428dc391224bf18cb77629801d25b41b(@datocms/cda-client@0.2.10(graphql@16.13.1))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@datocms/content-link@0.3.18)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.1)(next@16.2.1(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.6(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(graphql@16.13.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0)(zod@4.1.12):
+  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/1ce7c52ba1a3f1a88d1e38be237dd782a6a0b376(@datocms/cda-client@0.2.10(graphql@16.13.1))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@datocms/content-link@0.3.18)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.1)(next@16.2.1(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.6(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(graphql@16.13.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0)(zod@4.1.12):
     dependencies:
       '@datocms/cda-client': 0.2.10(graphql@16.13.1)
       '@datocms/cma-client': 5.3.0

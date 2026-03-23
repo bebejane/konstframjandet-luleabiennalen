@@ -6,15 +6,16 @@ import LogoIcon from '@/public/images/logo.svg';
 import { usePage } from '@/lib/context/page';
 import { Icon } from '@/components';
 import { Link } from '@/i18n/routing';
+import useStore, { useShallow } from '@/lib/store';
 
 export default function Logo() {
-	const { year, section } = usePage();
-	const color = year?.color.hex;
+	const { section } = usePage();
+	const [color] = useStore(useShallow((state) => [state.color]));
 
 	return (
 		<div className={cn(s.container, section === 'home' && s.home)} key={color}>
 			<Link href={'/'}>
-				<Icon src={LogoIcon} style={section !== 'archive' ? { color } : undefined} />
+				<Icon src={LogoIcon} style={section !== 'archive' && color ? { color } : undefined} />
 			</Link>
 		</div>
 	);

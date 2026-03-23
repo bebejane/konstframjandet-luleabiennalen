@@ -1,3 +1,4 @@
+import { PageBackground } from '@/components';
 import { AllYearsDocument, YearDocument } from '@/graphql';
 import { locales } from '@/i18n/routing';
 import { PageProvider } from '@/lib/context/page';
@@ -19,7 +20,12 @@ export default async function YearLayout({ children, params }: LayoutProps<'/[lo
 
 	if (!year) return notFound();
 
-	return <PageProvider value={{ year }}>{children}</PageProvider>;
+	return (
+		<PageProvider value={{ year }}>
+			{children}
+			<PageBackground />
+		</PageProvider>
+	);
 }
 
 export async function generateStaticParams({ params }: LayoutProps<'/[locale]/[year]'>) {

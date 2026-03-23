@@ -21,8 +21,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 	setRequestLocale(locale);
 
 	const menu = await buildMenu(locale as Locale);
-	const menu2 = await buildMenu2(locale as SiteLocale);
-	console.log(menu2);
+	//const menu2 = await buildMenu2(locale as SiteLocale);console.log(menu2);
 	const { general, draftUrl } = await apiQuery(GeneralDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
@@ -41,7 +40,6 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 			<body id='root' className='root'>
 				<NextIntlClientProvider>
 					<PageProvider value={{ year }}>
-						<PageBackground />
 						<div className={s.layout}>
 							<main id='content' className={s.content} data-full={true}>
 								<article>{children}</article>
