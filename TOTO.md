@@ -3,7 +3,6 @@
 - search page
 - DatoLink
 
-- chcek html hirachy, remove layout divs, use <main>
 - simplify Articel, spread props
 - Simplify TreeView @roseline124/react-tree
 - scrollbug menu height
