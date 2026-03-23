@@ -1,7 +1,6 @@
-
 import { apiQuery } from 'next-dato-utils/api';
 import { NewsDocument, AllNewsDocument } from '@/graphql';
-import { Article, BackButton } from '@/components';
+import { Article, BackButton, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n/routing';
@@ -14,17 +13,17 @@ export default async function News({ params }: PageProps<'/[locale]/nyheter/[new
 	const { locale, news: slug } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
-	
+
 	const { news } = await apiQuery(NewsDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!news) return notFound();
 	const { id, image, imageEn, title, intro, content, _seoMetaTags } = news;
-	const t = await getTranslations('BackButton');
+	const t = await getTranslations();
 
 	return (
 		<>
-			{/* <DatoSEO title={title} description={intro} seo={_seoMetaTags} /> */}
+			<PageHeader title={t('Menu.news')} href='/nyheter' />
 			<Article
 				id={id}
 				key={id}
@@ -34,14 +33,17 @@ export default async function News({ params }: PageProps<'/[locale]/nyheter/[new
 				intro={intro}
 				content={content}
 			/>
-			<BackButton>{t('showAllNews')}</BackButton>
+			<BackButton>{t('BackButton.showAllNews')}</BackButton>
 		</>
 	);
 }
 
 export async function generateStaticParams({ params }: PageProps<'/[locale]/nyheter'>) {
 	const { locale } = await params;
-	const { allNews } = await apiQuery(AllNewsDocument, { all:true, variables: { locale: locale as SiteLocale } });
+	const { allNews } = await apiQuery(AllNewsDocument, {
+		all: true,
+		variables: { locale: locale as SiteLocale },
+	});
 	return allNews.map((news) => ({ news: news.slug }));
 }
 

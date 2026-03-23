@@ -1,6 +1,6 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { ProgramDocument, AllProgramsDocument } from '@/graphql';
-import { Article, Related, BackButton } from '@/components';
+import { Article, Related, BackButton, PageHeader } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { Link, locales } from '@/i18n/routing';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -43,7 +43,7 @@ export default async function Program({ params }: PageProps<'/[locale]/[year]/pr
 
 	return (
 		<>
-			{/* <DatoSEO title={title} description={intro} seo={_seoMetaTags} /> */}
+			<PageHeader title={t('Menu.program')} href={'/program'} />
 			<Article
 				id={id}
 				key={id}
@@ -69,7 +69,17 @@ export default async function Program({ params }: PageProps<'/[locale]/[year]/pr
 						title: t('MetaSection.where'),
 						value:
 							location.length &&
-							location.map(({ slug, title }) => <Link href={`/platser/${slug}`}>{title}</Link>),
+							location.map(({ slug, title }, idx) => (
+								<Link
+									key={idx}
+									href={{
+										pathname: '/platser/[location]',
+										params: { location: slug },
+									}}
+								>
+									{title}
+								</Link>
+							)),
 					},
 					{
 						title: t('MetaSection.link'),

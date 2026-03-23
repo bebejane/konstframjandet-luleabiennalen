@@ -1,7 +1,7 @@
 import s from './page.module.scss';
 import cn from 'classnames';
 import { AllLocationsDocument, AllPartnersDocument, YearDocument } from '@/graphql';
-import { CardContainer, Card, Thumbnail } from '@/components';
+import { CardContainer, Card, Thumbnail, PageHeader } from '@/components';
 import { Image } from 'react-datocms';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -36,7 +36,7 @@ export default async function Partners({ params }: PageProps<'/[locale]/[year]/p
 
 	return (
 		<>
-			{/* <DatoSEO title={t('Menu.partners')} /> */}
+			<PageHeader title={t('Menu.partners')} />
 			{allLocations.length > 0 && (
 				<>
 					<h2 id='locations' className={cn(s.head, s.locations)}>

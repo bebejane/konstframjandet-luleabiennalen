@@ -1,6 +1,6 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { ExhibitionDocument, AllExhibitionsDocument } from '@/graphql';
-import { Article, Related, BackButton } from '@/components';
+import { Article, Related, BackButton, PageHeader } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -41,7 +41,7 @@ export default async function Exhibition({
 
 	return (
 		<>
-			{/* <DatoSEO title={title} description={intro} seo={_seoMetaTags} /> */}
+			<PageHeader title={t('Menu.exhibitions')} href={'/utstallningar'} />
 			<Article
 				id={id}
 				key={id}

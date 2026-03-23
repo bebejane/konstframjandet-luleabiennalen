@@ -1,6 +1,6 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { PartnerDocument, AllPartnersDocument } from '@/graphql';
-import { Article, Related, BackButton, MetaSection } from '@/components';
+import { Article, Related, BackButton, MetaSection, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n/routing';
@@ -26,7 +26,7 @@ export default async function Partner({
 
 	return (
 		<>
-			{/* <DatoSEO title={title} description={intro} seo={_seoMetaTags} /> */}
+			<PageHeader title={t('Menu.partners')} href={'/partners'} />
 			<Article
 				id={id}
 				key={id}

@@ -33,6 +33,7 @@ export default async function FilterBar({
 			<ul>
 				<li className={cn(!value && s.selected)}>
 					<Link
+						replace={true}
 						href={{
 							pathname,
 							query: { ...params, [name]: null },
@@ -44,6 +45,7 @@ export default async function FilterBar({
 				{sortSwedish(options, 'label').map(({ title, description }, idx) => (
 					<li key={idx} className={cn(value === title && s.selected)}>
 						<Link
+							replace={true}
 							href={{
 								pathname,
 								query: { ...params, [name]: title },

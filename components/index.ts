@@ -39,3 +39,4 @@ export { default as Menu, MenuTree } from './nav/Menu';
 export { default as Block } from './content/Block';
 export { default as Icon } from './common/Icon';
 export { default as PageBackground } from './common/PageBackground';
+export { default as PageHeader } from './layout/PageHeader';

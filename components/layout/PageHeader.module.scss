@@ -10,24 +10,6 @@
 	width: 100%;
 	mix-blend-mode: difference;
 
-	h2 {
-		line-height: 1;
-		font-size: 0.75rem;
-	}
-
-	svg {
-		path {
-			width: 200px;
-		}
-	}
-
-	@include mq($from: tablet) {
-		a,
-		span {
-			color: var(--white);
-		}
-	}
-
 	@include mq($until: tablet) {
 		margin-top: -1em;
 	}
@@ -35,6 +17,10 @@
 	@include mq($from: tablet) {
 		width: calc(80% - var(--total-outer-margin));
 		padding-right: var(--total-outer-margin);
+		a,
+		span {
+			color: var(--white);
+		}
 	}
 
 	&.full {
@@ -46,6 +32,33 @@
 
 		@include mq($until: tablet) {
 			width: 100%;
+		}
+	}
+
+	h2 {
+		text-align: center;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		line-height: 1;
+		font-size: 0.75rem;
+
+		@include mq($from: tablet) {
+			color: var(--white);
+		}
+
+		span > span {
+			animation-name: show;
+			animation-duration: 0.2s;
+			animation-timing-function: steps(1, end);
+			animation-fill-mode: forwards;
+			opacity: 0.5;
+
+			@keyframes show {
+				to {
+					opacity: 1;
+				}
+			}
 		}
 	}
 
@@ -70,34 +83,6 @@
 		@include mq($from: tablet) {
 			margin-top: -0.08em;
 			width: calc(100% - var(--total-outer-margin));
-		}
-	}
-
-	a {
-		//width: 100%;
-
-		h2 {
-			line-height: 1;
-			text-align: center;
-			padding: 0;
-			margin: 0;
-			width: 100%;
-
-			> span {
-				span {
-					animation-name: show;
-					animation-duration: 0.2s;
-					animation-timing-function: steps(1, end);
-					animation-fill-mode: forwards;
-					opacity: 0.5;
-
-					@keyframes show {
-						to {
-							opacity: 1;
-						}
-					}
-				}
-			}
 		}
 	}
 }

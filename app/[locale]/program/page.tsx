@@ -1,6 +1,6 @@
 import s from './page.module.scss';
 import { AllProgramsDocument, AllProgramCategoriesDocument, YearDocument } from '@/graphql';
-import { CardContainer, Card, Thumbnail, FilterBar } from '@/components';
+import { CardContainer, Card, Thumbnail, FilterBar, PageHeader } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { isAfter } from 'date-fns';
 import { apiQuery } from 'next-dato-utils/api';
@@ -14,7 +14,6 @@ export type Props = {
 	programCategories: ProgramCategoryRecord[];
 };
 
-// Describe your search params, and reuse this in useQueryStates / createSerializer:
 const filterParams = {
 	category: parseAsString.withDefault(''),
 	place: parseAsString.withDefault(''),
@@ -39,22 +38,20 @@ export default async function Program({
 
 	if (!year) return notFound();
 
+	const { category, place } = await loadSearchParams(searchParams);
+	const t = await getTranslations();
 	const isArchive = year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR;
 	const pathname = getPathname({
+		locale,
 		href: {
 			pathname: _year ? '/[year]/program' : '/program',
 			params: { year: _year },
 		},
-		locale,
 	});
-	const t = await getTranslations();
-	const { category, place } = await loadSearchParams(searchParams);
-
 	const { allPrograms } = await apiQuery(AllProgramsDocument, {
 		all: true,
 		variables: { locale: locale as SiteLocale, yearId: year?.id },
 	});
-
 	const { allProgramCategories } = await apiQuery(AllProgramCategoriesDocument, {
 		variables: { locale: locale as SiteLocale, yearId: year?.id },
 	});
@@ -66,6 +63,7 @@ export default async function Program({
 	const placeFilter = ({ programPlace }: AllProgramsQuery['allPrograms'][number]) =>
 		!place || programPlace.some(({ title }) => title === place);
 
+	const key = `${category}-${place}-${pathname}`;
 	const haveProgramItems = allPrograms.filter(categoryFilter).filter(placeFilter).length > 0;
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);
@@ -98,12 +96,9 @@ export default async function Program({
 		[] as AllProgramsQuery['allPrograms'][number]['programPlace'],
 	);
 
-	console.log(pastPrograms.length, comingPrograms.length, place, category);
-
-	const key = `${category}-${place}-${pathname}`;
-
 	return (
 		<>
+			<PageHeader title={t('Menu.program')} />
 			<FilterBar
 				category={t('Program.types')}
 				name='category'

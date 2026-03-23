@@ -5,7 +5,7 @@ import { apiQuery } from 'next-dato-utils/api';
 import { GeneralDocument, SiteDocument, YearDocument } from '@/graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
-import { NextIntlClientProvider } from 'next-intl';
+import { Locale, NextIntlClientProvider } from 'next-intl';
 import { getPathname, locales } from '@/i18n/routing';
 import { DraftModeContentLink } from 'next-dato-utils/components';
 import {
@@ -24,10 +24,10 @@ import { PageProvider } from '@/lib/context/page';
 export default async function RootLayout({ children, params }: LayoutProps<'/[locale]/[year]'>) {
 	const { locale, year: _year } = await params;
 
-	if (!locales.includes(locale as any)) return notFound();
+	if (!locales.includes(locale)) return notFound();
 	setRequestLocale(locale);
 
-	const menu = await buildMenu(locale);
+	const menu = await buildMenu(locale as Locale);
 	const { general, draftUrl } = await apiQuery(GeneralDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
@@ -35,10 +35,11 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 	const { year } = await apiQuery(YearDocument, {
 		variables: {
 			locale: locale as SiteLocale,
-			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR,
+			title: process.env.NEXT_PUBLIC_CURRENT_YEAR!,
 		},
 	});
 
+	console.log('locale layout', _year);
 	if (!year) return notFound();
 
 	return (
@@ -47,13 +48,9 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 				<NextIntlClientProvider>
 					<PageProvider value={{ year }}>
 						<PageBackground />
-
 						<div className={s.layout}>
 							<main id='content' className={s.content} data-full={true}>
-								<article>
-									<SectionHeader />
-									{children}
-								</article>
+								<article>{children}</article>
 							</main>
 						</div>
 						<Menu items={menu} />

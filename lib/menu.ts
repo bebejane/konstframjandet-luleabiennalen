@@ -2,6 +2,7 @@ import { apiQuery } from 'next-dato-utils/api';
 import { AllYearsDocument, MenuDocument } from '@/graphql';
 import i18nPaths from '@/i18n/paths.json';
 import { locales } from '@/i18n/routing';
+import { Locale } from 'next-intl';
 
 export type SectionId =
 	| 'home'
@@ -29,7 +30,7 @@ const base: Menu = [
 	{ id: 'search', label: 'Sök', slug: '/sok', general: true },
 ];
 
-export const buildMenu = async (locale: SiteLocale) => {
+export const buildMenu = async (locale: Locale) => {
 	const messages = (await import(`@/i18n/${locale}.json`)).default;
 	const altLocale = locales.find((l) => locale != l) as SiteLocale;
 	const { allYears } = await apiQuery(AllYearsDocument, { variables: { locale } });

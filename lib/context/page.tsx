@@ -23,7 +23,7 @@ const initialState: PageContextProps = {
 export const PageContext = createContext(initialState);
 
 export type YearProviderProps = {
-	children: React.ReactElement[];
+	children: any;
 	value: Pick<PageContextProps, 'year'>;
 };
 

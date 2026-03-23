@@ -7,6 +7,7 @@ import { locales } from '@/i18n/routing';
 import { format } from 'date-fns';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { LogoHeader } from '@/components/layout/LogoHeader';
 
 export type Props = {
 	start: StartRecord;
@@ -37,6 +38,8 @@ export default async function Home({ params }: PageProps<'/[locale]/[year]'>) {
 
 	return (
 		<>
+			<LogoHeader />
+			<LandOwnershipPopup data={landOwnership} />
 			<div className={s.container}>
 				{start.content.map((block, idx) => (
 					<section
@@ -47,7 +50,6 @@ export default async function Home({ params }: PageProps<'/[locale]/[year]'>) {
 					</section>
 				))}
 			</div>
-			<LandOwnershipPopup data={landOwnership} />
 		</>
 	);
 }

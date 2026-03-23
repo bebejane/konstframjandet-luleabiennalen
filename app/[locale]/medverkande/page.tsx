@@ -1,5 +1,5 @@
 import { AllParticipantsDocument } from '@/graphql';
-import { CardContainer, Card, Thumbnail } from '@/components';
+import { CardContainer, Card, Thumbnail, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { apiQuery } from 'next-dato-utils/api';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -18,12 +18,13 @@ export default async function Participant({ params }: PageProps<'/[locale]/[year
 		all: true,
 		variables: { locale: locale as SiteLocale },
 	});
+
 	if (!allParticipants) return notFound();
-	const t = getTranslations('Menu');
+	const t = await getTranslations('Menu');
 
 	return (
 		<>
-			{/* <DatoSEO title={t('allParticipants')} /> */}
+			<PageHeader title={t('participants')} />
 			<CardContainer>
 				{allParticipants.map(({ id, image, imageEn, name, intro, slug }) => (
 					<Card key={id}>

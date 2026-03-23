@@ -1,8 +1,7 @@
-import { AllExhibitionsDocument, ContactDocument, LandOwnershipDocument } from '@/graphql';
-import { CardContainer, Card, Thumbnail } from '@/components';
+import { AllExhibitionsDocument } from '@/graphql';
+import { CardContainer, Card, Thumbnail, PageHeader } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { Markdown } from 'next-dato-utils/components';
-import { usePage } from '@/lib/context/page';
 import { apiQuery } from 'next-dato-utils/api';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -24,7 +23,7 @@ export default async function Exhibition({ params }: PageProps<'/[locale]/[year]
 
 	return (
 		<>
-			{/* <DatoSEO title={t('Menu.exhibitions')} /> */}
+			<PageHeader title={t('Menu.exhibitions')} />
 			{/* <Markdown className={s.intro} content={year.introExhibitions} /> */}
 			<CardContainer columns={2}>
 				{allExhibitions.map(({ id, image, title, startDate, endDate, slug }) => (
@@ -42,19 +41,3 @@ export default async function Exhibition({ params }: PageProps<'/[locale]/[year]
 		</>
 	);
 }
-
-// export const getStaticProps = withGlobalProps(
-// 	{ queries: [AllExhibitionsDocument] },
-// 	async ({ props, revalidate }: any) => {
-// 		return {
-// 			props: {
-// 				...props,
-// 				page: {
-// 					section: 'exhibitions',
-// 					slugs: pageSlugs('exhibitions', props.year.title),
-// 				} as PageProps,
-// 			},
-// 			revalidate,
-// 		};
-// 	}
-// );

@@ -55,6 +55,7 @@ export default function Menu({ items }: MenuProps) {
 	useEffect(() => {
 		const footer = document.getElementById('footer');
 		if (!footer || !menuRef.current) return;
+
 		const footerHeight = footer.clientHeight - 1;
 		const menuOffset = menuRef.current?.offsetTop;
 		const footerScrollPosition =
@@ -68,16 +69,7 @@ export default function Menu({ items }: MenuProps) {
 				: 0;
 		setMenuPadding(menuPadding);
 		setFooterScrollPosition(footerScrollPosition);
-	}, [
-		menuRef,
-		selected,
-		scrolledPosition,
-		documentHeight,
-		viewportHeight,
-		width,
-		height,
-		isMobile,
-	]);
+	}, [selected, scrolledPosition, documentHeight, viewportHeight, width, height, isMobile]);
 
 	useEffect(() => {
 		const findSelected = (path: string, item: MenuItem): MenuItem | undefined => {

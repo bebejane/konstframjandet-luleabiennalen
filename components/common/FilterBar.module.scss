@@ -39,6 +39,7 @@
 		li {
 			padding-right: 1em;
 			cursor: pointer;
+			white-space: nowrap;
 
 			&.selected {
 				font-weight: bold;

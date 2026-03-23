@@ -1,6 +1,6 @@
 import s from './page.module.scss';
 import { AllYearsDocument, GeneralDocument } from '@/graphql';
-import { CardContainer, Card, Thumbnail } from '@/components';
+import { CardContainer, Card, Thumbnail, PageHeader } from '@/components';
 import { Markdown as Markdown } from 'next-dato-utils/components';
 import { apiQuery } from 'next-dato-utils/api';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -23,11 +23,10 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 	const { general } = await apiQuery(GeneralDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
-	const t = await getTranslations('Menu');
 
 	return (
 		<>
-			{/* <DatoSEO title={t('archive')} /> */}
+			<PageHeader title={'Luleåbiennalen'} noPrefix={true} />
 			<Markdown className={s.intro} content={general?.archiveIntro} />
 			<CardContainer columns={2}>
 				{allYears.map(({ id, title, slug, theme, image, imageEn }) => (
@@ -45,20 +44,3 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 		</>
 	);
 }
-
-// export const getStaticProps = withGlobalProps(
-// 	{ queries: [AllYearsDocument] },
-// 	async ({ props, revalidate }: any) => {
-// 		return {
-// 			props: {
-// 				...props,
-// 				years: props.years.slice(1),
-// 				page: {
-// 					section: 'archive',
-// 					slugs: pageSlugs('archive'),
-// 				} as PageProps,
-// 			},
-// 			revalidate,
-// 		};
-// 	}
-// );

@@ -1,10 +1,9 @@
 import { apiQuery } from 'next-dato-utils/api';
-import { translatePath } from '@/lib/utils';
 import { LocationDocument, AllLocationsDocument } from '@/graphql';
-import { Article, Related, BackButton, MetaSection } from '@/components';
+import { Article, Related, BackButton, PageHeader } from '@/components';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { defaultLocale, locales } from '@/i18n/routing';
+import { locales } from '@/i18n/routing';
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];
@@ -41,12 +40,10 @@ export default async function Location({
 		_seoMetaTags,
 	} = location;
 	const t = await getTranslations();
-	//const { year } = usePage();
-	const href = `${translatePath('/partners', locale, defaultLocale, year?.title)}#locations`;
-
+	const href = '/locations#locations';
 	return (
 		<>
-			{/* <DatoSEO title={title} description={intro} seo={_seoMetaTags} /> */}
+			<PageHeader title={t('Menu.locations')} href={href} />
 			<Article
 				id={id}
 				key={id}
@@ -82,31 +79,3 @@ export async function generateStaticParams({
 	});
 	return allLocations.map((location) => ({ location: location.slug }));
 }
-
-// export const getStaticProps = withGlobalProps(
-// 	{ queries: [] },
-// 	async ({ props, revalidate, context }: any) => {
-// 		const slug = context.params.location;
-// 		const { location } = await apiQuery(LocationDocument, {
-// 			variables: { slug, locale },
-// 			preview: context.preview,
-// 		});
-
-// 		if (!location) return { notFound: true, revalidate };
-
-// 		return {
-// 			props: {
-// 				...props,
-// 				location,
-// 				page: {
-// 					section: 'locations',
-// 					overview: '/partners#locations',
-// 					parent: true,
-// 					title: location.title,
-// 					slugs: pageSlugs('locations', props.year.title, location._allSlugLocales),
-// 				} as PageProps,
-// 			},
-// 			revalidate,
-// 		};
-// 	}
-// );

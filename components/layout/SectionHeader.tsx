@@ -9,8 +9,6 @@ import { PROJECT_NAME, PROJECT_ABBR } from '@/lib/constant';
 import { translatePath } from '@/lib/utils';
 import { defaultLocale, Link, usePathname } from '@/i18n/routing';
 import { useStore, useShallow } from '@/lib/store';
-import Logo from '@/public/images/logo-text.svg';
-import { Icon } from '@/components';
 
 export type SectionHeaderProps = {
 	menu: MenuItem[];
@@ -65,17 +63,13 @@ export default function SectionHeader() {
 			</span>
 		</h2>
 	);
-	console.log({ section });
+
+	if (isHome) return null;
+
 	return (
 		<>
 			<header className={cn(s.header, !showMenu && s.full)}>
-				{isHome ? (
-					<Icon src={Logo} className={s.logo} nofill={true} />
-				) : !isOverview ? (
-					<Link href={'/'}>{header}</Link>
-				) : (
-					<>{header}</>
-				)}
+				{!isOverview ? <Link href={'/'}>{header}</Link> : <>{header}</>}
 				{showArchive && <span className={s.archive}>{t('archive')}</span>}
 			</header>
 			{!isHome && <div className={s.spacer}></div>}

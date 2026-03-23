@@ -1,6 +1,6 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { ParticipantDocument, AllParticipantsDocument } from '@/graphql';
-import { Article, Related, BackButton } from '@/components';
+import { Article, Related, BackButton, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n/routing';
@@ -21,13 +21,13 @@ export default async function Participant({
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!participant) return notFound();
+	const t = await getTranslations();
 	const { id, image, imageEn, name, intro, content, exhibitions, colab, programs, _seoMetaTags } =
 		participant;
-	const t = await getTranslations();
 
 	return (
 		<>
-			{/* <DatoSEO title={name} description={intro} seo={_seoMetaTags} /> */}
+			<PageHeader title={t('Menu.participants')} />
 			<Article
 				id={id}
 				key={id}

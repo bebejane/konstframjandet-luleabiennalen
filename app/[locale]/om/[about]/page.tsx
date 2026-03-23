@@ -6,10 +6,10 @@ import {
 	MainAboutDocument,
 	YearDocument,
 } from '@/graphql';
-import { Article, ArchiveShortcuts } from '@/components';
+import { Article, ArchiveShortcuts, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n/routing';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export type Props = {
 	about: AboutRecord;
@@ -27,6 +27,7 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
+	const t = await getTranslations('Menu');
 	const { year } = await apiQuery(YearDocument, {
 		variables: {
 			locale: locale as SiteLocale,
@@ -66,7 +67,7 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/
 
 	return (
 		<>
-			{/* <DatoSEO title={title} description={intro} seo={_seoMetaTags} /> */}
+			<PageHeader title={t('about')} href={slug ? '/om' : undefined} />
 			<Article
 				id={id}
 				key={id}
