@@ -1,8 +1,7 @@
 'use client';
 
-import { AppPathnames, getPathname, locales, usePathname as useIntlPathname } from '@/i18n/routing';
-import { SectionId } from '@/lib/menu';
-import { useLocale } from 'next-intl';
+import { getPathname, locales, usePathname as useIntlPathname } from '@/i18n/routing';
+import { SectionId, sections } from '@/lib/menu';
 import { usePathname } from 'next/navigation';
 import { useContext, createContext, use } from 'react';
 
@@ -27,19 +26,9 @@ export type YearProviderProps = {
 	value: Pick<PageContextProps, 'year'>;
 };
 
-const validSections: SectionId[] = [
-	'home',
-	'contact',
-	'participants',
-	'news',
-	'about',
-	'locations',
-	'program',
-	'exhibitions',
-	'partners',
-	'archive',
-	'search',
-];
+function isValidSection(section: string): section is SectionId {
+	return sections.includes(section as SectionId);
+}
 
 export function getSection(pathname: string, intlPathname: string, year?: string): SectionId {
 	const params: Record<string, string> = {};
@@ -68,15 +57,11 @@ export function getSection(pathname: string, intlPathname: string, year?: string
 	return section;
 }
 
-function isValidSection(section: string): section is SectionId {
-	return validSections.includes(section as SectionId);
-}
-
 export const PageProvider = ({ children, value }: YearProviderProps) => {
 	const pathname = usePathname();
 	const intlPathname = useIntlPathname();
-	const locale = useLocale();
 	const section = getSection(pathname, intlPathname, value.year?.title);
+
 	return (
 		<PageContext.Provider
 			value={{

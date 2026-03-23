@@ -1,10 +1,12 @@
 - chcek html hirachy, remove layout divs, use <main>
 - simplify Articel, spread props
 - Simplify TreeView @roseline124/react-tree
+- scrollbug menu height
 - redo buildMenu, next-intl typescript for links
 - Thumbnail loader random
 - redo card container server side
 - search page
+- DatoLink
 - make dato search models in utils
 
 - typescript errors

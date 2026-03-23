@@ -15,7 +15,23 @@ export type SectionId =
 	| 'exhibitions'
 	| 'partners'
 	| 'archive'
+	| 'archive-home'
 	| 'search';
+
+export const sections: SectionId[] = [
+	'home',
+	'contact',
+	'participants',
+	'news',
+	'about',
+	'locations',
+	'program',
+	'exhibitions',
+	'partners',
+	'archive',
+	'archive-home',
+	'search',
+];
 
 const base: Menu = [
 	{ id: 'home', label: 'Hem', slug: '/', general: true },

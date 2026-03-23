@@ -23,7 +23,6 @@ import { PageProvider } from '@/lib/context/page';
 
 export default async function RootLayout({ children, params }: LayoutProps<'/[locale]/[year]'>) {
 	const { locale, year: _year } = await params;
-
 	if (!locales.includes(locale)) return notFound();
 	setRequestLocale(locale);
 
@@ -31,7 +30,6 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 	const { general, draftUrl } = await apiQuery(GeneralDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
-
 	const { year } = await apiQuery(YearDocument, {
 		variables: {
 			locale: locale as SiteLocale,
@@ -39,11 +37,10 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 		},
 	});
 
-	console.log('locale layout', _year);
 	if (!year) return notFound();
 
 	return (
-		<html lang='en-US'>
+		<html lang={locale === 'en' ? 'en-US' : 'sv-SE'}>
 			<body id='root' className='root'>
 				<NextIntlClientProvider>
 					<PageProvider value={{ year }}>
