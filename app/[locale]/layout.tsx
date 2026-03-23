@@ -8,15 +8,9 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { Locale, NextIntlClientProvider } from 'next-intl';
 import { getPathname, locales } from '@/i18n/routing';
 import { DraftModeContentLink } from 'next-dato-utils/components';
-import {
-	Footer,
-	FullscreenGallery,
-	Language,
-	Menu,
-	PageBackground,
-	SectionHeader,
-} from '@/components';
+import { Footer, FullscreenGallery, Language, Menu, PageBackground } from '@/components';
 import { buildMenu } from '@/lib/menu';
+import { buildMenu as buildMenu2 } from '@/lib/menu2';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { PageProvider } from '@/lib/context/page';
@@ -27,9 +21,12 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 	setRequestLocale(locale);
 
 	const menu = await buildMenu(locale as Locale);
+	const menu2 = await buildMenu2(locale as SiteLocale);
+	console.log(menu2);
 	const { general, draftUrl } = await apiQuery(GeneralDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
+
 	const { year } = await apiQuery(YearDocument, {
 		variables: {
 			locale: locale as SiteLocale,

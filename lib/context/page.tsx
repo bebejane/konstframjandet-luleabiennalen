@@ -49,10 +49,8 @@ export function getSection(pathname: string, intlPathname: string, year?: string
 		.split('/')
 		.filter((p) => p);
 
-	const section =
-		Number.isInteger(Number(p[0])) && p[0] !== process.env.NEXT_PUBLIC_CURRENT_YEAR
-			? 'archive'
-			: (p.find((p) => isValidSection(p)) ?? 'home');
+	const isYear = Number.isInteger(Number(p[0]));
+	const section = p.find((p) => isValidSection(p)) ?? 'home';
 
 	return section;
 }
@@ -67,7 +65,7 @@ export const PageProvider = ({ children, value }: YearProviderProps) => {
 			value={{
 				...initialState,
 				...value,
-				isArchive: value.year?.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR,
+				isArchive: value.year?.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR!,
 				isHome: locales.some((l) => pathname.startsWith(`/${l}`)) || pathname === '/',
 				section,
 			}}

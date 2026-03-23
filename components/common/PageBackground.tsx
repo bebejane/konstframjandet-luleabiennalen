@@ -2,26 +2,31 @@
 
 import s from './PageBackground.module.scss';
 import { usePathname } from '@/i18n/routing';
+import { usePage } from '@/lib/context/page';
 import { useEffect } from 'react';
 import { Image } from 'react-datocms';
 
 export default function PageBackground() {
 	const pathname = usePathname();
-	const backgroundImage = null;
-	const year = null;
-	//const showBackground = backgroundImage && !year?.isArchive && section !== 'archive';
+	const { year, section, isArchive } = usePage();
+	const index = 0;
+	const image = year?.background?.[index] ?? null;
+	const show = image && isArchive && section !== 'archive';
 
 	useEffect(() => {
-		//document.body.style.backgroundColor = year?.isArchive || section === 'archive' ? 'var(--archive)' : 'var(--white)';
-	}, [pathname]);
+		const color = isArchive || section === 'archive' ? 'var(--archive)' : 'var(--white)';
+		document.body.style.backgroundColor = color;
+	}, [pathname, isArchive, section]);
+
+	if (!show) return null;
 
 	return (
 		<div className={s.background}>
-			{backgroundImage && (
+			{image.responsiveImage && (
 				<Image
-					data={backgroundImage.responsiveImage}
+					data={image.responsiveImage}
 					className={s.image}
-					style={year.fullOpacity ? { opacity: 1 } : undefined}
+					style={year?.fullOpacity ? { opacity: 1 } : undefined}
 				/>
 			)}
 		</div>

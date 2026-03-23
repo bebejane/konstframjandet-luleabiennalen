@@ -15,7 +15,6 @@ export type SectionId =
 	| 'exhibitions'
 	| 'partners'
 	| 'archive'
-	| 'archive-home'
 	| 'search';
 
 export const sections: SectionId[] = [
@@ -29,7 +28,6 @@ export const sections: SectionId[] = [
 	'exhibitions',
 	'partners',
 	'archive',
-	'archive-home',
 	'search',
 ];
 
