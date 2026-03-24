@@ -1,0 +1,22 @@
+import s from './page.module.scss';
+import cn from 'classnames';
+import { getPathname, locales } from '@/i18n/routing';
+import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
+import { buildMenu, Menu, MenuItem } from '@/lib/menu2';
+import { MenuTree } from '@/app/[locale]/tree/MenuTree';
+
+export default async function TreePage({ params }: PageProps<'/[locale]/sok'>) {
+	const { locale } = await params;
+	if (!locales.includes(locale as any)) return notFound();
+	setRequestLocale(locale);
+
+	const menu = await buildMenu(locale as SiteLocale);
+	console.log(menu);
+	return (
+		<div className={s.container}>
+			<h1>Tree</h1>
+			<MenuTree data={menu} />
+		</div>
+	);
+}

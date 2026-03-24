@@ -38,6 +38,7 @@
 		"nextjs-google-analytics": "^2.3.7",
 		"nuqs": "^2.8.9",
 		"react": "^19.2.4",
+		"react-arborist": "^3.4.3",
 		"react-balance-text": "^2.0.1",
 		"react-datocms": "^8.0.0",
 		"react-dom": "^19.2.4",
