@@ -1,12 +1,14 @@
 import s from './page.module.scss';
 import { AllNewsDocument } from '@/graphql';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { apiQuery } from 'next-dato-utils/api';
 import { PageHeader } from '@/components';
-import { InfiniteScroll } from 'next-dato-utils/components';
+import { DraftMode, InfiniteScroll, InfiniteScrollClient } from 'next-dato-utils/components';
 import { NewsItem } from './NewsItem';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type Props = {
 	news: (NewsRecord & ThumbnailImage)[];
@@ -20,25 +22,26 @@ export default async function News({ params }: PageProps<'/[locale]/nyheter'>) {
 	setRequestLocale(locale);
 	const t = await getTranslations();
 
-	async function getNews(skip = 0) {
-		'use server';
-		const { allNews } = await apiQuery(AllNewsDocument, {
-			variables: { locale: locale as SiteLocale, skip, first: 5 },
-		});
-		return allNews;
-	}
+	const { allNews, draftUrl } = await apiQuery(AllNewsDocument, {
+		variables: { locale: locale as SiteLocale, first: 10 },
+	});
 
-	const news = await getNews();
 	return (
 		<>
 			<PageHeader title={t('Menu.news')} />
 			<section className={s.news}>
 				<ul>
-					<InfiniteScroll id='news' initial={news} next={getNews}>
+					<InfiniteScrollClient
+						id='news'
+						initial={allNews}
+						query={AllNewsDocument}
+						variables={{ locale: locale as SiteLocale, first: 10 }}
+					>
 						{NewsItem}
-					</InfiniteScroll>
+					</InfiniteScrollClient>
 				</ul>
 			</section>
+			<DraftMode path={'/nyheter'} url={draftUrl} />
 		</>
 	);
 }
@@ -50,4 +53,16 @@ export async function generateStaticParams({ params }: PageProps<'/[locale]/nyhe
 		variables: { locale: locale as SiteLocale },
 	});
 	return allNews.map((news) => ({ news: news.slug }));
+}
+
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/nyheter'>): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: t('news'),
+		locale: locale as SiteLocale,
+		pathname: getPathname({ locale, href: { pathname: '/nyheter' } }),
+	});
 }

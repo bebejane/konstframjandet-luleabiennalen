@@ -1,1 +1,1 @@
-export { default } from '@/app/[locale]/utstallningar/page';
+export { default, generateMetadata } from '@/app/[locale]/utstallningar/page';

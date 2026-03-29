@@ -8,8 +8,11 @@ import {
 } from '@/graphql';
 import { Article, ArchiveShortcuts, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { DraftMode } from 'next-dato-utils/components';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type Props = {
 	about: AboutRecord;
@@ -54,10 +57,10 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/
 
 	if (!about) return notFound();
 
-	const { allAbouts, allExhibitions, allParticipants, allPartners, allPrograms } = await apiQuery(
-		ArchiveHomeDocument,
-		{ variables: { first: 1, locale: locale as SiteLocale, yearId: year.id } },
-	);
+	const { allAbouts, allExhibitions, allParticipants, allPartners, allPrograms, draftUrl } =
+		await apiQuery(ArchiveHomeDocument, {
+			variables: { first: 1, locale: locale as SiteLocale, yearId: year.id },
+		});
 	const { id, image, imageEn, title, intro, content, _seoMetaTags } = about;
 	const shortcuts = _year
 		? [allExhibitions[0], allPrograms[0], allParticipants[0], allPartners[0], allAbouts[0]].filter(
@@ -78,6 +81,7 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/
 				content={content}
 			/>
 			{shortcuts.length > 0 && <ArchiveShortcuts items={shortcuts} />}
+			<DraftMode path={`/om/${slug}`} url={draftUrl} />
 		</>
 	);
 }
@@ -92,4 +96,23 @@ export async function generateStaticParams({ params }: PageProps<'/[locale]/om'>
 		},
 	});
 	return allAbouts.map((about) => ({ about: about.slug }));
+}
+
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/[year]/om/[about]'>): Promise<Metadata> {
+	const { locale, about: slug, year } = await params;
+	const { about } = await apiQuery(AboutDocument, {
+		variables: { slug, locale: locale as SiteLocale },
+	});
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: about?.title,
+		locale: locale as SiteLocale,
+		year,
+		pathname: getPathname({
+			locale,
+			href: { pathname: `/om/[about]`, params: { about: slug } },
+		}),
+	});
 }

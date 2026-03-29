@@ -2,9 +2,12 @@ import { apiQuery } from 'next-dato-utils/api';
 import { ProgramDocument, AllProgramsDocument } from '@/graphql';
 import { Article, Related, BackButton, PageHeader } from '@/components';
 import { formatDate } from '@/lib/utils';
-import { Link, locales } from '@/i18n/routing';
+import { getPathname, Link, locales } from '@/i18n/routing';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { DraftMode } from 'next-dato-utils/components';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type Props = {
 	program: ProgramRecord;
@@ -15,7 +18,7 @@ export default async function Program({ params }: PageProps<'/[locale]/[year]/pr
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { program } = await apiQuery(ProgramDocument, {
+	const { program, draftUrl } = await apiQuery(ProgramDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
 
@@ -93,6 +96,7 @@ export default async function Program({ params }: PageProps<'/[locale]/[year]/pr
 			<Related header={t('General.inCooperationWith')} items={partner} noLink={true} />
 			<Related header={t('Partners.supportedBy')} items={supportedBy} />
 			<BackButton>{t('BackButton.showAllPrograms')}</BackButton>
+			<DraftMode path={`/program/${slug}`} url={draftUrl} />
 		</>
 	);
 }
@@ -104,4 +108,23 @@ export async function generateStaticParams({ params }: PageProps<'/[locale]/prog
 		variables: { locale: locale as SiteLocale },
 	});
 	return allPrograms.map((program) => ({ program: program.slug }));
+}
+
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/[year]/program/[program]'>): Promise<Metadata> {
+	const { locale, program: slug, year } = await params;
+	const { program } = await apiQuery(ProgramDocument, {
+		variables: { slug, locale: locale as SiteLocale },
+	});
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: program?.title,
+		locale: locale as SiteLocale,
+		year,
+		pathname: getPathname({
+			locale,
+			href: { pathname: `/program/[program]`, params: { program: slug } },
+		}),
+	});
 }

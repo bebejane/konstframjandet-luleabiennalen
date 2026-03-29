@@ -3,7 +3,10 @@ import { PartnerDocument, AllPartnersDocument } from '@/graphql';
 import { Article, Related, BackButton, MetaSection, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
+import { DraftMode } from 'next-dato-utils/components';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type Props = {
 	partner: PartnerRecord;
@@ -16,7 +19,7 @@ export default async function Partner({
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { partner } = await apiQuery(PartnerDocument, {
+	const { partner, draftUrl } = await apiQuery(PartnerDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!partner) return notFound();
@@ -46,6 +49,7 @@ export default async function Partner({
 				]}
 			/>
 			<BackButton>{t('BackButton.showAllPartners')}</BackButton>
+			<DraftMode path={`/partners/${slug}`} url={draftUrl} />
 		</>
 	);
 }
@@ -61,30 +65,21 @@ export async function generateStaticParams({
 	return allPartners.map((partner) => ({ partner: partner.slug }));
 }
 
-// export const getStaticProps = withGlobalProps(
-// 	{ queries: [] },
-// 	async ({ props, revalidate, context }: any) => {
-// 		const slug = context.params.partner;
-// 		const { partner } = await apiQuery(PartnerDocument, {
-// 			variables: { slug, locale },
-// 			preview: context.preview,
-// 		});
-
-// 		if (!partner) return { notFound: true, revalidate };
-
-// 		return {
-// 			props: {
-// 				...props,
-// 				partner,
-// 				page: {
-// 					section: 'partners',
-// 					parent: true,
-// 					overview: '/partners',
-// 					title: partner.title,
-// 					slugs: pageSlugs('partners', props.year.title, partner._allSlugLocales),
-// 				} as PageProps,
-// 			},
-// 			revalidate,
-// 		};
-// 	}
-// );
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/[year]/partners/[partner]'>): Promise<Metadata> {
+	const { locale, partner: slug, year } = await params;
+	const { partner } = await apiQuery(PartnerDocument, {
+		variables: { slug, locale: locale as SiteLocale },
+	});
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: partner?.title,
+		locale: locale as SiteLocale,
+		year,
+		pathname: getPathname({
+			locale,
+			href: { pathname: `/partners/[partner]`, params: { partner: slug } },
+		}),
+	});
+}

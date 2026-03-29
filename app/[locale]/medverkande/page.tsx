@@ -3,7 +3,10 @@ import { CardContainer, Card, Thumbnail, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { apiQuery } from 'next-dato-utils/api';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
+import { DraftMode } from 'next-dato-utils/components';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type Props = {
 	allParticipants: (ParticipantRecord & ThumbnailImage)[];
@@ -14,7 +17,7 @@ export default async function Participant({ params }: PageProps<'/[locale]/[year
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { allParticipants } = await apiQuery(AllParticipantsDocument, {
+	const { allParticipants, draftUrl } = await apiQuery(AllParticipantsDocument, {
 		all: true,
 		variables: { locale: locale as SiteLocale },
 	});
@@ -39,6 +42,7 @@ export default async function Participant({ params }: PageProps<'/[locale]/[year
 					</Card>
 				))}
 			</CardContainer>
+			<DraftMode path={'/medverkande'} url={draftUrl} />
 		</>
 	);
 }
@@ -52,18 +56,15 @@ export async function generateStaticParams({ params }: PageProps<'/[locale]/medv
 	return allParticipants.map((participant) => ({ participant: participant.slug }));
 }
 
-// export const getStaticProps = withGlobalProps(
-// 	{ queries: [AllParticipantsDocument] },
-// 	async ({ props, revalidate }: any) => {
-// 		return {
-// 			props: {
-// 				...props,
-// 				page: {
-// 					section: 'allParticipants',
-// 					slugs: pageSlugs('allParticipants', props.year.title),
-// 				} as PageProps,
-// 			},
-// 			revalidate,
-// 		};
-// 	}
-// );
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/[year]/medverkande'>): Promise<Metadata> {
+	const { locale, year } = await params;
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: t('participants'),
+		locale: locale as SiteLocale,
+		year,
+		pathname: getPathname({ locale, href: { pathname: '/medverkande' } }),
+	});
+}

@@ -10,7 +10,6 @@ import { getPathname, locales } from '@/i18n/routing';
 import { DraftModeContentLink } from 'next-dato-utils/components';
 import { Footer, FullscreenGallery, Language, Menu, PageBackground } from '@/components';
 import { buildMenu } from '@/lib/menu';
-import { buildMenu as buildMenu2 } from '@/lib/menu2';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { PageProvider } from '@/lib/context/page';
@@ -21,7 +20,6 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 	setRequestLocale(locale);
 
 	const menu = await buildMenu(locale as Locale);
-	//const menu2 = await buildMenu2(locale as SiteLocale);console.log(menu2);
 	const { general, draftUrl } = await apiQuery(GeneralDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
@@ -61,8 +59,10 @@ export async function generateStaticParams() {
 	return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
-	const { locale } = await params;
+export async function generateMetadata({
+	params,
+}: LayoutProps<'/[locale]/[year]'>): Promise<Metadata> {
+	const { locale, year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 
 	const {
@@ -91,6 +91,7 @@ export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Pr
 			pathname: getPathname({ locale, href: '/' }),
 			image: globalSeo?.fallbackSeo?.image as FileField,
 			locale: locale as SiteLocale,
+			year,
 		})),
 	};
 }
@@ -101,14 +102,16 @@ export type BuildMetadataProps = {
 	pathname?: string;
 	image?: FileField | null | undefined;
 	locale: SiteLocale;
+	year?: string;
 };
 
 export async function buildMetadata({
-	title,
+	title: _title,
 	description,
 	pathname,
 	image,
 	locale,
+	year,
 }: BuildMetadataProps): Promise<Metadata> {
 	description = !description
 		? ''
@@ -117,6 +120,10 @@ export async function buildMetadata({
 			: description;
 
 	const url = pathname ? `${process.env.NEXT_PUBLIC_SITE_URL}${pathname}` : undefined;
+	const title =
+		year && year !== process.env.NEXT_PUBLIC_CURRENT_YEAR
+			? `LB°${year.substring(2)}${_title ? ` — ${_title}` : ''}`
+			: _title;
 
 	return {
 		title,

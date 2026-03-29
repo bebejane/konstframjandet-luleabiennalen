@@ -1,5 +1,4 @@
-export { default } from './[about]/page';
-export { generateStaticParams } from './[about]/page';
+export { default, generateStaticParams, generateMetadata } from './[about]/page';
 
 // export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
 

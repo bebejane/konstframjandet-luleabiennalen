@@ -3,11 +3,14 @@ import cn from 'classnames';
 import { LandOwnershipDocument, StartDataDocument, StartDocument, YearDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { Block, LandOwnershipPopup, SectionHeader } from '@/components';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
 import { format } from 'date-fns';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { LogoHeader } from '@/components/layout/LogoHeader';
+import { DraftMode } from 'next-dato-utils/components';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type Props = {
 	start: StartRecord;
@@ -34,7 +37,7 @@ export default async function Home({ params }: PageProps<'/[locale]/[year]'>) {
 
 	if (!year) return notFound();
 
-	const { start, landOwnership } = await getData(locale as SiteLocale, year);
+	const { start, landOwnership, draftUrl } = await getData(locale as SiteLocale, year);
 
 	return (
 		<>
@@ -50,12 +53,13 @@ export default async function Home({ params }: PageProps<'/[locale]/[year]'>) {
 					</section>
 				))}
 			</div>
+			<DraftMode path={'/'} url={draftUrl} />
 		</>
 	);
 }
 
 async function getData(locale: SiteLocale, year: YearQuery['year']) {
-	let { start } = await apiQuery(StartDocument, {
+	let { start, draftUrl } = await apiQuery(StartDocument, {
 		variables: { locale },
 	});
 
@@ -93,11 +97,16 @@ async function getData(locale: SiteLocale, year: YearQuery['year']) {
 		date,
 	};
 
-	const { allNews, allPrograms, allParticipants } = await apiQuery(StartDataDocument, {
+	const {
+		allNews,
+		allPrograms,
+		allParticipants,
+		draftUrl: draftUrlData,
+	} = await apiQuery(StartDataDocument, {
 		variables,
 	});
 
-	const { landOwnership } = await apiQuery(LandOwnershipDocument, {
+	const { landOwnership, draftUrl: draftUrlLandOwnership } = await apiQuery(LandOwnershipDocument, {
 		variables: { locale },
 	});
 
@@ -117,10 +126,6 @@ async function getData(locale: SiteLocale, year: YearQuery['year']) {
 						: null,
 			})),
 		},
+		draftUrl: [draftUrl, draftUrlData, draftUrlLandOwnership],
 	};
 }
-
-// page: {
-// 					section: "home",
-// 					slugs: pageSlugs("home"),
-// 				} as PageProps,

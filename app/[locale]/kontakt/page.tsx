@@ -1,8 +1,11 @@
+import { buildMetadata } from '@/app/[locale]/layout';
 import { Article, PageHeader } from '@/components';
 import { ContactDocument } from '@/graphql';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
 import { PROJECT_ABBR } from '@/lib/constant';
+import { Metadata } from 'next';
 import { apiQuery } from 'next-dato-utils/api';
+import { DraftMode } from 'next-dato-utils/components';
 import { hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -16,7 +19,7 @@ export default async function Contact({ params }: PageProps<'/[locale]/kontakt'>
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { contact } = await apiQuery(ContactDocument, {
+	const { contact, draftUrl } = await apiQuery(ContactDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
 	if (!contact) return notFound();
@@ -36,6 +39,19 @@ export default async function Contact({ params }: PageProps<'/[locale]/kontakt'>
 				imageSize='small'
 				content={content}
 			/>
+			<DraftMode path={'/kontakt'} url={draftUrl} />
 		</>
 	);
+}
+
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/kontakt'>): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: t('contact'),
+		locale: locale as SiteLocale,
+		pathname: getPathname({ locale, href: { pathname: '/kontakt' } }),
+	});
 }

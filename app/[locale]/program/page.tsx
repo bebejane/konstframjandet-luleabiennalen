@@ -8,6 +8,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { getPathname, locales } from '@/i18n/routing';
 import { createLoader, parseAsString, parseAsNativeArrayOf } from 'nuqs/server';
+import { DraftMode } from 'next-dato-utils/components';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type Props = {
 	programs: ProgramRecord[];
@@ -41,6 +44,7 @@ export default async function Program({
 	const { category, place } = await loadSearchParams(searchParams);
 	const t = await getTranslations();
 	const isArchive = year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR;
+
 	const pathname = getPathname({
 		locale,
 		href: {
@@ -48,17 +52,23 @@ export default async function Program({
 			params: { year: _year },
 		},
 	});
-	const { allPrograms } = await apiQuery(AllProgramsDocument, {
+	const { allPrograms, draftUrl } = await apiQuery(AllProgramsDocument, {
 		all: true,
 		variables: { locale: locale as SiteLocale, yearId: year?.id },
 	});
-	const { allProgramCategories } = await apiQuery(AllProgramCategoriesDocument, {
-		variables: { locale: locale as SiteLocale, yearId: year?.id },
-	});
+	const { allProgramCategories, draftUrl: draftUrlCategories } = await apiQuery(
+		AllProgramCategoriesDocument,
+		{
+			variables: { locale: locale as SiteLocale, yearId: year?.id },
+		},
+	);
 
 	const categoryFilter = ({
-		programCategory: { title },
-	}: AllProgramsQuery['allPrograms'][number]) => !category || category === title;
+		programCategory: { id, title },
+	}: AllProgramsQuery['allPrograms'][number]) =>
+		allPrograms.some(({ programCategory }) => programCategory.id === id) ||
+		!category ||
+		category === title;
 
 	const placeFilter = ({ programPlace }: AllProgramsQuery['allPrograms'][number]) =>
 		!place || programPlace.some(({ title }) => title === place);
@@ -189,30 +199,22 @@ export default async function Program({
 							),
 						)}
 					</CardContainer>
+					<DraftMode path={'/program'} url={[draftUrl, draftUrlCategories]} />
 				</>
 			)}
 		</>
 	);
 }
 
-// export const getStaticProps = withGlobalProps(
-// 	{ queries: [AllProgramsDocument, AllProgramCategoriesDocument] },
-// 	async ({ props, revalidate, context }: any) => {
-// 		// Filter out program categories that don't have any programs
-// 		const programCategories = props.programCategories.filter(({ id }) =>
-// 			props.programs.some(({ programCategory }) => programCategory.id === id)
-// 		);
-
-// 		return {
-// 			props: {
-// 				...props,
-// 				programCategories,
-// 				page: {
-// 					section: 'program',
-// 					slugs: pageSlugs('program', props.year.title),
-// 				} as PageProps,
-// 			},
-// 			revalidate,
-// 		};
-// 	}
-// );
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/[year]/program'>): Promise<Metadata> {
+	const { locale, year } = await params;
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: t('program'),
+		locale: locale as SiteLocale,
+		year,
+		pathname: getPathname({ locale, href: { pathname: '/program' } }),
+	});
+}

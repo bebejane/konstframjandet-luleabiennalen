@@ -1,1 +1,1 @@
-export { default } from '@/app/[locale]/medverkande/page';
+export { default, generateMetadata } from '@/app/[locale]/medverkande/page';

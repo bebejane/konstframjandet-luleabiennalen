@@ -1,2 +1,5 @@
-import { AllPartnersDocument } from '@/graphql';
-export { default } from '@/app/[locale]/partners/[partner]/page';
+export {
+	default,
+	generateMetadata,
+	generateStaticParams,
+} from '@/app/[locale]/partners/[partner]/page';

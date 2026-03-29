@@ -3,7 +3,10 @@ import { LocationDocument, AllLocationsDocument } from '@/graphql';
 import { Article, Related, BackButton, PageHeader } from '@/components';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
+import { DraftMode } from 'next-dato-utils/components';
+import { Metadata } from 'next';
+import { buildMetadata } from '@/app/[locale]/layout';
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];
@@ -21,7 +24,7 @@ export default async function Location({
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { location } = await apiQuery(LocationDocument, {
+	const { location, draftUrl } = await apiQuery(LocationDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!location) return notFound();
@@ -65,6 +68,7 @@ export default async function Location({
 			/>
 			<Related header={t('Related.related')} items={[...exhibitions, ...programs] as any} />
 			<BackButton href={href}>{t('BackButton.showAllLocations')}</BackButton>
+			<DraftMode path={`/platser/${slug}`} url={draftUrl} />
 		</>
 	);
 }
@@ -78,4 +82,23 @@ export async function generateStaticParams({
 		variables: { locale: locale as SiteLocale },
 	});
 	return allLocations.map((location) => ({ location: location.slug }));
+}
+
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/[year]/platser/[location]'>): Promise<Metadata> {
+	const { locale, location: slug, year } = await params;
+	const { location } = await apiQuery(LocationDocument, {
+		variables: { slug, locale: locale as SiteLocale },
+	});
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: location?.title,
+		locale: locale as SiteLocale,
+		year,
+		pathname: getPathname({
+			locale,
+			href: { pathname: `/platser/[location]`, params: { location: slug } },
+		}),
+	});
 }

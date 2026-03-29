@@ -1,1 +1,5 @@
-export { default } from '@/app/[locale]/program/[program]/page';
+export {
+	default,
+	generateMetadata,
+	generateStaticParams,
+} from '@/app/[locale]/program/[program]/page';

@@ -11,8 +11,12 @@ import { useTranslations } from 'next-intl';
 import type { SearchResult } from '@/app/api/search';
 import { pageSlugs } from '@/i18n/utils';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { AllYearsDocument } from '@/graphql';
+import { Metadata } from 'next';
+import { apiQuery } from 'next-dato-utils/api';
 
 export type Props = {
 	query?: string;
@@ -136,4 +140,14 @@ export default async function Search({ params }: PageProps<'/[locale]/sok'>) {
 			</section>
 		</>
 	);
+}
+
+export async function generateMetadata({ params }: PageProps<'/[locale]/sok'>): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: t('search'),
+		locale: locale as SiteLocale,
+		pathname: getPathname({ locale, href: { pathname: '/sok' } }),
+	});
 }

@@ -3,7 +3,10 @@ import { ParticipantDocument, AllParticipantsDocument } from '@/graphql';
 import { Article, Related, BackButton, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
+import { DraftMode } from 'next-dato-utils/components';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];
@@ -17,7 +20,7 @@ export default async function Participant({
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { participant } = await apiQuery(ParticipantDocument, {
+	const { participant, draftUrl } = await apiQuery(ParticipantDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!participant) return notFound();
@@ -40,6 +43,7 @@ export default async function Participant({
 			<Related header={t('Related.participatingIn')} items={[...exhibitions, ...programs]} />
 			<Related header={t('General.inCooperationWith')} items={colab} noLink={true} />
 			<BackButton>{t('BackButton.showAllParticipants')}</BackButton>
+			<DraftMode path={`/medverkande/${slug}`} url={draftUrl} />
 		</>
 	);
 }
@@ -51,4 +55,24 @@ export async function generateStaticParams({ params }: PageProps<'/[locale]/medv
 		variables: { locale: locale as SiteLocale },
 	});
 	return allParticipants.map((participant) => ({ participant: participant.slug }));
+}
+
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/[year]/medverkande/[participant]'>): Promise<Metadata> {
+	const { locale, participant: slug, year } = await params;
+
+	const { participant } = await apiQuery(ParticipantDocument, {
+		variables: { slug, locale: locale as SiteLocale },
+	});
+
+	return await buildMetadata({
+		title: participant?.name,
+		locale: locale as SiteLocale,
+		year,
+		pathname: getPathname({
+			locale,
+			href: { pathname: `/[year]/medverkande/[participant]`, params: { participant: slug, year } },
+		}),
+	});
 }

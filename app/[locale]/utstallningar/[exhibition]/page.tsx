@@ -4,7 +4,10 @@ import { Article, Related, BackButton, PageHeader } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
+import { DraftMode } from 'next-dato-utils/components';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type Props = {
 	exhibition: ExhibitionRecord;
@@ -17,7 +20,7 @@ export default async function Exhibition({
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { exhibition } = await apiQuery(ExhibitionDocument, {
+	const { exhibition, draftUrl } = await apiQuery(ExhibitionDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!exhibition) return notFound();
@@ -68,6 +71,7 @@ export default async function Exhibition({
 			<Related header={t('Menu.participants')} items={participants} />
 			<Related header={t('General.inCooperationWith')} items={partner} noLink={true} />
 			<BackButton>{t('BackButton.showAllExhibitons')}</BackButton>
+			<DraftMode path={`/utstallningar/${slug}`} url={draftUrl} />
 		</>
 	);
 }
@@ -83,26 +87,22 @@ export async function generateStaticParams({
 	return allExhibitions.map((exhibition) => ({ exhibition: exhibition.slug }));
 }
 
-// export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, revalidate, context }: any) => {
-// 	const slug = context.params.exhibition;
-// 	const { exhibition } = await apiQuery(ExhibitionDocument, {
-// 		variables: { slug, locale },
-// 		preview: context.preview,
-// 	});
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/[year]/utstallningar/[exhibition]'>): Promise<Metadata> {
+	const { locale, exhibition: slug, year } = await params;
+	const { exhibition, draftUrl } = await apiQuery(ExhibitionDocument, {
+		variables: { slug, locale: locale as SiteLocale },
+	});
+	const t = await getTranslations('Menu');
 
-// 	if (!exhibition) return { notFound: true, revalidate };
-
-// 	return {
-// 		props: {
-// 			...props,
-// 			exhibition,
-// 			page: {
-// 				section: 'exhibitions',
-// 				parent: true,
-// 				title: exhibition.title,
-// 				slugs: pageSlugs('exhibitions', props.year.title, exhibition._allSlugLocales),
-// 			} as PageProps,
-// 		},
-// 		revalidate,
-// 	};
-//});
+	return await buildMetadata({
+		title: exhibition?.title,
+		locale: locale as SiteLocale,
+		year,
+		pathname: getPathname({
+			locale,
+			href: { pathname: '/utstallningar/[exhibition]', params: { exhibition: slug } },
+		}),
+	});
+}

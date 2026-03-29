@@ -6,7 +6,10 @@ import { Image } from 'react-datocms';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { apiQuery } from 'next-dato-utils/api';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
+import { DraftMode } from 'next-dato-utils/components';
+import { buildMetadata } from '@/app/[locale]/layout';
+import { Metadata } from 'next';
 
 export type Props = {
 	partners: PartnerRecord[];
@@ -26,10 +29,10 @@ export default async function Partners({ params }: PageProps<'/[locale]/[year]/p
 		},
 	});
 
-	const { allPartners, financiers } = await apiQuery(AllPartnersDocument, {
+	const { allPartners, financiers, draftUrl } = await apiQuery(AllPartnersDocument, {
 		variables: { locale: locale as SiteLocale, yearId: year?.id },
 	});
-	const { allLocations } = await apiQuery(AllLocationsDocument, {
+	const { allLocations, draftUrl: draftUrlLocations } = await apiQuery(AllLocationsDocument, {
 		variables: { locale: locale as SiteLocale, yearId: year?.id },
 	});
 	const t = await getTranslations();
@@ -85,22 +88,20 @@ export default async function Partners({ params }: PageProps<'/[locale]/[year]/p
 					</ul>
 				</section>
 			)}
+			<DraftMode path={'/partners'} url={[draftUrl, draftUrlLocations]} />
 		</>
 	);
 }
 
-// export const getStaticProps = withGlobalProps(
-// 	{ queries: [AllPartnersDocument, AllLocationsDocument] },
-// 	async ({ props, revalidate }: any) => {
-// 		return {
-// 			props: {
-// 				...props,
-// 				page: {
-// 					section: 'partners',
-// 					slugs: pageSlugs('partners', props.year.title),
-// 				} as PageProps,
-// 			},
-// 			revalidate,
-// 		};
-// 	}
-// );
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/[year]/partners'>): Promise<Metadata> {
+	const { locale, year } = await params;
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: t('partners'),
+		locale: locale as SiteLocale,
+		year,
+		pathname: getPathname({ locale, href: { pathname: '/partners' } }),
+	});
+}

@@ -1,11 +1,13 @@
 import s from './page.module.scss';
 import { AllYearsDocument, GeneralDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail, PageHeader, PageBackground } from '@/components';
-import { Markdown as Markdown } from 'next-dato-utils/components';
+import { DraftMode, Markdown as Markdown } from 'next-dato-utils/components';
 import { apiQuery } from 'next-dato-utils/api';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { locales } from '@/i18n/routing';
+import { getPathname, locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+import { buildMetadata } from '@/app/[locale]/layout';
 
 export type Props = {
 	years: YearRecord[];
@@ -17,12 +19,15 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { allYears } = await apiQuery(AllYearsDocument, {
+	const { allYears, draftUrl } = await apiQuery(AllYearsDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
-	const { general } = await apiQuery(GeneralDocument, {
+
+	const { general, draftUrl: draftUrlGeneral } = await apiQuery(GeneralDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
+
+	if (!general) return notFound();
 
 	return (
 		<>
@@ -42,6 +47,19 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 					</Card>
 				))}
 			</CardContainer>
+			<DraftMode path={'/akriv'} url={[draftUrl, draftUrlGeneral]} />
 		</>
 	);
+}
+
+export async function generateMetadata({
+	params,
+}: PageProps<'/[locale]/arkiv'>): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations('Menu');
+	return await buildMetadata({
+		title: t('archive'),
+		locale: locale as SiteLocale,
+		pathname: getPathname({ locale, href: { pathname: '/arkiv' } }),
+	});
 }
