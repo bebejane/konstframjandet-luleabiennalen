@@ -4,50 +4,53 @@ import s from './HeadlessTree.module.scss';
 import cn from 'classnames';
 import { hotkeysCoreFeature, selectionFeature, syncDataLoaderFeature } from '@headless-tree/core';
 import { useTree } from '@headless-tree/react';
-import { Menu } from '@/lib/menu2';
+import { getMenuItem, Menu, MenuItem } from '@/lib/menu2';
+import { Link } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
 
-export const HeadlessTree = ({ data }: { data: Menu }) => {
-	console.log(data[7]);
+export const HeadlessTree = ({ menu: _menu }: { menu: Menu }) => {
+	const locale = useLocale();
+	function getItem(itemId: string): MenuItem {
+		if (itemId === 'root')
+			return {
+				id: 'root',
+				section: 'root',
+				title: 'root',
+				sub: _menu,
+			};
+		return getMenuItem(itemId, _menu);
+	}
 
-	const tree = useTree<string>({
-		initialState: { expandedItems: ['folder-1'] },
-		rootItemId: 'folder',
-		getItemName: (item) => item.getItemData(),
-		isItemFolder: (item) => !item.getItemData().endsWith('item'),
+	const tree = useTree<MenuItem>({
+		//initialState: { expandedItems: [menu[0].id] },
+		rootItemId: 'root',
+		getItemName: (item) => item.getItemData().title,
+		isItemFolder: (item) => item.getItemData().sub.length > 0,
 		dataLoader: {
-			getItem: (itemId) => itemId,
-			getChildren: (itemId) => [
-				`${itemId}-1`,
-				`${itemId}-2`,
-				`${itemId}-3`,
-				`${itemId}-1item`,
-				`${itemId}-2item`,
-			],
+			getItem: (itemId) => getItem(itemId),
+			getChildren: (itemId) => getItem(itemId).sub.map((el) => el.id) ?? [],
 		},
-		indent: 20,
 		features: [syncDataLoaderFeature, selectionFeature, hotkeysCoreFeature],
 	});
 
 	return (
 		<div {...tree.getContainerProps()} className={s.tree}>
-			{tree.getItems().map((item) => (
-				<button
-					{...item.getProps()}
-					key={item.getId()}
-					style={{ paddingLeft: `${item.getItemMeta().level * 20}px` }}
-				>
-					<div
-						className={cn('treeitem', {
-							focused: item.isFocused(),
-							expanded: item.isExpanded(),
-							selected: item.isSelected(),
-							folder: item.isFolder(),
-						})}
-					>
-						{item.getItemName()}
+			{tree.getItems().map((item) => {
+				const folder = item.isFolder();
+				const href = item.getItemData().href;
+				const { id, title } = item.getItemData();
+				const props = item.getProps();
+
+				return (
+					<div {...props} key={id} style={{ paddingLeft: `${item.getItemMeta().level * 20}px` }}>
+						{folder ? (
+							<button className={s.folder}>{title}</button>
+						) : href ? (
+							<Link href={href}>{title}</Link>
+						) : null}
 					</div>
-				</button>
-			))}
+				);
+			})}
 		</div>
 	);
 };
