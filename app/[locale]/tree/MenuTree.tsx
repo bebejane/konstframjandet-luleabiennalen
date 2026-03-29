@@ -9,6 +9,7 @@ export type MenuTree = {
 	data: Menu;
 };
 export function MenuTree({ data }: MenuTree) {
+	console.log(data);
 	return (
 		<div className={s.container}>
 			<Tree

@@ -53,7 +53,7 @@ export const isEmptyObject = (obj: any) =>
 
 export const formatDate = (
 	date: string,
-	endDate?: string,
+	endDate?: string | null,
 	locale?: string,
 	long: boolean = false,
 ) => {

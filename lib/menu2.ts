@@ -7,7 +7,7 @@ import { Locale } from 'next-intl';
 export type Href = {
 	pathname: (typeof routing.pathnames)[keyof typeof routing.pathnames]['en'];
 	params?: any;
-} | null;
+};
 export type Menu = MenuItem[];
 export type MenuItem = {
 	id: string;
@@ -49,31 +49,60 @@ export const sections: Section[] = [
 	'search',
 ];
 
-function uuidV4() {
-	const uuid = new Array(36);
-	for (let i = 0; i < 36; i++) {
-		uuid[i] = Math.floor(Math.random() * 16);
-	}
-	uuid[14] = 4; // set bits 12-15 of time-high-and-version to 0100
-	uuid[19] = uuid[19] &= ~(1 << 2); // set bit 6 of clock-seq-and-reserved to zero
-	uuid[19] = uuid[19] |= 1 << 3; // set bit 7 of clock-seq-and-reserved to one
-	uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-	return uuid.map((x) => x.toString(16)).join('');
-}
-
-function sectionToHref(section: Section, locale: Locale, params?: any): Href {
-	const { pathnames } = routing;
-	const year = params?.year !== process.env.NEXT_PUBLIC_CURRENT_YEAR! ? params?.year : undefined;
-
-	const pathname = Object.keys(pathnames).find((k) => {
-		const full = `${year ? `/[year]` : ''}/${section}${params?.about ? '/[about]' : ''}`;
-		const p = pathnames[k as keyof typeof routing.pathnames].en;
-		return p === full || (p === `/` && section === 'home');
-	});
-
-	if (!pathname) throw new Error(`No pathname found for section ${section}`);
-	return { pathname, params } as Href;
-}
+//const base: Pick<MenuItem, 'section' | 'archive' | 'sub' | 'virtual'>[] = [
+const base: Partial<MenuItem>[] = [
+	{
+		section: 'home',
+		archive: false,
+		sub: [],
+	},
+	{
+		section: 'news',
+		archive: false,
+		sub: [],
+	},
+	{
+		section: 'exhibitions',
+		archive: true,
+		sub: [],
+	},
+	{
+		section: 'program',
+		archive: true,
+		sub: [],
+	},
+	{
+		section: 'participants',
+		archive: true,
+		sub: [],
+	},
+	{
+		section: 'partners',
+		archive: false,
+		sub: [],
+	},
+	{
+		section: 'about',
+		virtual: true,
+		archive: true,
+		sub: [],
+	},
+	{
+		section: 'contact',
+		archive: false,
+		sub: [],
+	},
+	{
+		section: 'archive',
+		archive: false,
+		sub: [],
+	},
+	{
+		section: 'search',
+		archive: false,
+		sub: [],
+	},
+];
 
 export const buildMenu = async (locale: SiteLocale) => {
 	const messages = await getMessages({ locale });
@@ -119,8 +148,12 @@ export const buildMenu = async (locale: SiteLocale) => {
 				.map((e) => ({
 					...e,
 					id: uuidV4(),
-					href: sectionToHref(e.section, locale, { year }),
-					hrefAlt: sectionToHref(e.section, altLocale, { year }),
+					href: {
+						...e.href,
+					},
+					hrefAlt: {
+						...e.hrefAlt,
+					},
 					sub:
 						e.sub?.map((e2) => ({
 							...e2,
@@ -130,7 +163,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 								year: e2.year,
 								[e2.section]: e2.hrefAlt,
 							}),
-						})) ?? null,
+						})) ?? [],
 				}))
 				.filter(({ count }) => count || count === null)
 				.sort((a, b) => (a.section === 'about' ? -1 : 1)),
@@ -141,7 +174,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 };
 
 export const buildYearMenu = (
-	{ year, abouts, aboutMeta, participantsMeta, exhibitionsMeta, locationsMeta }: MenuQuery,
+	{ year: _year, abouts, aboutMeta, participantsMeta, exhibitionsMeta, locationsMeta }: MenuQuery,
 	{
 		locale,
 		altLocale,
@@ -149,129 +182,21 @@ export const buildYearMenu = (
 		messages,
 	}: { locale: string; altLocale: string; isArchive: boolean; messages: any },
 ): MenuItem[] => {
-	if (!year) throw new Error('No year found');
-	const {
-		home,
-		news,
-		exhibitions,
-		program,
-		participants,
-		partners,
-		about,
-		contact,
-		archive,
-		search,
-	} = messages.Menu;
-
-	const base: Menu = [
-		{
-			id: uuidV4(),
-			section: 'home',
-			label: home,
-			href: sectionToHref('home', locale),
-			hrefAlt: sectionToHref('home', altLocale),
-			archive: false,
-			sub: [],
-		},
-		{
-			id: uuidV4(),
-			section: 'news',
-			label: news,
-			href: sectionToHref('news', locale),
-			hrefAlt: sectionToHref('news', altLocale),
-			archive: false,
-			sub: [],
-		},
-		{
-			id: uuidV4(),
-			section: 'exhibitions',
-			label: exhibitions,
-			href: sectionToHref('exhibitions', locale),
-			hrefAlt: sectionToHref('exhibitions', altLocale),
-			archive: true,
-			sub: [],
-		},
-		{
-			id: uuidV4(),
-			section: 'program',
-			label: program,
-			href: sectionToHref('program', locale, { year }),
-			hrefAlt: sectionToHref('program', altLocale, { year }),
-			archive: true,
-			sub: [],
-		},
-		{
-			id: uuidV4(),
-			section: 'participants',
-			label: participants,
-			href: sectionToHref('participants', locale, { year }),
-			hrefAlt: sectionToHref('participants', altLocale, { year }),
-			archive: true,
-			sub: [],
-		},
-		{
-			id: uuidV4(),
-			section: 'partners',
-			label: partners,
-			href: sectionToHref('partners', locale, { year }),
-			hrefAlt: sectionToHref('partners', altLocale, { year }),
-			archive: false,
-			sub: [],
-		},
-		{
-			id: uuidV4(),
-			section: 'about',
-			label: about,
-			href: sectionToHref('about', locale, { year }),
-			hrefAlt: sectionToHref('about', altLocale, { year }),
-			virtual: true,
-			archive: true,
-			sub: [],
-		},
-		{
-			id: uuidV4(),
-			section: 'contact',
-			label: contact,
-			href: sectionToHref('contact', locale),
-			hrefAlt: sectionToHref('contact', altLocale),
-			archive: false,
-			sub: [],
-		},
-		{
-			id: uuidV4(),
-			section: 'archive',
-			label: archive,
-			href: sectionToHref('archive', locale),
-			hrefAlt: sectionToHref('archive', altLocale),
-			archive: false,
-			sub: [],
-		},
-		{
-			id: uuidV4(),
-			section: 'search',
-			label: search,
-			href: sectionToHref('search', locale),
-			hrefAlt: sectionToHref('search', altLocale),
-			archive: false,
-			sub: [],
-		},
-	];
-
+	if (!_year) throw new Error('No year found');
+	const year = _year.title;
 	const menu = base.map((item) => {
-		if (item.section === 'participants') item.label = year.participantName;
-		else item.label = messages.Menu[item.section];
+		const section = item.section as Section;
+		item.id = uuidV4();
+		item.label = item.section === 'participants' ? _year.participantName : messages.Menu[section];
 
-		item.href = sectionToHref(
-			item.section,
-			locale,
-			item.archive ? { year: year.title } : undefined,
-		);
+		const href = {
+			pathname:
+				`${section === 'archive' ? `/[year]` : ''}/${section !== 'home' ? section : ''}` as Href['pathname'],
+			params: section === 'archive' ? { year } : {},
+		};
 
-		item.hrefAlt = sectionToHref(
-			item.section,
-			altLocale,
-			item.archive ? { year: year.title } : undefined,
-		);
+		item.href = href;
+		item.hrefAlt = href;
 
 		let sub: MenuItem[] = [];
 
@@ -279,16 +204,19 @@ export const buildYearMenu = (
 			case 'about':
 				sub = abouts
 					.filter(({ year }) => (isArchive ? year : true))
-					.map((el) => ({
+					.map(({ title, slug, altSlug }) => ({
 						id: uuidV4(),
 						section: `about`,
-						label: el.title,
+						label: title,
 						archive: isArchive,
-						href: sectionToHref('about', locale, { year: year.title, about: el.slug }),
-						hrefAlt: sectionToHref('about', altLocale, {
-							year: year.title,
-							about: el.altSlug,
-						}),
+						href: {
+							pathname: `${href.pathname}/[about]` as Href['pathname'],
+							params: { ...href.params, about: slug },
+						},
+						hrefAlt: {
+							pathname: `${href.pathname}/[about]` as Href['pathname'],
+							params: { ...href.params, about: altSlug },
+						},
 						sub: [],
 					}));
 
@@ -296,14 +224,14 @@ export const buildYearMenu = (
 					abouts.filter(({ year }) => year)[0] || abouts.filter(({ year }) => !year)[0];
 
 				if (mainAbout) {
-					((item.href = sectionToHref('about', locale, {
-						year: year.title,
-						about: mainAbout.slug,
-					})),
-						(item.hrefAlt = sectionToHref('about', altLocale, {
-							year: year.title,
-							about: mainAbout.altSlug,
-						})));
+					item.href = {
+						pathname: `${href.pathname}/[about]` as Href['pathname'],
+						params: { ...href.params, about: mainAbout.slug },
+					};
+					item.hrefAlt = {
+						pathname: `${href.pathname}/[about]` as Href['pathname'],
+						params: { ...href.params, about: mainAbout.altSlug },
+					};
 				}
 
 				break;
@@ -314,7 +242,7 @@ export const buildYearMenu = (
 		return {
 			...item,
 			sub,
-			year: year.title,
+			year,
 			count:
 				item.section === 'about'
 					? aboutMeta?.count
@@ -328,5 +256,35 @@ export const buildYearMenu = (
 		};
 	});
 
-	return menu.filter(({ count }) => count || count === null);
+	return menu.filter(({ count }) => count || count === null) as MenuItem[];
 };
+
+function uuidV4() {
+	const uuid = new Array(36);
+	for (let i = 0; i < 36; i++) {
+		uuid[i] = Math.floor(Math.random() * 16);
+	}
+	uuid[14] = 4; // set bits 12-15 of time-high-and-version to 0100
+	uuid[19] = uuid[19] &= ~(1 << 2); // set bit 6 of clock-seq-and-reserved to zero
+	uuid[19] = uuid[19] |= 1 << 3; // set bit 7 of clock-seq-and-reserved to one
+	uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+	return uuid.map((x) => x.toString(16)).join('');
+}
+
+function sectionToHref(section: Section, locale: Locale, params?: any): Href {
+	const { pathnames } = routing;
+	const year = params?.year !== process.env.NEXT_PUBLIC_CURRENT_YEAR! ? params?.year : undefined;
+
+	const pathname = Object.keys(pathnames).find((k) => {
+		const full = `${year ? `/[year]` : ''}/${section}${params?.about ? '/[about]' : ''}`;
+		const p = pathnames[k as keyof typeof routing.pathnames].en;
+		return p === full || (p === `/` && section === 'home');
+	});
+
+	if (!pathname) {
+		console.log(section, params);
+
+		throw new Error(`No pathname found for section ${section}`);
+	}
+	return { pathname, params } as Href;
+}

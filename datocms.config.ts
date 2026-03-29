@@ -8,8 +8,8 @@ import {
 import { MetadataRoute } from 'next';
 import { SiteDocument } from '@/graphql';
 
-export function getRoute(item: any): string {
-	const apiKey = getItemApiKey(item);
+export function getRoute(item: any, _apiKey?: string): string {
+	const apiKey = _apiKey ?? getItemApiKey(item);
 	if (!apiKey) throw new Error('No api key found');
 
 	switch (apiKey) {
@@ -60,7 +60,6 @@ export default {
 		// 	changeFrequency: p === '/' ? 'daily' : 'weekly',
 		// 	priority: p === '/' ? 1 : 0.8,
 		// }));
-
 		// const aboutRoutes = allAbouts
 		// 	.map(({ slug, _updatedAt }) => ({
 		// 		url: `${process.env.NEXT_PUBLIC_SITE_URL}/om-oss/${slug}`,
@@ -74,7 +73,6 @@ export default {
 		// 		changeFrequency: 'monthly',
 		// 		priority: 0.8,
 		// 	});
-
 		// const allWorkshopRoutes = allWorkshops
 		// 	.map(({ slug, _updatedAt }) => ({
 		// 		url: `${process.env.NEXT_PUBLIC_SITE_URL}/verkstader/${slug}`,
@@ -90,7 +88,6 @@ export default {
 		// 		changeFrequency: 'monthly',
 		// 		priority: 0.8,
 		// 	});
-
 		// const allCourseRoutes = allCourses
 		// 	.map(({ slug, _updatedAt }) => ({
 		// 		url: `${process.env.NEXT_PUBLIC_SITE_URL}/kurser/${slug}`,
@@ -106,11 +103,10 @@ export default {
 		// 		changeFrequency: 'monthly',
 		// 		priority: 0.8,
 		// 	});
-
 		// return [...staticRoutes, ...aboutRoutes, ...allWorkshopRoutes, ...allCourseRoutes] as MetadataRoute.Sitemap;
 	},
 	manifest: async () => {
-		const { _site:site } = await apiQuery(SiteDocument);
+		const { _site: site } = await apiQuery(SiteDocument);
 
 		return {
 			name: site.globalSeo?.fallbackSeo?.title as string,
