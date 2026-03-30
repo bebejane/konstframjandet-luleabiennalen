@@ -1,19 +1,20 @@
 'use client';
 
 import s from './MenuTree.module.scss';
+import cn from 'classnames';
 import { hotkeysCoreFeature, selectionFeature, syncDataLoaderFeature } from '@headless-tree/core';
 import { useTree } from '@headless-tree/react';
 import { getMenuItem, Menu, MenuItem } from '@/lib/menu';
 import { getPathname, Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 
-export default function MenuTree({
-	menu: _menu,
-	style,
-}: {
+type MenuTreeProps = {
 	menu: Menu;
 	style?: React.CSSProperties;
-}) {
+	ref?: React.Ref<HTMLDivElement>;
+};
+
+export default function MenuTree({ menu: _menu, style, ref }: MenuTreeProps) {
 	const locale = useLocale();
 	const rootItem = {
 		id: 'root',
@@ -39,18 +40,19 @@ export default function MenuTree({
 	});
 
 	return (
-		<div {...tree.getContainerProps()} className={s.tree} style={style}>
+		<div {...tree.getContainerProps()} className={s.tree} style={style} ref={ref}>
 			{tree.getItems().map((item) => {
 				const folder = item.isFolder();
 				const data = item.getItemData();
 				const href = data.href ?? undefined;
-				const { id, title } = item.getItemData();
+				const { id, title, year, route, archive } = item.getItemData();
 				const props = item.getProps();
+				const bold = route === '/arkiv';
 
 				return (
 					<div {...props} key={id} style={{ paddingLeft: `${item.getItemMeta().level * 20}px` }}>
 						{folder ? (
-							<button className={s.folder}>{title}</button>
+							<button className={cn(s.folder, bold && s.bold)}>{title}</button>
 						) : typeof href !== 'undefined' ? (
 							<Link href={href as any} locale={locale}>
 								{title}

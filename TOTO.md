@@ -1,10 +1,9 @@
 - search page
-- DatoLink
-- new tree menu
-- scrollbug menu height
+- Menu select byt pathname
+- scrollbug menu height?
 - Thumbnail loader random
-- om markerna popup
 
+- DatoLink?
 - typescript errors
 - datocms.config
 - draft mode EN

@@ -18,7 +18,7 @@ export default function Menu({ menu }: MenuProps) {
 	const t = useTranslations('Menu');
 	const pathname = usePathname();
 	const locale = useLocale();
-	const menuRef = useRef<HTMLUListElement | null>(null);
+	const treeRef = useRef<HTMLDivElement | null>(null);
 	const [showMenu, setShowMenu, searchQuery, setSearchQuery] = useStore(
 		useShallow((state) => [
 			state.showMenu,
@@ -29,7 +29,6 @@ export default function Menu({ menu }: MenuProps) {
 	);
 	const [selected, setSelected] = useState<MenuItem | undefined>();
 	const [searchFocus, setSearchFocus] = useState(false);
-	const [path, setPath] = useState(pathname);
 	const [menuPadding, setMenuPadding] = useState(0);
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0);
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo();
@@ -47,16 +46,15 @@ export default function Menu({ menu }: MenuProps) {
 	useEffect(() => {
 		return () => {
 			!isDesktop && setShowMenu(false);
-			setPath(pathname);
 		};
 	}, [pathname]);
 
 	useEffect(() => {
 		const footer = document.getElementById('footer');
-		if (!footer || !menuRef.current) return;
+		if (!footer || !treeRef.current) return;
 
 		const footerHeight = footer.clientHeight - 1;
-		const menuOffset = menuRef.current?.offsetTop;
+		const menuOffset = treeRef.current?.offsetTop;
 		const footerScrollPosition =
 			scrolledPosition + viewportHeight < documentHeight - footerHeight
 				? 0
@@ -76,10 +74,6 @@ export default function Menu({ menu }: MenuProps) {
 		content.setAttribute('data-full', String(!showMenu));
 	}, [showMenu]);
 
-	useEffect(() => {
-		setPath(pathname);
-	}, [pathname]);
-
 	return (
 		<>
 			<Hamburger />
@@ -88,7 +82,11 @@ export default function Menu({ menu }: MenuProps) {
 				style={{ minHeight: `calc(100vh - ${footerScrollPosition}px - 1px)` }}
 			>
 				<Temperature />
-				<MenuTree menu={menu} style={{ maxHeight: `calc(100vh - ${menuPadding}px - 1rem)` }} />
+				<MenuTree
+					menu={menu}
+					style={{ maxHeight: `calc(100vh - ${menuPadding}px - 1rem)` }}
+					ref={treeRef}
+				/>
 				<Language menu={menu} className={s.language} />
 			</nav>
 		</>

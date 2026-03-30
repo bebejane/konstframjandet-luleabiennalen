@@ -6717,7 +6717,7 @@ type LandOwnershipQueryVariables = Exact<{
 }>;
 
 
-type LandOwnershipQuery = { __typename?: 'Query', landOwnership?: { __typename: 'LandOwnershipRecord', id: any, title?: string | null, text?: { __typename?: 'LandOwnershipModelTextField', blocks: Array<string>, links: Array<string>, value: any } | null } | null };
+type LandOwnershipQuery = { __typename?: 'Query', landOwnership?: { __typename: 'LandOwnershipRecord', _modelApiKey: string, id: any, title?: string | null, text?: { __typename?: 'LandOwnershipModelTextField', blocks: Array<string>, links: Array<string>, value: any } | null } | null };
 
 type AllLocationsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -7123,12 +7123,12 @@ type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', 
       | { __typename: 'StartTextRecord', id: any, headline: string, text?: string | null, link:
           | { __typename: 'ExternalLinkRecord', id: any, title: string, url: string }
           | { __typename: 'InternalLinkRecord', id: any, title: string, record?:
-              | { __typename?: 'AboutRecord', id: any, slug: string, title: string }
-              | { __typename?: 'ExhibitionRecord', id: any, slug: string, title: string }
-              | { __typename?: 'LocationRecord', id: any, slug: string, title: string }
-              | { __typename?: 'NewsRecord', id: any, slug: string, title: string }
-              | { __typename?: 'ParticipantRecord', id: any, slug: string, name: string }
-              | { __typename?: 'ProgramRecord', id: any, slug: string, title: string }
+              | { __typename: 'AboutRecord', id: any, slug: string, title: string }
+              | { __typename: 'ExhibitionRecord', id: any, slug: string, title: string }
+              | { __typename: 'LocationRecord', id: any, slug: string, title: string }
+              | { __typename: 'NewsRecord', id: any, slug: string, title: string }
+              | { __typename: 'ParticipantRecord', id: any, slug: string, name: string }
+              | { __typename: 'ProgramRecord', id: any, slug: string, title: string }
              | null }
          }
       | { __typename: 'StartVideoRecord', id: any, title: string, video: { __typename?: 'VideoField', provider: string, providerUid: string, thumbnailUrl: string, url: string } }

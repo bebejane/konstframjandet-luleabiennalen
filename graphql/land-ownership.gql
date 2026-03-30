@@ -1,6 +1,7 @@
 query LandOwnership($locale: SiteLocale) {
 	landOwnership(locale: $locale) {
 		__typename
+		_modelApiKey
 		id
 		title
 		text {

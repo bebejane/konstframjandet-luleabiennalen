@@ -1,6 +1,5 @@
 .tree {
 	list-style: none;
-	font-weight: bold;
 	padding-left: 0.62rem;
 	scrollbar-width: 0px;
 	overflow-y: scroll;
@@ -22,7 +21,8 @@
 	}
 
 	div[aria-level='1'],
-	div[aria-level='1'] > a {
+	div[aria-level='1'] > a,
+	.bold {
 		font-weight: bold;
 	}
 
@@ -31,11 +31,6 @@
 		display: inline-block;
 		cursor: pointer;
 		line-height: 1;
-
-		@include mq($until: tablet) {
-			//padding-top: 1.5em;
-			//padding-bottom: calc(var(--header-height) - 1.5em);
-		}
 	}
 
 	> div {

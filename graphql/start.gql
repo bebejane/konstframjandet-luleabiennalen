@@ -10,6 +10,7 @@ query Start($locale: SiteLocale) {
 				text
 				link {
 					__typename
+
 					... on ExternalLinkRecord {
 						__typename
 						id
@@ -21,6 +22,7 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
 							... on AboutRecord {
 								id
 								slug

@@ -164,7 +164,15 @@ export const buildMenu = async (locale: SiteLocale) => {
 };
 
 export const buildYearMenu = (
-	{ year: _year, abouts, aboutMeta, participantsMeta, exhibitionsMeta, locationsMeta }: MenuQuery,
+	{
+		year: _year,
+		abouts,
+		aboutMeta,
+		participantsMeta,
+		exhibitionsMeta,
+		locationsMeta,
+		programMeta,
+	}: MenuQuery,
 	{
 		isArchive = false,
 		messages,
@@ -241,7 +249,9 @@ export const buildYearMenu = (
 							? exhibitionsMeta?.count
 							: item.route === '/platser'
 								? locationsMeta?.count
-								: null,
+								: item.route === '/program'
+									? programMeta?.count
+									: null,
 		};
 	});
 
