@@ -1,7 +1,6 @@
 'use client';
 
-import { getPathname, locales, usePathname as useIntlPathname } from '@/i18n/routing';
-import { SectionId, sections } from '@/lib/menu';
+import { getPathname, locales, usePathname as useIntlPathname, routing } from '@/i18n/routing';
 import useStore, { useShallow } from '@/lib/store';
 import { usePathname } from 'next/navigation';
 import { useContext, createContext, use, useEffect } from 'react';
@@ -10,14 +9,14 @@ type PageContextProps = {
 	year: YearQuery['year'];
 	isArchive: boolean;
 	isHome: boolean;
-	section: SectionId;
+	route: keyof typeof routing.pathnames;
 };
 
 const initialState: PageContextProps = {
 	year: undefined,
 	isHome: true,
 	isArchive: false,
-	section: 'home',
+	route: '/',
 };
 
 export const PageContext = createContext(initialState);
@@ -27,11 +26,15 @@ export type YearProviderProps = {
 	value: Pick<PageContextProps, 'year'>;
 };
 
-function isValidSection(section: string): section is SectionId {
-	return sections.includes(section as SectionId);
+function isValidRoute(route: string): boolean {
+	return Object.keys(routing.pathnames).includes(route);
 }
 
-export function getSection(pathname: string, intlPathname: string, year?: string): SectionId {
+export function getRoute(
+	pathname: string,
+	intlPathname: string,
+	year?: string,
+): keyof typeof routing.pathnames {
 	const params: Record<string, string> = {};
 
 	intlPathname.split('/').forEach((p, idx) => {
@@ -51,15 +54,15 @@ export function getSection(pathname: string, intlPathname: string, year?: string
 		.filter((p) => p);
 
 	const isYear = Number.isInteger(Number(p[0]));
-	const section = p.find((p) => isValidSection(p)) ?? 'home';
+	const route = p.find((p) => isValidRoute(p)) ?? '/';
 
-	return section;
+	return route as keyof typeof routing.pathnames;
 }
 
 export const PageProvider = ({ children, value }: YearProviderProps) => {
 	const pathname = usePathname();
 	const intlPathname = useIntlPathname();
-	const section = getSection(pathname, intlPathname, value.year?.title);
+	const route = getRoute(pathname, intlPathname, value.year?.title);
 	const [setColor] = useStore(useShallow((state) => [state.setColor]));
 
 	useEffect(() => {
@@ -73,7 +76,7 @@ export const PageProvider = ({ children, value }: YearProviderProps) => {
 				...value,
 				isArchive: value.year?.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR!,
 				isHome: locales.some((l) => pathname.startsWith(`/${l}`)) || pathname === '/',
-				section,
+				route,
 			}}
 		>
 			{children}

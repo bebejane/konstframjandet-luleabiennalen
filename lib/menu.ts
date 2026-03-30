@@ -1,175 +1,275 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { AllYearsDocument, MenuDocument } from '@/graphql';
-import i18nPaths from '@/i18n/paths.json';
-import { locales } from '@/i18n/routing';
-import { Locale } from 'next-intl';
+import { locales, routing } from '@/i18n/routing';
+import { getMessages } from 'next-intl/server';
 
-export type SectionId =
-	| 'home'
-	| 'contact'
-	| 'participants'
-	| 'news'
-	| 'about'
-	| 'locations'
-	| 'program'
-	| 'exhibitions'
-	| 'partners'
-	| 'archive'
-	| 'search';
+export type Href = {
+	pathname: keyof typeof routing.pathnames;
+	params?: any;
+};
+export type Menu = MenuItem[];
+export type MenuItem = {
+	id: string;
+	title: string;
+	route: keyof typeof routing.pathnames;
+	href?: Href;
+	hrefAlt?: Href;
+	year?: string;
+	archive?: boolean;
+	sub: MenuItem[];
+	virtual?: boolean;
+	count?: number;
+};
 
-export const sections: SectionId[] = [
-	'home',
-	'contact',
-	'participants',
-	'news',
-	'about',
-	'locations',
-	'program',
-	'exhibitions',
-	'partners',
-	'archive',
-	'search',
+const base: Partial<MenuItem>[] = [
+	{
+		route: '/',
+		archive: false,
+		sub: [],
+	},
+	{
+		route: '/nyheter',
+		archive: false,
+		sub: [],
+	},
+	{
+		route: '/utstallningar',
+		archive: true,
+		sub: [],
+	},
+	{
+		route: '/program',
+		archive: true,
+		sub: [],
+	},
+	{
+		route: '/medverkande',
+		archive: true,
+		sub: [],
+	},
+	{
+		route: '/partners',
+		archive: false,
+		sub: [],
+	},
+	{
+		route: '/om',
+		virtual: true,
+		archive: true,
+		sub: [],
+	},
+	{
+		route: '/kontakt',
+		archive: false,
+		sub: [],
+	},
+	{
+		route: '/arkiv',
+		archive: false,
+		sub: [],
+	},
+	{
+		route: '/sok',
+		archive: false,
+		sub: [],
+	},
 ];
 
-const base: Menu = [
-	{ id: 'home', label: 'Hem', slug: '/', general: true },
-	{ id: 'news', label: 'Nyheter', slug: '/nyheter', general: true },
-	{ id: 'exhibitions', label: 'Utställningar', slug: '/utstallningar' },
-	{ id: 'program', label: 'Program', slug: '/program' },
-	{ id: 'participants', label: 'Medverkande', slug: '/medverkande' },
-	{ id: 'partners', label: 'Partners', slug: '/partners', general: false },
-	{ id: 'about', label: 'Om', slug: '/om', virtual: true, sub: [] },
-	{ id: 'contact', label: 'Kontakt', slug: '/kontakt', general: true },
-	{ id: 'archive', label: 'Arkiv', slug: '/arkiv', general: true, sub: [] },
-	{ id: 'search', label: 'Sök', slug: '/sok', general: true },
-];
-
-export const buildMenu = async (locale: Locale) => {
-	const messages = (await import(`@/i18n/${locale}.json`)).default;
+export const buildMenu = async (locale: SiteLocale) => {
+	const messages = await getMessages({ locale });
 	const altLocale = locales.find((l) => locale != l) as SiteLocale;
-	const { allYears } = await apiQuery(AllYearsDocument, { variables: { locale } });
-	const year = allYears[0];
+	const { allYears } = await apiQuery(AllYearsDocument, {
+		variables: { locale },
+	});
+
+	const year = allYears.find(({ title }) => title === process.env.NEXT_PUBLIC_CURRENT_YEAR!);
+	if (!year) throw new Error('No default year found');
+
 	const res = await apiQuery(MenuDocument, {
 		variables: {
 			yearId: year.id,
-			locale: locale as SiteLocale,
-			altLocale: altLocale as SiteLocale,
+			locale,
+			altLocale,
 		},
 	});
+
 	const archive = await Promise.all(
 		allYears
 			.filter(({ id }) => id !== year.id)
 			.map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale, altLocale } })),
 	);
-	const menu = buildYearMenu(res, { locale, altLocale, isArchive: false, messages });
-	const archiveIndex = menu.findIndex((el) => el.id === 'archive');
 
-	//@ts-ignore
+	const menu = buildYearMenu(res, { locale, altLocale, isArchive: false, messages });
+	const archiveIndex = menu.findIndex((el) => el.route === '/arkiv');
+	if (archiveIndex === -1) throw new Error('No archive index found');
+
 	menu[archiveIndex].sub = archive.map((el) => {
-		const year = el.year.title;
-		const haveAboutOverview = el.abouts.filter(({ year }) => year).length > 0;
+		const year = el.year?.title;
+		if (!year) throw new Error('No year found');
+		const abouts = el.abouts;
+		const haveAboutOverview = abouts.filter(({ year }) => year).length > 0;
+
+		const href = {
+			pathname: `/[year]`,
+			params: { year },
+		};
 
 		return {
-			id: `about-archive-${year}`,
-			label: `LB°${year.substring(2)}`,
-			slug: haveAboutOverview ? `/${year}` : null,
-			altSlug: haveAboutOverview ? `/${year}` : null,
+			id: uuidV4(),
+			route: `/arkiv`,
+			title: `LB°${year.substring(2)}`,
+			href: haveAboutOverview ? href : null,
+			hrefAlt: haveAboutOverview ? href : null,
 			sub: buildYearMenu(el, { locale, altLocale, isArchive: true, messages })
-				.filter((e) => !e.general)
+				.filter((e) => e.archive)
 				.map((e) => ({
 					...e,
-					id: `${e.id}-archive`,
-					slug: `${e.slug}`,
-					altSlug: `${e.altSlug}`,
+					id: uuidV4(),
+					href: {
+						pathname: `${href.pathname}${e.route}` as Href['pathname'],
+						params: { ...href.params, year },
+					},
+					hrefAlt: {
+						pathname: `${href.pathname}${e.route}` as Href['pathname'],
+						params: { ...href.params, year },
+					},
 					sub:
 						e.sub?.map((e2) => ({
 							...e2,
-							slug: `${e2.slug}`,
-							altSlug: `${e2.altSlug}`,
-						})) || null,
+							id: uuidV4(),
+							href: {
+								pathname: `${href.pathname}${e.route}/[about]` as Href['pathname'],
+								params: {
+									...href.params,
+									year,
+									about: abouts.find(({ title }) => title === e2.title)?.slug,
+								},
+							},
+							hrefAlt: {
+								pathname: `${href.pathname}${e.route}/[about]` as Href['pathname'],
+								params: {
+									...href.params,
+									year,
+									about: abouts.find(({ title }) => title === e2.title)?.altSlug,
+								},
+							},
+						})) ?? [],
 				}))
 				.filter(({ count }) => count || count === null)
-				.sort((a, b) => (a.id === 'about' ? -1 : 1)),
-		};
+				.sort((a, b) => (a.route === '/om' ? -1 : 1)),
+		} as MenuItem;
 	});
 
 	return menu;
 };
 
 export const buildYearMenu = (
-	res: MenuQuery,
+	{ year: _year, abouts, aboutMeta, participantsMeta, exhibitionsMeta, locationsMeta }: MenuQuery,
 	{
-		locale,
-		altLocale,
 		isArchive = false,
 		messages,
 	}: { locale: string; altLocale: string; isArchive: boolean; messages: any },
 ): MenuItem[] => {
+	if (!_year) throw new Error('No year found');
+	const year = _year.title;
 	const menu = base.map((item) => {
-		let sub: MenuItem[];
-		const year = res.year?.title;
+		const route = item.route;
+		const mKey =
+			routing.pathnames[route as keyof typeof routing.pathnames].en.replace('/', '') || 'home';
+		item.id = uuidV4();
+		item.title = item.route === '/medverkande' ? _year.participantName : messages.Menu[mKey];
 
-		if (item.slug) {
-			item.label = item.id === 'participants' ? res.year.participantName : messages.Menu[item.id];
-			item.slug = `/${!item.general ? year + '/' : ''}${i18nPaths[item.id][locale]}`;
-			item.altSlug = `/${!item.general ? year + '/' : ''}${i18nPaths[item.id][altLocale]}`;
-		}
+		const href = {
+			pathname:
+				`${route === '/arkiv' ? `/[year]` : ''}${route !== '/' ? route : ''}` as Href['pathname'],
+			params: route === '/arkiv' ? { year } : {},
+		} as Href;
 
-		switch (item.id) {
-			case 'about':
-				//@ts-ignore
-				sub = res.abouts
+		item.href = href;
+		item.hrefAlt = href;
+
+		let sub: MenuItem[] = [];
+
+		switch (item.route) {
+			case '/om':
+				sub = abouts
 					.filter(({ year }) => (isArchive ? year : true))
-					.map((el) => ({
-						id: `about-${el.slug}`,
-						label: el.title,
-						slug: `/${year}/${i18nPaths.about[locale]}/${el.slug}`,
-						altSlug: `/${year}/${i18nPaths.about[altLocale]}/${el.altSlug}`,
+					.map(({ title, slug, altSlug }) => ({
+						id: uuidV4(),
+						route: `/om`,
+						title: title,
+						archive: isArchive,
+						href: {
+							pathname: `${href.pathname}/[about]` as Href['pathname'],
+							params: { ...href.params, about: slug },
+						},
+						hrefAlt: {
+							pathname: `${href.pathname}/[about]` as Href['pathname'],
+							params: { ...href.params, about: altSlug },
+						},
+						sub: [],
 					}));
 
 				const mainAbout =
-					res.abouts.filter(({ year }) => year)[0] || res.abouts.filter(({ year }) => !year)[0];
+					abouts.filter(({ year }) => year)[0] || abouts.filter(({ year }) => !year)[0];
 
 				if (mainAbout) {
-					item.slug = `/${year}/${i18nPaths.about[locale]}/${mainAbout.slug}`;
-					item.altSlug = `/${year}/${i18nPaths.about[altLocale]}/${mainAbout.altSlug}`;
+					item.href = {
+						pathname: `${href.pathname}/[about]` as Href['pathname'],
+						params: { ...href.params, about: mainAbout.slug },
+					};
+					item.hrefAlt = {
+						pathname: `${href.pathname}/[about]` as Href['pathname'],
+						params: { ...href.params, about: mainAbout.altSlug },
+					};
 				}
-
 				break;
 			default:
 				break;
 		}
+
 		return {
 			...item,
-			sub: sub || item.sub || null,
-			year: res.year.title,
-			count: res[`${item.id}Meta`]?.count ?? null,
+			sub,
+			year,
+			count:
+				item.route === '/om'
+					? aboutMeta?.count
+					: item.route === '/medverkande'
+						? participantsMeta?.count
+						: item.route === '/utstallningar'
+							? exhibitionsMeta?.count
+							: item.route === '/platser'
+								? locationsMeta?.count
+								: null,
 		};
 	});
 
-	return menu.filter(({ count }) => count || count === null);
+	return menu.filter(({ count }) => count || count === null) as MenuItem[];
 };
 
-export type Menu = MenuItem[];
-export type MenuQueryResponse = {
-	abouts: (AboutRecord & { altSlug: string })[];
-	years: YearRecord[];
-	year: YearRecord;
-	aboutMeta: { count: number };
-	progamMeta: { count: number };
-	participantsMeta: { count: number };
-	exhibitionsMeta: { count: number };
-	locationsMeta: { count: number };
-};
+export function getMenuItem(id: string, menu: Menu): MenuItem {
+	const item = menu.reduce<MenuItem | null>((acc, el) => {
+		if (el.id === id) acc = el;
+		if (acc) return acc;
+		try {
+			if (el.sub.length) return getMenuItem(id, el.sub);
+		} catch (e) {}
+		return acc;
+	}, null);
 
-export type MenuItem = {
-	id: SectionId;
-	label: string;
-	slug?: string;
-	altSlug?: string;
-	year?: string;
-	sub?: MenuItem[];
-	virtual?: boolean;
-	count?: number;
-	general?: boolean;
-};
+	if (!item) throw new Error(`No menu item found for id: ${id}`);
+	return item;
+}
+
+function uuidV4() {
+	const uuid = new Array(36);
+	for (let i = 0; i < 36; i++) {
+		uuid[i] = Math.floor(Math.random() * 16);
+	}
+	uuid[14] = 4; // set bits 12-15 of time-high-and-version to 0100
+	uuid[19] = uuid[19] &= ~(1 << 2); // set bit 6 of clock-seq-and-reserved to zero
+	uuid[19] = uuid[19] |= 1 << 3; // set bit 7 of clock-seq-and-reserved to one
+	uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+	return uuid.map((x) => x.toString(16)).join('');
+}

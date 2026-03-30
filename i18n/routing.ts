@@ -103,6 +103,12 @@ export const routing = defineRouting({
 	},
 });
 
-export type AppPathnames = keyof typeof routing.pathnames;
+export function exists(pathname: string) {
+	const keys = Object.keys(routing.pathnames)
+		//@ts-ignore
+		.map((k) => [k, routing.pathnames[k].en])
+		.flat();
+	return keys.includes(pathname);
+}
 
 export const { Link, redirect, usePathname, useRouter, getPathname } = createNavigation(routing);

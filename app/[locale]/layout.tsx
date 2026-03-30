@@ -43,7 +43,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 								<article>{children}</article>
 							</main>
 						</div>
-						<Menu items={menu} />
+						<Menu menu={menu} />
 						<Language menu={menu} />
 						<Footer footer={general} />
 						<FullscreenGallery />

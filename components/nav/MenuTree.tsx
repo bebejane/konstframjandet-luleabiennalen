@@ -1,24 +1,29 @@
 'use client';
 
-import s from './HeadlessTree.module.scss';
-import cn from 'classnames';
+import s from './MenuTree.module.scss';
 import { hotkeysCoreFeature, selectionFeature, syncDataLoaderFeature } from '@headless-tree/core';
 import { useTree } from '@headless-tree/react';
-import { getMenuItem, Menu, MenuItem } from '@/lib/menu2';
-import { Link } from '@/i18n/routing';
+import { getMenuItem, Menu, MenuItem } from '@/lib/menu';
+import { getPathname, Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 
-export const HeadlessTree = ({ menu: _menu }: { menu: Menu }) => {
+export default function MenuTree({
+	menu: _menu,
+	style,
+}: {
+	menu: Menu;
+	style?: React.CSSProperties;
+}) {
 	const locale = useLocale();
+	const rootItem = {
+		id: 'root',
+		section: 'root',
+		title: 'root',
+		sub: _menu,
+	} as unknown as MenuItem;
+
 	function getItem(itemId: string): MenuItem {
-		if (itemId === 'root')
-			return {
-				id: 'root',
-				section: 'root',
-				title: 'root',
-				sub: _menu,
-			};
-		return getMenuItem(itemId, _menu);
+		return itemId === 'root' ? rootItem : getMenuItem(itemId, _menu);
 	}
 
 	const tree = useTree<MenuItem>({
@@ -34,10 +39,11 @@ export const HeadlessTree = ({ menu: _menu }: { menu: Menu }) => {
 	});
 
 	return (
-		<div {...tree.getContainerProps()} className={s.tree}>
+		<div {...tree.getContainerProps()} className={s.tree} style={style}>
 			{tree.getItems().map((item) => {
 				const folder = item.isFolder();
-				const href = item.getItemData().href;
+				const data = item.getItemData();
+				const href = data.href ?? undefined;
 				const { id, title } = item.getItemData();
 				const props = item.getProps();
 
@@ -45,12 +51,14 @@ export const HeadlessTree = ({ menu: _menu }: { menu: Menu }) => {
 					<div {...props} key={id} style={{ paddingLeft: `${item.getItemMeta().level * 20}px` }}>
 						{folder ? (
 							<button className={s.folder}>{title}</button>
-						) : href ? (
-							<Link href={href}>{title}</Link>
+						) : typeof href !== 'undefined' ? (
+							<Link href={href as any} locale={locale}>
+								{title}
+							</Link>
 						) : null}
 					</div>
 				);
 			})}
 		</div>
 	);
-};
+}

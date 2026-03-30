@@ -3,8 +3,8 @@ import cn from 'classnames';
 import { getPathname, locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import { buildMenu, Menu, MenuItem } from '@/lib/menu2';
-import { HeadlessTree } from '@/app/[locale]/tree/HeadlessTree';
+import { buildMenu } from '@/lib/menu';
+import Menu from '@/components/nav/Menu';
 
 export default async function TreePage({ params }: PageProps<'/[locale]/sok'>) {
 	const { locale } = await params;
@@ -15,8 +15,7 @@ export default async function TreePage({ params }: PageProps<'/[locale]/sok'>) {
 
 	return (
 		<div className={s.container}>
-			<h1>Tree</h1>
-			<HeadlessTree menu={menu} />
+			<Menu menu={menu} />
 		</div>
 	);
 }

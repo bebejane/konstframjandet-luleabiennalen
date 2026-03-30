@@ -1,9 +1,9 @@
 - search page
 - DatoLink
-
+- new tree menu
 - scrollbug menu height
 - Thumbnail loader random
-- Backbutton
+- om markerna popup
 
 - typescript errors
 - datocms.config
