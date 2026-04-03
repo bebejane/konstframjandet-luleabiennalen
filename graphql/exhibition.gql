@@ -194,6 +194,7 @@ fragment ExhibitionFragmentLight on ExhibitionRecord {
 }
 
 fragment FinancierFragmentLight on FinancierRecord {
+	__typename
 	id
 	name
 	image {

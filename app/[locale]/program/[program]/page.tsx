@@ -43,7 +43,7 @@ export default async function Program({ params }: PageProps<'/[locale]/[year]/pr
 		endDate,
 		time,
 	} = program;
-
+	console.log(program);
 	return (
 		<>
 			<PageHeader title={t('Menu.program')} href={'/program'} />

@@ -96,7 +96,6 @@ fragment AboutFragment on AboutRecord {
 						title
 						record {
 							__typename
-
 							... on AboutRecord {
 								id
 								slug

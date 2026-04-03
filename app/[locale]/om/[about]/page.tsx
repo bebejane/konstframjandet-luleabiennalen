@@ -27,7 +27,6 @@ export type Props = {
 
 export default async function AboutPage({ params }: PageProps<'/[locale]/[year]/om/[about]'>) {
 	const { locale, about: slug, year: _year } = await params;
-	console.log(slug, locale, _year);
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 

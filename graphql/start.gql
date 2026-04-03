@@ -1,5 +1,6 @@
 query Start($locale: SiteLocale) {
 	start(locale: $locale) {
+		__typename
 		id
 		content {
 			__typename

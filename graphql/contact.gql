@@ -1,5 +1,6 @@
 query Contact($locale: SiteLocale) {
 	contact(locale: $locale) {
+		__typename
 		id
 		image {
 			...ImageFragment

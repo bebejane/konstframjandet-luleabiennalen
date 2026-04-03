@@ -55,7 +55,6 @@ export default function MenuTree({ menu: _menu, style, ref, onSelect }: MenuTree
 
 	useEffect(() => {
 		try {
-			console.log('get');
 			const menuItem = getMenuItemByPathname({ pathname, params }, locale, _menu);
 			const chain = getMenuItemAncestorChain(menuItem.id, _menu);
 
