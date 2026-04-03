@@ -86,16 +86,22 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/
 	);
 }
 
-export async function generateStaticParams({ params }: PageProps<'/[locale]/om'>) {
-	const { locale } = await params;
+export async function generateStaticParams({ params }: PageProps<'/[locale]/[year]/om'>) {
+	const { locale, year: _year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
+
 	const { allAbouts } = await apiQuery(AllAboutsDocument, {
 		all: true,
 		variables: {
 			locale: locale as SiteLocale,
 		},
 	});
-	return allAbouts.map((about) => ({ about: about.slug }));
+
+	return allAbouts
+		.filter(({ slug, year }) =>
+			_year ? year?.title === _year : year?.title === process.env.NEXT_PUBLIC_CURRENT_YEAR || !year,
+		)
+		.map((about) => ({ about: about.slug }));
 }
 
 export async function generateMetadata({

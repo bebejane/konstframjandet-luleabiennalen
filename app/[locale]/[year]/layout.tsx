@@ -32,6 +32,7 @@ export async function generateStaticParams({ params }: LayoutProps<'/[locale]/[y
 	const { locale, year: _year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	const { allYears } = await apiQuery(AllYearsDocument, {
+		all: true,
 		variables: {
 			locale: locale as SiteLocale,
 		},

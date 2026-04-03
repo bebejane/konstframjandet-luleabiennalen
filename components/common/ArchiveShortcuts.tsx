@@ -1,7 +1,7 @@
 import s from './ArchiveShortcuts.module.scss';
 import { Image } from 'react-datocms';
-import { recordToSlug } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
+import { getRoute } from '@/datocms.config';
 import { Link } from '@/i18n/routing';
 
 export type Props = {
@@ -24,7 +24,7 @@ export default function ArchiveShortcuts({ items }: Props) {
 			<ul>
 				{items.map((item, idx) => (
 					<li key={item.id}>
-						<Link href={recordToSlug(items[idx]).split('/').slice(0, -1).join('/')}>
+						<Link href={getRoute(item)}>
 							<figure>
 								{item.image?.responsiveImage && <Image data={item.image.responsiveImage} />}
 								<div className={s.border}></div>

@@ -1,5 +1,5 @@
 import { apiQuery } from 'next-dato-utils/api';
-import { ParticipantDocument, AllParticipantsDocument } from '@/graphql';
+import { ParticipantDocument, AllParticipantsDocument, YearDocument } from '@/graphql';
 import { Article, Related, BackButton, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -40,19 +40,29 @@ export default async function Participant({
 				intro={intro}
 				content={content}
 			/>
-			<Related header={t('Related.participatingIn')} items={[...exhibitions, ...programs]} />
-			<Related header={t('General.inCooperationWith')} items={colab} noLink={true} />
+			<Related header={t('Related.participatingIn')} items={[...exhibitions, ...programs] as any} />
+			<Related
+				header={t('General.inCooperationWith')}
+				items={colab as PartnerRecord[]}
+				noLink={true}
+			/>
 			<BackButton>{t('BackButton.showAllParticipants')}</BackButton>
 			<DraftMode path={`/medverkande/${slug}`} url={draftUrl} />
 		</>
 	);
 }
 
-export async function generateStaticParams({ params }: PageProps<'/[locale]/medverkande'>) {
-	const { locale } = await params;
+export async function generateStaticParams({ params }: PageProps<'/[locale]/[year]/medverkande'>) {
+	const { locale, year } = await params;
+	const yearId = (
+		await apiQuery(YearDocument, {
+			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
+		})
+	)?.year?.id;
+
 	const { allParticipants } = await apiQuery(AllParticipantsDocument, {
 		all: true,
-		variables: { locale: locale as SiteLocale },
+		variables: { locale: locale as SiteLocale, yearId },
 	});
 	return allParticipants.map((participant) => ({ participant: participant.slug }));
 }

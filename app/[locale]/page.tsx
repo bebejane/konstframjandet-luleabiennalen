@@ -2,15 +2,13 @@ import s from './page.module.scss';
 import cn from 'classnames';
 import { LandOwnershipDocument, StartDataDocument, StartDocument, YearDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
-import { Block, LandOwnershipPopup, SectionHeader } from '@/components';
-import { getPathname, locales } from '@/i18n/routing';
+import { Block, LandOwnershipPopup } from '@/components';
+import { locales } from '@/i18n/routing';
 import { format } from 'date-fns';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { LogoHeader } from '@/components/layout/LogoHeader';
 import { DraftMode } from 'next-dato-utils/components';
-import { buildMetadata } from '@/app/[locale]/layout';
-import { Metadata } from 'next';
 
 export type Props = {
 	start: StartRecord;

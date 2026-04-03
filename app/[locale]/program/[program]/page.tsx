@@ -1,5 +1,5 @@
 import { apiQuery } from 'next-dato-utils/api';
-import { ProgramDocument, AllProgramsDocument } from '@/graphql';
+import { ProgramDocument, AllProgramsDocument, YearDocument } from '@/graphql';
 import { Article, Related, BackButton, PageHeader } from '@/components';
 import { formatDate } from '@/lib/utils';
 import { getPathname, Link, locales } from '@/i18n/routing';
@@ -91,21 +91,30 @@ export default async function Program({ params }: PageProps<'/[locale]/[year]/pr
 					},
 				]}
 			/>
-			<Related header={t('Menu.participants')} items={partipants} />
-			<Related header={t('Menu.locations')} items={location} />
-			<Related header={t('General.inCooperationWith')} items={partner} noLink={true} />
-			<Related header={t('Partners.supportedBy')} items={supportedBy} />
+			<Related header={t('Menu.participants')} items={partipants as ParticipantRecord[]} />
+			<Related header={t('Menu.locations')} items={location as LocationRecord[]} />
+			<Related
+				header={t('General.inCooperationWith')}
+				items={partner as PartnerRecord[]}
+				noLink={true}
+			/>
+			<Related header={t('Partners.supportedBy')} items={supportedBy as FinancierRecord[]} />
 			<BackButton>{t('BackButton.showAllPrograms')}</BackButton>
 			<DraftMode path={`/program/${slug}`} url={draftUrl} />
 		</>
 	);
 }
 
-export async function generateStaticParams({ params }: PageProps<'/[locale]/program'>) {
-	const { locale } = await params;
+export async function generateStaticParams({ params }: PageProps<'/[locale]/[year]/program'>) {
+	const { locale, year } = await params;
+	const yearId = (
+		await apiQuery(YearDocument, {
+			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
+		})
+	)?.year?.id;
 	const { allPrograms } = await apiQuery(AllProgramsDocument, {
 		all: true,
-		variables: { locale: locale as SiteLocale },
+		variables: { locale: locale as SiteLocale, yearId },
 	});
 	return allPrograms.map((program) => ({ program: program.slug }));
 }

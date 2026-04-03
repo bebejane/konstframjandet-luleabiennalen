@@ -1,5 +1,5 @@
 import { apiQuery } from 'next-dato-utils/api';
-import { LocationDocument, AllLocationsDocument } from '@/graphql';
+import { LocationDocument, AllLocationsDocument, YearDocument } from '@/graphql';
 import { Article, Related, BackButton, PageHeader } from '@/components';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -67,7 +67,7 @@ export default async function Location({
 				]}
 			/>
 			<Related header={t('Related.related')} items={[...exhibitions, ...programs] as any} />
-			<BackButton href={href}>{t('BackButton.showAllLocations')}</BackButton>
+			<BackButton>{t('BackButton.showAllLocations')}</BackButton>
 			<DraftMode path={`/platser/${slug}`} url={draftUrl} />
 		</>
 	);
@@ -76,10 +76,15 @@ export default async function Location({
 export async function generateStaticParams({
 	params,
 }: PageProps<'/[locale]/[year]/platser/[location]'>) {
-	const { locale } = await params;
+	const { locale, year } = await params;
+	const yearId = (
+		await apiQuery(YearDocument, {
+			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
+		})
+	)?.year?.id;
 	const { allLocations } = await apiQuery(AllLocationsDocument, {
 		all: true,
-		variables: { locale: locale as SiteLocale },
+		variables: { locale: locale as SiteLocale, yearId },
 	});
 	return allLocations.map((location) => ({ location: location.slug }));
 }

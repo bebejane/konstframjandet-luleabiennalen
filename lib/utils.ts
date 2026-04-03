@@ -1,55 +1,5 @@
-import i18nPaths from '@/i18n/paths.json';
-import type { MenuItem } from '@/lib/menu';
 import { format } from 'date-fns';
 import { capitalize } from 'next-dato-utils/utils';
-
-export const isServer = typeof window === 'undefined';
-
-export const recordToSlug = (record: any): string => {
-	let url;
-
-	if (!record) {
-		throw new Error('recordToSlug: Record  is empty');
-	}
-
-	if (typeof record === 'string') return record;
-	else {
-		const { __typename, slug } = record;
-
-		switch (__typename) {
-			case 'AboutRecord':
-				url = `/om/${slug}`;
-				break;
-			case 'ParticipantRecord':
-				url = `/medverkande/${slug}`;
-				break;
-			case 'ProgramRecord':
-				url = `/program/${slug}`;
-				break;
-			case 'ExhibitionRecord':
-				url = `/utstallningar/${slug}`;
-				break;
-			case 'NewsRecord':
-				url = `/nyheter/${slug}`;
-				break;
-			case 'LocationRecord':
-				url = `/platser/${slug}`;
-				break;
-			case 'PartnerRecord':
-				url = `/partners/${slug}`;
-				break;
-			default:
-				url = '/';
-				break;
-			//throw Error(`${__typename} is unknown record slug!`)
-		}
-	}
-
-	return url;
-};
-
-export const isEmptyObject = (obj: any) =>
-	Object.keys(obj).filter((k) => obj[k] !== undefined).length === 0;
 
 export const formatDate = (
 	date: string,

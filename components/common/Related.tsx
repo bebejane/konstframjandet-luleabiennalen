@@ -1,7 +1,7 @@
 import s from './Related.module.scss';
 import { Image } from 'react-datocms';
-import { recordToSlug } from '@/lib/utils';
 import { Link } from '@/i18n/routing';
+import { getRoute } from '@/datocms.config';
 
 export type Props = {
 	header: string;
@@ -24,12 +24,8 @@ export default function Related({ header, items, noLink }: Props) {
 			<h2>{header}</h2>
 			<ul>
 				{items.map((item, idx) => {
-					const title =
-						item.__typename === 'ParticipantRecord' || item.__typename === 'FinancierRecord' ? item.name : item.title;
-					let href = null;
-					try {
-						href = noLink ? null : recordToSlug(items[idx]);
-					} catch (e) {}
+					const title = 'name' in item ? item.name : 'title' in item ? item.title : '';
+					let href = noLink ? null : getRoute(items[idx]);
 					const content = (
 						<>
 							<figure>

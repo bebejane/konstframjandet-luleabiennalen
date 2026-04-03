@@ -1,5 +1,5 @@
 import { apiQuery } from 'next-dato-utils/api';
-import { PartnerDocument, AllPartnersDocument } from '@/graphql';
+import { PartnerDocument, AllPartnersDocument, YearDocument } from '@/graphql';
 import { Article, Related, BackButton, MetaSection, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -57,10 +57,15 @@ export default async function Partner({
 export async function generateStaticParams({
 	params,
 }: PageProps<'/[locale]/[year]/partners/[partner]'>) {
-	const { locale } = await params;
+	const { locale, year } = await params;
+	const yearId = (
+		await apiQuery(YearDocument, {
+			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
+		})
+	)?.year?.id;
 	const { allPartners } = await apiQuery(AllPartnersDocument, {
 		all: true,
-		variables: { locale: locale as SiteLocale },
+		variables: { locale: locale as SiteLocale, yearId },
 	});
 	return allPartners.map((partner) => ({ partner: partner.slug }));
 }
