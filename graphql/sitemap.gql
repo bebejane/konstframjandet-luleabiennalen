@@ -1,71 +1,99 @@
-query Sitemap($locale: SiteLocale!) {
-	allAbouts(locale: $locale, first: 500) {
+query Sitemap($locale: SiteLocale!, $first: IntType = 500, $skip: IntType = 0) {
+	allAbouts(locale: $locale, first: $first, skip: $skip) {
 		__typename
 		_updatedAt
 		slug
 		year {
 			title
+		}
+		_allSlugLocales {
+			locale
+			value
 		}
 	}
 	_allAboutsMeta(locale: $locale) {
 		count
 	}
-	allExhibitions(locale: $locale, first: 500) {
+	allExhibitions(locale: $locale, first: $first, skip: $skip) {
 		__typename
 		_updatedAt
 		slug
 		year {
 			title
+		}
+		_allSlugLocales {
+			locale
+			value
 		}
 	}
 	_allExhibitionsMeta(locale: $locale) {
 		count
 	}
-	allLocations(locale: $locale, first: 500) {
+	allLocations(locale: $locale, first: $first, skip: $skip) {
 		__typename
 		_updatedAt
 		slug
 		year {
 			title
+		}
+		_allSlugLocales {
+			locale
+			value
 		}
 	}
 	_allLocationsMeta(locale: $locale) {
 		count
 	}
-	allNews(locale: $locale, first: 500) {
+	allNews(locale: $locale, first: $first, skip: $skip) {
 		__typename
 		_updatedAt
 		slug
+		_allSlugLocales {
+			locale
+			value
+		}
 	}
 	_allNewsMeta(locale: $locale) {
 		count
 	}
-	allParticipants(locale: $locale, first: 500) {
+	allParticipants(locale: $locale, first: $first, skip: $skip) {
 		__typename
 		_updatedAt
 		slug
 		year {
 			title
+		}
+		_allSlugLocales {
+			locale
+			value
 		}
 	}
 	_allParticipantsMeta(locale: $locale) {
 		count
 	}
-	allPartners(locale: $locale, first: 500) {
+	allPartners(locale: $locale, first: $first, skip: $skip) {
 		__typename
 		_updatedAt
 		slug
 		year {
 			title
 		}
+		_allSlugLocales {
+			locale
+			value
+		}
 	}
 	_allPartnersMeta(locale: $locale) {
 		count
 	}
-	allPrograms(locale: $locale, first: 500) {
+	allPrograms(locale: $locale, first: $first, skip: $skip) {
 		__typename
 		_updatedAt
 		slug
+		_allSlugLocales {
+			locale
+			value
+		}
 		year {
 			title
 		}
@@ -73,10 +101,11 @@ query Sitemap($locale: SiteLocale!) {
 	_allProgramsMeta(locale: $locale) {
 		count
 	}
-	allYears(locale: $locale, first: 500) {
+	allYears(locale: $locale, first: $first, skip: $skip) {
 		__typename
 		_updatedAt
 		title
+		slug
 	}
 	_allYearsMeta(locale: $locale) {
 		count

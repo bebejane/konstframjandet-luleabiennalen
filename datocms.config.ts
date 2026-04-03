@@ -7,7 +7,7 @@ import {
 } from 'next-dato-utils/config';
 import { MetadataRoute } from 'next';
 import { SiteDocument, SitemapDocument } from '@/graphql';
-import { defaultLocale, getPathname, routing } from '@/i18n/routing';
+import { defaultLocale, getPathname, locales, routing } from '@/i18n/routing';
 import years from '@/years.json';
 
 export function getRoute(item: any, locale?: string | null): string {
@@ -47,6 +47,9 @@ export function getRoute(item: any, locale?: string | null): string {
 		case 'year':
 			route = `/[year]`;
 			break;
+		case 'general':
+			route = `/`;
+			break;
 	}
 
 	if (!route) throw new Error('No route found for apiKey: ' + apiKey);
@@ -71,19 +74,43 @@ export function getRoute(item: any, locale?: string | null): string {
 export default {
 	route: async (item, locale) => getRoute(item, locale) ?? null,
 	routes: {
-		start: async (item) => [getRoute(item)],
-		about: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
-		news: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
-		project: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
-		program: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
-		partner: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
-		exhibition: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
-		participant: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
-		location: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
-		contact: async (item) => [getRoute(item)],
+		start: async (item, locale) => [getRoute(item, locale)],
+		about: async (item, locale) => [
+			getRoute(item, locale),
+			...(await getItemReferenceRoutes(item)),
+		],
+		news: async (item, locale) => [getRoute(item, locale), ...(await getItemReferenceRoutes(item))],
+		project: async (item, locale) => [
+			getRoute(item, locale),
+			...(await getItemReferenceRoutes(item)),
+		],
+		program: async (item, locale) => [
+			getRoute(item, locale),
+			...(await getItemReferenceRoutes(item)),
+		],
+		partner: async (item, locale) => [
+			getRoute(item, locale),
+			...(await getItemReferenceRoutes(item)),
+		],
+		exhibition: async (item, locale) => [
+			getRoute(item, locale),
+			...(await getItemReferenceRoutes(item)),
+		],
+		participant: async (item, locale) => [
+			getRoute(item, locale),
+			...(await getItemReferenceRoutes(item)),
+		],
+		location: async (item, locale) => [
+			getRoute(item, locale),
+			...(await getItemReferenceRoutes(item)),
+		],
+		contact: async (item, locale) => [getRoute(item, locale)],
+		year: async (item, locale) => [getRoute(item, locale)],
+		general: async (item, locale) => [getRoute(item, locale)],
 		upload: async ({ id }) => getUploadReferenceRoutes(id),
 	},
-	sitemap: async (locale) => {
+	sitemap: async () => {
+		const locale = defaultLocale;
 		const {
 			allAbouts,
 			allExhibitions,
@@ -95,15 +122,28 @@ export default {
 			allYears,
 		} = await apiQuery(SitemapDocument, {
 			all: true,
-			includeDrafts: false,
+			variables: { locale: locale as SiteLocale },
 		});
 
+		const host = process.env.NEXT_PUBLIC_SITE_URL!;
 		const staticRoutes = ['/', '/kontakt', '/nyheter'].map((pathname: any) => ({
-			url: getPathname({ locale: locale ?? defaultLocale, href: { pathname } }),
+			url: `${host}${getPathname({ locale, href: { pathname } })}`,
 			lastModified: new Date().toISOString(),
 			changeFrequency: pathname === '/' ? 'daily' : 'weekly',
 			priority: pathname === '/' ? 1 : 0.8,
+			alternates: {
+				languages: locales
+					.filter((l) => l !== locale)
+					.reduce(
+						(acc, l) => ({
+							...acc,
+							[l]: `${host}${getPathname({ locale: l, href: { pathname } })}`,
+						}),
+						{},
+					),
+			},
 		}));
+
 		const dynamicRoutes = [
 			...allAbouts,
 			...allExhibitions,
@@ -112,14 +152,42 @@ export default {
 			...allParticipants,
 			...allPartners,
 			...allPrograms,
-			...allYears,
 		].map((item) => ({
-			url: `${process.env.NEXT_PUBLIC_SITE_URL}/${getRoute(item, locale)}`,
+			url: `${host}${getRoute(item, locale)}`,
 			lastModified: new Date(item._updatedAt).toISOString(),
 			changeFrequency: 'monthly',
 			priority: 0.8,
+			alternates: {
+				languages: locales
+					.filter((l) => l !== locale)
+					.reduce(
+						(acc, l) => ({
+							...acc,
+							[l]: `${host}${getRoute({ ...item, slug: item._allSlugLocales?.find(({ locale: l2 }) => l2 === l)?.value }, l)}`,
+						}),
+						{},
+					),
+			},
 		}));
-		return [...staticRoutes, ...dynamicRoutes] as MetadataRoute.Sitemap;
+
+		const yearRoutes = allYears.map((item) => ({
+			url: `${host}${getRoute(item, locale)}`,
+			lastModified: new Date(item._updatedAt).toISOString(),
+			changeFrequency: 'monthly',
+			priority: 0.8,
+			alternates: {
+				languages: locales
+					.filter((l) => l !== locale)
+					.reduce(
+						(acc, l) => ({
+							...acc,
+							[l]: `${host}${getRoute(item, l)}`,
+						}),
+						{},
+					),
+			},
+		}));
+		return [...staticRoutes, ...dynamicRoutes, ...yearRoutes] as MetadataRoute.Sitemap;
 	},
 	manifest: async (locale = defaultLocale) => {
 		const { _site: site } = await apiQuery(SiteDocument, {
