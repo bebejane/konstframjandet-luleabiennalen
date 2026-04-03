@@ -57,7 +57,12 @@ export default function ImageGallery({ data: { id, images }, onClick }: ImageGal
 			>
 				{images.map((item, idx) => (
 					<SwiperSlide key={`${idx}`} className={cn(s.slide)}>
-						<figure id={`${id}-${item.id}`} onClick={() => onClick?.(item.id)}>
+						<figure
+							id={`${id}-${item.id}`}
+							onClick={() => onClick?.(item.id)}
+							data-datocms-content-link-source={item.title}
+							data-datocms-content-link-group={true}
+						>
 							{item.responsiveImage && (
 								<Image
 									data={item.responsiveImage}

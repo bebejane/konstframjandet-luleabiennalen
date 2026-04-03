@@ -38,7 +38,12 @@ export default function MenuTree({ menu: _menu, style, ref, onSelect }: MenuTree
 	} as unknown as MenuItem;
 
 	function getItem(itemId: string): MenuItem {
-		return itemId === 'root' ? rootItem : getMenuItem(itemId, _menu);
+		try {
+			return itemId === 'root' ? rootItem : getMenuItem(itemId, _menu);
+		} catch (e) {
+			console.log(_menu);
+			return rootItem;
+		}
 	}
 
 	const tree = useTree<MenuItem>({

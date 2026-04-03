@@ -31,6 +31,7 @@ query Partner($slug: String!, $locale: SiteLocale) {
 fragment PartnerFragment on PartnerRecord {
 	__typename
 	_createdAt
+	_editingUrl
 	id
 	title
 	intro(markdown: false)
@@ -171,6 +172,7 @@ fragment PartnerFragment on PartnerRecord {
 
 fragment PartnerFragmentLight on PartnerRecord {
 	__typename
+	_editingUrl
 	id
 	title
 	intro(markdown: false)

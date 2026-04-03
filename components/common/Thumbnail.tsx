@@ -10,6 +10,7 @@ import strip from 'strip-markdown';
 import { useLocale } from 'next-intl';
 import { defaultLocale, Link } from '@/i18n/routing';
 import { rInt, truncateWords } from 'next-dato-utils/utils';
+import { stripStega } from '@datocms/content-link';
 
 export type Props = {
 	image?: FileField | null;
@@ -69,8 +70,9 @@ export default function Thumbnail({
 
 	return (
 		<Link
-			href={`${isArchive ? `/${year?.title}` : ''}${slug}` as any}
+			href={stripStega(`${isArchive ? `/${year?.title}` : ''}${slug}` as any)}
 			className={cn(s.thumbnail, !slug && s.nolink)}
+			data-datocms-content-link-url={image?._editingUrl}
 		>
 			<h3 className={cn(s[`rows-${titleRows}`])}>
 				<span>{titleLength ? truncateWords(title ?? '', titleLength) : title}</span>

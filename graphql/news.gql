@@ -16,6 +16,7 @@ query News($slug: String!, $locale: SiteLocale) {
 
 fragment NewsFragment on NewsRecord {
 	__typename
+	_editingUrl
 	id
 	title
 	intro(markdown: false)
@@ -151,6 +152,7 @@ fragment NewsFragment on NewsRecord {
 
 fragment NewsFragmentLight on NewsRecord {
 	__typename
+	_editingUrl
 	id
 	title
 	intro(markdown: false)

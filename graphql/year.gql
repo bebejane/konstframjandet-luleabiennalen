@@ -21,6 +21,7 @@ query Year($title: String!, $locale: SiteLocale) {
 
 fragment YearFragment on YearRecord {
 	__typename
+	_editingUrl
 	id
 	title
 	participantName
@@ -63,6 +64,7 @@ fragment YearFragment on YearRecord {
 
 fragment YearFragmentLight on YearRecord {
 	__typename
+	_editingUrl
 	id
 	title
 	participantName

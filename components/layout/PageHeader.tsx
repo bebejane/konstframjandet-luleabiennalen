@@ -7,6 +7,7 @@ import { usePage } from '@/lib/context/page';
 import { PROJECT_ABBR } from '@/lib/constant';
 import { Link } from '@/i18n/routing';
 import { useStore, useShallow } from '@/lib/store';
+import { stripStega } from '@datocms/content-link';
 
 export type PageHeaderProps = {
 	title?: string;
@@ -22,23 +23,11 @@ export default function PageHeader({ title: _title, href, params, noPrefix }: Pa
 	const { year, isArchive, route } = usePage();
 
 	const titlePrefix = `${PROJECT_ABBR}°${year?.title.substring(2)}`;
-	const title = _title && noPrefix ? _title : _title ? `${titlePrefix} — ${_title}` : titlePrefix;
+	const title = stripStega(
+		_title && noPrefix ? _title : _title ? `${titlePrefix} — ${_title}` : titlePrefix,
+	);
 	const isArchiveOverview = route === '/arkiv';
 	const showArchive = isArchive || isArchiveOverview;
-	// const isLocation = section === 'locations';
-	// const isArchiveHome = section === 'home' && isArchive;
-	// const isSearch = section === 'search';
-
-	// const showArchive = isArchive || isArchiveOverview;
-	// const yearLabel = `${PROJECT_ABBR}°${year?.title.substring(2)}`;
-
-	// const label = isArchiveOverview
-	// 	? PROJECT_NAME
-	// 	: isArchiveHome
-	// 		? yearLabel
-	// 		: !isSearch
-	// 			? `${yearLabel}${!isHome ? ` — ${t(isLocation ? 'partners' : section)}` : ''}`
-	// 			: t('search');
 
 	return (
 		<>

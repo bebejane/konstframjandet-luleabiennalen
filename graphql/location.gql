@@ -27,6 +27,7 @@ query Location($slug: String!, $locale: SiteLocale) {
 
 fragment LocationFragment on LocationRecord {
 	__typename
+	_editingUrl
 	id
 	title
 	city
@@ -170,6 +171,7 @@ fragment LocationFragment on LocationRecord {
 
 fragment LocationFragmentLight on LocationRecord {
 	__typename
+	_editingUrl
 	id
 	title
 	city

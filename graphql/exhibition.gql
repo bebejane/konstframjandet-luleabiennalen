@@ -21,6 +21,7 @@ query Exhibition($slug: String!, $locale: SiteLocale) {
 fragment ExhibitionFragment on ExhibitionRecord {
 	__typename
 	_modelApiKey
+	_editingUrl
 	id
 	title
 	startDate
@@ -182,6 +183,7 @@ fragment ExhibitionFragment on ExhibitionRecord {
 fragment ExhibitionFragmentLight on ExhibitionRecord {
 	__typename
 	_modelApiKey
+	_editingUrl
 	id
 	title
 	startDate

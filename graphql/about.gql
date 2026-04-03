@@ -29,6 +29,7 @@ query AllAboutsMenu($locale: SiteLocale) {
 fragment AboutFragment on AboutRecord {
 	__typename
 	_modelApiKey
+	_editingUrl
 	position
 	id
 	title
@@ -67,6 +68,7 @@ fragment AboutFragment on AboutRecord {
 			}
 			... on ImageGalleryRecord {
 				__typename
+
 				id
 				images {
 					...ImageThumbnailFragment
@@ -172,6 +174,7 @@ fragment AboutFragment on AboutRecord {
 
 fragment AboutFragmentLight on AboutRecord {
 	__typename
+	_editingUrl
 	id
 	title
 	intro

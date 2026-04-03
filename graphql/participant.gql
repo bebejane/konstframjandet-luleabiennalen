@@ -27,6 +27,7 @@ query Participant($slug: String, $locale: SiteLocale) {
 fragment ParticipantFragment on ParticipantRecord {
 	__typename
 	_createdAt
+	_editingUrl
 	id
 	name
 	intro(markdown: false)
@@ -173,6 +174,7 @@ fragment ParticipantFragment on ParticipantRecord {
 
 fragment ParticipantFragmentLight on ParticipantRecord {
 	__typename
+	_editingUrl
 	id
 	name
 	intro(markdown: false)

@@ -1,6 +1,7 @@
 query Start($locale: SiteLocale) {
 	start(locale: $locale) {
 		__typename
+		_editingUrl
 		id
 		content {
 			__typename

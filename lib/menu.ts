@@ -82,6 +82,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 	const altLocale = locales.find((l) => locale != l) as SiteLocale;
 	const { allYears } = await apiQuery(AllYearsDocument, {
 		variables: { locale },
+		stripStega: true,
 	});
 
 	const year = allYears.find(({ title }) => title === process.env.NEXT_PUBLIC_CURRENT_YEAR!);
@@ -93,12 +94,15 @@ export const buildMenu = async (locale: SiteLocale) => {
 			locale,
 			altLocale,
 		},
+		stripStega: true,
 	});
 
 	const archive = await Promise.all(
 		allYears
 			.filter(({ id }) => id !== year.id)
-			.map(({ id }) => apiQuery(MenuDocument, { variables: { yearId: id, locale, altLocale } })),
+			.map(({ id }) =>
+				apiQuery(MenuDocument, { variables: { yearId: id, locale, altLocale }, stripStega: true }),
+			),
 	);
 
 	const menu = buildYearMenu(res, { locale, altLocale, isArchive: false, messages });

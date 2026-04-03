@@ -30,6 +30,7 @@ query AllProgramCategories($locale: SiteLocale) {
 fragment ProgramFragment on ProgramRecord {
 	__typename
 	_modelApiKey
+	_editingUrl
 	id
 	title
 	startDate
@@ -211,6 +212,7 @@ fragment ProgramFragment on ProgramRecord {
 fragment ProgramFragmentLight on ProgramRecord {
 	__typename
 	_modelApiKey
+	_editingUrl
 	id
 	title
 	startDate
