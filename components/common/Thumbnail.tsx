@@ -42,7 +42,7 @@ export default function Thumbnail({
 	const strippedIntro = truncateWords(
 		remark()
 			.use(strip)
-			.processSync(intro ?? '').value as string,
+			.processSync(stripStega(intro) ?? '').value as string,
 		500,
 	);
 	const locale = useLocale();
@@ -68,14 +68,18 @@ export default function Thumbnail({
 		!loaded &&
 		loadingImageIndex !== null;
 
+	const href = stripStega(`${isArchive ? `/${year?.title}` : ''}${slug}` as any);
 	return (
 		<Link
-			href={stripStega(`${isArchive ? `/${year?.title}` : ''}${slug}` as any)}
+			href={href}
+			locale={locale}
 			className={cn(s.thumbnail, !slug && s.nolink)}
 			data-datocms-content-link-url={image?._editingUrl}
 		>
 			<h3 className={cn(s[`rows-${titleRows}`])}>
-				<span>{titleLength ? truncateWords(title ?? '', titleLength) : title}</span>
+				<span data-datocms-content-link-source={title}>
+					{titleLength ? truncateWords(title ?? '', titleLength) : title}
+				</span>
 			</h3>
 			{image && (
 				<div className={cn(s.imageWrap, zoomOutOnHover && s.zoomOutOnHover)}>
@@ -109,7 +113,7 @@ export default function Thumbnail({
 			)}
 			{strippedIntro && (
 				<div className='thumb-intro'>
-					<p>
+					<p data-datocms-content-link-source={intro}>
 						<span className={cn(s.meta, metaOneLine && s.oneline)}>
 							{meta && <strong>{meta}</strong>}
 							{metaRight && <strong className={s.right}>{metaRight}</strong>}

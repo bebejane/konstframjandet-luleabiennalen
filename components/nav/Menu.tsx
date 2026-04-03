@@ -3,8 +3,7 @@
 import s from './Menu.module.scss';
 import cn from 'classnames';
 import { useState, useRef, useEffect } from 'react';
-import { type Menu, type MenuItem } from '@/lib/menu';
-import { useTranslations } from 'next-intl';
+import { type Menu } from '@/lib/menu';
 import { Hamburger, Language, MenuTree, Temperature } from '@/components';
 import useStore, { useShallow } from '@/lib/store';
 import { useScrollInfo } from 'next-dato-utils/hooks';
@@ -15,15 +14,13 @@ import { usePathname } from 'next/navigation';
 export type MenuProps = { menu: Menu };
 
 export default function Menu({ menu }: MenuProps) {
-	const t = useTranslations('Menu');
 	const pathname = usePathname();
+	const navRef = useRef<HTMLDivElement | null>(null);
 	const treeRef = useRef<HTMLDivElement | null>(null);
 	const [showMenu, setShowMenu] = useStore(
 		useShallow((state) => [state.showMenu, state.setShowMenu]),
 	);
 	const [selectedItem, setSelectedItem] = useState<string | null>(null);
-	const [menuPadding, setMenuPadding] = useState(0);
-	const [footerScrollPosition, setFooterScrollPosition] = useState(0);
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo();
 	const { width, height } = useWindowSize();
 	const { isDesktop, isMobile } = useDevice();
@@ -36,7 +33,7 @@ export default function Menu({ menu }: MenuProps) {
 
 	useEffect(() => {
 		const footer = document.getElementById('footer');
-		if (!footer || !treeRef.current) return;
+		if (!footer || !treeRef.current || !navRef.current) return;
 
 		const footerHeight = footer.clientHeight - 1;
 		const menuOffset = treeRef.current?.offsetTop;
@@ -49,8 +46,9 @@ export default function Menu({ menu }: MenuProps) {
 			: footerScrollPosition
 				? menuOffset + footerScrollPosition
 				: menuOffset;
-		setMenuPadding(menuPadding);
-		setFooterScrollPosition(footerScrollPosition);
+
+		treeRef.current.style.maxHeight = `calc(100vh - ${menuPadding}px - 1rem)`;
+		navRef.current.style.minHeight = `calc(100vh - ${footerScrollPosition}px - 1px)`;
 	}, [scrolledPosition, documentHeight, viewportHeight, width, height, isMobile, selectedItem]);
 
 	useEffect(() => {
@@ -62,17 +60,9 @@ export default function Menu({ menu }: MenuProps) {
 	return (
 		<>
 			<Hamburger />
-			<nav
-				className={cn(s.menu, !showMenu && s.hide)}
-				style={{ minHeight: `calc(100vh - ${footerScrollPosition}px - 1px)` }}
-			>
+			<nav ref={navRef} className={cn(s.menu, !showMenu && s.hide)}>
 				<Temperature />
-				<MenuTree
-					menu={menu}
-					style={{ maxHeight: `calc(100vh - ${menuPadding}px - 1rem)` }}
-					ref={treeRef}
-					onSelect={setSelectedItem}
-				/>
+				<MenuTree menu={menu} ref={treeRef} onSelect={setSelectedItem} />
 				<Language menu={menu} className={s.language} />
 			</nav>
 		</>

@@ -13,17 +13,16 @@ import {
 } from '@/lib/menu';
 import { usePathname, Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { useParams } from 'next/navigation';
 
 type MenuTreeProps = {
 	menu: Menu;
-	style?: React.CSSProperties;
 	ref?: React.Ref<HTMLDivElement>;
 	onSelect: Function;
 };
 
-export default function MenuTree({ menu: _menu, style, ref, onSelect }: MenuTreeProps) {
+const MenuTree = memo(function MenuTree({ menu, ref, onSelect }: MenuTreeProps) {
 	const locale = useLocale();
 	const pathname = usePathname();
 	const params = useParams();
@@ -34,17 +33,8 @@ export default function MenuTree({ menu: _menu, style, ref, onSelect }: MenuTree
 		id: 'root',
 		section: 'root',
 		title: 'root',
-		sub: _menu,
+		sub: menu,
 	} as unknown as MenuItem;
-
-	function getItem(itemId: string): MenuItem {
-		try {
-			return itemId === 'root' ? rootItem : getMenuItem(itemId, _menu);
-		} catch (e) {
-			console.log(_menu);
-			return rootItem;
-		}
-	}
 
 	const tree = useTree<MenuItem>({
 		state: { expandedItems, selectedItems: [selectedItem] },
@@ -58,10 +48,20 @@ export default function MenuTree({ menu: _menu, style, ref, onSelect }: MenuTree
 		features: [syncDataLoaderFeature, selectionFeature, hotkeysCoreFeature],
 	});
 
+	function getItem(itemId: string): MenuItem {
+		try {
+			return itemId === 'root' ? rootItem : getMenuItem(itemId, menu);
+		} catch (e) {
+			console.log(e);
+			console.log(itemId, [...menu]);
+			return rootItem;
+		}
+	}
+
 	useEffect(() => {
 		try {
-			const menuItem = getMenuItemByPathname({ pathname, params }, locale, _menu);
-			const chain = getMenuItemAncestorChain(menuItem.id, _menu);
+			const menuItem = getMenuItemByPathname({ pathname, params }, locale, menu);
+			const chain = getMenuItemAncestorChain(menuItem.id, menu);
 
 			if (chain) {
 				const treeChain = ['root', ...chain];
@@ -74,14 +74,14 @@ export default function MenuTree({ menu: _menu, style, ref, onSelect }: MenuTree
 		} catch (e) {
 			console.log(e);
 		}
-	}, [pathname, params, locale, _menu, tree]);
+	}, [pathname, params, locale, menu, tree]);
 
 	useEffect(() => {
 		onSelect(selectedItem);
 	}, [selectedItem]);
 
 	return (
-		<div {...tree.getContainerProps()} className={s.tree} style={style} ref={ref}>
+		<div {...tree.getContainerProps()} className={s.tree} ref={ref}>
 			{tree.getItems().map((item) => {
 				const folder = item.isFolder();
 				const data = item.getItemData();
@@ -118,4 +118,6 @@ export default function MenuTree({ menu: _menu, style, ref, onSelect }: MenuTree
 			})}
 		</div>
 	);
-}
+});
+
+export default MenuTree;

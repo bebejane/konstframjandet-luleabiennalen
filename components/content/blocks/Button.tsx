@@ -1,8 +1,7 @@
-import { Link } from '@/i18n/routing';
 import s from './Button.module.scss';
 import { getRoute } from '@/datocms.config';
-
-export type ButtonBlockProps = { data: ButtonRecord; onClick: Function };
+import { Link } from '@/i18n/routing';
+export type ButtonBlockProps = { data: ButtonRecord };
 
 export default function Button({ data: { link } }: ButtonBlockProps) {
 	const t = link.__typename;

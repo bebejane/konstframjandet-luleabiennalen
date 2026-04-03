@@ -9,11 +9,10 @@ export default function LogoType({ data: { logotypes } }: Props) {
 			{logotypes.map((image) => (
 				<li key={image.id}>
 					{image.mimeType === 'image/svg+xml' ? (
-						<img src={image.url} alt={image.alt} className={s.image} />
-					) : image.responsiveImage ?
+						<img src={image.url} alt={image.alt ?? ''} className={s.image} />
+					) : image.responsiveImage ? (
 						<Image data={image.responsiveImage} className={s.image} objectFit='contain' />
-						: null
-					}
+					) : null}
 				</li>
 			))}
 		</ul>

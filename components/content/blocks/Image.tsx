@@ -2,19 +2,19 @@ import s from './Image.module.scss';
 import cn from 'classnames';
 import { Image as DatoImage } from 'react-datocms';
 import { Markdown } from 'next-dato-utils/components';
+import { stripStega } from '@datocms/content-link';
+import useStore, { useShallow } from '@/lib/store';
 
 export type ImageBlockProps = {
-	id: string;
 	data: ImageRecord;
-	onClick: Function;
-	editable?: any;
 };
 
-export default function Image({ id, data: { image, layout }, onClick }: ImageBlockProps) {
+export default function Image({ data: { image, layout } }: ImageBlockProps) {
+	const [setImageId] = useStore(useShallow((state) => [state.setImageId]));
 	return (
 		<figure
-			className={cn(s.figure, s[layout], image.height > image.width && s.portrait)}
-			onClick={() => onClick?.(image.id)}
+			className={cn(s.figure, s[stripStega(layout)], image.height > image.width && s.portrait)}
+			onClick={() => setImageId(image.id)}
 		>
 			{image.responsiveImage && <DatoImage data={image.responsiveImage} className={s.image} />}
 			{image.title && (

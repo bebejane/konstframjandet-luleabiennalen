@@ -29,6 +29,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 			locale: locale as SiteLocale,
 			title: process.env.NEXT_PUBLIC_CURRENT_YEAR!,
 		},
+		stripStega: true,
 	});
 
 	if (!year) return notFound();
