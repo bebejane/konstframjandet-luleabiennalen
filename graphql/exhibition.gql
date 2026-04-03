@@ -103,20 +103,31 @@ fragment ExhibitionFragment on ExhibitionRecord {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -127,11 +138,17 @@ fragment ExhibitionFragment on ExhibitionRecord {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}

@@ -40,6 +40,7 @@
 		overflow-x: visible !important;
 		overflow-y: visible !important;
 
+		&[aria-selected='true'],
 		&.active,
 		&:hover:not(.search) {
 			&::before {

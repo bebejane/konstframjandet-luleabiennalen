@@ -15,7 +15,7 @@ export interface StoreState {
 	setImages: (images: FileField[] | null) => void;
 	setImageId: (imageId: string | null) => void;
 	setShowSearch: (showSearch: boolean) => void;
-	setSearchQuery: (searchQuery: string) => void;
+	setSearchQuery: (searchQuery: string | null) => void;
 }
 
 const useStore = create<StoreState>((set) => ({
@@ -46,11 +46,11 @@ const useStore = create<StoreState>((set) => ({
 		set((state) => ({
 			images,
 		})),
-	setShowSearch: (showSearch: boolean) =>
+	setShowSearch: (showSearch) =>
 		set((state) => ({
 			showSearch,
 		})),
-	setSearchQuery: (searchQuery: string) =>
+	setSearchQuery: (searchQuery) =>
 		set((state) => ({
 			searchQuery,
 		})),

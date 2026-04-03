@@ -4,18 +4,32 @@ import s from './MenuTree.module.scss';
 import cn from 'classnames';
 import { hotkeysCoreFeature, selectionFeature, syncDataLoaderFeature } from '@headless-tree/core';
 import { useTree } from '@headless-tree/react';
-import { getMenuItem, Menu, MenuItem } from '@/lib/menu';
-import { getPathname, Link } from '@/i18n/routing';
+import {
+	getMenuItem,
+	getMenuItemByPathname,
+	getMenuItemAncestorChain,
+	Menu,
+	MenuItem,
+} from '@/lib/menu';
+import { usePathname, Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
 
 type MenuTreeProps = {
 	menu: Menu;
 	style?: React.CSSProperties;
 	ref?: React.Ref<HTMLDivElement>;
+	onSelect: Function;
 };
 
-export default function MenuTree({ menu: _menu, style, ref }: MenuTreeProps) {
+export default function MenuTree({ menu: _menu, style, ref, onSelect }: MenuTreeProps) {
 	const locale = useLocale();
+	const pathname = usePathname();
+	const params = useParams();
+	const [selectedItem, setSelectedItem] = useState<string>('root');
+	const [expandedItems, setExpandedItems] = useState<string[]>(['root']);
+
 	const rootItem = {
 		id: 'root',
 		section: 'root',
@@ -28,7 +42,7 @@ export default function MenuTree({ menu: _menu, style, ref }: MenuTreeProps) {
 	}
 
 	const tree = useTree<MenuItem>({
-		//initialState: { expandedItems: [menu[0].id] },
+		state: { expandedItems, selectedItems: [selectedItem] },
 		rootItemId: 'root',
 		getItemName: (item) => item.getItemData().title,
 		isItemFolder: (item) => item.getItemData().sub.length > 0,
@@ -38,6 +52,29 @@ export default function MenuTree({ menu: _menu, style, ref }: MenuTreeProps) {
 		},
 		features: [syncDataLoaderFeature, selectionFeature, hotkeysCoreFeature],
 	});
+
+	useEffect(() => {
+		try {
+			console.log('get');
+			const menuItem = getMenuItemByPathname({ pathname, params }, locale, _menu);
+			const chain = getMenuItemAncestorChain(menuItem.id, _menu);
+
+			if (chain) {
+				const treeChain = ['root', ...chain];
+				const currentState = tree.getState();
+				const currentExpanded = currentState.expandedItems || [];
+				const newExpanded = Array.from(new Set([...currentExpanded, ...treeChain, menuItem.id]));
+				setExpandedItems(newExpanded);
+			}
+			setSelectedItem(menuItem.id);
+		} catch (e) {
+			console.log(e);
+		}
+	}, [pathname, params, locale, _menu, tree]);
+
+	useEffect(() => {
+		onSelect(selectedItem);
+	}, [selectedItem]);
 
 	return (
 		<div {...tree.getContainerProps()} className={s.tree} style={style} ref={ref}>
@@ -50,11 +87,25 @@ export default function MenuTree({ menu: _menu, style, ref }: MenuTreeProps) {
 				const bold = route === '/arkiv';
 
 				return (
-					<div {...props} key={id} style={{ paddingLeft: `${item.getItemMeta().level * 20}px` }}>
+					<div
+						{...props}
+						key={id}
+						style={{ paddingLeft: `${item.getItemMeta().level * 20}px` }}
+						title={id}
+					>
 						{folder ? (
-							<button className={cn(s.folder, bold && s.bold)}>{title}</button>
+							<button
+								className={cn(s.folder, bold && s.bold)}
+								onClick={() =>
+									setExpandedItems((items) =>
+										items.includes(id) ? items.filter((i) => i !== id) : [...items, id],
+									)
+								}
+							>
+								{title}
+							</button>
 						) : typeof href !== 'undefined' ? (
-							<Link href={href as any} locale={locale}>
+							<Link href={href as any} locale={locale} onClick={() => setSelectedItem(id)}>
 								{title}
 							</Link>
 						) : null}

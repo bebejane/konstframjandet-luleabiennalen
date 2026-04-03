@@ -4,9 +4,8 @@ import s from './PageHeader.module.scss';
 import cn from 'classnames';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePage } from '@/lib/context/page';
-import { PROJECT_NAME, PROJECT_ABBR } from '@/lib/constant';
-import { translatePath } from '@/lib/utils';
-import { AppPathnames, defaultLocale, Link, usePathname } from '@/i18n/routing';
+import { PROJECT_ABBR } from '@/lib/constant';
+import { Link } from '@/i18n/routing';
 import { useStore, useShallow } from '@/lib/store';
 
 export type PageHeaderProps = {
@@ -20,19 +19,11 @@ export default function PageHeader({ title: _title, href, params, noPrefix }: Pa
 	const [showMenu] = useStore(useShallow((state) => [state.showMenu]));
 	const t = useTranslations('Menu');
 	const locale = useLocale();
-	const { year, isArchive, section } = usePage();
+	const { year, isArchive, route } = usePage();
 
 	const titlePrefix = `${PROJECT_ABBR}°${year?.title.substring(2)}`;
 	const title = _title && noPrefix ? _title : _title ? `${titlePrefix} — ${_title}` : titlePrefix;
-
-	const locationsParentPath = `${translatePath(
-		'/partners',
-		locale,
-		defaultLocale,
-		year?.title,
-	)}#locations`;
-
-	const isArchiveOverview = section === 'archive';
+	const isArchiveOverview = route === '/arkiv';
 	const showArchive = isArchive || isArchiveOverview;
 	// const isLocation = section === 'locations';
 	// const isArchiveHome = section === 'home' && isArchive;

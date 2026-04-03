@@ -23,20 +23,31 @@ query Start($locale: SiteLocale) {
 						title
 						record {
 							__typename
+
+							__typename
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -47,11 +58,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}
@@ -99,20 +116,31 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -123,11 +151,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}
@@ -154,20 +188,31 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -178,11 +223,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}
@@ -220,20 +271,31 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -244,11 +306,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}
@@ -275,20 +343,31 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -299,11 +378,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}

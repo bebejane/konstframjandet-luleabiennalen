@@ -3,15 +3,15 @@ import cn from 'classnames';
 import KFLogo from '@/public/images/kf-logo.svg';
 import Logo from '@/components/layout/Logo';
 import { PROJECT_NAME } from '@/lib/constant';
-import {getTranslations} from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { Icon } from '@/components';
 
 export type FooterProps = {
-	footer: GeneralQuery['general']
+	footer: GeneralQuery['general'];
 };
 
-export default async function Footer({footer}: FooterProps) {
+export default async function Footer({ footer }: FooterProps) {
 	const { email, facebook, instagram, about } = footer!;
 	const t = await getTranslations('Footer');
 	const currentYear = new Date().getFullYear();
@@ -30,8 +30,8 @@ export default async function Footer({footer}: FooterProps) {
 							{t('subscribe')}
 						</a>
 						<br />
-						{t('followUs')} {facebook &&<Link href={facebook}>Facebook</Link>} {t('and')}{' '}
-						{instagram && <Link href={instagram}>Instagram</Link>}
+						{t('followUs')} {facebook && <a href={facebook}>Facebook</a>} {t('and')}{' '}
+						{instagram && <a href={instagram}>Instagram</a>}
 					</div>
 					<div>
 						<a href='https://norrbotten.konstframjandet.se/'>{about}</a>

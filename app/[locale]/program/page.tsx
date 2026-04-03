@@ -65,10 +65,7 @@ export default async function Program({
 
 	const categoryFilter = ({
 		programCategory: { id, title },
-	}: AllProgramsQuery['allPrograms'][number]) =>
-		allPrograms.some(({ programCategory }) => programCategory.id === id) ||
-		!category ||
-		category === title;
+	}: AllProgramsQuery['allPrograms'][number]) => !category || category === title;
 
 	const placeFilter = ({ programPlace }: AllProgramsQuery['allPrograms'][number]) =>
 		!place || programPlace.some(({ title }) => title === place);

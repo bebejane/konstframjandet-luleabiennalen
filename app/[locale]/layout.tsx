@@ -5,7 +5,7 @@ import { apiQuery } from 'next-dato-utils/api';
 import { GeneralDocument, SiteDocument, YearDocument } from '@/graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
-import { Locale, NextIntlClientProvider } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { getPathname, locales } from '@/i18n/routing';
 import { DraftModeContentLink } from 'next-dato-utils/components';
 import { Footer, FullscreenGallery, Language, Menu, PageBackground } from '@/components';
@@ -19,7 +19,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 	if (!locales.includes(locale)) return notFound();
 	setRequestLocale(locale);
 
-	const menu = await buildMenu(locale as Locale);
+	const menu = await buildMenu(locale as SiteLocale);
 	const { general, draftUrl } = await apiQuery(GeneralDocument, {
 		variables: { locale: locale as SiteLocale },
 	});

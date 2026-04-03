@@ -1,7 +1,9 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { AllYearsDocument, MenuDocument } from '@/graphql';
-import { locales, routing } from '@/i18n/routing';
+import { getPathname, locales, routing } from '@/i18n/routing';
 import { getMessages } from 'next-intl/server';
+import { uuidV4 } from '@/lib/utils';
+import { ca } from 'date-fns/locale';
 
 export type Href = {
 	pathname: keyof typeof routing.pathnames;
@@ -189,7 +191,7 @@ export const buildYearMenu = (
 
 		const href = {
 			pathname:
-				`${route === '/arkiv' ? `/[year]` : ''}${route !== '/' ? route : ''}` as Href['pathname'],
+				`${route === '/arkiv' ? `/[year]` : ''}${route !== '/' ? route : '/'}` as Href['pathname'],
 			params: route === '/arkiv' ? { year } : {},
 		} as Href;
 
@@ -272,14 +274,48 @@ export function getMenuItem(id: string, menu: Menu): MenuItem {
 	return item;
 }
 
-function uuidV4() {
-	const uuid = new Array(36);
-	for (let i = 0; i < 36; i++) {
-		uuid[i] = Math.floor(Math.random() * 16);
+export function getMenuItemByPathname(
+	href: {
+		pathname: keyof typeof routing.pathnames;
+		params: any;
+	},
+	locale: string,
+	menu: Menu,
+): MenuItem {
+	delete href.params.locale;
+
+	const item = menu.reduce<MenuItem | null>((item, el) => {
+		if (JSON.stringify(el.href) === JSON.stringify(href)) {
+			try {
+				item = el;
+			} catch (e) {}
+		}
+		if (item) return item;
+		try {
+			if (el.sub.length) item = getMenuItemByPathname(href, locale, el.sub);
+		} catch (e) {}
+		return item;
+	}, null);
+
+	if (!item) {
+		throw new Error(`No menu item found for pathname: ${href.pathname}`);
 	}
-	uuid[14] = 4; // set bits 12-15 of time-high-and-version to 0100
-	uuid[19] = uuid[19] &= ~(1 << 2); // set bit 6 of clock-seq-and-reserved to zero
-	uuid[19] = uuid[19] |= 1 << 3; // set bit 7 of clock-seq-and-reserved to one
-	uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-	return uuid.map((x) => x.toString(16)).join('');
+	return item;
+}
+
+export function getMenuItemAncestorChain(
+	id: string,
+	menu: Menu,
+	chain: string[] = [],
+): string[] | null {
+	for (const item of menu) {
+		if (item.id === id) {
+			return [...chain, item.id];
+		}
+		if (item.sub.length) {
+			const result = getMenuItemAncestorChain(id, item.sub, [...chain, item.id]);
+			if (result) return result;
+		}
+	}
+	return null;
 }

@@ -65,64 +65,14 @@ export const formatDate = (
 	return locale === 'sv' ? d.toLowerCase() : d;
 };
 
-export const pathToParentMenuItem = (
-	path: string,
-	locale: string,
-	items: MenuItem[],
-	parent?: MenuItem,
-): MenuItem => {
-	path = path.split('?')[0];
-
-	let item = items
-		.filter((el) => el.slug)
-		.find(({ slug, sub }, idx) => {
-			return [slug, `/${locale}${slug}`].filter((el) => el).includes(path);
-		});
-
-	if (item) return parent;
-
-	for (let i = 0; i < items.length; i++) {
-		if (items[i].sub) {
-			item = pathToParentMenuItem(path, locale, items[i].sub, items[i]);
-			if (item) return items[i];
-		}
+export function uuidV4() {
+	const uuid = new Array(36);
+	for (let i = 0; i < 36; i++) {
+		uuid[i] = Math.floor(Math.random() * 16);
 	}
-};
-
-export const pathToMenuItem = (path: string, locale: string, items: MenuItem[]): MenuItem => {
-	path = path.split('?')[0];
-
-	let item = items
-		.filter((el) => el.slug)
-		.find(({ slug, sub }, idx) => {
-			return [slug, `/${locale}${slug}`].filter((el) => el).includes(path);
-		});
-
-	if (item) return item;
-
-	for (let i = 0; i < items.length; i++) {
-		if (items[i].sub) {
-			item = pathToMenuItem(path, locale, items[i].sub);
-			if (item) return item;
-		}
-	}
-};
-
-export const translatePath = (
-	href: string,
-	locale: string,
-	defaultLocale: string,
-	year?: string,
-): string => {
-	const basePath = href.split('/')[1];
-	const slug = href.split('/').slice(2).join('/');
-	const key = Object.keys(i18nPaths).find((k) =>
-		[i18nPaths[k].sv, i18nPaths[k].en].includes(basePath),
-	);
-	const translatedPath = !basePath || !key ? '/' : `/${i18nPaths[key][locale]}/${slug}`;
-
-	const fullPath = translatedPath
-		? `${locale !== defaultLocale ? `/${locale}` : ''}${year ? `/${year}` : ''}${translatedPath}`
-		: undefined;
-	return fullPath;
-};
+	uuid[14] = 4; // set bits 12-15 of time-high-and-version to 0100
+	uuid[19] = uuid[19] &= ~(1 << 2); // set bit 6 of clock-seq-and-reserved to zero
+	uuid[19] = uuid[19] |= 1 << 3; // set bit 7 of clock-seq-and-reserved to one
+	uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+	return uuid.map((x) => x.toString(16)).join('');
+}

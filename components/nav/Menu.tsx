@@ -3,8 +3,8 @@
 import s from './Menu.module.scss';
 import cn from 'classnames';
 import { useState, useRef, useEffect } from 'react';
-import type { Menu, MenuItem } from '@/lib/menu';
-import { useLocale, useTranslations } from 'next-intl';
+import { type Menu, type MenuItem } from '@/lib/menu';
+import { useTranslations } from 'next-intl';
 import { Hamburger, Language, MenuTree, Temperature } from '@/components';
 import useStore, { useShallow } from '@/lib/store';
 import { useScrollInfo } from 'next-dato-utils/hooks';
@@ -17,31 +17,16 @@ export type MenuProps = { menu: Menu };
 export default function Menu({ menu }: MenuProps) {
 	const t = useTranslations('Menu');
 	const pathname = usePathname();
-	const locale = useLocale();
 	const treeRef = useRef<HTMLDivElement | null>(null);
-	const [showMenu, setShowMenu, searchQuery, setSearchQuery] = useStore(
-		useShallow((state) => [
-			state.showMenu,
-			state.setShowMenu,
-			state.searchQuery,
-			state.setSearchQuery,
-		]),
+	const [showMenu, setShowMenu] = useStore(
+		useShallow((state) => [state.showMenu, state.setShowMenu]),
 	);
-	const [selected, setSelected] = useState<MenuItem | undefined>();
-	const [searchFocus, setSearchFocus] = useState(false);
+	const [selectedItem, setSelectedItem] = useState<string | null>(null);
 	const [menuPadding, setMenuPadding] = useState(0);
 	const [footerScrollPosition, setFooterScrollPosition] = useState(0);
 	const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo();
 	const { width, height } = useWindowSize();
 	const { isDesktop, isMobile } = useDevice();
-
-	const onSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
-		// e.preventDefault()
-		// const segment = i18nPaths['search'][locale];
-		// const path = `/${locale === defaultLocale ? segment : `${locale}/${segment}`}`
-		// router.push(path, undefined, { shallow: true, scroll: true })
-		// setSearchFocus(false)
-	};
 
 	useEffect(() => {
 		return () => {
@@ -63,10 +48,10 @@ export default function Menu({ menu }: MenuProps) {
 			? menuOffset + footerScrollPosition
 			: footerScrollPosition
 				? menuOffset + footerScrollPosition
-				: 0;
+				: menuOffset;
 		setMenuPadding(menuPadding);
 		setFooterScrollPosition(footerScrollPosition);
-	}, [selected, scrolledPosition, documentHeight, viewportHeight, width, height, isMobile]);
+	}, [scrolledPosition, documentHeight, viewportHeight, width, height, isMobile, selectedItem]);
 
 	useEffect(() => {
 		const content = document.getElementById('content');
@@ -86,6 +71,7 @@ export default function Menu({ menu }: MenuProps) {
 					menu={menu}
 					style={{ maxHeight: `calc(100vh - ${menuPadding}px - 1rem)` }}
 					ref={treeRef}
+					onSelect={setSelectedItem}
 				/>
 				<Language menu={menu} className={s.language} />
 			</nav>

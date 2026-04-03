@@ -1,4 +1,4 @@
-import { AppPathnames, Link } from '@/i18n/routing';
+import Link from 'next/link';
 import s from './FilterBar.module.scss';
 import cn from 'classnames';
 import { sortSwedish } from 'next-dato-utils/utils';

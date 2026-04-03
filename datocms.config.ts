@@ -6,107 +6,126 @@ import {
 	getItemReferenceRoutes,
 } from 'next-dato-utils/config';
 import { MetadataRoute } from 'next';
-import { SiteDocument } from '@/graphql';
+import { SiteDocument, SitemapDocument } from '@/graphql';
+import { defaultLocale, getPathname, routing } from '@/i18n/routing';
 
-export function getRoute(item: any, _apiKey?: string): string {
-	const apiKey = _apiKey ?? getItemApiKey(item);
+export function getRoute(item: any, locale?: string | null): string {
+	const apiKey = getItemApiKey(item);
 	if (!apiKey) throw new Error('No api key found');
+	const year = item.year;
+	const slug = typeof item.slug === 'string' ? item.slug : item.slug[locale ?? defaultLocale];
+	let route: string | null = null;
 
 	switch (apiKey) {
 		case 'start':
-			return '/';
+			route = '/';
+			break;
 		case 'about':
-			return '/om';
+			route = `/om/[about]`;
+			break;
 		case 'news':
-			return `/aktuellt/${item?.slug}`;
+			route = `/nyheter/[news]`;
+			break;
 		case 'project':
-			return `/projekt/${item?.slug}`;
-		case 'project_subpage':
-			return `/projekt/${item?.project?.slug}/${item?.slug}`;
-		case 'district':
-			return '/';
-		case 'contact':
-			return '/kontakt';
-		default:
-			throw new Error('No route found for apiKey: ' + apiKey);
+			route = `/projekt/[project]`;
+			break;
+		case 'program':
+			route = `/program/[program]`;
+			break;
+		case 'partner':
+			route = `/partners/[partner]`;
+			break;
+		case 'exhibition':
+			route = `/utstallningar/[exhibition]`;
+			break;
+		case 'participant':
+			route = `/medverkande/[participant]`;
+			break;
+		case 'location':
+			route = `/platser/[location]`;
+			break;
+		case 'year':
+			route = `/[year]`;
+			break;
 	}
+
+	if (!route) throw new Error('No route found for apiKey: ' + apiKey);
+
+	const params: any = {};
+	const routeParams = route.match(/\[(\w+)\]/g)?.map((el) => el.replace('[', '').replace(']', ''));
+	routeParams?.forEach((param) => {
+		params[param] = slug;
+	});
+
+	if (year?.title && year?.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR) {
+		params.year = year.title;
+		route = `/[year]${route}`;
+	}
+	return getPathname({
+		locale: locale ?? defaultLocale,
+		href: { pathname: route as any, params },
+	});
 }
 
 export default {
-	route: async (item) => getRoute(item) ?? null,
+	route: async (item, locale) => getRoute(item, locale) ?? null,
 	routes: {
-		// start: async () => [getRoute('start')],
-		// about: async () => [getRoute('about')],
-		// news: async (item) => [getRoute(item), '/aktuellt', ...(await getItemReferenceRoutes(item.id))],
-		// project: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item.id))],
-		// project_subpage: async (item) => {
-		// 	const { project } = await apiQuery(ProjectBySubpageDocument, {
-		// 		variables: { subpageId: item.id },
-		// 	});
-		// 	return project ? [getRoute(item), ...(await getItemReferenceRoutes(item.id))] : null;
-		// },
-		// district: async () => ['/', '/om', '/projekt', '/aktuellt'],
-		// contact: async () => ['/kontakt'],
-		// upload: async ({ id }) => getUploadReferenceRoutes(id),
+		start: async (item) => [getRoute(item)],
+		about: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
+		news: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
+		project: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
+		program: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
+		partner: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
+		exhibition: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
+		participant: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
+		location: async (item) => [getRoute(item), ...(await getItemReferenceRoutes(item))],
+		contact: async (item) => [getRoute(item)],
+		upload: async ({ id }) => getUploadReferenceRoutes(id),
 	},
-	sitemap: async () => {
-		// const { allAbouts, allWorkshops, allCourses } = await apiQuery(SitemapDocument, {
-		// 	all: true,
-		// 	includeDrafts: false,
-		// });
-		// const staticRoutes = ['/', '/kontakt', '/in-english', '/bli-medlem', '/logga-in'].map((p) => ({
-		// 	url: `${process.env.NEXT_PUBLIC_SITE_URL}${p}`,
-		// 	lastModified: new Date().toISOString(),
-		// 	changeFrequency: p === '/' ? 'daily' : 'weekly',
-		// 	priority: p === '/' ? 1 : 0.8,
-		// }));
-		// const aboutRoutes = allAbouts
-		// 	.map(({ slug, _updatedAt }) => ({
-		// 		url: `${process.env.NEXT_PUBLIC_SITE_URL}/om-oss/${slug}`,
-		// 		lastModified: new Date(_updatedAt).toISOString(),
-		// 		changeFrequency: 'monthly',
-		// 		priority: 0.8,
-		// 	}))
-		// 	.concat({
-		// 		url: `${process.env.NEXT_PUBLIC_SITE_URL}/om-oss`,
-		// 		lastModified: new Date(allAbouts.find(({ slug }) => slug === 'om-oss')?._updatedAt).toISOString(),
-		// 		changeFrequency: 'monthly',
-		// 		priority: 0.8,
-		// 	});
-		// const allWorkshopRoutes = allWorkshops
-		// 	.map(({ slug, _updatedAt }) => ({
-		// 		url: `${process.env.NEXT_PUBLIC_SITE_URL}/verkstader/${slug}`,
-		// 		lastModified: new Date(_updatedAt).toISOString(),
-		// 		changeFrequency: 'monthly',
-		// 		priority: 0.8,
-		// 	}))
-		// 	.concat({
-		// 		url: `${process.env.NEXT_PUBLIC_SITE_URL}/verkstader`,
-		// 		lastModified: new Date(
-		// 			allWorkshops.sort((a, b) => b._updatedAt.localeCompare(a._updatedAt))[0]?._updatedAt
-		// 		).toISOString(),
-		// 		changeFrequency: 'monthly',
-		// 		priority: 0.8,
-		// 	});
-		// const allCourseRoutes = allCourses
-		// 	.map(({ slug, _updatedAt }) => ({
-		// 		url: `${process.env.NEXT_PUBLIC_SITE_URL}/kurser/${slug}`,
-		// 		lastModified: new Date(_updatedAt).toISOString(),
-		// 		changeFrequency: 'monthly',
-		// 		priority: 0.8,
-		// 	}))
-		// 	.concat({
-		// 		url: `${process.env.NEXT_PUBLIC_SITE_URL}/kurser`,
-		// 		lastModified: new Date(
-		// 			allCourses.sort((a, b) => b._updatedAt.localeCompare(a._updatedAt))[0]?._updatedAt
-		// 		).toISOString(),
-		// 		changeFrequency: 'monthly',
-		// 		priority: 0.8,
-		// 	});
-		// return [...staticRoutes, ...aboutRoutes, ...allWorkshopRoutes, ...allCourseRoutes] as MetadataRoute.Sitemap;
+	sitemap: async (locale) => {
+		const {
+			allAbouts,
+			allExhibitions,
+			allLocations,
+			allNews,
+			allParticipants,
+			allPartners,
+			allPrograms,
+			allYears,
+		} = await apiQuery(SitemapDocument, {
+			all: true,
+			includeDrafts: false,
+		});
+
+		const staticRoutes = ['/', '/kontakt', '/nyheter'].map((pathname: any) => ({
+			url: getPathname({ locale: locale ?? defaultLocale, href: { pathname } }),
+			lastModified: new Date().toISOString(),
+			changeFrequency: pathname === '/' ? 'daily' : 'weekly',
+			priority: pathname === '/' ? 1 : 0.8,
+		}));
+		const dynamicRoutes = [
+			...allAbouts,
+			...allExhibitions,
+			...allLocations,
+			...allNews,
+			...allParticipants,
+			...allPartners,
+			...allPrograms,
+			...allYears,
+		].map((item) => ({
+			url: `${process.env.NEXT_PUBLIC_SITE_URL}/${getRoute(item, locale)}`,
+			lastModified: new Date(item._updatedAt).toISOString(),
+			changeFrequency: 'monthly',
+			priority: 0.8,
+		}));
+		return [...staticRoutes, ...dynamicRoutes] as MetadataRoute.Sitemap;
 	},
-	manifest: async () => {
-		const { _site: site } = await apiQuery(SiteDocument);
+	manifest: async (locale = defaultLocale) => {
+		const { _site: site } = await apiQuery(SiteDocument, {
+			variables: {
+				locale: locale as SiteLocale,
+			},
+		});
 
 		return {
 			name: site.globalSeo?.fallbackSeo?.title as string,
@@ -130,7 +149,7 @@ export default {
 			rules: {
 				userAgent: '*',
 				allow: '/',
-				disallow: ['/api', '/medlem'],
+				disallow: ['/api'],
 			},
 		};
 	},

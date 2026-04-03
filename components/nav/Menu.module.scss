@@ -23,11 +23,13 @@
 .language {
 	position: absolute !important;
 	top: unset;
-	left: 0;
+	right: 0;
 	bottom: 1rem;
 	font-size: 1.1rem;
 	z-index: 100000;
-	display: block !important;
+	display: flex !important;
+	flex-direction: row;
+	justify-content: flex-end;
 	height: 1em;
 	padding-left: 0.62rem;
 

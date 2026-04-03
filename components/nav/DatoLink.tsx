@@ -1,5 +1,5 @@
+import { getRoute } from '@/datocms.config';
 import { Link } from '@/i18n/routing';
-import { recordToSlug } from '@/lib/utils';
 
 export type Props = {
 	link: ExternalLinkRecord | InternalLinkRecord | any;
@@ -10,7 +10,7 @@ export type Props = {
 export default function DatoLink({ link, className, children }: Props) {
 	if (!link) return <a className={className}>{children}</a>;
 
-	const slug = link.__typename === 'ExternalLinkRecord' ? link.url : recordToSlug(link.record);
+	const slug = link.__typename === 'ExternalLinkRecord' ? link.url : getRoute(link.record);
 	const { title } = link;
 
 	return link.__typename === 'ExternalLinkRecord' ? (

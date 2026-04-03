@@ -46,20 +46,30 @@ export default function Thumbnail({
 	);
 	const locale = useLocale();
 	const { year, isArchive } = usePage();
-	const loadingImages = year?.loadingImage;
-	const [loadingImageIndex, setLoadingImageIndex] = useState(0);
+	const [loadingImages, setLoadingImages] = useState<FileField[] | null>(null);
+	const [loadingImageIndex, setLoadingImageIndex] = useState<number | null>(null);
 	const [loaded, setLoaded] = useState(false);
 	const image = locale !== defaultLocale && imageEn ? imageEn : imageSv;
 
 	useEffect(() => {
-		setLoadingImageIndex(loadingImages?.length ? rInt(0, loadingImages.length - 1) : 0);
-	}, [loadingImages]);
+		if (year?.loadingImage && year?.loadingImage?.length > 0) {
+			setLoadingImages(year.loadingImage as FileField[]);
+			setLoadingImageIndex(loadingImages?.length ? rInt(0, loadingImages.length - 1) : 0);
+		}
+	}, [year]);
 
 	if (!slug) return null;
 
+	const showLoadingImages =
+		loadingImages &&
+		loadingImages?.length > 0 &&
+		!isArchive &&
+		!loaded &&
+		loadingImageIndex !== null;
+
 	return (
 		<Link
-			href={`${isArchive ? `/${year?.title}` : ''}${slug}`}
+			href={`${isArchive ? `/${year?.title}` : ''}${slug}` as any}
 			className={cn(s.thumbnail, !slug && s.nolink)}
 		>
 			<h3 className={cn(s[`rows-${titleRows}`])}>
@@ -71,31 +81,28 @@ export default function Thumbnail({
 						{image.responsiveImage ? (
 							<Image
 								data={image.responsiveImage}
-								className={cn(s.image)}
-								pictureClassName={s.picture}
-								usePlaceholder={false}
+								className={s.image}
+								usePlaceholder={loadingImages === null}
 								style={!isArchive ? { opacity: loaded ? 1 : 0.000001 } : {}}
 								onLoad={() => setLoaded(true)}
 							/>
-						) : (
-							<img src={image.url} className={cn(s.picture)} />
-						)}
+						) : image.mimeType.startsWith('image/') ? (
+							<img src={image.url} className={s.image} />
+						) : image.mimeType.startsWith('video/') ? (
+							<video className={s.video} src={image.url} autoPlay loop muted playsInline />
+						) : null}
 						<div className={s.border}></div>
 					</>
-					{loadingImages &&
-						loadingImages?.length > 0 &&
-						!isArchive &&
-						!loaded &&
-						loadingImages[loadingImageIndex].responsiveImage && (
-							<Image
-								data={loadingImages[loadingImageIndex].responsiveImage}
-								className={s.loader}
-								usePlaceholder={false}
-								fadeInDuration={0}
-								imgClassName={cn(s.picture, s.loader, loaded && s.hide)}
-								objectFit={'contain'}
-							/>
-						)}
+					{showLoadingImages && loadingImages[loadingImageIndex].responsiveImage && (
+						<Image
+							data={loadingImages[loadingImageIndex].responsiveImage}
+							className={cn(s.loader, loaded && s.hide)}
+							usePlaceholder={false}
+							priority={true}
+							fadeInDuration={0}
+							objectFit={'contain'}
+						/>
+					)}
 				</div>
 			)}
 			{strippedIntro && (

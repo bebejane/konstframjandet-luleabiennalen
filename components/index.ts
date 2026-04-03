@@ -31,7 +31,6 @@ export { default as Article } from './layout/Article';
 export { default as Content } from './content/Content';
 export { default as Hamburger } from './layout/Hamburger';
 export { default as Logo } from './layout/Logo';
-export { default as SectionHeader } from './layout/SectionHeader';
 export { default as DatoLink } from './nav/DatoLink';
 export { default as Footer } from './nav/Footer';
 export { default as Language } from './nav/Language';

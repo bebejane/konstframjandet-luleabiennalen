@@ -1,4 +1,9 @@
-query AllParticipants($locale: SiteLocale, $yearId: ItemId, $first: IntType = 100, $skip: IntType = 0) {
+query AllParticipants(
+	$locale: SiteLocale
+	$yearId: ItemId
+	$first: IntType = 100
+	$skip: IntType = 0
+) {
 	allParticipants(
 		filter: { year: { eq: $yearId } }
 		locale: $locale
@@ -8,11 +13,7 @@ query AllParticipants($locale: SiteLocale, $yearId: ItemId, $first: IntType = 10
 	) {
 		...ParticipantFragmentLight
 	}
-	_allParticipantsMeta(locale: $locale, filter:  {
-		 year:  {
-				eq: $yearId
-		 }
-	}) {
+	_allParticipantsMeta(locale: $locale, filter: { year: { eq: $yearId } }) {
 		count
 	}
 }
@@ -93,20 +94,31 @@ fragment ParticipantFragment on ParticipantRecord {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -117,11 +129,17 @@ fragment ParticipantFragment on ParticipantRecord {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}

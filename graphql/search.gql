@@ -80,6 +80,7 @@ query SiteSearch(
 	participants: allParticipants(
 		first: $first
 		skip: $skip
+		locale: $locale
 		filter: { id: { in: $participantIds } }
 	) {
 		__typename

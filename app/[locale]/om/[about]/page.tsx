@@ -80,7 +80,7 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/
 				intro={intro}
 				content={content}
 			/>
-			{shortcuts.length > 0 && <ArchiveShortcuts items={shortcuts} />}
+			{/* {shortcuts.length > 0 && <ArchiveShortcuts items={shortcuts} />} */}
 			<DraftMode path={`/om/${slug}`} url={draftUrl} />
 		</>
 	);
