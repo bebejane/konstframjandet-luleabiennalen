@@ -38,8 +38,7 @@ const nextConfig: NextConfig = {
 	devIndicators: false,
 	logging: false,
 	experimental: {
-		// prefetchInlining: true,
-		// rootParams: true,
+		//prefetchInlining: true,
 	},
 	async headers() {
 		return [

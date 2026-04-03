@@ -25,8 +25,9 @@ export type Props = {
 	)[];
 };
 
-export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/om/[about]'>) {
+export default async function AboutPage({ params }: PageProps<'/[locale]/[year]/om/[about]'>) {
 	const { locale, about: slug, year: _year } = await params;
+	console.log(slug, locale, _year);
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
@@ -40,20 +41,9 @@ export default async function AboutItem({ params }: PageProps<'/[locale]/[year]/
 
 	if (!year) return notFound();
 
-	let about: AboutQuery['about'] | MainAboutQuery['allAbouts'][number];
-
-	if (!slug) {
-		const { allAbouts } = await apiQuery(MainAboutDocument, {
-			variables: { locale: locale as SiteLocale, yearId: year.id },
-		});
-		about = allAbouts?.[0];
-	} else {
-		about = (
-			await apiQuery(AboutDocument, {
-				variables: { slug, locale: locale as SiteLocale },
-			})
-		)?.about;
-	}
+	const { about } = await apiQuery(AboutDocument, {
+		variables: { slug, locale: locale as SiteLocale },
+	});
 
 	if (!about) return notFound();
 
@@ -97,11 +87,12 @@ export async function generateStaticParams({ params }: PageProps<'/[locale]/[yea
 		},
 	});
 
-	return allAbouts
-		.filter(({ slug, year }) =>
+	const paths = allAbouts
+		.filter(({ year }) =>
 			_year ? year?.title === _year : year?.title === process.env.NEXT_PUBLIC_CURRENT_YEAR || !year,
 		)
 		.map((about) => ({ about: about.slug }));
+	return paths;
 }
 
 export async function generateMetadata({
