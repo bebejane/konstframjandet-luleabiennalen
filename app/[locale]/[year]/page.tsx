@@ -1,7 +1,7 @@
 import { buildMetadata } from '@/app/[locale]/layout';
 import { getPathname } from '@/i18n/routing';
 import { Metadata } from 'next';
-export { default } from './om/[about]/page';
+export { default } from './om/page';
 
 export async function generateMetadata({
 	params,
