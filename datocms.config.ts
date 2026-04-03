@@ -8,11 +8,11 @@ import {
 import { MetadataRoute } from 'next';
 import { SiteDocument, SitemapDocument } from '@/graphql';
 import { defaultLocale, getPathname, routing } from '@/i18n/routing';
+import years from '@/years.json';
 
 export function getRoute(item: any, locale?: string | null): string {
 	const apiKey = getItemApiKey(item);
 	if (!apiKey) throw new Error('No api key found');
-	const year = item.year;
 	const slug = typeof item.slug === 'string' ? item.slug : item.slug[locale ?? defaultLocale];
 	let route: string | null = null;
 
@@ -57,6 +57,7 @@ export function getRoute(item: any, locale?: string | null): string {
 		params[param] = slug;
 	});
 
+	const year = years.find(({ id }) => id === item.year?.id || id === item.year);
 	if (year?.title && year?.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR) {
 		params.year = year.title;
 		route = `/[year]${route}`;
