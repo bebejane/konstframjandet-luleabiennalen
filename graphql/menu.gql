@@ -2,13 +2,14 @@ query Menu($locale: SiteLocale, $altLocale: SiteLocale, $yearId: ItemId) {
 	abouts: allAbouts(
 		filter: { OR: [{ year: { eq: $yearId } }, { year: { exists: false } }] }
 		locale: $locale
-		first: 100
+		first: 500
 	) {
 		id
 		title
 		slug
 		altSlug: slug(locale: $altLocale)
 		year {
+			id
 			title
 		}
 	}
@@ -18,9 +19,10 @@ query Menu($locale: SiteLocale, $altLocale: SiteLocale, $yearId: ItemId) {
 		first: 100
 		orderBy: title_DESC
 	) {
-		...YearFragment
+		...YearFragmentLight
 	}
 	year(filter: { id: { eq: $yearId } }, locale: $locale, orderBy: title_DESC) {
+		id
 		title
 		participantName
 	}

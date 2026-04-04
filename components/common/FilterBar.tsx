@@ -34,6 +34,7 @@ export default async function FilterBar({
 				<li className={cn(!value && s.selected)}>
 					<Link
 						replace={true}
+						prefetch={true}
 						href={{
 							pathname,
 							query: { ...params, [name]: null },
@@ -46,6 +47,7 @@ export default async function FilterBar({
 					<li key={idx} className={cn(value === title && s.selected)}>
 						<Link
 							replace={true}
+							prefetch={true}
 							href={{
 								pathname,
 								query: { ...params, [name]: title },

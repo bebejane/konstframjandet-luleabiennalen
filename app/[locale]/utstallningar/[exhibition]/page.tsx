@@ -1,7 +1,7 @@
 import { apiQuery } from 'next-dato-utils/api';
-import { ExhibitionDocument, AllExhibitionsDocument, YearDocument } from '@/graphql';
+import { ExhibitionDocument, AllExhibitionsDocument } from '@/graphql';
 import { Article, Related, BackButton, PageHeader } from '@/components';
-import { formatDate } from '@/lib/utils';
+import { formatDate, getYearId } from '@/lib/utils';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { getPathname, locales } from '@/i18n/routing';
@@ -84,14 +84,9 @@ export async function generateStaticParams({
 	params,
 }: PageProps<'/[locale]/[year]/utstallningar'>) {
 	const { locale, year } = await params;
-	const yearId = (
-		await apiQuery(YearDocument, {
-			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
-		})
-	)?.year?.id;
 	const { allExhibitions } = await apiQuery(AllExhibitionsDocument, {
 		all: true,
-		variables: { locale: locale as SiteLocale, yearId },
+		variables: { locale: locale as SiteLocale, yearId: await getYearId(year, locale) },
 	});
 	return allExhibitions.map((exhibition) => ({ exhibition: exhibition.slug }));
 }

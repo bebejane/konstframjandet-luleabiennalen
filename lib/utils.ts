@@ -1,4 +1,6 @@
+import { YearDocument } from '@/graphql';
 import { format } from 'date-fns';
+import { apiQuery } from 'next-dato-utils/api';
 import { capitalize } from 'next-dato-utils/utils';
 
 export const formatDate = (
@@ -15,14 +17,20 @@ export const formatDate = (
 	return locale === 'sv' ? d.toLowerCase() : d;
 };
 
-export function uuidV4() {
-	const uuid = new Array(36);
-	for (let i = 0; i < 36; i++) {
-		uuid[i] = Math.floor(Math.random() * 16);
-	}
-	uuid[14] = 4; // set bits 12-15 of time-high-and-version to 0100
-	uuid[19] = uuid[19] &= ~(1 << 2); // set bit 6 of clock-seq-and-reserved to zero
-	uuid[19] = uuid[19] |= 1 << 3; // set bit 7 of clock-seq-and-reserved to one
-	uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-	return uuid.map((x) => x.toString(16)).join('');
+export async function getYear(
+	title = process.env.NEXT_PUBLIC_CURRENT_YEAR!,
+	locale: SiteLocale | string,
+): Promise<NonNullable<YearQuery['year']>> {
+	const { year } = await apiQuery(YearDocument, {
+		variables: { locale: locale as SiteLocale, title },
+	});
+	if (!year) throw new Error('No year found');
+	return year;
+}
+
+export async function getYearId(
+	title = process.env.NEXT_PUBLIC_CURRENT_YEAR!,
+	locale: SiteLocale | string,
+) {
+	return (await getYear(title, locale)).id;
 }

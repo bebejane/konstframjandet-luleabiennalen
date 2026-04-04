@@ -1,1 +1,1 @@
-- draft mode EN
+- menu direct about link

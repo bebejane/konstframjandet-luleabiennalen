@@ -7,6 +7,7 @@ import { AllYearsDocument } from '@/graphql';
 	const { allYears } = await apiQuery(AllYearsDocument, {
 		all: true,
 		apiToken: process.env.DATOCMS_API_TOKEN,
+		stripStega: true,
 	});
 	if (!allYears.length) throw new Error('No years found!');
 	fs.writeFileSync('./years.json', JSON.stringify(allYears, null, 2));

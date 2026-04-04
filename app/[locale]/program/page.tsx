@@ -1,13 +1,13 @@
 import s from './page.module.scss';
-import { AllProgramsDocument, AllProgramCategoriesDocument, YearDocument } from '@/graphql';
+import { AllProgramsDocument, AllProgramCategoriesDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail, FilterBar, PageHeader } from '@/components';
-import { formatDate } from '@/lib/utils';
+import { formatDate, getYear } from '@/lib/utils';
 import { isAfter } from 'date-fns';
 import { apiQuery } from 'next-dato-utils/api';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { getPathname, locales } from '@/i18n/routing';
-import { createLoader, parseAsString, parseAsNativeArrayOf } from 'nuqs/server';
+import { createLoader, parseAsString } from 'nuqs/server';
 import { DraftMode } from 'next-dato-utils/components';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
@@ -32,19 +32,12 @@ export default async function Program({
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { year } = await apiQuery(YearDocument, {
-		variables: {
-			locale: locale as SiteLocale,
-			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR,
-		},
-	});
-
+	const year = await getYear(_year, locale);
 	if (!year) return notFound();
 
-	const { category, place } = await loadSearchParams(searchParams);
 	const t = await getTranslations();
+	const { category, place } = await loadSearchParams(searchParams);
 	const isArchive = year.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR;
-
 	const pathname = getPathname({
 		locale,
 		href: {
@@ -52,16 +45,17 @@ export default async function Program({
 			params: { year: _year },
 		},
 	});
-	const { allPrograms, draftUrl } = await apiQuery(AllProgramsDocument, {
-		all: true,
-		variables: { locale: locale as SiteLocale, yearId: year?.id },
-	});
-	const { allProgramCategories, draftUrl: draftUrlCategories } = await apiQuery(
-		AllProgramCategoriesDocument,
-		{
-			variables: { locale: locale as SiteLocale, yearId: year?.id },
-		},
-	);
+
+	const [{ allPrograms, draftUrl }, { allProgramCategories, draftUrl: draftUrlCategories }] =
+		await Promise.all([
+			apiQuery(AllProgramsDocument, {
+				all: true,
+				variables: { locale: locale as SiteLocale, yearId: year?.id },
+			}),
+			apiQuery(AllProgramCategoriesDocument, {
+				variables: { locale: locale as SiteLocale, yearId: year?.id },
+			}),
+		]);
 
 	const categoryFilter = ({
 		programCategory: { id, title },

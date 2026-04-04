@@ -1,7 +1,7 @@
 import { apiQuery } from 'next-dato-utils/api';
-import { ProgramDocument, AllProgramsDocument, YearDocument } from '@/graphql';
+import { ProgramDocument, AllProgramsDocument } from '@/graphql';
 import { Article, Related, BackButton, PageHeader } from '@/components';
-import { formatDate } from '@/lib/utils';
+import { formatDate, getYearId } from '@/lib/utils';
 import { getPathname, Link, locales } from '@/i18n/routing';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -107,14 +107,10 @@ export default async function Program({ params }: PageProps<'/[locale]/[year]/pr
 
 export async function generateStaticParams({ params }: PageProps<'/[locale]/[year]/program'>) {
 	const { locale, year } = await params;
-	const yearId = (
-		await apiQuery(YearDocument, {
-			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
-		})
-	)?.year?.id;
+
 	const { allPrograms } = await apiQuery(AllProgramsDocument, {
 		all: true,
-		variables: { locale: locale as SiteLocale, yearId },
+		variables: { locale: locale as SiteLocale, yearId: await getYearId(year, locale) },
 	});
 	return allPrograms.map((program) => ({ program: program.slug }));
 }

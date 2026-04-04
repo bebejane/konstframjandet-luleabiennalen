@@ -56,7 +56,7 @@ export default function Menu({ menu }: MenuProps) {
 		if (!content) return;
 		content.setAttribute('data-full', String(!showMenu));
 	}, [showMenu]);
-
+	//console.log(menu);
 	return (
 		<>
 			<Hamburger />

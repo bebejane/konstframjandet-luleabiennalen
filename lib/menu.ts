@@ -1,9 +1,7 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { AllYearsDocument, MenuDocument } from '@/graphql';
-import { getPathname, locales, routing } from '@/i18n/routing';
+import { locales, routing } from '@/i18n/routing';
 import { getMessages } from 'next-intl/server';
-import { uuidV4 } from '@/lib/utils';
-import { ca } from 'date-fns/locale';
 
 export type Href = {
 	pathname: keyof typeof routing.pathnames;
@@ -25,52 +23,62 @@ export type MenuItem = {
 
 const base: Partial<MenuItem>[] = [
 	{
+		id: 'home',
 		route: '/',
 		archive: false,
 		sub: [],
 	},
 	{
+		id: 'news',
 		route: '/nyheter',
 		archive: false,
 		sub: [],
 	},
 	{
+		id: 'exhibitions',
 		route: '/utstallningar',
 		archive: true,
 		sub: [],
 	},
 	{
+		id: 'program',
 		route: '/program',
 		archive: true,
 		sub: [],
 	},
 	{
+		id: 'participants',
 		route: '/medverkande',
 		archive: true,
 		sub: [],
 	},
 	{
+		id: 'partners',
 		route: '/partners',
 		archive: false,
 		sub: [],
 	},
 	{
+		id: 'about',
 		route: '/om',
 		virtual: true,
 		archive: true,
 		sub: [],
 	},
 	{
+		id: 'contact',
 		route: '/kontakt',
 		archive: false,
 		sub: [],
 	},
 	{
+		id: 'archive',
 		route: '/arkiv',
 		archive: false,
 		sub: [],
 	},
 	{
+		id: 'search',
 		route: '/sok',
 		archive: false,
 		sub: [],
@@ -112,8 +120,8 @@ export const buildMenu = async (locale: SiteLocale) => {
 	menu[archiveIndex].sub = archive.map((el) => {
 		const year = el.year?.title;
 		if (!year) throw new Error('No year found');
-		const abouts = el.abouts;
-		const haveAboutOverview = abouts.filter(({ year }) => year).length > 0;
+		const abouts = el.abouts.filter((a) => a.year?.title === year);
+		const haveAboutOverview = abouts.length > 0;
 
 		const href = {
 			pathname: `/[year]`,
@@ -121,7 +129,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 		};
 
 		return {
-			id: uuidV4(),
+			id: `archive-${year}`,
 			route: `/arkiv`,
 			title: `LB°${year.substring(2)}`,
 			href: haveAboutOverview ? href : null,
@@ -130,7 +138,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 				.filter((e) => e.archive)
 				.map((e) => ({
 					...e,
-					id: uuidV4(),
+					id: `archive-${year}-${e.id}`,
 					href: {
 						pathname: `${href.pathname}${e.route}` as Href['pathname'],
 						params: { ...href.params, year },
@@ -142,7 +150,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 					sub:
 						e.sub?.map((e2) => ({
 							...e2,
-							id: uuidV4(),
+							id: abouts.find(({ title }) => title === e2.title)?.id,
 							href: {
 								pathname: `${href.pathname}${e.route}/[about]` as Href['pathname'],
 								params: {
@@ -190,7 +198,6 @@ export const buildYearMenu = (
 		const route = item.route;
 		const mKey =
 			routing.pathnames[route as keyof typeof routing.pathnames].en.replace('/', '') || 'home';
-		item.id = uuidV4();
 		item.title = item.route === '/medverkande' ? _year.participantName : messages.Menu[mKey];
 
 		const href = {
@@ -208,8 +215,8 @@ export const buildYearMenu = (
 			case '/om':
 				sub = abouts
 					.filter(({ year }) => (isArchive ? year : true))
-					.map(({ title, slug, altSlug }) => ({
-						id: uuidV4(),
+					.map(({ id, title, slug, altSlug }) => ({
+						id: `about-${id}`,
 						route: `/om`,
 						title: title,
 						archive: isArchive,
@@ -236,28 +243,30 @@ export const buildYearMenu = (
 						pathname: `${href.pathname}/[about]` as Href['pathname'],
 						params: { ...href.params, about: mainAbout.altSlug },
 					};
+					if (abouts.length === 1) sub = [];
 				}
 				break;
 			default:
 				break;
 		}
 
+		const count =
+			item.route === '/om'
+				? aboutMeta?.count
+				: item.route === '/medverkande'
+					? participantsMeta.count
+					: item.route === '/utstallningar'
+						? exhibitionsMeta.count
+						: item.route === '/platser'
+							? locationsMeta.count
+							: item.route === '/program'
+								? programMeta.count
+								: null;
 		return {
 			...item,
 			sub,
 			year,
-			count:
-				item.route === '/om'
-					? aboutMeta?.count
-					: item.route === '/medverkande'
-						? participantsMeta?.count
-						: item.route === '/utstallningar'
-							? exhibitionsMeta?.count
-							: item.route === '/platser'
-								? locationsMeta?.count
-								: item.route === '/program'
-									? programMeta?.count
-									: null,
+			count,
 		};
 	});
 

@@ -20,8 +20,9 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 	setRequestLocale(locale);
 
 	const menu = await buildMenu(locale as SiteLocale);
-	const { general, draftUrl } = await apiQuery(GeneralDocument, {
+	const { general } = await apiQuery(GeneralDocument, {
 		variables: { locale: locale as SiteLocale },
+		tags: ['general'],
 	});
 
 	const { year } = await apiQuery(YearDocument, {

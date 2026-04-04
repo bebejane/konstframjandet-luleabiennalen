@@ -1,6 +1,6 @@
 import s from './page.module.scss';
 import cn from 'classnames';
-import { AllLocationsDocument, AllPartnersDocument, YearDocument } from '@/graphql';
+import { AllLocationsDocument, AllPartnersDocument } from '@/graphql';
 import { CardContainer, Card, Thumbnail, PageHeader } from '@/components';
 import { Image } from 'react-datocms';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -10,6 +10,7 @@ import { getPathname, locales } from '@/i18n/routing';
 import { DraftMode } from 'next-dato-utils/components';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
+import { getYearId } from '@/lib/utils';
 
 export type Props = {
 	partners: PartnerRecord[];
@@ -22,18 +23,12 @@ export default async function Partners({ params }: PageProps<'/[locale]/[year]/p
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { year } = await apiQuery(YearDocument, {
-		variables: {
-			locale: locale as SiteLocale,
-			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR,
-		},
-	});
-
+	const yearId = await getYearId(_year, locale);
 	const { allPartners, financiers, draftUrl } = await apiQuery(AllPartnersDocument, {
-		variables: { locale: locale as SiteLocale, yearId: year?.id },
+		variables: { locale: locale as SiteLocale, yearId },
 	});
 	const { allLocations, draftUrl: draftUrlLocations } = await apiQuery(AllLocationsDocument, {
-		variables: { locale: locale as SiteLocale, yearId: year?.id },
+		variables: { locale: locale as SiteLocale, yearId },
 	});
 	const t = await getTranslations();
 

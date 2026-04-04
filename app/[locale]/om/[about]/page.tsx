@@ -1,18 +1,13 @@
 import { apiQuery } from 'next-dato-utils/api';
-import {
-	AboutDocument,
-	AllAboutsDocument,
-	ArchiveHomeDocument,
-	MainAboutDocument,
-	YearDocument,
-} from '@/graphql';
-import { Article, ArchiveShortcuts, PageHeader } from '@/components';
+import { AboutDocument, AllAboutsDocument } from '@/graphql';
+import { Article, PageHeader } from '@/components';
 import { notFound } from 'next/navigation';
 import { getPathname, locales } from '@/i18n/routing';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { DraftMode } from 'next-dato-utils/components';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
+import { getYear } from '@/lib/utils';
 
 export type Props = {
 	about: AboutRecord;
@@ -31,31 +26,25 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/[year]/
 	setRequestLocale(locale);
 
 	const t = await getTranslations('Menu');
-	const { year } = await apiQuery(YearDocument, {
-		variables: {
-			locale: locale as SiteLocale,
-			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR,
-		},
-	});
-
+	const year = await getYear(_year, locale);
 	if (!year) return notFound();
-
-	const { about } = await apiQuery(AboutDocument, {
+	const { about, draftUrl } = await apiQuery(AboutDocument, {
 		variables: { slug, locale: locale as SiteLocale },
 	});
 
 	if (!about) return notFound();
 
-	const { allAbouts, allExhibitions, allParticipants, allPartners, allPrograms, draftUrl } =
-		await apiQuery(ArchiveHomeDocument, {
-			variables: { first: 1, locale: locale as SiteLocale, yearId: year.id },
-		});
 	const { id, image, imageEn, title, intro, content, _seoMetaTags } = about;
-	const shortcuts = _year
-		? [allExhibitions[0], allPrograms[0], allParticipants[0], allPartners[0], allAbouts[0]].filter(
-				(el) => el,
-			)
-		: [];
+	// const { allAbouts, allExhibitions, allParticipants, allPartners, allPrograms, draftUrl } =
+	// 	await apiQuery(ArchiveHomeDocument, {
+	// 		variables: { first: 1, locale: locale as SiteLocale, yearId: year.id },
+	// 	});
+
+	// const shortcuts = _year
+	// 	? [allExhibitions[0], allPrograms[0], allParticipants[0], allPartners[0], allAbouts[0]].filter(
+	// 			(el) => el,
+	// 		)
+	// 	: [];
 
 	return (
 		<>

@@ -6,17 +6,12 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { getPathname } from '@/i18n/routing';
+import { getYearId } from '@/lib/utils';
 
 export default async function About({ params, searchParams }: PageProps<'/[locale]/[year]/om'>) {
 	const { locale, year } = await params;
-	const yearId = (
-		await apiQuery(YearDocument, {
-			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
-		})
-	)?.year?.id;
-
 	const { allAbouts } = await apiQuery(MainAboutDocument, {
-		variables: { locale: locale as SiteLocale, yearId: yearId },
+		variables: { locale: locale as SiteLocale, yearId: await getYearId(year, locale) },
 	});
 
 	const about = allAbouts?.[0];
@@ -42,14 +37,8 @@ export async function generateMetadata({
 	params,
 }: PageProps<'/[locale]/[year]/om/[about]'>): Promise<Metadata> {
 	const { locale, about: slug, year } = await params;
-	const yearId = (
-		await apiQuery(YearDocument, {
-			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
-		})
-	)?.year?.id;
-
 	const { allAbouts } = await apiQuery(MainAboutDocument, {
-		variables: { locale: locale as SiteLocale, yearId: yearId },
+		variables: { locale: locale as SiteLocale, yearId: await getYearId(year, locale) },
 	});
 
 	const about = allAbouts?.[0];

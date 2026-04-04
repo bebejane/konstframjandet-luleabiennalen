@@ -7,6 +7,7 @@ import { getPathname, locales } from '@/i18n/routing';
 import { DraftMode } from 'next-dato-utils/components';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
+import { getYearId } from '@/lib/utils';
 
 export type Props = {
 	allParticipants: (ParticipantRecord & ThumbnailImage)[];
@@ -19,7 +20,7 @@ export default async function Participant({ params }: PageProps<'/[locale]/[year
 
 	const { allParticipants, draftUrl } = await apiQuery(AllParticipantsDocument, {
 		all: true,
-		variables: { locale: locale as SiteLocale },
+		variables: { locale: locale as SiteLocale, yearId: await getYearId(year, locale) },
 	});
 
 	if (!allParticipants) return notFound();
@@ -47,8 +48,8 @@ export default async function Participant({ params }: PageProps<'/[locale]/[year
 	);
 }
 
-export async function generateStaticParams({ params }: PageProps<'/[locale]/medverkande'>) {
-	const { locale } = await params;
+export async function generateStaticParams({ params }: PageProps<'/[locale]/[year]/medverkande'>) {
+	const { locale, year } = await params;
 	const { allParticipants } = await apiQuery(AllParticipantsDocument, {
 		all: true,
 		variables: { locale: locale as SiteLocale },

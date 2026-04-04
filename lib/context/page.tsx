@@ -75,7 +75,7 @@ export const PageProvider = ({ children, value }: YearProviderProps) => {
 				...initialState,
 				...value,
 				isArchive: value.year?.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR!,
-				isHome: locales.some((l) => pathname.startsWith(`/${l}`)) || pathname === '/',
+				isHome: locales.some((l) => pathname === `/${l}`) || pathname === '/',
 				route,
 			}}
 		>

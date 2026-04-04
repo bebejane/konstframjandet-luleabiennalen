@@ -7,6 +7,7 @@ import { getPathname, locales } from '@/i18n/routing';
 import { DraftMode } from 'next-dato-utils/components';
 import { Metadata } from 'next';
 import { buildMetadata } from '@/app/[locale]/layout';
+import { getYearId } from '@/lib/utils';
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];
@@ -40,7 +41,6 @@ export default async function Location({
 		content,
 		exhibitions,
 		programs,
-		_seoMetaTags,
 	} = location;
 	const t = await getTranslations();
 	const href = '/locations#locations';
@@ -77,14 +77,9 @@ export async function generateStaticParams({
 	params,
 }: PageProps<'/[locale]/[year]/platser/[location]'>) {
 	const { locale, year } = await params;
-	const yearId = (
-		await apiQuery(YearDocument, {
-			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
-		})
-	)?.year?.id;
 	const { allLocations } = await apiQuery(AllLocationsDocument, {
 		all: true,
-		variables: { locale: locale as SiteLocale, yearId },
+		variables: { locale: locale as SiteLocale, yearId: await getYearId(year, locale) },
 	});
 	return allLocations.map((location) => ({ location: location.slug }));
 }

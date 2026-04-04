@@ -1,6 +1,6 @@
 import s from './page.module.scss';
 import cn from 'classnames';
-import { LandOwnershipDocument, StartDataDocument, StartDocument, YearDocument } from '@/graphql';
+import { LandOwnershipDocument, StartDataDocument, StartDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { Block, LandOwnershipPopup } from '@/components';
 import { locales } from '@/i18n/routing';
@@ -9,6 +9,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { LogoHeader } from '@/components/layout/LogoHeader';
 import { DraftMode } from 'next-dato-utils/components';
+import { getYear } from '@/lib/utils';
 
 export type Props = {
 	start: StartRecord;
@@ -26,13 +27,7 @@ export default async function Home({ params }: PageProps<'/[locale]/[year]'>) {
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { year } = await apiQuery(YearDocument, {
-		variables: {
-			locale: locale as SiteLocale,
-			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR,
-		},
-	});
-
+	const year = await getYear(_year, locale);
 	if (!year) return notFound();
 
 	const { start, landOwnership, draftUrl } = await getData(locale as SiteLocale, year);

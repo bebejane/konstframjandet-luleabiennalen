@@ -7,6 +7,7 @@ import { getPathname, locales } from '@/i18n/routing';
 import { DraftMode } from 'next-dato-utils/components';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
+import { getYearId } from '@/lib/utils';
 
 export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];
@@ -54,15 +55,9 @@ export default async function Participant({
 
 export async function generateStaticParams({ params }: PageProps<'/[locale]/[year]/medverkande'>) {
 	const { locale, year } = await params;
-	const yearId = (
-		await apiQuery(YearDocument, {
-			variables: { title: year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR },
-		})
-	)?.year?.id;
-
 	const { allParticipants } = await apiQuery(AllParticipantsDocument, {
 		all: true,
-		variables: { locale: locale as SiteLocale, yearId },
+		variables: { locale: locale as SiteLocale, yearId: await getYearId(year, locale) },
 	});
 	return allParticipants.map((participant) => ({ participant: participant.slug }));
 }
