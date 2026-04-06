@@ -1,3 +1,5 @@
+@use "mediaqueries" as *;
+
 html,
 body {
   font-size: 15px;
@@ -27,7 +29,7 @@ h1 {
   font-weight: bold;
   padding-bottom: var(--space);
   line-height: 1.25;
-  font-family: $headline-font;
+  font-family: var(--headline-font);
   text-align: center;
 
   @include mq($until: tablet) {
@@ -38,13 +40,13 @@ h1 {
 
 h2 {
   font-size: 1.12rem;
-  font-family: $headline-font;
+  font-family: var(--headline-font);
   line-height: 1.25;
 }
 
 h3 {
   font-size: 0.85rem;
-  font-family: $headline-font;
+  font-family: var(--headline-font);
   text-align: center;
   padding-bottom: 1em;
 
@@ -72,7 +74,7 @@ p.intro,
   font-size: 0.75rem;
 
   strong {
-    font-family: $headline-font;
+    font-family: var(--headline-font);
     font-weight: bold !important;
     font-size: 0.65rem;
     padding-right: 0.5em;
@@ -90,7 +92,7 @@ footer,
 footer nav,
 figcaption,
 .caption label {
-  font-family: $headline-font;
+  font-family: var(--headline-font);
   font-size: 0.75rem;
   text-align: center;
 
@@ -104,7 +106,7 @@ nav,
 button,
 .mid input,
 .mid select {
-  font-family: $headline-font;
+  font-family: var(--headline-font);
   font-size: 0.75rem;
 }
 
@@ -162,7 +164,7 @@ article {
   p strong,
   p b {
     font-weight: normal !important;
-    font-family: $headline-font-medium;
+    font-family: var(--headline-font)-medium;
   }
 
   p.center {
@@ -171,7 +173,7 @@ article {
 }
 
 button {
-  font-family: $headline-font;
+  font-family: var(--headline-font);
 }
 
 em,

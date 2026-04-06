@@ -1,35 +1,29 @@
-import s from "./Language.module.scss";
-import cn from "classnames";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { capitalize } from "/lib/utils";
-import { usePage } from "/lib/context/page";
-import { Menu } from "/lib/menu";
-import { locales } from "/lib/i18n";
-import classNames from "classnames";
+'use client';
+
+import s from './Language.module.scss';
+import cn from 'classnames';
+import { Menu } from '@/lib/menu';
+import { locales, usePathname } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
+import { Link } from '@/i18n/routing';
+import { capitalize } from 'next-dato-utils/utils';
+import { useParams } from 'next/navigation';
 
 export type Props = {
 	menu: Menu;
 	className?: string;
 };
 
-export default function Language({ menu, className }: Props) {
-	const { locale } = useRouter();
-	const { slugs } = usePage();
-
-	if (locales.length <= 1) return null;
+export default function Language({ className, menu }: Props) {
+	const locale = useLocale();
+	const pathname = usePathname();
+	const params = useParams();
 
 	return (
 		<nav className={cn(s.language, className)}>
-			{slugs.map((item, idx) => (
-				<Link
-					key={idx}
-					href={item.value}
-					//href={`${item.value}?locale=${item.locale}`}
-					locale={item.locale}
-					className={cn(locale === item.locale && s.selected)}
-				>
-					{capitalize(item.locale)}
+			{locales?.map((l, idx) => (
+				<Link key={idx} href='/' locale={l} className={cn(locale === l && s.selected)}>
+					{capitalize(l)}
 				</Link>
 			))}
 		</nav>

@@ -1,27 +1,30 @@
+'use client';
+
 import s from './Thumbnail.module.scss';
 import cn from 'classnames';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Image } from 'react-datocms/image';
-import Link from '/components/nav/Link';
-import { usePage } from '/lib/context/page';
-import { randomInt, truncateWords } from '/lib/utils';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
-import { useRouter } from 'next/router';
+import { useLocale } from 'next-intl';
+import { defaultLocale, Link } from '@/i18n/routing';
+import { rInt, truncateWords } from 'next-dato-utils/utils';
+import { stripStega } from '@datocms/content-link';
 
 export type Props = {
-	image?: FileField;
-	imageEn?: FileField;
+	image?: FileField | null;
+	imageEn?: FileField | null;
 	slug?: string;
-	title?: string;
+	title?: string | null;
 	titleLength?: number;
 	titleRows?: number;
-	intro?: string;
+	intro?: string | null;
 	meta?: string;
-	metaRight?: string;
+	metaRight?: string | null;
 	metaOneLine?: boolean;
-	transformHref?: boolean;
 	zoomOutOnHover?: boolean;
+	archive?: boolean;
+	year?: NonNullable<YearQuery['year']> | YearRecord;
 };
 
 export default function Thumbnail({
@@ -35,22 +38,46 @@ export default function Thumbnail({
 	meta,
 	metaRight,
 	metaOneLine,
-	transformHref = true,
 	zoomOutOnHover = false,
+	archive,
+	year,
 }: Props) {
-	const strippedIntro = truncateWords(remark().use(strip).processSync(intro).value as string, 500);
-	const {
-		year: { loadingImage, isArchive },
-	} = usePage();
-	const { locale, defaultLocale } = useRouter();
-	const [loadingImageIndex] = useState(loadingImage.length ? randomInt(0, loadingImage.length - 1) : 0);
+	const strippedIntro = truncateWords(
+		remark()
+			.use(strip)
+			.processSync(stripStega(intro) ?? '').value as string,
+		500,
+	);
+	const locale = useLocale();
+	const [loadingImages, setLoadingImages] = useState<FileField[] | null>(null);
+	const [loadingImageIndex, setLoadingImageIndex] = useState<number | null>(null);
 	const [loaded, setLoaded] = useState(false);
-	const image = locale === 'en' && imageEn ? imageEn : imageSv;
+	const image = locale !== defaultLocale && imageEn ? imageEn : imageSv;
 
+	useEffect(() => {
+		if (year?.loadingImage && year?.loadingImage?.length > 0) {
+			setLoadingImages(year.loadingImage as FileField[]);
+			setLoadingImageIndex(loadingImages?.length ? rInt(0, loadingImages.length - 1) : 0);
+		}
+	}, [year]);
+
+	if (!slug) return null;
+
+	const showLoadingImages =
+		loadingImages && loadingImages?.length > 0 && !archive && !loaded && loadingImageIndex !== null;
+
+	const href = year ? `/${year.title}${slug}` : slug;
 	return (
-		<Link href={slug} transformHref={transformHref} className={cn(s.thumbnail, !slug && s.nolink)}>
+		<Link
+			href={href as any}
+			locale={locale}
+			className={cn(s.thumbnail, !slug && s.nolink)}
+			data-datocms-content-link-url={image?._editingUrl}
+		>
 			<h3 className={cn(s[`rows-${titleRows}`])}>
-				<span>{titleLength ? truncateWords(title, titleLength) : title}</span>
+				<span data-datocms-content-link-source={title}>
+					{titleLength ? truncateWords(title ?? '', titleLength) : title}
+				</span>
 			</h3>
 			{image && (
 				<div className={cn(s.imageWrap, zoomOutOnHover && s.zoomOutOnHover)}>
@@ -58,22 +85,25 @@ export default function Thumbnail({
 						{image.responsiveImage ? (
 							<Image
 								data={image.responsiveImage}
-								className={cn(s.image)}
-								pictureClassName={s.picture}
-								style={!isArchive ? { opacity: loaded ? 1 : 0.000001 } : {}}
+								className={s.image}
+								usePlaceholder={loadingImages === null || loadingImages.length === 0}
+								style={!archive ? { opacity: loaded ? 1 : 0.000001 } : {}}
 								onLoad={() => setLoaded(true)}
 							/>
-						) : (
-							<img src={image.url} className={cn(s.picture)} />
-						)}
+						) : image.mimeType.startsWith('image/') ? (
+							<img src={image.url} className={s.image} />
+						) : image.mimeType.startsWith('video/') ? (
+							<video className={s.video} src={image.url} autoPlay loop muted playsInline />
+						) : null}
 						<div className={s.border}></div>
 					</>
-					{loadingImage.length > 0 && !isArchive && !loaded && (
+					{showLoadingImages && loadingImages[loadingImageIndex].responsiveImage && (
 						<Image
-							data={loadingImage[loadingImageIndex].responsiveImage}
-							className={s.loader}
-							pictureClassName={cn(s.picture, s.loader, loaded && s.hide)}
-							lazyLoad={false}
+							data={loadingImages[loadingImageIndex].responsiveImage}
+							className={cn(s.loader, loaded && s.hide)}
+							usePlaceholder={false}
+							priority={true}
+							fadeInDuration={0}
 							objectFit={'contain'}
 						/>
 					)}
@@ -81,7 +111,7 @@ export default function Thumbnail({
 			)}
 			{strippedIntro && (
 				<div className='thumb-intro'>
-					<p>
+					<p data-datocms-content-link-source={intro}>
 						<span className={cn(s.meta, metaOneLine && s.oneline)}>
 							{meta && <strong>{meta}</strong>}
 							{metaRight && <strong className={s.right}>{metaRight}</strong>}

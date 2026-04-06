@@ -1,13 +1,8 @@
 query AllAbouts($first: IntType = 100, $skip: IntType = 0, $yearId: ItemId, $locale: SiteLocale) {
-	abouts: allAbouts(
-		filter: { year: { eq: $yearId } }
-		locale: $locale
-		first: $first
-		skip: $skip
-	) {
+	allAbouts(filter: { year: { eq: $yearId } }, locale: $locale, first: $first, skip: $skip) {
 		...AboutFragment
 	}
-	pagination: _allAboutsMeta {
+	_allAboutsMeta(locale: $locale, filter: { year: { eq: $yearId } }) {
 		count
 	}
 }
@@ -19,18 +14,178 @@ query About($slug: String!, $locale: SiteLocale) {
 }
 
 query MainAbout($yearId: ItemId, $locale: SiteLocale) {
-	abouts: allAbouts(
-		filter: { OR: [{ year: { eq: $yearId } }, { year: { exists: false } }] }
-		first: 1
-		locale: $locale
-	) {
+	allAbouts(filter: { year: { eq: $yearId } }, orderBy: [position_ASC], first: 1, locale: $locale) {
 		...AboutFragment
 	}
 }
 
 query AllAboutsMenu($locale: SiteLocale) {
-	abouts: allAbouts(locale: $locale, first: 100) {
+	allAbouts(locale: $locale, first: 100) {
 		title
 		slug
+	}
+}
+
+fragment AboutFragment on AboutRecord {
+	__typename
+	_modelApiKey
+	_editingUrl
+	position
+	id
+	title
+	intro
+	slug
+	_allSlugLocales {
+		locale
+		value
+	}
+	image {
+		...ImageFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	thumb: image {
+		...ImageThumbnailFragment
+	}
+	thumbEn: imageEn {
+		...ImageThumbnailFragment
+	}
+	year {
+		...YearFragment
+	}
+	content {
+		value
+		blocks {
+			__typename
+			... on ImageRecord {
+				__typename
+				id
+				layout
+				image {
+					...ImageFragment
+				}
+			}
+			... on ImageGalleryRecord {
+				__typename
+
+				id
+				images {
+					...ImageThumbnailFragment
+				}
+			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
+				}
+			}
+			... on ButtonRecord {
+				__typename
+				id
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						title
+						record {
+							__typename
+							... on AboutRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+								year {
+									title
+								}
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+						}
+					}
+				}
+			}
+			... on VideoRecord {
+				__typename
+				id
+				title
+				video {
+					height
+					width
+					title
+					provider
+					providerUid
+					thumbnailUrl
+					url
+				}
+			}
+			... on RecordInterface {
+				__typename
+				id
+			}
+		}
+	}
+	_seoMetaTags {
+		...SeoMetaTagsFragment
+	}
+}
+
+fragment AboutFragmentLight on AboutRecord {
+	__typename
+	_editingUrl
+	id
+	title
+	intro
+	slug
+	image {
+		...ImageThumbnailFragment
+	}
+	imageEn {
+		...ImageThumbnailFragment
+	}
+	year {
+		...YearFragment
 	}
 }

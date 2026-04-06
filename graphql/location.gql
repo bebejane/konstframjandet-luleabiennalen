@@ -4,7 +4,7 @@ query AllLocations(
 	$locale: SiteLocale
 	$yearId: ItemId
 ) {
-	locations: allLocations(
+	allLocations(
 		filter: { year: { eq: $yearId } }
 		first: $first
 		skip: $skip
@@ -14,7 +14,7 @@ query AllLocations(
 		...LocationFragmentLight
 	}
 
-	pagination: _allLocationsMeta(locale: $locale) {
+	_allLocationsMeta(locale: $locale, filter: { year: { eq: $yearId } }) {
 		count
 	}
 }
@@ -22,5 +22,172 @@ query AllLocations(
 query Location($slug: String!, $locale: SiteLocale) {
 	location(filter: { slug: { eq: $slug } }, locale: $locale) {
 		...LocationFragment
+	}
+}
+
+fragment LocationFragment on LocationRecord {
+	__typename
+	_editingUrl
+	id
+	title
+	city
+	address
+	image {
+		...ImageFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	intro(markdown: false)
+	webpage
+	slug
+	_allSlugLocales {
+		locale
+		value
+	}
+	exhibitions: _allReferencingExhibitions(first: 100) {
+		...ExhibitionFragmentLight
+	}
+	programs: _allReferencingPrograms(first: 100) {
+		...ProgramFragmentLight
+	}
+	content {
+		value
+		blocks {
+			__typename
+			... on ImageRecord {
+				__typename
+				id
+				layout
+				image {
+					...ImageFragment
+				}
+			}
+			... on ImageGalleryRecord {
+				__typename
+				id
+				images {
+					...ImageThumbnailFragment
+				}
+			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
+				}
+			}
+			... on ButtonRecord {
+				__typename
+				id
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						title
+						record {
+							__typename
+
+							... on AboutRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+								year {
+									title
+								}
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+						}
+					}
+				}
+			}
+			... on VideoRecord {
+				__typename
+				id
+				title
+				video {
+					height
+					width
+					title
+					provider
+					providerUid
+					thumbnailUrl
+					url
+				}
+			}
+			... on RecordInterface {
+				__typename
+				id
+			}
+		}
+	}
+	_seoMetaTags {
+		...SeoMetaTagsFragment
+	}
+}
+
+fragment LocationFragmentLight on LocationRecord {
+	__typename
+	_editingUrl
+	id
+	title
+	city
+	address
+	intro(markdown: false)
+	webpage
+	slug
+	image {
+		...ImageThumbnailFragment
+	}
+	imageEn {
+		...ImageThumbnailFragment
+	}
+
+	year {
+		id
+		title
 	}
 }

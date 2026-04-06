@@ -1,9 +1,9 @@
 query AllNews($first: IntType = 100, $skip: IntType = 0, $locale: SiteLocale) {
-	news: allNews(locale: $locale, first: $first, skip: $skip, orderBy: [_createdAt_DESC]) {
+	allNews(locale: $locale, first: $first, skip: $skip, orderBy: [_createdAt_DESC]) {
 		...NewsFragmentLight
 	}
 
-	pagination: _allNewsMeta(locale: $locale) {
+	_allNewsMeta(locale: $locale) {
 		count
 	}
 }
@@ -12,4 +12,156 @@ query News($slug: String!, $locale: SiteLocale) {
 	news(filter: { slug: { eq: $slug } }, locale: $locale) {
 		...NewsFragment
 	}
+}
+
+fragment NewsFragment on NewsRecord {
+	__typename
+	_editingUrl
+	id
+	title
+	intro(markdown: false)
+	image {
+		...ImageFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	slug
+	_allSlugLocales {
+		locale
+		value
+	}
+	_createdAt
+	content {
+		value
+		blocks {
+			__typename
+			... on ImageRecord {
+				__typename
+				id
+				layout
+				image {
+					...ImageFragment
+				}
+			}
+			... on ImageGalleryRecord {
+				__typename
+				id
+				images {
+					...ImageThumbnailFragment
+				}
+			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
+				}
+			}
+			... on ButtonRecord {
+				__typename
+				id
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						title
+						record {
+							__typename
+
+							... on AboutRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+								year {
+									title
+								}
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+						}
+					}
+				}
+			}
+			... on VideoRecord {
+				__typename
+				id
+				title
+				video {
+					height
+					width
+					title
+					provider
+					providerUid
+					thumbnailUrl
+					url
+				}
+			}
+			... on RecordInterface {
+				__typename
+				id
+			}
+		}
+	}
+	_seoMetaTags {
+		...SeoMetaTagsFragment
+	}
+}
+
+fragment NewsFragmentLight on NewsRecord {
+	__typename
+	_editingUrl
+	id
+	title
+	intro(markdown: false)
+	slug
+	image {
+		...ImageThumbnailFragment
+	}
+	imageEn {
+		...ImageThumbnailFragment
+	}
+	_createdAt
 }

@@ -1,0 +1,43 @@
+.container {
+	position: fixed;
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	align-items: center;
+	margin-top: var(--outer-margin);
+	z-index: var(--z-section-header);
+	transition: width 0.3s ease-in-out;
+	width: 100%;
+	mix-blend-mode: difference;
+
+	&.full {
+		width: calc(100% - (2 * var(--total-outer-margin) + (var(--grid-unit))));
+
+		@include mq($from: wide) {
+			width: calc(100% - (2 * var(--total-outer-margin) + (var(--grid-unit))));
+		}
+
+		@include mq($until: tablet) {
+			width: 100%;
+		}
+	}
+
+	@include mq($until: tablet) {
+		margin-top: -1em;
+	}
+
+	@include mq($from: tablet) {
+		width: calc(80% - var(--total-outer-margin));
+		padding-right: var(--total-outer-margin);
+	}
+
+	.logo {
+		margin-top: -0.5em;
+		transform: scale(1.1);
+		z-index: var(--z-section-header);
+
+		@include mq($until: tablet) {
+			display: none;
+		}
+	}
+}

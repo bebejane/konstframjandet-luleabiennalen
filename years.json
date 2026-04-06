@@ -1,0 +1,2046 @@
+[
+  {
+    "id": "EgLOJPHUSFuov5jQBsI8HQ",
+    "title": "2027",
+    "participantName": "Medverkande",
+    "introExhibitions": "Utställningarna pågår 5 mars–3 maj 2027. ",
+    "slug": "2027",
+    "theme": "Luleåbiennalen",
+    "image": {
+      "id": "RRfgYwrdREO90jzslSo3fw",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1749474145-aktuellt-logga-datum.png",
+      "title": null,
+      "alt": null,
+      "height": 3643,
+      "width": 4556,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1749474145-aktuellt-logga-datum.png?auto=format",
+        "width": 4556,
+        "height": 3643,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBg4ICAgLEwoODQ0NDRgRDh0VFg0NFx8ZGBYfFhUdHyslGikoHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg4PFhANHDsmFhwvLy8vLy87Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABQAGAMBIgACEQEDEQH/xAAYAAEAAwEAAAAAAAAAAAAAAAAAAwQFB//EAB4QAAIBBAMBAAAAAAAAAAAAAAACAQMREiEEBRMy/8QAGAEAAgMAAAAAAAAAAAAAAAAAAAEDBAb/xAAXEQEBAQEAAAAAAAAAAAAAAAABABEh/9oADAMBAAIRAxEAPwDpzPSidtBDNXiZ7dbkbcFqk/RTbpXapf0MeBV1bSWrxstPAKVLqWR9uAwn207kEVG9rX0ARQ0sNOQADZl//9k=",
+        "sizes": "(max-width: 4556px) 100vw, 4556px"
+      }
+    },
+    "imageEn": {
+      "id": "Qc0wrYGtTCaYOjyDiZr0YA",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1749474485-aktuellt-eng-logga-datum.png",
+      "title": null,
+      "alt": null,
+      "height": 3659,
+      "width": 4556,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1749474485-aktuellt-eng-logga-datum.png?auto=format",
+        "width": 4556,
+        "height": 3659,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBhMICAgLFgoVDg0PDg0PFh0OFg0PFxMZGBYfFhUdHysjGh0oHSEWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHA0NHDsmFhw1Ly8vLzU7Ly8vLy8vNS8vLy8vLzUvLy81Ly8vLy8vLzUvLy8vLy8vLy8vLy8vLy8vL//AABEIABQAGAMBIgACEQEDEQH/xAAYAAEAAwEAAAAAAAAAAAAAAAAAAwQFB//EAB0QAAICAgMBAAAAAAAAAAAAAAACAQMRIQQFEzL/xAAYAQACAwAAAAAAAAAAAAAAAAAAAQMEBv/EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAwDAQACEQMRAD8A6cz1Z3MEM3cSH265I7OE1k/RSbpHa3PoY8Cr62mtvGZtNAKVXUtW23AYRraUSRejeuMgERNpIaZYABMv/9k=",
+        "sizes": "(max-width: 4556px) 100vw, 4556px"
+      }
+    },
+    "color": {
+      "hex": "#CEFF6F",
+      "red": 206,
+      "green": 255
+    },
+    "backgroundColor": {
+      "hex": "#CEFF6F",
+      "red": 206,
+      "green": 255
+    },
+    "background": [],
+    "loadingImage": [
+      {
+        "id": "avyqJfb2Q7CX8B33KQKj9Q",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-1.png",
+        "title": null,
+        "alt": null,
+        "height": 1236,
+        "width": 1697,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-1.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAA1VBMVEUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUhN2qWAAAAR3RSTlMAAQIDBAUGCAkKCwwNDxARExQVFhcYGRscHR4fICEiIyQlJygqKywtLjAxMjM0NTY3Ozw9Pj9AQ0RFRkhJSktNUVJTVFlaXMvHjo8AAACeSURBVHjaZdDbDsMgCAZgwFNX0/d/0a6rIDh302nLjfn5EiJ4+Jej2q7g//0YUYs+Ia2R1B/1DmnLkarHXWcIecsBzTXdJ8BXXtdAApWLjBDTkhaPZDH4CUIvcuCcdzSOcuR6ISD2qSP00MwQVNVsBDORqtCq9HcCLiWgB/6chafvMhJqbHzsx23zAo1/8Nb7SUqTAHLK84hsfe96xS+pq00hrmRg3gAAAABJRU5ErkJggg=="
+        }
+      },
+      {
+        "id": "Kn2Jaqz7QAycMDdFiAAh-A",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-4.png",
+        "title": null,
+        "alt": null,
+        "height": 1236,
+        "width": 1697,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-4.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAA21BMVEUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyXRs0EQAAAASXRSTlMAAgUGBwgJCgsMDhARExQVFhgZGhscHR8gISQlJigpKissLTAxMzY4OTo9P0BBQkVGR0hMTU5RU1VYWVpcXl9gYWNlZmdqbG1u1PwIDAAAAJ1JREFUeNptkNsOxCAIRBGx2jb9/x/d1gsK65v2QiCBnEyAIRhhdBpotGilfQHyqJzfYNkCasb4BGHfu2J15rqDcBwhWGFr4JqBX7ewLyRsVCQNgOSXhYLVrvGe21CYnsag9rJoBxAuXFxR5dZqq9OOjGRRC9SYY5L5qn6+VtKaf2e5/xGhrQ5KOtPz8yjVAaf89iorQy1f7rLA5O4ft/lPDg2HNTEAAAAASUVORK5CYII="
+        }
+      },
+      {
+        "id": "T0FT6q4xSsugANfse3Nf-A",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-3.png",
+        "title": null,
+        "alt": null,
+        "height": 1236,
+        "width": 1697,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-3.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAA51BMVEUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUr61IOAAAATXRSTlMAAQIDBgcJCgsMDQ4PEBESExQVFxgZGhscHR4gIiMkJScoKisuLzAxMjM0NTc4OTo8PT4/QENERUZJSktMTk9QU1RVWlxdX2NlZmdpa/OCPJAAAACmSURBVHjaZdBLEoMwCADQQH5GHXv/a6qpJiHQbmpiZQdvGD5GXYEWarky00A7LFyfoMOARo4nhNkDIad/GJYxIGnhcgezjC+PhFLX2gPM0zJZYFVLjj24MHhrkbx3PpcG6Iw1WgOgRkSQboawCIMwMbO0Ds4lJSOqnmc6Sz8jRWuVgxzjftzXjRrIq/xeN7mDrFKTKvuv3i6X7duRDnn+Sk5SdNXVBwC4VgF0IeZGAAAAAElFTkSuQmCC"
+        }
+      },
+      {
+        "id": "BA-s9uQfTL2Chg02El16FQ",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-5.png",
+        "title": null,
+        "alt": null,
+        "height": 1236,
+        "width": 1697,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-5.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAA7VBMVEUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyXQwqWOAAAAT3RSTlMAAQIDBAUGBwkKCwwODxAREhMUFRYXGBobHR4fICIjJCUmJyksLi8xMjM0NTg5Ojs8PUBBREZHSElMTVFTVFhZWltcXmNkZmhpamtvcHFyeJ+ahwAAAKZJREFUeNptkNsSgjAMRJM2bQcU+f+/VNBCL0nFBygX923nzE52Q7BJOZXD5qgC61BJugJ3WxLIcgbUdUZlguEEsO9bh2xwJSt49F1LijWIvPegvTdNYzCBpMRTBdpaS9ogsl5E+dCqFFk6/cQ1wTHMLhXkNIdpKrsbnowuBOz9OJZDq0EBW0h+eJbTwAGyg/h5lfNyeUuE4OX6qzwzxPzvuxEgVfcFTQZQ2mtHtEMAAAAASUVORK5CYII="
+        }
+      },
+      {
+        "id": "Dml97ClPQX-VTIsEOBnqRQ",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-2.png",
+        "title": null,
+        "alt": null,
+        "height": 1236,
+        "width": 1697,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1749714461-laddningsbild-2.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAA81BMVEUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyUrJyVQzUGeAAAAUXRSTlMAAQIDBAYICQsMDQ8QEhMWFxgZGxwdHh8gISIjJSYnKissLS4vMTI0NTY3OTo7Pj9AQUJDREZISUxNTlBRUlNVVlpbXF1gYWJjZWZnaGtsbW5Pz839AAAAmklEQVR42m3Q2RKDIAwF0LAYKl3+/z8rlhBIal8qqPeJzJkhi4c9XqQr9mdwwu0CZvRaVjlBjNG3Yt5HuN1fsxeyuoyA8fmIk5BpNffgQpzjBl6Zau3BeUScVDGE3AOYX6xaY53tv2q1MrPVtkUHKGtA27YORDxMRW6yglrSkkeA1UBFKCl9jpsn4ACU0/lWSRg4X12XGlT9V19EoVH1Q79JCwAAAABJRU5ErkJggg=="
+        }
+      }
+    ],
+    "fundedBy": [],
+    "fullOpacity": true
+  },
+  {
+    "id": "106479816",
+    "title": "2024",
+    "participantName": "Medverkande",
+    "introExhibitions": "**Luleåbiennalen – På tröskeln till 1:1** pågår mellan **2 mars – 26 maj 2024**. Biennalens utställningar och konsthändelser presenteras på flera platser i Norrbotten, ibland även utanför de officiella biennaldatumen. Läs mer om aktiviteterna på respektive plats nedan.",
+    "slug": "2024",
+    "theme": "Luleåbiennalen – På tröskeln till 1:1",
+    "image": {
+      "id": "QuFMYj7hSSKsEpXSQep9VQ",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1727853508-lb24-bg-01-1.png",
+      "title": null,
+      "alt": null,
+      "height": 2160,
+      "width": 3840,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1727853508-lb24-bg-01-1.png?auto=format",
+        "width": 3840,
+        "height": 2160,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLExQPFhgQEQ0TDh0WDg4OFx8ZGBYTFhUaKzcjGh0oHRYWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBAQHDsoIigvLzsvOzs7LzsvLy8vLy8vLy8vLzs7Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAA4AGAMBIgACEQEDEQH/xAAYAAACAwAAAAAAAAAAAAAAAAAABQIDBP/EAB0QAAICAQUAAAAAAAAAAAAAAAECAAMRBAUTITL/xAAXAQADAQAAAAAAAAAAAAAAAAAEBQYD/8QAGxEAAQQDAAAAAAAAAAAAAAAAAgABAxEEBVH/2gAMAwEAAhEDEQA/ANW22txkSN5vFhKqZTobyrYxHVRVxkqImiAiVTmTBC90lFD6ov4MI8BRD0ghNXxC6g23As1Uv//Z",
+        "sizes": "(max-width: 3840px) 100vw, 3840px"
+      }
+    },
+    "imageEn": {
+      "id": "YDxavBQQRXqc5ngvudWtgA",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1727853508-lb24-bg-02-1.png",
+      "title": null,
+      "alt": null,
+      "height": 2160,
+      "width": 3840,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1727853508-lb24-bg-02-1.png?auto=format",
+        "width": 3840,
+        "height": 2160,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBhYICAgLEQ8WDREOFQ0YDh0VDA0YFxUaGBYTFhUdKysjHR0oHSEWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBAQHDsdFigvLy8vLy87Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAA4AGAMBIgACEQEDEQH/xAAXAAADAQAAAAAAAAAAAAAAAAAABAUB/8QAHRAAAgICAwEAAAAAAAAAAAAAAQIAAwQyESIxEv/EABYBAQEBAAAAAAAAAAAAAAAAAAUGA//EABwRAAEDBQAAAAAAAAAAAAAAAAABAkEDBAURFP/aAAwDAQACEQMRAD8AYoxfheZlj2LqI4o6xnHx0sHJEJbQVxS1r5GQTanvYamEtilK/FEJrxh65nUH/9k=",
+        "sizes": "(max-width: 3840px) 100vw, 3840px"
+      }
+    },
+    "color": {
+      "hex": "#A0CBBB",
+      "red": 160,
+      "green": 203
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "65893327",
+    "title": "2022",
+    "participantName": "Medverkande",
+    "introExhibitions": "**Luleåbiennalen 2022: Hantverk & Konst** pågick **15 oktober 2022 – 15 januari 2023**. Biennalens utställningar genomfördes i Karasjok (Norge), Kiruna, Luleå och Boden.",
+    "slug": "2022",
+    "theme": "Luleåbiennalen – Konst & hantverk",
+    "image": {
+      "id": "37014531",
+      "mimeType": "image/jpeg",
+      "url": "https://www.datocms-assets.com/95303/1679991049-lb22-pattern.jpg",
+      "title": "LB22",
+      "alt": null,
+      "height": 1400,
+      "width": 2400,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1679991049-lb22-pattern.jpg?auto=format",
+        "width": 2400,
+        "height": 1400,
+        "alt": null,
+        "title": "LB22",
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBg0QDxIGDQ4IDg0ICA0KDhENDQcYFxUZGBYVIhUaHysjGh0oHSEWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQUFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAA4AGAMBIgACEQEDEQH/xAAXAAADAQAAAAAAAAAAAAAAAAAAAwQG/8QAGhAAAwADAQAAAAAAAAAAAAAAAAECAwQRIv/EABUBAQEAAAAAAAAAAAAAAAAAAAIA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A0uVtIRT6h2W+omqgkj2Z4gDbryBJ/9k=",
+        "sizes": "(max-width: 2400px) 100vw, 2400px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#FF4600",
+      "red": 255,
+      "green": 70
+    },
+    "backgroundColor": {
+      "hex": "#FF4600",
+      "red": 255,
+      "green": 70
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [
+      {
+        "id": "106457060",
+        "logo": {
+          "id": "43547816",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682539017-lk_logo_1rad_svv.png",
+          "title": null,
+          "alt": null,
+          "height": 1150,
+          "width": 1667,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539017-lk_logo_1rad_svv.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1667,
+            "height": 1150,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAARCAMAAADwppwCAAAAw1BMVEUbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkiszA3AAAAQXRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGhscHR4fICEiIyQlJigpKissLS4vMDEyMzQ1Njc4OTo9Pj9BQ0lKTMsFxOMAAACxSURBVHjabdCLCsIwDAXQ5rW6WUTw//9R1G2uWRv3cOA6SwnkHkpC2a2Hrpezd0P7uKc14C+klHN2eS57WDOzbCXYlMByC0AiAibCvAcSFgETkWEPzMQ01xKWMfDTbKBRB4CoGgvIrcAI2nYluOFpCtq9Duu6ngz07Y4wDwf4A3XtcUS3veEqLd8JIQSPKVZdHw2IkW85RjWuzyFUYOrrfjScISSR0ejUNB7REJCmboIPRFVSiDjfrMQAAAAASUVORK5CYII=",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106457061",
+        "logo": {
+          "id": "W8G0rMMCRkOBUylK7VAdVA",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1723033644-sorbyn-sundsnas-hembygdsforening-logo.png",
+          "title": null,
+          "alt": null,
+          "height": 2311,
+          "width": 2560,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1723033644-sorbyn-sundsnas-hembygdsforening-logo.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 2560,
+            "height": 2311,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAMAAADto6y6AAAA0lBMVEWbd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0ybd0wpWYUAAAAARnRSTlMAAgMEBQYHCAkKCwwNDg8QERITFhcYGRobHB0eHyAhIiMkJSYoKSorLC0uLzAxMjM0NTY3ODk6Ozw9Pj9AQUJDREZHSElLsB8hlAAAAIlJREFUeNrNkDEOQjEMQ9PGFQsT9z8kAwNCjY3z0Z8QOxk65MV2UsSPwp+DXDmHyF08wMXPmIlcwAyxdpUo4WYwDbCsCFVtSxpcYxi4b0Er3N8kA8tOI20FR4Q0U+mW8GpFZRUb8LQKPD7hXV5K9vGMnHFv0GR0tmfryA48zzuGnYL8PlD1P9/+BjQBUWyCCpxYAAAAAElFTkSuQmCC",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106457062",
+        "logo": {
+          "id": "43547792",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682538884-region-norrbotten.png",
+          "title": null,
+          "alt": null,
+          "height": 191,
+          "width": 1275,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682538884-region-norrbotten.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1275,
+            "height": 191,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAECAMAAACjvQ8qAAAA0lBMVEUnK2InK2InK2InK2MnK2MnK2MnLGIoLGAoLGAoLGAoLGAoLGAoLGAoLGAoLGEoLGEoLGEoLWApLV4pLV4pLV4pLV4pLV8pLV8pLV8pLV8pLV8qLlwqLlwqLlwqLl0qLl0qLl0qLl0qLl0qL1wqL1wrL1orL1orL1srL1srL1srL1srL1ssMFktMVYtMVYtMVctMVctMVctMVctMVgtMVgtMVguMlUuMlUuMlYvM1IvM1MvM1MwNFAwNFExNU8yNk0zN0s0OEk0OUg1OUY2OkQ2OkXFwVAPAAAARnRSTlMAHSMABRIMAAoSGBooMRkeIjkAMURSACIsP0kAKSwAMEBEURwxAAYAAQ0PHAAIDwATFRkABQYADwAAAAcAAAgUGhkQAgAAkkPmXgAAAFRJREFUeNodycsRgCAMBcAXCHgRbMr+a3FGlI8hcXSvyztB7aOTxF3eGasA4EYQJzW2fvsCxuePAyN0KaG4OjyIhLIO28AdsM75TDUGBSV61rlEsxckBCwJn+vD4gAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106457063",
+        "logo": {
+          "id": "U1Oj1r5CRy2HYGLVoo948A",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1723033640-resurscentrum-for-konst-logo.png",
+          "title": null,
+          "alt": null,
+          "height": 675,
+          "width": 1257,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1723033640-resurscentrum-for-konst-logo.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1257,
+            "height": 675,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAANCAMAAACEsl7iAAAAgVBMVEUnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEnIyEB9QNRAAAAK3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqMr04egAAAH5JREFUeNqVj0EOAjEIRQt8Jpn7H1aFFoTR7tRENqV9lAcYXwK/AQtn5hjENHLNDVQV9bDBdLMCYD1UhQskNYhpEF84BXpA3j+oQNVEEpQBEaFsCfGlrCxR94iVVFUN6nRzt8CdBd6d4uVo8PCS33rY7tSAL/na40b435t/iCcvsE0pvJk3NwAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106457064",
+        "logo": {
+          "id": "43547995",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682539504-nordisk_kulturfond_black_rgb.png",
+          "title": null,
+          "alt": null,
+          "height": 283,
+          "width": 1181,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539504-nordisk_kulturfond_black_rgb.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1181,
+            "height": 283,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAGCAMAAADuda4hAAAAjVBMVEUDAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAArKc7YAAAAL3RSTlMAAgMEBQcICgwNDhAREhMUFRcYGRobHB4fICEiIyQmJygpKjAyMzQ2ODk7PUBCRkz174wAAABkSURBVHjaPYvbEYMwDAT1sg1NkP4bo4QYS0ICTwj3dXO7J5uNridAqY1jfAOeyFqqdEsqrVKAjRfsPn2ADsxp8EYQ8deoVQw98g8+Ydo1sS0ilH4e6onMNB+Y7mBaBF3vffrIF6NAMOiQMaDyAAAAAElFTkSuQmCC",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106457065",
+        "logo": {
+          "id": "43547949",
+          "mimeType": "image/gif",
+          "url": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif",
+          "title": null,
+          "alt": null,
+          "height": 213,
+          "width": 2089,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 2089,
+            "height": 213,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAADCAMAAAC+uD+SAAAAWlBMVEUtKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8mvhSVAAAAHnRSTlMABAUHCA4PERMUFRYYGRoiJCowNDtBQ0RHSE5VW15afapVAAAANElEQVR42nWKsQ0AIAzDktI3+P9DBqAJiB0PHiwnPmS3LRlBoiTtqQLJHLd7CWxhre23Xx/spBrznuMELQAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106457066",
+        "logo": {
+          "id": "43548630",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682585209-konstnarsnamndens-logotyp-for-webb-med-svart-text-1.png",
+          "title": null,
+          "alt": null,
+          "height": 908,
+          "width": 2382,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682585209-konstnarsnamndens-logotyp-for-webb-med-svart-text-1.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 2382,
+            "height": 908,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAKCAMAAACZt25aAAAAqFBMVEUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUXKzUNwovLAAAAOHRSTlMAAQIDBAUHCAkKCwwNDg8QERIUFRcYGRobHB0eICEiIyUmKistLi8wMjM0NTk+QEFCR0hKS01TVnqLgaQAAACJSURBVHjadY9LDsMgDAXBNhB6g97/fu0iKcGA7ZJG6qIfS2/jkcZ+5P4MzeASjOsnWEK6EOko635uvJ3gCgkJbOS8le4gBlDeJ6MMGMAbWMyuGxGBeJ1eYnIeQYf0ys2rcyAih+pOKQaUVtdtCrhE1KYHuPmUJ+DHeN00fr9rleMEv3pYQ/kq+ASpSz/UdVU2AAAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106457067",
+        "logo": {
+          "id": "43548631",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1706099880-konstframjandet-logo-2024.png",
+          "title": null,
+          "alt": null,
+          "height": 720,
+          "width": 1280,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1706099880-konstframjandet-logo-2024.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1280,
+            "height": 720,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAMAAAACJixMAAAAtFBMVEUDAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAACEVhB/AAAAPHRSTlMAAwQFBgcICQsMDQ4PEhMUFRYXGhscHh8gISMkJSYnKSorLC0uMDEyMzQ1Njc4OTo7PT4/Q0RFRkdJS06VwBTaAAAAlElEQVR42mWQSw7DIAxEMdioQcn9T9ok4F9RUymQzsJePHlmZAyXiKJUD7fwWuWFYPlsD5C2UnLU83jvOoK4rlshsCUn3OsIuiBC96IYxwuplAmSKYvylHHQHpfkrTaRCbiqcJ/mPreCbwokRCQeQcYEAL0EYhYfrUylWRARt8mquTIlt9bj55cwHx0o69+vwt3zpw+sEEstq3GFfAAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      }
+    ],
+    "fullOpacity": null
+  },
+  {
+    "id": "66074832",
+    "title": "2020",
+    "participantName": "Konstnärer",
+    "introExhibitions": "**Luleåbiennalen 2020: Tiden på jorden** pågick **21.11.2020–14.2.2021**. Biennalens utställningar och konsthändelser genomfördes i Luleå, Boden, Malmberget, Storforsen, Arjeplog och Korpilombolo.",
+    "slug": "2020",
+    "theme": "Luleåbiennalen – Tiden på jorden",
+    "image": {
+      "id": "43529725",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1681463713-2020.png",
+      "title": null,
+      "alt": null,
+      "height": 1000,
+      "width": 1600,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1681463713-2020.png?auto=format",
+        "width": 1600,
+        "height": 1000,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBw0HBg0IDggNCQ0NDQ0NCg0NDhENFgkNFxMZGBYVFhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHAoQHDsdHR07NS8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAA8AGAMBIgACEQEDEQH/xAAYAAACAwAAAAAAAAAAAAAAAAABAwACB//EABkQAAMBAQEAAAAAAAAAAAAAAAABIQIREv/EABcBAAMBAAAAAAAAAAAAAAAAAAMEBgH/xAAYEQADAQEAAAAAAAAAAAAAAAAAAQIRA//aAAwDAQACEQMRAD8A1TTgvtG6UF+aRHNzg0y+WQKXEEBTnTT/2Q==",
+        "sizes": "(max-width: 1600px) 100vw, 1600px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#FFFF7D",
+      "red": 255,
+      "green": 255
+    },
+    "backgroundColor": {
+      "hex": "#FFFF7D",
+      "red": 255,
+      "green": 255
+    },
+    "background": [
+      {
+        "id": "30432203",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1678264405-back.png",
+        "title": null,
+        "alt": null,
+        "height": 2076,
+        "width": 2880,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1678264405-back.png?auto=format",
+          "width": 2880,
+          "height": 2076,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoRDRQLDRYPDhgQDRYZDR0SFg0NGBgZGCIfFhUaHysjGh0oHRYWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHA4QHS8oIhw1NDYvLy81Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy81Ly8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAaAAACAgMAAAAAAAAAAAAAAAAABAEHAgMG/8QAGxABAQACAwEAAAAAAAAAAAAAAAEDBAIhMxP/xAAWAQEBAQAAAAAAAAAAAAAAAAACBAD/xAAaEQEAAQUAAAAAAAAAAAAAAAAAAgEDERIx/9oADAMBAAIRAxEAPwCwdaXjsR0GPvHC3DUx/SHZJIMaYUXp7MbENgJOVx+hlIahT6AAwv/Z",
+          "sizes": "(max-width: 2880px) 100vw, 2880px"
+        }
+      }
+    ],
+    "loadingImage": [
+      {
+        "id": "43545122",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1682519373-lb20-spiraler-1.png",
+        "title": null,
+        "alt": null,
+        "height": 1000,
+        "width": 1000,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1682519373-lb20-spiraler-1.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAAhFBMVEX/+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+/8zwgx9AAAALHRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqK85cM9cAAADDSURBVHjaPZALEsQgCEP52fsfd4sim9jdMraOPkOAEISNUOkWUcO+5sJdYF3XCHvBrsycHZcDXG76guVmXuEeEQ6FAJhqaztIR29E8/lZLXtX1aqYroY8dEUqKGpm3vCojaO8QLryvpNVNZSQyB+sNfMpl9HwFH6yYdoHKGow2gCIgkBGgHIH6v31gTak3AtgWLARowUF2jgRKLpF8K65C/MyVTURfk8bwvaKIMXXGn4M8YQzvOdTbtUnjhozNE6dAvkC78x4QnTEeFoAAAAASUVORK5CYII="
+        }
+      },
+      {
+        "id": "43548140",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1682540702-lb20-spiraler-8.png",
+        "title": null,
+        "alt": null,
+        "height": 1000,
+        "width": 1000,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1682540702-lb20-spiraler-8.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQAQMAAAA26i3WAAAAA1BMVEX//vwn1nszAAAAAXRSTlMAQObYZgAAAA9JREFUeNpjYWBgYKEAAwAIwABB6VkCaQAAAABJRU5ErkJggg=="
+        }
+      },
+      {
+        "id": "43545141",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1682519534-lb20-spiraler-9.png",
+        "title": null,
+        "alt": null,
+        "height": 1000,
+        "width": 1000,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1682519534-lb20-spiraler-9.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAAulBMVEX/+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+///+/8kRj23AAAAPnRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB4fICEiIyQlJicoKSorLC0uLzAxMjM0NTY3ODk6Ozw9PnDK5ZwAAACtSURBVHjadZBJFgIhDEQzQXv/u6otZDAgPWys91ikfkFIBKZ4q7UwY2h7P204Mv2y1a2UQugKrq8TSK2PvCEMTu6NbQEUKVISEFgI8QWQWYYowJmIjqcCkTBrQnTMGJ4gYpTpBQQszeZHFVN/wQ/JcsZx9NS6IiuZjgW6mSU6wQiaAeXUXdWulWiKQDBcW0qvHr1lumOYtbbvcAPp5ULctH/09l2AZp0pEtgx4BciXnruTsqhzwAAAABJRU5ErkJggg=="
+        }
+      }
+    ],
+    "fundedBy": [
+      {
+        "id": "106455343",
+        "logo": {
+          "id": "43547816",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682539017-lk_logo_1rad_svv.png",
+          "title": null,
+          "alt": null,
+          "height": 1150,
+          "width": 1667,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539017-lk_logo_1rad_svv.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1667,
+            "height": 1150,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAARCAMAAADwppwCAAAAw1BMVEUbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkiszA3AAAAQXRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGhscHR4fICEiIyQlJigpKissLS4vMDEyMzQ1Njc4OTo9Pj9BQ0lKTMsFxOMAAACxSURBVHjabdCLCsIwDAXQ5rW6WUTw//9R1G2uWRv3cOA6SwnkHkpC2a2Hrpezd0P7uKc14C+klHN2eS57WDOzbCXYlMByC0AiAibCvAcSFgETkWEPzMQ01xKWMfDTbKBRB4CoGgvIrcAI2nYluOFpCtq9Duu6ngz07Y4wDwf4A3XtcUS3veEqLd8JIQSPKVZdHw2IkW85RjWuzyFUYOrrfjScISSR0ejUNB7REJCmboIPRFVSiDjfrMQAAAAASUVORK5CYII=",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106455344",
+        "logo": {
+          "id": "43547949",
+          "mimeType": "image/gif",
+          "url": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif",
+          "title": null,
+          "alt": null,
+          "height": 213,
+          "width": 2089,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 2089,
+            "height": 213,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAADCAMAAAC+uD+SAAAAWlBMVEUtKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8mvhSVAAAAHnRSTlMABAUHCA4PERMUFRYYGRoiJCowNDtBQ0RHSE5VW15afapVAAAANElEQVR42nWKsQ0AIAzDktI3+P9DBqAJiB0PHiwnPmS3LRlBoiTtqQLJHLd7CWxhre23Xx/spBrznuMELQAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106455345",
+        "logo": {
+          "id": "43547792",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682538884-region-norrbotten.png",
+          "title": null,
+          "alt": null,
+          "height": 191,
+          "width": 1275,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682538884-region-norrbotten.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1275,
+            "height": 191,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAECAMAAACjvQ8qAAAA0lBMVEUnK2InK2InK2InK2MnK2MnK2MnLGIoLGAoLGAoLGAoLGAoLGAoLGAoLGAoLGEoLGEoLGEoLWApLV4pLV4pLV4pLV4pLV8pLV8pLV8pLV8pLV8qLlwqLlwqLlwqLl0qLl0qLl0qLl0qLl0qL1wqL1wrL1orL1orL1srL1srL1srL1srL1ssMFktMVYtMVYtMVctMVctMVctMVctMVgtMVgtMVguMlUuMlUuMlYvM1IvM1MvM1MwNFAwNFExNU8yNk0zN0s0OEk0OUg1OUY2OkQ2OkXFwVAPAAAARnRSTlMAHSMABRIMAAoSGBooMRkeIjkAMURSACIsP0kAKSwAMEBEURwxAAYAAQ0PHAAIDwATFRkABQYADwAAAAcAAAgUGhkQAgAAkkPmXgAAAFRJREFUeNodycsRgCAMBcAXCHgRbMr+a3FGlI8hcXSvyztB7aOTxF3eGasA4EYQJzW2fvsCxuePAyN0KaG4OjyIhLIO28AdsM75TDUGBSV61rlEsxckBCwJn+vD4gAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106455346",
+        "logo": {
+          "id": "43547995",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682539504-nordisk_kulturfond_black_rgb.png",
+          "title": null,
+          "alt": null,
+          "height": 283,
+          "width": 1181,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539504-nordisk_kulturfond_black_rgb.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1181,
+            "height": 283,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAGCAMAAADuda4hAAAAjVBMVEUDAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAADAAArKc7YAAAAL3RSTlMAAgMEBQcICgwNDhAREhMUFRcYGRobHB4fICEiIyQmJygpKjAyMzQ2ODk7PUBCRkz174wAAABkSURBVHjaPYvbEYMwDAT1sg1NkP4bo4QYS0ICTwj3dXO7J5uNridAqY1jfAOeyFqqdEsqrVKAjRfsPn2ADsxp8EYQ8deoVQw98g8+Ydo1sS0ilH4e6onMNB+Y7mBaBF3vffrIF6NAMOiQMaDyAAAAAElFTkSuQmCC",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106455347",
+        "logo": {
+          "id": "43548006",
+          "mimeType": "image/jpeg",
+          "url": "https://www.datocms-assets.com/95303/1682539588-sparbanken_nord_pos.jpg",
+          "title": null,
+          "alt": null,
+          "height": 236,
+          "width": 866,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539588-sparbanken_nord_pos.jpg?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 866,
+            "height": 236,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFh0YLR8aHh4fIiEmKz4lJykoKSUtJjUlKC09MjI+HSU4PUU1PC0xMi8BCgsLDg0OHBAQHDsoFig7OzsvOzs7Oy87LzUvOzs7Ly8vOy87NS8vLy8vOy8vLy8vLy87Ly8vLzUvOy8vLy8vL//AABEIAAcAGAMBIgACEQEDEQH/xAAXAAEAAwAAAAAAAAAAAAAAAAAAAQUH/8QAIBAAAQMDBQEAAAAAAAAAAAAAAQACAwQREhMVMVFxBf/EABYBAAMAAAAAAAAAAAAAAAAAAAADBP/EABcRAAMBAAAAAAAAAAAAAAAAAAACIQH/2gAMAwEAAhEDEQA/ANdMdVrXErcerKWMqRKS6RuPiIgCqqoPs7hlDUMDDwERFOyUdjQ//9k=",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106455348",
+        "logo": {
+          "id": "43548033",
+          "mimeType": "image/jpeg",
+          "url": "https://www.datocms-assets.com/95303/1682539799-sahalogo.jpg",
+          "title": null,
+          "alt": null,
+          "height": 1470,
+          "width": 1470,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539799-sahalogo.jpg?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1470,
+            "height": 1470,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBhEQEQgLDwoPERsPDgsUFxUOGA4YFxMZGBcTGRwmHysvGh4oHSEWJUElKC0vMjIyGS44PTcwPCsxMi8BCgsLBQcFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABgAGAMBIgACEQEDEQH/xAAZAAEAAgMAAAAAAAAAAAAAAAAABAYCBQf/xAAgEAABBAEEAwAAAAAAAAAAAAAAAwQFMQECERUhEkFh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAL/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDpiSDKNjLIfONNDb4ZzGUuP9ld16W2WNdkqWbSmylWNgiQHgmyrOwA2CK7GSjaI+ItlhCugAJKzuPjI+sbAAD/2Q==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": "https://www.saha.org.tr/en/projects/lulea-biennial-2020-sweden"
+      }
+    ],
+    "fullOpacity": null
+  },
+  {
+    "id": "69710843",
+    "title": "2018",
+    "participantName": "Konstnärer",
+    "introExhibitions": "**Luleåbiennalen 2018: Tidjord** pågick **17.11.2018–17.2.2019**. Biennalens utställningar och konsthändelser genomfördes i Luleå, Boden, Jokkmokk, Kiruna och Korpilombolo.",
+    "slug": "2018",
+    "theme": "Luleåbiennalen – Tidjord",
+    "image": {
+      "id": "43529705",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1681463540-18.png",
+      "title": null,
+      "alt": null,
+      "height": 1000,
+      "width": 1600,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1681463540-18.png?auto=format",
+        "width": 1600,
+        "height": 1000,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoIEhANDQ0NDg8NDg4NDhENDQ0NFxUZGBYTIhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBAQEC8oFhw7Ly8vOy8vLy8vLy8vOzsvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAA8AGAMBIgACEQEDEQH/xAAXAAEAAwAAAAAAAAAAAAAAAAAFAAEH/8QAHBAAAgICAwAAAAAAAAAAAAAAAAMBAiMzERIh/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwQC/8QAGREAAgMBAAAAAAAAAAAAAAAAADEBAxEC/9oADAMBAAIRAxEAPwDLa0izYgRWvrQOXugT5xkk6BWg1u+SEt66SjcaD0z/2Q==",
+        "sizes": "(max-width: 1600px) 100vw, 1600px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#307830",
+      "red": 48,
+      "green": 120
+    },
+    "backgroundColor": {
+      "hex": "#0C2705",
+      "red": 12,
+      "green": 39
+    },
+    "background": [
+      {
+        "id": "30432203",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1678264405-back.png",
+        "title": null,
+        "alt": null,
+        "height": 2076,
+        "width": 2880,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1678264405-back.png?auto=format",
+          "width": 2880,
+          "height": 2076,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoRDRQLDRYPDhgQDRYZDR0SFg0NGBgZGCIfFhUaHysjGh0oHRYWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHA4QHS8oIhw1NDYvLy81Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy81Ly8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAaAAACAgMAAAAAAAAAAAAAAAAABAEHAgMG/8QAGxABAQACAwEAAAAAAAAAAAAAAAEDBAIhMxP/xAAWAQEBAQAAAAAAAAAAAAAAAAACBAD/xAAaEQEAAQUAAAAAAAAAAAAAAAAAAgEDERIx/9oADAMBAAIRAxEAPwCwdaXjsR0GPvHC3DUx/SHZJIMaYUXp7MbENgJOVx+hlIahT6AAwv/Z",
+          "sizes": "(max-width: 2880px) 100vw, 2880px"
+        }
+      }
+    ],
+    "loadingImage": [
+      {
+        "id": "30432200",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1678264170-loading_1.png",
+        "title": null,
+        "alt": null,
+        "height": 725,
+        "width": 720,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1678264170-loading_1.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAABFFBMVEWV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fiV0fgZmvzuAAAAXHRSTlMAAQIDBAUGBwgJCgsMDg8QERITFBUWFxgZGhsdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Nzk6PD0+QEFCREVISUpLTE1OT1BRVFVWV1laXF1eX2BhYmRmaGlub51Dr7YAAADMSURBVHjaZZDresMgCIZRUVPrev+3uaaJURBmtixPD98fHng5I/zJX6IHrqUdPuBh0nUawFtoLwBzzsmBFGce7Qlgvt1SROiIBpZ6Ap/y1zVNaBitiEI9gJ/SCA8A3QoTdyXdgfMhRD+FMdhgqIjOSVdAY82/wMBIVVXZK5QdM3fi0ZS5UW3U5HeGbqNDQKdOed2WdV3OrYqx1khDpW3+vj+e7lhVe45WaZnv68vlRTpFJ7XM9e1XVTm43grBG4AmZKV1+ADAYvb1T/0A5lJvF/uTW2EAAAAASUVORK5CYII="
+        }
+      },
+      {
+        "id": "30432199",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1678264245-loading_2.png",
+        "title": null,
+        "alt": null,
+        "height": 694,
+        "width": 638,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1678264245-loading_2.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAA9lBMVEX/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29n/29nz8BftAAAAUnRSTlMAAQIDBAUGBwgJCgwNDg8QERITFRYXGBobHB0eHyIjJCUmJygpKissLS8wMTIzNDU4OTo7PD0+P0BBREVGR0hJSktNTlBSU1RVV1hZWltcXV5flyrKCQAAAMZJREFUeNpdkItuBCEIRUHwtf3/X62j8iiZqdltTTTiyb1cYTgrtULJdU25Sz7vuddC6JZp7E9Qe6+N0YQSjvUG9fXqvWS0xQnc9wGltf7VSyiY3MxcHkC51tZaDpBcRIq6/gLOzBwKscyUYvkNEDHusSEh4G3+ALfbWBFEVdRU9QFhu2UzKOhee6617GkeISliKoHs8T2vy07cfUW7wDGRa4yh7w/OkEkJxZpjyOdIpoc9xTGvf0NcJkygMhX+goiWE9g+5Q96sn31CDEo8gAAAABJRU5ErkJggg=="
+        }
+      },
+      {
+        "id": "30432198",
+        "mimeType": "image/png",
+        "url": "https://www.datocms-assets.com/95303/1678264263-loading_3.png",
+        "title": null,
+        "alt": null,
+        "height": 591,
+        "width": 692,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1678264263-loading_3.png?ar64=Mzoy&auto=format&fit=crop&q=80&w=800",
+          "width": 800,
+          "height": 533,
+          "alt": null,
+          "title": null,
+          "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAMAAAA7+k+nAAAA/FBMVEXFwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb/Fwb8oJ528AAAAVHRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRocHR4fICEiIyQlJigqKywtLi8xMjM0Njg5Ozw9PkBBQkZHSElLTE1OT1BRU1RXWFlaW1xdYWJjZmcYIjXiAAAAtUlEQVR42o3Q6w7CIAwF4FLKwLH3f1CzyaWFClEzozHxBH6Qr0lzIPgR+gfQau/fYP2CIDV/wmUNzgLXtLd3sHGL3qG24t21nuC2bbsEsiphcXjNL3AxxjWsjpSrNQqQH4B+ZJmzgKZ5Ye71AWYG5kW04xBJn9BEuBKRQVCRNjLqTNBsDCI0T9BLzWXkuVxvrQvLWNy53o79OHsUHqN+QEvpyO/N+16Cd0a5JPn4K+ZEqMLP5x0aI2IDDYw54AAAAABJRU5ErkJggg=="
+        }
+      }
+    ],
+    "fundedBy": [
+      {
+        "id": "106455249",
+        "logo": {
+          "id": "43547792",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682538884-region-norrbotten.png",
+          "title": null,
+          "alt": null,
+          "height": 191,
+          "width": 1275,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682538884-region-norrbotten.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1275,
+            "height": 191,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAECAMAAACjvQ8qAAAA0lBMVEUnK2InK2InK2InK2MnK2MnK2MnLGIoLGAoLGAoLGAoLGAoLGAoLGAoLGAoLGEoLGEoLGEoLWApLV4pLV4pLV4pLV4pLV8pLV8pLV8pLV8pLV8qLlwqLlwqLlwqLl0qLl0qLl0qLl0qLl0qL1wqL1wrL1orL1orL1srL1srL1srL1srL1ssMFktMVYtMVYtMVctMVctMVctMVctMVgtMVgtMVguMlUuMlUuMlYvM1IvM1MvM1MwNFAwNFExNU8yNk0zN0s0OEk0OUg1OUY2OkQ2OkXFwVAPAAAARnRSTlMAHSMABRIMAAoSGBooMRkeIjkAMURSACIsP0kAKSwAMEBEURwxAAYAAQ0PHAAIDwATFRkABQYADwAAAAcAAAgUGhkQAgAAkkPmXgAAAFRJREFUeNodycsRgCAMBcAXCHgRbMr+a3FGlI8hcXSvyztB7aOTxF3eGasA4EYQJzW2fvsCxuePAyN0KaG4OjyIhLIO28AdsM75TDUGBSV61rlEsxckBCwJn+vD4gAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106455250",
+        "logo": {
+          "id": "43547816",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682539017-lk_logo_1rad_svv.png",
+          "title": null,
+          "alt": null,
+          "height": 1150,
+          "width": 1667,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539017-lk_logo_1rad_svv.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1667,
+            "height": 1150,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAARCAMAAADwppwCAAAAw1BMVEUbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkiszA3AAAAQXRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGhscHR4fICEiIyQlJigpKissLS4vMDEyMzQ1Njc4OTo9Pj9BQ0lKTMsFxOMAAACxSURBVHjabdCLCsIwDAXQ5rW6WUTw//9R1G2uWRv3cOA6SwnkHkpC2a2Hrpezd0P7uKc14C+klHN2eS57WDOzbCXYlMByC0AiAibCvAcSFgETkWEPzMQ01xKWMfDTbKBRB4CoGgvIrcAI2nYluOFpCtq9Duu6ngz07Y4wDwf4A3XtcUS3veEqLd8JIQSPKVZdHw2IkW85RjWuzyFUYOrrfjScISSR0ejUNB7REJCmboIPRFVSiDjfrMQAAAAASUVORK5CYII=",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106455251",
+        "logo": {
+          "id": "43547928",
+          "mimeType": "image/jpeg",
+          "url": "https://www.datocms-assets.com/95303/1682539245-sv-postkod.jpg",
+          "title": null,
+          "alt": null,
+          "height": 633,
+          "width": 1276,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539245-sv-postkod.jpg?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1276,
+            "height": 633,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoTCggLDhIWDhgOGA0JDRYNFg0YFxUZGBYfFhUaLisjGh0oHRYWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBANHC8dFhwvLy8vLy87Oy8vLy8vLy8vLy8vLy87Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAAwAGAMBIgACEQEDEQH/xAAYAAACAwAAAAAAAAAAAAAAAAAAAgEDBv/EAB0QAAEEAgMAAAAAAAAAAAAAAAACAwQxARMREhT/xAAXAQADAQAAAAAAAAAAAAAAAAACAwUB/8QAGhEAAQUBAAAAAAAAAAAAAAAAAgABAxExEv/aAAwDAQACEQMRAD8A2keG3hux/KgqjrVrsftnmyHHOFYgYWUSoicNAExatFgLKYLxZyy//9k=",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "106455252",
+        "logo": {
+          "id": "43547949",
+          "mimeType": "image/gif",
+          "url": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif",
+          "title": null,
+          "alt": null,
+          "height": 213,
+          "width": 2089,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 2089,
+            "height": 213,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAADCAMAAAC+uD+SAAAAWlBMVEUtKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8mvhSVAAAAHnRSTlMABAUHCA4PERMUFRYYGRoiJCowNDtBQ0RHSE5VW15afapVAAAANElEQVR42nWKsQ0AIAzDktI3+P9DBqAJiB0PHiwnPmS3LRlBoiTtqQLJHLd7CWxhre23Xx/spBrznuMELQAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      }
+    ],
+    "fullOpacity": null
+  },
+  {
+    "id": "106479417",
+    "title": "2013",
+    "participantName": "Konstnärer",
+    "introExhibitions": "Luleåbiennalen 2013: X-Border pågick 19.6.2013–6.10.2013. Biennalens utställningar och konsthändelser genomfördes i Luleå (Sverige), Rovaniemi (Finland) och Severomorsk (Ryssland).",
+    "slug": "2013",
+    "theme": "X-Border Biennial",
+    "image": {
+      "id": "43554472",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1683125495-xborder.png",
+      "title": null,
+      "alt": null,
+      "height": 225,
+      "width": 225,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1683125495-xborder.png?auto=format",
+        "width": 225,
+        "height": 225,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgSFgoTGhYZFRUNFRUeFhodFxcZGBcfFh8dHysvHR0oHSEWJDUlKC0vMjIyGS44PTcwPCsxMi8BCgsLDg0OHBAQHDsoIiY7NTs1Lzs1LzUvLzU1NTI1Ly8vLy82Ni8vOzUvMi8vLy8vLy81LzUvLy8vNS8vLy8vL//AABEIABgAGAMBIgACEQEDEQH/xAAYAAACAwAAAAAAAAAAAAAAAAAAAgEFB//EAB4QAAICAgMBAQAAAAAAAAAAAAECAAMEYQUhQSMR/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIDAP/EABcRAQEBAQAAAAAAAAAAAAAAAAEAAhH/2gAMAwEAAhEDEQA/ANZychgwAHUSzkVSvcOSsVF3KP6WW6jUdaRrvBy3tYgr1Jj8eqJX+ewicqZekmXhG2wEHqMOPRE3CEJZyM9GP6T1IhCFY8v/2Q==",
+        "sizes": "(max-width: 225px) 100vw, 225px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#3C8730",
+      "red": 60,
+      "green": 135
+    },
+    "backgroundColor": {
+      "hex": "#3C89CC",
+      "red": 60,
+      "green": 137
+    },
+    "background": [
+      {
+        "id": "54964282",
+        "mimeType": "image/jpeg",
+        "url": "https://www.datocms-assets.com/95303/1686694349-lukaradojeviclb13_1.jpg",
+        "title": "Treenighet, Luka Radojevic. Luleåbiennalen 2013.",
+        "alt": null,
+        "height": 1272,
+        "width": 1920,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1686694349-lukaradojeviclb13_1.jpg?auto=format",
+          "width": 1920,
+          "height": 1272,
+          "alt": null,
+          "title": "Treenighet, Luka Radojevic. Luleåbiennalen 2013.",
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLCgoXDiAWFQ0WGRIQDQ0NFxUZGBYVIhUdHysjGikoHRUWJDUlKC0vMjIyHSI4PTcwPCsxMi8BCgsLAg0OHA0LEC8oFhw7Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABAAGAMBIgACEQEDEQH/xAAXAAEAAwAAAAAAAAAAAAAAAAAFAAME/8QAHhAAAQQCAwEAAAAAAAAAAAAAAQACAwQRIQUWIhL/xAAWAQEBAQAAAAAAAAAAAAAAAAACAwD/xAAaEQABBQEAAAAAAAAAAAAAAAARAAIEBgcD/9oADAMBAAIRAxEAPwAWa+wj0FZXtV3txnaXl4StOMNCzdbELgQdJc52hBZsamBHXLAibloUT54OJ8A+gog6foRUHRaYV//Z",
+          "sizes": "(max-width: 1920px) 100vw, 1920px"
+        }
+      },
+      {
+        "id": "54950605",
+        "mimeType": "image/jpeg",
+        "url": "https://www.datocms-assets.com/95303/1686692148-strijdomvandermarwelb13_1.jpg",
+        "title": "Diaspora, Strijdom van der Merwe. Luleåbiennalen 2013.",
+        "alt": null,
+        "height": 3648,
+        "width": 5472,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1686692148-strijdomvandermarwelb13_1.jpg?auto=format",
+          "width": 5472,
+          "height": 3648,
+          "alt": null,
+          "title": "Diaspora, Strijdom van der Merwe. Luleåbiennalen 2013.",
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLCgoVDhgVDhcNDhUVDhUYFx8ZHRYVFhUdHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBAQHDsoIhw7Oy8vOy87Oy81Ly8vLy8vLy8vNTsvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABAAGAMBIgACEQEDEQH/xAAXAAEAAwAAAAAAAAAAAAAAAAAFAAQG/8QAHxAAAQMEAwEAAAAAAAAAAAAAAQACAwQFERMGISMi/8QAFQEBAQAAAAAAAAAAAAAAAAAABAP/xAAZEQACAwEAAAAAAAAAAAAAAAABAgAEEQP/2gAMAwEAAhEDEQA/AE7PYLMG4JWgbxK01EJ1vGUeYqBjfM4Vmmn1N+HlESvzyVCCDXHiEVO46z0onJqkyt7OVEN6ybJnmJ//2Q==",
+          "sizes": "(max-width: 5472px) 100vw, 5472px"
+        }
+      },
+      {
+        "id": "54964276",
+        "mimeType": "image/jpeg",
+        "url": "https://www.datocms-assets.com/95303/1686693674-patrikqvistlb13_1.jpg",
+        "title": "Lakun at W 20th street, Patrik Qvist. Luleåbiennalen 2013.",
+        "alt": null,
+        "height": 2530,
+        "width": 2362,
+        "responsiveImage": {
+          "src": "https://www.datocms-assets.com/95303/1686693674-patrikqvistlb13_1.jpg?auto=format",
+          "width": 2362,
+          "height": 2530,
+          "alt": null,
+          "title": "Lakun at W 20th street, Patrik Qvist. Luleåbiennalen 2013.",
+          "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoIDg0NDREQDhAODg0NDRENFg0YFxYZGCITFhUmHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OFQ0NEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABgAFgMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAABQYB/8QAHBAAAgMAAwEAAAAAAAAAAAAAAAIBAwQGERIh/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgED/8QAGBEBAQADAAAAAAAAAAAAAAAAABEBAhL/2gAMAwEAAhEDEQA/AMfVxZuyrk4m7JJUpz6JKeBdKTMFTGrOJxi2uZgGsZbvU/AGnyj49tnroqUaX7AM6eBtb+pOgApv/9k=",
+          "sizes": "(max-width: 2362px) 100vw, 2362px"
+        }
+      }
+    ],
+    "loadingImage": [],
+    "fundedBy": [
+      {
+        "id": "114644753",
+        "logo": {
+          "id": "46850126",
+          "mimeType": "image/jpeg",
+          "url": "https://www.datocms-assets.com/95303/1684328050-kolarctic-enpi-cbc-logo.jpg",
+          "title": null,
+          "alt": null,
+          "height": 161,
+          "width": 370,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1684328050-kolarctic-enpi-cbc-logo.jpg?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 370,
+            "height": 161,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLCg4XDhUOFg0UDhENDREOFxUeGBYVFhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHAoOHC8cFhw7Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAAsAGAMBIgACEQEDEQH/xAAXAAADAQAAAAAAAAAAAAAAAAABBAUG/8QAHhAAAQQCAwEAAAAAAAAAAAAAAgABBBEDMRIiMwX/xAAVAQEBAAAAAAAAAAAAAAAAAAABA//EABcRAAMBAAAAAAAAAAAAAAAAAAABEQL/2gAMAwEAAhEDEQA/AN/8uBjwNdqnJADw0zqZgIuG00JO47RrToCMmH1tBOyfJBVTcA//2Q==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "114644754",
+        "logo": {
+          "id": "43547816",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682539017-lk_logo_1rad_svv.png",
+          "title": null,
+          "alt": null,
+          "height": 1150,
+          "width": 1667,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539017-lk_logo_1rad_svv.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1667,
+            "height": 1150,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAARCAMAAADwppwCAAAAw1BMVEUbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkbHxkiszA3AAAAQXRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGhscHR4fICEiIyQlJigpKissLS4vMDEyMzQ1Njc4OTo9Pj9BQ0lKTMsFxOMAAACxSURBVHjabdCLCsIwDAXQ5rW6WUTw//9R1G2uWRv3cOA6SwnkHkpC2a2Hrpezd0P7uKc14C+klHN2eS57WDOzbCXYlMByC0AiAibCvAcSFgETkWEPzMQ01xKWMfDTbKBRB4CoGgvIrcAI2nYluOFpCtq9Duu6ngz07Y4wDwf4A3XtcUS3veEqLd8JIQSPKVZdHw2IkW85RjWuzyFUYOrrfjScISSR0ejUNB7REJCmboIPRFVSiDjfrMQAAAAASUVORK5CYII=",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "114644755",
+        "logo": {
+          "id": "43547949",
+          "mimeType": "image/gif",
+          "url": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif",
+          "title": null,
+          "alt": null,
+          "height": 213,
+          "width": 2089,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 2089,
+            "height": 213,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAADCAMAAAC+uD+SAAAAWlBMVEUtKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8mvhSVAAAAHnRSTlMABAUHCA4PERMUFRYYGRoiJCowNDtBQ0RHSE5VW15afapVAAAANElEQVR42nWKsQ0AIAzDktI3+P9DBqAJiB0PHiwnPmS3LRlBoiTtqQLJHLd7CWxhre23Xx/spBrznuMELQAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "114644756",
+        "logo": {
+          "id": "46851231",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1684328318-nll_2rad.png",
+          "title": null,
+          "alt": null,
+          "height": 257,
+          "width": 673,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1684328318-nll_2rad.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 673,
+            "height": 257,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAKCAMAAACZt25aAAAAn1BMVEVIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIREJIRELHJl2DAAAANXRSTlMAAQMEBQYICQoLDQ4PEBESExQVFxgZGhscHh8hIiMkJScoKSssLS8wMTM0NTc6PD9AQ0VHSHpsKL4AAACBSURBVHjaXc7bCsIwDADQ3FydwsAn//8TKyt2bS4OJ8IayENyEhKBI+Sx3AS9rznH0fiBZvCEVtdXwAmgFVLSWhwG4ImZQGQbgO/zVZB89vcZwqwHam86bHixJKCtxngDwn3PfymLmwXwJaWJ0XrbmgHtf8jTzQ1ZkjDhPtTVv/AB1+1B7x2V94oAAAAASUVORK5CYII=",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "114644757",
+        "logo": {
+          "id": "46851246",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1684328561-university-of-lapland.png",
+          "title": null,
+          "alt": null,
+          "height": 485,
+          "width": 2362,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1684328561-university-of-lapland.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 2362,
+            "height": 485,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAFCAMAAABo4dyPAAAAb1BMVEUfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxkfGxk/ykTgAAAAJXRSTlMAAQMEBQgJCgsMDQ4PEBESExQVFhgZGhwiIyYsLTI0Nzw/Q0RJIriCzwAAAEpJREFUeNptjEESgDAMAoFkvNr//85faDXF9qx7YxbI9vTb+JK7a9R51QAIe3UYDGWY5Q19mCQwhZQppmwqImgtMyecgcxjnfzwAsZ+HhGmSBzIAAAAAElFTkSuQmCC",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "114644758",
+        "logo": {
+          "id": "46851253",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1684335954-2013_severomorsk.png",
+          "title": null,
+          "alt": null,
+          "height": 1417,
+          "width": 1890,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1684335954-2013_severomorsk.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1890,
+            "height": 1417,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoIFBERFgoLDhgQGhUNFhISDhENFxUZGCITFiEdHysjGh0oHSEWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBAQHC8lHig1Ly81NTU7Ly8vNS8vNS8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAaAAADAAMBAAAAAAAAAAAAAAAAAwUCBAcB/8QAHRAAAwEAAQUAAAAAAAAAAAAAAAECAxEEBTJBYf/EABYBAAMAAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEQMRAD8A7K2kuSfr3TOOoUG5WXMtEbftdV1av6JeZFuLm4VemBhlioyUnoJshouvJAACGAADJ//Z",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "114644759",
+        "logo": {
+          "id": "46851255",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1684328623-qh_lule.png",
+          "title": null,
+          "alt": null,
+          "height": 705,
+          "width": 553,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1684328623-qh_lule.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 553,
+            "height": 705,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAZCAYAAADTyxWqAAACwUlEQVR42n2Uy3LUMBBFrcfMJDMEQqhix54f4CNYUPwya36CBQlFkTBJCHl5bIlz5ZbHkweCG8u2+uh2qz3x08fPjYZz7h36gN6jQx5tcs7rnPJ5yqlLKR2gtzw7Qgr5jr6y9ktjI3rvK2zjnd847zpu+6rkUu+yS7zvpZRy3wDjn953FjvAGBV2B/ieq9TKmURwlwdnVXKsofdtMxlxNpsVMrrB2S3O7gzYW6o7oL7vgWemSaDWUh5g8/m8THDVypldN8ASj5MFlgHILn0vZ+ayxOs6OlPtgg+dDz4xz+bWsUjyxDtTIwGquzQVOMIANYBcCMxCmAkObk6hF5wonvoFkHnXdTNBu66PmAyCDUA7gAILQVqgPZO3uik3aQloySb7XFUG4G4ul4ovaRYHQ5oCLUOIqxjDgcHkDmOlTivuV8BXdjD7pm3Nap+gpRZ7714AloL1IEUrvbckYKUNdZK80/r92mOlZiKydZP9uNNSgTpgpahmVnNy3ZOYL7Q/UhssWB9QX5wpZ0Dq90ifxeQThU2RQKUZCKiLXdnYVAuPXD3RATbkXT4XfU5wOtu9VQPzvrWgWxSIUY/dK11r5gKOnEzpMQKuCf5L8BXXP01THFxyf85VgQvWJtQKhi7Q5aTvBmdm8wLIqcnnofXPga2Z3jHfY+01sJfdMH5y/6vCVPdY+8TGCXqD7u2zWfPuN/eCqWlfA3mlzwodo5NipifNnB7B9Bt1gJMr1YL0z3h3NoEdGVBufljtCqikqT/TXmF8U61UdJ6f1u5GN0obwCEwfavryYlum3Z63Ixb5ie6n25SAqgLCV6MqRmkKtagCWycV9iT/ZUH+M7v2Tag/G2eSLt56F6QArNnjfHiZHnp03HBBPLQ3agm72wYpy7+B9mZl/+TTUHwYzB19jil54APN67AWIu/BT0HtlKYq6fGP13rUJkHJRlcAAAAAElFTkSuQmCC",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      }
+    ],
+    "fullOpacity": null
+  },
+  {
+    "id": "200673486",
+    "title": "2011",
+    "participantName": "Konstnärer",
+    "introExhibitions": "LAB11 (Luleå Art Biennial 2011) pågick 22 juni - 14 september och drevs av Kilen Art Group. Utställningen ägde rum på Norrbottens museum och i Kulturens Hus i Luleå.",
+    "slug": "2011",
+    "theme": "LAB11",
+    "image": {
+      "id": "75184715",
+      "mimeType": "image/jpeg",
+      "url": "https://www.datocms-assets.com/95303/1696516539-huttel-hb-besk.jpg",
+      "title": "The eclectic is now, 2011, Søren Hüttel. Foto: Kilen Art Group",
+      "alt": null,
+      "height": 1020,
+      "width": 1230,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1696516539-huttel-hb-besk.jpg?auto=format",
+        "width": 1230,
+        "height": 1020,
+        "alt": null,
+        "title": "The eclectic is now, 2011, Søren Hüttel. Foto: Kilen Art Group",
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoOCAgLFRYLGiENDQ0WGRENFhEYFx0dGCIVFhUdHysjHR0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHA4QHDsoIigvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABQAGAMBIgACEQEDEQH/xAAZAAEAAgMAAAAAAAAAAAAAAAAABAUBAwb/xAAdEAACAgMBAQEAAAAAAAAAAAAAAQIEAwURITEU/8QAGAEAAgMAAAAAAAAAAAAAAAAAAwUAAgT/xAAaEQADAAMBAAAAAAAAAAAAAAAAAQIDITER/9oADAMBAAIRAxEAPwCJWjiS9LrXqu8b6cxDa1o/SzpbSs4vjBLJSY7u4NOywVv1sES7frSsMGyc9eEVQUd3FCMvETdVCLi+gAa6KqZnNXxvO+oABVwsno//2Q==",
+        "sizes": "(max-width: 1230px) 100vw, 1230px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#F64103",
+      "red": 246,
+      "green": 65
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [
+      {
+        "id": "ZLJTiyjrQJKiWh2MRNRfyQ",
+        "logo": {
+          "id": "M-HzfFmfTZSm5SJPPa0hcg",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1704893470-luleakommun_logo.png",
+          "title": null,
+          "alt": null,
+          "height": 720,
+          "width": 1280,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1704893470-luleakommun_logo.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1280,
+            "height": 720,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAACv0lEQVR42lVUQXvTMAyVLDvp+rGNwY0T/58DB/4QJ07bvsK6LnEsiSe77aCpPjuJrKf3JCV/+/Gd3IxUGxnMTYnJKUuiacq0m6fdPE9f51K+SJY7wq81/VNr/bWs9eey1GXdGjU1cmfiJJRESCRjnyKOkDHT5efYMxmcEqVwTjLBZ8ahHfY34YNzFftdN5FF1HtwpwtAHhYAuUxkYGDciBHcLV0Z5JzD4YPk6RbrnUi6R/yIwuZ0ykp3sIN5AqpdAeRfgFLmATCy/U+iUjKucl/K9ID1s4g8DAAtZmnJhQ/F+NlJjpx8AJzlGRJJJHgBiAdRg/bOoOTbAADLj3B8AMAnHwBQJZ0ygjfje4Q8kgTAkFVyeWcAeRFYcUxDXUglkMr6SzhB+7LjNO1ZCkz2AE+QpOH1HlnfIN4umbCzewcAgwQAuQDgrusexfWodawosnMHA7fsYxW8jjTdDb2gZFhzcLe4t6g+RxzE44J97jEyKMKFSWP1sY+rd5PyqygdkzI0phcUtkCi1Bq9bHhelV4r3m0a570nl3qjcA+eAmDdvOegaDVDL4cFB4m989HYnoz1EZrvUZZoyDTmQJ+WVZ/Xqr+3pgAIAgCwwUsyZAZwPq3tOmiq2oct5kDgXBCuGT3C7ovSTlJqUCgh4LHW7Wmp9YC1bpsF8qhdRoNk7pYEYKelnhmMSTaNYg+AjCxmNUjgh7zZLQDQ/y5g8IqoR0zy21obBYOhUBQYQTOhA30U+bRuo02DAcQ1tGmULAWDLP0TAAD0vL3h2VtUtrVW17o1MPB6BUCHcLQoGKDGuZ0BIgPDcOkFACtFR8Nfow5ILf7QVXEAubiDAa21pnXdcH5DAnZmgAGDAJgPytAMLct5gyS9Bs1GQLUzg94UvXDcEmNK8e1CiZEqMo46CKzgPO7Rsh2gf8XQQRopznDf/QVgQP6H2/phiQAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "ELVUNsrIQtCo-VPI2bzNLA",
+        "logo": {
+          "id": "43547792",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1682538884-region-norrbotten.png",
+          "title": null,
+          "alt": null,
+          "height": 191,
+          "width": 1275,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682538884-region-norrbotten.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1275,
+            "height": 191,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAECAMAAACjvQ8qAAAA0lBMVEUnK2InK2InK2InK2MnK2MnK2MnLGIoLGAoLGAoLGAoLGAoLGAoLGAoLGAoLGEoLGEoLGEoLWApLV4pLV4pLV4pLV4pLV8pLV8pLV8pLV8pLV8qLlwqLlwqLlwqLl0qLl0qLl0qLl0qLl0qL1wqL1wrL1orL1orL1srL1srL1srL1srL1ssMFktMVYtMVYtMVctMVctMVctMVctMVgtMVgtMVguMlUuMlUuMlYvM1IvM1MvM1MwNFAwNFExNU8yNk0zN0s0OEk0OUg1OUY2OkQ2OkXFwVAPAAAARnRSTlMAHSMABRIMAAoSGBooMRkeIjkAMURSACIsP0kAKSwAMEBEURwxAAYAAQ0PHAAIDwATFRkABQYADwAAAAcAAAgUGhkQAgAAkkPmXgAAAFRJREFUeNodycsRgCAMBcAXCHgRbMr+a3FGlI8hcXSvyztB7aOTxF3eGasA4EYQJzW2fvsCxuePAyN0KaG4OjyIhLIO28AdsM75TDUGBSV61rlEsxckBCwJn+vD4gAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "JDl1twtyRZGWzZdp7WYVtg",
+        "logo": {
+          "id": "43547949",
+          "mimeType": "image/gif",
+          "url": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif",
+          "title": null,
+          "alt": null,
+          "height": 213,
+          "width": 2089,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1682539295-kulturradet_logo-2.gif?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 2089,
+            "height": 213,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAADCAMAAAC+uD+SAAAAWlBMVEUtKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8tKS8mvhSVAAAAHnRSTlMABAUHCA4PERMUFRYYGRoiJCowNDtBQ0RHSE5VW15afapVAAAANElEQVR42nWKsQ0AIAzDktI3+P9DBqAJiB0PHiwnPmS3LRlBoiTtqQLJHLd7CWxhre23Xx/spBrznuMELQAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "Zm_ExNPgTNaFW2aFToX9UA",
+        "logo": {
+          "id": "OrE8oim0S-OWQATa5B-JeQ",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502451-lansstyrelsen.png",
+          "title": null,
+          "alt": null,
+          "height": 1306,
+          "width": 958,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502451-lansstyrelsen.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 958,
+            "height": 1306,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAZCAMAAAAL146mAAACcFBMVEWCfnaDfnaDf3SDf3SDf3SDf3SDf3SDf3SDf3SDf3SDf3SDf3SDf3SDf3SDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3WDf3aDf3aDf3aEf3SEf3SEf3SEf3SEf3SEgHKEgHKEgHKEgHKEgHKEgHKEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHOEgHSEgHSEgHSEgHSEgHSFgHKFgHKFgXCFgXCFgXCFgXCFgXCFgXCFgXCFgXCFgXGFgXGFgXGFgXGFgXGFgXGFgXGFgXGFgXGFgXGFgXKFgXKFgXKFgXKFgXKFgXKFgXKFgXKGgXCGgm6Ggm6Ggm6Ggm6Ggm6Ggm6Ggm6Ggm6Ggm+Ggm+Ggm+Ggm+Ggm+Ggm+GgnCGgnCHg2yHg2yHg2yHg2yHg22Hg22Hg22Hg22Hg22Hg22Hg22Hg26Hg26Ig2yIhGqIhGqIhGuIhGuIhGuIhGuIhGuIhGuIhGuIhGyJhGqJhWiJhWiJhWmJhWmJhWmJhWmJhWmJhWmJhWmJhWqKhmaKhmaKhmaKhmeKhmeKhmeKhmeKhmeKhmeKhmeKhmiKhmiKhmiLhmaLh2SLh2SLh2SLh2SLh2SLh2WLh2WLh2WLh2WLh2WLh2aLh2aLh2aLh2aLh2aLh2aMh2SMh2SMiGOMiGOMiGOMiGOMiGSMiGSMiGSMiGSyPqmgAAAA0HRSTlMAAAAEBRkaGykrM0pfaAACBggJDA0OEx0gIiQlKiwuLzE0NTg6Oz4/QEFCR0hJSk9SU1lcABEYADM6VGQABxMaR2QABAgNDhQbIyQnK0RXX2xwdAABFBs7AHgAFjZWcYCCiAACBggMEhMyUm0ACw0uTml7gAAAAQMcOll0hQA4V3KEiwEaADpXcQADHFZwgogcORYACgAXM09neH4yJRMtAAwmQVhobkAALj0AFRguRFNZAERTAAAGChgaAAQaKC0AAhouPUIBHQACDxQACw8Y7yQ6jwAAAT5JREFUeNpV0L1OwzAUBeBjx+lfWkAoA2o7M3YpDwCPgMTbMsAOQkwMQYKlSEiUFvqXNo59OTZlwJGi5Mu9V+fGXAOwOGo5EUE8JiWkWCwPWv6P3oFeVqdqW9ZO+JHU2WGz0bUaSLpvNTPevMrVlPDbataEdvtbKYkn0BdnCeUf6WxtA1USxpHe+t1VRVFVKPJN0vF21iCsNIfvG58A3Vyrk34c5acTmFv6VbcsX8V7txM0YLqkm/anUiORBxtzLTHGsxlkuqwXh9tIgns11h/WiK094RQmLi+1Vd56HySQGuOlVSfehxULVp2hKGCcs+JiKr4UoXGhEzV6dCxjALOiXDJ9ggvfE0zuYC4x55UkDiL8d9k5zJxVFbglwoaNkKvibZhDVWgIuCFpiBzYQGuUHnmOKUwEhhVIeOrk+AF5DbPJMVb6SwAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "Dzqr9cm5RxKLuiEqJD-bPw",
+        "logo": {
+          "id": "RESqX8hAQJWltG32XXX70w",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502451-lakarjouren.png",
+          "title": null,
+          "alt": null,
+          "height": 1068,
+          "width": 1481,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502451-lakarjouren.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1481,
+            "height": 1068,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASAQMAAAB7IozdAAAAA1BMVEX/SQA4Wf17AAAAAXRSTlMAQObYZgAAAA9JREFUeNpjYWBgYKECBgAK+ABJoKF2YgAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "OEYo7c08Sr6GW8HCqxqXIg",
+        "logo": {
+          "id": "UsFBZnSyT3mCKL1EapHxRQ",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502452-lulebo-png.png",
+          "title": null,
+          "alt": null,
+          "height": 200,
+          "width": 382,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502452-lulebo-png.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 382,
+            "height": 200,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAANCAMAAACEsl7iAAAB3VBMVEU0UUc0Ukc1UEc1UEc1UUc1UUc1UUc1UUc1UUc2T0c2UEc2UEc2UEc2UEc2UEc2UEc2UEc2UEc2UEc3T0c3T0c3T0c3T0c3T0c3T0c3T0c4Tkc4Tkc4Tkc4Tkc4Tkc4Tkc4Tkc5TEc5TUc5TUc5TUc5TUc5TUc5TUc5TUc5TUc6S0c6S0c6S0c6TEc6TEc6TEc6TEc7Skc7S0c7S0c7S0c7S0c7S0c8SUc8Skc8Skc8Skc8Skc8Skc9SEc9SUc9SUc9SUc9SUc9SUc9SUc9SUc+R0c+SEc+SEc+SEc+SEc+SEc+SEc+SEc/Rkc/R0c/R0c/R0c/R0c/R0c/R0c/R0c/R0c/R0dARUdARUdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdARkdBREdBREdBREdBREdBREdBREdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdBRUdCREdCREdCREdCREdCREdCREdCREdCREdCREdCREdCREdCREcImT99AAAAn3RSTlMAAAAZAAISGiAAAAYMEyIlJy80AAYYJDM/QwAHIzVAUFIAAAsUKkJJXF0AG2QACyxNAAAFKUpkAAAdTGVmAAAaIUdKYmQAABUZQUZdYAAAEBEcIztCWV0EUQAFBg4PEB8rLjE1OkFCQ0pLUFNXWV1fZ28AGE5ucIMAERYfJCkvMD1ERk5YXF1fYWJlaWp2fYGFiIwAISsyNFlja3Z7gYlwaP73AAAA3UlEQVR42l2PQUvDQBSEZ3Zfkt0mFLwIQkGo1P7/3+NBSpFePFRJm2iz7/lWbw7Ld5g3szBCRO3uUt80bU4wEJjrEwApO6xLzgEjYUSaxUNVpfcAHMPI7JUkVjuwGq/+7yVNhAhaMPf+Qa0+4jUOuGRMAobcBTKlNIQNw54Hkw9kCSWGENiSMbnPyN3brTmbhJX7YaEjt/L+/PJgT8elNTGlma1YFcOO+9GM0VRKsUbV1DV/fQ7K4/1yWhf1HaWoXtel3K6TLeT2pNuD4m+FWlWpAL4BhR/mui3iv34AwoNinVc3w1QAAAAASUVORK5CYII=",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "WxAdLKxiQoKvU6_REu-vnA",
+        "logo": {
+          "id": "AWG9vM-JR_eTL0DxnYE_2Q",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502451-maf-arkitektkontor.png",
+          "title": null,
+          "alt": null,
+          "height": 400,
+          "width": 400,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502451-maf-arkitektkontor.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 400,
+            "height": 400,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAh1BMVEUvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKykvKymQ3e4aAAAALXRSTlMAAQIDBAUGBwgJCwwNDg8QERITFBUWFxgZGhscHR4fICEiIyQlJicoKSorLC0UXIlWAAAAiElEQVR42s2RwQ7CMAxDnREhMf7/U0EIrTZOKk3ssDP4lPbVTtomTpQ/BdGCICGwuIRIKdcJihjE4mqC+zdwEZJGgdsOLO8DJE3yeoxqwwgyLzgAtNeDJDsZe1YZLOW7/OhDtd9gK/BCA80oiwXc49HJ2h0eamz0zZ9ehLp3jytqPsn4y486Ax+/Yl8P6SJJiQAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "Bb8bjWVZQs-QyHApELzT1Q",
+        "logo": {
+          "id": "AVW942T4TSqJYjI7lsWUwg",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502451-brogaraget.png",
+          "title": null,
+          "alt": null,
+          "height": 1068,
+          "width": 1481,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502451-brogaraget.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1481,
+            "height": 1068,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASCAMAAAB2Mu6sAAAA3lBMVEX/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQD/SQDcJoFgAAAASnRSTlMAAQIDBAUGBwgKCwwNDg8QERMUFRYXGRobHB0fICEiIyQlJicoKissLS4vMDIzNDU2Nzg6Ozw9Pj9AQUJDREVGR0hJSktMTk9RUwegnxUAAACGSURBVHjaxZCxDsMwCEQNHKRSl/7/X3apZGxMSZOMXVskFp7gjkP7UvglYCJiFm4RPQ/AZgohrnl1rtF7HxMPVr2pgvggOb2AB+6itpmB91tErTYU0InVZEUEZZ5guo8xAk+B2VYa1E4wd43AqxyUONfoQzJK5LLr/r+sSCjXujKr56PCegP73j9SevaglAAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "ZE_nxgUVSnSRs5YfD9dL9g",
+        "logo": {
+          "id": "OIw0Me_tQXiCUGFYikbfXQ",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502451-kronan.png",
+          "title": null,
+          "alt": null,
+          "height": 1068,
+          "width": 1481,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502451-kronan.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1481,
+            "height": 1068,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASAQMAAAB7IozdAAAAA1BMVEX/SQA4Wf17AAAAAXRSTlMAQObYZgAAAA9JREFUeNpjYWBgYKECBgAK+ABJoKF2YgAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "AE7jtGIgQoOPQLimsyglNA",
+        "logo": {
+          "id": "X8gY5dzqQO6iUCCJ6U0oyg",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502451-quality-hotell-lulea.png",
+          "title": null,
+          "alt": null,
+          "height": 316,
+          "width": 283,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502451-quality-hotell-lulea.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 283,
+            "height": 316,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAYCAMAAAAiV0Z6AAAApVBMVEUABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAYABAZaDybiAAAAN3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNTY4tKntUAAAAONJREFUeNptkUuOwzAMQ6lPnC5y/5M208a2pEpJN4OGBgzjUVyYUrRt21Yer+fzNcHtsbaFFeF5Skgxs4gkNZtm4emAwKq61Kz30ZnT8shRSbiIAocK2I4+DEEkopqzwI4p1t8DcIs0iIpi7+K9HuhtThOcFGPgq3fmIYr/mn8c9kPRd5+/FEfcUXS/o5h+RxF3VPiXisr1t0Vi2heui3JRfqyC0Q8vvzWVorIWVZFhpEurUShV+XlnxkmqXEp6roaq12DKbjNPURsydy4HxFztIpuMxAI/I9cfisJTuFZ8Qgp8AOTqcrM4YA0zAAAAAElFTkSuQmCC",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "LkNjO5QjRj6D6W0ZuYmftQ",
+        "logo": {
+          "id": "OiKiaXkNQumdqWLG1SdspA",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502452-arbetsformedlingen.png",
+          "title": null,
+          "alt": null,
+          "height": 144,
+          "width": 1181,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502452-arbetsformedlingen.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1181,
+            "height": 144,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAADCAMAAAC+uD+SAAAApVBMVEU6MmE6MmI6M2E6NF86NF86NV06NV06NV46NV46NV46Nl06N1s6N1w6N1w6OFo7OVk7OVk7OVo7Olg7Olk7O1c7PFY7PFY7PFY7PVQ7PVU7PlM7PlQ7PlQ7P1M7P1M8P1I8QVA8Qk88Q048RUw8Rks9R0o9SUc9S0U9TEM9TUI+TkE+T0E+UD8+UT4+UT4+UT4+VDs+VDs/VTk/Vjg/Vjg/WDY/WTUoDneCAAAAN3RSTlMAAAAABwALAAMKAAAACgAABwAAAAAABAUKAA8AAQARAQAAAQAABAAKAAAUAggECyASKzUhOiwysOvMugAAAEFJREFUeNoNyskNwDAMA8FQkl1O+u8s8EEy+u0AW69MiffbdxEOxKyBypqyDoGInStPBSay2SGnDYyrYvoBR3/8AVA/IDWFEOUEAAAAAElFTkSuQmCC",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "aBf1U4vqS8-xKEs6SXErDw",
+        "logo": {
+          "id": "IYANv-crQuqvom6QIR0fkg",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502452-samsung_logo-svg.png",
+          "title": null,
+          "alt": null,
+          "height": 333,
+          "width": 1000,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502452-samsung_logo-svg.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1000,
+            "height": 333,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAICAMAAADUf89RAAACQFBMVEUAQ6cARagAR6sASKoASqwATK0ATa8AUK8AUrMCU7EEV7UGVbEHT6UJVq8KUqgKWrcMVq4OVqwPV6wPXLcQV6sRV6wRWKwSXbUTWKwTWa0UWq4UXLIVWq4WWasWXbIXXK4YWakYXK8ZXrEbWqkbXKwcYLEcY7cdXq0dYLIfXasfY7UhYbAhZLUiZLQiZ7sjYa4kaLklXqglZbMlar0mZ7gmarwnZbInZ7UoYaopaLYqaLUraLUrarcsarcsa7ktZq8uabQwabIxaLAxbbkzaK80bLQ0brg1aq82bbU3bLE4aq45aq05bLE6bLA7crk8a608brE9cLQ/bq5AcbRBdLhBdr1Cb69DcbJEcbBEdbdEd7tEeb9Feb5HdbVIeLpJdLJKdrRKeLhKertLdrRLerpPc6tPebZQe7hSdq5UfblXe7JXgLtZgLtdhL1egbdeg7xhhLxihr5jg7hjhLpkgbNkgrVkgrVlh7xlh7xmgLBmgrNmhLdmhrpng7RnhLZogrJohLRpg7Jqg7Jqh7lrgq5rhrdri8BshbNuhLFuh7Vuirtui7xvjsFwiLZwjb5wjsFyjr9zibVzjLp0i7h1jLp1jr11kMB2jbl2kL96j7l6kLt8kr5+kLl/k76AkrqBlL6ClsCElb2El8CHmcGHmcGHmcGIk7aImL+JlLaJlLeJlLeJlbiJlbmJmcCKlLWKl7uKl7yKmL6KmsGLlbeLlrmLmb+Lm8KMmLyMm8KNnMKOmLqOm7+Qmr2QncORncCRnsK4fw75AAAAwHRSTlMAAAAAAAAAAAAAAAkADwAADQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQACAAAmAAAAAAAAFwAAOwAAAEkAACgAUE5GMzoANy41LyYeIgAAFwAYEgAOAAUODgAEAAAIAAAfAAAEAAAYNAAwAEpKXABhcGh4eGkAcgBuAF4AbmJpW1QAVQAATAhRAAdEAB5NOy4AAEcAHTwVACwAADUAGAAOSgAzJkxaYgBhXWdkbGNgZm5nX2BZajpVFEhfUFwvU0UjIndFAAAAmUlEQVR42h2OUQoCMQxESTJts+uCHx7AL2/g/fEi3kBYEFZ2m6S1+mC+Zh4MFsaimtj8qIdHj/an41ZKnkqmVsMsWu/mHzt2x10Y0zlLd7Na2WlIA8cVk2ZchD22ACPFu9mv2JSEaVU075oKM51srZHwZC1jONJZUk4irdq+VzygOs9pWEQYDaS51Qi8eJAAEInkXCA9jvH7C3RjWIngPp5gAAAAAElFTkSuQmCC",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "QHYJLsDrQoWSLcOvRwLCCw",
+        "logo": {
+          "id": "VCLUzqRBRKOZ4z7FQsJ1BQ",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502451-reklamcentra.png",
+          "title": null,
+          "alt": null,
+          "height": 273,
+          "width": 1185,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502451-reklamcentra.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1185,
+            "height": 273,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAGCAMAAADuda4hAAABrVBMVEW8MFG9MVO9M1S/NFXAMlXBKVHBKlHBK1HBLFLBNVfCLlPCMFXCMlXCNFfCN1jCO1rCPVvDKlLDLFPDMlbDNFfDNljDOlrDO1rDPlzDQF3DQV7DRF/ENlnEOVrFLVXFLlXFNFjFN1rFOFrFO1zFQV/FRmHFSmPGNFnGNFnGP17GRWHHMFfHMVjHN1rHQWDHRWLIM1nINFrINFrINlvIO13IRGHIS2XITmfIUmjJN1zJPV/JPl/JQGDJRmPJSWXKQGDKTGbLP2HLSmbLV23Lc3vMO1/MQWLMR2XMSGXMTWjMW2/Mc3vNPmHNQGLNQmPNQ2TNR2bNcnvORWXOR2bOU2zOVm7OX3LOgYPPSmjPTGrPTmrPVG3PVm7PZHbPZnbPcHvPgYTQR2fQbHnRV2/Rc37RgITSS2rSTmzSUW3SXXPSXXPSbXvScn7TTWzTUm7TV3DTcX7TfoTUVHDUVXDUVnHUZHjUdYDUeoPUfYTVZ3rVanvVb33VfYTWe4TXW3XYX3fYb3/YdILYdYLYeYTZc4LZeITaZHracoHad4TbaH3ban7bb4DbdoTcboHcc4OCeAA+AAAAj3RSTlMYHAsPIy0rHx4WLCIAAAAAADEiAC0AAAAAAAAAHgA3JzIrAAAAAAAANQAAPCslAAA9LDsrAAAAAAAAPAAAAAA2AAACAAABAAAAAAAAAwEAAAAAAEgAAAAARAAADQAAAAAAAAAAHwAAAAAMFwAhAFMAIgAAUQAfAAAfGCMjISNdXCBhJCVjYWRlY2NnZ2VnZzP8SpIAAACFSURBVHjaHcvBEoIgFEbhEa5SpjUmM617ql6/mdZoGShwgT+ns/o2hx7HumvgFjNNDu0wDpdWsA2B7lQ1KLJstqSNC8K6e12YekkCCS1V2eaQs3+LOJsISgAhg5mBgn/s95NeBzqB3We2WQqlr52qgjazp6dqzjJ547YkVK/HsVbx29/WH063WsWcXDmiAAAAAElFTkSuQmCC",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "FB3YZc1lTQCa7wiJAqRi5w",
+        "logo": {
+          "id": "HZqMm5dwTt2nfYmuAUBE0w",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502614-kalles.png",
+          "title": null,
+          "alt": null,
+          "height": 111,
+          "width": 455,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502614-kalles.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 455,
+            "height": 111,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAGCAMAAADuda4hAAABO1BMVEWnREKnRUKoREKpQ0GpREKqQ0GrQkGsQUCtQUCuQECvPz+vQD+wPz+xPj+xPz+3Ojy3Ozy4Ojy5OTy6OTu7ODu8Nzq8Nzu9Nzq+NjrJLzbJLzbKLjXKLjXKLjXKLjXKLjXKLjXKLjbKLzbKLzbLLjXLLjXLLjXLLjXLLjXLLjXLLjXMLTXMLTXMLTXMLTXMLTXMLTXMLTXMLjXNLTTNLTTNLTXOLDTPKzTPKzTQKjPQKzPQKzPQKzPQKzTRKjPRKjPRKjPSKTPSKTPTKTLTKTLTKTLTKTLTKTLTKTLTKTLTKTLTKTLTKTLUKDLUKDLUKDLUKDLUKDLUKDLVJzHVJzHVJzHVKDLWJzHWJzHWJzHXJjHXJjHXJjHXJjHXJjHXJzHYJTDYJjDYJjHZJTDZJTDZJTDaJDDaJDDaJDDLrDD9AAAAaXRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA80Nj5DRWM6M1EsNTY7Q2hrABUnKSwwXTMATgA+ADFLJy9CESNDSyQ4AB4qKz9abHR2eBohMV1kbBc6WFkZQlkdTU9cX0hiI2EqL2M0NzicI3OhAAAAcElEQVR42hWMMQ4CMQwEd23fJYrgATT8/2M0V9EcIEG8OC5Wox3bcQPAzjnU3czCY2zRfox7CezJ2eTRtYc3o3XGZV04acwu7TKfnJsQT8ML/DjfUnyFQV1TxQ8IyYRUgMQJHet7nFWW0BJroSZZ8Qd4rjF6YnjxzAAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "QQ8Jjp7EQE2qLDUJvFEUTA",
+        "logo": {
+          "id": "JqiTmG6bRYqEpbM4KMUrpQ",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502614-wsp.png",
+          "title": null,
+          "alt": null,
+          "height": 890,
+          "width": 1580,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502614-wsp.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 1580,
+            "height": 890,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAMAAAACJixMAAAB41BMVEU9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6Y9Y6c9Y6c9Y6c9Y6c+Y6U+Y6U+Y6U+Y6U+Y6Y+Y6Y+Y6Y+Y6Y+Y6Y+Y6Y+Y6Y+Y6Y+Y6Y+Y6Y+Y6Y+Y6Y/YqU/YqU/YqU/Y6U/Y6U/Y6U/Y6U/Y6U/Y6U/Y6U/Y6U/Y6VAYqRAYqRAYqRAYqRAYqRAYqRAYqRAYqRAYqRAYqRAYqRAYqRAYqRBYqNBYqNBYqNBYqNBYqNBYqNBYqNBYqNBYqRBYqRCYqJCYqJCYqJCYqJCYqJCYqJCYqJCYqNCYqNCYqNCYqNCYqNDYqFDYqJDYqJDYqJEYaBEYaFEYaFEYaFEYqFEYqFEYqFFYaBFYaBFYaBGYZ9GYZ9GYZ9GYZ9HYZ5HYZ9HYZ9HYZ9IYZ1IYZ5JYJ1JYJ1JYZ1JYZ1JYZ1JYZ1KYJxKYJxLYJtLYJtLYJtLYJtLYJtMYJpMYJpMYJtMYJtNYJlNYJlNYJpNYJpNYJpOX5hOX5lOYJlOYJlOYJlPX5hPX5hPX5hPX5hQX5dQX5dQX5hRX5ZRX5ZRX5ZRX5dRX5dRX5dSX5VSX5ZSX5ZSX5ZTXpVTXpVTXpVTX5VTX5VTX5VUXpRUXpRVXpNVXpRWXpJWXpNCYPE7AAAAoXRSTlMABQgYGR8iJDQ1Nzk/QRg1QEEACxYaAAELGBkcIzIzNDg+ABEzAAgbHywzNjk/AAMJEBgZHyIkKzE6QgAIERkaGx41ACcABQkSJD1FAAEOEhYAAB44AAAoQAADCiA6RwAGDSo6AEFHCCAARAANKT8eNwAHCSQ5ADEAPgMcAAIZAAAAMDUAERIoAComAAcbAAgdAAATHwAKEgAOFwAGAAAAAGnE4ScAAADjSURBVHjaVU/RTsMwDDwnbrcIqlFN7e/zaTwiDQEbTLROYpsUhADLls4639nme7L8cVney+VsD2cGDno7YBSGGkChFZ7wJ5gAySShxB1iE+D5Dvu1EUqZIFSpTYBONNM2ix0b4qKNrnLtHnum1ynElxtypqxchApRuKRTR+DQWQjOhU1qyJGWNSlz8wx0UBIObbVXLtndrEZBVSu2OK8URNzVvdRS+jItfe5GGdoJYsHdWbNVfYOO6bjKAIYAbs3Gv/6aK7COvYN/PtUt528g/f6XAKZrbd0xTakJlPE/Nqe0gU8wYIA9IrhSDQAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      },
+      {
+        "id": "KdHhaUL8SP2-YloIn5K7Lg",
+        "logo": {
+          "id": "MUdAPqAdTTiRlwPKubsWig",
+          "mimeType": "image/png",
+          "url": "https://www.datocms-assets.com/95303/1731502614-benq-png.png",
+          "title": null,
+          "alt": null,
+          "height": 120,
+          "width": 420,
+          "responsiveImage": {
+            "src": "https://www.datocms-assets.com/95303/1731502614-benq-png.png?ar64=Mzoy&auto=format&fit=clamp&q=70",
+            "width": 420,
+            "height": 120,
+            "alt": null,
+            "title": null,
+            "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAHCAMAAAAlKX2EAAAAilBMVEUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUbFxUvEgCGAAAALnRSTlMAAQIFBwgJCgsMDQ4PEBESFBUWFxgZGhscHR4fICEiJSYoKywwMjQ4PD0+P0FDMU/kWwAAAGNJREFUeNp1TjsOwlAMy69i4Src/1II1ornxLjdQKoHJ4pjJ2UXqAd7ZoA1tMhM42Chp4Y09/RoKVoiGw2wnlQrBzT/ibqLyJn1gQJkjvBwCS+R6cjS9ERut9rS6/3/Tvd+lC9VA0Gwo0txDwAAAABJRU5ErkJggg==",
+            "sizes": "(max-width: 46.24em) 100vw, 50vw"
+          }
+        },
+        "url": ""
+      }
+    ],
+    "fullOpacity": null
+  },
+  {
+    "id": "cYzf-dpIRBulGzVSsF9UoA",
+    "title": "2009",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "2009",
+    "theme": "LAB09",
+    "image": {
+      "id": "XR2dikLvRdKiOGaWZpVNVA",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1744876440-2009-1.png",
+      "title": null,
+      "alt": null,
+      "height": 600,
+      "width": 897,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744876440-2009-1.png?auto=format",
+        "width": 897,
+        "height": 600,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoUCAgVEwoQDRgQDg0NDhIOGg0OFxcZGBYVIhUaHysjGh0oHSEWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHQ0OHC8oFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABEAGAMBIgACEQEDEQH/xAAaAAEAAgMBAAAAAAAAAAAAAAAABAYDBQcB/8QAHxAAAgIBBAMAAAAAAAAAAAAAAAECAwQFBiEyESIz/8QAFwEAAwEAAAAAAAAAAAAAAAAAAgMFAP/EABgRAAMBAQAAAAAAAAAAAAAAAAABAhIR/9oADAMBAAIRAxEAPwDzbdjb5ZYLciEU/Y5xhapfiSMt+4b3PmRJSopLJvsyxPJfhgq61pzs5YBc0D2TDPuRMjsAPkWRIfQAGYDP/9k=",
+        "sizes": "(max-width: 897px) 100vw, 897px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#FA5403",
+      "red": 250,
+      "green": 84
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "TvYmLgiHTQqI9wVGnFjmeQ",
+    "title": "2007",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "2007",
+    "theme": "Luleå sommarbiennal 2007",
+    "image": {
+      "id": "JXd0M9PkSdGr-ZWR7unQYw",
+      "mimeType": "image/jpeg",
+      "url": "https://www.datocms-assets.com/95303/1744876103-yasam-sasmazer-all-mine.jpg",
+      "title": null,
+      "alt": null,
+      "height": 2304,
+      "width": 2787,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744876103-yasam-sasmazer-all-mine.jpg?auto=format",
+        "width": 2787,
+        "height": 2304,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLFg0TDhAcDQ0VEx0VFg0YFxcZGBYVFhUdISsjGh0oHSEWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBANFS8oFhwvLy8vLy81Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABQAGAMBIgACEQEDEQH/xAAaAAACAgMAAAAAAAAAAAAAAAAABAEFAgMG/8QAHRAAAgMAAgMAAAAAAAAAAAAAAQIAAwQREgUkMf/EABcBAQEBAQAAAAAAAAAAAAAAAAQDBQL/xAAYEQADAQEAAAAAAAAAAAAAAAAAAQIxA//aAAwDAQACEQMRAD8Ap8ltxyEMpmmh7K7i3U/Z0yZ6BlPCiKCrOiliohYtHTlCN27RbX1RDCXXi9WHt1dBCKVIg4QVj1TFSimpuRIhMznpUy8VmqNp5WTCEaiZ/9k=",
+        "sizes": "(max-width: 2787px) 100vw, 2787px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#FB0606",
+      "red": 251,
+      "green": 6
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "XH_Fx40eTmaM0f2i4pfuPQ",
+    "title": "2006",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "2006",
+    "theme": "Luleå vinterbiennal 2006",
+    "image": {
+      "id": "MI-gzE_gTMSLoRcREBc2jA",
+      "mimeType": "image/jpeg",
+      "url": "https://www.datocms-assets.com/95303/1744875959-gardiner.jpg",
+      "title": null,
+      "alt": null,
+      "height": 1867,
+      "width": 2799,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744875959-gardiner.jpg?auto=format",
+        "width": 2799,
+        "height": 1867,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBhUICAgLChYRDhYQGhUZFxUNDREOFxMZGBYVFhUaHysjHR0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OFQ0NGC8oFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABEAGAMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAABQMGBP/EACIQAAEEAQIHAAAAAAAAAAAAAAABAgMFBAYREhMhMTIzNP/EABcBAQEBAQAAAAAAAAAAAAAAAAMBAgD/xAAYEQEAAwEAAAAAAAAAAAAAAAAAAQIiEv/aAAwDAQACEQMRAD8AlU1ry5t0Q6ODU0iT8KISKuojRxRgrGpldEEiLM25Y2ep8hs3YGNtWOdNsjQXTsvbV+RSxvpAFgNmVh7wARYf/9k=",
+        "sizes": "(max-width: 2799px) 100vw, 2799px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#413D7B",
+      "red": 65,
+      "green": 61
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "O60GJIPnR5-f5xzy1tnmUw",
+    "title": "2005",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "2005",
+    "theme": "Luleå sommarbiennal 2005",
+    "image": {
+      "id": "GQXeKAjIRR-5WHc94x_HGA",
+      "mimeType": "image/jpeg",
+      "url": "https://www.datocms-assets.com/95303/1774439347-virtuall-wall2.jpg",
+      "title": "“Virtual Wall” av PBild ur Luleåbiennalens arkiv. “Virtual Wall” av Patricia del Canto, Luleå Sommarbiennal 2005.atricia del Canto, en del av Luleåbiennalen 2005.",
+      "alt": null,
+      "height": 1333,
+      "width": 2000,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1774439347-virtuall-wall2.jpg?auto=format",
+        "width": 2000,
+        "height": 1333,
+        "alt": null,
+        "title": "“Virtual Wall” av PBild ur Luleåbiennalens arkiv. “Virtual Wall” av Patricia del Canto, Luleå Sommarbiennal 2005.atricia del Canto, en del av Luleåbiennalen 2005.",
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLEwsVDhgRCxUWDhcNDQ4NFxoZGCIVIhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OFRANHS8cFh0vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABAAGAMBIgACEQEDEQH/xAAXAAADAQAAAAAAAAAAAAAAAAAABQYH/8QAHhAAAQUAAgMAAAAAAAAAAAAAAQACAwQFERIVISL/xAAWAQADAAAAAAAAAAAAAAAAAAAAAQP/xAAZEQADAAMAAAAAAAAAAAAAAAAAAQIEEhX/2gAMAwEAAhEDEQA/AE+Ro0a9kdiqjzeYXAlwWc1ooZJeQU0jpxucPoqSzKQnMlja38sjjsEKRdnQF3txQjoUGsn/2Q==",
+        "sizes": "(max-width: 2000px) 100vw, 2000px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#FA4303",
+      "red": 250,
+      "green": 67
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "QCuJ3tRUTsS4LOc_BQDELQ",
+    "title": "2004",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "2004",
+    "theme": "Luleå vinterbiennal 2004",
+    "image": {
+      "id": "Nnt-8gW8RmWb5JZwn3ISQg",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1744876826-cornelia-conrads-pc-8-edited.png",
+      "title": null,
+      "alt": null,
+      "height": 1605,
+      "width": 2114,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744876826-cornelia-conrads-pc-8-edited.png?auto=format",
+        "width": 2114,
+        "height": 1605,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoIDQgPDQ8PDhgODg0NDhENDQcSFxUZGCITFhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBAQHC8cFhwvLy8vLy81Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABMAGAMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAABAUG/8QAHRAAAQQDAQEAAAAAAAAAAAAAAAEDBBECBTEhE//EABgBAAIDAAAAAAAAAAAAAAAAAAIEAQMF/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAECAxL/2gAMAwEAAhEDEQA/AOGlRGlzRbK48FvNtPTPkLlV2X61xVb6PZVKFbllEzXt4xk9BNtZmWLdWCx6SByzMkqvz6VaxV+fQDOgcsn2qrXQASwT/9k=",
+        "sizes": "(max-width: 2114px) 100vw, 2114px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#60788B",
+      "red": 96,
+      "green": 120
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "W8FHOduSSpeO4hqt86j-Rg",
+    "title": "2003",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "2003",
+    "theme": "Luleå sommarbiennal 2003",
+    "image": {
+      "id": "NwehD11aTa-2COhSshlHCg",
+      "mimeType": "image/jpeg",
+      "url": "https://www.datocms-assets.com/95303/1744875417-dam-pa-strand.jpg",
+      "title": null,
+      "alt": null,
+      "height": 930,
+      "width": 1240,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744875417-dam-pa-strand.jpg?auto=format",
+        "width": 1240,
+        "height": 930,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoRDwgLDhILDBIPBQ0LGSQNDg0YFxUZGBYVFhUdHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQ0OHA8QHDcoFh0vNS8vLy81Ly8vLy8vLzUvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAZAAACAwEAAAAAAAAAAAAAAAAABAECAwX/xAAdEAACAgIDAQAAAAAAAAAAAAAAAQIEAzIUIjMR/8QAGAEAAgMAAAAAAAAAAAAAAAAAAwYBAgT/xAAaEQACAwEBAAAAAAAAAAAAAAAABAMRMQIB/9oADAMBAAIRAxEAPwDoOjV+7ItKjTUdkLcWbezKZKuVtd2HkeWsy8KzUO8Cm47IgyVHIsS7Mkt4+tQHpOezaJWe6ABcl0YI8GpeKAAI8wF1p//Z",
+        "sizes": "(max-width: 1240px) 100vw, 1240px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#F73D08",
+      "red": 247,
+      "green": 61
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "X9piQk3uQIOLKabgZvRhiA",
+    "title": "2002",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "2002",
+    "theme": "Luleå vinterbiennal 2002",
+    "image": {
+      "id": "I9QXCGA2Q6SZ_g9cHNyHdg",
+      "mimeType": "image/jpeg",
+      "url": "https://www.datocms-assets.com/95303/1744875354-kemal-i-vaken.jpg",
+      "title": null,
+      "alt": null,
+      "height": 930,
+      "width": 1240,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744875354-kemal-i-vaken.jpg?auto=format",
+        "width": 1240,
+        "height": 930,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLEBUSFRUQDg0XEx0VDQ8YFxUZGBYVFhUdHysjGh0oHRUWJTUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHQsNHS8eIhw7Ly8vLy8vLy8vLzUvPC8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAZAAACAwEAAAAAAAAAAAAAAAAABgEDBQL/xAAgEAABAwMFAQAAAAAAAAAAAAAAAQIEAwURBhIUMzQV/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIEA//EABkRAAMBAQEAAAAAAAAAAAAAAAABAhExA//aAAwDAQACEQMRAD8ATYml6PKyrjTj2OI2Ztc9BW+9JoysKqnLLzJfPR29TWnIkS8Gm4abgcjKvQgWp10k1KyYqKAyaA4emZO9pFH1ISBNRR5llfvAAGQH0//Z",
+        "sizes": "(max-width: 1240px) 100vw, 1240px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#4968A7",
+      "red": 73,
+      "green": 104
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "KVoj4uaJR0Wg70iP9ox3ZA",
+    "title": "2000",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "2000",
+    "theme": "Luleå vinterbiennal 2000",
+    "image": {
+      "id": "bXUS8_CnTH-IlHwT6Rn3Rw",
+      "mimeType": "image/tiff",
+      "url": "https://www.datocms-assets.com/95303/1744874464-2000-1.tiff",
+      "title": null,
+      "alt": null,
+      "height": 2480,
+      "width": 2717,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744874464-2000-1.tiff?auto=format",
+        "width": 2717,
+        "height": 2480,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgVFBULDhUVDhYVFRURFBcVFxUcGBYfGBUmHyslGh0oKRUiJDUlKC0vMjIyGSU4PTcwPCsxMi8BCgsLDg0OHBAQHDsoIig7OzU7Ozs7OzU1Ly81OzY2NS8vNTAvLy8vLzUvNS81LzUvLy8vLzUvLy8vLy8vLy8vL//AABEIABYAGAMBIgACEQEDEQH/xAAYAAEAAwEAAAAAAAAAAAAAAAAABAUHBv/EAB8QAAICAgEFAAAAAAAAAAAAAAIDAAEEBRIRMVFhcf/EABcBAQEBAQAAAAAAAAAAAAAAAAQDBQL/xAAbEQEBAAIDAQAAAAAAAAAAAAABAgADBBEhMf/aAAwDAQACEQMRAD8Ax5aDaygqu8u2aAqxKP1IWuLllD9naZRDWtqq8QnI3UV5mhxtE1KrmeuTaS43EnZ6epWURMWs4K4JpMgpeaW0Qy3ft3kihiJxtBo7yuhQesq8jKNtdLiIlfhh31z/2Q==",
+        "sizes": "(max-width: 2717px) 100vw, 2717px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#37C9D0",
+      "red": 55,
+      "green": 201
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "QASFQfT7SRahhmFxFyP90Q",
+    "title": "1998",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "1998",
+    "theme": "ARcTic Festival Luleå 1998",
+    "image": {
+      "id": "eyRRtKzgSpypr-SKH6Xnlg",
+      "mimeType": "image/tiff",
+      "url": "https://www.datocms-assets.com/95303/1744874354-archangelsk.tiff",
+      "title": null,
+      "alt": null,
+      "height": 1810,
+      "width": 3071,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744874354-archangelsk.tiff?auto=format",
+        "width": 3071,
+        "height": 1810,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLCgoLDhgQFw0VGhENDREeFx8ZGBYfHhUaHysjHSkoKRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBAQHS8oIhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAA8AGAMBIgACEQEDEQH/xAAYAAACAwAAAAAAAAAAAAAAAAAABgIFB//EABwQAAEEAwEAAAAAAAAAAAAAAAIAAQMEBQYREv/EABYBAQEBAAAAAAAAAAAAAAAAAAMCAf/EABcRAQEBAQAAAAAAAAAAAAAAAAIBABH/2gAMAwEAAhEDEQA/AMxx2ICwfki66aMFrEUNr0Tpaw8pjdZuptC7JHOLM6Bq4Erq7aqEME3eoUdmjOwLE5IVxXm2Lf/Z",
+        "sizes": "(max-width: 3071px) 100vw, 3071px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#A8CBE8",
+      "red": 168,
+      "green": 203
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "bWLEqAF8QKStg9eb3Q2l7Q",
+    "title": "1996",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "1996",
+    "theme": "ARcTic Festival Luleå 1996",
+    "image": {
+      "id": "bh0Bz3WXTsKiEKG02KLm-g",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1744874710-1996-x.png",
+      "title": "Risto Immonen & Teuvo Tuomivaara, ARcTic Festival Luleå 1996 . Foto: Kilen Art Group.",
+      "alt": null,
+      "height": 930,
+      "width": 783,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744874710-1996-x.png?auto=format",
+        "width": 783,
+        "height": 930,
+        "alt": null,
+        "title": "Risto Immonen & Teuvo Tuomivaara, ARcTic Festival Luleå 1996 . Foto: Kilen Art Group.",
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLFQoXDhoQFQ0XDhgVFQ4RHR8eHRYVFhYaHysjGh0oHRUiJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHA4QHDscFhw7Oy8vLy81Ly8vLy8vNTUvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABgAFAMBIgACEQEDEQH/xAAZAAEAAwEBAAAAAAAAAAAAAAAABAUHBgH/xAAhEAABBAEDBQAAAAAAAAAAAAABAAIDBUEEERITFTEyUf/EABcBAQADAAAAAAAAAAAAAAAAAAQBAwX/xAAbEQACAwADAAAAAAAAAAAAAAAAAQIEEgMRE//aAAwDAQACEQMRAD8Aj10kpoHADCr9G7U9QDifZdLSMiNO5p28KC4sgmHFuUWUnoTw1k+M0ajOo7TDu3CLynsy2siHDCJG2CdVGS09lK3TcN1cwsEpa531EUTitGlXk/M0GrjiFfGNsIiK3KDNvs//2Q==",
+        "sizes": "(max-width: 783px) 100vw, 783px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#A2A3B5",
+      "red": 162,
+      "green": 163
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "AMg3C8FsRAOdMxtfdZpVKg",
+    "title": "1994",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "1994",
+    "theme": "ARcTic Festival Luleå 1994",
+    "image": {
+      "id": "48407109",
+      "mimeType": "image/jpeg",
+      "url": "https://www.datocms-assets.com/95303/1685103259-skridskodrom.jpg",
+      "title": "Fotodokumentation från multikonstföreställningen 'Eldens Dröm', Luleå ARcTic Festival, 1996. Foto: Kilen Art Group",
+      "alt": null,
+      "height": 1664,
+      "width": 2248,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1685103259-skridskodrom.jpg?auto=format",
+        "width": 2248,
+        "height": 1664,
+        "alt": null,
+        "title": "Fotodokumentation från multikonstföreställningen 'Eldens Dröm', Luleå ARcTic Festival, 1996. Foto: Kilen Art Group",
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLFQoXDhgcFg0RDh0NFhUNFxkZGBYfFiEiHy0vHR0oHSEWJDUlKC0vMjIyHSI4PTcwPCsxMi8BCgsLDg0OGRAQHDsoIiAvLy8vLy87Ly8vLy8vLy8vLy8vLzU1Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABIAGAMBIgACEQEDEQH/xAAZAAADAAMAAAAAAAAAAAAAAAAABgcBAgX/xAAkEAABAgQGAwEAAAAAAAAAAAACAAEDBAURBhMhIjFRFBWREv/EABYBAQEBAAAAAAAAAAAAAAAAAAQDAP/EABkRAAMBAQEAAAAAAAAAAAAAAAACAwFBFP/aAAwDAQACEQMRAD8AmUhTYE1d9VqVHhvNZYm9rq1SeBaNKSxE0QeEvwsPUx6u7NEG10drsXnJN6ITYYG7akhWOFQaX+mZzFCl6GE5BDnxTPxD3Fx2lGTMvbFufntYQswOQyQzLNbc/wBQhCiNw//Z",
+        "sizes": "(max-width: 2248px) 100vw, 2248px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#F84203",
+      "red": 248,
+      "green": 66
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "BmnsIUs6SES-olKIRN5XNA",
+    "title": "1992",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "1992",
+    "theme": "ARcTic Festival Luleå 1992",
+    "image": {
+      "id": "P5eBHkcWQJG-ZV7NGLlgMg",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1744804666-1992-12-edited.png",
+      "title": null,
+      "alt": null,
+      "height": 1537,
+      "width": 1946,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744804666-1992-12-edited.png?auto=format",
+        "width": 1946,
+        "height": 1537,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAgLERUVDhgQFRkRDhYPDQ0NFx8ZGBYTFiEmICsjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQUFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABMAGAMBIgACEQEDEQH/xAAZAAACAwEAAAAAAAAAAAAAAAAABAEFBgP/xAAkEAABBAECBgMAAAAAAAAAAAADAAECBAVBURETIjGRoRIUIf/EABUBAQEAAAAAAAAAAAAAAAAAAAAC/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8Awt2x9MkeEdVp6OZK1CEmi6qctV53xmwX77K7pMMeHZpC02UqNX7R8ni2i0XQncIccwPFxelKBstUD1v0UfCCVxNjX4DipQg7YAI+W/QyEIQf/9k=",
+        "sizes": "(max-width: 1946px) 100vw, 1946px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#26B1D8",
+      "red": 38,
+      "green": 177
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  },
+  {
+    "id": "c6LMra3-Qsy92RbQV_gflA",
+    "title": "1991",
+    "participantName": "Konstnärer",
+    "introExhibitions": "",
+    "slug": "1991",
+    "theme": "ARcTic Festival Luleå 1991",
+    "image": {
+      "id": "FDxtQUOOSO2j3T-gUPGT3Q",
+      "mimeType": "image/png",
+      "url": "https://www.datocms-assets.com/95303/1744805037-1991-1-edited.png",
+      "title": null,
+      "alt": null,
+      "height": 533,
+      "width": 877,
+      "responsiveImage": {
+        "src": "https://www.datocms-assets.com/95303/1744805037-1991-1-edited.png?auto=format",
+        "width": 877,
+        "height": 533,
+        "alt": null,
+        "title": null,
+        "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoQDggLDQ0NDRENDg0NDxENFg4NFxUZGBYfIhUaHysjHR0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLDg0OHBAQHC8dFhw7Ly8vLy81Ly8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIAA8AGAMBIgACEQEDEQH/xAAXAAEAAwAAAAAAAAAAAAAAAAAFAAME/8QAHBAAAwACAwEAAAAAAAAAAAAAAAEEERIDITEC/8QAFAEBAAAAAAAAAAAAAAAAAAAAA//EABkRAAIDAQAAAAAAAAAAAAAAAAACAxEhAf/aAAwDAQACEQMRAD8AagneBJ8D1KY+kIfLWgMjcseFcBa52yGqrkw/CDK/KAePT//Z",
+        "sizes": "(max-width: 877px) 100vw, 877px"
+      }
+    },
+    "imageEn": null,
+    "color": {
+      "hex": "#F6CB7F",
+      "red": 246,
+      "green": 203
+    },
+    "backgroundColor": {
+      "hex": "#ECECEC",
+      "red": 236,
+      "green": 236
+    },
+    "background": [],
+    "loadingImage": [],
+    "fundedBy": [],
+    "fullOpacity": null
+  }
+]

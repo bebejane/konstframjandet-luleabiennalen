@@ -1,12 +1,17 @@
 import s from './ArchiveShortcuts.module.scss';
-import React from 'react';
 import { Image } from 'react-datocms';
-import Link from '/components/nav/Link';
-import { recordToSlug } from '/lib/utils';
 import { useTranslations } from 'next-intl';
+import { getRoute } from '@/datocms.config';
+import { Link } from '@/i18n/routing';
 
 export type Props = {
-	items: (ParticipantRecord | PartnerRecord | ProgramRecord | ExhibitionRecord | AboutRecord)[];
+	items: (
+		| ArchiveHomeQuery['allAbouts'][number]
+		| ArchiveHomeQuery['allExhibitions'][number]
+		| ArchiveHomeQuery['allParticipants'][number]
+		| ArchiveHomeQuery['allPartners'][number]
+		| ArchiveHomeQuery['allPrograms'][number]
+	)[];
 };
 
 export default function ArchiveShortcuts({ items }: Props) {
@@ -19,7 +24,7 @@ export default function ArchiveShortcuts({ items }: Props) {
 			<ul>
 				{items.map((item, idx) => (
 					<li key={item.id}>
-						<Link href={recordToSlug(items[idx]).split('/').slice(0, -1).join('/')}>
+						<Link href={getRoute(item)}>
 							<figure>
 								{item.image?.responsiveImage && <Image data={item.image.responsiveImage} />}
 								<div className={s.border}></div>
@@ -28,14 +33,14 @@ export default function ArchiveShortcuts({ items }: Props) {
 								{item.__typename === 'ParticipantRecord'
 									? t('participants')
 									: item.__typename === 'PartnerRecord'
-									? t('partners')
-									: item.__typename === 'ProgramRecord'
-									? t('program')
-									: item.__typename === 'ExhibitionRecord'
-									? t('exhibitions')
-									: item.__typename === 'AboutRecord'
-									? t('about')
-									: null}
+										? t('partners')
+										: item.__typename === 'ProgramRecord'
+											? t('program')
+											: item.__typename === 'ExhibitionRecord'
+												? t('exhibitions')
+												: item.__typename === 'AboutRecord'
+													? t('about')
+													: null}
 							</figcaption>
 						</Link>
 					</li>

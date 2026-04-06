@@ -10,6 +10,5 @@ TODO
 *.code-workspace
 /package-lock.json
 .vercel
-
+TODO.md
 .mailing
-sitemap*

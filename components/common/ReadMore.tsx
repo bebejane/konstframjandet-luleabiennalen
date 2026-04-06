@@ -1,6 +1,5 @@
-import styles from './ReadMore.module.scss'
-import cn from 'classnames'
-import Link from '/components/nav/Link'
+import s from './ReadMore.module.scss'
+import { Link } from '@/i18n/routing'
 
 type Props = {
   message?: string
@@ -17,7 +16,7 @@ export default function ReadMore({ message, link, invert = false, regional, exte
   return (
     <Link
       href={link}
-      className={cn(styles.more)}
+      className={s.more}
     >
       {message}
     </Link>

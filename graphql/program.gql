@@ -1,13 +1,14 @@
-query AllPrograms($locale: SiteLocale, $yearId: ItemId) {
-	programs: allPrograms(
+query AllPrograms($locale: SiteLocale, $yearId: ItemId, $first: IntType = 100, $skip: IntType = 0) {
+	allPrograms(
 		filter: { year: { eq: $yearId } }
 		locale: $locale
 		orderBy: [startDate_ASC, startTime_ASC]
-		first: 100
+		first: $first
+		skip: $skip
 	) {
 		...ProgramFragmentLight
 	}
-	pagination: _allProgramsMeta(locale: $locale) {
+	_allProgramsMeta(locale: $locale, filter: { year: { eq: $yearId } }) {
 		count
 	}
 }
@@ -19,9 +20,224 @@ query Program($slug: String!, $locale: SiteLocale) {
 }
 
 query AllProgramCategories($locale: SiteLocale) {
-	programCategories: allProgramCategories(locale: $locale, orderBy: title_ASC, first: 100) {
+	allProgramCategories(locale: $locale, orderBy: title_ASC, first: 500) {
 		id
 		title
 		desc
 	}
+}
+
+fragment ProgramFragment on ProgramRecord {
+	__typename
+	_modelApiKey
+	_editingUrl
+	id
+	title
+	startDate
+	endDate
+	time
+	address
+	image {
+		...ImageFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	thumb: image {
+		...ImageThumbnailFragment
+	}
+	thumbEn: imageEn {
+		...ImageThumbnailFragment
+	}
+	intro(markdown: false)
+	misc
+	location {
+		...LocationFragmentLight
+	}
+	partipants {
+		...ParticipantFragmentLight
+	}
+	partner {
+		__typename
+		... on PartnerRecord {
+			...PartnerFragmentLight
+		}
+		... on FinancierRecord {
+			...FinancierFragmentLight
+		}
+	}
+	supportedBy {
+		id
+		name
+		image {
+			...ImageThumbnailFragment
+		}
+	}
+	location {
+		...LocationFragmentLight
+	}
+	programCategory {
+		id
+		title
+	}
+
+	programPlace {
+		id
+		title
+	}
+	_allSlugLocales {
+		locale
+		value
+	}
+	externalLink
+	content {
+		value
+		blocks {
+			__typename
+			... on ImageRecord {
+				__typename
+				id
+				layout
+				image {
+					...ImageFragment
+				}
+			}
+			... on ImageGalleryRecord {
+				__typename
+				id
+				images {
+					...ImageThumbnailFragment
+				}
+			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
+				}
+			}
+			... on ButtonRecord {
+				__typename
+				id
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						title
+						record {
+							__typename
+
+							... on AboutRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+								year {
+									title
+								}
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+						}
+					}
+				}
+			}
+			... on VideoRecord {
+				__typename
+				id
+				title
+				video {
+					height
+					width
+					title
+					provider
+					providerUid
+					thumbnailUrl
+					url
+				}
+			}
+			... on RecordInterface {
+				__typename
+				id
+			}
+		}
+	}
+	slug
+	_seoMetaTags {
+		...SeoMetaTagsFragment
+	}
+}
+
+fragment ProgramFragmentLight on ProgramRecord {
+	__typename
+	_modelApiKey
+	_editingUrl
+	id
+	title
+	startDate
+	endDate
+	intro(markdown: false)
+	time
+	image {
+		...ImageThumbnailFragment
+	}
+	imageEn {
+		...ImageThumbnailFragment
+	}
+	location {
+		...LocationFragmentLight
+	}
+	programCategory {
+		id
+		title
+	}
+	programPlace {
+		id
+		title
+	}
+	year {
+		...YearFragmentLight
+	}
+	slug
 }

@@ -1,5 +1,6 @@
 query General($locale: SiteLocale) {
 	general(locale: $locale) {
+		__typename
 		id
 		facebook
 		instagram

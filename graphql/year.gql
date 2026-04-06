@@ -1,16 +1,88 @@
-query AllYears($locale: SiteLocale, $year: String) {
-	years: allYears(
+query AllYears($locale: SiteLocale, $year: String, $first: IntType = 100, $skip: IntType = 0) {
+	allYears(
 		filter: { title: { neq: $year } }
 		locale: $locale
-		first: 100
+		first: $first
+		skip: $skip
 		orderBy: title_DESC
 	) {
 		...YearFragment
+	}
+	_allYearsMeta(locale: $locale, filter: { title: { neq: $year } }) {
+		count
 	}
 }
 
 query Year($title: String!, $locale: SiteLocale) {
 	year(filter: { title: { eq: $title } }, locale: $locale) {
 		...YearFragment
+	}
+}
+
+fragment YearFragment on YearRecord {
+	__typename
+	_editingUrl
+	id
+	title
+	participantName
+	introExhibitions(markdown: false)
+	slug
+	theme
+	image {
+		...ImageFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	color {
+		hex
+		red
+		green
+		red
+	}
+	backgroundColor {
+		hex
+		red
+		green
+		red
+	}
+	background {
+		...ImageFragment
+	}
+	loadingImage {
+		...ImageThumbnailFragment
+	}
+	fundedBy {
+		id
+		logo {
+			...ImageMediumFragment
+		}
+		url
+	}
+	fullOpacity
+}
+
+fragment YearFragmentLight on YearRecord {
+	__typename
+	_editingUrl
+	id
+	title
+	participantName
+	slug
+	theme
+	image {
+		...ImageThumbnailFragment
+	}
+	color {
+		hex
+		red
+		green
+		red
+	}
+	backgroundColor {
+		hex
+		red
+		green
+		red
 	}
 }

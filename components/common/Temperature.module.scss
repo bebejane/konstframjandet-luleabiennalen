@@ -1,0 +1,11 @@
+.temperature {
+	display: block;
+	line-height: 1;
+	text-transform: capitalize;
+	padding-bottom: var(--header-height);
+
+	@include mq($until: tablet) {
+		padding-top: 1.5em;
+		padding-bottom: calc(var(--header-height) - 1.5em);
+	}
+}

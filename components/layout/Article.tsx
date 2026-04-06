@@ -1,37 +1,35 @@
+'use client';
+
 import s from './Article.module.scss';
 import cn from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
-import { MetaSection, StructuredContent } from '/components';
-import { MetaSectionProps } from '/components/common/MetaSection';
+import { MetaSection, Content } from '@/components';
+import { MetaSectionProps } from '@/components/common/MetaSection';
 import { Image } from 'react-datocms';
-import { useScrollInfo } from 'dato-nextjs-utils/hooks';
-import { DatoSEO } from 'dato-nextjs-utils/components';
-import useStore from '/lib/store';
-import format from 'date-fns/format';
-import { useRouter } from 'next/router';
-import { useTranslations } from 'next-intl';
-import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
-import useDevice from '/lib/hooks/useDevice';
+import { useScrollInfo } from 'next-dato-utils/hooks';
+import { useStore, useShallow } from '@/lib/store';
+import { format } from 'date-fns';
+import { useLocale, useTranslations } from 'next-intl';
+import { Markdown } from 'next-dato-utils/components';
+import useDevice from '@/lib/hooks/useDevice';
 import BalanceText from 'react-balance-text';
+import { usePathname } from '@/i18n/routing';
 
 export type ArticleProps = {
 	id: string;
 	children?: React.ReactNode | React.ReactNode[] | undefined;
-	title?: string;
-	subtitle?: string;
-	intro?: string;
-	image?: FileField;
-	imageEn?: FileField;
+	title?: string | null;
+	subtitle?: string | null;
+	intro?: string | null;
+	image?: FileField | null;
+	imageEn?: FileField | null;
 	imageSize?: 'small' | 'medium' | 'large';
 	content?: any;
-	onClick?: (id: string) => void;
-	record?: any;
 	date?: string;
 	meta?: MetaSectionProps['items'];
 };
 
 export default function Article({
-	id,
 	children,
 	title,
 	content,
@@ -40,12 +38,14 @@ export default function Article({
 	imageSize,
 	intro,
 	date,
-	record,
 	meta,
 }: ArticleProps) {
-	const { asPath, locale } = useRouter();
+	const locale = useLocale();
+	const pathname = usePathname();
 	const t = useTranslations();
-	const [setImageId, setImages] = useStore((state) => [state.setImageId, state.setImages]);
+	const [setImageId, setImages] = useStore(
+		useShallow((state) => [state.setImageId, state.setImages]),
+	);
 	const { scrolledPosition, viewportHeight } = useScrollInfo();
 	const captionRef = useRef<HTMLElement | null>(null);
 	const figureRef = useRef<HTMLElement | null>(null);
@@ -54,36 +54,43 @@ export default function Article({
 	const ratio = !isDesktop
 		? 0
 		: offset
-		? Math.max(
-				0,
-				Math.min(1, (scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) / viewportHeight)
-		  )
-		: 0;
+			? Math.max(
+					0,
+					Math.min(
+						1,
+						(scrolledPosition - (offset > viewportHeight ? offset - viewportHeight + 100 : 0)) /
+							viewportHeight,
+					),
+				)
+			: 0;
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
 
 	useEffect(() => {
 		const images = [image];
-		content?.blocks.forEach((el) => {
+		content?.blocks.forEach((el: any) => {
 			el.__typename === 'ImageRecord' && images.push(el.image);
 			el.__typename === 'ImageGalleryRecord' && images.push.apply(images, el.images);
 		});
-		setImages(images.filter((el) => el));
+		setImages(images.filter((el) => el) as FileField[]);
 	}, []);
 
 	useEffect(() => {
 		setOffset(captionRef?.current?.offsetTop ?? 0);
-	}, [asPath, viewportHeight]);
+	}, [pathname, viewportHeight]);
 
 	return (
 		<>
-			<DatoSEO title={title} />
 			<div className={cn(s.article, 'article')}>
 				<h1>
 					<BalanceText>{title}</BalanceText>
 				</h1>
 				{image?.responsiveImage && (
 					<figure
-						className={cn(s.mainImage, imageSize && s[imageSize], image.height > image.width && s.portrait)}
+						className={cn(
+							s.mainImage,
+							imageSize && s[imageSize],
+							image.height > image.width && s.portrait,
+						)}
 						onClick={() => setImageId(image?.id)}
 						ref={figureRef}
 					>
@@ -116,12 +123,12 @@ export default function Article({
 							<span>{format(new Date(date), 'dd').replace('.', '')}</span>
 						</div>
 					)}
-					<Markdown className={s.intro}>{intro}</Markdown>
+					<Markdown className={s.intro} content={intro} />
 				</section>
 				{content && (
 					<>
 						<div className='structured'>
-							<StructuredContent id={id} record={record} content={content} onClick={(imageId) => setImageId(imageId)} />
+							<Content content={content} />
 						</div>
 					</>
 				)}

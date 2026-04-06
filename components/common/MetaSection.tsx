@@ -1,5 +1,5 @@
+import { Link } from '@/i18n/routing';
 import s from './MetaSection.module.scss';
-import Link from '/components/nav/Link';
 
 export type MetaSectionProps = {
 	items: {

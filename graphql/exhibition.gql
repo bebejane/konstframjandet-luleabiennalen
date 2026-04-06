@@ -1,8 +1,13 @@
-query AllExhibitions($locale: SiteLocale, $yearId: ItemId) {
-	exhibitions: allExhibitions(filter: { year: { eq: $yearId } }, locale: $locale, first: 100) {
+query AllExhibitions(
+	$locale: SiteLocale
+	$yearId: ItemId
+	$first: IntType = 100
+	$skip: IntType = 0
+) {
+	allExhibitions(filter: { year: { eq: $yearId } }, locale: $locale, first: $first, skip: $skip) {
 		...ExhibitionFragmentLight
 	}
-	pagination: _allExhibitionsMeta(locale: $locale) {
+	_allExhibitionsMeta(locale: $locale, filter: { year: { eq: $yearId } }) {
 		count
 	}
 }
@@ -10,5 +15,191 @@ query AllExhibitions($locale: SiteLocale, $yearId: ItemId) {
 query Exhibition($slug: String!, $locale: SiteLocale) {
 	exhibition(filter: { slug: { eq: $slug } }, locale: $locale) {
 		...ExhibitionFragment
+	}
+}
+
+fragment ExhibitionFragment on ExhibitionRecord {
+	__typename
+	_modelApiKey
+	_editingUrl
+	id
+	title
+	startDate
+	endDate
+	time
+	image {
+		...ImageFragment
+	}
+	thumb: image {
+		...ImageThumbnailFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	thumbEn: imageEn {
+		...ImageThumbnailFragment
+	}
+	intro(markdown: false)
+	misc
+	participants {
+		...ParticipantFragmentLight
+	}
+	location {
+		...LocationFragmentLight
+	}
+	partner {
+		__typename
+		... on PartnerRecord {
+			...PartnerFragmentLight
+		}
+		... on FinancierRecord {
+			...FinancierFragmentLight
+		}
+	}
+	slug
+	_allSlugLocales {
+		locale
+		value
+	}
+	externalLink
+	content {
+		value
+		blocks {
+			__typename
+			... on ImageRecord {
+				__typename
+				id
+				layout
+				image {
+					...ImageFragment
+				}
+			}
+			... on ImageGalleryRecord {
+				__typename
+				id
+				images {
+					...ImageThumbnailFragment
+				}
+			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
+				}
+			}
+			... on ButtonRecord {
+				__typename
+				id
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						title
+						record {
+							__typename
+
+							... on AboutRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+								year {
+									title
+								}
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+						}
+					}
+				}
+			}
+			... on VideoRecord {
+				__typename
+				id
+				title
+				video {
+					height
+					width
+					title
+					provider
+					providerUid
+					thumbnailUrl
+					url
+				}
+			}
+			... on RecordInterface {
+				__typename
+				id
+			}
+		}
+	}
+	_seoMetaTags {
+		...SeoMetaTagsFragment
+	}
+}
+
+fragment ExhibitionFragmentLight on ExhibitionRecord {
+	__typename
+	_modelApiKey
+	_editingUrl
+	id
+	title
+	startDate
+	endDate
+	time
+	image {
+		...ImageThumbnailFragment
+	}
+	slug
+}
+
+fragment FinancierFragmentLight on FinancierRecord {
+	__typename
+	id
+	name
+	image {
+		...ImageFragment
 	}
 }

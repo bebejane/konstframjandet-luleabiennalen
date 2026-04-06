@@ -1,5 +1,7 @@
 query Start($locale: SiteLocale) {
 	start(locale: $locale) {
+		__typename
+		_editingUrl
 		id
 		content {
 			__typename
@@ -10,6 +12,7 @@ query Start($locale: SiteLocale) {
 				text
 				link {
 					__typename
+
 					... on ExternalLinkRecord {
 						__typename
 						id
@@ -21,20 +24,32 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
+
+							__typename
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -45,11 +60,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}
@@ -97,20 +118,31 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -121,11 +153,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}
@@ -152,20 +190,31 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -176,11 +225,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}
@@ -218,20 +273,31 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -242,11 +308,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}
@@ -273,20 +345,31 @@ query Start($locale: SiteLocale) {
 						id
 						title
 						record {
+							__typename
+
 							... on AboutRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on ExhibitionRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on LocationRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 							... on NewsRecord {
 								id
@@ -297,11 +380,17 @@ query Start($locale: SiteLocale) {
 								id
 								slug
 								name
+								year {
+									title
+								}
 							}
 							... on ProgramRecord {
 								id
 								slug
 								title
+								year {
+									title
+								}
 							}
 						}
 					}
@@ -318,10 +407,10 @@ query StartData(
 	$yearId: ItemId
 	$locale: SiteLocale
 ) {
-	news: allNews(locale: $locale, first: $newsItems, orderBy: _createdAt_DESC) {
+	allNews(locale: $locale, first: $newsItems, orderBy: _createdAt_DESC) {
 		...NewsFragmentLight
 	}
-	programs: allPrograms(
+	allPrograms(
 		filter: { startDate: { gte: $date }, year: { eq: $yearId } }
 		locale: $locale
 		first: $programItems
@@ -329,7 +418,7 @@ query StartData(
 	) {
 		...ProgramFragmentLight
 	}
-	participants: allParticipants(
+	allParticipants(
 		filter: { year: { eq: $yearId } }
 		first: 100
 		orderBy: _createdAt_DESC

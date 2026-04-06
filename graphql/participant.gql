@@ -1,13 +1,19 @@
-query AllParticipants($locale: SiteLocale, $yearId: ItemId) {
-	participants: allParticipants(
+query AllParticipants(
+	$locale: SiteLocale
+	$yearId: ItemId
+	$first: IntType = 100
+	$skip: IntType = 0
+) {
+	allParticipants(
 		filter: { year: { eq: $yearId } }
 		locale: $locale
-		first: 100
+		first: $first
+		skip: $skip
 		orderBy: name_ASC
 	) {
 		...ParticipantFragmentLight
 	}
-	pagination: _allParticipantsMeta(locale: $locale) {
+	_allParticipantsMeta(locale: $locale, filter: { year: { eq: $yearId } }) {
 		count
 	}
 }
@@ -16,4 +22,171 @@ query Participant($slug: String, $locale: SiteLocale) {
 	participant(filter: { slug: { eq: $slug } }, locale: $locale) {
 		...ParticipantFragment
 	}
+}
+
+fragment ParticipantFragment on ParticipantRecord {
+	__typename
+	_createdAt
+	_editingUrl
+	id
+	name
+	intro(markdown: false)
+	slug
+	_allSlugLocales {
+		locale
+		value
+	}
+	image {
+		...ImageFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	year {
+		...YearFragment
+	}
+	exhibitions: _allReferencingExhibitions(first: 100) {
+		...ExhibitionFragmentLight
+	}
+	programs: _allReferencingPrograms(first: 100) {
+		...ProgramFragmentLight
+	}
+	colab {
+		...PartnerFragment
+	}
+	content {
+		value
+		blocks {
+			__typename
+			... on ImageRecord {
+				__typename
+				id
+				layout
+				image {
+					...ImageFragment
+				}
+			}
+			... on ImageGalleryRecord {
+				__typename
+				id
+				images {
+					...ImageThumbnailFragment
+				}
+			}
+			... on LogoTypeRecord {
+				__typename
+				id
+				logotypes {
+					...ImageFragment
+				}
+			}
+			... on ButtonRecord {
+				__typename
+				id
+				link {
+					__typename
+					... on ExternalLinkRecord {
+						__typename
+						id
+						title
+						url
+					}
+					... on InternalLinkRecord {
+						__typename
+						id
+						title
+						record {
+							__typename
+
+							... on AboutRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on ExhibitionRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on LocationRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+							... on NewsRecord {
+								id
+								slug
+								title
+							}
+							... on ParticipantRecord {
+								id
+								slug
+								name
+								year {
+									title
+								}
+							}
+							... on ProgramRecord {
+								id
+								slug
+								title
+								year {
+									title
+								}
+							}
+						}
+					}
+				}
+			}
+			... on VideoRecord {
+				__typename
+				id
+				title
+				video {
+					height
+					width
+					title
+					provider
+					providerUid
+					thumbnailUrl
+					url
+				}
+			}
+			... on RecordInterface {
+				__typename
+				id
+			}
+		}
+	}
+	_seoMetaTags {
+		...SeoMetaTagsFragment
+	}
+}
+
+fragment ParticipantFragmentLight on ParticipantRecord {
+	__typename
+	_editingUrl
+	id
+	name
+	intro(markdown: false)
+	image {
+		...ImageThumbnailFragment
+	}
+	imageEn {
+		...ImageFragment
+	}
+	year {
+		...YearFragment
+	}
+	slug
+	_createdAt
 }
