@@ -4,7 +4,7 @@ import s from './ImageGallery.module.scss';
 import cn from 'classnames';
 import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import type { Swiper } from 'swiper';
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useId } from 'react';
 import { Image } from 'react-datocms';
 import { Markdown } from 'next-dato-utils/components';
 import { useWindowSize } from 'rooks';
@@ -15,6 +15,7 @@ export type ImageGalleryBlockProps = {
 };
 
 export default function ImageGallery({ data: { images } }: ImageGalleryBlockProps) {
+	const id = useId();
 	const [setImageId] = useStore(useShallow((state) => [state.setImageId]));
 	const swiperRef = useRef<Swiper | null>(null);
 	const containerRef = useRef<HTMLDivElement | null>(null);
@@ -45,7 +46,7 @@ export default function ImageGallery({ data: { images } }: ImageGalleryBlockProp
 		<div className={s.gallery} ref={containerRef}>
 			<div className={s.fade}></div>
 			<SwiperReact
-				//id={`swiper-wrap`}
+				id={id}
 				className={s.swiper}
 				loop={isSingleImage ? false : true}
 				noSwiping={isSingleImage ? true : false}
@@ -58,7 +59,6 @@ export default function ImageGallery({ data: { images } }: ImageGalleryBlockProp
 				{images.map((item, idx) => (
 					<SwiperSlide key={`${idx}`} className={cn(s.slide)}>
 						<figure
-							//id={item.id}
 							onClick={() => setImageId(item.id)}
 							data-datocms-content-link-source={item.title}
 							data-datocms-content-link-group={true}

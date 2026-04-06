@@ -10,11 +10,13 @@ import {
 	getMenuItemAncestorChain,
 	Menu,
 	MenuItem,
+	getClosesetMenuItem,
 } from '@/lib/menu';
-import { usePathname, Link } from '@/i18n/routing';
+import { usePathname, Link, routing, useRouter } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 import { useEffect, useState, memo } from 'react';
 import { useParams } from 'next/navigation';
+import router from 'next-dato-utils/router';
 
 type MenuTreeProps = {
 	menu: Menu;
@@ -26,6 +28,7 @@ const MenuTree = memo(function MenuTree({ menu, ref, onSelect }: MenuTreeProps) 
 	const locale = useLocale();
 	const pathname = usePathname();
 	const params = useParams();
+	const router = useRouter();
 	const [selectedItem, setSelectedItem] = useState<string>('root');
 	const [expandedItems, setExpandedItems] = useState<string[]>(['root']);
 
@@ -52,28 +55,27 @@ const MenuTree = memo(function MenuTree({ menu, ref, onSelect }: MenuTreeProps) 
 		try {
 			return itemId === 'root' ? rootItem : getMenuItem(itemId, menu);
 		} catch (e) {
-			console.log(e);
-			console.log(itemId, [...menu]);
 			return rootItem;
 		}
 	}
 
 	useEffect(() => {
+		let menuItem: MenuItem | null = null;
 		try {
-			const menuItem = getMenuItemByPathname({ pathname, params }, locale, menu);
-			const chain = getMenuItemAncestorChain(menuItem.id, menu);
+			menuItem = getClosesetMenuItem({ pathname, params, locale }, menu);
+		} catch (e) {}
 
-			if (chain) {
-				const treeChain = ['root', ...chain];
-				const currentState = tree.getState();
-				const currentExpanded = currentState.expandedItems || [];
-				const newExpanded = Array.from(new Set([...currentExpanded, ...treeChain, menuItem.id]));
-				setExpandedItems(newExpanded);
-			}
-			setSelectedItem(menuItem.id);
-		} catch (e) {
-			console.log(e);
+		if (!menuItem) return console.log('No menu item found');
+
+		const chain = getMenuItemAncestorChain(menuItem.id, menu);
+		if (chain) {
+			const treeChain = ['root', ...chain];
+			const currentState = tree.getState();
+			const currentExpanded = currentState.expandedItems || [];
+			const newExpanded = Array.from(new Set([...currentExpanded, ...treeChain, menuItem.id]));
+			setExpandedItems(newExpanded);
 		}
+		setSelectedItem(menuItem.id);
 	}, [pathname, params, locale, menu, tree]);
 
 	useEffect(() => {
@@ -100,11 +102,12 @@ const MenuTree = memo(function MenuTree({ menu, ref, onSelect }: MenuTreeProps) 
 						{folder ? (
 							<button
 								className={cn(s.folder, bold && s.bold)}
-								onClick={() =>
+								onClick={() => {
 									setExpandedItems((items) =>
 										items.includes(id) ? items.filter((i) => i !== id) : [...items, id],
-									)
-								}
+									);
+									href && router.push(href as any);
+								}}
 							>
 								{title}
 							</button>

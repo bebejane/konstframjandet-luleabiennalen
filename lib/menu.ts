@@ -148,26 +148,28 @@ export const buildMenu = async (locale: SiteLocale) => {
 						params: { ...href.params, year },
 					},
 					sub:
-						e.sub?.map((e2) => ({
-							...e2,
-							id: abouts.find(({ title }) => title === e2.title)?.id,
-							href: {
-								pathname: `${href.pathname}${e.route}/[about]` as Href['pathname'],
-								params: {
-									...href.params,
-									year,
-									about: abouts.find(({ title }) => title === e2.title)?.slug,
-								},
-							},
-							hrefAlt: {
-								pathname: `${href.pathname}${e.route}/[about]` as Href['pathname'],
-								params: {
-									...href.params,
-									year,
-									about: abouts.find(({ title }) => title === e2.title)?.altSlug,
-								},
-							},
-						})) ?? [],
+						abouts.length > 1
+							? e.sub?.map((e2) => ({
+									...e2,
+									id: abouts.find(({ title }) => title === e2.title)?.id,
+									href: {
+										pathname: `${href.pathname}${e.route}/[about]` as Href['pathname'],
+										params: {
+											...href.params,
+											year,
+											about: abouts.find(({ title }) => title === e2.title)?.slug,
+										},
+									},
+									hrefAlt: {
+										pathname: `${href.pathname}${e.route}/[about]` as Href['pathname'],
+										params: {
+											...href.params,
+											year,
+											about: abouts.find(({ title }) => title === e2.title)?.altSlug,
+										},
+									},
+								}))
+							: [],
 				}))
 				.filter(({ count }) => count || count === null)
 				.sort((a, b) => (a.route === '/om' ? -1 : 1)),
@@ -195,15 +197,18 @@ export const buildYearMenu = (
 	if (!_year) throw new Error('No year found');
 	const year = _year.title;
 	const menu = base.map((item) => {
-		const route = item.route;
+		const { route } = item;
 		const mKey =
 			routing.pathnames[route as keyof typeof routing.pathnames].en.replace('/', '') || 'home';
 		item.title = item.route === '/medverkande' ? _year.participantName : messages.Menu[mKey];
+		const isArchiveOverview = item.route === '/arkiv' && !isArchive;
+
+		const pathname = isArchiveOverview ? `/arkiv` : route === '/arkiv' ? `/[year]` : route;
+		const params = isArchiveOverview ? {} : route === '/arkiv' ? { year } : {};
 
 		const href = {
-			pathname:
-				`${route === '/arkiv' ? `/[year]` : ''}${route !== '/' ? route : '/'}` as Href['pathname'],
-			params: route === '/arkiv' ? { year } : {},
+			pathname,
+			params,
 		} as Href;
 
 		item.href = href;
@@ -264,7 +269,7 @@ export const buildYearMenu = (
 								: null;
 		return {
 			...item,
-			sub,
+			sub: !count ? [] : sub,
 			year,
 			count,
 		};
@@ -331,4 +336,31 @@ export function getMenuItemAncestorChain(
 		}
 	}
 	return null;
+}
+
+export function getClosesetMenuItem(
+	{ pathname, params, locale }: { pathname: string; params: any; locale: string },
+	menu: Menu,
+): MenuItem {
+	const paths = pathname.split('/');
+	let menuItem: MenuItem | null = null;
+
+	for (let i = paths.length - 1; i >= 0; i--) {
+		const pathname = (paths.slice(0, i + 1).join('/') || '/') as keyof typeof routing.pathnames;
+		const routeParams =
+			pathname
+				.match(/\[(\w+)\]/g)
+				?.map((el) => el.replace('[', '').replace(']', ''))
+				?.reduce((acc, param) => {
+					return { ...acc, [param]: params[param] };
+				}, {}) || {};
+
+		try {
+			menuItem = getMenuItemByPathname({ pathname, params: routeParams }, locale, menu);
+			break;
+		} catch (e) {}
+	}
+
+	if (!menuItem) throw new Error('No menu item found');
+	return menuItem;
 }

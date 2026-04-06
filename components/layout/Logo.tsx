@@ -9,13 +9,17 @@ import { Link } from '@/i18n/routing';
 import useStore, { useShallow } from '@/lib/store';
 
 export default function Logo() {
-	const { section } = usePage();
+	const { year, isHome, route } = usePage();
 	const [color] = useStore(useShallow((state) => [state.color]));
 
 	return (
-		<div className={cn(s.container, section === 'home' && s.home)} key={color}>
+		<div className={cn(s.container, isHome && s.home)} key={color}>
 			<Link href={'/'}>
-				<Icon src={LogoIcon} style={section !== 'archive' && color ? { color } : undefined} />
+				<Icon
+					key={color}
+					src={LogoIcon}
+					style={route !== '/arkiv' && color ? { color } : undefined}
+				/>
 			</Link>
 		</div>
 	);

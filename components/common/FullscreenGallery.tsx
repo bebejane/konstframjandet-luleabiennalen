@@ -73,15 +73,13 @@ export default function FullscreenGallery({}: FullscreenGalleryProps) {
 								image.responsiveImage && (
 									<SwiperSlide key={idx} className={cn(s.slide)}>
 										<Image
-											pictureClassName={cn(s.image)}
+											imgClassName={cn(s.image)}
 											data={image.responsiveImage}
 											usePlaceholder={false}
 											onLoad={() => setLoaded({ ...loaded, [image.id]: true })}
 											fadeInDuration={0}
+											priority={true}
 										/>
-										{/*!loaded[image.id] && initLoaded &&
-                    <div className={s.loading}><Loader /></div>
-                  */}
 									</SwiperSlide>
 								),
 						)}

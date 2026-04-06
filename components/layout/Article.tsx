@@ -3,7 +3,7 @@
 import s from './Article.module.scss';
 import cn from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
-import { MetaSection, Content, SectionHeader } from '@/components';
+import { MetaSection, Content } from '@/components';
 import { MetaSectionProps } from '@/components/common/MetaSection';
 import { Image } from 'react-datocms';
 import { useScrollInfo } from 'next-dato-utils/hooks';
@@ -71,6 +71,7 @@ export default function Article({
 			el.__typename === 'ImageRecord' && images.push(el.image);
 			el.__typename === 'ImageGalleryRecord' && images.push.apply(images, el.images);
 		});
+		console.log(images);
 		setImages(images.filter((el) => el) as FileField[]);
 	}, []);
 

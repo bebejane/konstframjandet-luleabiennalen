@@ -28,11 +28,11 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 	const { year } = await apiQuery(YearDocument, {
 		variables: {
 			locale: locale as SiteLocale,
-			title: process.env.NEXT_PUBLIC_CURRENT_YEAR!,
+			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR!,
 		},
 		stripStega: true,
 	});
-
+	console.log(_year);
 	if (!year) return notFound();
 
 	return (
