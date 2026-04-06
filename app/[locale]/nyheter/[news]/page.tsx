@@ -21,7 +21,7 @@ export default async function News({ params }: PageProps<'/[locale]/nyheter/[new
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!news) return notFound();
-	const { id, image, imageEn, title, intro, content, _seoMetaTags } = news;
+	const { id, image, imageEn, title, intro, content } = news;
 	const t = await getTranslations();
 
 	return (

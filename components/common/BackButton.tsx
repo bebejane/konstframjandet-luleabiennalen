@@ -1,16 +1,15 @@
 'use client';
 
-import { getPathname, Link, usePathname, exists } from '@/i18n/routing';
-import { usePage } from '@/lib/context/page';
+import { Link, usePathname, exists } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 
 export type Props = {
 	children: string;
+	year?: YearQuery['year'];
 };
 
-export default function BackButton({ children }: Props) {
+export default function BackButton({ children, year }: Props) {
 	const locale = useLocale();
-	const { year } = usePage();
 	const _pathname = usePathname().split('/');
 	_pathname.pop();
 	const pathname = _pathname.join('/');

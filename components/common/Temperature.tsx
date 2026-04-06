@@ -17,7 +17,7 @@ export default function Temperature() {
 			} = await res.json();
 			setTemp(temperature);
 		} catch (err) {
-			console.error(err);
+			console.log(err);
 		}
 	};
 

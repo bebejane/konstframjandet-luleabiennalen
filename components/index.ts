@@ -36,7 +36,7 @@ export { default as Footer } from './nav/Footer';
 export { default as Language } from './nav/Language';
 export { default as Block } from './content/Block';
 export { default as Icon } from './common/Icon';
-export { default as PageBackground } from './common/PageBackground';
+export { default as YearTheme } from './common/YearTheme';
 export { default as PageHeader } from './layout/PageHeader';
 export { default as MenuTree } from './nav/MenuTree';
 export { default as Menu } from './nav/Menu';

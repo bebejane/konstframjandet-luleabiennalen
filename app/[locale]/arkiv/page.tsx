@@ -1,6 +1,6 @@
 import s from './page.module.scss';
 import { AllYearsDocument, GeneralDocument } from '@/graphql';
-import { CardContainer, Card, Thumbnail, PageHeader, PageBackground } from '@/components';
+import { CardContainer, Card, Thumbnail, PageHeader } from '@/components';
 import { DraftMode, Markdown as Markdown } from 'next-dato-utils/components';
 import { apiQuery } from 'next-dato-utils/api';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -8,6 +8,7 @@ import { getPathname, locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { buildMetadata } from '@/app/[locale]/layout';
+import { getCurrentYear, getYear } from '@/lib/utils';
 
 export type Props = {
 	years: YearRecord[];
@@ -19,6 +20,7 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
+	const year = await getCurrentYear(locale);
 	const { allYears, draftUrl } = await apiQuery(AllYearsDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
@@ -31,8 +33,7 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 
 	return (
 		<>
-			<PageHeader title={'Luleåbiennalen'} noPrefix={true} />
-
+			<PageHeader title={'Luleåbiennalen'} noPrefix={true} year={year} />
 			<Markdown className={s.intro} content={general?.archiveIntro} />
 			<CardContainer columns={2}>
 				{allYears.map(({ id, title, slug, theme, image, imageEn }) => (
@@ -43,6 +44,7 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 							imageEn={imageEn as FileField}
 							intro={theme}
 							slug={`/${title}`}
+							archive={true}
 						/>
 					</Card>
 				))}

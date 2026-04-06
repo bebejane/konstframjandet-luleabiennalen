@@ -8,14 +8,15 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { NextIntlClientProvider } from 'next-intl';
 import { getPathname, locales } from '@/i18n/routing';
 import { DraftModeContentLink } from 'next-dato-utils/components';
-import { Footer, FullscreenGallery, Language, Menu, PageBackground } from '@/components';
-import { buildMenu } from '@/lib/menu';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { PageProvider } from '@/lib/context/page';
+import { buildMenu } from '@/lib/menu';
+import { Footer, FullscreenGallery, Language, Menu, YearTheme } from '@/components';
 
-export default async function RootLayout({ children, params }: LayoutProps<'/[locale]/[year]'>) {
-	const { locale, year: _year } = await params;
+export default async function RootLayout({ children, params }: LayoutProps<'/[locale]'>) {
+	const { locale } = await params;
+
 	if (!locales.includes(locale)) return notFound();
 	setRequestLocale(locale);
 
@@ -28,28 +29,27 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 	const { year } = await apiQuery(YearDocument, {
 		variables: {
 			locale: locale as SiteLocale,
-			title: _year ?? process.env.NEXT_PUBLIC_CURRENT_YEAR!,
+			title: process.env.NEXT_PUBLIC_CURRENT_YEAR!,
 		},
 		stripStega: true,
 	});
-	console.log(_year);
+
 	if (!year) return notFound();
 
 	return (
 		<html lang={locale === 'en' ? 'en-US' : 'sv-SE'}>
 			<body id='root' className='root'>
 				<NextIntlClientProvider>
-					<PageProvider value={{ year }}>
-						<div className={s.layout}>
-							<main id='content' className={s.content} data-full={true}>
-								<article>{children}</article>
-							</main>
-						</div>
-						<Menu menu={menu} />
-						<Language menu={menu} />
-						<Footer footer={general} />
-						<FullscreenGallery />
-					</PageProvider>
+					<div className={s.layout}>
+						<main id='content' className={s.content} data-full={true}>
+							<article>{children}</article>
+						</main>
+					</div>
+					<Menu menu={menu} />
+					<Language menu={menu} />
+					<Footer footer={general} />
+					<FullscreenGallery />
+					<YearTheme year={year} />
 				</NextIntlClientProvider>
 				<DraftModeContentLink />
 			</body>

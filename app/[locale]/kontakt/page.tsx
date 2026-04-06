@@ -3,6 +3,7 @@ import { Article, PageHeader } from '@/components';
 import { ContactDocument } from '@/graphql';
 import { getPathname, locales } from '@/i18n/routing';
 import { PROJECT_ABBR } from '@/lib/constant';
+import { getCurrentYear } from '@/lib/utils';
 import { Metadata } from 'next';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
@@ -19,6 +20,7 @@ export default async function Contact({ params }: PageProps<'/[locale]/kontakt'>
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
+	const year = await getCurrentYear(locale);
 	const { contact, draftUrl } = await apiQuery(ContactDocument, {
 		variables: { locale: locale as SiteLocale },
 	});
@@ -29,7 +31,7 @@ export default async function Contact({ params }: PageProps<'/[locale]/kontakt'>
 
 	return (
 		<>
-			<PageHeader title={t('contact')} />
+			<PageHeader title={t('contact')} year={year} />
 			<Article
 				id={id}
 				key={id}

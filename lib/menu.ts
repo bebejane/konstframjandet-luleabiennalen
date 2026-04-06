@@ -2,6 +2,7 @@ import { apiQuery } from 'next-dato-utils/api';
 import { AllYearsDocument, MenuDocument } from '@/graphql';
 import { locales, routing } from '@/i18n/routing';
 import { getMessages } from 'next-intl/server';
+import { ca } from 'date-fns/locale';
 
 export type Href = {
 	pathname: keyof typeof routing.pathnames;
@@ -122,6 +123,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 		if (!year) throw new Error('No year found');
 		const abouts = el.abouts.filter((a) => a.year?.title === year);
 		const haveAboutOverview = abouts.length > 0;
+		const isSingleAboutMenu = abouts.length === 1;
 
 		const href = {
 			pathname: `/[year]`,
@@ -135,7 +137,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 			href: haveAboutOverview ? href : null,
 			hrefAlt: haveAboutOverview ? href : null,
 			sub: buildYearMenu(el, { locale, altLocale, isArchive: true, messages })
-				.filter((e) => e.archive)
+				.filter((e) => e.archive && !isSingleAboutMenu)
 				.map((e) => ({
 					...e,
 					id: `archive-${year}-${e.id}`,
@@ -196,15 +198,21 @@ export const buildYearMenu = (
 ): MenuItem[] => {
 	if (!_year) throw new Error('No year found');
 	const year = _year.title;
+	const isBaseYear = year === process.env.NEXT_PUBLIC_CURRENT_YEAR;
+
 	const menu = base.map((item) => {
 		const { route } = item;
 		const mKey =
-			routing.pathnames[route as keyof typeof routing.pathnames].en.replace('/', '') || 'home';
-		item.title = item.route === '/medverkande' ? _year.participantName : messages.Menu[mKey];
-		const isArchiveOverview = item.route === '/arkiv' && !isArchive;
+			routing.pathnames[route as keyof typeof routing.pathnames].en
+				.split('/')
+				.at(-1)
+				?.replace('[year]', '') || 'home';
 
+		item.title = item.route === '/medverkande' ? _year.participantName : messages.Menu[mKey];
+
+		const isArchiveOverview = item.route === '/arkiv' && !isArchive;
 		const pathname = isArchiveOverview ? `/arkiv` : route === '/arkiv' ? `/[year]` : route;
-		const params = isArchiveOverview ? {} : route === '/arkiv' ? { year } : {};
+		const params = isArchiveOverview || isBaseYear ? {} : route === '/arkiv' ? {} : { year };
 
 		const href = {
 			pathname,
@@ -262,11 +270,9 @@ export const buildYearMenu = (
 					? participantsMeta.count
 					: item.route === '/utstallningar'
 						? exhibitionsMeta.count
-						: item.route === '/platser'
-							? locationsMeta.count
-							: item.route === '/program'
-								? programMeta.count
-								: null;
+						: item.route === '/program'
+							? programMeta.count
+							: null;
 		return {
 			...item,
 			sub: !count ? [] : sub,
@@ -339,14 +345,20 @@ export function getMenuItemAncestorChain(
 }
 
 export function getClosesetMenuItem(
-	{ pathname, params, locale }: { pathname: string; params: any; locale: string },
+	{ pathname, params, locale }: { pathname: any; params: any; locale: string },
 	menu: Menu,
 ): MenuItem {
 	const paths = pathname.split('/');
 	let menuItem: MenuItem | null = null;
 
+	try {
+		menuItem = getMenuItemByPathname({ pathname, params }, locale, menu);
+		return menuItem;
+	} catch (e) {}
+
 	for (let i = paths.length - 1; i >= 0; i--) {
 		const pathname = (paths.slice(0, i + 1).join('/') || '/') as keyof typeof routing.pathnames;
+
 		const routeParams =
 			pathname
 				.match(/\[(\w+)\]/g)

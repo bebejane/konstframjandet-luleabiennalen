@@ -9,6 +9,7 @@ import { DraftMode, InfiniteScroll, InfiniteScrollClient } from 'next-dato-utils
 import { NewsItem } from './NewsItem';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
+import { getCurrentYear } from '@/lib/utils';
 
 export type Props = {
 	news: (NewsRecord & ThumbnailImage)[];
@@ -20,6 +21,8 @@ export default async function News({ params }: PageProps<'/[locale]/nyheter'>) {
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
+
+	const year = await getCurrentYear(locale);
 	const t = await getTranslations();
 
 	const { allNews, draftUrl } = await apiQuery(AllNewsDocument, {
@@ -28,7 +31,7 @@ export default async function News({ params }: PageProps<'/[locale]/nyheter'>) {
 
 	return (
 		<>
-			<PageHeader title={t('Menu.news')} />
+			<PageHeader title={t('Menu.news')} year={year} />
 			<section className={s.news}>
 				<ul>
 					<InfiniteScrollClient

@@ -2,21 +2,24 @@
 
 import s from './MenuTree.module.scss';
 import cn from 'classnames';
-import { hotkeysCoreFeature, selectionFeature, syncDataLoaderFeature } from '@headless-tree/core';
+import {
+	hotkeysCoreFeature,
+	ItemInstance,
+	selectionFeature,
+	syncDataLoaderFeature,
+} from '@headless-tree/core';
 import { useTree } from '@headless-tree/react';
 import {
 	getMenuItem,
-	getMenuItemByPathname,
 	getMenuItemAncestorChain,
 	Menu,
 	MenuItem,
 	getClosesetMenuItem,
 } from '@/lib/menu';
-import { usePathname, Link, routing, useRouter } from '@/i18n/routing';
+import { usePathname, Link, useRouter } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 import { useEffect, useState, memo } from 'react';
 import { useParams } from 'next/navigation';
-import router from 'next-dato-utils/router';
 
 type MenuTreeProps = {
 	menu: Menu;
@@ -59,22 +62,36 @@ const MenuTree = memo(function MenuTree({ menu, ref, onSelect }: MenuTreeProps) 
 		}
 	}
 
+	function handleClick(item: ItemInstance<MenuItem>) {
+		const { id, href } = item.getItemData();
+
+		if (!item.isFolder()) {
+			//link
+			setSelectedItem(id);
+			return;
+		}
+
+		setExpandedItems((items) =>
+			items.includes(id) ? items.filter((i) => i !== id) : [...items, id],
+		);
+		if (href) router.push(href as any);
+	}
+
 	useEffect(() => {
 		let menuItem: MenuItem | null = null;
 		try {
 			menuItem = getClosesetMenuItem({ pathname, params, locale }, menu);
 		} catch (e) {}
 
-		if (!menuItem) return console.log('No menu item found');
+		if (!menuItem) return setExpandedItems(['root']);
 
 		const chain = getMenuItemAncestorChain(menuItem.id, menu);
 		if (chain) {
 			const treeChain = ['root', ...chain];
-			const currentState = tree.getState();
-			const currentExpanded = currentState.expandedItems || [];
-			const newExpanded = Array.from(new Set([...currentExpanded, ...treeChain, menuItem.id]));
+			const newExpanded = Array.from(new Set([...treeChain, menuItem.id]));
 			setExpandedItems(newExpanded);
-		}
+		} else setExpandedItems([menuItem.id]);
+
 		setSelectedItem(menuItem.id);
 	}, [pathname, params, locale, menu, tree]);
 
@@ -85,7 +102,7 @@ const MenuTree = memo(function MenuTree({ menu, ref, onSelect }: MenuTreeProps) 
 	return (
 		<div {...tree.getContainerProps()} className={s.tree} ref={ref}>
 			{tree.getItems().map((item) => {
-				const folder = item.isFolder();
+				const isFolder = item.isFolder();
 				const data = item.getItemData();
 				const href = data.href ?? undefined;
 				const { id, title, year, route, archive } = item.getItemData();
@@ -99,20 +116,17 @@ const MenuTree = memo(function MenuTree({ menu, ref, onSelect }: MenuTreeProps) 
 						style={{ paddingLeft: `${item.getItemMeta().level * 20}px` }}
 						title={id}
 					>
-						{folder ? (
-							<button
-								className={cn(s.folder, bold && s.bold)}
-								onClick={() => {
-									setExpandedItems((items) =>
-										items.includes(id) ? items.filter((i) => i !== id) : [...items, id],
-									);
-									href && router.push(href as any);
-								}}
-							>
+						{isFolder ? (
+							<button className={cn(s.folder, bold && s.bold)} onClick={() => handleClick(item)}>
 								{title}
 							</button>
-						) : typeof href !== 'undefined' ? (
-							<Link href={href as any} locale={locale} onClick={() => setSelectedItem(id)}>
+						) : href ? (
+							<Link
+								href={href as any}
+								locale={locale}
+								onClick={() => handleClick(item)}
+								className={cn(bold && s.bold)}
+							>
 								{title}
 							</Link>
 						) : null}

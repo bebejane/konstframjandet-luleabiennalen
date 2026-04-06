@@ -11,7 +11,7 @@ export function NewsItem({ id, title, intro, slug, _createdAt }: AllNewsQuery['a
 	const locale = useLocale();
 	return (
 		<li key={id} className={s.item}>
-			<h3 className='small'>{formatDate(_createdAt, null, locale)}</h3>
+			<h3 className='small'>{formatDate(_createdAt, null, locale, false)}</h3>
 			<h1>{title}</h1>
 			<div className='intro'>
 				<Markdown className={s.intro} content={intro} />

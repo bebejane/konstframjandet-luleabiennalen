@@ -4,7 +4,6 @@ import KFLogo from '@/public/images/kf-logo.svg';
 import Logo from '@/components/layout/Logo';
 import { PROJECT_NAME } from '@/lib/constant';
 import { getTranslations } from 'next-intl/server';
-import Link from 'next/link';
 import { Icon } from '@/components';
 
 export type FooterProps = {

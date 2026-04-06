@@ -61,7 +61,7 @@ export function getRoute(item: any, locale?: string | null): string {
 	});
 
 	const year = years.find(({ id }) => id === item.year?.id || id === item.year);
-	if (year?.title && year?.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR) {
+	if (year?.title) {
 		params.year = year.title;
 		route = `/[year]${route}`;
 	}

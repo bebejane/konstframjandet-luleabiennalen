@@ -28,6 +28,10 @@ export async function getYear(
 	return year;
 }
 
+export async function getCurrentYear(locale: SiteLocale | string) {
+	return await getYear(process.env.NEXT_PUBLIC_CURRENT_YEAR!, locale);
+}
+
 export async function getYearId(
 	title = process.env.NEXT_PUBLIC_CURRENT_YEAR!,
 	locale: SiteLocale | string,

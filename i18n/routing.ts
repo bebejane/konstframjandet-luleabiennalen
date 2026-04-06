@@ -1,6 +1,7 @@
 import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from 'next-intl/routing';
 
+export const general = ['/kontakt', '/nyheter', '/arkiv', '/sok'];
 export const locales = ['sv', 'en'];
 export const defaultLocale = 'sv';
 export const localePrefix = 'as-needed';
@@ -13,23 +14,11 @@ export const routing = defineRouting({
 		'/': {
 			en: '/',
 		},
-		'/arkiv': {
-			en: '/archive',
-		},
-		'/kontakt': {
-			en: '/contact',
-		},
 		'/medverkande': {
 			en: '/participants',
 		},
 		'/medverkande/[participant]': {
 			en: '/participants/[participant]',
-		},
-		'/nyheter': {
-			en: '/news',
-		},
-		'/nyheter/[news]': {
-			en: '/news/[news]',
 		},
 		'/om': {
 			en: '/about',
@@ -43,9 +32,6 @@ export const routing = defineRouting({
 		'/partners/[partner]': {
 			en: '/partners/[partner]',
 		},
-		'/platser': {
-			en: '/locations',
-		},
 		'/platser/[location]': {
 			en: '/locations/[location]',
 		},
@@ -55,14 +41,26 @@ export const routing = defineRouting({
 		'/program/[program]': {
 			en: '/program/[program]',
 		},
-		'/sok': {
-			en: '/search',
-		},
 		'/utstallningar': {
 			en: '/exhibitions',
 		},
 		'/utstallningar/[exhibition]': {
 			en: '/exhibitions/[exhibition]',
+		},
+		'/arkiv': {
+			en: '/archive',
+		},
+		'/kontakt': {
+			en: '/contact',
+		},
+		'/nyheter': {
+			en: '/news',
+		},
+		'/nyheter/[news]': {
+			en: '/news/[news]',
+		},
+		'/sok': {
+			en: '/search',
 		},
 		'/[year]': {
 			en: '/[year]',

@@ -5,16 +5,20 @@ import { notFound } from 'next/navigation';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
 import { Search } from './Search';
+import { getCurrentYear } from '@/lib/utils';
 
 export default async function SearchPage({ params, searchParams }: PageProps<'/[locale]/sok'>) {
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
+
+	const year = await getCurrentYear(locale);
 	const { q } = await searchParams;
 	const t = await getTranslations();
+
 	return (
 		<>
-			<PageHeader title={t('Menu.search')} />
+			<PageHeader title={t('Menu.search')} year={year} />
 			<Search query={q as string} locale={locale as SiteLocale} />
 		</>
 	);

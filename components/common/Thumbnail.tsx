@@ -4,7 +4,6 @@ import s from './Thumbnail.module.scss';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { Image } from 'react-datocms/image';
-import { usePage } from '@/lib/context/page';
 import { remark } from 'remark';
 import strip from 'strip-markdown';
 import { useLocale } from 'next-intl';
@@ -24,6 +23,8 @@ export type Props = {
 	metaRight?: string | null;
 	metaOneLine?: boolean;
 	zoomOutOnHover?: boolean;
+	archive?: boolean;
+	year?: NonNullable<YearQuery['year']> | YearRecord;
 };
 
 export default function Thumbnail({
@@ -38,6 +39,8 @@ export default function Thumbnail({
 	metaRight,
 	metaOneLine,
 	zoomOutOnHover = false,
+	archive,
+	year,
 }: Props) {
 	const strippedIntro = truncateWords(
 		remark()
@@ -46,7 +49,6 @@ export default function Thumbnail({
 		500,
 	);
 	const locale = useLocale();
-	const { year, isArchive } = usePage();
 	const [loadingImages, setLoadingImages] = useState<FileField[] | null>(null);
 	const [loadingImageIndex, setLoadingImageIndex] = useState<number | null>(null);
 	const [loaded, setLoaded] = useState(false);
@@ -62,16 +64,12 @@ export default function Thumbnail({
 	if (!slug) return null;
 
 	const showLoadingImages =
-		loadingImages &&
-		loadingImages?.length > 0 &&
-		!isArchive &&
-		!loaded &&
-		loadingImageIndex !== null;
+		loadingImages && loadingImages?.length > 0 && !archive && !loaded && loadingImageIndex !== null;
 
-	const href = stripStega(`${isArchive ? `/${year?.title}` : ''}${slug}` as any);
+	const href = year ? `/${year.title}${slug}` : slug;
 	return (
 		<Link
-			href={href}
+			href={href as any}
 			locale={locale}
 			className={cn(s.thumbnail, !slug && s.nolink)}
 			data-datocms-content-link-url={image?._editingUrl}
@@ -88,8 +86,8 @@ export default function Thumbnail({
 							<Image
 								data={image.responsiveImage}
 								className={s.image}
-								usePlaceholder={loadingImages === null}
-								style={!isArchive ? { opacity: loaded ? 1 : 0.000001 } : {}}
+								usePlaceholder={loadingImages === null || loadingImages.length === 0}
+								style={!archive ? { opacity: loaded ? 1 : 0.000001 } : {}}
 								onLoad={() => setLoaded(true)}
 							/>
 						) : image.mimeType.startsWith('image/') ? (

@@ -1,7 +1,6 @@
-import { PageBackground } from '@/components';
-import { AllYearsDocument, YearDocument } from '@/graphql';
+import { YearTheme } from '@/components';
+import { AllYearsDocument } from '@/graphql';
 import { locales } from '@/i18n/routing';
-import { PageProvider } from '@/lib/context/page';
 import { getYear } from '@/lib/utils';
 import { apiQuery } from 'next-dato-utils/api';
 import { setRequestLocale } from 'next-intl/server';
@@ -13,13 +12,12 @@ export default async function YearLayout({ children, params }: LayoutProps<'/[lo
 	setRequestLocale(locale);
 
 	const year = await getYear(_year, locale);
-	if (!year) return notFound();
 
 	return (
-		<PageProvider value={{ year }}>
+		<>
 			{children}
-			<PageBackground />
-		</PageProvider>
+			<YearTheme year={year} />
+		</>
 	);
 }
 

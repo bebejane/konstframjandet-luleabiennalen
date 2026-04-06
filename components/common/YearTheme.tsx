@@ -1,23 +1,29 @@
 'use client';
 
-import s from './PageBackground.module.scss';
+import useStore, { useShallow } from '@/lib/store';
+import s from './YearTheme.module.scss';
 import { usePathname } from '@/i18n/routing';
-import { usePage } from '@/lib/context/page';
 import { Modal } from 'next-dato-utils/components';
 import { useEffect } from 'react';
 import { Image } from 'react-datocms';
 
-export default function PageBackground() {
+export default function YearTheme({ year }: { year: YearQuery['year'] }) {
 	const pathname = usePathname();
-	const { year, section, isArchive } = usePage();
+	const [setColor] = useStore(useShallow((state) => [state.setColor]));
+	const isArchive = year?.title !== process.env.NEXT_PUBLIC_CURRENT_YEAR;
 	const index = 0;
 	const image = year?.background?.[index] ?? null;
-	const show = image && isArchive && section !== 'archive';
+	const show = image && isArchive;
 
 	useEffect(() => {
-		const color = isArchive || section === 'archive' ? 'var(--archive)' : 'var(--white)';
+		const color = isArchive ? 'var(--archive)' : 'var(--white)';
 		document.body.style.backgroundColor = color;
-	}, [pathname, isArchive, section]);
+	}, [pathname, isArchive]);
+
+	useEffect(() => {
+		setColor(year?.color?.hex ?? null);
+		console.log('set color');
+	}, [year, pathname]);
 
 	if (!show) return null;
 
@@ -27,6 +33,7 @@ export default function PageBackground() {
 				{image.responsiveImage && (
 					<Image
 						data={image.responsiveImage}
+						className={s.wrap}
 						imgClassName={s.image}
 						style={year?.fullOpacity ? { opacity: 1 } : undefined}
 					/>

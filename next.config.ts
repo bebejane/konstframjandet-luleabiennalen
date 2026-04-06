@@ -2,6 +2,8 @@ import { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 import path from 'path';
 
+const routes = ['/arkiv', '/kontakt', '/sok'];
+
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {

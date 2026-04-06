@@ -14,20 +14,26 @@ export type PageHeaderProps = {
 	href?: string;
 	params?: any;
 	noPrefix?: boolean;
+	archive?: boolean;
+	year?: YearQuery['year'];
 };
 
-export default function PageHeader({ title: _title, href, params, noPrefix }: PageHeaderProps) {
+export default function PageHeader({
+	title: _title,
+	href,
+	params,
+	noPrefix,
+	archive,
+	year,
+}: PageHeaderProps) {
 	const [showMenu] = useStore(useShallow((state) => [state.showMenu]));
 	const t = useTranslations('Menu');
-	const locale = useLocale();
-	const { year, isArchive, route } = usePage();
-
 	const titlePrefix = `${PROJECT_ABBR}°${year?.title.substring(2)}`;
 	const title = stripStega(
-		_title && noPrefix ? _title : _title ? `${titlePrefix} — ${_title}` : titlePrefix,
+		_title && (!year || noPrefix) ? _title : _title ? `${titlePrefix} — ${_title}` : titlePrefix,
 	);
-	const isArchiveOverview = route === '/arkiv';
-	const showArchive = isArchive || isArchiveOverview;
+	const isArchiveOverview = archive;
+	const showArchive = archive || isArchiveOverview;
 
 	return (
 		<>
