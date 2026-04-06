@@ -71,7 +71,6 @@ export async function generateMetadata({
 		_site: { globalSeo, faviconMetaTags },
 	} = await apiQuery(SiteDocument, {
 		variables: { locale: locale as SiteLocale },
-		revalidate: 60 * 60,
 	});
 
 	const siteName = globalSeo?.siteName ?? '';
