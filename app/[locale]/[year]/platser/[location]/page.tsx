@@ -7,7 +7,7 @@ import { getPathname, locales } from '@/i18n/routing';
 import { DraftMode } from 'next-dato-utils/components';
 import { Metadata } from 'next';
 import { buildMetadata } from '@/app/[locale]/layout';
-import { getYear, getYearId } from '@/lib/utils';
+import { getYear, getYearId, getLocaleSlugs } from '@/lib/utils';
 
 export type LocationExtendedRecord = (LocationRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];
@@ -24,12 +24,11 @@ export default async function Location({
 	const { locale, location: slug, year: _year } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
-
+	const year = await getYear(_year, locale);
 	const { location, draftUrl } = await apiQuery(LocationDocument, {
-		variables: { slug, locale: locale as SiteLocale },
+		variables: { slug, locale: locale as SiteLocale, yearId: year?.id },
 	});
 	if (!location) return notFound();
-	const year = await getYear(_year, locale);
 
 	const {
 		id,
@@ -43,12 +42,19 @@ export default async function Location({
 		content,
 		exhibitions,
 		programs,
+		_allSlugLocales,
 	} = location;
 	const t = await getTranslations();
 	const href = '/locations#locations';
 	return (
 		<>
-			<PageHeader title={t('Menu.locations')} href={href} year={year} />
+			<PageHeader
+				title={t('Menu.locations')}
+				href={href}
+				year={year}
+				route='/[year]/platser/[location]'
+				slug={getLocaleSlugs(slug, _allSlugLocales)}
+			/>
 			<Article
 				id={id}
 				key={id}

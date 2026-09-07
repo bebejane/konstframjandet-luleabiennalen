@@ -2,7 +2,7 @@ import s from './page.module.scss';
 import cn from 'classnames';
 import { LandOwnershipDocument, StartDataDocument, StartDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
-import { Block, LandOwnershipPopup } from '@/components';
+import { Block, LandOwnershipPopup, Language } from '@/components';
 import { locales } from '@/i18n/routing';
 import { format } from 'date-fns';
 import { setRequestLocale } from 'next-intl/server';
@@ -34,6 +34,7 @@ export default async function Home({ params }: PageProps<'/[locale]/[year]'>) {
 
 	return (
 		<>
+			<Language route='/' />
 			<LogoHeader />
 			<LandOwnershipPopup data={landOwnership} />
 			<div className={s.container}>

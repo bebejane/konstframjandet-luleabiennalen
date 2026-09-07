@@ -7,7 +7,7 @@ import {
 } from 'next-dato-utils/config';
 import { MetadataRoute } from 'next';
 import { SiteDocument, SitemapDocument } from '@/graphql';
-import { defaultLocale, getPathname, locales, routing } from '@/i18n/routing';
+import { defaultLocale, getInternalPath, getPathname, locales, routing } from '@/i18n/routing';
 import years from '@/years.json';
 
 export function getRoute(item: any, locale?: string | null): string {
@@ -74,9 +74,29 @@ export function getRoute(item: any, locale?: string | null): string {
 export default {
 	route: async (item, locale) => getRoute(item, locale) ?? null,
 	routes: {
-		start: async (item, locale) => [getRoute(item, locale)],
+		start: async (item, locale) => [getInternalPath('/', locale)],
 		about: async (item, locale) => [
-			getRoute(item, locale),
+			getInternalPath('/[year]/om', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/om/[about]', locale, {
+				about: locale && item.slug[locale] ? item.slug[locale] : item.slug,
+				year: item.year?.title,
+			}),
+			...(await getItemReferenceRoutes(item)),
+		],
+		program: async (item, locale) => [
+			getInternalPath('/[year]/program', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/program/[program]', locale, {
+				year: item.year?.title,
+				program: locale && item.slug[locale] ? item.slug[locale] : item.slug,
+			}),
+			...(await getItemReferenceRoutes(item)),
+		],
+		program_category: async (item, locale) => [
+			getInternalPath('/[year]/program', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/program/[program]', locale, {
+				year: item.year?.title,
+				program: locale && item.slug[locale] ? item.slug[locale] : item.slug,
+			}),
 			...(await getItemReferenceRoutes(item)),
 		],
 		news: async (item, locale) => [getRoute(item, locale), ...(await getItemReferenceRoutes(item))],
@@ -84,29 +104,41 @@ export default {
 			getRoute(item, locale),
 			...(await getItemReferenceRoutes(item)),
 		],
-		program: async (item, locale) => [
-			getRoute(item, locale),
-			...(await getItemReferenceRoutes(item)),
-		],
-		partner: async (item, locale) => [
-			getRoute(item, locale),
-			...(await getItemReferenceRoutes(item)),
-		],
-		exhibition: async (item, locale) => [
-			getRoute(item, locale),
-			...(await getItemReferenceRoutes(item)),
-		],
 		participant: async (item, locale) => [
-			getRoute(item, locale),
+			getInternalPath('/[year]/medverkande', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/medverkande/[participant]', locale, {
+				participant: locale && item.slug[locale] ? item.slug[locale] : item.slug,
+				year: item.year?.title,
+			}),
 			...(await getItemReferenceRoutes(item)),
 		],
 		location: async (item, locale) => [
-			getRoute(item, locale),
+			getInternalPath('/[year]/platser', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/platser/[location]', locale, {
+				location: locale && item.slug[locale] ? item.slug[locale] : item.slug,
+				year: item.year?.title,
+			}),
 			...(await getItemReferenceRoutes(item)),
 		],
-		contact: async (item, locale) => [getRoute(item, locale)],
-		year: async (item, locale) => [getRoute(item, locale)],
-		general: async (item, locale) => [getRoute(item, locale)],
+		exhibition: async (item, locale) => [
+			getInternalPath('/[year]/utstallningar-och-projekt', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/utstallningar/[exhibition]', locale, {
+				exhibition: locale && item.slug[locale] ? item.slug[locale] : item.slug,
+				year: item.year?.title,
+			}),
+			...(await getItemReferenceRoutes(item)),
+		],
+		partner: async (item, locale) => [
+			getInternalPath('/[year]/partner', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/partner/[partner]', locale, {
+				exhibition: locale && item.slug[locale] ? item.slug[locale] : item.slug,
+				year: item.year?.title,
+			}),
+			...(await getItemReferenceRoutes(item)),
+		],
+		contact: async (item, locale) => [getInternalPath('/kontakt', locale)],
+		year: async ({ title }, locale) => [getInternalPath(`/[year]`, locale, { year: title })],
+		general: async (item, locale) => [getInternalPath('/', locale)],
 		upload: async ({ id }) => getUploadReferenceRoutes(id),
 	},
 	sitemap: async () => {

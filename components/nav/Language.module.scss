@@ -1,22 +1,30 @@
 .language {
-  mix-blend-mode: difference;
-  @include mq($until: tablet) {
-    display: none; //Temp
-  }
+	mix-blend-mode: difference;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: var(--z-language);
+	margin: var(--outer-margin);
+	line-height: 1;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-language);
-  margin: var(--outer-margin);
-  line-height: 1;
+	a {
+		margin-right: 0.5em;
+		color: var(--white);
 
-  a {
-    margin-right: 0.5em;
-    color: var(--white);
+		&.selected {
+			font-weight: bold;
+		}
+	}
 
-    &.selected {
-      font-weight: bold;
-    }
-  }
+	&.hidden {
+		display: none;
+	}
+
+	@include mq($until: desktop) {
+		display: block;
+		top: unset;
+		left: unset;
+		right: 0;
+		bottom: 0;
+	}
 }

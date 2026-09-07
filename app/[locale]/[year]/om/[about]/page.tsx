@@ -7,7 +7,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { DraftMode } from 'next-dato-utils/components';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
-import { getYear } from '@/lib/utils';
+import { getYear, getLocaleSlugs } from '@/lib/utils';
 
 export type Props = {
 	about: AboutRecord;
@@ -35,7 +35,7 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/[year]/
 
 	if (!about) return notFound();
 
-	const { id, image, imageEn, title, intro, content, _seoMetaTags } = about;
+	const { id, image, imageEn, title, intro, content, _allSlugLocales, _seoMetaTags } = about;
 	// const { allAbouts, allExhibitions, allParticipants, allPartners, allPrograms, draftUrl } =
 	// 	await apiQuery(ArchiveHomeDocument, {
 	// 		variables: { first: 1, locale: locale as SiteLocale, yearId: year.id },
@@ -49,7 +49,13 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/[year]/
 
 	return (
 		<>
-			<PageHeader title={t('about')} href={slug ? '/om' : undefined} year={year} />
+			<PageHeader
+				title={t('about')}
+				href={slug ? '/om' : undefined}
+				year={year}
+				route='/[year]/om/[about]'
+				slug={getLocaleSlugs(slug, _allSlugLocales)}
+			/>
 			<Article
 				id={id}
 				key={id}

@@ -5,7 +5,9 @@ import cn from 'classnames';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePage } from '@/lib/context/page';
 import { PROJECT_ABBR } from '@/lib/constant';
+import { routing } from '@/i18n/routing';
 import { Link } from '@/i18n/routing';
+import { Language } from '@/components';
 import { useStore, useShallow } from '@/lib/store';
 import { stripStega } from '@datocms/content-link';
 
@@ -16,6 +18,8 @@ export type PageHeaderProps = {
 	noPrefix?: boolean;
 	archive?: boolean;
 	year?: YearQuery['year'];
+	route?: keyof typeof routing.pathnames;
+	slug?: Record<string, string>;
 };
 
 export default function PageHeader({
@@ -25,6 +29,8 @@ export default function PageHeader({
 	noPrefix,
 	archive,
 	year,
+	route,
+	slug,
 }: PageHeaderProps) {
 	const [showMenu] = useStore(useShallow((state) => [state.showMenu]));
 	const t = useTranslations('Menu');
@@ -38,6 +44,7 @@ export default function PageHeader({
 	return (
 		<>
 			<header className={cn(s.header, !showMenu && s.full)}>
+				{route && <Language route={route} slug={slug} year={year?.title} />}
 				{href ? (
 					//@ts-expect-error
 					<Link href={{ pathname: href, params }}>

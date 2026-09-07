@@ -19,14 +19,16 @@ export default async function Exhibition({ params }: PageProps<'/[locale]/[year]
 	setRequestLocale(locale);
 
 	const year = await getYear(_year, locale);
+
 	const { allExhibitions, draftUrl } = await apiQuery(AllExhibitionsDocument, {
-		variables: { locale: locale as SiteLocale },
+		variables: { locale: locale as SiteLocale, yearId: year.id },
+		all: true,
 	});
 	const t = await getTranslations();
-
+	console.log({ locale: locale as SiteLocale, yearId: year.id });
 	return (
 		<>
-			<PageHeader title={t('Menu.exhibitions')} year={year} />
+			<PageHeader title={t('Menu.exhibitions')} year={year} route='/[year]/utstallningar' />
 			{/* <Markdown className={s.intro} content={year.introExhibitions} /> */}
 			<CardContainer columns={2}>
 				{allExhibitions.map(({ id, image, title, startDate, endDate, slug }) => (

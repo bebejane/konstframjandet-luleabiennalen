@@ -99,7 +99,7 @@ export default async function Program({
 
 	return (
 		<>
-			<PageHeader title={t('Menu.program')} year={year} />
+			<PageHeader title={t('Menu.program')} year={year} route='/[year]/program' />
 			<FilterBar
 				category={t('Program.types')}
 				name='category'

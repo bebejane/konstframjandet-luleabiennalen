@@ -20,28 +20,6 @@
 	}
 }
 
-.language {
-	position: absolute !important;
-	top: unset;
-	right: 0;
-	bottom: 1rem;
-	font-size: 1.1rem;
-	z-index: 100000;
-	display: flex !important;
-	flex-direction: row;
-	justify-content: flex-end;
-	height: 1em;
-	padding-left: 0.62rem;
-
-	a {
-		color: var(--black);
-	}
-
-	@include mq($from: desktop) {
-		display: none !important;
-	}
-}
-
 .search {
 	position: relative;
 	padding-bottom: 0 !important;

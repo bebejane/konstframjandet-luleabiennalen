@@ -34,7 +34,7 @@ export default async function Partners({ params }: PageProps<'/[locale]/[year]/p
 
 	return (
 		<>
-			<PageHeader title={t('Menu.partners')} year={year} />
+			<PageHeader title={t('Menu.partners')} year={year} route='/[year]/partners' />
 			{allLocations.length > 0 && (
 				<>
 					<h2 id='locations' className={cn(s.head, s.locations)}>

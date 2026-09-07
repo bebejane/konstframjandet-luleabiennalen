@@ -2,6 +2,16 @@ import { YearDocument } from '@/graphql';
 import { format } from 'date-fns';
 import { apiQuery } from 'next-dato-utils/api';
 import { capitalize } from 'next-dato-utils/utils';
+import { locales } from '@/i18n/routing';
+
+export function getLocaleSlugs(
+	slug: string,
+	allSlugs?: Array<{ locale?: SiteLocale | null; value: string }> | null,
+): Record<string, string> {
+	return Object.fromEntries(
+		locales.map((l) => [l, allSlugs?.find((s) => s.locale === l)?.value ?? slug]),
+	);
+}
 
 export const formatDate = (
 	date: string,

@@ -1,7 +1,7 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { ProgramDocument, AllProgramsDocument } from '@/graphql';
 import { Article, Related, BackButton, PageHeader } from '@/components';
-import { formatDate, getYear, getYearId } from '@/lib/utils';
+import { formatDate, getYear, getYearId, getLocaleSlugs } from '@/lib/utils';
 import { getPathname, Link, locales } from '@/i18n/routing';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -43,11 +43,18 @@ export default async function Program({ params }: PageProps<'/[locale]/[year]/pr
 		externalLink,
 		endDate,
 		time,
+		_allSlugLocales,
 	} = program;
 
 	return (
 		<>
-			<PageHeader title={t('Menu.program')} href={'/program'} year={year} />
+			<PageHeader
+				title={t('Menu.program')}
+				href={'/program'}
+				year={year}
+				route='/[year]/program/[program]'
+				slug={getLocaleSlugs(slug, _allSlugLocales)}
+			/>
 			<Article
 				id={id}
 				key={id}

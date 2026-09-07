@@ -33,7 +33,7 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 
 	return (
 		<>
-			<PageHeader title={'Luleåbiennalen'} noPrefix={true} year={year} />
+			<PageHeader title={'Luleåbiennalen'} noPrefix={true} year={year} route='/arkiv' />
 			<Markdown className={s.intro} content={general?.archiveIntro} />
 			<CardContainer columns={2}>
 				{allYears.map(({ id, title, slug, theme, image, imageEn }) => (

@@ -7,7 +7,7 @@ import { getPathname, locales } from '@/i18n/routing';
 import { DraftMode } from 'next-dato-utils/components';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
-import { getYear, getYearId } from '@/lib/utils';
+import { getYear, getYearId, getLocaleSlugs } from '@/lib/utils';
 
 export type Props = {
 	partner: PartnerRecord;
@@ -24,14 +24,31 @@ export default async function Partner({
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!partner) return notFound();
-	const { id, image, imageEn, title, intro, content, address, city, webpage, _seoMetaTags } =
-		partner;
+	const {
+		id,
+		image,
+		imageEn,
+		title,
+		intro,
+		content,
+		address,
+		city,
+		webpage,
+		_allSlugLocales,
+		_seoMetaTags,
+	} = partner;
 	const year = await getYear(_year, locale);
 	const t = await getTranslations();
 
 	return (
 		<>
-			<PageHeader title={t('Menu.partners')} href={'/partners'} year={year} />
+			<PageHeader
+				title={t('Menu.partners')}
+				href={'/partners'}
+				year={year}
+				route='/[year]/partners/[partner]'
+				slug={getLocaleSlugs(slug, _allSlugLocales)}
+			/>
 			<Article
 				id={id}
 				key={id}

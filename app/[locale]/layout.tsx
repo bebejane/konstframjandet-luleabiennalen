@@ -12,7 +12,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { PageProvider } from '@/lib/context/page';
 import { buildMenu } from '@/lib/menu';
-import { Footer, FullscreenGallery, Language, Menu, YearTheme } from '@/components';
+import { Footer, FullscreenGallery, Menu, YearTheme } from '@/components';
 
 export default async function RootLayout({ children, params }: LayoutProps<'/[locale]'>) {
 	const { locale } = await params;
@@ -46,7 +46,6 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 						</main>
 					</div>
 					<Menu menu={menu} />
-					<Language menu={menu} />
 					<Footer footer={general} />
 					<FullscreenGallery />
 					<YearTheme year={year} />

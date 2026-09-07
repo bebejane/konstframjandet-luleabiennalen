@@ -7,7 +7,7 @@ import { getPathname, locales } from '@/i18n/routing';
 import { DraftMode } from 'next-dato-utils/components';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
-import { getYear, getYearId } from '@/lib/utils';
+import { getYear, getYearId, getLocaleSlugs } from '@/lib/utils';
 
 export type ParticipantExtendedRecord = (ParticipantRecord & ThumbnailImage) & {
 	exhibitions: ExhibitionRecord[];
@@ -28,11 +28,17 @@ export default async function Participant({
 
 	const year = await getYear(_year, locale);
 	const t = await getTranslations();
-	const { id, image, imageEn, name, intro, content, exhibitions, colab, programs } = participant;
+	const { id, image, imageEn, name, intro, content, exhibitions, colab, programs, _allSlugLocales } =
+		participant;
 
 	return (
 		<>
-			<PageHeader title={year.participantName ?? t('Menu.participants')} year={year} />
+			<PageHeader
+				title={year.participantName ?? t('Menu.participants')}
+				year={year}
+				route='/[year]/medverkande/[participant]'
+				slug={getLocaleSlugs(slug, _allSlugLocales)}
+			/>
 			<Article
 				id={id}
 				key={id}

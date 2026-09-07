@@ -1,11 +1,11 @@
 import s from './page.module.scss';
 import { AllNewsDocument } from '@/graphql';
-import { getPathname, locales } from '@/i18n/routing';
+import { defaultLocale, getPathname, locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { apiQuery } from 'next-dato-utils/api';
 import { PageHeader } from '@/components';
-import { DraftMode, InfiniteScroll, InfiniteScrollClient } from 'next-dato-utils/components';
+import { DraftMode, InfiniteScrollClient } from 'next-dato-utils/components';
 import { NewsItem } from './NewsItem';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
@@ -18,7 +18,8 @@ export type Props = {
 export const dynamic = 'force-dynamic';
 
 export default async function News({ params }: PageProps<'/[locale]/nyheter'>) {
-	const { locale } = await params;
+	const { locale } = (await params) ?? { locale: defaultLocale };
+
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
@@ -31,11 +32,11 @@ export default async function News({ params }: PageProps<'/[locale]/nyheter'>) {
 
 	return (
 		<>
-			<PageHeader title={t('Menu.news')} year={year} />
+			<PageHeader title={t('Menu.news')} year={year} route='/nyheter' />
 			<section className={s.news}>
 				<ul>
 					<InfiniteScrollClient
-						id='news'
+						id={`news-${locale}`}
 						initial={allNews}
 						query={AllNewsDocument}
 						variables={{ locale: locale as SiteLocale, first: 10 }}

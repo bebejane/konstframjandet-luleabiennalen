@@ -7,6 +7,7 @@ import { getPathname, locales } from '@/i18n/routing';
 import { DraftMode } from 'next-dato-utils/components';
 import { buildMetadata } from '@/app/[locale]/layout';
 import { Metadata } from 'next';
+import { getLocaleSlugs } from '@/lib/utils';
 
 export type Props = {
 	news: NewsRecord;
@@ -21,12 +22,17 @@ export default async function News({ params }: PageProps<'/[locale]/nyheter/[new
 		variables: { slug, locale: locale as SiteLocale },
 	});
 	if (!news) return notFound();
-	const { id, image, imageEn, title, intro, content } = news;
+	const { id, image, imageEn, title, intro, content, _allSlugLocales } = news;
 	const t = await getTranslations();
 
 	return (
 		<>
-			<PageHeader title={t('Menu.news')} href='/nyheter' />
+			<PageHeader
+				title={t('Menu.news')}
+				href='/nyheter'
+				route='/nyheter/[news]'
+				slug={getLocaleSlugs(slug, _allSlugLocales)}
+			/>
 			<Article
 				id={id}
 				key={id}

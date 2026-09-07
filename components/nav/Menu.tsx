@@ -4,7 +4,7 @@ import s from './Menu.module.scss';
 import cn from 'classnames';
 import { useState, useRef, useEffect } from 'react';
 import { type Menu } from '@/lib/menu';
-import { Hamburger, Language, MenuTree, Temperature } from '@/components';
+import { Hamburger, MenuTree, Temperature } from '@/components';
 import useStore, { useShallow } from '@/lib/store';
 import { useScrollInfo } from 'next-dato-utils/hooks';
 import { useWindowSize } from 'usehooks-ts';
@@ -63,7 +63,6 @@ export default function Menu({ menu }: MenuProps) {
 			<nav ref={navRef} className={cn(s.menu, !showMenu && s.hide)}>
 				<Temperature />
 				<MenuTree menu={menu} ref={treeRef} onSelect={setSelectedItem} />
-				<Language menu={menu} className={s.language} />
 			</nav>
 		</>
 	);

@@ -34,7 +34,7 @@
 		"hamburger-react": "^2.5.2",
 		"in-view": "^0.6.1",
 		"intl-parse-accept-language": "^1.0.0",
-		"next": "16.1.7",
+		"next": "16.3.4",
 		"next-dato-utils": "github:bebejane/next-dato-utils",
 		"next-intl": "^4.8.3",
 		"nextjs-google-analytics": "^2.3.7",
@@ -70,7 +70,6 @@
 		"graphql-config": "^5.1.6",
 		"react-email": "5.0.1",
 		"tsx": "^4.21.0",
-		"turbopack-inline-svg-loader": "^1.0.3",
-		"typescript": "^5"
+		"turbopack-inline-svg-loader": "^1.0.3"
 	}
 }
