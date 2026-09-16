@@ -73,30 +73,34 @@ export function getRoute(item: any, locale?: string | null): string {
 	});
 }
 
+function getYear(yearId: string): string {
+	return years.find(({ id }) => id === yearId)?.title ?? '';
+}
+
 export default {
 	route: async (item, locale) => getRoute(item, locale) ?? null,
 	routes: {
 		start: async (item, locale) => [getInternalPath('/', locale)],
 		about: async (item, locale) => [
-			getInternalPath('/[year]/om', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/om', locale, { year: getYear(item.year) }),
 			getInternalPath('/[year]/om/[about]', locale, {
 				about: locale && item.slug[locale] ? item.slug[locale] : item.slug,
-				year: item.year?.title,
+				year: getYear(item.year),
 			}),
 			...(await getItemReferenceRoutes(item)),
 		],
 		program: async (item, locale) => [
-			getInternalPath('/[year]/program', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/program', locale, { year: getYear(item.year) }),
 			getInternalPath('/[year]/program/[program]', locale, {
-				year: item.year?.title,
+				year: getYear(item.year),
 				program: locale && item.slug[locale] ? item.slug[locale] : item.slug,
 			}),
 			...(await getItemReferenceRoutes(item)),
 		],
 		program_category: async (item, locale) => [
-			getInternalPath('/[year]/program', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/program', locale, { year: getYear(item.year) }),
 			getInternalPath('/[year]/program/[program]', locale, {
-				year: item.year?.title,
+				year: getYear(item.year),
 				program: locale && item.slug[locale] ? item.slug[locale] : item.slug,
 			}),
 			...(await getItemReferenceRoutes(item)),
@@ -107,34 +111,34 @@ export default {
 			...(await getItemReferenceRoutes(item)),
 		],
 		participant: async (item, locale) => [
-			getInternalPath('/[year]/medverkande', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/medverkande', locale, { year: getYear(item.year) }),
 			getInternalPath('/[year]/medverkande/[participant]', locale, {
 				participant: locale && item.slug[locale] ? item.slug[locale] : item.slug,
-				year: item.year?.title,
+				year: getYear(item.year),
 			}),
 			...(await getItemReferenceRoutes(item)),
 		],
 		location: async (item, locale) => [
-			getInternalPath('/[year]/platser', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/platser', locale, { year: getYear(item.year) }),
 			getInternalPath('/[year]/platser/[location]', locale, {
 				location: locale && item.slug[locale] ? item.slug[locale] : item.slug,
-				year: item.year?.title,
+				year: getYear(item.year),
 			}),
 			...(await getItemReferenceRoutes(item)),
 		],
 		exhibition: async (item, locale) => [
-			getInternalPath('/[year]/utstallningar-och-projekt', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/utstallningar-och-projekt', locale, { year: getYear(item.year) }),
 			getInternalPath('/[year]/utstallningar/[exhibition]', locale, {
 				exhibition: locale && item.slug[locale] ? item.slug[locale] : item.slug,
-				year: item.year?.title,
+				year: getYear(item.year),
 			}),
 			...(await getItemReferenceRoutes(item)),
 		],
 		partner: async (item, locale) => [
-			getInternalPath('/[year]/partner', locale, { year: item.year?.title }),
+			getInternalPath('/[year]/partner', locale, { year: getYear(item.year) }),
 			getInternalPath('/[year]/partner/[partner]', locale, {
 				exhibition: locale && item.slug[locale] ? item.slug[locale] : item.slug,
-				year: item.year?.title,
+				year: getYear(item.year),
 			}),
 			...(await getItemReferenceRoutes(item)),
 		],
