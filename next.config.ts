@@ -40,7 +40,8 @@ const nextConfig: NextConfig = {
 	devIndicators: false,
 	logging: false,
 	experimental: {
-		//prefetchInlining: true,
+		workerThreads: false,
+		cpus: 1,
 	},
 	async headers() {
 		return [
