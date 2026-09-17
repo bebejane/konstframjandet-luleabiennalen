@@ -145,7 +145,7 @@ export default {
 		contact: async (item, locale) => [getInternalPath('/kontakt', locale)],
 		year: async ({ title }, locale) => [getInternalPath(`/[year]`, locale, { year: title })],
 		general: async (item, locale) => [getInternalPath('/', locale)],
-		upload: async ({ id }) => getUploadReferenceRoutes(id),
+		upload: async ({ id }) => getUploadReferenceRoutes(id, locales),
 	},
 	sitemap: async () => {
 		const locale = defaultLocale;
