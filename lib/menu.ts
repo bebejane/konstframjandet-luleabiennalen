@@ -2,7 +2,6 @@ import { apiQuery } from 'next-dato-utils/api';
 import { AllYearsDocument, MenuDocument } from '@/graphql';
 import { locales, routing } from '@/i18n/routing';
 import { getMessages } from 'next-intl/server';
-import { ca } from 'date-fns/locale';
 
 export type Href = {
 	pathname: keyof typeof routing.pathnames;
@@ -182,15 +181,7 @@ export const buildMenu = async (locale: SiteLocale) => {
 };
 
 export const buildYearMenu = (
-	{
-		year: _year,
-		abouts,
-		aboutMeta,
-		participantsMeta,
-		exhibitionsMeta,
-		locationsMeta,
-		programMeta,
-	}: MenuQuery,
+	{ year: _year, abouts, aboutMeta, participantsMeta, exhibitionsMeta, programMeta }: MenuQuery,
 	{
 		isArchive = false,
 		messages,

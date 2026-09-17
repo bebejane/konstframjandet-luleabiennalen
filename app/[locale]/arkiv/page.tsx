@@ -36,18 +36,20 @@ export default async function Archive({ params }: PageProps<'/[locale]/arkiv'>) 
 			<PageHeader title={'Luleåbiennalen'} noPrefix={true} year={year} route='/arkiv' />
 			<Markdown className={s.intro} content={general?.archiveIntro} />
 			<CardContainer columns={2}>
-				{allYears.map(({ id, title, slug, theme, image, imageEn }) => (
-					<Card key={id}>
-						<Thumbnail
-							title={`LB° ${title}`}
-							image={image as FileField}
-							imageEn={imageEn as FileField}
-							intro={theme}
-							slug={`/${title}`}
-							archive={true}
-						/>
-					</Card>
-				))}
+				{allYears
+					.filter(({ title }) => title !== process.env.NEXT_PUBLIC_CURRENT_YEAR)
+					.map(({ id, title, slug, theme, image, imageEn }) => (
+						<Card key={id}>
+							<Thumbnail
+								title={`LB° ${title}`}
+								image={image as FileField}
+								imageEn={imageEn as FileField}
+								intro={theme}
+								slug={`/${title}`}
+								archive={true}
+							/>
+						</Card>
+					))}
 			</CardContainer>
 			<DraftMode path={'/akriv'} url={[draftUrl, draftUrlGeneral]} />
 		</>
