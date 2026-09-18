@@ -30,7 +30,7 @@ export default function Menu({ menu }: MenuProps) {
 			!isDesktop && setShowMenu(false);
 		};
 	}, [pathname]);
-	console.log(menu);
+
 	useEffect(() => {
 		const footer = document.getElementById('footer');
 		if (!footer || !treeRef.current || !navRef.current) return;
