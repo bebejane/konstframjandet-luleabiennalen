@@ -14,6 +14,7 @@ import { Markdown } from 'next-dato-utils/components';
 import useDevice from '@/lib/hooks/useDevice';
 import BalanceText from 'react-balance-text';
 import { usePathname } from '@/i18n/routing';
+import { enGB, sv } from 'date-fns/locale';
 
 export type ArticleProps = {
 	id: string;
@@ -65,6 +66,18 @@ export default function Article({
 			: 0;
 	const image = locale === 'en' && imageEn ? imageEn : imageSv;
 
+	function formatMetaDate(date: string) {
+		const loc = locale === 'sv' ? sv : enGB;
+		return (
+			<>
+				<span className='small'>
+					{format(new Date(date), 'MMM', { locale: loc }).replace('.', '')}
+				</span>
+				<span>{format(new Date(date), 'dd', { locale: loc }).replace('.', '')}</span>
+			</>
+		);
+	}
+
 	useEffect(() => {
 		const images = [image];
 		content?.blocks.forEach((el: any) => {
@@ -108,21 +121,11 @@ export default function Article({
 
 				<section className={s.meta}>
 					{meta && <MetaSection items={meta} />}
-					{date && (
-						<div className={s.date}>
-							<span className='small'>{format(new Date(date), 'MMM').replace('.', '')}</span>
-							<span>{format(new Date(date), 'dd').replace('.', '')}</span>
-						</div>
-					)}
+					{date && <div className={s.date}>{formatMetaDate(date)}</div>}
 				</section>
 
 				<section className='intro'>
-					{date && (
-						<div className={cn(s.date, s.mobile)}>
-							<span className='small'>{format(new Date(date), 'MMM').replace('.', '')}</span>
-							<span>{format(new Date(date), 'dd').replace('.', '')}</span>
-						</div>
-					)}
+					{date && <div className={cn(s.date, s.mobile)}>{formatMetaDate(date)}</div>}
 					<Markdown className={s.intro} content={intro} />
 				</section>
 				{content && (

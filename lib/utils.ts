@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { apiQuery } from 'next-dato-utils/api';
 import { capitalize } from 'next-dato-utils/utils';
 import { locales } from '@/i18n/routing';
+import { enGB, sv } from 'date-fns/locale';
 
 export function getLocaleSlugs(
 	slug: string,
@@ -20,9 +21,12 @@ export const formatDate = (
 	long: boolean = false,
 ) => {
 	if (!date) return '';
+	const l = locale === 'sv' ? sv : enGB;
 	const f = locale === 'sv' ? `d MMM${long ? 'M' : ''}` : `MMM${long ? 'M' : ''} d`;
-	const s = capitalize(format(new Date(date), f)).replace('.', '');
-	const e = endDate ? capitalize(format(new Date(endDate), f)).replace('.', '') : undefined;
+	const s = capitalize(format(new Date(date), f, { locale: l })).replace('.', '');
+	const e = endDate
+		? capitalize(format(new Date(endDate), f, { locale: l })).replace('.', '')
+		: undefined;
 	const d = `${s}${e ? ` – ${e}` : ''}`;
 	return locale === 'sv' ? d.toLowerCase() : d;
 };

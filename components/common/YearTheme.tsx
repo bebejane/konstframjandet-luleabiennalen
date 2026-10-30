@@ -22,7 +22,6 @@ export default function YearTheme({ year }: { year: YearQuery['year'] }) {
 
 	useEffect(() => {
 		setColor(year?.color?.hex ?? null);
-		console.log('set color');
 	}, [year, pathname]);
 
 	if (!show) return null;
